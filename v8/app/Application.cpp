@@ -165,16 +165,6 @@ void Application::init() {
 		HANDLE_SCOPE;
 		CONTEXT_SCOPE;
 
-        ObjectWrap<Point>::expose(context->Global());
-        Handle<Object> env = eval("new Point(10, 20);")->ToObject();
-        if(env.IsEmpty()) {
-        	LOGI("releaseval.IsEmpty()");
-        } else {
-        	LOGI("releaseval.not IsEmpty()");
-			Local<Value> releasefun = env->Get(String::New("release"));
-			LOGI("has release:%d", releasefun.IsEmpty());
-        }
-
         // binding test func
 		context->Global()->Set(String::New("print"), FunctionTemplate::New(printf__)->GetFunction());
 
@@ -194,6 +184,14 @@ void Application::init() {
 		Handle<Value> gameExports = eval("require('game.js')");
 		game = new JSObject(gameExports->ToObject());
 		render = new JSObject(game->getAttribute<Object>("render"));
+        
+        ObjectWrap<Point>::expose(context->Global());
+        eval("var a = new Point(10, 20);"
+             "for(var i in a) {"
+             "    console.log('-->'+i);"
+             "}"
+             "a.release();"
+             );
 	}
 }
 void Application::destroy() {

@@ -21,3 +21,6 @@ void Point::init(const FunctionCallbackInfo<v8::Value> &args) {
 //    }
 }
 WRAP_BRIDGE_EMPTY(Point);
+void Point::release() {
+    LOGI("call release");
+}

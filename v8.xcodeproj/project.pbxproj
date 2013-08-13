@@ -1979,6 +1979,7 @@
 		18AFB4C817AE782000B7AFDA /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Console.h; sourceTree = "<group>"; };
 		18AFB4CA17AE7BB200B7AFDA /* modules.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = modules.h; sourceTree = "<group>"; };
 		18AFB4CC17AE998B00B7AFDA /* node.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = node.js; sourceTree = "<group>"; };
+		18D6659417BA830B00021EA2 /* cctest */ = {isa = PBXFileReference; lastKnownFileType = folder; name = cctest; path = test/cctest; sourceTree = "<group>"; };
 		18E2252217BA56110079D25F /* assert.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = assert.js; sourceTree = "<group>"; };
 		18E2252417BA56110079D25F /* default-locale.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "default-locale.js"; sourceTree = "<group>"; };
 		18E2252517BA56110079D25F /* en-break.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "en-break.js"; sourceTree = "<group>"; };
@@ -4465,7 +4466,7 @@
 		18EDB7A117B77E83002E00CE /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		18EDB7BA17B78075002E00CE /* GLBinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLBinding.cpp; sourceTree = "<group>"; };
 		18EDB7BB17B78075002E00CE /* GLBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLBinding.h; sourceTree = "<group>"; };
-		18EDB7BF17B86EE8002E00CE /* ObjectWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectWrap.h; sourceTree = "<group>"; };
+		18EDB7BF17B86EE8002E00CE /* ObjectWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectWrap.h; path = ../app/ObjectWrap.h; sourceTree = "<group>"; };
 		18EDB7C417B8C342002E00CE /* wrapmacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wrapmacros.h; sourceTree = "<group>"; };
 		18EDB7C817B916BA002E00CE /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
 		18EDB7C917B916BA002E00CE /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
@@ -4513,6 +4514,7 @@
 		1828209F179AFFCB003125B5 /* v8 */ = {
 			isa = PBXGroup;
 			children = (
+				18D6659417BA830B00021EA2 /* cctest */,
 				18E224C617BA56110079D25F /* test */,
 				18EDB7C717B916BA002E00CE /* core */,
 				18EDB76B17B76C1F002E00CE /* assets */,
@@ -4533,7 +4535,6 @@
 		18AFB4B817AE0D0A00B7AFDA /* app */ = {
 			isa = PBXGroup;
 			children = (
-				18EDB7BF17B86EE8002E00CE /* ObjectWrap.h */,
 				18AFB4BC17AE1C6300B7AFDA /* Application.cpp */,
 				18AFB4BD17AE1C6300B7AFDA /* Application.h */,
 				18AFB4C217AE748A00B7AFDA /* node.h */,
@@ -7268,6 +7269,7 @@
 		18EDB7C717B916BA002E00CE /* core */ = {
 			isa = PBXGroup;
 			children = (
+				18EDB7BF17B86EE8002E00CE /* ObjectWrap.h */,
 				18EDB7C817B916BA002E00CE /* Point.cpp */,
 				18EDB7C917B916BA002E00CE /* Point.h */,
 				18EDB7CA17B916BA002E00CE /* WrapBase.cpp */,

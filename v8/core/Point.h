@@ -11,10 +11,11 @@
 #include "wrapmacros.h"
 #include "WrapBase.h"
 
-class Point : WrapBase {
+class Point : public WrapBase {
 public:
 	Point();
 	virtual ~Point();
+    virtual void release();
 
     WRAP_DEFINE;
 private:

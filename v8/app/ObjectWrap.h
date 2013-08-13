@@ -14,6 +14,9 @@
 
 using namespace v8;
 
+/**
+ * wrap cpp object to js class
+ */
 template<class T>
 class ObjectWrap {
 public:

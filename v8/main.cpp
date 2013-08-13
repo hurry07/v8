@@ -143,19 +143,30 @@ Handle<Value> eval(const char* script) {
 	return scope.Close(comp->Run());
 }
 void getX(Local<String> property, const PropertyCallbackInfo<Value>& info) {
-    
+    info.GetReturnValue().Set(Integer::New(100));
 }
-int main(int argc, const char * argv[])
-{
-    //    printf("\ninit path:%s", source_root.c_str());
-    //    Application* app = new Application();
-    //    app->init();
-    //    app->onDrawFrame();
-    //    app->onDrawFrame();
-    //    app->destroy();
-    //    app->onDrawFrame();
-    //    app->onDrawFrame();
-    //    delete app;
+static void setX(Local<String> name, Local<Value> value, const v8::PropertyCallbackInfo<void>& info) {
+}
+void getY(Local<String> property, const PropertyCallbackInfo<Value>& info) {
+    info.GetReturnValue().Set(Integer::New(110));
+}
+static void setY(Local<String> name, Local<Value> value, const v8::PropertyCallbackInfo<void>& info) {
+}
+void console(const FunctionCallbackInfo<Value>& info) {
+    std::string buf;
+    int length = info.Length();
+    if(length == 0) {
+        return;
+    }
+    buf.append(*String::Utf8Value(info[0]->ToString()));
+    for (int i = 1; i < length; i++) {
+        buf.append(",");
+        buf.append(*String::Utf8Value(info[i]->ToString()));
+    }
+    buf.append("\n");
+    printf(buf.c_str());
+}
+void testProto() {
     prepare();
     
     {
@@ -163,17 +174,44 @@ int main(int argc, const char * argv[])
         Local<Context> context = GetV8Context();
         Context::Scope context_scope(context);
         
+        Handle<FunctionTemplate> printf = FunctionTemplate::New();
+        printf->SetCallHandler(console);
+        
+        context->Global()->Set(String::New("print"), printf->GetFunction());
+        
         Handle<FunctionTemplate> fn = FunctionTemplate::New();
         fn->SetClassName(String::New("P"));
-        context->Global()->Set(String::New("P"), fn->GetFunction());
-        
         Local<ObjectTemplate> fnproto = fn->PrototypeTemplate();
-        fnproto->SetAccessor(String::New("test"), getX);
         Local<ObjectTemplate> fninst = fn->InstanceTemplate();
+        fnproto->SetAccessor(String::New("x"), getX, setX);
+        fninst->SetAccessor(String::New("y"), getY, setY);
         
-        eval("new P()");
+        Handle<FunctionTemplate> shape = FunctionTemplate::New();
+        shape->SetClassName(String::New("Shape"));
+        Local<ObjectTemplate> shapeproto = shape->PrototypeTemplate();
+        Local<ObjectTemplate> shapeinst = shape->InstanceTemplate();
+        shapeproto->SetAccessor(String::New("sx"), getX, setX);
+        shapeinst->SetAccessor(String::New("sy"), getY, setY);
+        fn->Inherit(shape);
+        
+        context->Global()->Set(String::New("P"), fn->GetFunction());
+        eval("var a = new P();var pro = P.prototype;"
+             "print(pro.x, pro.y, pro.sx, pro.sy);"
+             "print(a.x, a.y, a.sx, a.sy);");
     }
     
-    teardown();
+    teardown();    
+}
+int main(int argc, const char * argv[])
+{
+    printf("\ninit path:%s", source_root.c_str());
+    Application* app = new Application();
+    app->init();
+    app->onDrawFrame();
+    app->onDrawFrame();
+    app->destroy();
+    app->onDrawFrame();
+    app->onDrawFrame();
+    delete app;
     return 0;
 }

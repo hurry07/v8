@@ -14,9 +14,6 @@
 
 using namespace v8;
 
-#define BIND_WRAP_FUNCTION(base, name, callback) \
-base->Set(String::New(#name), FunctionTemplate::New(callback)->GetFunction())
-
 #define WRAP_DEFINE \
 virtual void init(const FunctionCallbackInfo<Value> &args);\
 static const char* getClassName();\
@@ -28,7 +25,7 @@ const char* name::getClassName() {\
     return std::string(#name).c_str();\
 }\
 void name::initPrototype(Local<ObjectTemplate>& obj) {\
-	BIND_WRAP_FUNCTION(obj, release, WrapBase::jsRelease);\
+    obj->SetAccessor(String::New("release"), getRelease<name>);\
 }\
 void name::initInstance(Local<ObjectTemplate>& obj) {\
 }

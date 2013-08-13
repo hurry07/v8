@@ -19,15 +19,6 @@ WrapBase::~WrapBase() {
 		release();
 	}
 }
-void WrapBase::jsRelease(const FunctionCallbackInfo<Value> &args) {
-	Local<Object> self = args.This();
-	Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
-	WrapBase* ptr = static_cast<WrapBase*>(wrap->Value());
-	if (!ptr->mRelease) {
-		ptr->release();
-		ptr->mRelease = true;
-	}
-}
 void WrapBase::release() {
 	LOGI("WrapBase::release");
 }
