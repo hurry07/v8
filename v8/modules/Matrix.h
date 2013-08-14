@@ -9,8 +9,7 @@
 #ifndef __v8__Matrix__
 #define __v8__Matrix__
 
-#include <iostream>
-#include "Module.h"
+#include "../core/Module.h"
 
 class Matrix : public Module<Matrix> {
 };

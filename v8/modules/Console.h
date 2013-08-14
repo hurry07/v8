@@ -10,8 +10,8 @@
 #define __v8__Console__
 
 #include "../app/node.h"
+#include "../core/Module.h"
 #include <iostream>
-#include "Module.h"
 
 class Console : public Module<Console> {
 };

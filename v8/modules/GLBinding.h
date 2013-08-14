@@ -11,7 +11,7 @@
 
 #include <v8.h>
 #include "../app/node.h"
-#include "Module.h"
+#include "../core/Module.h"
 
 using v8::Value;
 using v8::Handle;

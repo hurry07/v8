@@ -25,9 +25,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "160"
-         endingLineNumber = "160"
-         landmarkName = "console(const FunctionCallbackInfo&lt;Value&gt;&amp; info)"
-         landmarkType = "7">
+         endingLineNumber = "160">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -65,7 +63,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "149"
          endingLineNumber = "149"
-         landmarkName = "getX(Local&lt;String&gt; property, const PropertyCallbackInfo&lt;Value&gt;&amp; info)"
+         landmarkName = "eval(const char* script)"
          landmarkType = "7">
       </FileBreakpoint>
       <FileBreakpoint

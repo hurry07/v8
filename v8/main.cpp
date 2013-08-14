@@ -9,7 +9,7 @@
 
 #include <string>
 
-#include "Point.h"
+#include "classes/Point.h"
 #include <iostream>
 #include <v8.h>
 #include "app/Application.h"
@@ -265,5 +265,6 @@ void testMatrix() {
 int main(int argc, const char * argv[])
 {
     testMatrix();
+    testExtend();
     return 0;
 }

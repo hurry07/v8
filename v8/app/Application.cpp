@@ -7,12 +7,12 @@
 //
 
 #include "Application.h"
-#include "../core/ObjectWrap.h"
-#include "../core/Point.h"
+#include "../core/ClassWrap.h"
+#include "../core/Module.h"
+#include "../classes/Point.h"
 #include "node.h"
 #include "../modules/modules.h"
 #include "../modules/CCImage.h"
-#include "../modules/Module.h"
 #include "../utils/AssetUtil.h"
 #include "../global.h"
 
@@ -185,11 +185,12 @@ void Application::init() {
 		game = new JSObject(gameExports->ToObject());
 		render = new JSObject(game->getAttribute<Object>("render"));
         
-        ObjectWrap<Point>::expose(context->Global());
+        ClassWrap<Point>::expose(context->Global());
         eval("var a = new Point(10, 20);"
              "for(var i in a) {"
              "    console.log('js foreach-->'+i);"
              "}"
+             "a.release();"
              "a.release();"
              );
         

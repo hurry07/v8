@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		182820A1179AFFCB003125B5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182820A0179AFFCB003125B5 /* main.cpp */; };
 		182820A3179AFFCB003125B5 /* v8.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 182820A2179AFFCB003125B5 /* v8.1 */; };
+		185BF54B17BBE6B600F7AE09 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185BF54917BBE6B600F7AE09 /* Point.cpp */; };
 		18739DA9179D9559008DE41D /* Yell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18739DA6179D9559008DE41D /* Yell.cpp */; };
 		1873FFC617AF67B800D90137 /* game.js in Sources */ = {isa = PBXBuildFile; fileRef = 1873FFC517AF67B700D90137 /* game.js */; };
 		18AFB48C17AE06A900B7AFDA /* libv8_base.x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AFB48917AE06A900B7AFDA /* libv8_base.x64.a */; };
@@ -1945,8 +1946,6 @@
 		18EDB76817B7698C002E00CE /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EDB76717B7698C002E00CE /* OpenGL.framework */; };
 		18EDB76A17B76992002E00CE /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EDB76917B76992002E00CE /* GLUT.framework */; };
 		18EDB7BE17B78075002E00CE /* GLBinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18EDB7BA17B78075002E00CE /* GLBinding.cpp */; };
-		18EDB7CD17B916BA002E00CE /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18EDB7C817B916BA002E00CE /* Point.cpp */; };
-		18EDB7CE17B916BA002E00CE /* WrapBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18EDB7CA17B916BA002E00CE /* WrapBase.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1966,6 +1965,8 @@
 		1828209C179AFFCB003125B5 /* v8 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = v8; sourceTree = BUILT_PRODUCTS_DIR; };
 		182820A0179AFFCB003125B5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		182820A2179AFFCB003125B5 /* v8.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = v8.1; sourceTree = "<group>"; };
+		185BF54917BBE6B600F7AE09 /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
+		185BF54A17BBE6B600F7AE09 /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
 		18739DA6179D9559008DE41D /* Yell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Yell.cpp; sourceTree = "<group>"; };
 		18739DA7179D9559008DE41D /* Yell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Yell.h; sourceTree = "<group>"; };
 		1873FFC517AF67B700D90137 /* game.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = game.js; sourceTree = "<group>"; };
@@ -4457,12 +4458,11 @@
 		18E22EE617BA561B0079D25F /* vardecl-blocks-init.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "vardecl-blocks-init.js"; sourceTree = "<group>"; };
 		18E22EE717BA561B0079D25F /* webkit.status */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = webkit.status; sourceTree = "<group>"; };
 		18E236BC17BB54380079D25F /* v8Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = v8Utils.h; sourceTree = "<group>"; };
-		18E236BD17BB55EA0079D25F /* ObjectWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectWrap.h; sourceTree = "<group>"; };
+		18E236BD17BB55EA0079D25F /* ClassWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassWrap.h; sourceTree = "<group>"; };
 		18E236BE17BB56120079D25F /* JSObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSObject.cpp; sourceTree = "<group>"; };
 		18E236BF17BB56120079D25F /* JSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSObject.h; sourceTree = "<group>"; };
 		18E236C117BB58C60079D25F /* Matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix.cpp; sourceTree = "<group>"; };
 		18E236C217BB58C60079D25F /* Matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix.h; sourceTree = "<group>"; };
-		18E236C417BB62A70079D25F /* Module.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Module.h; sourceTree = "<group>"; };
 		18EDB76317B7634E002E00CE /* AssetUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssetUtil.cpp; sourceTree = "<group>"; };
 		18EDB76417B7634E002E00CE /* AssetUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetUtil.h; sourceTree = "<group>"; };
 		18EDB76617B763B0002E00CE /* global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
@@ -4472,11 +4472,7 @@
 		18EDB7A117B77E83002E00CE /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		18EDB7BA17B78075002E00CE /* GLBinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLBinding.cpp; sourceTree = "<group>"; };
 		18EDB7BB17B78075002E00CE /* GLBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLBinding.h; sourceTree = "<group>"; };
-		18EDB7C417B8C342002E00CE /* wrapmacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wrapmacros.h; sourceTree = "<group>"; };
-		18EDB7C817B916BA002E00CE /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
-		18EDB7C917B916BA002E00CE /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
-		18EDB7CA17B916BA002E00CE /* WrapBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WrapBase.cpp; sourceTree = "<group>"; };
-		18EDB7CB17B916BA002E00CE /* WrapBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WrapBase.h; sourceTree = "<group>"; };
+		18EDB7CB17B916BA002E00CE /* ClassBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassBase.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4518,6 +4514,7 @@
 		1828209F179AFFCB003125B5 /* v8 */ = {
 			isa = PBXGroup;
 			children = (
+				185BF54817BBE5D900F7AE09 /* classes */,
 				18D6659417BA830B00021EA2 /* cctest */,
 				18E224C617BA56110079D25F /* test */,
 				18EDB7C717B916BA002E00CE /* core */,
@@ -4536,13 +4533,21 @@
 			path = v8;
 			sourceTree = "<group>";
 		};
+		185BF54817BBE5D900F7AE09 /* classes */ = {
+			isa = PBXGroup;
+			children = (
+				185BF54917BBE6B600F7AE09 /* Point.cpp */,
+				185BF54A17BBE6B600F7AE09 /* Point.h */,
+			);
+			path = classes;
+			sourceTree = "<group>";
+		};
 		18AFB4B817AE0D0A00B7AFDA /* app */ = {
 			isa = PBXGroup;
 			children = (
 				18AFB4BC17AE1C6300B7AFDA /* Application.cpp */,
 				18AFB4BD17AE1C6300B7AFDA /* Application.h */,
 				18AFB4C217AE748A00B7AFDA /* node.h */,
-				18EDB7C417B8C342002E00CE /* wrapmacros.h */,
 			);
 			path = app;
 			sourceTree = "<group>";
@@ -4557,7 +4562,6 @@
 				18AFB4CA17AE7BB200B7AFDA /* modules.h */,
 				18E236C117BB58C60079D25F /* Matrix.cpp */,
 				18E236C217BB58C60079D25F /* Matrix.h */,
-				18E236C417BB62A70079D25F /* Module.h */,
 			);
 			path = modules;
 			sourceTree = "<group>";
@@ -7276,11 +7280,8 @@
 			children = (
 				18E236BE17BB56120079D25F /* JSObject.cpp */,
 				18E236BF17BB56120079D25F /* JSObject.h */,
-				18E236BD17BB55EA0079D25F /* ObjectWrap.h */,
-				18EDB7C817B916BA002E00CE /* Point.cpp */,
-				18EDB7C917B916BA002E00CE /* Point.h */,
-				18EDB7CA17B916BA002E00CE /* WrapBase.cpp */,
-				18EDB7CB17B916BA002E00CE /* WrapBase.h */,
+				18E236BD17BB55EA0079D25F /* ClassWrap.h */,
+				18EDB7CB17B916BA002E00CE /* ClassBase.h */,
 				18E236BC17BB54380079D25F /* v8Utils.h */,
 			);
 			path = core;
@@ -7345,8 +7346,6 @@
 				1873FFC617AF67B800D90137 /* game.js in Sources */,
 				18EDB76517B7634E002E00CE /* AssetUtil.cpp in Sources */,
 				18EDB7BE17B78075002E00CE /* GLBinding.cpp in Sources */,
-				18EDB7CD17B916BA002E00CE /* Point.cpp in Sources */,
-				18EDB7CE17B916BA002E00CE /* WrapBase.cpp in Sources */,
 				18E22F3917BA561B0079D25F /* assert.js in Sources */,
 				18E22F3A17BA561B0079D25F /* default-locale.js in Sources */,
 				18E22F3B17BA561B0079D25F /* en-break.js in Sources */,
@@ -9272,6 +9271,7 @@
 				18E236BB17BA561C0079D25F /* vardecl-blocks-init.js in Sources */,
 				18E236C017BB56120079D25F /* JSObject.cpp in Sources */,
 				18E236C317BB58C70079D25F /* Matrix.cpp in Sources */,
+				185BF54B17BBE6B600F7AE09 /* Point.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
