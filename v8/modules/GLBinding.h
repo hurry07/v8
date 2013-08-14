@@ -11,6 +11,7 @@
 
 #include <v8.h>
 #include "../app/node.h"
+#include "Module.h"
 
 using v8::Value;
 using v8::Handle;
@@ -19,12 +20,8 @@ using v8::Object;
 
 #define DEFINE_GL(name) static Handle<Value> name##Callback(const Arguments& args)
 
-namespace node {
-
-class GLBinding {
+class GLBinding :public Module<GLBinding> {
 public:
-    static node_module_struct _Module;
-
     DEFINE_GL(getAttachedShaders);
     DEFINE_GL(getSupportedExtensions);
     DEFINE_GL(getExtension);
@@ -159,8 +156,5 @@ public:
     DEFINE_GL(viewport);
 };
 
-}
-
 #undef DEFINE_GL
-
 #endif /* defined(__jstest__GLBinding__) */

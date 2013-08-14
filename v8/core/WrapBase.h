@@ -9,6 +9,7 @@
 #define WRAPBASE_H_
 
 #include <v8.h>
+#include <string>
 
 using namespace v8;
 
@@ -17,30 +18,28 @@ public:
 	WrapBase();
 	virtual ~WrapBase();
 	virtual void release();
+    virtual void jsRelease();
 
     template<typename T>
-    static T* selfPtr(const FunctionCallbackInfo<Value>& info) {
-        Local<Object> self = info.Holder();
-        Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
-        return static_cast<T*>(wrap->Value());
+    static const char* getClassName() {
+        return std::string(T::mName).c_str();
     }
-    
-    template<typename T>
-    static void releaseFn(const FunctionCallbackInfo<Value>& info) {
-        T* current = selfPtr<T>(info);
-        if(!current->mRelease) {
-            current->release();
-            current->mRelease = true;
-        }
+    static void initPrototype(Local<ObjectTemplate>& obj) {
     }
-
-    template<typename T>
-    static void getRelease(Local<String> property, const PropertyCallbackInfo<Value>& info) {
-        info.GetReturnValue().Set(FunctionTemplate::New(releaseFn<T>)->GetFunction());
+    static void initInstance(Local<ObjectTemplate>& obj) {
     }
+    /**
+     * init cpp class instance
+     */
+    virtual void init(const FunctionCallbackInfo<Value> &args);
+    /**
+     * init class properties bindings when first export
+     */
+    static void initClass();
 
 protected:
 	bool mRelease;
+    static const char* mName;// cpp export name
 };
 
 #endif /* WRAPBASE_H_ */

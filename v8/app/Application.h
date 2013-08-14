@@ -12,7 +12,7 @@
 #include <iostream>
 #include <v8.h>
 #include "node.h"
-#include "JSObject.h"
+#include "../core/JSObject.h"
 
 using namespace v8;
 

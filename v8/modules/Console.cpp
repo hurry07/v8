@@ -11,28 +11,30 @@
 
 using namespace v8;
 
-namespace node {
-    static void log(const FunctionCallbackInfo<Value>& args) {
-        std::string buf;
-        int length = args.Length();
-        if(length == 0) {
-            return;
-        }
-        buf.append(*String::Utf8Value(args[0]->ToString()));
-        for (int i = 1; i < length; i++) {
-            buf.append(",");
-            buf.append(*String::Utf8Value(args[i]->ToString()));
-        }
-        buf.append("\n");
-        LOGI(buf.c_str());
+static void log(const FunctionCallbackInfo<Value>& args) {
+    std::string buf;
+    int length = args.Length();
+    if(length == 0) {
+        return;
     }
-
-    static void init(const FunctionCallbackInfo<Value>& args) {
-        HandleScope scope;
-        Local<Object> target = args[0]->ToObject();
-
-        NODE_SET_METHOD(target, "log", log);
+    buf.append(*String::Utf8Value(args[0]->ToString()));
+    for (int i = 1; i < length; i++) {
+        buf.append(",");
+        buf.append(*String::Utf8Value(args[i]->ToString()));
     }
-
-    NODE_MODULE(Console, "node_console", init);
+    LOGI(buf.c_str());
 }
+
+template<> void Module<Console>::init(const FunctionCallbackInfo<Value>& args) {
+    HandleScope scope;
+    Local<Object> target = args[0]->ToObject();
+    
+    NODE_SET_METHOD(target, "log", log);
+}
+
+template<> void Module<Console>::test() {
+    printf("%s\n", "console.test");
+}
+
+template<> const char* Module<Console>::mFile = __FILE__;
+template<> const char* Module<Console>::mName = "node_console";

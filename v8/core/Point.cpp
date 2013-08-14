@@ -8,19 +8,20 @@
 #include "Point.h"
 #include "../global.h"
 
+const char* Point::mName = "Point";
+
 Point::Point() : x(0), y(0) {
-	LOGI("init poin\n");
+	LOGI("init poin");
 }
 Point::~Point() {
-    LOGI("release poin:%f, %f\n", x, y);
+    LOGI("release poin:%f, %f", x, y);
 }
 void Point::init(const FunctionCallbackInfo<v8::Value> &args) {
-//    if(args.Length() == 2) {
-//        this->x = args[0]->ToNumber()->Value();
-//        this->y = args[1]->ToNumber()->Value();
-//    }
+    if(args.Length() == 2) {
+        this->x = args[0]->ToNumber()->Value();
+        this->y = args[1]->ToNumber()->Value();
+    }
 }
-WRAP_BRIDGE_EMPTY(Point);
 void Point::release() {
     LOGI("call release");
 }

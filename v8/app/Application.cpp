@@ -7,11 +7,12 @@
 //
 
 #include "Application.h"
-#include "ObjectWrap.h"
+#include "../core/ObjectWrap.h"
 #include "../core/Point.h"
 #include "node.h"
 #include "../modules/modules.h"
 #include "../modules/CCImage.h"
+#include "../modules/Module.h"
 #include "../utils/AssetUtil.h"
 #include "../global.h"
 
@@ -83,8 +84,7 @@ static void printf__(const FunctionCallbackInfo<Value>& args) {
 		buf.append(",");
 		buf.append(*String::Utf8Value(args[i]->ToString()));
 	}
-	buf.append("\n");
-	printf(buf.c_str());
+	LOGI(buf.c_str());
 }
 
 Local<Function> Application::loadModuleFn(const char* name) {
@@ -188,10 +188,13 @@ void Application::init() {
         ObjectWrap<Point>::expose(context->Global());
         eval("var a = new Point(10, 20);"
              "for(var i in a) {"
-             "    console.log('-->'+i);"
+             "    console.log('js foreach-->'+i);"
              "}"
              "a.release();"
              );
+        
+        LOGI(Console::mFile);
+        Module<Console>::test();
 	}
 }
 void Application::destroy() {
