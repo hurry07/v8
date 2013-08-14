@@ -11,6 +11,7 @@
 #include <v8.h>
 #include <string>
 #include "../global.h"
+#include "../classes/classenum.h"
 
 using namespace v8;
 
@@ -52,6 +53,12 @@ public:
 protected:
 	bool mRelease;// has release called on current instance
     static const char* mName;// cpp export name
+    static const ClassType mClassType;
 };
+
+template<class T>
+const ClassType ClassBase<T>::mClassType = CLASS_NULL;
+template<class T>
+const char* ClassBase<T>::mName = "CLASS_BASE";
 
 #endif /* ClassBase_H_ */

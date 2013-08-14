@@ -10,6 +10,7 @@
 		182820A1179AFFCB003125B5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182820A0179AFFCB003125B5 /* main.cpp */; };
 		182820A3179AFFCB003125B5 /* v8.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 182820A2179AFFCB003125B5 /* v8.1 */; };
 		185BF54B17BBE6B600F7AE09 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185BF54917BBE6B600F7AE09 /* Point.cpp */; };
+		185BF54E17BBE81A00F7AE09 /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185BF54C17BBE81A00F7AE09 /* Matrix.cpp */; };
 		18739DA9179D9559008DE41D /* Yell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18739DA6179D9559008DE41D /* Yell.cpp */; };
 		1873FFC617AF67B800D90137 /* game.js in Sources */ = {isa = PBXBuildFile; fileRef = 1873FFC517AF67B700D90137 /* game.js */; };
 		18AFB48C17AE06A900B7AFDA /* libv8_base.x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AFB48917AE06A900B7AFDA /* libv8_base.x64.a */; };
@@ -1941,7 +1942,6 @@
 		18E236BA17BA561C0079D25F /* var-shadows-arg-gc-crash.js in Sources */ = {isa = PBXBuildFile; fileRef = 18E22EE417BA561B0079D25F /* var-shadows-arg-gc-crash.js */; };
 		18E236BB17BA561C0079D25F /* vardecl-blocks-init.js in Sources */ = {isa = PBXBuildFile; fileRef = 18E22EE617BA561B0079D25F /* vardecl-blocks-init.js */; };
 		18E236C017BB56120079D25F /* JSObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18E236BE17BB56120079D25F /* JSObject.cpp */; };
-		18E236C317BB58C70079D25F /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18E236C117BB58C60079D25F /* Matrix.cpp */; };
 		18EDB76517B7634E002E00CE /* AssetUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18EDB76317B7634E002E00CE /* AssetUtil.cpp */; };
 		18EDB76817B7698C002E00CE /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EDB76717B7698C002E00CE /* OpenGL.framework */; };
 		18EDB76A17B76992002E00CE /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EDB76917B76992002E00CE /* GLUT.framework */; };
@@ -1967,6 +1967,9 @@
 		182820A2179AFFCB003125B5 /* v8.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = v8.1; sourceTree = "<group>"; };
 		185BF54917BBE6B600F7AE09 /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
 		185BF54A17BBE6B600F7AE09 /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
+		185BF54C17BBE81A00F7AE09 /* Matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix.cpp; sourceTree = "<group>"; };
+		185BF54D17BBE81A00F7AE09 /* Matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix.h; sourceTree = "<group>"; };
+		185BF54F17BBE8F400F7AE09 /* classenum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = classenum.h; sourceTree = "<group>"; };
 		18739DA6179D9559008DE41D /* Yell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Yell.cpp; sourceTree = "<group>"; };
 		18739DA7179D9559008DE41D /* Yell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Yell.h; sourceTree = "<group>"; };
 		1873FFC517AF67B700D90137 /* game.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = game.js; sourceTree = "<group>"; };
@@ -4461,8 +4464,6 @@
 		18E236BD17BB55EA0079D25F /* ClassWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassWrap.h; sourceTree = "<group>"; };
 		18E236BE17BB56120079D25F /* JSObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSObject.cpp; sourceTree = "<group>"; };
 		18E236BF17BB56120079D25F /* JSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSObject.h; sourceTree = "<group>"; };
-		18E236C117BB58C60079D25F /* Matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix.cpp; sourceTree = "<group>"; };
-		18E236C217BB58C60079D25F /* Matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix.h; sourceTree = "<group>"; };
 		18EDB76317B7634E002E00CE /* AssetUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssetUtil.cpp; sourceTree = "<group>"; };
 		18EDB76417B7634E002E00CE /* AssetUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetUtil.h; sourceTree = "<group>"; };
 		18EDB76617B763B0002E00CE /* global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
@@ -4536,8 +4537,11 @@
 		185BF54817BBE5D900F7AE09 /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				185BF54C17BBE81A00F7AE09 /* Matrix.cpp */,
+				185BF54D17BBE81A00F7AE09 /* Matrix.h */,
 				185BF54917BBE6B600F7AE09 /* Point.cpp */,
 				185BF54A17BBE6B600F7AE09 /* Point.h */,
+				185BF54F17BBE8F400F7AE09 /* classenum.h */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -4560,8 +4564,6 @@
 				18AFB4C717AE782000B7AFDA /* Console.cpp */,
 				18AFB4C817AE782000B7AFDA /* Console.h */,
 				18AFB4CA17AE7BB200B7AFDA /* modules.h */,
-				18E236C117BB58C60079D25F /* Matrix.cpp */,
-				18E236C217BB58C60079D25F /* Matrix.h */,
 			);
 			path = modules;
 			sourceTree = "<group>";
@@ -9270,8 +9272,8 @@
 				18E236BA17BA561C0079D25F /* var-shadows-arg-gc-crash.js in Sources */,
 				18E236BB17BA561C0079D25F /* vardecl-blocks-init.js in Sources */,
 				18E236C017BB56120079D25F /* JSObject.cpp in Sources */,
-				18E236C317BB58C70079D25F /* Matrix.cpp in Sources */,
 				185BF54B17BBE6B600F7AE09 /* Point.cpp in Sources */,
+				185BF54E17BBE81A00F7AE09 /* Matrix.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

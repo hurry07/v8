@@ -9,9 +9,12 @@
 #ifndef __v8__Matrix__
 #define __v8__Matrix__
 
-#include "../core/Module.h"
+#include "../core/ClassBase.h"
+#include <glm/glm.hpp>
 
-class Matrix : public Module<Matrix> {
+class Matrix : public ClassBase<Matrix> {
+private:
+    glm::mat4 mMatrix;
 };
 
 #endif /* defined(__v8__Matrix__) */
