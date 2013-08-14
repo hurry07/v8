@@ -9,15 +9,11 @@
 #ifndef __v8__Console__
 #define __v8__Console__
 
-#include <iostream>
 #include "../app/node.h"
+#include <iostream>
+#include "Module.h"
 
-namespace node {
-    
-    class Console {
-    public:
-        static node_module_struct _Module;
-    };
+class Console : public Module<Console> {
+};
 
-}
 #endif /* defined(__v8__Console__) */

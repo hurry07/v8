@@ -16,8 +16,8 @@
 namespace node {
     
     node_module_struct *node_module_list[] = {
-        &Console::_Module,
-        &GLBinding::_Module,
+        Console::getModule(),
+        GLBinding::getModule(),
         NULL};
     
     struct node_module_struct* get_builtin_module(const char *name) {

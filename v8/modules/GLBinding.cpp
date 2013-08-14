@@ -623,9 +623,7 @@ static Handle<Array> toArray(GLuint* buffers, int size) {
     return arr;
 }
 
-namespace node {
-
-static void init(const FunctionCallbackInfo<Value>& args) {
+template<> void Module<GLBinding>::init(const FunctionCallbackInfo<Value>& args) {
     HandleScope scope;
     Local<Object> _proto_ = args[0]->ToObject();
 
@@ -1881,5 +1879,5 @@ JS_METHOD(vertexAttribPointer) {
 }
 DELEGATE_TO_GL_N4(viewport, glViewport, GLint, GLint, GLsizei, GLsizei);
 
-NODE_MODULE(GLBinding, "node_opengl", init);
-}
+template<> const char* Module<GLBinding>::mFile = __FILE__;
+template<> const char* Module<GLBinding>::mName = "node_gl";

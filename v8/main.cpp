@@ -15,12 +15,17 @@
 #include "app/Application.h"
 #include "utils/AssetUtil.h"
 
+#define GLM_MESSAGES
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/transform2.hpp>
+#include <glm/gtc/swizzle.hpp>
+
 using namespace v8;
 
 std::string dir(std::string path, std::string subpath) {
     std::string::size_type index = path.find_last_of('/');
     if (index != std::string::npos){
-        printf("path:%s", path.substr(0, index).c_str());
         return path.substr(0, index).append(subpath);
     } else {
         return subpath;
@@ -202,8 +207,24 @@ void testProto() {
     
     teardown();    
 }
-int main(int argc, const char * argv[])
-{
+class A {
+public:
+    static void test() {
+        LOGI("A.test");
+    }
+};
+class B : public A {
+public:
+    static void test() {
+        LOGI("B.test");
+    }
+};
+void testExtend() {
+    A* a = new A();
+    a->test();
+    B* b = new B();
+    b->test();
+    
     printf("\ninit path:%s", source_root.c_str());
     Application* app = new Application();
     app->init();
@@ -213,5 +234,36 @@ int main(int argc, const char * argv[])
     app->onDrawFrame();
     app->onDrawFrame();
     delete app;
+}
+void testMatrix() {
+    glm::vec4 Position = glm::vec4(glm::vec3(0.0), 1.0);
+    glm::mat4 Model = glm::mat4(1.0);
+    Model[3] = glm::vec4(1.0, 1.0, 0.0, 1.0);
+    glm::vec4 Transformed = Model * Position;
+    glm::translate(Model, glm::vec3(1));
+
+//    glm::vec4 ColorRGBA(1.0f, 0.5f, 0.0f, 1.0f);
+//    glm::vec4 ColorBGRA = ColorRGBA.bgra();
+//    ColorRGBA.bgra() = ColorRGBA;
+//    ColorRGBA.bgra() = ColorRGBA.rgba();
+
+    glm::vec4 ColorRGBA(1.0f, 0.5f, 0.0f, 1.0f);
+    // Dynamic swizzling (at run time, more flexible)
+    // l-value:
+    glm::vec4 ColorBGRA1 = glm::swizzle(ColorRGBA, glm::B, glm::G, glm::R, glm::A);
+    // r-value:
+    glm::swizzle(ColorRGBA, glm::B, glm::G, glm::R, glm::A) = ColorRGBA;
+    // Static swizzling (at build time, faster)
+    // l-value:
+    glm::vec4 ColorBGRA2 = glm::swizzle<glm::B, glm::G, glm::R, glm::A>(ColorRGBA);
+
+    // r-value:
+    glm::swizzle<glm::B, glm::G, glm::R, glm::A>(ColorRGBA) = ColorRGBA;
+    
+    printf("tm");
+}
+int main(int argc, const char * argv[])
+{
+    testMatrix();
     return 0;
 }

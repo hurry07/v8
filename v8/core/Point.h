@@ -16,8 +16,9 @@ public:
 	Point();
 	virtual ~Point();
     virtual void release();
+    virtual void init(const FunctionCallbackInfo<Value> &args);
+    static const char* mName;
 
-    WRAP_DEFINE;
 private:
     float x;
     float y;
