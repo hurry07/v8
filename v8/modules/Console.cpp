@@ -32,9 +32,5 @@ template<> void Module<Console>::init(const FunctionCallbackInfo<Value>& args) {
     NODE_SET_METHOD(target, "log", log);
 }
 
-template<> void Module<Console>::test() {
-    printf("%s\n", "console.test");
-}
-
 template<> const char* Module<Console>::mFile = __FILE__;
 template<> const char* Module<Console>::mName = "node_console";

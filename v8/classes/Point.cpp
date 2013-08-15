@@ -8,14 +8,10 @@
 #include "Point.h"
 #include "../global.h"
 
-template<> const char* ClassBase<Point>::mName = "Point";
-template<> const ClassType ClassBase<Point>::mClassType = CLASS_POINT;
-
 Point::Point() : x(0), y(0) {
-	LOGI("init poin");
 }
 Point::~Point() {
-    LOGI("release poin:%f, %f", x, y);
+//    LOGI("delete point:%f %f", x, y);
 }
 void Point::init(const FunctionCallbackInfo<v8::Value> &args) {
     if(args.Length() == 2) {
@@ -23,6 +19,16 @@ void Point::init(const FunctionCallbackInfo<v8::Value> &args) {
         this->y = args[1]->ToNumber()->Value();
     }
 }
-void Point::release() {
-    LOGI("call release");
+void Point::init(float x, float y) {
+    this->x = x;
+    this->y = y;
+}
+class_struct* Point::getExportStruct() {
+    static class_struct mTemplate = {
+        0, 0, 0, "Point", CLASS_POINT
+    };
+    return &mTemplate;
+}
+ClassType Point::getClassType() {
+    return getExportStruct()->mType;
 }

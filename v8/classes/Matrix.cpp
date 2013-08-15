@@ -5,21 +5,32 @@
 //  Created by jie on 13-8-14.
 //  Copyright (c) 2013年 jie. All rights reserved.
 //
-#include "Matrix.h"
+#include "matrix.h"
+#include <glm/gtc/matrix_transform.hpp>
+#include "../core/v8Utils.h"
 
-template<> const char* ClassBase<Matrix>::mName = "matrix";
-template<> const ClassType ClassBase<Matrix>::mClassType = CLASS_MATRIX;
+Matrix::Matrix() : mMatrix(1) {
+    LOGI("matirx type:%d");
+}
 
-static void getPropties(Local<String> property, const PropertyCallbackInfo<Value>& info) {
+METHOD_BEGIN(rotate, info) {
+    Matrix* m = selfPtr<Matrix>(info);
+    LOGI("matrix.rotate ====");
 }
-static void setPropties(Local<String> property, Local<Value> value, const PropertyCallbackInfo<Value>& info) {
+METHOD_BEGIN(translate, info) {
+    Matrix* m = selfPtr<Matrix>(info);
+    LOGI("matrix.translate ====");
 }
-static void query(Local<String> property, const PropertyCallbackInfo<Integer>& info) {
+static void initPrototype(Local<v8::ObjectTemplate> &obj) {
+    EXPOSE_METHOD(obj, rotate, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, translate, ReadOnly | DontDelete);
 }
-static void enumCallback(const PropertyCallbackInfo<Array>& info) {
+class_struct* Matrix::getExportStruct() {
+    static class_struct mTemplate = {
+        0, initPrototype, 0, "matrix", CLASS_MATRIX4
+    };
+    return &mTemplate;
 }
-template<> void ClassBase<Matrix>::initClass() {
-}
-template<> void ClassBase<Matrix>::initPrototype(Local<v8::ObjectTemplate> &obj) {
-    obj->SetNamedPropertyHandler(getPropties, setPropties, query, 0, enumCallback);
+ClassType Matrix::getClassType() {
+    return getExportStruct()->mType;
 }

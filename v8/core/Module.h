@@ -31,10 +31,6 @@ public:
     static void init(const v8::FunctionCallbackInfo<v8::Value>& args) {
     }
 
-    static void test() {
-        printf("%s\n", "module.test");
-    }
-
 private:
     static bool mInit;
     static node::node_module_struct mModule;

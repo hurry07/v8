@@ -225,7 +225,7 @@ void testExtend() {
     B* b = new B();
     b->test();
     
-    printf("\ninit path:%s", source_root.c_str());
+//    printf("\ninit path:%s", source_root.c_str());
     Application* app = new Application();
     app->init();
     app->onDrawFrame();
@@ -264,7 +264,7 @@ void testMatrix() {
 }
 int main(int argc, const char * argv[])
 {
-    testMatrix();
+//    testMatrix();
     testExtend();
     return 0;
 }

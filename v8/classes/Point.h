@@ -10,14 +10,17 @@
 
 #include "../core/ClassBase.h"
 
-class Point : public ClassBase<Point> {
+class Point : public ClassBase {
 public:
 	Point();
-	virtual ~Point();
-    virtual void release();
-    virtual void init(const FunctionCallbackInfo<Value> &args);
+    virtual ~Point();
 
-private:
+    virtual void init(const FunctionCallbackInfo<Value> &args);
+    virtual void init(float x, float y);
+
+    static class_struct* getExportStruct();
+    virtual ClassType getClassType();
+
     float x;
     float y;
 };

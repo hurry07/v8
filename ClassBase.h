@@ -1,13 +1,12 @@
-//
-//  ClassBase.h
-//  v8
-//
-//  Created by jie on 13-8-15.
-//  Copyright (c) 2013年 jie. All rights reserved.
-//
+/*
+ * ClassBase.h
+ *
+ *  Created on: 2013-8-12
+ *      Author: jie
+ */
 
-#ifndef __v8__ClassBase__
-#define __v8__ClassBase__
+#ifndef ClassBase_H_
+#define ClassBase_H_
 
 #include <v8.h>
 #include <string>
@@ -24,19 +23,19 @@ public:
      * release other
      */
 	virtual ~ClassBase();
-    
+
     /**
      * instance should release resource in this method
      */
 	virtual void release();
     virtual void jsRelease();
     virtual void init(const FunctionCallbackInfo<Value> &args);
-    
+
     virtual ClassType getClassType();
     static class_struct* getExportStruct();
-    
+
 protected:
 	bool mRelease;// has release called on current instance
 };
 
-#endif /* defined(__v8__ClassBase__) */
+#endif /* ClassBase_H_ */

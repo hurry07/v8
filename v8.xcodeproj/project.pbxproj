@@ -10,7 +10,12 @@
 		182820A1179AFFCB003125B5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182820A0179AFFCB003125B5 /* main.cpp */; };
 		182820A3179AFFCB003125B5 /* v8.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 182820A2179AFFCB003125B5 /* v8.1 */; };
 		185BF54B17BBE6B600F7AE09 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185BF54917BBE6B600F7AE09 /* Point.cpp */; };
-		185BF54E17BBE81A00F7AE09 /* Matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185BF54C17BBE81A00F7AE09 /* Matrix.cpp */; };
+		185BF54E17BBE81A00F7AE09 /* matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185BF54C17BBE81A00F7AE09 /* matrix.cpp */; };
+		186BE21717BCA67C000E8A62 /* vec2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE21517BCA67C000E8A62 /* vec2.cpp */; };
+		186BE21A17BCA792000E8A62 /* vec3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE21817BCA791000E8A62 /* vec3.cpp */; };
+		186BE21D17BCA7F6000E8A62 /* vec4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE21B17BCA7F6000E8A62 /* vec4.cpp */; };
+		186BE22117BCABD1000E8A62 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE21F17BCABD1000E8A62 /* file.cpp */; };
+		186BE22617BCE4E5000E8A62 /* ClassBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE22417BCE4E5000E8A62 /* ClassBase.cpp */; };
 		18739DA9179D9559008DE41D /* Yell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18739DA6179D9559008DE41D /* Yell.cpp */; };
 		1873FFC617AF67B800D90137 /* game.js in Sources */ = {isa = PBXBuildFile; fileRef = 1873FFC517AF67B700D90137 /* game.js */; };
 		18AFB48C17AE06A900B7AFDA /* libv8_base.x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AFB48917AE06A900B7AFDA /* libv8_base.x64.a */; };
@@ -1967,9 +1972,21 @@
 		182820A2179AFFCB003125B5 /* v8.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = v8.1; sourceTree = "<group>"; };
 		185BF54917BBE6B600F7AE09 /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
 		185BF54A17BBE6B600F7AE09 /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
-		185BF54C17BBE81A00F7AE09 /* Matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix.cpp; sourceTree = "<group>"; };
-		185BF54D17BBE81A00F7AE09 /* Matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Matrix.h; sourceTree = "<group>"; };
+		185BF54C17BBE81A00F7AE09 /* matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matrix.cpp; sourceTree = "<group>"; };
+		185BF54D17BBE81A00F7AE09 /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
 		185BF54F17BBE8F400F7AE09 /* classenum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = classenum.h; sourceTree = "<group>"; };
+		186BE21517BCA67C000E8A62 /* vec2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vec2.cpp; sourceTree = "<group>"; };
+		186BE21617BCA67C000E8A62 /* vec2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec2.h; sourceTree = "<group>"; };
+		186BE21817BCA791000E8A62 /* vec3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vec3.cpp; sourceTree = "<group>"; };
+		186BE21917BCA791000E8A62 /* vec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec3.h; sourceTree = "<group>"; };
+		186BE21B17BCA7F6000E8A62 /* vec4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vec4.cpp; sourceTree = "<group>"; };
+		186BE21C17BCA7F6000E8A62 /* vec4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec4.h; sourceTree = "<group>"; };
+		186BE21E17BCA848000E8A62 /* classes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = classes.h; sourceTree = "<group>"; };
+		186BE21F17BCABD1000E8A62 /* file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
+		186BE22017BCABD1000E8A62 /* file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file.h; sourceTree = "<group>"; };
+		186BE22217BCD255000E8A62 /* sturctures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sturctures.h; sourceTree = "<group>"; };
+		186BE22417BCE4E5000E8A62 /* ClassBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClassBase.cpp; sourceTree = "<group>"; };
+		186BE22517BCE4E5000E8A62 /* ClassBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassBase.h; sourceTree = "<group>"; };
 		18739DA6179D9559008DE41D /* Yell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Yell.cpp; sourceTree = "<group>"; };
 		18739DA7179D9559008DE41D /* Yell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Yell.h; sourceTree = "<group>"; };
 		1873FFC517AF67B700D90137 /* game.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = game.js; sourceTree = "<group>"; };
@@ -4473,7 +4490,6 @@
 		18EDB7A117B77E83002E00CE /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		18EDB7BA17B78075002E00CE /* GLBinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLBinding.cpp; sourceTree = "<group>"; };
 		18EDB7BB17B78075002E00CE /* GLBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLBinding.h; sourceTree = "<group>"; };
-		18EDB7CB17B916BA002E00CE /* ClassBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassBase.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4537,11 +4553,20 @@
 		185BF54817BBE5D900F7AE09 /* classes */ = {
 			isa = PBXGroup;
 			children = (
-				185BF54C17BBE81A00F7AE09 /* Matrix.cpp */,
-				185BF54D17BBE81A00F7AE09 /* Matrix.h */,
+				185BF54C17BBE81A00F7AE09 /* matrix.cpp */,
+				185BF54D17BBE81A00F7AE09 /* matrix.h */,
 				185BF54917BBE6B600F7AE09 /* Point.cpp */,
 				185BF54A17BBE6B600F7AE09 /* Point.h */,
 				185BF54F17BBE8F400F7AE09 /* classenum.h */,
+				186BE21517BCA67C000E8A62 /* vec2.cpp */,
+				186BE21617BCA67C000E8A62 /* vec2.h */,
+				186BE21817BCA791000E8A62 /* vec3.cpp */,
+				186BE21917BCA791000E8A62 /* vec3.h */,
+				186BE21B17BCA7F6000E8A62 /* vec4.cpp */,
+				186BE21C17BCA7F6000E8A62 /* vec4.h */,
+				186BE21E17BCA848000E8A62 /* classes.h */,
+				186BE21F17BCABD1000E8A62 /* file.cpp */,
+				186BE22017BCABD1000E8A62 /* file.h */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -7283,8 +7308,10 @@
 				18E236BE17BB56120079D25F /* JSObject.cpp */,
 				18E236BF17BB56120079D25F /* JSObject.h */,
 				18E236BD17BB55EA0079D25F /* ClassWrap.h */,
-				18EDB7CB17B916BA002E00CE /* ClassBase.h */,
 				18E236BC17BB54380079D25F /* v8Utils.h */,
+				186BE22217BCD255000E8A62 /* sturctures.h */,
+				186BE22417BCE4E5000E8A62 /* ClassBase.cpp */,
+				186BE22517BCE4E5000E8A62 /* ClassBase.h */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -9273,7 +9300,12 @@
 				18E236BB17BA561C0079D25F /* vardecl-blocks-init.js in Sources */,
 				18E236C017BB56120079D25F /* JSObject.cpp in Sources */,
 				185BF54B17BBE6B600F7AE09 /* Point.cpp in Sources */,
-				185BF54E17BBE81A00F7AE09 /* Matrix.cpp in Sources */,
+				185BF54E17BBE81A00F7AE09 /* matrix.cpp in Sources */,
+				186BE21717BCA67C000E8A62 /* vec2.cpp in Sources */,
+				186BE21A17BCA792000E8A62 /* vec3.cpp in Sources */,
+				186BE21D17BCA7F6000E8A62 /* vec4.cpp in Sources */,
+				186BE22117BCABD1000E8A62 /* file.cpp in Sources */,
+				186BE22617BCE4E5000E8A62 /* ClassBase.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

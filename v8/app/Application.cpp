@@ -9,7 +9,8 @@
 #include "Application.h"
 #include "../core/ClassWrap.h"
 #include "../core/Module.h"
-#include "../classes/Point.h"
+#include "../core/v8Utils.h"
+#include "../classes/classes.h"
 #include "node.h"
 #include "../modules/modules.h"
 #include "../modules/CCImage.h"
@@ -186,16 +187,35 @@ void Application::init() {
 		render = new JSObject(game->getAttribute<Object>("render"));
         
         ClassWrap<Point>::expose(context->Global());
-        eval("var a = new Point(10, 20);"
-             "for(var i in a) {"
-             "    console.log('js foreach-->'+i);"
-             "}"
-             "a.release();"
-             "a.release();"
+        ClassWrap<Matrix>::expose(context->Global());
+        eval(
+             "var m1 = new matrix();"
+             "m1.rotate();"
+             "m1.translate();"
+             "var m2 = new matrix();"
+             "console.log(m1 === m2);"
+             "console.log(m1.prototype === m2.prototype);"
              );
+
+        glm::mat4(1.0);
+//        Handle<Object> ins = ClassWrap<Point>::newInstance();
+//        Point* p = selfPtr<Point>(ins);
+//        p->init(100, 150);
+//
+//        LOGI("internal is number:%s %s", ClassBase<Point>::mName, Point::mName);
+//        LOGI("point types:%d %d", ClassBase<Point>::mClassType, Point::mClassType);
+//
+//        Handle<Object> p = ClassWrap<Point>::newInstance();
+//        LOGI("point types:%d %d", ClassBase<Point>::mClassType, Point::mClassType);
+//        Handle<Value> key = p->GetInternalField(1);
+//        if(key->IsInt32()) {
+//            LOGI("internal is number:%d %d %d", key->Int32Value(), ClassType::CLASS_POINT, Point::mClassType);
+//        }
+//        LOGI("p.internalcount:%d", p->InternalFieldCount());
         
-        LOGI(Console::mFile);
-        Module<Console>::test();
+        Handle<Object> ins = ClassWrap<Point>::newInstance();
+        
+        NEW_INSTANCE(pwrap, Point, 102, 200);
 	}
 }
 void Application::destroy() {

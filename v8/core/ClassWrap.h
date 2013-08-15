@@ -11,6 +11,7 @@
 #include <v8.h>
 #include "node.h"
 #include "v8Utils.h"
+#include "sturctures.h"
 #include "../global.h"
 
 using namespace v8;
@@ -23,15 +24,6 @@ class ClassWrap {
 public:
 	static Persistent<FunctionTemplate> _function;// create function
     static bool mInit;
-
-    /**
-     * when js release the last refer of this object
-     */
-	static void unrefCallback(Isolate* isolate, Persistent<External>* value, T* parameter) {
-		LOGI("~release\n");
-		delete parameter;
-		value->Dispose();
-	}
 
     /**
      * constructor
@@ -49,31 +41,43 @@ public:
 		ret.MakeWeak(node_isolate, instance, unrefCallback);
 
 		args.This()->SetInternalField(0, External::New(instance));
+//		args.This()->SetInternalField(1, Integer::New(T::getClassType()));
 	}
 
     /**
      * release will unbind native resource
      */
-    static void releaseCallback(const FunctionCallbackInfo<Value>& info) {
+    static void release(const FunctionCallbackInfo<Value>& info) {
         T* current = selfPtr<T>(info);
         current->jsRelease();
     }
+    /**
+     * when js release the last refer of this object
+     */
+	static void unrefCallback(Isolate* isolate, Persistent<External>* value, T* parameter) {
+        parameter->jsRelease();
+		delete parameter;
+		value->Dispose();
+	}
 
 	static void initFunction() {
 		HandleScope scope(node_isolate);
-        
+
+        class_struct* clz = T::getExportStruct();
 		Handle<FunctionTemplate> fn = FunctionTemplate::New(constructorCallback);
-		fn->SetClassName(String::New(T::getClassName()));
+        
+		fn->SetClassName(String::New(clz->mClassName));
 
         Local<ObjectTemplate> fnproto = fn->PrototypeTemplate();
-        fnproto->Set(String::New("release"), FunctionTemplate::New(releaseCallback)->GetFunction());// add default release func
+        EXPOSE_METHOD(fnproto, release, ReadOnly | DontDelete);
+        fnproto->SetInternalFieldCount(1);
+
         Local<ObjectTemplate> fninst = fn->InstanceTemplate();
-        
 		fninst->SetInternalFieldCount(1);
 
-        T::initClass();
-        T::initPrototype(fnproto);
-        T::initInstance(fninst);
+        if(clz->initClass !=0) {clz->initClass();};
+        if(clz->initPrototype !=0) {clz->initPrototype(fnproto);};
+        if(clz->initInstance !=0) {clz->initInstance(fninst);};
 
 		_function.Reset(node_isolate, fn);
 	}
@@ -83,11 +87,27 @@ public:
             initFunction();
             mInit = true;
         }
-		return Local<FunctionTemplate>::New(node_isolate, _function)->GetFunction();
+        Local<Function> fn = Local<FunctionTemplate>::New(node_isolate, _function)->GetFunction();
+        Local<Object> proto = fn->GetPrototype()->ToObject();
+        Local<Value> release = proto->Get(String::New("release"));
+        if(release.IsEmpty()) {
+            LOGI("---->not found");
+        } else {
+            Local<Value> pp = proto->GetPrototype();
+            LOGI("pp is empty:%d", pp.IsEmpty());
+//            Local<Value> type = proto->GetInternalField(0);
+            LOGI("---->found %d", proto->InternalFieldCount());
+        }
+        LOGI("---->fn.prototype.f:%d", fn->GetPrototype()->ToObject()->InternalFieldCount());
+		return fn;
 	}
-
     static void expose(Local<Object> env) {
-        env->Set(String::New(T::getClassName()), getFunction());
+        class_struct* clz = T::getExportStruct();
+        env->Set(String::New(clz->mClassName), getFunction());
+    }
+    static Handle<Object> newInstance() {
+		HandleScope scope(node_isolate);
+        return scope.Close(getFunction()->NewInstance());
     }
 };
 
@@ -96,5 +116,13 @@ Persistent<FunctionTemplate> ClassWrap<T>::_function;
 
 template<typename T>
 bool ClassWrap<T>::mInit = false;
+
+#define NEW_INSTANCE(name, type, ...) Handle<Object> name;\
+{\
+    Handle<Object> __##name = ClassWrap<type>::newInstance();\
+    type* self = selfPtr<type>(__##name);\
+    self->init(__VA_ARGS__);\
+    name = __##name;\
+}
 
 #endif /* JSWRAP_H_ */
