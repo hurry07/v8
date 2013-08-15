@@ -21,8 +21,11 @@ static T* internalPtr(const FunctionCallbackInfo<Value>& info) {
 }
 template<typename T>
 static T* internalPtr(Handle<Object>& self) {
-    Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
-    return static_cast<T*>(wrap->Value());
+    if(self->InternalFieldCount() == 1) {
+        Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
+        return static_cast<T*>(wrap->Value());
+    }
+    return 0;
 }
 
 #endif

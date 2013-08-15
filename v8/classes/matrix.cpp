@@ -10,7 +10,6 @@
 #include "../core/v8Utils.h"
 
 Matrix::Matrix() : mMatrix(1) {
-    LOGI("matirx type:%d");
 }
 
 METHOD_BEGIN(rotate, info) {
