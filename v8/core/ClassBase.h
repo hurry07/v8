@@ -21,7 +21,7 @@ class ClassBase {
 public:
 	ClassBase();
     /*
-     * release other
+     * release resource other than jsRelease
      */
 	virtual ~ClassBase();
     

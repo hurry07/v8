@@ -41,15 +41,13 @@ public:
 		ret.MakeWeak(node_isolate, instance, unrefCallback);
 
 		args.This()->SetInternalField(0, External::New(instance));
-//		args.This()->SetInternalField(1, Integer::New(T::getClassType()));
 	}
 
     /**
      * release will unbind native resource
      */
     static void release(const FunctionCallbackInfo<Value>& info) {
-        T* current = selfPtr<T>(info);
-        current->jsRelease();
+        internalPtr<T>(info)->jsRelease();
     }
     /**
      * when js release the last refer of this object
@@ -87,19 +85,7 @@ public:
             initFunction();
             mInit = true;
         }
-        Local<Function> fn = Local<FunctionTemplate>::New(node_isolate, _function)->GetFunction();
-        Local<Object> proto = fn->GetPrototype()->ToObject();
-        Local<Value> release = proto->Get(String::New("release"));
-        if(release.IsEmpty()) {
-            LOGI("---->not found");
-        } else {
-            Local<Value> pp = proto->GetPrototype();
-            LOGI("pp is empty:%d", pp.IsEmpty());
-//            Local<Value> type = proto->GetInternalField(0);
-            LOGI("---->found %d", proto->InternalFieldCount());
-        }
-        LOGI("---->fn.prototype.f:%d", fn->GetPrototype()->ToObject()->InternalFieldCount());
-		return fn;
+		return Local<FunctionTemplate>::New(node_isolate, _function)->GetFunction();
 	}
     static void expose(Local<Object> env) {
         class_struct* clz = T::getExportStruct();
@@ -120,7 +106,7 @@ bool ClassWrap<T>::mInit = false;
 #define NEW_INSTANCE(name, type, ...) Handle<Object> name;\
 {\
     Handle<Object> __##name = ClassWrap<type>::newInstance();\
-    type* self = selfPtr<type>(__##name);\
+    type* self = internalPtr<type>(__##name);\
     self->init(__VA_ARGS__);\
     name = __##name;\
 }

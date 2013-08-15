@@ -214,6 +214,8 @@ void Application::init() {
 //        LOGI("p.internalcount:%d", p->InternalFieldCount());
         
         Handle<Object> ins = ClassWrap<Point>::newInstance();
+        ClassBase* base = internalPtr<ClassBase>(ins);
+        LOGI("base.type:%d", base->getClassType());
         
         NEW_INSTANCE(pwrap, Point, 102, 200);
 	}

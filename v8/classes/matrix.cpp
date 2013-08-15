@@ -14,11 +14,11 @@ Matrix::Matrix() : mMatrix(1) {
 }
 
 METHOD_BEGIN(rotate, info) {
-    Matrix* m = selfPtr<Matrix>(info);
+    Matrix* m = internalPtr<Matrix>(info);
     LOGI("matrix.rotate ====");
 }
 METHOD_BEGIN(translate, info) {
-    Matrix* m = selfPtr<Matrix>(info);
+    Matrix* m = internalPtr<Matrix>(info);
     LOGI("matrix.translate ====");
 }
 static void initPrototype(Local<v8::ObjectTemplate> &obj) {

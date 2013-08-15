@@ -14,13 +14,13 @@
 
 // mast be called with a HandleScope
 template<typename T>
-static T* selfPtr(const FunctionCallbackInfo<Value>& info) {
+static T* internalPtr(const FunctionCallbackInfo<Value>& info) {
     Local<Object> self = info.Holder();
     Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
     return static_cast<T*>(wrap->Value());
 }
 template<typename T>
-static T* selfPtr(Handle<Object>& self) {
+static T* internalPtr(Handle<Object>& self) {
     Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
     return static_cast<T*>(wrap->Value());
 }
