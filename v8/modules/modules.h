@@ -11,6 +11,7 @@
 
 #include "Console.h"
 #include "GLBinding.h"
+#include "../classes/NativeClass.h"
 #include "../app/node.h"
 
 namespace node {
@@ -18,6 +19,7 @@ namespace node {
     node_module_struct *node_module_list[] = {
         Console::getModule(),
         GLBinding::getModule(),
+        NativeClass::getModule(),
         NULL};
     
     struct node_module_struct* get_builtin_module(const char *name) {

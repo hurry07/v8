@@ -9,26 +9,19 @@
 #define ASSETUTIL_H_
 
 #include <v8.h>
+#include "../classes/file.h"
 
-class AssetFile {
-public:
-	AssetFile(char* buffer, int length);
-	~AssetFile();
-
-	void release();
-	const char* chars();
-	int size();
-private:
-	char* mBuffer;
-	int mLength;
-};
+class AssetFile;
 
 class AssetUtil {
 public:
 	AssetUtil();
 	virtual ~AssetUtil();
 
-	static AssetFile* load(const char* path);
+    /**
+     * load asset to file
+     */
+	static void load(AssetFile* file, const char* path);
 };
 
 #endif /* ASSETUTIL_H_ */

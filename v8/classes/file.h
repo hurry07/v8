@@ -9,6 +9,22 @@
 #ifndef __v8__file__
 #define __v8__file__
 
-#include <iostream>
+class AssetFile {
+public:
+	AssetFile();
+	~AssetFile();
+
+    bool isEmpty();
+    void init(char* buffer, int length);
+	void release();
+    char* allocate(int length);
+	const char* chars();
+	int size();
+    
+    static AssetFile* loadAsset(const char* path);
+private:
+	char* mBuffer;
+	int mLength;
+};
 
 #endif /* defined(__v8__file__) */

@@ -16,19 +16,20 @@ AssetUtil::AssetUtil() {
 AssetUtil::~AssetUtil() {
 }
 
-AssetFile* AssetUtil::load(const char* path) {
+void AssetUtil::load(AssetFile* tofile, const char* path) {
     std::string abspath(source_root);
     abspath.append(path);
     
     FILE* file = fopen(abspath.c_str(), "rb");
     if (file == NULL) {
-        return 0;
+        return;
     }
     
     fseek(file, 0, SEEK_END);
     long size = ftell(file);
     rewind(file);
-    char* chars = new char[size + 1];
+
+    char* chars = tofile->allocate(size);
     chars[size] = 0;
     for (int i = 0; i < size;)
     {
@@ -36,27 +37,4 @@ AssetFile* AssetUtil::load(const char* path) {
         i += read;
     }
     fclose(file);
-
-	AssetFile* fbuffer = new AssetFile(chars, size);
-	return fbuffer;
 }
-
-AssetFile::AssetFile(char* buffer, int length) {
-	this->mBuffer = buffer;
-	this->mLength = length;
-}
-AssetFile::~AssetFile() {
-    if(mBuffer != 0) {
-        free(mBuffer);
-    }
-}
-void AssetFile::release() {
-	delete this;
-}
-const char* AssetFile::chars() {
-	return this->mBuffer;
-}
-int AssetFile::size() {
-	return this->mLength;
-}
-

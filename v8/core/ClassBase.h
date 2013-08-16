@@ -37,7 +37,6 @@ public:
      */
     template<class T>
     static void onClone(const T& current, const T& from) {
-        LOGI("ClassType.onCopying");
     }
     
     virtual ClassType getClassType();

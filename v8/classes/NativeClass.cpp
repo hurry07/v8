@@ -1,15 +1,16 @@
 //
-//  classes.h
+//  NativeClass.cpp
 //  v8
 //
-//  Created by jie on 13-8-15.
+//  Created by jie on 13-8-17.
 //  Copyright (c) 2013年 jie. All rights reserved.
 //
 
-#ifndef v8_classes_h
-#define v8_classes_h
-
+#include "NativeClass.h"
 #include <v8.h>
+
+using namespace v8;
+
 #include "glmopt.h"
 #include "Point.h"
 #include "matrix4.h"
@@ -17,8 +18,12 @@
 #include "vec2.h"
 #include "vec3.h"
 #include "vec4.h"
+#include "../core/ClassWrap.h"
 
-void exposeClasses(v8::Local<v8::Object> global) {
+template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& args) {
+    HandleScope scope;
+    Local<Object> global = args[0]->ToObject();
+    
     ClassWrap<Glm>::expose(global);
     ClassWrap<Point>::expose(global);
     ClassWrap<Matrix3>::expose(global);
@@ -29,4 +34,5 @@ void exposeClasses(v8::Local<v8::Object> global) {
     ClassWrap<Vec4>::expose(global);
 }
 
-#endif
+template<> const char* Module<NativeClass>::mFile = __FILE__;
+template<> const char* Module<NativeClass>::mName = "node_nativeclasses";

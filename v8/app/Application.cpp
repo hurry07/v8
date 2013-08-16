@@ -6,12 +6,11 @@
 //  Copyright (c) 2013年 jie. All rights reserved.
 //
 
+#include "node.h"
 #include "Application.h"
 #include "../core/ClassWrap.h"
 #include "../core/Module.h"
 #include "../core/v8Utils.h"
-#include "../classes/classes.h"
-#include "node.h"
 #include "../modules/modules.h"
 #include "../modules/CCImage.h"
 #include "../utils/AssetUtil.h"
@@ -68,7 +67,12 @@ Local<Context> Application::GetV8Context() {
 v8::Handle<v8::String> ReadFile(const char* name) {
 	HANDLE_SCOPE;
 
-	AssetFile* file = AssetUtil::load(name);
+	AssetFile* file = AssetFile::loadAsset(name);
+    if(file->isEmpty()) {
+        file->release();
+        return scope.Close(String::New(""));
+    }
+
 	v8::Handle<v8::String> result = v8::String::New(file->chars(), file->size());
 	file->release();
 	return scope.Close(result);
@@ -91,18 +95,17 @@ static void printf__(const FunctionCallbackInfo<Value>& args) {
 Local<Function> Application::loadModuleFn(const char* name) {
 	HANDLE_SCOPE;
 
-	AssetFile* file = AssetUtil::load(name);
-	if (file == 0) {
+	AssetFile* file = AssetFile::loadAsset(name);
+	if (file->isEmpty()) {
 		printf("error, file not found:%s\n", name);
 	}
+
 	std::string sc("(function (exports, require, module, __filename) {\n");
-	if (file != 0) {
+	if (!file->isEmpty()) {
 		sc.append(file->chars());
 	}
 	sc.append("\n});");
-	if (file != 0) {
-		file->release();
-	}
+	file->release();
 
 	v8::Handle<v8::String> source = String::New(sc.c_str());
 	Local<Script> comp = Script::Compile(source);
@@ -186,47 +189,13 @@ void Application::init() {
 		game = new JSObject(gameExports->ToObject());
 		render = new JSObject(game->getAttribute<Object>("render"));
         
-        ClassWrap<Point>::expose(context->Global());
-        ClassWrap<Matrix4>::expose(context->Global());
         eval(
-             "var m3 = new matrix4(104);"
-             "var m4 = new matrix4(51);"
+             "var clz = require('nativeclasses');"
+             "var m3 = new clz.matrix4(104);"
+             "var m4 = new clz.matrix4(51);"
              "var m3c = m3.clone();"
+             "console.log(m3c)"
              );
-
-        glm::mat4(1.0);
-//        Handle<Object> ins = ClassWrap<Point>::newInstance();
-//        Point* p = selfPtr<Point>(ins);
-//        p->init(100, 150);
-//
-//        LOGI("internal is number:%s %s", ClassBase<Point>::mName, Point::mName);
-//        LOGI("point types:%d %d", ClassBase<Point>::mClassType, Point::mClassType);
-//
-//        Handle<Object> p = ClassWrap<Point>::newInstance();
-//        LOGI("point types:%d %d", ClassBase<Point>::mClassType, Point::mClassType);
-//        Handle<Value> key = p->GetInternalField(1);
-//        if(key->IsInt32()) {
-//            LOGI("internal is number:%d %d %d", key->Int32Value(), ClassType::CLASS_POINT, Point::mClassType);
-//        }
-//        LOGI("p.internalcount:%d", p->InternalFieldCount());
-        
-        Handle<Object> ins = ClassWrap<Point>::newInstance();
-        ClassBase* base = internalPtr<ClassBase>(ins);
-        LOGI("base.type:%d", base->getClassType());
-        
-//        Matrix4* m1 = new Matrix4();
-//        m1->test1 = 50;
-//        Matrix4 m2 = *m1;
-//        Matrix4 m3;
-//        m3 = *m1;
-//        LOGI("is equal:%d, %d, %d", m1->test1, m2.test1, m3.test1);
-        
-        glm::vec4 v4(1, 10, 100, 1000);
-        
-        LOGI("vec4:%f, %f, %f, %f, %f", v4.r, v4.g, v4.t, v4.b, v4.a);// rgba, rtba
-        LOGI("vec4:%f, %f, %f, %f", v4.x, v4.y, v4.z, v4.w);// rgba, rtba
-        
-        NEW_INSTANCE(pwrap, Point, 102, 200);
 	}
 }
 void Application::destroy() {

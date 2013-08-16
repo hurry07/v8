@@ -11,7 +11,6 @@
 
 #include "../app/node.h"
 #include "../core/Module.h"
-#include <iostream>
 
 class Console : public Module<Console> {
 };

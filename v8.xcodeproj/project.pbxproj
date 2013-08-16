@@ -11,6 +11,7 @@
 		182820A3179AFFCB003125B5 /* v8.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 182820A2179AFFCB003125B5 /* v8.1 */; };
 		182F14DF17BE2AD0000F3A4C /* glmopt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182F14DD17BE2AD0000F3A4C /* glmopt.cpp */; };
 		182F14E217BE4126000F3A4C /* matrix3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182F14E017BE4125000F3A4C /* matrix3.cpp */; };
+		184407B017BE91C400201D2C /* NativeClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 184407AE17BE91C400201D2C /* NativeClass.cpp */; };
 		185BF54B17BBE6B600F7AE09 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185BF54917BBE6B600F7AE09 /* Point.cpp */; };
 		185BF54E17BBE81A00F7AE09 /* matrix4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185BF54C17BBE81A00F7AE09 /* matrix4.cpp */; };
 		186BE21717BCA67C000E8A62 /* vec2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE21517BCA67C000E8A62 /* vec2.cpp */; };
@@ -1976,6 +1977,8 @@
 		182F14DE17BE2AD0000F3A4C /* glmopt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glmopt.h; sourceTree = "<group>"; };
 		182F14E017BE4125000F3A4C /* matrix3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matrix3.cpp; sourceTree = "<group>"; };
 		182F14E117BE4125000F3A4C /* matrix3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix3.h; sourceTree = "<group>"; };
+		184407AE17BE91C400201D2C /* NativeClass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NativeClass.cpp; sourceTree = "<group>"; };
+		184407AF17BE91C400201D2C /* NativeClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeClass.h; sourceTree = "<group>"; };
 		185BF54917BBE6B600F7AE09 /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
 		185BF54A17BBE6B600F7AE09 /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
 		185BF54C17BBE81A00F7AE09 /* matrix4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matrix4.cpp; sourceTree = "<group>"; };
@@ -1987,7 +1990,6 @@
 		186BE21917BCA791000E8A62 /* vec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec3.h; sourceTree = "<group>"; };
 		186BE21B17BCA7F6000E8A62 /* vec4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vec4.cpp; sourceTree = "<group>"; };
 		186BE21C17BCA7F6000E8A62 /* vec4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec4.h; sourceTree = "<group>"; };
-		186BE21E17BCA848000E8A62 /* classes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = classes.h; sourceTree = "<group>"; };
 		186BE21F17BCABD1000E8A62 /* file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
 		186BE22017BCABD1000E8A62 /* file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file.h; sourceTree = "<group>"; };
 		186BE22217BCD255000E8A62 /* sturctures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sturctures.h; sourceTree = "<group>"; };
@@ -4572,11 +4574,12 @@
 				186BE21917BCA791000E8A62 /* vec3.h */,
 				186BE21B17BCA7F6000E8A62 /* vec4.cpp */,
 				186BE21C17BCA7F6000E8A62 /* vec4.h */,
-				186BE21E17BCA848000E8A62 /* classes.h */,
 				186BE21F17BCABD1000E8A62 /* file.cpp */,
 				186BE22017BCABD1000E8A62 /* file.h */,
 				182F14DD17BE2AD0000F3A4C /* glmopt.cpp */,
 				182F14DE17BE2AD0000F3A4C /* glmopt.h */,
+				184407AE17BE91C400201D2C /* NativeClass.cpp */,
+				184407AF17BE91C400201D2C /* NativeClass.h */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -9318,6 +9321,7 @@
 				186BE22617BCE4E5000E8A62 /* ClassBase.cpp in Sources */,
 				182F14DF17BE2AD0000F3A4C /* glmopt.cpp in Sources */,
 				182F14E217BE4126000F3A4C /* matrix3.cpp in Sources */,
+				184407B017BE91C400201D2C /* NativeClass.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
