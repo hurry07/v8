@@ -10,6 +10,7 @@
 #define v8_classes_h
 
 #include <v8.h>
+#include "glmopt.h"
 #include "Point.h"
 #include "matrix4.h"
 #include "vec2.h"
@@ -17,6 +18,7 @@
 #include "vec4.h"
 
 void exposeClasses(v8::Local<v8::Object> global) {
+    ClassWrap<Glm>::expose(global);
     ClassWrap<Point>::expose(global);
     ClassWrap<Matrix4>::expose(global);
     ClassWrap<Vec2>::expose(global);

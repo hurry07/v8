@@ -12,15 +12,8 @@
 Matrix4::Matrix4() : mMatrix(1) {
 }
 Matrix4::~Matrix4() {
-    LOGI("matrix4.test:%d", test1);
 }
 INS_METHOD_BEGIN(Matrix4, init, args) {
-    HandleScope scope;
-    if(args.Length() == 1) {
-        test1 = args[0]->Int32Value();
-    } else {
-        test1 = 0;
-    }
 }
 METHOD_BEGIN(mul, info) {
 }

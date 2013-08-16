@@ -17,7 +17,7 @@ public:
     Vec3();
     static class_struct* getExportStruct();
     virtual ClassType getClassType();
-private:
+
     glm::vec3 mVec;
 };
 

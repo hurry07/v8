@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		182820A1179AFFCB003125B5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182820A0179AFFCB003125B5 /* main.cpp */; };
 		182820A3179AFFCB003125B5 /* v8.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 182820A2179AFFCB003125B5 /* v8.1 */; };
+		182F14DF17BE2AD0000F3A4C /* glmopt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182F14DD17BE2AD0000F3A4C /* glmopt.cpp */; };
+		182F14E217BE4126000F3A4C /* matrix3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182F14E017BE4125000F3A4C /* matrix3.cpp */; };
 		185BF54B17BBE6B600F7AE09 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185BF54917BBE6B600F7AE09 /* Point.cpp */; };
 		185BF54E17BBE81A00F7AE09 /* matrix4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185BF54C17BBE81A00F7AE09 /* matrix4.cpp */; };
 		186BE21717BCA67C000E8A62 /* vec2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE21517BCA67C000E8A62 /* vec2.cpp */; };
@@ -1970,6 +1972,10 @@
 		1828209C179AFFCB003125B5 /* v8 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = v8; sourceTree = BUILT_PRODUCTS_DIR; };
 		182820A0179AFFCB003125B5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		182820A2179AFFCB003125B5 /* v8.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = v8.1; sourceTree = "<group>"; };
+		182F14DD17BE2AD0000F3A4C /* glmopt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glmopt.cpp; sourceTree = "<group>"; };
+		182F14DE17BE2AD0000F3A4C /* glmopt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glmopt.h; sourceTree = "<group>"; };
+		182F14E017BE4125000F3A4C /* matrix3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matrix3.cpp; sourceTree = "<group>"; };
+		182F14E117BE4125000F3A4C /* matrix3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix3.h; sourceTree = "<group>"; };
 		185BF54917BBE6B600F7AE09 /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
 		185BF54A17BBE6B600F7AE09 /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
 		185BF54C17BBE81A00F7AE09 /* matrix4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matrix4.cpp; sourceTree = "<group>"; };
@@ -4553,6 +4559,8 @@
 		185BF54817BBE5D900F7AE09 /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				182F14E017BE4125000F3A4C /* matrix3.cpp */,
+				182F14E117BE4125000F3A4C /* matrix3.h */,
 				185BF54C17BBE81A00F7AE09 /* matrix4.cpp */,
 				185BF54D17BBE81A00F7AE09 /* matrix4.h */,
 				185BF54917BBE6B600F7AE09 /* Point.cpp */,
@@ -4567,6 +4575,8 @@
 				186BE21E17BCA848000E8A62 /* classes.h */,
 				186BE21F17BCABD1000E8A62 /* file.cpp */,
 				186BE22017BCABD1000E8A62 /* file.h */,
+				182F14DD17BE2AD0000F3A4C /* glmopt.cpp */,
+				182F14DE17BE2AD0000F3A4C /* glmopt.h */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -9306,6 +9316,8 @@
 				186BE21D17BCA7F6000E8A62 /* vec4.cpp in Sources */,
 				186BE22117BCABD1000E8A62 /* file.cpp in Sources */,
 				186BE22617BCE4E5000E8A62 /* ClassBase.cpp in Sources */,
+				182F14DF17BE2AD0000F3A4C /* glmopt.cpp in Sources */,
+				182F14E217BE4126000F3A4C /* matrix3.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

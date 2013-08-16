@@ -1,24 +1,25 @@
 //
-//  vec4.h
+//  glmopt.h
 //  v8
 //
-//  Created by jie on 13-8-15.
+//  Created by jie on 13-8-16.
 //  Copyright (c) 2013年 jie. All rights reserved.
 //
 
-#ifndef __v8__vec4__
-#define __v8__vec4__
+#ifndef __v8__glmopt__
+#define __v8__glmopt__
 
 #include "../core/ClassBase.h"
 #include <glm/glm.hpp>
 
-class Vec4 : public ClassBase {
+/**
+ * export glm operations
+ */
+class Glm : public ClassBase {
 public:
-    Vec4();
+    Glm();
     static class_struct* getExportStruct();
     virtual ClassType getClassType();
-
-    glm::vec4 mVec;
 };
 
-#endif /* defined(__v8__vec4__) */
+#endif /* defined(__v8__glmopt__) */

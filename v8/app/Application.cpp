@@ -221,6 +221,11 @@ void Application::init() {
 //        m3 = *m1;
 //        LOGI("is equal:%d, %d, %d", m1->test1, m2.test1, m3.test1);
         
+        glm::vec4 v4(1, 10, 100, 1000);
+        
+        LOGI("vec4:%f, %f, %f, %f, %f", v4.r, v4.g, v4.t, v4.b, v4.a);// rgba, rtba
+        LOGI("vec4:%f, %f, %f, %f", v4.x, v4.y, v4.z, v4.w);// rgba, rtba
+        
         NEW_INSTANCE(pwrap, Point, 102, 200);
 	}
 }
