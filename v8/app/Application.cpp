@@ -15,6 +15,7 @@
 #include "../modules/CCImage.h"
 #include "../utils/AssetUtil.h"
 #include "../global.h"
+#include "../classes/Point.h"
 
 #include <string>
 #include <OpenGL/gl.h>
@@ -67,14 +68,14 @@ Local<Context> Application::GetV8Context() {
 v8::Handle<v8::String> ReadFile(const char* name) {
 	HANDLE_SCOPE;
 
-	AssetFile* file = AssetFile::loadAsset(name);
+	JSFile* file = JSFile::loadAsset(name);
     if(file->isEmpty()) {
-        file->release();
+        delete file;
         return scope.Close(String::New(""));
     }
 
 	v8::Handle<v8::String> result = v8::String::New(file->chars(), file->size());
-	file->release();
+    delete file;
 	return scope.Close(result);
 }
 
@@ -95,7 +96,7 @@ static void printf__(const FunctionCallbackInfo<Value>& args) {
 Local<Function> Application::loadModuleFn(const char* name) {
 	HANDLE_SCOPE;
 
-	AssetFile* file = AssetFile::loadAsset(name);
+	JSFile* file = JSFile::loadAsset(name);
 	if (file->isEmpty()) {
 		printf("error, file not found:%s\n", name);
 	}
@@ -105,7 +106,7 @@ Local<Function> Application::loadModuleFn(const char* name) {
 		sc.append(file->chars());
 	}
 	sc.append("\n});");
-	file->release();
+    delete file;
 
 	v8::Handle<v8::String> source = String::New(sc.c_str());
 	Local<Script> comp = Script::Compile(source);
@@ -188,14 +189,21 @@ void Application::init() {
 		Handle<Value> gameExports = eval("require('game.js')");
 		game = new JSObject(gameExports->ToObject());
 		render = new JSObject(game->getAttribute<Object>("render"));
-        
+
         eval(
              "var clz = require('nativeclasses');"
              "var m3 = new clz.matrix4(104);"
              "var m4 = new clz.matrix4(51);"
              "var m3c = m3.clone();"
-             "console.log(m3c)"
+             "console.log(m3c);"
+             "var f = new clz.file();"
+             "f.loadAsset('shader/v1.vtx');"
+             "console.log(f.getContent());"
              );
+
+        Local<Object> pjs = ClassWrap<Point>::newInstance();
+        Point* ptr = internalPtr<Point>(pjs);
+        LOGI("point.type:%d", ptr->getClassType());
 	}
 }
 void Application::destroy() {

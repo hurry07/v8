@@ -11,7 +11,7 @@
 #include <v8.h>
 #include "../classes/file.h"
 
-class AssetFile;
+class JSFile;
 
 class AssetUtil {
 public:
@@ -21,7 +21,7 @@ public:
     /**
      * load asset to file
      */
-	static void load(AssetFile* file, const char* path);
+	static void load(JSFile* file, const char* path);
 };
 
 #endif /* ASSETUTIL_H_ */

@@ -18,6 +18,7 @@ using namespace v8;
 #include "vec2.h"
 #include "vec3.h"
 #include "vec4.h"
+#include "file.h"
 #include "../core/ClassWrap.h"
 
 template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& args) {
@@ -32,6 +33,7 @@ template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& arg
     ClassWrap<Vec3>::expose(global);
     ClassWrap<Vec4>::expose(global);
     ClassWrap<Vec4>::expose(global);
+    ClassWrap<JSFile>::expose(global);
 }
 
 template<> const char* Module<NativeClass>::mFile = __FILE__;

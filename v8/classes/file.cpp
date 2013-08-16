@@ -7,40 +7,72 @@
 //
 #include "file.h"
 #include "../utils/AssetUtil.h"
+#include "../core/v8Utils.h"
 
-void AssetFile::init(char* buffer, int length) {
-	this->mBuffer = buffer;
-	this->mLength = length;
-}
-bool AssetFile::isEmpty() {
+bool JSFile::isEmpty() {
     return mBuffer == 0;
 }
-char* AssetFile::allocate(int length) {
+char* JSFile::allocate(int length) {
     mLength = length;
     mBuffer = new char[length + 1];
     mBuffer[length] = 0;
     return mBuffer;
 }
-AssetFile::AssetFile() : mBuffer(0), mLength(0) {
+JSFile::JSFile() : mBuffer(0), mLength(0) {
 }
-AssetFile::~AssetFile() {
+JSFile::~JSFile() {
     if(mBuffer != 0) {
         delete[] mBuffer;
     }
 }
-void AssetFile::release() {
-	delete this;
-}
-const char* AssetFile::chars() {
+const char* JSFile::chars() {
 	return this->mBuffer;
 }
-int AssetFile::size() {
+int JSFile::size() {
 	return this->mLength;
 }
 
-AssetFile* AssetFile::loadAsset(const char* path) {
-    AssetFile* file = new AssetFile();
+JSFile* JSFile::loadAsset(const char* path) {
+    JSFile* file = new JSFile();
     AssetUtil::load(file, path);
     return file;
 }
+
+METHOD_BEGIN(loadAsset, info) {
+    HandleScope scope;
+    
+    JSFile* file = internalPtr<JSFile>(info);
+    AssetUtil::load(file, *String::Utf8Value(info[0]->ToString()));
+}
+METHOD_BEGIN(getContent, info) {
+    HandleScope scope;
+
+    JSFile* file = internalPtr<JSFile>(info);
+    if(file->isEmpty()) {
+        info.GetReturnValue().Set(String::New(""));
+    } else {
+        info.GetReturnValue().Set(String::New(file->chars()));
+    }
+}
+
+static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
+    HandleScope scope;
+    
+    Local<ObjectTemplate> obj = temp->PrototypeTemplate();
+    EXPOSE_METHOD(obj, loadAsset, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, getContent, ReadOnly | DontDelete);
+
+    return scope.Close(temp->GetFunction());
+}
+
+class_struct* JSFile::getExportStruct() {
+    static class_struct mTemplate = {
+        initClass, "file", CLASS_FILE
+    };
+    return &mTemplate;
+}
+ClassType JSFile::getClassType() {
+    return getExportStruct()->mType;
+}
+
 

@@ -9,19 +9,22 @@
 #ifndef __v8__file__
 #define __v8__file__
 
-class AssetFile {
+#include "../core/ClassBase.h"
+
+class JSFile : public ClassBase {
 public:
-	AssetFile();
-	~AssetFile();
+	JSFile();
+	~JSFile();
 
     bool isEmpty();
-    void init(char* buffer, int length);
-	void release();
     char* allocate(int length);
 	const char* chars();
 	int size();
     
-    static AssetFile* loadAsset(const char* path);
+    static JSFile* loadAsset(const char* path);
+
+    static class_struct* getExportStruct();
+    virtual ClassType getClassType();
 private:
 	char* mBuffer;
 	int mLength;

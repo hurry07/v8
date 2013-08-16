@@ -16,7 +16,7 @@ AssetUtil::AssetUtil() {
 AssetUtil::~AssetUtil() {
 }
 
-void AssetUtil::load(AssetFile* tofile, const char* path) {
+void AssetUtil::load(JSFile* tofile, const char* path) {
     std::string abspath(source_root);
     abspath.append(path);
     
