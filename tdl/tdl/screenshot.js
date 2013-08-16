@@ -42,11 +42,12 @@ tdl.require('tdl.log');
 /**
  * takes a screenshot of a canvas. Sends it to the server to be saved.
  */
-tdl.screenshot.takeScreenshot = function(canvas) {
-  tdl.io.sendJSON(
-      this.url,
-      {cmd: 'screenshot', dataURL: canvas.toDataURL()},
-      function() {});
+tdl.screenshot.takeScreenshot = function (canvas) {
+    tdl.io.sendJSON(
+        this.url,
+        {cmd: 'screenshot', dataURL: canvas.toDataURL()},
+        function () {
+        });
 };
 
 

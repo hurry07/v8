@@ -12,14 +12,10 @@
 #include <v8.h>
 #include "../classes/classenum.h"
 
-typedef void (*export_func) ();
-typedef void (*template_func) (v8::Local<v8::ObjectTemplate>& obj);
-typedef void (*instance_func) (const v8::FunctionCallbackInfo<v8::Value> &args);
+typedef v8::Local<v8::Function> (*export_fn)(v8::Handle<v8::FunctionTemplate>& temp);
 
 struct class_struct {
-    export_func initClass;
-    template_func initPrototype;
-    template_func initInstance;
+    export_fn initFn;
 
     const char* mClassName;
     ClassType mType;

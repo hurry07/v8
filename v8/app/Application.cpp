@@ -187,14 +187,11 @@ void Application::init() {
 		render = new JSObject(game->getAttribute<Object>("render"));
         
         ClassWrap<Point>::expose(context->Global());
-        ClassWrap<Matrix>::expose(context->Global());
+        ClassWrap<Matrix4>::expose(context->Global());
         eval(
-             "var m1 = new matrix();"
-             "m1.rotate();"
-             "m1.translate();"
-             "var m2 = new matrix();"
-             "console.log(m1 === m2);"
-             "console.log(m1.prototype === m2.prototype);"
+             "var m3 = new matrix4(104);"
+             "var m4 = new matrix4(51);"
+             "var m3c = m3.clone();"
              );
 
         glm::mat4(1.0);
@@ -216,6 +213,13 @@ void Application::init() {
         Handle<Object> ins = ClassWrap<Point>::newInstance();
         ClassBase* base = internalPtr<ClassBase>(ins);
         LOGI("base.type:%d", base->getClassType());
+        
+//        Matrix4* m1 = new Matrix4();
+//        m1->test1 = 50;
+//        Matrix4 m2 = *m1;
+//        Matrix4 m3;
+//        m3 = *m1;
+//        LOGI("is equal:%d, %d, %d", m1->test1, m2.test1, m3.test1);
         
         NEW_INSTANCE(pwrap, Point, 102, 200);
 	}

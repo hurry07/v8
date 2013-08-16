@@ -11,6 +11,7 @@
 
 #define EXPOSE_METHOD(obj, name, attribute) obj->Set(String::New(#name), FunctionTemplate::New(name), PropertyAttribute(attribute))
 #define METHOD_BEGIN(name, param) static void name(const FunctionCallbackInfo<Value>& param)
+#define INS_METHOD_BEGIN(T, name, param) void T::name(const FunctionCallbackInfo<Value>& param)
 
 // mast be called with a HandleScope
 template<typename T>
@@ -21,6 +22,14 @@ static T* internalPtr(const FunctionCallbackInfo<Value>& info) {
 }
 template<typename T>
 static T* internalPtr(Handle<Object>& self) {
+    if(self->InternalFieldCount() == 1) {
+        Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
+        return static_cast<T*>(wrap->Value());
+    }
+    return 0;
+}
+template<typename T>
+static T* internalPtr_(Handle<Object> self) {
     if(self->InternalFieldCount() == 1) {
         Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
         return static_cast<T*>(wrap->Value());

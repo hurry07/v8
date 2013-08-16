@@ -33,7 +33,6 @@
 /**
  * @fileoverview This file contains various functions and class for io.
  */
-
 tdl.provide('tdl.io');
 
 /**
@@ -49,8 +48,8 @@ tdl.io = tdl.io || {};
  * @return {!tdl.io.LoadInfo} The new LoadInfo.
  * @see tdl.io.LoadInfo
  */
-tdl.io.createLoadInfo = function(opt_request) {
-  return new tdl.io.LoadInfo(opt_request);
+tdl.io.createLoadInfo = function (opt_request) {
+    return new tdl.io.LoadInfo(opt_request);
 };
 
 /**
@@ -84,10 +83,10 @@ tdl.io.createLoadInfo = function(opt_request) {
  *     The request to watch.
  * @see tdl.loader.Loader
  */
-tdl.io.LoadInfo = function(opt_request) {
-  this.request_ = opt_request;
-  this.streamLength_ = 0;  // because the request may have been freed.
-  this.children_ = [];
+tdl.io.LoadInfo = function (opt_request) {
+    this.request_ = opt_request;
+    this.streamLength_ = 0;  // because the request may have been freed.
+    this.children_ = [];
 };
 
 /**
@@ -95,20 +94,20 @@ tdl.io.LoadInfo = function(opt_request) {
  * managed as a group.
  * @param {!tdl.io.LoadInfo} loadInfo The child LoadInfo.
  */
-tdl.io.LoadInfo.prototype.addChild = function(loadInfo) {
-  this.children_.push(loadInfo);
+tdl.io.LoadInfo.prototype.addChild = function (loadInfo) {
+    this.children_.push(loadInfo);
 };
 
 /**
  * Marks this LoadInfo as finished.
  */
-tdl.io.LoadInfo.prototype.finish = function() {
-  if (this.request_) {
-    if (this.hasStatus_) {
-      this.streamLength_ = this.request_.streamLength;
+tdl.io.LoadInfo.prototype.finish = function () {
+    if (this.request_) {
+        if (this.hasStatus_) {
+            this.streamLength_ = this.request_.streamLength;
+        }
+        this.request_ = null;
     }
-    this.request_ = null;
-  }
 };
 
 /**
@@ -140,29 +139,29 @@ tdl.io.LoadInfo.prototype.finish = function() {
  *
  * @return {number} The total number of currently known bytes to be streamed.
  */
-tdl.io.LoadInfo.prototype.getTotalKnownBytesToStreamSoFar = function() {
-  //if (!this.streamLength_ && this.request_ && this.hasStatus_) {
-  //  //
-  //  //this.streamLength_ = this.request_.streamLength;
-  //}
-  var total = this.streamLength_;
-  for (var cc = 0; cc < this.children_.length; ++cc) {
-    total += this.children_[cc].getTotalKnownBytesToStreamSoFar();
-  }
-  return total;
+tdl.io.LoadInfo.prototype.getTotalKnownBytesToStreamSoFar = function () {
+    //if (!this.streamLength_ && this.request_ && this.hasStatus_) {
+    //  //
+    //  //this.streamLength_ = this.request_.streamLength;
+    //}
+    var total = this.streamLength_;
+    for (var cc = 0; cc < this.children_.length; ++cc) {
+        total += this.children_[cc].getTotalKnownBytesToStreamSoFar();
+    }
+    return total;
 };
 
 /**
  * Gets the total bytes downloaded so far.
  * @return {number} The total number of currently known bytes to be streamed.
  */
-tdl.io.LoadInfo.prototype.getTotalBytesDownloaded = function() {
-  var total = (this.request_ && this.hasStatus_) ?
-              this.request_.bytesReceived : this.streamLength_;
-  for (var cc = 0; cc < this.children_.length; ++cc) {
-    total += this.children_[cc].getTotalBytesDownloaded();
-  }
-  return total;
+tdl.io.LoadInfo.prototype.getTotalBytesDownloaded = function () {
+    var total = (this.request_ && this.hasStatus_) ?
+        this.request_.bytesReceived : this.streamLength_;
+    for (var cc = 0; cc < this.children_.length; ++cc) {
+        total += this.children_[cc].getTotalBytesDownloaded();
+    }
+    return total;
 };
 
 /**
@@ -175,24 +174,24 @@ tdl.io.LoadInfo.prototype.getTotalBytesDownloaded = function() {
  * @return {number} The total number of requests currently known to be streamed.
  * @see tdl.io.LoadInfo.getTotalKnownBytesToStreamSoFar
  */
-tdl.io.LoadInfo.prototype.getTotalKnownRequestsToStreamSoFar = function() {
-  var total = 1;
-  for (var cc = 0; cc < this.children_.length; ++cc) {
-    total += this.children_[cc].getTotalKnownRequestToStreamSoFar();
-  }
-  return total;
+tdl.io.LoadInfo.prototype.getTotalKnownRequestsToStreamSoFar = function () {
+    var total = 1;
+    for (var cc = 0; cc < this.children_.length; ++cc) {
+        total += this.children_[cc].getTotalKnownRequestToStreamSoFar();
+    }
+    return total;
 };
 
 /**
  * Gets the total requests downloaded so far.
  * @return {number} The total requests downloaded so far.
  */
-tdl.io.LoadInfo.prototype.getTotalRequestsDownloaded = function() {
-  var total = this.request_ ? 0 : 1;
-  for (var cc = 0; cc < this.children_.length; ++cc) {
-    total += this.children_[cc].getTotalRequestsDownloaded();
-  }
-  return total;
+tdl.io.LoadInfo.prototype.getTotalRequestsDownloaded = function () {
+    var total = this.request_ ? 0 : 1;
+    for (var cc = 0; cc < this.children_.length; ++cc) {
+        total += this.children_[cc].getTotalRequestsDownloaded();
+    }
+    return total;
 };
 
 /**
@@ -205,22 +204,22 @@ tdl.io.LoadInfo.prototype.getTotalRequestsDownloaded = function() {
  *     base: number, suffix: string}} progress info.
  * @see tdl.io.LoadInfo.getTotalKnownBytesToStreamSoFar
  */
-tdl.io.LoadInfo.prototype.getKnownProgressInfoSoFar = function() {
-  var percent = 0;
-  var bytesToDownload = this.getTotalKnownBytesToStreamSoFar();
-  var bytesDownloaded = this.getTotalBytesDownloaded();
-  if (bytesToDownload > 0) {
-    percent = Math.floor(bytesDownloaded / bytesToDownload * 100);
-  }
+tdl.io.LoadInfo.prototype.getKnownProgressInfoSoFar = function () {
+    var percent = 0;
+    var bytesToDownload = this.getTotalKnownBytesToStreamSoFar();
+    var bytesDownloaded = this.getTotalBytesDownloaded();
+    if (bytesToDownload > 0) {
+        percent = Math.floor(bytesDownloaded / bytesToDownload * 100);
+    }
 
-  var base = (bytesToDownload < 1024 * 1024) ? 1024 : (1024 * 1024);
+    var base = (bytesToDownload < 1024 * 1024) ? 1024 : (1024 * 1024);
 
-  return {
-    percent: percent,
-    downloaded: (bytesDownloaded / base).toFixed(2),
-    totalBytes: (bytesToDownload / base).toFixed(2),
-    base: base,
-    suffix: (base == 1024 ? 'kb' : 'mb')}
+    return {
+        percent: percent,
+        downloaded: (bytesDownloaded / base).toFixed(2),
+        totalBytes: (bytesToDownload / base).toFixed(2),
+        base: base,
+        suffix: (base == 1024 ? 'kb' : 'mb')}
 
 };
 
@@ -229,25 +228,25 @@ tdl.io.LoadInfo.prototype.getKnownProgressInfoSoFar = function() {
  * @param {string} url The url of the external file.
  * @return {string} the loaded text if the request is synchronous.
  */
-tdl.io.loadTextFileSynchronous = function(url) {
-  var error = 'loadTextFileSynchronous failed to load url "' + url + '"';
-  var request;
-  if (window.XMLHttpRequest) {
-    request = new XMLHttpRequest();
-    if (request.overrideMimeType) {
-      request.overrideMimeType('text/plain');
+tdl.io.loadTextFileSynchronous = function (url) {
+    var error = 'loadTextFileSynchronous failed to load url "' + url + '"';
+    var request;
+    if (window.XMLHttpRequest) {
+        request = new XMLHttpRequest();
+        if (request.overrideMimeType) {
+            request.overrideMimeType('text/plain');
+        }
+    } else if (window.ActiveXObject) {
+        request = new ActiveXObject('MSXML2.XMLHTTP.3.0');
+    } else {
+        throw 'XMLHttpRequest is disabled';
     }
-  } else if (window.ActiveXObject) {
-    request = new ActiveXObject('MSXML2.XMLHTTP.3.0');
-  } else {
-    throw 'XMLHttpRequest is disabled';
-  }
-  request.open('GET', url, false);
-  request.send(null);
-  if (request.readyState != 4) {
-    throw error;
-  }
-  return request.responseText;
+    request.open('GET', url, false);
+    request.send(null);
+    if (request.readyState != 4) {
+        throw error;
+    }
+    return request.responseText;
 };
 
 /**
@@ -257,39 +256,39 @@ tdl.io.loadTextFileSynchronous = function(url) {
  *     string and an exception which will be null on success.
  * @return {!tdl.io.LoadInfo} A LoadInfo to track progress.
  */
-tdl.io.loadTextFile = function(url, callback) {
-  var error = 'loadTextFile failed to load url "' + url + '"';
-  var request;
-  if (window.XMLHttpRequest) {
-    request = new XMLHttpRequest();
-    if (request.overrideMimeType) {
-      request.overrideMimeType('text/plain; charset=utf-8');
+tdl.io.loadTextFile = function (url, callback) {
+    var error = 'loadTextFile failed to load url "' + url + '"';
+    var request;
+    if (window.XMLHttpRequest) {
+        request = new XMLHttpRequest();
+        if (request.overrideMimeType) {
+            request.overrideMimeType('text/plain; charset=utf-8');
+        }
+    } else if (window.ActiveXObject) {
+        request = new ActiveXObject('MSXML2.XMLHTTP.3.0');
+    } else {
+        throw 'XMLHttpRequest is disabled';
     }
-  } else if (window.ActiveXObject) {
-    request = new ActiveXObject('MSXML2.XMLHTTP.3.0');
-  } else {
-    throw 'XMLHttpRequest is disabled';
-  }
-  var loadInfo = tdl.io.createLoadInfo(request, false);
-  request.open('GET', url, true);
-  var finish = function() {
-    if (request.readyState == 4) {
-      var text = '';
-      // HTTP reports success with a 200 status. The file protocol reports
-      // success with zero. HTTP does not use zero as a status code (they
-      // start at 100).
-      // https://developer.mozilla.org/En/Using_XMLHttpRequest
-      var success = request.status == 200 || request.status == 0;
-      if (success) {
-        text = request.responseText;
-      }
-      loadInfo.finish();
-      callback(text, success ? null : 'could not load: ' + url);
-    }
-  };
-  request.onreadystatechange = finish;
-  request.send(null);
-  return loadInfo;
+    var loadInfo = tdl.io.createLoadInfo(request, false);
+    request.open('GET', url, true);
+    var finish = function () {
+        if (request.readyState == 4) {
+            var text = '';
+            // HTTP reports success with a 200 status. The file protocol reports
+            // success with zero. HTTP does not use zero as a status code (they
+            // start at 100).
+            // https://developer.mozilla.org/En/Using_XMLHttpRequest
+            var success = request.status == 200 || request.status == 0;
+            if (success) {
+                text = request.responseText;
+            }
+            loadInfo.finish();
+            callback(text, success ? null : 'could not load: ' + url);
+        }
+    };
+    request.onreadystatechange = finish;
+    request.send(null);
+    return loadInfo;
 };
 
 /**
@@ -301,38 +300,38 @@ tdl.io.loadTextFile = function(url, callback) {
  *     success.
  * @return {!tdl.io.LoadInfo} A LoadInfo to track progress.
  */
-tdl.io.loadArrayBuffer = function(url, callback) {
-  var error = 'loadArrayBuffer failed to load url "' + url + '"';
-  var request;
-  if (window.XMLHttpRequest) {
-    request = new XMLHttpRequest();
-  } else {
-    throw 'XMLHttpRequest is disabled';
-  }
-  var loadInfo = tdl.io.createLoadInfo(request, false);
-  request.open('GET', url, true);
-  var finish = function() {
-    if (request.readyState == 4) {
-      var text = '';
-      // HTTP reports success with a 200 status. The file protocol reports
-      // success with zero. HTTP does not use zero as a status code (they
-      // start at 100).
-      // https://developer.mozilla.org/En/Using_XMLHttpRequest
-      var success = request.status == 200 || request.status == 0;
-      if (success) {
-        arrayBuffer = request.response;
-      }
-      loadInfo.finish();
-      callback(arrayBuffer, success ? null : 'could not load: ' + url);
+tdl.io.loadArrayBuffer = function (url, callback) {
+    var error = 'loadArrayBuffer failed to load url "' + url + '"';
+    var request;
+    if (window.XMLHttpRequest) {
+        request = new XMLHttpRequest();
+    } else {
+        throw 'XMLHttpRequest is disabled';
     }
-  };
-  request.onreadystatechange = finish;
-  if (request.responseType === undefined) {
-    throw 'no support for binary files';
-  }
-  request.responseType = "arraybuffer";
-  request.send(null);
-  return loadInfo;
+    var loadInfo = tdl.io.createLoadInfo(request, false);
+    request.open('GET', url, true);
+    var finish = function () {
+        if (request.readyState == 4) {
+            var text = '';
+            // HTTP reports success with a 200 status. The file protocol reports
+            // success with zero. HTTP does not use zero as a status code (they
+            // start at 100).
+            // https://developer.mozilla.org/En/Using_XMLHttpRequest
+            var success = request.status == 200 || request.status == 0;
+            if (success) {
+                arrayBuffer = request.response;
+            }
+            loadInfo.finish();
+            callback(arrayBuffer, success ? null : 'could not load: ' + url);
+        }
+    };
+    request.onreadystatechange = finish;
+    if (request.responseType === undefined) {
+        throw 'no support for binary files';
+    }
+    request.responseType = "arraybuffer";
+    request.send(null);
+    return loadInfo;
 };
 
 /**
@@ -342,47 +341,47 @@ tdl.io.loadArrayBuffer = function(url, callback) {
  *     json and an exception which will be null on success.
  * @return {!tdl.io.LoadInfo} A LoadInfo to track progress.
  */
-tdl.io.loadJSON = function(url, callback) {
-  var error = 'loadJSON failed to load url "' + url + '"';
-  var request;
-  if (window.XMLHttpRequest) {
-    request = new XMLHttpRequest();
-    if (request.overrideMimeType) {
-      request.overrideMimeType('text/plain');
-    }
-  } else if (window.ActiveXObject) {
-    request = new ActiveXObject('MSXML2.XMLHTTP.3.0');
-  } else {
-    throw 'XMLHttpRequest is disabled';
-  }
-  var loadInfo = tdl.io.createLoadInfo(request, false);
-  request.open('GET', url, true);
-  var finish = function() {
-    if (request.readyState == 4) {
-      var json = undefined;
-      // HTTP reports success with a 200 status. The file protocol reports
-      // success with zero. HTTP does not use zero as a status code (they
-      // start at 100).
-      // https://developer.mozilla.org/En/Using_XMLHttpRequest
-      var success = request.status == 200 || request.status == 0;
-      if (success) {
-        try {
-          json = JSON.parse(request.responseText);
-        } catch (e) {
-          success = false;
+tdl.io.loadJSON = function (url, callback) {
+    var error = 'loadJSON failed to load url "' + url + '"';
+    var request;
+    if (window.XMLHttpRequest) {
+        request = new XMLHttpRequest();
+        if (request.overrideMimeType) {
+            request.overrideMimeType('text/plain');
         }
-      }
-      loadInfo.finish();
-      callback(json, success ? null : 'could not load: ' + url);
+    } else if (window.ActiveXObject) {
+        request = new ActiveXObject('MSXML2.XMLHTTP.3.0');
+    } else {
+        throw 'XMLHttpRequest is disabled';
     }
-  };
-  try {
-    request.onreadystatechange = finish;
-    request.send(null);
-  } catch (e) {
-    callback(null, 'could not load: ' + url);
-  }
-  return loadInfo;
+    var loadInfo = tdl.io.createLoadInfo(request, false);
+    request.open('GET', url, true);
+    var finish = function () {
+        if (request.readyState == 4) {
+            var json = undefined;
+            // HTTP reports success with a 200 status. The file protocol reports
+            // success with zero. HTTP does not use zero as a status code (they
+            // start at 100).
+            // https://developer.mozilla.org/En/Using_XMLHttpRequest
+            var success = request.status == 200 || request.status == 0;
+            if (success) {
+                try {
+                    json = JSON.parse(request.responseText);
+                } catch (e) {
+                    success = false;
+                }
+            }
+            loadInfo.finish();
+            callback(json, success ? null : 'could not load: ' + url);
+        }
+    };
+    try {
+        request.onreadystatechange = finish;
+        request.send(null);
+    } catch (e) {
+        callback(null, 'could not load: ' + url);
+    }
+    return loadInfo;
 };
 
 /**
@@ -392,49 +391,49 @@ tdl.io.loadJSON = function(url, callback) {
  *     json and an exception which will be null on success.
  * @return {!tdl.io.LoadInfo} A LoadInfo to track progress.
  */
-tdl.io.sendJSON = function(url, jsonObject, callback) {
-  var error = 'sendJSON failed to load url "' + url + '"';
-  var request;
-  if (window.XMLHttpRequest) {
-    request = new XMLHttpRequest();
-    if (request.overrideMimeType) {
-      request.overrideMimeType('text/plain');
-    }
-  } else if (window.ActiveXObject) {
-    request = new ActiveXObject('MSXML2.XMLHTTP.3.0');
-  } else {
-    throw 'XMLHttpRequest is disabled';
-  }
-  var loadInfo = tdl.io.createLoadInfo(request, false);
-  request.open('POST', url, true);
-  var js = JSON.stringify(jsonObject);
-  var finish = function() {
-    if (request.readyState == 4) {
-      var json = undefined;
-      // HTTP reports success with a 200 status. The file protocol reports
-      // success with zero. HTTP does not use zero as a status code (they
-      // start at 100).
-      // https://developer.mozilla.org/En/Using_XMLHttpRequest
-      var success = request.status == 200 || request.status == 0;
-      if (success) {
-        try {
-          json = JSON.parse(request.responseText);
-        } catch (e) {
-          success = false;
+tdl.io.sendJSON = function (url, jsonObject, callback) {
+    var error = 'sendJSON failed to load url "' + url + '"';
+    var request;
+    if (window.XMLHttpRequest) {
+        request = new XMLHttpRequest();
+        if (request.overrideMimeType) {
+            request.overrideMimeType('text/plain');
         }
-      }
-      loadInfo.finish();
-      callback(json, success ? null : 'could not load: ' + url);
+    } else if (window.ActiveXObject) {
+        request = new ActiveXObject('MSXML2.XMLHTTP.3.0');
+    } else {
+        throw 'XMLHttpRequest is disabled';
     }
-  };
-  try {
-    request.onreadystatechange = finish;
-    request.setRequestHeader("Content-type", "application/json");
-    request.send(js);
-  } catch (e) {
-    callback(null, 'could not load: ' + url);
-  }
-  return loadInfo;
+    var loadInfo = tdl.io.createLoadInfo(request, false);
+    request.open('POST', url, true);
+    var js = JSON.stringify(jsonObject);
+    var finish = function () {
+        if (request.readyState == 4) {
+            var json = undefined;
+            // HTTP reports success with a 200 status. The file protocol reports
+            // success with zero. HTTP does not use zero as a status code (they
+            // start at 100).
+            // https://developer.mozilla.org/En/Using_XMLHttpRequest
+            var success = request.status == 200 || request.status == 0;
+            if (success) {
+                try {
+                    json = JSON.parse(request.responseText);
+                } catch (e) {
+                    success = false;
+                }
+            }
+            loadInfo.finish();
+            callback(json, success ? null : 'could not load: ' + url);
+        }
+    };
+    try {
+        request.onreadystatechange = finish;
+        request.setRequestHeader("Content-type", "application/json");
+        request.send(js);
+    } catch (e) {
+        callback(null, 'could not load: ' + url);
+    }
+    return loadInfo;
 };
 
 

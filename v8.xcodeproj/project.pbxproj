@@ -10,7 +10,7 @@
 		182820A1179AFFCB003125B5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182820A0179AFFCB003125B5 /* main.cpp */; };
 		182820A3179AFFCB003125B5 /* v8.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 182820A2179AFFCB003125B5 /* v8.1 */; };
 		185BF54B17BBE6B600F7AE09 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185BF54917BBE6B600F7AE09 /* Point.cpp */; };
-		185BF54E17BBE81A00F7AE09 /* matrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185BF54C17BBE81A00F7AE09 /* matrix.cpp */; };
+		185BF54E17BBE81A00F7AE09 /* matrix4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185BF54C17BBE81A00F7AE09 /* matrix4.cpp */; };
 		186BE21717BCA67C000E8A62 /* vec2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE21517BCA67C000E8A62 /* vec2.cpp */; };
 		186BE21A17BCA792000E8A62 /* vec3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE21817BCA791000E8A62 /* vec3.cpp */; };
 		186BE21D17BCA7F6000E8A62 /* vec4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE21B17BCA7F6000E8A62 /* vec4.cpp */; };
@@ -1972,8 +1972,8 @@
 		182820A2179AFFCB003125B5 /* v8.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = v8.1; sourceTree = "<group>"; };
 		185BF54917BBE6B600F7AE09 /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
 		185BF54A17BBE6B600F7AE09 /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
-		185BF54C17BBE81A00F7AE09 /* matrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matrix.cpp; sourceTree = "<group>"; };
-		185BF54D17BBE81A00F7AE09 /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
+		185BF54C17BBE81A00F7AE09 /* matrix4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matrix4.cpp; sourceTree = "<group>"; };
+		185BF54D17BBE81A00F7AE09 /* matrix4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix4.h; sourceTree = "<group>"; };
 		185BF54F17BBE8F400F7AE09 /* classenum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = classenum.h; sourceTree = "<group>"; };
 		186BE21517BCA67C000E8A62 /* vec2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vec2.cpp; sourceTree = "<group>"; };
 		186BE21617BCA67C000E8A62 /* vec2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec2.h; sourceTree = "<group>"; };
@@ -4553,8 +4553,8 @@
 		185BF54817BBE5D900F7AE09 /* classes */ = {
 			isa = PBXGroup;
 			children = (
-				185BF54C17BBE81A00F7AE09 /* matrix.cpp */,
-				185BF54D17BBE81A00F7AE09 /* matrix.h */,
+				185BF54C17BBE81A00F7AE09 /* matrix4.cpp */,
+				185BF54D17BBE81A00F7AE09 /* matrix4.h */,
 				185BF54917BBE6B600F7AE09 /* Point.cpp */,
 				185BF54A17BBE6B600F7AE09 /* Point.h */,
 				185BF54F17BBE8F400F7AE09 /* classenum.h */,
@@ -9300,7 +9300,7 @@
 				18E236BB17BA561C0079D25F /* vardecl-blocks-init.js in Sources */,
 				18E236C017BB56120079D25F /* JSObject.cpp in Sources */,
 				185BF54B17BBE6B600F7AE09 /* Point.cpp in Sources */,
-				185BF54E17BBE81A00F7AE09 /* matrix.cpp in Sources */,
+				185BF54E17BBE81A00F7AE09 /* matrix4.cpp in Sources */,
 				186BE21717BCA67C000E8A62 /* vec2.cpp in Sources */,
 				186BE21A17BCA792000E8A62 /* vec3.cpp in Sources */,
 				186BE21D17BCA7F6000E8A62 /* vec4.cpp in Sources */,

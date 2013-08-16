@@ -22,7 +22,7 @@ using namespace v8;
 template<class T>
 class ClassWrap {
 public:
-	static Persistent<FunctionTemplate> _function;// create function
+	static Persistent<Function> _function;// create function
     static bool mInit;
 
     /**
@@ -47,7 +47,21 @@ public:
      * release will unbind native resource
      */
     static void release(const FunctionCallbackInfo<Value>& info) {
+		HandleScope scope(node_isolate);
+        
         internalPtr<T>(info)->jsRelease();
+    }
+    static void clone(const FunctionCallbackInfo<Value>& info) {
+		HandleScope scope(node_isolate);
+
+        T* t1 = internalPtr<T>(info);
+        Local<Object> other = Local<Function>::New(node_isolate, _function)->NewInstance();
+        T* t2 = internalPtr<T>(other);
+        
+        *t2 = *t1;
+        t2->onClone(*t2, *t1);
+
+        info.GetReturnValue().Set(other);
     }
     /**
      * when js release the last refer of this object
@@ -68,16 +82,18 @@ public:
 
         Local<ObjectTemplate> fnproto = fn->PrototypeTemplate();
         EXPOSE_METHOD(fnproto, release, ReadOnly | DontDelete);
+        EXPOSE_METHOD(fnproto, clone, ReadOnly | DontDelete);
         fnproto->SetInternalFieldCount(1);
 
         Local<ObjectTemplate> fninst = fn->InstanceTemplate();
 		fninst->SetInternalFieldCount(1);
 
-        if(clz->initClass !=0) {clz->initClass();};
-        if(clz->initPrototype !=0) {clz->initPrototype(fnproto);};
-        if(clz->initInstance !=0) {clz->initInstance(fninst);};
-
-		_function.Reset(node_isolate, fn);
+        if(clz->initFn !=0) {
+            Local<Function> exportFn = clz->initFn(fn);
+            _function.Reset(node_isolate, exportFn);
+        } else {
+            _function.Reset(node_isolate, fn->GetFunction());
+        }
 	}
 
 	static Local<Function> getFunction() {
@@ -85,7 +101,7 @@ public:
             initFunction();
             mInit = true;
         }
-		return Local<FunctionTemplate>::New(node_isolate, _function)->GetFunction();
+		return Local<Function>::New(node_isolate, _function);
 	}
     static void expose(Local<Object> env) {
         class_struct* clz = T::getExportStruct();
@@ -98,7 +114,7 @@ public:
 };
 
 template<typename T>
-Persistent<FunctionTemplate> ClassWrap<T>::_function;
+Persistent<Function> ClassWrap<T>::_function;
 
 template<typename T>
 bool ClassWrap<T>::mInit = false;

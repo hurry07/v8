@@ -1579,7 +1579,7 @@ JS_METHOD(getProgramParameter) {
 		case GL_ACTIVE_ATTRIBUTES:
 		case GL_ACTIVE_UNIFORMS:
 			glGetProgramiv(program, pname, &value);
-			return scope.Close(JS_INT(static_cast<long>(value)));
+			return scope.Close(JS_INT(static_cast<long>(value)));// return number of parameters
 		default:
 			return v8::ThrowException(v8::Exception::TypeError(String::New("GetProgramParameter: Invalid Enum")));
 	}

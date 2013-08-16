@@ -32,6 +32,7 @@
 
 /**
  * @fileoverview This file contains misc functions that don't fit elsewhere.
+ * URL encoding, URL deconding ??
  */
 
 tdl.provide('tdl.misc');
@@ -44,44 +45,44 @@ tdl.require('tdl.log');
  */
 tdl.misc = tdl.misc || {};
 
-tdl.misc.parseUnquotedJSObjectString = function(str) {
-  // NOTE: does not handle strings with : in them.
-  var quoted = str.replace(/([a-zA-Z0-9_]+):/g,'"$1":')
-  return JSON.parse(quoted);
+tdl.misc.parseUnquotedJSObjectString = function (str) {
+    // NOTE: does not handle strings with : in them.
+    var quoted = str.replace(/([a-zA-Z0-9_]+):/g, '"$1":')
+    return JSON.parse(quoted);
 };
 
-tdl.misc.applyUrlSettings = function(obj, opt_argumentName) {
-  var argumentName = opt_argumentName || 'settings';
-  try {
-    var s = window.location.href;
-    var q = s.indexOf("?");
-    var e = s.indexOf("#");
-    if (e < 0) {
-      e = s.length;
+tdl.misc.applyUrlSettings = function (obj, opt_argumentName) {
+    var argumentName = opt_argumentName || 'settings';
+    try {
+        var s = window.location.href;
+        var q = s.indexOf("?");
+        var e = s.indexOf("#");
+        if (e < 0) {
+            e = s.length;
+        }
+        var query = s.substring(q + 1, e);
+        //tdl.log("query:", query);
+        var pairs = query.split("&");
+        //tdl.log("pairs:", pairs.length);
+        for (var ii = 0; ii < pairs.length; ++ii) {
+            var keyValue = pairs[ii].split("=");
+            var key = keyValue[0];
+            var value = decodeURIComponent(keyValue[1]);
+            //tdl.log(ii, ":", key, "=", value);
+            switch (key) {
+                case argumentName:
+                    //tdl.log(value);
+                    var settings = tdl.misc.parseUnquotedJSObjectString(value)
+                    //tdl.log("settings:", settings);
+                    tdl.misc.copyProperties(settings, obj);
+                    break;
+            }
+        }
+    } catch (e) {
+        tdl.error(e);
+        tdl.error("settings:", settings);
+        return;
     }
-    var query = s.substring(q + 1, e);
-    //tdl.log("query:", query);
-    var pairs = query.split("&");
-    //tdl.log("pairs:", pairs.length);
-    for (var ii = 0; ii < pairs.length; ++ii) {
-      var keyValue = pairs[ii].split("=");
-      var key = keyValue[0];
-      var value = decodeURIComponent(keyValue[1]);
-      //tdl.log(ii, ":", key, "=", value);
-      switch (key) {
-      case argumentName:
-        //tdl.log(value);
-        var settings = tdl.misc.parseUnquotedJSObjectString(value)
-        //tdl.log("settings:", settings);
-        tdl.misc.copyProperties(settings, obj);
-        break;
-      }
-    }
-  } catch (e) {
-    tdl.error(e);
-    tdl.error("settings:", settings);
-    return;
-  }
 };
 
 /**
@@ -90,30 +91,30 @@ tdl.misc.applyUrlSettings = function(obj, opt_argumentName) {
  * @param {!Object} obj Object with new settings.
  * @param {!Object} dst Object to receive new settings.
  */
-tdl.misc.copyProperties = function(obj, dst) {
-  for (var name in obj) {
-    var value = obj[name];
-    if (value instanceof Array) {
-      //tdl.log("apply->: ", name, "[]");
-      var newDst = dst[name];
-      if (!newDst) {
-        newDst = [];
-        dst[name] = newDst;
-      }
-      tdl.misc.copyProperties(value, newDst);
-    } else if (typeof value == 'object') {
-      //tdl.log("apply->: ", name);
-      var newDst = dst[name];
-      if (!newDst) {
-        newDst = {};
-        dst[name] = newDst;
-      }
-      tdl.misc.copyProperties(value, newDst);
-    } else {
-      //tdl.log("apply: ", name, "=", value);
-      dst[name] = value;
+tdl.misc.copyProperties = function (obj, dst) {
+    for (var name in obj) {
+        var value = obj[name];
+        if (value instanceof Array) {
+            //tdl.log("apply->: ", name, "[]");
+            var newDst = dst[name];
+            if (!newDst) {
+                newDst = [];
+                dst[name] = newDst;
+            }
+            tdl.misc.copyProperties(value, newDst);
+        } else if (typeof value == 'object') {
+            //tdl.log("apply->: ", name);
+            var newDst = dst[name];
+            if (!newDst) {
+                newDst = {};
+                dst[name] = newDst;
+            }
+            tdl.misc.copyProperties(value, newDst);
+        } else {
+            //tdl.log("apply: ", name, "=", value);
+            dst[name] = value;
+        }
     }
-  }
 };
 
 

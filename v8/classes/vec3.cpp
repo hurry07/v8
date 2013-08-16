@@ -13,7 +13,7 @@ Vec3::Vec3() {
 
 class_struct* Vec3::getExportStruct() {
     static class_struct mTemplate = {
-        0, 0, 0, "vec3", CLASS_VEC3
+        0, "vec3", CLASS_VEC3
     };
     return &mTemplate;
 }

@@ -25,7 +25,7 @@ void Point::init(float x, float y) {
 }
 class_struct* Point::getExportStruct() {
     static class_struct mTemplate = {
-        0, 0, 0, "Point", CLASS_POINT
+        0, "Point", CLASS_POINT
     };
     return &mTemplate;
 }

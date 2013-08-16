@@ -31,10 +31,18 @@ public:
 	virtual void release();
     virtual void jsRelease();
     virtual void init(const FunctionCallbackInfo<Value> &args);
+
+    /**
+     * you can overwrite this method if you want a deep copy
+     */
+    template<class T>
+    void onClone(const T& current, const T& from) {
+        LOGI("ClassType.onCopying");
+    }
     
     virtual ClassType getClassType();
     static class_struct* getExportStruct();
-    
+
 protected:
 	bool mRelease;// has release called on current instance
 };
