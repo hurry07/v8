@@ -20,15 +20,93 @@
 Glm::Glm() {
 }
 
-METHOD_BEGIN(inverse, info) {
+METHOD_BEGIN(dotVec4, info) {
+    HandleScope scope;
+    
+    Vec4* v1 = internalArg<Vec4>(info[0]);
+    Vec4* v2 = internalArg<Vec4>(info[1]);
+    float res = glm::dot(v1->mVec, v2->mVec);
+    info.GetReturnValue().Set(Number::New(res));
+}
+METHOD_BEGIN(dotVec3, info) {
+    HandleScope scope;
+    
+    Vec4* v1 = internalArg<Vec4>(info[0]);
+    Vec4* v2 = internalArg<Vec4>(info[1]);
+    float res = glm::dot(v1->mVec, v2->mVec);
+    info.GetReturnValue().Set(Number::New(res));
+}
+METHOD_BEGIN(mulVec4, info) {
+    HandleScope scope;
+    
+    Vec4* v1 = internalArg<Vec4>(info[1]);
+    Vec4* v2 = internalArg<Vec4>(info[2]);
+    internalArg<Vec4>(info[0])->mVec = v1->mVec * v2->mVec;
+}
+METHOD_BEGIN(mulVec3, info) {
+    HandleScope scope;
+    
+    Vec4* v1 = internalArg<Vec4>(info[1]);
+    Vec4* v2 = internalArg<Vec4>(info[2]);
+    internalArg<Vec4>(info[0])->mVec = v1->mVec * v2->mVec;
+}
+METHOD_BEGIN(addVec4, info) {
+    HandleScope scope;
+    
+    Vec4* v1 = internalArg<Vec4>(info[1]);
+    Vec4* v2 = internalArg<Vec4>(info[2]);
+    v1->mVec * v2->mVec;
+    internalArg<Vec4>(info[0])->mVec = v1->mVec + v2->mVec;
+}
+METHOD_BEGIN(addVec3, info) {
+    HandleScope scope;
+    
+    Vec3* v1 = internalArg<Vec3>(info[1]);
+    Vec3* v2 = internalArg<Vec3>(info[2]);
+    internalArg<Vec3>(info[0])->mVec = v1->mVec + v2->mVec;
+}
+METHOD_BEGIN(subVec4, info) {
+    HandleScope scope;
+    
+    Vec4* v1 = internalArg<Vec4>(info[1]);
+    Vec4* v2 = internalArg<Vec4>(info[2]);
+    internalArg<Vec4>(info[0])->mVec = v1->mVec - v2->mVec;
+}
+METHOD_BEGIN(subVec3, info) {
+    HandleScope scope;
+    
+    Vec3* v1 = internalArg<Vec3>(info[1]);
+    Vec3* v2 = internalArg<Vec3>(info[2]);
+    internalArg<Vec3>(info[0])->mVec = v1->mVec - v2->mVec;
+}
+METHOD_BEGIN(mulMV4, info) {
+    HandleScope scope;
+    
+    Vec4* des = internalArg<Vec4>(info[0]);
+    Matrix4* m = internalArg<Matrix4>(info[1]);
+    Vec4* v = internalArg<Vec4>(info[2]);
+    
+    des->mVec = m->mMatrix * v->mVec;
+}
+METHOD_BEGIN(mulMV3, info) {
+    HandleScope scope;
+    
+    Vec3* des = internalArg<Vec3>(info[0]);
+    Matrix4* m = internalArg<Matrix4>(info[1]);
+    Vec3* v = internalArg<Vec3>(info[2]);
+    
+    glm::vec4 v4 = m->mMatrix * glm::vec4(v->mVec, 1);
+    des->mVec = v4.swizzle(glm::X, glm::Y, glm::Z);
+}
+METHOD_BEGIN(inverseM, info) {
     HandleScope scope;
     
     Matrix4* res = internalArg<Matrix4>(info[0]);
-    Matrix4* m1 = internalArg<Matrix4>(info[1]);
+    Matrix4* m = internalArg<Matrix4>(info[1]);
     
-    res->mMatrix = glm::inverse(m1->mMatrix);
+    res->mMatrix = glm::inverse(m->mMatrix);
 }
-METHOD_BEGIN(mul, info) {
+METHOD_BEGIN(mulMM, info) {
     HandleScope scope;
     
     Matrix4* res = internalArg<Matrix4>(info[0]);
@@ -163,13 +241,74 @@ METHOD_BEGIN(translate, info) {
     
     m->mMatrix = glm::translate(m->mMatrix, v->mVec);
 }
+METHOD_BEGIN(rotateX, info) {
+    HandleScope scope;
+    
+    Matrix4* m = internalArg<Matrix4>(info[0]);
+    m->mMatrix = glm::rotate(m->mMatrix, (float)V_2F(1), glm::vec3(1, 0, 0));
+}
+METHOD_BEGIN(rotateY, info) {
+    HandleScope scope;
+    
+    Matrix4* m = internalArg<Matrix4>(info[0]);
+    m->mMatrix = glm::rotate(m->mMatrix, (float)V_2F(1), glm::vec3(0, 1, 0));
+}
+METHOD_BEGIN(rotateZ, info) {
+    HandleScope scope;
+    
+    Matrix4* m = internalArg<Matrix4>(info[0]);
+    m->mMatrix = glm::rotate(m->mMatrix, (float)V_2F(1), glm::vec3(0, 0, 1));
+}
+/**
+ detail::tmat4x4<T> const & m,
+ T const & angle,
+ detail::tvec3<T> const & v
+ */
+METHOD_BEGIN(rotate, info) {
+    HandleScope scope;
+    
+    Matrix4* m = internalArg<Matrix4>(info[0]);
+    Vec3* aix = internalArg<Vec3>(info[2]);
+    m->mMatrix = glm::rotate(m->mMatrix, (float)V_2F(1), aix->mVec);
+}
+METHOD_BEGIN(scale, info) {
+    HandleScope scope;
+    
+    Matrix4* m = internalArg<Matrix4>(info[0]);
+    Vec3* v = internalArg<Vec3>(info[1]);
+    m->mMatrix = glm::scale(m->mMatrix, v->mVec);
+}
 
 static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
     HandleScope scope;
 
     Local<ObjectTemplate> obj = temp->PrototypeTemplate();
-    EXPOSE_METHOD(obj, inverse, ReadOnly | DontDelete);
-    EXPOSE_METHOD(obj, mul, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, dotVec4, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, dotVec3, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, mulVec4, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, mulVec3, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, addVec4, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, addVec3, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, subVec4, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, subVec3, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, mulMV4, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, mulMV3, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, inverseM, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, mulMM, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, setTranslation, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, getTranslation, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, identity, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, perspective, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, ortho, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, frustum, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, lookAt, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, translation, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, translate, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, rotateX, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, rotateY, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, rotateZ, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, rotate, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, scale, ReadOnly | DontDelete);
 
     return scope.Close(temp->GetFunction());
 }

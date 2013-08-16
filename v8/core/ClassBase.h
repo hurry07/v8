@@ -36,7 +36,7 @@ public:
      * you can overwrite this method if you want a deep copy
      */
     template<class T>
-    void onClone(const T& current, const T& from) {
+    static void onClone(const T& current, const T& from) {
         LOGI("ClassType.onCopying");
     }
     

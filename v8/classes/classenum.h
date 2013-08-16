@@ -17,7 +17,8 @@ enum ClassType {
     CLASS_MATRIX4,
     CLASS_VEC2,
     CLASS_VEC3,
-    CLASS_VEC4
+    CLASS_VEC4,
+    CLASS_FILE
 };
 
 #endif

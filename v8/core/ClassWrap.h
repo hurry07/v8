@@ -54,14 +54,22 @@ public:
     static void clone(const FunctionCallbackInfo<Value>& info) {
 		HandleScope scope(node_isolate);
 
-        T* t1 = internalPtr<T>(info);
-        Local<Object> other = Local<Function>::New(node_isolate, _function)->NewInstance();
-        T* t2 = internalPtr<T>(other);
-        
-        *t2 = *t1;
-        t2->onClone(*t2, *t1);
+        if(info.Length() == 0) {
+            T* t1 = internalPtr<T>(info);
+            Local<Object> other = Local<Function>::New(node_isolate, _function)->NewInstance();
+            T* t2 = internalPtr<T>(other);
 
-        info.GetReturnValue().Set(other);
+            *t2 = *t1;
+            T::onClone(*t2, *t1);
+
+            info.GetReturnValue().Set(other);
+        } else {
+            T* t1 = internalPtr<T>(info);// this
+            T* t2 = internalArg<T>(info[0]);
+
+            *t1 = *t2;
+            T::onClone(*t1, *t2);
+        }
     }
     /**
      * when js release the last refer of this object
