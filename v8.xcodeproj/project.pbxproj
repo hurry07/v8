@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		182820A1179AFFCB003125B5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182820A0179AFFCB003125B5 /* main.cpp */; };
-		182820A3179AFFCB003125B5 /* v8.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 182820A2179AFFCB003125B5 /* v8.1 */; };
 		182F14DF17BE2AD0000F3A4C /* glmopt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182F14DD17BE2AD0000F3A4C /* glmopt.cpp */; };
 		182F14E217BE4126000F3A4C /* matrix3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182F14E017BE4125000F3A4C /* matrix3.cpp */; };
 		184407B017BE91C400201D2C /* NativeClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 184407AE17BE91C400201D2C /* NativeClass.cpp */; };
@@ -19,12 +18,10 @@
 		186BE21D17BCA7F6000E8A62 /* vec4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE21B17BCA7F6000E8A62 /* vec4.cpp */; };
 		186BE22117BCABD1000E8A62 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE21F17BCABD1000E8A62 /* file.cpp */; };
 		186BE22617BCE4E5000E8A62 /* ClassBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE22417BCE4E5000E8A62 /* ClassBase.cpp */; };
-		1873FFC617AF67B800D90137 /* game.js in Sources */ = {isa = PBXBuildFile; fileRef = 1873FFC517AF67B700D90137 /* game.js */; };
 		18AFB48C17AE06A900B7AFDA /* libv8_base.x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AFB48917AE06A900B7AFDA /* libv8_base.x64.a */; };
 		18AFB48E17AE06A900B7AFDA /* libv8_snapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AFB48B17AE06A900B7AFDA /* libv8_snapshot.a */; };
 		18AFB4BE17AE1C6300B7AFDA /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18AFB4BC17AE1C6300B7AFDA /* Application.cpp */; };
 		18AFB4C917AE782000B7AFDA /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18AFB4C717AE782000B7AFDA /* Console.cpp */; };
-		18AFB4CD17AE998C00B7AFDA /* node.js in Sources */ = {isa = PBXBuildFile; fileRef = 18AFB4CC17AE998B00B7AFDA /* node.js */; };
 		18E22F3917BA561B0079D25F /* assert.js in Sources */ = {isa = PBXBuildFile; fileRef = 18E2252217BA56110079D25F /* assert.js */; };
 		18E22F3A17BA561B0079D25F /* default-locale.js in Sources */ = {isa = PBXBuildFile; fileRef = 18E2252417BA56110079D25F /* default-locale.js */; };
 		18E22F3B17BA561B0079D25F /* en-break.js in Sources */ = {isa = PBXBuildFile; fileRef = 18E2252517BA56110079D25F /* en-break.js */; };
@@ -1962,7 +1959,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				182820A3179AFFCB003125B5 /* v8.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -1971,7 +1967,6 @@
 /* Begin PBXFileReference section */
 		1828209C179AFFCB003125B5 /* v8 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = v8; sourceTree = BUILT_PRODUCTS_DIR; };
 		182820A0179AFFCB003125B5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		182820A2179AFFCB003125B5 /* v8.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = v8.1; sourceTree = "<group>"; };
 		182F14DD17BE2AD0000F3A4C /* glmopt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glmopt.cpp; sourceTree = "<group>"; };
 		182F14DE17BE2AD0000F3A4C /* glmopt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glmopt.h; sourceTree = "<group>"; };
 		182F14E017BE4125000F3A4C /* matrix3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matrix3.cpp; sourceTree = "<group>"; };
@@ -1995,7 +1990,6 @@
 		186BE22217BCD255000E8A62 /* sturctures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sturctures.h; sourceTree = "<group>"; };
 		186BE22417BCE4E5000E8A62 /* ClassBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClassBase.cpp; sourceTree = "<group>"; };
 		186BE22517BCE4E5000E8A62 /* ClassBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassBase.h; sourceTree = "<group>"; };
-		1873FFC517AF67B700D90137 /* game.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = game.js; sourceTree = "<group>"; };
 		18AFB48917AE06A900B7AFDA /* libv8_base.x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.x64.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_base.x64.a; sourceTree = "<group>"; };
 		18AFB48B17AE06A900B7AFDA /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_snapshot.a; sourceTree = "<group>"; };
 		18AFB4BC17AE1C6300B7AFDA /* Application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
@@ -2004,7 +1998,6 @@
 		18AFB4C717AE782000B7AFDA /* Console.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Console.cpp; sourceTree = "<group>"; };
 		18AFB4C817AE782000B7AFDA /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Console.h; sourceTree = "<group>"; };
 		18AFB4CA17AE7BB200B7AFDA /* modules.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = modules.h; sourceTree = "<group>"; };
-		18AFB4CC17AE998B00B7AFDA /* node.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = node.js; sourceTree = "<group>"; };
 		18D6659417BA830B00021EA2 /* cctest */ = {isa = PBXFileReference; lastKnownFileType = folder; name = cctest; path = test/cctest; sourceTree = "<group>"; };
 		18E2252217BA56110079D25F /* assert.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = assert.js; sourceTree = "<group>"; };
 		18E2252417BA56110079D25F /* default-locale.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "default-locale.js"; sourceTree = "<group>"; };
@@ -4546,9 +4539,6 @@
 				18AFB4C617AE781100B7AFDA /* modules */,
 				18AFB4B817AE0D0A00B7AFDA /* app */,
 				182820A0179AFFCB003125B5 /* main.cpp */,
-				182820A2179AFFCB003125B5 /* v8.1 */,
-				18AFB4CC17AE998B00B7AFDA /* node.js */,
-				1873FFC517AF67B700D90137 /* game.js */,
 				18EDB76617B763B0002E00CE /* global.h */,
 			);
 			path = v8;
@@ -7380,8 +7370,6 @@
 				182820A1179AFFCB003125B5 /* main.cpp in Sources */,
 				18AFB4BE17AE1C6300B7AFDA /* Application.cpp in Sources */,
 				18AFB4C917AE782000B7AFDA /* Console.cpp in Sources */,
-				18AFB4CD17AE998C00B7AFDA /* node.js in Sources */,
-				1873FFC617AF67B800D90137 /* game.js in Sources */,
 				18EDB76517B7634E002E00CE /* AssetUtil.cpp in Sources */,
 				18EDB7BE17B78075002E00CE /* GLBinding.cpp in Sources */,
 				18E22F3917BA561B0079D25F /* assert.js in Sources */,
