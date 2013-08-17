@@ -7,6 +7,7 @@
 //
 
 #include "vec3.h"
+#include "../core/v8Utils.h"
 
 Vec3::Vec3() {
 }
@@ -19,4 +20,19 @@ class_struct* Vec3::getExportStruct() {
 }
 ClassType Vec3::getClassType() {
     return getExportStruct()->mType;
+}
+void Vec3::init(const FunctionCallbackInfo<Value> &info) {
+    switch (info.Length()) {
+        default:
+        case 3:
+            mVec.z = V_2F(2);
+        case 2:
+            mVec.y = V_2F(1);
+        case 1:
+            mVec.x = V_2F(0);
+        case 0:
+            break;
+    }
+    mVec.x = V_2F(0);
+    mVec.y = V_2F(1);
 }

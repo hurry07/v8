@@ -10,20 +10,18 @@
 #include "../core/v8Utils.h"
 
 bool JSFile::isEmpty() {
-    return mBuffer == 0;
+    return mRelease;
 }
 char* JSFile::allocate(int length) {
+    mRelease = false;
     mLength = length;
-    mBuffer = new char[length + 1];
-    mBuffer[length] = 0;
+    mBuffer = new char[length];
     return mBuffer;
 }
 JSFile::JSFile() : mBuffer(0), mLength(0) {
 }
 JSFile::~JSFile() {
-    if(mBuffer != 0) {
-        delete[] mBuffer;
-    }
+    release();
 }
 const char* JSFile::chars() {
 	return this->mBuffer;
@@ -40,18 +38,19 @@ JSFile* JSFile::loadAsset(const char* path) {
 
 METHOD_BEGIN(loadAsset, info) {
     HandleScope scope;
-    
+
     JSFile* file = internalPtr<JSFile>(info);
+    file->release();
     AssetUtil::load(file, *String::Utf8Value(info[0]->ToString()));
 }
 METHOD_BEGIN(getContent, info) {
     HandleScope scope;
 
     JSFile* file = internalPtr<JSFile>(info);
-    if(file->isEmpty()) {
+    if(file->isReleased()) {
         info.GetReturnValue().Set(String::New(""));
     } else {
-        info.GetReturnValue().Set(String::New(file->chars()));
+        info.GetReturnValue().Set(String::New(file->chars(), file->size()));
     }
 }
 
@@ -73,6 +72,9 @@ class_struct* JSFile::getExportStruct() {
 }
 ClassType JSFile::getClassType() {
     return getExportStruct()->mType;
+}
+void JSFile::doRelease() {
+    delete[] mBuffer;
 }
 
 

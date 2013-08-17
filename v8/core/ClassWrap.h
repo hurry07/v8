@@ -48,9 +48,20 @@ public:
      */
     static void release(const FunctionCallbackInfo<Value>& info) {
 		HandleScope scope(node_isolate);
-        
-        internalPtr<T>(info)->jsRelease();
+        internalPtr<T>(info)->release();
     }
+    static void init(const FunctionCallbackInfo<Value>& info) {
+		HandleScope scope(node_isolate);
+        internalPtr<T>(info)->init(info);
+    }
+    static void toString(const FunctionCallbackInfo<Value>& info) {
+		HandleScope scope(node_isolate);
+        info.GetReturnValue().Set(String::New(internalPtr<T>(info)->toString()));
+    }
+
+    /**
+     * create a copy of current js object
+     */
     static void clone(const FunctionCallbackInfo<Value>& info) {
 		HandleScope scope(node_isolate);
 
@@ -75,7 +86,7 @@ public:
      * when js release the last refer of this object
      */
 	static void unrefCallback(Isolate* isolate, Persistent<External>* value, T* parameter) {
-        parameter->jsRelease();
+        parameter->release();
 		delete parameter;
 		value->Dispose();
 	}
@@ -90,6 +101,8 @@ public:
 
         Local<ObjectTemplate> fnproto = fn->PrototypeTemplate();
         EXPOSE_METHOD(fnproto, release, ReadOnly | DontDelete);
+        EXPOSE_METHOD(fnproto, init, ReadOnly | DontDelete);
+        EXPOSE_METHOD(fnproto, toString, ReadOnly | DontDelete);
         EXPOSE_METHOD(fnproto, clone, ReadOnly | DontDelete);
         fnproto->SetInternalFieldCount(1);
 

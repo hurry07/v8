@@ -8,18 +8,18 @@
 
 #include "ClassBase.h"
 
-ClassBase::ClassBase() : mRelease(false) {
+ClassBase::ClassBase() : mRelease(true) {
 }
 ClassBase::~ClassBase() {
 }
 
 void ClassBase::release() {
-}
-void ClassBase::jsRelease() {
     if(!mRelease) {
-        release();
+        doRelease();
         mRelease = true;
     }
+}
+void ClassBase::doRelease() {
 }
 void ClassBase::init(const FunctionCallbackInfo<Value> &args) {
 }
@@ -28,4 +28,13 @@ class_struct* ClassBase::getExportStruct() {
 }
 ClassType ClassBase::getClassType() {
     return CLASS_NULL;
+}
+void ClassBase::noRefer() {
+    release();
+}
+bool ClassBase::isReleased() {
+    return mRelease;
+}
+const char* ClassBase::toString() {
+    return "[object native]";
 }

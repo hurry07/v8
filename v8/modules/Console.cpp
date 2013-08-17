@@ -22,7 +22,7 @@ static void log(const FunctionCallbackInfo<Value>& args) {
         buf.append(",");
         buf.append(*String::Utf8Value(args[i]->ToString()));
     }
-    LOGI(buf.c_str());
+    LOGI("%s", buf.c_str());
 }
 
 template<> void Module<Console>::init(const FunctionCallbackInfo<Value>& args) {

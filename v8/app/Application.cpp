@@ -196,9 +196,11 @@ void Application::init() {
              "var m4 = new clz.matrix4(51);"
              "var m3c = m3.clone();"
              "console.log(m3c);"
-             "var f = new clz.file();"
-             "f.loadAsset('shader/v1.vtx');"
-             "console.log(f.getContent());"
+//             "var f = new clz.file();"
+//             "f.loadAsset('shader/v1.vtx');"
+//             "console.log(f.getContent());"
+//             "f.loadAsset('shader/f1.frg');"
+//             "console.log(f.getContent());"
              );
 
         Local<Object> pjs = ClassWrap<Point>::newInstance();

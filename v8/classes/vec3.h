@@ -17,6 +17,7 @@ public:
     Vec3();
     static class_struct* getExportStruct();
     virtual ClassType getClassType();
+    void init(const FunctionCallbackInfo<Value> &args);
 
     glm::vec3 mVec;
 };

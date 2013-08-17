@@ -26,11 +26,18 @@ public:
 	virtual ~ClassBase();
     
     /**
-     * instance should release resource in this method
+     * instance should release resource in this method.
+     * this method may be call many times
      */
 	virtual void release();
-    virtual void jsRelease();
+    virtual void doRelease();
+
     virtual void init(const FunctionCallbackInfo<Value> &args);
+    /**
+     * when js does not ref this object.
+     */
+    virtual void noRefer();
+    virtual const char* toString();
 
     /**
      * you can overwrite this method if you want a deep copy
@@ -41,6 +48,7 @@ public:
     
     virtual ClassType getClassType();
     static class_struct* getExportStruct();
+    virtual bool isReleased();
 
 protected:
 	bool mRelease;// has release called on current instance

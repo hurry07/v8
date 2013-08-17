@@ -20,6 +20,7 @@ public:
     char* allocate(int length);
 	const char* chars();
 	int size();
+    virtual void doRelease();
     
     static JSFile* loadAsset(const char* path);
 
