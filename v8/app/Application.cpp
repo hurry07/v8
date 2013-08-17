@@ -134,7 +134,7 @@ void Application::Binding(const FunctionCallbackInfo<Value>& args) {
 }
 Local<Script> Application::loadScript(const char* path) {
 	HANDLE_SCOPE;
-
+    
 	v8::Handle<v8::String> source = ReadFile(path);
 	return scope.Close(Script::Compile(source));
 }
@@ -190,12 +190,14 @@ void Application::init() {
 		game = new JSObject(gameExports->ToObject());
 		render = new JSObject(game->getAttribute<Object>("render"));
 
+        evalScript("");
         eval(
              "var clz = require('nativeclasses');"
              "var m3 = new clz.matrix4(104);"
              "var m4 = new clz.matrix4(51);"
              "var m3c = m3.clone();"
              "console.log(m3c);"
+             "require('test/vec3_test.js');"
 //             "var f = new clz.file();"
 //             "f.loadAsset('shader/v1.vtx');"
 //             "console.log(f.getContent());"

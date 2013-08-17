@@ -19,6 +19,7 @@ public:
     static class_struct* getExportStruct();
     virtual ClassType getClassType();
     virtual void init(const FunctionCallbackInfo<Value> &args);
+    virtual const char* toString();
     
     glm::mat4 mMatrix;
 };

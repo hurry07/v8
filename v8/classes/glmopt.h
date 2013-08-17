@@ -10,7 +10,6 @@
 #define __v8__glmopt__
 
 #include "../core/ClassBase.h"
-#include <glm/glm.hpp>
 
 /**
  * export glm operations

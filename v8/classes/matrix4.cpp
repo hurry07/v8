@@ -57,3 +57,6 @@ class_struct* Matrix4::getExportStruct() {
 ClassType Matrix4::getClassType() {
     return getExportStruct()->mType;
 }
+const char* Matrix4::toString() {
+    return "matrix4";
+}

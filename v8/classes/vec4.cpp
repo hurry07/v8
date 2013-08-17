@@ -8,11 +8,11 @@
 
 #include "vec4.h"
 
-Vec4::Vec4() {
+Vec4::Vec4() : mVec(0,0,0,0) {
 }
 class_struct* Vec4::getExportStruct() {
     static class_struct mTemplate = {
-        0, "vec2", CLASS_VEC2
+        0, "vec4", CLASS_VEC4
     };
     return &mTemplate;
 }

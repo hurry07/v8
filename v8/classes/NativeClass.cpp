@@ -32,7 +32,6 @@ template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& arg
     ClassWrap<Vec2>::expose(global);
     ClassWrap<Vec3>::expose(global);
     ClassWrap<Vec4>::expose(global);
-    ClassWrap<Vec4>::expose(global);
     ClassWrap<JSFile>::expose(global);
 }
 

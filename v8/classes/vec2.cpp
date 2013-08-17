@@ -7,8 +7,9 @@
 //
 
 #include "vec2.h"
+#include "../core/v8Utils.h"
 
-Vec2::Vec2() {
+Vec2::Vec2() : mVec(0,0) {
 }
 
 class_struct* Vec2::getExportStruct() {
@@ -19,4 +20,21 @@ class_struct* Vec2::getExportStruct() {
 }
 ClassType Vec2::getClassType() {
     return getExportStruct()->mType;
+}
+void Vec2::init(const FunctionCallbackInfo<Value> &info) {
+    switch (info.Length()) {
+        default:
+        case 2:
+            mVec.y = V_2F(1);
+        case 1:
+            mVec.x = V_2F(0);
+        case 0:
+            break;
+    }
+}
+const char* Vec2::toString() {
+    char us[100];
+    memset(us,100,0x00);
+    int len = sprintf(us,"[vec2 {x:%f, y:%f}]", mVec.x, mVec.y);
+    return std::string(us, len).c_str();
 }

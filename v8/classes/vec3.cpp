@@ -9,7 +9,7 @@
 #include "vec3.h"
 #include "../core/v8Utils.h"
 
-Vec3::Vec3() {
+Vec3::Vec3() : mVec(0,0,0) {
 }
 
 class_struct* Vec3::getExportStruct() {
@@ -33,6 +33,10 @@ void Vec3::init(const FunctionCallbackInfo<Value> &info) {
         case 0:
             break;
     }
-    mVec.x = V_2F(0);
-    mVec.y = V_2F(1);
+}
+const char* Vec3::toString() {
+    char us[100];
+    memset(us,100,0x00);
+    int len = sprintf(us,"[vec3 {x:%f, y:%f, z:%f}]", mVec.x, mVec.y, mVec.z);
+    return std::string(us, len).c_str();
 }

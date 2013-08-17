@@ -5,7 +5,6 @@
 //  Created by jie on 13-8-16.
 //  Copyright (c) 2013年 jie. All rights reserved.
 //
-
 #include "glmopt.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/swizzle.hpp>
