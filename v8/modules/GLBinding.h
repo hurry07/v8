@@ -17,8 +17,9 @@ using v8::Value;
 using v8::Handle;
 using v8::Arguments;
 using v8::Object;
+using v8::FunctionCallbackInfo;
 
-#define DEFINE_GL(name) static Handle<Value> name##Callback(const Arguments& args)
+#define DEFINE_GL(name) static void name##Callback(const FunctionCallbackInfo<Value>& args)
 
 class GLBinding :public Module<GLBinding> {
 public:

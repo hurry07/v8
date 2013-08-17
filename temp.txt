@@ -1,0 +1,190 @@
+	case GL_CULL_FACE:
+		args.GetReturnValue().Set(getBooleanParameter(pname));
+return;
+	case GL_CULL_FACE_MODE:
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+return;
+//	case GL_CURRENT_PROGRAM:
+//		args.GetReturnValue().Set(WebGLGetInfo(PassRefPtr<WebGLProgram>(m_currentProgram)));
+//return;
+	case GL_DEPTH_BITS:
+		args.GetReturnValue().Set(getIntParameter(pname));
+return;
+	case GL_DEPTH_CLEAR_VALUE:
+		args.GetReturnValue().Set(getFloatParameter(pname));
+return;
+	case GL_DEPTH_FUNC:
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+return;
+	case GL_DEPTH_RANGE:
+		args.GetReturnValue().Set(getWebGLFloatArrayParameter(pname));
+return;
+	case GL_DEPTH_TEST:
+		args.GetReturnValue().Set(getBooleanParameter(pname));
+return;
+	case GL_DEPTH_WRITEMASK:
+		args.GetReturnValue().Set(getBooleanParameter(pname));
+return;
+	case GL_DITHER:
+		args.GetReturnValue().Set(getBooleanParameter(pname));
+return;
+	case GL_ELEMENT_ARRAY_BUFFER_BINDING:
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+return;
+	case GL_FRAMEBUFFER_BINDING:
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+return;
+	case GL_FRONT_FACE:
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+return;
+	case GL_GENERATE_MIPMAP_HINT:
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+return;
+	case GL_GREEN_BITS:
+		args.GetReturnValue().Set(getIntParameter(pname));
+return;
+	case GL_LINE_WIDTH:
+		args.GetReturnValue().Set(getFloatParameter(pname));
+return;
+	case GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS:
+		args.GetReturnValue().Set(getIntParameter(pname));
+return;
+	case GL_MAX_CUBE_MAP_TEXTURE_SIZE:
+		args.GetReturnValue().Set(getIntParameter(pname));
+return;
+//	case GL_MAX_FRAGMENT_UNIFORM_VECTORS:
+//		args.GetReturnValue().Set(getIntParameter(pname));
+//return;
+	case GL_MAX_RENDERBUFFER_SIZE:
+		args.GetReturnValue().Set(getIntParameter(pname));
+return;
+	case GL_MAX_TEXTURE_IMAGE_UNITS:
+		args.GetReturnValue().Set(getIntParameter(pname));
+return;
+	case GL_MAX_TEXTURE_SIZE:
+		args.GetReturnValue().Set(getIntParameter(pname));
+return;
+//	case GL_MAX_VARYING_VECTORS:
+//		args.GetReturnValue().Set(getIntParameter(pname));
+//return;
+	case GL_MAX_VERTEX_ATTRIBS:
+		args.GetReturnValue().Set(getIntParameter(pname));
+return;
+	case GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS:
+		args.GetReturnValue().Set(getIntParameter(pname));
+return;
+//	case GL_MAX_VERTEX_UNIFORM_VECTORS:
+//		args.GetReturnValue().Set(getIntParameter(pname));
+//return;
+	case GL_MAX_VIEWPORT_DIMS:
+		args.GetReturnValue().Set(getWebGLIntArrayParameter(pname));
+return;
+//	case GL_NUM_SHADER_BINARY_FORMATS:
+//		// FIXME: should we always return 0 for this?
+//		args.GetReturnValue().Set(getIntParameter(pname));
+//return;
+	case GL_PACK_ALIGNMENT:
+		args.GetReturnValue().Set(getIntParameter(pname));
+return;
+	case GL_POLYGON_OFFSET_FACTOR:
+		args.GetReturnValue().Set(getFloatParameter(pname));
+return;
+	case GL_POLYGON_OFFSET_FILL:
+		args.GetReturnValue().Set(getBooleanParameter(pname));
+return;
+	case GL_POLYGON_OFFSET_UNITS:
+		args.GetReturnValue().Set(getFloatParameter(pname));
+return;
+	case GL_RED_BITS:
+		args.GetReturnValue().Set(getIntParameter(pname));
+return;
+	case GL_RENDERBUFFER_BINDING:
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+return;
+	case GL_RENDERER:
+		args.GetReturnValue().Set(getStringParameter(pname));
+return;
+	case GL_SAMPLE_BUFFERS:
+		args.GetReturnValue().Set(getIntParameter(pname));
+return;
+	case GL_SAMPLE_COVERAGE_INVERT:
+		args.GetReturnValue().Set(getBooleanParameter(pname));
+return;
+	case GL_SAMPLE_COVERAGE_VALUE:
+		args.GetReturnValue().Set(getFloatParameter(pname));
+return;
+	case GL_SAMPLES:
+		args.GetReturnValue().Set(getIntParameter(pname));
+return;
+	case GL_SCISSOR_BOX:
+		args.GetReturnValue().Set(getWebGLIntArrayParameter(pname));
+return;
+	case GL_SCISSOR_TEST:
+		args.GetReturnValue().Set(getBooleanParameter(pname));
+return;
+	case GL_SHADING_LANGUAGE_VERSION:
+		args.GetReturnValue().Set(getStringParameter(pname));
+return;
+	case GL_STENCIL_BACK_FAIL:
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+return;
+	case GL_STENCIL_BACK_FUNC:
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+return;
+	case GL_STENCIL_BACK_PASS_DEPTH_FAIL:
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+return;
+	case GL_STENCIL_BACK_PASS_DEPTH_PASS:
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+return;
+	case GL_STENCIL_BACK_REF:
+		args.GetReturnValue().Set(getIntParameter(pname));
+return;
+	case GL_STENCIL_BACK_VALUE_MASK:
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+return;
+	case GL_STENCIL_BACK_WRITEMASK:
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+return;
+	case GL_STENCIL_BITS:
+		args.GetReturnValue().Set(getIntParameter(pname));
+return;
+	case GL_STENCIL_CLEAR_VALUE:
+		args.GetReturnValue().Set(getIntParameter(pname));
+return;
+	case GL_STENCIL_FAIL:
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+return;
+	case GL_STENCIL_FUNC:
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+return;
+	case GL_STENCIL_PASS_DEPTH_FAIL:
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+return;
+	case GL_STENCIL_PASS_DEPTH_PASS:
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+return;
+	case GL_STENCIL_REF:
+		args.GetReturnValue().Set(getIntParameter(pname));
+return;
+	case GL_STENCIL_TEST:
+		args.GetReturnValue().Set(getBooleanParameter(pname));
+return;
+	case GL_STENCIL_VALUE_MASK:
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+return;
+	case GL_STENCIL_WRITEMASK:
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+return;
+	case GL_SUBPIXEL_BITS:
+		args.GetReturnValue().Set(getIntParameter(pname));
+return;
+	case GL_TEXTURE_BINDING_2D:
+		args.GetReturnValue().Set(getIntParameter(pname));
+return;
+	case GL_TEXTURE_BINDING_CUBE_MAP:
+		args.GetReturnValue().Set(getIntParameter(pname));
+return;
+	case GL_UNPACK_ALIGNMENT:
+		args.GetReturnValue().Set(getIntParameter(pname));
+return;

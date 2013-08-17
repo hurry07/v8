@@ -16,5 +16,16 @@
          landmarkName = "flatVector(const FunctionCallbackInfo&lt;Value&gt; &amp;info, float* values, int length)"
          landmarkType = "7">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "v8/modules/GLBinding.cpp"
+         timestampString = "398445334.532618"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "375"
+         endingLineNumber = "375">
+      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

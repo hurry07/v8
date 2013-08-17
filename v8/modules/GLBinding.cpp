@@ -33,7 +33,7 @@ using v8::kExternalPixelArray;
 using v8::kExternalIntArray;
 using v8::kExternalUnsignedIntArray;
 
-#define JS_METHOD(name) v8::Handle<v8::Value> GLBinding::name##Callback(const v8::Arguments& args)
+#define JS_METHOD(name) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& args)
 #define JS_STR(...) v8::String::New(__VA_ARGS__)
 #define JS_INT(val) v8::Integer::New(val)
 #define JS_UINT(val) v8::Integer::NewFromUnsigned(val)
@@ -266,12 +266,14 @@ inline Type* getArrayData(Local<Value> arg, int* num = NULL) {
 #define CHECK_GLushortP(a) !a->IsUint16Array()
 #define CHECK_GLuint(a) !a->IsUint32()
 #define CHECK_GLuintP(a) !a->IsUint32Array()
-#define CHECK_GLfloat(a) !a->IsNumberObject()
+#define CHECK_GLfloat(a) !a->IsNumber()
 #define CHECK_GLfloatP(a) !a->IsFloat32Array()
-#define CHECK_GLclampf(a) !a->IsNumberObject()
-#define CHECK_GLsizeiptr(a) !a->IsNumberObject()
+// float GLclampf
+#define CHECK_GLclampf(a) !a->IsNumber()
+// long GLsizeiptr
+#define CHECK_GLsizeiptr(a) !a->IsNumber()
 #define CHECK_GLvoidP(a) !a->IsTypedArray()
-#define CHECK_GLintptr(a) !a->IsNumberObject()
+#define CHECK_GLintptr(a) !a->IsNumber()
 #define CHECK_GLbitfield(a) !a->IsUint32()
 
 #define ARGS_GLchar(a) !!!
@@ -312,31 +314,31 @@ inline Type* getArrayData(Local<Value> arg, int* num = NULL) {
 // check arguments
 #define CHECK_ARG_1(name, t1) \
 if(ARGS_NAME.Length() != 1 || CHECK_##t1(ARGS_NAME[0])) {\
-    return scope.Close(ThrowException(String::New(#name"Bad arguments")));\
+    args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments")));\
 }
 #define CHECK_ARG_2(name, t1, t2) \
 if(ARGS_NAME.Length() != 2 || CHECK_##t1(ARGS_NAME[0]) || CHECK_##t2(ARGS_NAME[1])) {\
-    return scope.Close(ThrowException(String::New(#name"Bad arguments")));\
+    args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments")));\
 }
 #define CHECK_ARG_3(name, t1, t2, t3) \
 if(ARGS_NAME.Length() != 3 || CHECK_##t1(ARGS_NAME[0]) || CHECK_##t2(ARGS_NAME[1]) || CHECK_##t3(ARGS_NAME[2])) {\
-    return scope.Close(ThrowException(String::New(#name"Bad arguments")));\
+    args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments")));\
 }
 #define CHECK_ARG_4(name, t1, t2, t3, t4) \
 if(ARGS_NAME.Length() != 4 || CHECK_##t1(ARGS_NAME[0]) || CHECK_##t2(ARGS_NAME[1]) || CHECK_##t3(ARGS_NAME[2]) || CHECK_##t4(ARGS_NAME[3])) {\
-    return scope.Close(ThrowException(String::New(#name"Bad arguments")));\
+    args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments")));\
 }
 #define CHECK_ARG_5(name, t1, t2, t3, t4, t5) \
 if(ARGS_NAME.Length() != 4 || CHECK_##t1(ARGS_NAME[0]) || CHECK_##t2(ARGS_NAME[1]) || CHECK_##t3(ARGS_NAME[2]) || CHECK_##t4(ARGS_NAME[3]) || CHECK_##t5(ARGS_NAME[4])) {\
-    return scope.Close(ThrowException(String::New(#name"Bad arguments")));\
+    args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments")));\
 }
 #define CHECK_ARG_8(name, t1, t2, t3, t4, t5, t6, t7, t8) \
 if(ARGS_NAME.Length() != 4 || CHECK_##t1(ARGS_NAME[0]) || CHECK_##t2(ARGS_NAME[1]) || CHECK_##t3(ARGS_NAME[2]) || CHECK_##t4(ARGS_NAME[3]) || CHECK_##t5(ARGS_NAME[4]) || CHECK_##t6(ARGS_NAME[5]) || CHECK_##t7(ARGS_NAME[6]) || CHECK_##t8(ARGS_NAME[7])) {\
-    return scope.Close(ThrowException(String::New(#name"Bad arguments")));\
+    args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments")));\
 }
 #define CHECK_ARG_9(name, t1, t2, t3, t4, t5, t6, t7, t8, t9) \
 if(ARGS_NAME.Length() != 4 || CHECK_##t1(ARGS_NAME[0]) || CHECK_##t2(ARGS_NAME[1]) || CHECK_##t3(ARGS_NAME[2]) || CHECK_##t4(ARGS_NAME[3]) || CHECK_##t5(ARGS_NAME[4]) || CHECK_##t6(ARGS_NAME[5]) || CHECK_##t7(ARGS_NAME[6]) || CHECK_##t8(ARGS_NAME[7]) || CHECK_##t9(ARGS_NAME[8])) {\
-    return scope.Close(ThrowException(String::New(#name"Bad arguments")));\
+    args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments")));\
 }
 
 // gl methods delegate
@@ -349,52 +351,44 @@ if(ARGS_NAME.Length() != 4 || CHECK_##t1(ARGS_NAME[0]) || CHECK_##t2(ARGS_NAME[1
 #define CALL_GL_8(glname, t1, t2, t3, t4, t5, t6, t7, t8) glname(ARGS_##t1(ARGS_NAME[0]), ARGS_##t2(ARGS_NAME[1]), ARGS_##t3(ARGS_NAME[2]), ARGS_##t4(ARGS_NAME[3]), ARGS_##t5(ARGS_NAME[4]), ARGS_##t6(ARGS_NAME[5]), ARGS_##t7(ARGS_NAME[6]), ARGS_##t8(ARGS_NAME[7]))
 #define CALL_GL_9(glname, t1, t2, t3, t4, t5, t6, t7, t8, t9) glname(ARGS_##t1(ARGS_NAME[0]), ARGS_##t2(ARGS_NAME[1]), ARGS_##t3(ARGS_NAME[2]), ARGS_##t4(ARGS_NAME[3]), ARGS_##t5(ARGS_NAME[4]), ARGS_##t6(ARGS_NAME[5]), ARGS_##t7(ARGS_NAME[6]), ARGS_##t8(ARGS_NAME[7]), ARGS_##t9(ARGS_NAME[8]))
 
-#define DELEGATE_TO_GL_N(name, glname) Handle<Value> GLBinding::name##Callback(const Arguments& ARGS_NAME) {\
+#define DELEGATE_TO_GL_N(name, glname) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
     HandleScope scope;\
     glname();\
-    return v8::Undefined();\
 }
-#define DELEGATE_TO_GL_N1(name, glname, t1) Handle<Value> GLBinding::name##Callback(const Arguments& ARGS_NAME) {\
+#define DELEGATE_TO_GL_N1(name, glname, t1) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
     HandleScope scope;\
     CHECK_ARG_1(name, t1)\
     CALL_GL_1(glname, t1);\
-    return v8::Undefined();\
 }
-#define DELEGATE_TO_GL_N2(name, glname, t1, t2) Handle<Value> GLBinding::name##Callback(const Arguments& ARGS_NAME) {\
+#define DELEGATE_TO_GL_N2(name, glname, t1, t2) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
     HandleScope scope;\
     CHECK_ARG_2(name, t1, t2)\
     CALL_GL_2(glname, t1, t2);\
-    return v8::Undefined();\
 }
-#define DELEGATE_TO_GL_N3(name, glname, t1, t2, t3) Handle<Value> GLBinding::name##Callback(const Arguments& ARGS_NAME) {\
+#define DELEGATE_TO_GL_N3(name, glname, t1, t2, t3) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
     HandleScope scope;\
     CHECK_ARG_3(name, t1, t2, t3)\
     CALL_GL_3(glname, t1, t2, t3);\
-    return v8::Undefined();\
 }
-#define DELEGATE_TO_GL_N4(name, glname, t1, t2, t3, t4) Handle<Value> GLBinding::name##Callback(const Arguments& ARGS_NAME) {\
+#define DELEGATE_TO_GL_N4(name, glname, t1, t2, t3, t4) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
     HandleScope scope;\
     CHECK_ARG_4(name, t1, t2, t3, t4)\
     CALL_GL_4(glname, t1, t2, t3, t4);\
-    return v8::Undefined();\
 }
-#define DELEGATE_TO_GL_N5(name, glname, t1, t2, t3, t4, t5) Handle<Value> GLBinding::name##Callback(const Arguments& ARGS_NAME) {\
+#define DELEGATE_TO_GL_N5(name, glname, t1, t2, t3, t4, t5) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
     HandleScope scope;\
     CHECK_ARG_5(name, t1, t2, t3, t4, t5)\
     CALL_GL_5(glname, t1, t2, t3, t4, t5);\
-    return v8::Undefined();\
 }
-#define DELEGATE_TO_GL_N8(name, glname, t1, t2, t3, t4, t5, t6, t7, t8) Handle<Value> GLBinding::name##Callback(const Arguments& ARGS_NAME) {\
+#define DELEGATE_TO_GL_N8(name, glname, t1, t2, t3, t4, t5, t6, t7, t8) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
     HandleScope scope;\
     CHECK_ARG_8(name, t1, t2, t3, t4, t5, t6, t7, t8)\
     CALL_GL_8(glname, t1, t2, t3, t4, t5, t6, t7, t8);\
-    return v8::Undefined();\
 }
-#define DELEGATE_TO_GL_N9(name, glname, t1, t2, t3, t4, t5, t6, t7, t8, t9) Handle<Value> GLBinding::name##Callback(const Arguments& ARGS_NAME) {\
+#define DELEGATE_TO_GL_N9(name, glname, t1, t2, t3, t4, t5, t6, t7, t8, t9) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
     HandleScope scope;\
     CHECK_ARG_9(name, t1, t2, t3, t4, t5, t6, t7, t8, t9)\
     CALL_GL_9(glname, t1, t2, t3, t4, t5, t6, t7, t8, t9);\
-    return v8::Undefined();\
 }
 
 #define DELEGATE_TO_GL(glname) DELEGATE_TO_GL_N(glname, glname)
@@ -406,33 +400,32 @@ if(ARGS_NAME.Length() != 4 || CHECK_##t1(ARGS_NAME[0]) || CHECK_##t2(ARGS_NAME[1
 #define DELEGATE_TO_GL_8(glname, t1, t2, t3, t4, t5, t6, t7, t8) DELEGATE_TO_GL_N8(glname, glname, t1, t2, t3, t4, t5, t6, t7, t8)
 #define DELEGATE_TO_GL_9(glname, t1, t2, t3, t4, t5, t6, t7, t8, t9) DELEGATE_TO_GL_N9(glname, glname, t1, t2, t3, t4, t5, t6, t7, t8, t9)
 
-#define DELEGATE_TO_GL_1R(name, glname, type, v8type) Handle<Value> GLBinding::name##Callback(const Arguments& ARGS_NAME) {\
+#define DELEGATE_TO_GL_1R(name, glname, type, v8type) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
 	HandleScope scope;\
 	type value;\
     glname(1, &value);\
-	return scope.Close(v8type::New(value));\
+	args.GetReturnValue().Set(v8type::New(value));\
 }
 // 2 param and return boolean
-#define DELEGATE_TO_GL_1_BR(name, glname, t1) Handle<Value> GLBinding::name##Callback(const Arguments& ARGS_NAME) {\
+#define DELEGATE_TO_GL_1_BR(name, glname, t1) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
 	HandleScope scope;\
     CHECK_ARG_1(name, t1)\
     GLboolean value = CALL_GL_1(glname, t1);\
-	return scope.Close(value == 0 ? v8::False() : v8::True());\
+	args.GetReturnValue().Set(value == 0 ? v8::False() : v8::True());\
 }
 /**
  * call with length 1 array
  */
-#define DELEGATE_TO_GL_1A(name, glname, type) Handle<Value> GLBinding::name##Callback(const Arguments& ARGS_NAME) {\
+#define DELEGATE_TO_GL_1A(name, glname, type) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
 	HandleScope scope;\
 	CHECK_ARG_1(name, type)\
 	type value = ARGS_##type(args[0]);\
     glname(1, &value);\
-	return v8::Undefined();\
 }
-#define DELEGATE_TO_GL_R(name, glname, type, v8type) Handle<Value> GLBinding::name##Callback(const Arguments& ARGS_NAME) {\
+#define DELEGATE_TO_GL_R(name, glname, type, v8type) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
 	HandleScope scope;\
 	type value = glname();\
-	return scope.Close(v8type::New(value));\
+	args.GetReturnValue().Set(v8type::New(value));\
 }
 
 #define _GLenum(name) (GLenum)name->Uint32Value()
@@ -449,7 +442,7 @@ if(ARGS_NAME.Length() != 4 || CHECK_##t1(ARGS_NAME[0]) || CHECK_##t2(ARGS_NAME[1
 Handle<Value> GLBinding::name##Callback(const Arguments& args) {\
     HandleScope scope;\
     if (args.Length() != 1 || !args[0]->IsNumber()) {\
-        return scope.Close(ThrowException(String::New(#name", Bad arguments")));\
+        args.GetReturnValue().Set(ThrowException(String::New(#name", Bad arguments")));\
     }\
 \
     GLsizei size = args[0]->Int32Value();\
@@ -462,7 +455,7 @@ Handle<Value> GLBinding::name##Callback(const Arguments& args) {\
     }\
     delete[] buffers;\
 \
-    return scope.Close(arr);\
+    args.GetReturnValue().Set(arr);\
 }
 #define GL_GENSINGLE_IMPL(show, name) \
 Handle<Value> GLBinding::show##Callback(const Arguments& args) {\
@@ -471,70 +464,66 @@ Handle<Value> GLBinding::show##Callback(const Arguments& args) {\
     GLuint o;\
     name(1, &o);\
 \
-    return scope.Close(Integer::New(o));\
+    args.GetReturnValue().Set(Integer::New(o));\
 }
 #define GL_IMPL_GLenum(name) \
 Handle<Value> GLBinding::name##Callback(const Arguments& args) {\
     HandleScope scope;\
     if (args.Length() != 1 || !args[0]->IsUint32()) {\
-        return scope.Close(ThrowException(String::New(#name"Bad arguments")));\
+        args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments")));\
     }\
     name((GLenum) args[0]->Uint32Value());\
-    return v8::Undefined();\
 }
 #define GL_IMPL_GLenum_GLuint(name) \
 Handle<Value> GLBinding::name##Callback(const Arguments& args) {\
     HandleScope scope;\
     if (args.Length() != 2) {\
-        return scope.Close(ThrowException(String::New(#name"Bad arguments")));\
+        args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments")));\
     }\
     name((GLenum) args[0]->Uint32Value(), (GLuint) args[1]->Uint32Value());\
-    return v8::Undefined();\
 }
 #define GL_IMPL_GLenum_GLenum(name) \
 Handle<Value> GLBinding::name##Callback(const Arguments& args) {\
     HandleScope scope;\
     if (args.Length() != 2) {\
-        return scope.Close(ThrowException(String::New(#name"Bad arguments 2")));\
+        args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments 2")));\
     }\
     name((GLenum) args[0]->Uint32Value(), (GLenum) args[1]->Uint32Value());\
-    return v8::Undefined();\
 }
 #define GL_IMPL_GLuint_GLfloatPtr(name) \
 Handle<Value> GLBinding::name##Callback(const Arguments& args) {\
     HandleScope scope;\
     if (args.Length() != 2 || !args[0]->IsUint32() || !args[1]->IsFloat32Array()) {\
-        return scope.Close(ThrowException(String::New(#name"Bad arguments")));\
+        args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments")));\
     }\
     name((GLuint) args[0]->Uint32Value(), (const GLfloat*) getArrayPtr(args[1]->ToObject()));\
-    return v8::Undefined();\
 }
 #define GL_IMPL_ReturnGLboolean_GLuint(name) \
 Handle<Value> GLBinding::name##Callback(const Arguments& args) {\
     HandleScope scope;\
     if (args.Length() != 1) {\
-        return scope.Close(ThrowException(String::New(#name"Bad arguments numbers")));\
+        args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments numbers")));\
     }\
     bool value = name((GLuint) args[0]->Uint32Value());\
-    return scope.Close(v8::Boolean::New(value));\
+    args.GetReturnValue().Set(v8::Boolean::New(value));\
 }
 #define GL_IMPL_GLuint_GLsizei_GLfloatPtr(name) \
 Handle<Value> GLBinding::name##Callback(const Arguments& args) {\
     HandleScope scope;\
     if (args.Length() == 2) {\
         if(!args[0]->IsInt32() || !args[1]->IsFloat32Array()) {\
-            return scope.Close(ThrowException(String::New(#name"Bad arguments 2")));\
+            args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments 2")));\
         }\
         Local<Object> array = args[1]->ToObject();\
 		name((GLuint)args[0]->Int32Value(), (GLsizei)ARR_LENGTH(array), (const GLfloat*)getArrayPtr(array));\
     } else if (args.Length() == 3) {\
         if(!args[0]->IsInt32() || !args[1]->IsInt32() || !args[2]->IsFloat32Array()) {\
-            return scope.Close(ThrowException(String::New(#name"Bad arguments 3")));\
+            args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments 3")));\
         }\
         Local<Object> array = args[2]->ToObject();\
 		name((GLuint)args[0]->Int32Value(), (GLsizei)args[1]->Int32Value(), (const GLfloat*)getArrayPtr(array));\
     } else {\
-        return scope.Close(ThrowException(String::New(#name"Bad arguments number")));\
+        args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments number")));\
     }\
 }
 #define GL_IMPL_GLuint_GLsizei_GLintPtr(name) \
@@ -542,18 +531,18 @@ Handle<Value> GLBinding::name##Callback(const Arguments& args) {\
     HandleScope scope;\
     if (args.Length() == 2) {\
         if(!args[0]->IsInt32() || !args[1]->IsInt32Array()) {\
-            return scope.Close(ThrowException(String::New(#name"Bad arguments 2")));\
+            args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments 2")));\
         }\
         Local<Object> array = args[1]->ToObject();\
 		name((GLuint)args[0]->Int32Value(), (GLsizei)ARR_LENGTH(array), (const GLint*)getArrayPtr(array));\
     } else if (args.Length() == 3) {\
         if(!args[0]->IsInt32() || !args[1]->IsInt32() || !args[2]->IsInt32Array()) {\
-            return scope.Close(ThrowException(String::New(#name"Bad arguments 3")));\
+            args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments 3")));\
         }\
         Local<Object> array = args[2]->ToObject();\
 		name((GLuint)args[0]->Int32Value(), (GLsizei)args[1]->Int32Value(), (const GLint*)getArrayPtr(array));\
     } else {\
-        return scope.Close(ThrowException(String::New(#name"Bad arguments number")));\
+        args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments number")));\
     }\
 }
 // GLsizei n, const GLuint* buffers
@@ -562,25 +551,25 @@ Handle<Value> GLBinding::name##Callback(const Arguments& args) {\
     HandleScope scope;\
     if (args.Length() == 1) {\
         if(!args[0]->IsInt32Array()) {\
-            return scope.Close(ThrowException(String::New(#name"Bad arguments 1")));\
+            args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments 1")));\
         }\
         Local<Object> array = args[0]->ToObject();\
 		name((GLsizei)ARR_LENGTH(array), (const GLuint*)getArrayPtr(array));\
     } else if (args.Length() == 2) {\
         if(!args[0]->IsInt32() || !args[1]->IsInt32Array()) {\
-            return scope.Close(ThrowException(String::New(#name"Bad arguments 2")));\
+            args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments 2")));\
         }\
         Local<Object> array = args[1]->ToObject();\
 		name((GLsizei)args[0]->Int32Value(), (const GLuint*)getArrayPtr(array));\
     } else {\
-        return scope.Close(ThrowException(String::New(#name"Bad arguments number")));\
+        args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments number")));\
     }\
 }
 #define GL_IMPL_GLuint(name) \
 Handle<Value> GLBinding::name##Callback(const Arguments& args) {\
     HandleScope scope;\
     if (args.Length() != 2 || !args[0]->IsUint32()) {\
-        return scope.Close(ThrowException(String::New(#name"Bad arguments")));\
+        args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments")));\
     }\
     name((GLuint) args[0]->Uint32Value());\
     return v8::Undefined();\
@@ -589,7 +578,7 @@ Handle<Value> GLBinding::name##Callback(const Arguments& args) {\
 Handle<Value> GLBinding::name##Callback(const Arguments& args) {\
     HandleScope scope;\
     if (args.Length() != 4) {\
-        return scope.Close(ThrowException(String::New(#name"Bad arguments, count not 4")));\
+        args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments, count not 4")));\
     }\
     name(_GLenum(args[0]), _GLenum(args[1]), _GLenum(args[2]), _GLenum(args[3]));\
     return v8::Undefined();\
@@ -598,21 +587,21 @@ Handle<Value> GLBinding::name##Callback(const Arguments& args) {\
 Handle<Value> GLBinding::name##Callback(const Arguments& args) {\
     HandleScope scope;\
     if (args.Length() != 3) {\
-        return scope.Close(ThrowException(String::New(#name"Bad arguments, count not 4")));\
+        args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments, count not 4")));\
     }\
     GLint value;\
     name(_GLenum(args[0]), _GLenum(args[1]),  &value);\
-    return scope.Close(Integer::New(value));\
+    args.GetReturnValue().Set(Integer::New(value));\
 }
 #define GL_IMP_uint_enum_intP(name) \
 Handle<Value> GLBinding::name##Callback(const Arguments& args) {\
     HandleScope scope;\
     if (args.Length() != 3) {\
-        return scope.Close(ThrowException(String::New(#name"Bad arguments, count not 4")));\
+        args.GetReturnValue().Set(ThrowException(String::New(#name"Bad arguments, count not 4")));\
     }\
     GLint value;\
     name(_GLuint(args[0]), _GLenum(args[1]), &value);\
-    return scope.Close(Integer::New(value));\
+    args.GetReturnValue().Set(Integer::New(value));\
 }
 
 static Handle<Array> toArray(GLuint* buffers, int size) {
@@ -1070,7 +1059,7 @@ template<> void Module<GLBinding>::init(const FunctionCallbackInfo<Value>& args)
 	BIND_GL(_proto_, viewport);
 }
 
-Handle<Value> GLBinding::getAttachedShadersCallback(const Arguments& args) {
+JS_METHOD(getAttachedShaders) {
     HandleScope scope;
     GLuint program = ARGS_GLuint(args[0]);
 
@@ -1082,16 +1071,16 @@ Handle<Value> GLBinding::getAttachedShadersCallback(const Arguments& args) {
 	for(int i=0;i<count;i++) {
 		shadersArr->Set(i, JS_UINT(shaders[i]));
 	}
-	return scope.Close(shadersArr);
+    args.GetReturnValue().Set(shadersArr);
 }
 JS_METHOD(getSupportedExtensions) {
     HandleScope scope;
     char *extensions=(char*) glGetString(GL_EXTENSIONS);
-	return scope.Close(JS_STR(extensions));
+	args.GetReturnValue().Set(JS_STR(extensions));
 }
 JS_METHOD(getExtension) {
     HandleScope scope;
-	return scope.Close(JS_STR(""));
+	args.GetReturnValue().Set(JS_STR(""));
 }
 DELEGATE_TO_GL_N1(activeTexture, glActiveTexture, GLenum);
 DELEGATE_TO_GL_N2(attachShader, glAttachShader, GLuint, GLuint);
@@ -1123,7 +1112,7 @@ JS_METHOD(bufferData) {
  		GLenum usage = args[2]->Int32Value();
  		glBufferData(target, size, NULL, usage);
  	}
- 	return scope.Close(v8::Undefined());
+ 	args.GetReturnValue().Set(v8::Undefined());
 }
 /**
  @param {Number} target
@@ -1143,7 +1132,7 @@ JS_METHOD(bufferSubData) {
 
  	glBufferSubData(target, offset, size, data);
 
- 	return scope.Close(v8::Undefined());
+ 	args.GetReturnValue().Set(v8::Undefined());
 }
 /**
  @param {Number} target
@@ -1152,10 +1141,13 @@ JS_METHOD(bufferSubData) {
 JS_METHOD(checkFramebufferStatus) {
     HandleScope scope;
     CHECK_ARG_1(glCheckFramebufferStatus, GLenum);
-    return scope.Close(Uint32::New(CALL_GL_1(glCheckFramebufferStatus, GLenum)));
+    args.GetReturnValue().Set(Uint32::New(CALL_GL_1(glCheckFramebufferStatus, GLenum)));
 }
 DELEGATE_TO_GL_N1(clear, glClear, GLbitfield);
 DELEGATE_TO_GL_N4(clearColor, glClearColor, GLclampf, GLclampf, GLclampf, GLclampf);
+//JS_METHOD(clearColor) {
+//    LOGI("args[0] %d %d", args[0]->IsNumber(), args[0]->IsNumberObject());
+//}
 DELEGATE_TO_GL_N1(clearDepth, glClearDepthf, GLclampf);
 DELEGATE_TO_GL_N1(clearStencil, glClearStencil, GLint);
 DELEGATE_TO_GL_N4(colorMask, glColorMask, GLboolean, GLboolean, GLboolean, GLboolean);
@@ -1189,11 +1181,11 @@ DELEGATE_TO_GL_1R(createBuffer, glGenBuffers, GLuint, Uint32);
 DELEGATE_TO_GL_1R(createFramebuffer, glGenFramebuffers, GLuint, Uint32);
 DELEGATE_TO_GL_R(createProgram, glCreateProgram, GLuint, Uint32);
 DELEGATE_TO_GL_1R(createRenderbuffer, glGenRenderbuffers, GLuint, Uint32);
-Handle<Value> GLBinding::createShaderCallback(const Arguments& args) {
+JS_METHOD(createShader) {
 	HandleScope scope;
     CHECK_ARG_1(glCreateShader, GLenum);
     GLuint value = glCreateShader(ARGS_GLenum(args[0]));
-    return scope.Close(Uint32::New(value));
+    args.GetReturnValue().Set(Uint32::New(value));
 }
 DELEGATE_TO_GL_1R(createTexture, glGenTextures, GLuint, Uint32);
 DELEGATE_TO_GL_N1(cullFace, glCullFace, GLenum);
@@ -1243,7 +1235,7 @@ JS_METHOD(getActiveAttrib) {
 	GLint max_name_length = -1;
 	glGetProgramiv(program, GL_ACTIVE_ATTRIBUTE_MAX_LENGTH, &max_name_length);
 	if (max_name_length < 0) {
-		return v8::Undefined();
+		return;
 	}
 
 	GLchar* name = new GLchar[max_name_length];
@@ -1254,7 +1246,7 @@ JS_METHOD(getActiveAttrib) {
 	glGetActiveAttrib(program, index, max_name_length, &length, &size, &type, name);
 	if (size < 0) {
 		delete name;
-		return v8::Undefined();
+		return;
 	}
 
 	Handle<Object> info = Object::New();
@@ -1263,7 +1255,7 @@ JS_METHOD(getActiveAttrib) {
 	info->Set(String::New("size"), Integer::New(size));
 	delete name;
 
-	return scope.Close(info);
+	args.GetReturnValue().Set(info);
 }
 JS_METHOD(getActiveUniform) {
     HandleScope scope;
@@ -1272,7 +1264,7 @@ JS_METHOD(getActiveUniform) {
 	GLint max_name_length = -1;
 	glGetProgramiv(program, GL_ACTIVE_UNIFORM_MAX_LENGTH, &max_name_length);
 	if (max_name_length < 0) {
-		return v8::Undefined();
+		return;
 	}
 
 	GLchar* name = new GLchar[max_name_length];
@@ -1283,7 +1275,7 @@ JS_METHOD(getActiveUniform) {
 	glGetActiveUniform(program, index, max_name_length, &length, &size, &type, name);
 	if (size < 0) {
 		delete name;
-		return v8::Undefined();
+		return;
 	}
 
 	Handle<Object> info = Object::New();
@@ -1292,12 +1284,12 @@ JS_METHOD(getActiveUniform) {
 	info->Set(String::New("size"), Integer::New(size));
 	delete name;
 
-	return scope.Close(info);
+	args.GetReturnValue().Set(info);
 }
 JS_METHOD(getAttribLocation) {
     HandleScope scope;
     int res = CALL_GL_2(glGetAttribLocation, GLuint, GLcharP);
-    return scope.Close(Integer::New(res));
+    args.GetReturnValue().Set(Integer::New(res));
 }
 JS_METHOD(getParameter) {
     HandleScope scope;
@@ -1310,166 +1302,244 @@ JS_METHOD(getParameter) {
 //	WebGLStateRestorer(this, false);
 	switch (pname) {
 	case GL_ACTIVE_TEXTURE:
-		return getUnsignedIntParameter(pname);
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+        return;
 	case GL_ALIASED_LINE_WIDTH_RANGE:
-		return getWebGLFloatArrayParameter(pname);
+		args.GetReturnValue().Set(getWebGLFloatArrayParameter(pname));
+            return;
 	case GL_ALIASED_POINT_SIZE_RANGE:
-		return getWebGLFloatArrayParameter(pname);
+		args.GetReturnValue().Set(getWebGLFloatArrayParameter(pname));
+            return;
 	case GL_ALPHA_BITS:
-		return getIntParameter(pname);
+		args.GetReturnValue().Set(getIntParameter(pname));
+            return;
 //	case GL_ARRAY_BUFFER_BINDING:
 //		return WebGLGetInfo(PassRefPtr<WebGLBuffer>(m_boundArrayBuffer));
 	case GL_BLEND:
-		return getBooleanParameter(pname);
+		args.GetReturnValue().Set(getBooleanParameter(pname));
+            return;
 	case GL_BLEND_COLOR:
-		return getWebGLFloatArrayParameter(pname);
+		args.GetReturnValue().Set(getWebGLFloatArrayParameter(pname));
+            return;
 	case GL_BLEND_DST_ALPHA:
-		return getUnsignedIntParameter(pname);
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
 	case GL_BLEND_DST_RGB:
-		return getUnsignedIntParameter(pname);
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
 	case GL_BLEND_EQUATION_ALPHA:
-		return getUnsignedIntParameter(pname);
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
 	case GL_BLEND_EQUATION_RGB:
-		return getUnsignedIntParameter(pname);
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
 	case GL_BLEND_SRC_ALPHA:
-		return getUnsignedIntParameter(pname);
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
 	case GL_BLEND_SRC_RGB:
-		return getUnsignedIntParameter(pname);
+		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
 	case GL_BLUE_BITS:
-		return getIntParameter(pname);
+		args.GetReturnValue().Set(getIntParameter(pname));
+            return;
 	case GL_COLOR_CLEAR_VALUE:
-		return getWebGLFloatArrayParameter(pname);
+		args.GetReturnValue().Set(getWebGLFloatArrayParameter(pname));
+            return;
 	case GL_COLOR_WRITEMASK:
-		return getBooleanArrayParameter(pname);
+		args.GetReturnValue().Set(getBooleanArrayParameter(pname));
+            return;
 //	case GL_COMPRESSED_TEXTURE_FORMATS:
 //		return WebGLGetInfo(Uint32Array::create(m_compressedTextureFormats.data(), m_compressedTextureFormats.size()));
-	case GL_CULL_FACE:
-		return getBooleanParameter(pname);
-	case GL_CULL_FACE_MODE:
-		return getUnsignedIntParameter(pname);
-//	case GL_CURRENT_PROGRAM:
-//		return WebGLGetInfo(PassRefPtr<WebGLProgram>(m_currentProgram));
-	case GL_DEPTH_BITS:
-		return getIntParameter(pname);
-	case GL_DEPTH_CLEAR_VALUE:
-		return getFloatParameter(pname);
-	case GL_DEPTH_FUNC:
-		return getUnsignedIntParameter(pname);
-	case GL_DEPTH_RANGE:
-		return getWebGLFloatArrayParameter(pname);
-	case GL_DEPTH_TEST:
-		return getBooleanParameter(pname);
-	case GL_DEPTH_WRITEMASK:
-		return getBooleanParameter(pname);
-	case GL_DITHER:
-		return getBooleanParameter(pname);
-	case GL_ELEMENT_ARRAY_BUFFER_BINDING:
-		return getUnsignedIntParameter(pname);
-	case GL_FRAMEBUFFER_BINDING:
-		return getUnsignedIntParameter(pname);
-	case GL_FRONT_FACE:
-		return getUnsignedIntParameter(pname);
-	case GL_GENERATE_MIPMAP_HINT:
-		return getUnsignedIntParameter(pname);
-	case GL_GREEN_BITS:
-		return getIntParameter(pname);
-	case GL_LINE_WIDTH:
-		return getFloatParameter(pname);
-	case GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS:
-		return getIntParameter(pname);
-	case GL_MAX_CUBE_MAP_TEXTURE_SIZE:
-		return getIntParameter(pname);
-//	case GL_MAX_FRAGMENT_UNIFORM_VECTORS:
-//		return getIntParameter(pname);
-	case GL_MAX_RENDERBUFFER_SIZE:
-		return getIntParameter(pname);
-	case GL_MAX_TEXTURE_IMAGE_UNITS:
-		return getIntParameter(pname);
-	case GL_MAX_TEXTURE_SIZE:
-		return getIntParameter(pname);
-//	case GL_MAX_VARYING_VECTORS:
-//		return getIntParameter(pname);
-	case GL_MAX_VERTEX_ATTRIBS:
-		return getIntParameter(pname);
-	case GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS:
-		return getIntParameter(pname);
-//	case GL_MAX_VERTEX_UNIFORM_VECTORS:
-//		return getIntParameter(pname);
-	case GL_MAX_VIEWPORT_DIMS:
-		return getWebGLIntArrayParameter(pname);
-//	case GL_NUM_SHADER_BINARY_FORMATS:
-//		// FIXME: should we always return 0 for this?
-//		return getIntParameter(pname);
-	case GL_PACK_ALIGNMENT:
-		return getIntParameter(pname);
-	case GL_POLYGON_OFFSET_FACTOR:
-		return getFloatParameter(pname);
-	case GL_POLYGON_OFFSET_FILL:
-		return getBooleanParameter(pname);
-	case GL_POLYGON_OFFSET_UNITS:
-		return getFloatParameter(pname);
-	case GL_RED_BITS:
-		return getIntParameter(pname);
-	case GL_RENDERBUFFER_BINDING:
-		return getUnsignedIntParameter(pname);
-	case GL_RENDERER:
-		return getStringParameter(pname);
-	case GL_SAMPLE_BUFFERS:
-		return getIntParameter(pname);
-	case GL_SAMPLE_COVERAGE_INVERT:
-		return getBooleanParameter(pname);
-	case GL_SAMPLE_COVERAGE_VALUE:
-		return getFloatParameter(pname);
-	case GL_SAMPLES:
-		return getIntParameter(pname);
-	case GL_SCISSOR_BOX:
-		return getWebGLIntArrayParameter(pname);
-	case GL_SCISSOR_TEST:
-		return getBooleanParameter(pname);
-	case GL_SHADING_LANGUAGE_VERSION:
-		return getStringParameter(pname);
-	case GL_STENCIL_BACK_FAIL:
-		return getUnsignedIntParameter(pname);
-	case GL_STENCIL_BACK_FUNC:
-		return getUnsignedIntParameter(pname);
-	case GL_STENCIL_BACK_PASS_DEPTH_FAIL:
-		return getUnsignedIntParameter(pname);
-	case GL_STENCIL_BACK_PASS_DEPTH_PASS:
-		return getUnsignedIntParameter(pname);
-	case GL_STENCIL_BACK_REF:
-		return getIntParameter(pname);
-	case GL_STENCIL_BACK_VALUE_MASK:
-		return getUnsignedIntParameter(pname);
-	case GL_STENCIL_BACK_WRITEMASK:
-		return getUnsignedIntParameter(pname);
-	case GL_STENCIL_BITS:
-		return getIntParameter(pname);
-	case GL_STENCIL_CLEAR_VALUE:
-		return getIntParameter(pname);
-	case GL_STENCIL_FAIL:
-		return getUnsignedIntParameter(pname);
-	case GL_STENCIL_FUNC:
-		return getUnsignedIntParameter(pname);
-	case GL_STENCIL_PASS_DEPTH_FAIL:
-		return getUnsignedIntParameter(pname);
-	case GL_STENCIL_PASS_DEPTH_PASS:
-		return getUnsignedIntParameter(pname);
-	case GL_STENCIL_REF:
-		return getIntParameter(pname);
-	case GL_STENCIL_TEST:
-		return getBooleanParameter(pname);
-	case GL_STENCIL_VALUE_MASK:
-		return getUnsignedIntParameter(pname);
-	case GL_STENCIL_WRITEMASK:
-		return getUnsignedIntParameter(pname);
-	case GL_SUBPIXEL_BITS:
-		return getIntParameter(pname);
-	case GL_TEXTURE_BINDING_2D:
-		return getIntParameter(pname);
-	case GL_TEXTURE_BINDING_CUBE_MAP:
-		return getIntParameter(pname);
-	case GL_UNPACK_ALIGNMENT:
-		return getIntParameter(pname);
+        case GL_CULL_FACE:
+            args.GetReturnValue().Set(getBooleanParameter(pname));
+            return;
+        case GL_CULL_FACE_MODE:
+            args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
+            //	case GL_CURRENT_PROGRAM:
+            //		args.GetReturnValue().Set(WebGLGetInfo(PassRefPtr<WebGLProgram>(m_currentProgram)));
+            //return;
+        case GL_DEPTH_BITS:
+            args.GetReturnValue().Set(getIntParameter(pname));
+            return;
+        case GL_DEPTH_CLEAR_VALUE:
+            args.GetReturnValue().Set(getFloatParameter(pname));
+            return;
+        case GL_DEPTH_FUNC:
+            args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
+        case GL_DEPTH_RANGE:
+            args.GetReturnValue().Set(getWebGLFloatArrayParameter(pname));
+            return;
+        case GL_DEPTH_TEST:
+            args.GetReturnValue().Set(getBooleanParameter(pname));
+            return;
+        case GL_DEPTH_WRITEMASK:
+            args.GetReturnValue().Set(getBooleanParameter(pname));
+            return;
+        case GL_DITHER:
+            args.GetReturnValue().Set(getBooleanParameter(pname));
+            return;
+        case GL_ELEMENT_ARRAY_BUFFER_BINDING:
+            args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
+        case GL_FRAMEBUFFER_BINDING:
+            args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
+        case GL_FRONT_FACE:
+            args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
+        case GL_GENERATE_MIPMAP_HINT:
+            args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
+        case GL_GREEN_BITS:
+            args.GetReturnValue().Set(getIntParameter(pname));
+            return;
+        case GL_LINE_WIDTH:
+            args.GetReturnValue().Set(getFloatParameter(pname));
+            return;
+        case GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS:
+            args.GetReturnValue().Set(getIntParameter(pname));
+            return;
+        case GL_MAX_CUBE_MAP_TEXTURE_SIZE:
+            args.GetReturnValue().Set(getIntParameter(pname));
+            return;
+            //	case GL_MAX_FRAGMENT_UNIFORM_VECTORS:
+            //		args.GetReturnValue().Set(getIntParameter(pname));
+            //return;
+        case GL_MAX_RENDERBUFFER_SIZE:
+            args.GetReturnValue().Set(getIntParameter(pname));
+            return;
+        case GL_MAX_TEXTURE_IMAGE_UNITS:
+            args.GetReturnValue().Set(getIntParameter(pname));
+            return;
+        case GL_MAX_TEXTURE_SIZE:
+            args.GetReturnValue().Set(getIntParameter(pname));
+            return;
+            //	case GL_MAX_VARYING_VECTORS:
+            //		args.GetReturnValue().Set(getIntParameter(pname));
+            //return;
+        case GL_MAX_VERTEX_ATTRIBS:
+            args.GetReturnValue().Set(getIntParameter(pname));
+            return;
+        case GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS:
+            args.GetReturnValue().Set(getIntParameter(pname));
+            return;
+            //	case GL_MAX_VERTEX_UNIFORM_VECTORS:
+            //		args.GetReturnValue().Set(getIntParameter(pname));
+            //return;
+        case GL_MAX_VIEWPORT_DIMS:
+            args.GetReturnValue().Set(getWebGLIntArrayParameter(pname));
+            return;
+            //	case GL_NUM_SHADER_BINARY_FORMATS:
+            //		// FIXME: should we always return 0 for this?
+            //		args.GetReturnValue().Set(getIntParameter(pname));
+            //return;
+        case GL_PACK_ALIGNMENT:
+            args.GetReturnValue().Set(getIntParameter(pname));
+            return;
+        case GL_POLYGON_OFFSET_FACTOR:
+            args.GetReturnValue().Set(getFloatParameter(pname));
+            return;
+        case GL_POLYGON_OFFSET_FILL:
+            args.GetReturnValue().Set(getBooleanParameter(pname));
+            return;
+        case GL_POLYGON_OFFSET_UNITS:
+            args.GetReturnValue().Set(getFloatParameter(pname));
+            return;
+        case GL_RED_BITS:
+            args.GetReturnValue().Set(getIntParameter(pname));
+            return;
+        case GL_RENDERBUFFER_BINDING:
+            args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
+        case GL_RENDERER:
+            args.GetReturnValue().Set(getStringParameter(pname));
+            return;
+        case GL_SAMPLE_BUFFERS:
+            args.GetReturnValue().Set(getIntParameter(pname));
+            return;
+        case GL_SAMPLE_COVERAGE_INVERT:
+            args.GetReturnValue().Set(getBooleanParameter(pname));
+            return;
+        case GL_SAMPLE_COVERAGE_VALUE:
+            args.GetReturnValue().Set(getFloatParameter(pname));
+            return;
+        case GL_SAMPLES:
+            args.GetReturnValue().Set(getIntParameter(pname));
+            return;
+        case GL_SCISSOR_BOX:
+            args.GetReturnValue().Set(getWebGLIntArrayParameter(pname));
+            return;
+        case GL_SCISSOR_TEST:
+            args.GetReturnValue().Set(getBooleanParameter(pname));
+            return;
+        case GL_SHADING_LANGUAGE_VERSION:
+            args.GetReturnValue().Set(getStringParameter(pname));
+            return;
+        case GL_STENCIL_BACK_FAIL:
+            args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
+        case GL_STENCIL_BACK_FUNC:
+            args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
+        case GL_STENCIL_BACK_PASS_DEPTH_FAIL:
+            args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
+        case GL_STENCIL_BACK_PASS_DEPTH_PASS:
+            args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
+        case GL_STENCIL_BACK_REF:
+            args.GetReturnValue().Set(getIntParameter(pname));
+            return;
+        case GL_STENCIL_BACK_VALUE_MASK:
+            args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
+        case GL_STENCIL_BACK_WRITEMASK:
+            args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
+        case GL_STENCIL_BITS:
+            args.GetReturnValue().Set(getIntParameter(pname));
+            return;
+        case GL_STENCIL_CLEAR_VALUE:
+            args.GetReturnValue().Set(getIntParameter(pname));
+            return;
+        case GL_STENCIL_FAIL:
+            args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
+        case GL_STENCIL_FUNC:
+            args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
+        case GL_STENCIL_PASS_DEPTH_FAIL:
+            args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
+        case GL_STENCIL_PASS_DEPTH_PASS:
+            args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
+        case GL_STENCIL_REF:
+            args.GetReturnValue().Set(getIntParameter(pname));
+            return;
+        case GL_STENCIL_TEST:
+            args.GetReturnValue().Set(getBooleanParameter(pname));
+            return;
+        case GL_STENCIL_VALUE_MASK:
+            args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
+        case GL_STENCIL_WRITEMASK:
+            args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+            return;
+        case GL_SUBPIXEL_BITS:
+            args.GetReturnValue().Set(getIntParameter(pname));
+            return;
+        case GL_TEXTURE_BINDING_2D:
+            args.GetReturnValue().Set(getIntParameter(pname));
+            return;
+        case GL_TEXTURE_BINDING_CUBE_MAP:
+            args.GetReturnValue().Set(getIntParameter(pname));
+            return;
+        case GL_UNPACK_ALIGNMENT:
+            args.GetReturnValue().Set(getIntParameter(pname));
+            return;
 //	case GL_UNPACK_FLIP_Y_WEBGL:
 //		return WebGLGetInfo(m_unpackFlipY);
 //	case GL_UNPACK_PREMULTIPLY_ALPHA_WEBGL:
@@ -1477,11 +1547,14 @@ JS_METHOD(getParameter) {
 //	case GL_UNPACK_COLORSPACE_CONVERSION_WEBGL:
 //		return WebGLGetInfo(m_unpackColorspaceConversion);
 	case GL_VENDOR:
-		return getStringParameter(pname);
+		args.GetReturnValue().Set(getStringParameter(pname));
+            return;
 	case GL_VERSION:
-		return getStringParameter(pname);
+    args.GetReturnValue().Set(getStringParameter(pname));
+            return;
 	case GL_VIEWPORT:
-		return getWebGLIntArrayParameter(pname);
+		args.GetReturnValue().Set(getWebGLIntArrayParameter(pname));
+            return;
 //	case GL_Extensions3D::FRAGMENT_SHADER_DERIVATIVE_HINT_OES: // OES_standard_derivatives
 //		if (m_oesStandardDerivatives)
 //			return getUnsignedIntParameter(Extensions3D::FRAGMENT_SHADER_DERIVATIVE_HINT_OES);
@@ -1535,7 +1608,7 @@ JS_METHOD(getParameter) {
 //		return WebGLGetInfo();
 		break;
 	}
-    return scope.Close(v8::ThrowException(String::New("Unknown parameter")));
+    args.GetReturnValue().Set(v8::ThrowException(String::New("Unknown parameter")));
 }
 JS_METHOD(getBufferParameter) {
     HandleScope scope;
@@ -1544,14 +1617,14 @@ JS_METHOD(getBufferParameter) {
 
 	GLint params;
 	glGetBufferParameteriv(target,pname,&params);
-	return scope.Close(JS_INT(params));
+	args.GetReturnValue().Set(JS_INT(params));
 }
-Handle<Value> GLBinding::getErrorCallback(const Arguments& args) {
+JS_METHOD(getError) {
     HandleScope scope;
     if (args.Length() != 0) {
-        return scope.Close(ThrowException(String::New("Bad arguments")));
+        args.GetReturnValue().Set(ThrowException(String::New("Bad arguments")));
     }
-    return scope.Close(Uint32::New(glGetError()));
+    args.GetReturnValue().Set(Uint32::New(glGetError()));
 }
 JS_METHOD(getFramebufferAttachmentParameter) {
     HandleScope scope;
@@ -1561,7 +1634,7 @@ JS_METHOD(getFramebufferAttachmentParameter) {
 
 	GLint params;
 	glGetFramebufferAttachmentParameteriv(target,attachment, pname,&params);
-	return scope.Close(JS_INT(params));
+	args.GetReturnValue().Set(JS_INT(params));
 }
 JS_METHOD(getProgramParameter) {
     HandleScope scope;
@@ -1574,14 +1647,14 @@ JS_METHOD(getProgramParameter) {
 		case GL_LINK_STATUS:
 		case GL_VALIDATE_STATUS:
 			glGetProgramiv(program, pname, &value);
-			return scope.Close(JS_BOOL(static_cast<bool>(value!=0)));
+			args.GetReturnValue().Set(JS_BOOL(static_cast<bool>(value!=0)));
 		case GL_ATTACHED_SHADERS:
 		case GL_ACTIVE_ATTRIBUTES:
 		case GL_ACTIVE_UNIFORMS:
 			glGetProgramiv(program, pname, &value);
-			return scope.Close(JS_INT(static_cast<long>(value)));// return number of parameters
+			args.GetReturnValue().Set(JS_INT(static_cast<long>(value)));// return number of parameters
 		default:
-			return v8::ThrowException(v8::Exception::TypeError(String::New("GetProgramParameter: Invalid Enum")));
+			args.GetReturnValue().Set(v8::ThrowException(v8::Exception::TypeError(String::New("GetProgramParameter: Invalid Enum"))));
 	}
 }
 JS_METHOD(getProgramInfoLog) {
@@ -1592,7 +1665,7 @@ JS_METHOD(getProgramInfoLog) {
 	char Error[1024];
 	glGetProgramInfoLog(program, 1024, &Len, Error);
 
-	return scope.Close(String::New(Error));
+	args.GetReturnValue().Set(String::New(Error));
 }
 JS_METHOD(getRenderbufferParameter) {
 	HandleScope scope;
@@ -1602,7 +1675,7 @@ JS_METHOD(getRenderbufferParameter) {
 	int value = 0;
 	glGetRenderbufferParameteriv(target,pname,&value);
 
-	return scope.Close(JS_INT(value));
+	args.GetReturnValue().Set(JS_INT(value));
 }
 JS_METHOD(getShaderParameter) {
 	HandleScope scope;
@@ -1614,16 +1687,16 @@ JS_METHOD(getShaderParameter) {
 		case GL_DELETE_STATUS:
 		case GL_COMPILE_STATUS:
 			glGetShaderiv(shader, pname, &value);
-			return scope.Close(JS_BOOL(static_cast<bool>(value!=0)));
+			args.GetReturnValue().Set(JS_BOOL(static_cast<bool>(value!=0)));
 		case GL_SHADER_TYPE:
 			glGetShaderiv(shader, pname, &value);
-			return scope.Close(JS_INT(static_cast<unsigned long>(value)));
+			args.GetReturnValue().Set(JS_INT(static_cast<unsigned long>(value)));
 		case GL_INFO_LOG_LENGTH:
 		case GL_SHADER_SOURCE_LENGTH:
 			glGetShaderiv(shader, pname, &value);
-			return scope.Close(JS_INT(static_cast<long>(value)));
+			args.GetReturnValue().Set(JS_INT(static_cast<long>(value)));
 		default:
-			return ThrowException(Exception::TypeError(String::New("GetShaderParameter: Invalid Enum")));
+			args.GetReturnValue().Set(ThrowException(Exception::TypeError(String::New("GetShaderParameter: Invalid Enum"))));
 	}
 }
 JS_METHOD(getShaderInfoLog) {
@@ -1633,14 +1706,14 @@ JS_METHOD(getShaderInfoLog) {
     GLuint shader = ARGS_GLuint(args[0]);
     glGetShaderiv((GLuint) shader, GL_INFO_LOG_LENGTH, &len);
     if(len == -1) {
-    	return scope.Close(v8::Undefined());
+    	args.GetReturnValue().Set(v8::Undefined());
     }
 
     int id = args[0]->Int32Value();
 	char Error[len];
 	glGetShaderInfoLog(id, 1024, &len, Error);
 
-	return scope.Close(String::New(Error));
+	args.GetReturnValue().Set(String::New(Error));
 }
 JS_METHOD(getShaderSource) {
     HandleScope scope;
@@ -1655,7 +1728,7 @@ JS_METHOD(getShaderSource) {
 	Local<String> str = String::New(source);
 	delete source;
 
-	return str;
+	args.GetReturnValue().Set(str);
 }
 JS_METHOD(getTexParameter) {
     HandleScope scope;
@@ -1666,7 +1739,7 @@ JS_METHOD(getTexParameter) {
 	GLint param_value=0;
 	glGetTexParameteriv(target, pname, &param_value);
 
-	return scope.Close(Number::New(param_value));
+	args.GetReturnValue().Set(Number::New(param_value));
 }
 JS_METHOD(getUniformLocation) {
     HandleScope scope;
@@ -1674,7 +1747,7 @@ JS_METHOD(getUniformLocation) {
 	int program = args[0]->Int32Value();
 	String::AsciiValue name(args[1]);
 
-	return scope.Close(JS_INT(glGetUniformLocation(program, *name)));
+	args.GetReturnValue().Set(JS_INT(glGetUniformLocation(program, *name)));
 }
 JS_METHOD(getVertexAttrib) {
     HandleScope scope;
@@ -1688,17 +1761,17 @@ JS_METHOD(getVertexAttrib) {
 		case GL_VERTEX_ATTRIB_ARRAY_ENABLED:
 		case GL_VERTEX_ATTRIB_ARRAY_NORMALIZED:
 			glGetVertexAttribiv(index,pname,&value);
-			return scope.Close(JS_BOOL(value!=0));
+			args.GetReturnValue().Set(JS_BOOL(value!=0));
 
 		case GL_VERTEX_ATTRIB_ARRAY_SIZE:
 		case GL_VERTEX_ATTRIB_ARRAY_STRIDE:
 		case GL_VERTEX_ATTRIB_ARRAY_TYPE:
 			glGetVertexAttribiv(index,pname,&value);
-			return scope.Close(JS_INT(value));
+			args.GetReturnValue().Set(JS_INT(value));
 
 		case GL_VERTEX_ATTRIB_ARRAY_BUFFER_BINDING:
 			glGetVertexAttribiv(index,pname,&value);
-			return scope.Close(JS_INT(value));
+			args.GetReturnValue().Set(JS_INT(value));
 		case GL_CURRENT_VERTEX_ATTRIB: {
 			float vextex_attribs[4];
 			glGetVertexAttribfv(index,pname,vextex_attribs);
@@ -1707,13 +1780,13 @@ JS_METHOD(getVertexAttrib) {
 			arr->Set(1,JS_FLOAT(vextex_attribs[1]));
 			arr->Set(2,JS_FLOAT(vextex_attribs[2]));
 			arr->Set(3,JS_FLOAT(vextex_attribs[3]));
-			return scope.Close(arr);
+			args.GetReturnValue().Set(arr);
 		}
 		default:
-			return scope.Close(v8::ThrowException(String::New("GetVertexAttrib: Invalid Enum")));
+			args.GetReturnValue().Set(v8::ThrowException(String::New("GetVertexAttrib: Invalid Enum")));
 	}
 
-	return scope.Close(v8::Undefined());
+	args.GetReturnValue().Set(v8::Undefined());
 }
 JS_METHOD(getVertexAttribOffset) {
     HandleScope scope;
@@ -1723,7 +1796,7 @@ JS_METHOD(getVertexAttribOffset) {
 	void *ret = NULL;
 
 	glGetVertexAttribPointerv(index, pname, &ret);
-	return scope.Close(JS_INT(ToGLuint(ret)));
+	args.GetReturnValue().Set(JS_INT(ToGLuint(ret)));
 }
 DELEGATE_TO_GL_N2(hint, glHint, GLenum, GLenum);
 DELEGATE_TO_GL_1_BR(isBuffer, glIsBuffer, GLuint);
@@ -1740,7 +1813,7 @@ DELEGATE_TO_GL_N2(polygonOffset, glPolygonOffset, GLfloat, GLfloat);
 JS_METHOD(readPixels) {
     HandleScope scope;
 //    if (args.Length() != 6 || !args[0]->IsNumber() || !args[1]->IsNumber() || !args[2]->IsUint32() || !args[3]->IsUint32() || !args[4]->IsUint32() || !args[5]->IsUint32())
-//        return scope.Close(ThrowException(String::New("Bad arguments")));
+//        args.GetReturnValue().Set(ThrowException(String::New("Bad arguments")));
 //
 //    int x = args[0]->IntegerValue();
 //    int y = args[1]->IntegerValue();
@@ -1761,10 +1834,10 @@ JS_METHOD(readPixels) {
 //        }
 //
 //        delete[] ans;
-//        return scope.Close(v8::Undefined());
+//        args.GetReturnValue().Set(v8::Undefined());
 //    }
 
-    return scope.Close(v8::Undefined());
+    args.GetReturnValue().Set(v8::Undefined());
 }
 DELEGATE_TO_GL_N4(renderbufferStorage, glRenderbufferStorage, GLenum, GLenum, GLsizei, GLsizei);
 DELEGATE_TO_GL_N2(sampleCoverage, glSampleCoverage, GLclampf, GLboolean);
@@ -1780,7 +1853,7 @@ JS_METHOD(shaderSource) {
 	GLint length = code.length();
 
 	glShaderSource (id, 1, codes, &length);
-	return scope.Close(v8::Undefined());
+	args.GetReturnValue().Set(v8::Undefined());
 }
 DELEGATE_TO_GL_N3(stencilFunc, glStencilFunc, GLenum, GLint, GLuint);
 DELEGATE_TO_GL_N4(stencilFuncSeparate, glStencilFuncSeparate, GLenum, GLenum, GLint, GLuint);
@@ -1819,10 +1892,10 @@ JS_METHOD(uniformMatrix2fv) {
 	GLfloat* data = getArrayData < GLfloat > (args[2], &count);
 
 	if (count < 4) {
-		return scope.Close(ThrowException(String::New("Not enough data for UniformMatrix2fv")));
+		args.GetReturnValue().Set(ThrowException(String::New("Not enough data for UniformMatrix2fv")));
 	}
 	glUniformMatrix2fv(location, count / 4, transpose, data);
-	return scope.Close(v8::Undefined());
+	args.GetReturnValue().Set(v8::Undefined());
 }
 JS_METHOD(uniformMatrix3fv) {
     HandleScope scope;
@@ -1833,10 +1906,10 @@ JS_METHOD(uniformMatrix3fv) {
 	GLfloat* data = getArrayData < GLfloat > (args[2], &count);
 
 	if (count < 9) {
-		return scope.Close(ThrowException(String::New("Not enough data for UniformMatrix3fv")));
+		args.GetReturnValue().Set(ThrowException(String::New("Not enough data for UniformMatrix3fv")));
 	}
 	glUniformMatrix3fv(location, count / 9, transpose, data);
-	return scope.Close(v8::Undefined());
+	args.GetReturnValue().Set(v8::Undefined());
 }
 JS_METHOD(uniformMatrix4fv) {
     HandleScope scope;
@@ -1847,10 +1920,10 @@ JS_METHOD(uniformMatrix4fv) {
 	GLfloat* data = getArrayData < GLfloat > (args[2], &count);
 
 	if (count < 16) {
-		return scope.Close(ThrowException(String::New("Not enough data for UniformMatrix4fv")));
+		args.GetReturnValue().Set(ThrowException(String::New("Not enough data for UniformMatrix4fv")));
 	}
 	glUniformMatrix4fv(location, count / 16, transpose, data);
-	return scope.Close(v8::Undefined());
+	args.GetReturnValue().Set(v8::Undefined());
 }
 
 DELEGATE_TO_GL_N1(useProgram, glUseProgram, GLuint);
@@ -1875,9 +1948,9 @@ JS_METHOD(vertexAttribPointer) {
 
 	glVertexAttribPointer(indx, size, type, normalized, stride, (const GLvoid*)offset);
 
-	return scope.Close(v8::Undefined());
+	args.GetReturnValue().Set(v8::Undefined());
 }
 DELEGATE_TO_GL_N4(viewport, glViewport, GLint, GLint, GLsizei, GLsizei);
 
 template<> const char* Module<GLBinding>::mFile = __FILE__;
-template<> const char* Module<GLBinding>::mName = "node_gl";
+template<> const char* Module<GLBinding>::mName = "node_opengl";
