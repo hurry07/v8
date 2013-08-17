@@ -8,6 +8,7 @@
 
 #include "vec2.h"
 #include "../core/v8Utils.h"
+#include "vectorutil.h"
 
 Vec2::Vec2() : mVec(0,0) {
 }
@@ -22,15 +23,13 @@ ClassType Vec2::getClassType() {
     return getExportStruct()->mType;
 }
 void Vec2::init(const FunctionCallbackInfo<Value> &info) {
-    switch (info.Length()) {
-        default:
-        case 2:
-            mVec.y = V_2F(1);
-        case 1:
-            mVec.x = V_2F(0);
-        case 0:
-            break;
+    if(info.Length() == 0) {
+        return;
     }
+    float values[2];
+    flatVector(info, values, 2);
+    mVec.x = values[0];
+    mVec.y = values[1];
 }
 const char* Vec2::toString() {
     char us[100];

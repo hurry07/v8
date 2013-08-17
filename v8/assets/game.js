@@ -102,6 +102,7 @@ game.render = {
     },
     onDrawFrame: function () {
 //    	gl.clearColor(1,0,0,1);
+        console.log('onDrawFrame~~111');
     	game.runcount++;
     }
 };

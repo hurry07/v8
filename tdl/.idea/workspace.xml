@@ -6,8 +6,9 @@
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376717127726" ignored="false" />
     <file path="/base.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376577833428" ignored="false" />
-    <file path="$PROJECT_DIR$/../v8/assets/test/vec3_test.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376728204618" ignored="false" />
-    <file path="/vec3_test.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376727740175" ignored="false" />
+    <file path="$PROJECT_DIR$/../v8/assets/test/vec3_test.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376737299109" ignored="false" />
+    <file path="/vec3_test.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376737262280" ignored="false" />
+    <file path="$PROJECT_DIR$/../v8/assets/game.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376738805555" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -318,7 +319,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21296784" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13125989" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13125989" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />

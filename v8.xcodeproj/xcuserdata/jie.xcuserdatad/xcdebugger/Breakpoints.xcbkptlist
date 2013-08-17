@@ -7,14 +7,14 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "v8/classes/vec3.cpp"
-         timestampString = "398420569.952478"
+         filePath = "v8/classes/vectorutil.h"
+         timestampString = "398429775.53514"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "34"
-         endingLineNumber = "34"
-         landmarkName = "Vec3::init(const FunctionCallbackInfo&lt;Value&gt; &amp;info)"
-         landmarkType = "5">
+         startingLineNumber = "66"
+         endingLineNumber = "66"
+         landmarkName = "flatVector(const FunctionCallbackInfo&lt;Value&gt; &amp;info, float* values, int length)"
+         landmarkType = "7">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

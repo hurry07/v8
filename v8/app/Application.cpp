@@ -16,9 +16,12 @@
 #include "../utils/AssetUtil.h"
 #include "../global.h"
 #include "../classes/Point.h"
+#include "../classes/vec4.h"
 
 #include <string>
 #include <OpenGL/gl.h>
+
+#include <glm/gtc/type_ptr.hpp>
 
 using namespace node;
 bool Application::debug = false;
@@ -277,10 +280,10 @@ void Application::onSurfaceChanged(float width, float height) {
 	render->callFunction("onSurfaceChanged");
 }
 void Application::onDrawFrame() {
-//	ENTER_ISOLATE;
-//	HANDLE_SCOPE;
-//	CONTEXT_SCOPE;
-//	static const char* name = "onDrawFrame";
-//	render->callFunction(name);
-//	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+	ENTER_ISOLATE;
+	HANDLE_SCOPE;
+	CONTEXT_SCOPE;
+	static const char* name = "onDrawFrame";
+	render->callFunction(name);
+	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 }

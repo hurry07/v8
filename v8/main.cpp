@@ -9,17 +9,9 @@
 
 #include <string>
 
-#include "classes/Point.h"
-#include <iostream>
-#include <v8.h>
 #include "app/Application.h"
-#include "utils/AssetUtil.h"
-
-#define GLM_MESSAGES
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/transform2.hpp>
-#include <glm/gtc/swizzle.hpp>
+#include <GLUT/GLUT.h>
+#include <OpenGL/gl.h>
 
 using namespace v8;
 
@@ -33,238 +25,27 @@ std::string dir(std::string path, std::string subpath) {
 }
 std::string source_root = dir(__FILE__, "/assets/").c_str();
 
-//class ArrayBufferAllocator : public v8::ArrayBuffer::Allocator {
-//public:
-//    // Impose an upper limit to avoid out of memory errors that bring down
-//    // the process.
-//    static const size_t kMaxLength = 0x3fffffff;
-//    static ArrayBufferAllocator the_singleton;
-//    virtual ~ArrayBufferAllocator() {}
-//    virtual void* Allocate(size_t length);
-//    virtual void Free(void* data);
-//private:
-//    ArrayBufferAllocator() {}
-//    ArrayBufferAllocator(const ArrayBufferAllocator&);
-//    void operator=(const ArrayBufferAllocator&);
-//};
-//
-//ArrayBufferAllocator ArrayBufferAllocator::the_singleton;
-
-//Isolate* node_isolate = NULL;
-
-//void log(const FunctionCallbackInfo<Value>& args) {
-//    HandleScope scope(node_isolate);
-//    if(args.Length() > 0) {
-//        printf("log:%s\n", *String::AsciiValue(args[0]->ToString()));
-//    }
-//    //    args.GetReturnValue().Set(err);
-//}
-//
-//void runTest() {
-//    Locker locker(node_isolate);
-//    HandleScope handle_scope(node_isolate);
-//
-//    // Create the one and only Context.
-//    Local<Context> context = Context::New(node_isolate);
-//    Context::Scope context_scope(context);
-//    context->Global()->Set(String::New("log"), FunctionTemplate::New(log)->GetFunction());
-//
-//    Local<String> source = String::New(
-//                                       "var c = {name:'aaa'};c.__proto__=this;"
-//                                       "function test1() {"
-//                                       "    this.log();"
-//                                       "    log();"
-//                                       "    this.name = 'jack';"
-//                                       "};"
-//                                       "test1.call(c);"
-//                                       );
-//    Local<Script> script = Script::Compile(source);
-//    script->Run();
-//
-//    Local<Value> name = context->Global()->Get(String::New("name"));
-//    printf("get %s\n", *String::AsciiValue(name->ToString()));
-//}
-//
-//void testGlobal() {
-//    Locker locker(node_isolate);
-//    HandleScope handle_scope(node_isolate);
-//
-//    // Create the one and only Context.
-//    Local<Context> context = Context::New(node_isolate);
-//    Context::Scope context_scope(context);
-//    context->Global()->Set(String::New("log"), FunctionTemplate::New(log)->GetFunction());
-//
-//    Local<String> source = String::New(
-//                                       "function a(ex) {"
-//                                       "    ex.connection = function() {"
-//                                       "    };"
-//                                       "    function test1() {"
-//                                       "    };"
-//                                       "};"
-//                                       "var ex = {};a(ex);"
-//                                       "function test2() {"
-//                                       "    log('a');"
-//                                       "}"
-//                                       );
-//
-//    Local<Script> script = Script::Compile(source);
-//    script->Run();
-//
-//    Local<Object> name = context->Global()->Get(String::New("ex"))->ToObject();
-//    printf("get %s\n", *String::AsciiValue(name->ToString()));
-//
-//    Local<Object> test2 = context->Global()->Get(String::New("test2"))->ToObject();
-//    Handle<v8::Function> func = v8::Handle<v8::Function>::Cast(test2);
-//    Handle<Value> args[2];
-//    args[0] = v8::String::New("value1");
-//    args[1] = v8::String::New("value2");
-//    func->Call(context->Global(), 2, args);
-//    func->Call(String::New("a?")->ToObject(), 2, args);
-//}
-
-Persistent<Context> context_p;
-void prepare() {
-    node_isolate = Isolate::New();
-    node_isolate->Enter();
-    
-    HandleScope scope;
-    context_p.Reset(node_isolate, Context::New(node_isolate));
-}
-void teardown() {
-    context_p.Dispose();
-    node_isolate->Exit();
-    node_isolate->Dispose();
-}
-Local<Context> GetV8Context() {
-	return Local<Context>::New(node_isolate, context_p);
-}
-Handle<Value> eval(const char* script) {
-    HandleScope scope(node_isolate);
-    Local<Context> context = GetV8Context();
-    Context::Scope context_scope(context);
-    
-	v8::Handle<v8::String> source = String::New(script);
-	Local<Script> comp = Script::Compile(source);
-	return scope.Close(comp->Run());
-}
-void getX(Local<String> property, const PropertyCallbackInfo<Value>& info) {
-    info.GetReturnValue().Set(Integer::New(100));
-}
-static void setX(Local<String> name, Local<Value> value, const v8::PropertyCallbackInfo<void>& info) {
-}
-void getY(Local<String> property, const PropertyCallbackInfo<Value>& info) {
-    info.GetReturnValue().Set(Integer::New(110));
-}
-static void setY(Local<String> name, Local<Value> value, const v8::PropertyCallbackInfo<void>& info) {
-}
-void console(const FunctionCallbackInfo<Value>& info) {
-    std::string buf;
-    int length = info.Length();
-    if(length == 0) {
-        return;
-    }
-    buf.append(*String::Utf8Value(info[0]->ToString()));
-    for (int i = 1; i < length; i++) {
-        buf.append(",");
-        buf.append(*String::Utf8Value(info[i]->ToString()));
-    }
-    buf.append("\n");
-    printf(buf.c_str());
-}
-void testProto() {
-    prepare();
-    
-    {
-        HandleScope scope(node_isolate);
-        Local<Context> context = GetV8Context();
-        Context::Scope context_scope(context);
-        
-        Handle<FunctionTemplate> printf = FunctionTemplate::New();
-        printf->SetCallHandler(console);
-        
-        context->Global()->Set(String::New("print"), printf->GetFunction());
-        
-        Handle<FunctionTemplate> fn = FunctionTemplate::New();
-        fn->SetClassName(String::New("P"));
-        Local<ObjectTemplate> fnproto = fn->PrototypeTemplate();
-        Local<ObjectTemplate> fninst = fn->InstanceTemplate();
-        fnproto->SetAccessor(String::New("x"), getX, setX);
-        fninst->SetAccessor(String::New("y"), getY, setY);
-        
-        Handle<FunctionTemplate> shape = FunctionTemplate::New();
-        shape->SetClassName(String::New("Shape"));
-        Local<ObjectTemplate> shapeproto = shape->PrototypeTemplate();
-        Local<ObjectTemplate> shapeinst = shape->InstanceTemplate();
-        shapeproto->SetAccessor(String::New("sx"), getX, setX);
-        shapeinst->SetAccessor(String::New("sy"), getY, setY);
-        fn->Inherit(shape);
-        
-        context->Global()->Set(String::New("P"), fn->GetFunction());
-        eval("var a = new P();var pro = P.prototype;"
-             "print(pro.x, pro.y, pro.sx, pro.sy);"
-             "print(a.x, a.y, a.sx, a.sy);");
-    }
-    
-    teardown();    
-}
-class A {
-public:
-    static void test() {
-        LOGI("A.test");
-    }
-};
-class B : public A {
-public:
-    static void test() {
-        LOGI("B.test");
-    }
-};
-void testExtend() {
-    A* a = new A();
-    a->test();
-    B* b = new B();
-    b->test();
-    
-//    printf("\ninit path:%s", source_root.c_str());
-    Application* app = new Application();
-    app->init();
+Application* app = NULL;
+void onDrawFrame() {
     app->onDrawFrame();
-    app->onDrawFrame();
-    app->destroy();
-    app->onDrawFrame();
-    app->onDrawFrame();
-    delete app;
+    glFlush();
 }
-void testMatrix() {
-    glm::vec4 Position = glm::vec4(glm::vec3(0.0), 1.0);
-    glm::mat4 Model = glm::mat4(1.0);
-    Model[3] = glm::vec4(1.0, 1.0, 0.0, 1.0);
-    glm::vec4 Transformed = Model * Position;
-    glm::translate(Model, glm::vec3(1));
 
-//    glm::vec4 ColorRGBA(1.0f, 0.5f, 0.0f, 1.0f);
-//    glm::vec4 ColorBGRA = ColorRGBA.bgra();
-//    ColorRGBA.bgra() = ColorRGBA;
-//    ColorRGBA.bgra() = ColorRGBA.rgba();
-
-    glm::vec4 ColorRGBA(1.0f, 0.5f, 0.0f, 1.0f);
-    // Dynamic swizzling (at run time, more flexible)
-    // l-value:
-    glm::vec4 ColorBGRA1 = glm::swizzle(ColorRGBA, glm::B, glm::G, glm::R, glm::A);
-    // r-value:
-    glm::swizzle(ColorRGBA, glm::B, glm::G, glm::R, glm::A) = ColorRGBA;
-    // Static swizzling (at build time, faster)
-    // l-value:
-    glm::vec4 ColorBGRA2 = glm::swizzle<glm::B, glm::G, glm::R, glm::A>(ColorRGBA);
-
-    // r-value:
-    glm::swizzle<glm::B, glm::G, glm::R, glm::A>(ColorRGBA) = ColorRGBA;
-    
-    printf("tm");
-}
-int main(int argc, const char * argv[])
+int main(int argc, char ** argv)
 {
-//    testMatrix();
-    testExtend();
+	glutInit(&argc, argv);
+    glutInitWindowSize(800, 480);
+	glutCreateWindow("Xcode Glut Demo");
+    
+    app = new Application();
+    app->init();
+    app->onSurfaceChanged(800, 480);
+    
+	glutDisplayFunc(onDrawFrame);
+	glutMainLoop();
+
+    app->destroy();
+    delete app;
+
     return 0;
 }

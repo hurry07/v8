@@ -19,7 +19,6 @@
 		186BE21D17BCA7F6000E8A62 /* vec4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE21B17BCA7F6000E8A62 /* vec4.cpp */; };
 		186BE22117BCABD1000E8A62 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE21F17BCABD1000E8A62 /* file.cpp */; };
 		186BE22617BCE4E5000E8A62 /* ClassBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE22417BCE4E5000E8A62 /* ClassBase.cpp */; };
-		18739DA9179D9559008DE41D /* Yell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18739DA6179D9559008DE41D /* Yell.cpp */; };
 		1873FFC617AF67B800D90137 /* game.js in Sources */ = {isa = PBXBuildFile; fileRef = 1873FFC517AF67B700D90137 /* game.js */; };
 		18AFB48C17AE06A900B7AFDA /* libv8_base.x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AFB48917AE06A900B7AFDA /* libv8_base.x64.a */; };
 		18AFB48E17AE06A900B7AFDA /* libv8_snapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AFB48B17AE06A900B7AFDA /* libv8_snapshot.a */; };
@@ -1977,6 +1976,7 @@
 		182F14DE17BE2AD0000F3A4C /* glmopt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glmopt.h; sourceTree = "<group>"; };
 		182F14E017BE4125000F3A4C /* matrix3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matrix3.cpp; sourceTree = "<group>"; };
 		182F14E117BE4125000F3A4C /* matrix3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix3.h; sourceTree = "<group>"; };
+		182F14E417BF786A000F3A4C /* vectorutil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vectorutil.h; sourceTree = "<group>"; };
 		184407AE17BE91C400201D2C /* NativeClass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NativeClass.cpp; sourceTree = "<group>"; };
 		184407AF17BE91C400201D2C /* NativeClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeClass.h; sourceTree = "<group>"; };
 		185BF54917BBE6B600F7AE09 /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
@@ -1995,8 +1995,6 @@
 		186BE22217BCD255000E8A62 /* sturctures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sturctures.h; sourceTree = "<group>"; };
 		186BE22417BCE4E5000E8A62 /* ClassBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClassBase.cpp; sourceTree = "<group>"; };
 		186BE22517BCE4E5000E8A62 /* ClassBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassBase.h; sourceTree = "<group>"; };
-		18739DA6179D9559008DE41D /* Yell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Yell.cpp; sourceTree = "<group>"; };
-		18739DA7179D9559008DE41D /* Yell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Yell.h; sourceTree = "<group>"; };
 		1873FFC517AF67B700D90137 /* game.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = game.js; sourceTree = "<group>"; };
 		18AFB48917AE06A900B7AFDA /* libv8_base.x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.x64.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_base.x64.a; sourceTree = "<group>"; };
 		18AFB48B17AE06A900B7AFDA /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_snapshot.a; sourceTree = "<group>"; };
@@ -4547,8 +4545,6 @@
 				18EDB76217B76328002E00CE /* utils */,
 				18AFB4C617AE781100B7AFDA /* modules */,
 				18AFB4B817AE0D0A00B7AFDA /* app */,
-				18739DA6179D9559008DE41D /* Yell.cpp */,
-				18739DA7179D9559008DE41D /* Yell.h */,
 				182820A0179AFFCB003125B5 /* main.cpp */,
 				182820A2179AFFCB003125B5 /* v8.1 */,
 				18AFB4CC17AE998B00B7AFDA /* node.js */,
@@ -4580,6 +4576,7 @@
 				182F14DE17BE2AD0000F3A4C /* glmopt.h */,
 				184407AE17BE91C400201D2C /* NativeClass.cpp */,
 				184407AF17BE91C400201D2C /* NativeClass.h */,
+				182F14E417BF786A000F3A4C /* vectorutil.h */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -7381,7 +7378,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				182820A1179AFFCB003125B5 /* main.cpp in Sources */,
-				18739DA9179D9559008DE41D /* Yell.cpp in Sources */,
 				18AFB4BE17AE1C6300B7AFDA /* Application.cpp in Sources */,
 				18AFB4C917AE782000B7AFDA /* Console.cpp in Sources */,
 				18AFB4CD17AE998C00B7AFDA /* node.js in Sources */,

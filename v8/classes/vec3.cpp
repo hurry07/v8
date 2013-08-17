@@ -7,7 +7,9 @@
 //
 
 #include "vec3.h"
+#include "vec2.h"
 #include "../core/v8Utils.h"
+#include "vectorutil.h"
 
 Vec3::Vec3() : mVec(0,0,0) {
 }
@@ -22,17 +24,14 @@ ClassType Vec3::getClassType() {
     return getExportStruct()->mType;
 }
 void Vec3::init(const FunctionCallbackInfo<Value> &info) {
-    switch (info.Length()) {
-        default:
-        case 3:
-            mVec.z = V_2F(2);
-        case 2:
-            mVec.y = V_2F(1);
-        case 1:
-            mVec.x = V_2F(0);
-        case 0:
-            break;
+    if(info.Length() == 0) {
+        return;
     }
+    float values[3];
+    flatVector(info, values, 3);
+    mVec.x = values[0];
+    mVec.y = values[1];
+    mVec.z = values[2];
 }
 const char* Vec3::toString() {
     char us[100];
