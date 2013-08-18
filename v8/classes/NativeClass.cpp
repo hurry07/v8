@@ -38,15 +38,15 @@ template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& arg
     ClassWrap<Vec2<int>>::expose("vec2i", global);
     ClassWrap<Vec2<bool>>::expose("vec2b", global);
 
-    ClassWrap<Matrix2<float>>::expose("mat2f", global);
-    ClassWrap<Matrix2<int>>::expose("mat2i", global);
-    ClassWrap<Matrix2<bool>>::expose("mat2b", global);
-    ClassWrap<Matrix3<float>>::expose("mat3f", global);
-    ClassWrap<Matrix3<int>>::expose("mat3i", global);
-    ClassWrap<Matrix3<bool>>::expose("mat3b", global);
-    ClassWrap<Matrix4<float>>::expose("mat4f", global);
-    ClassWrap<Matrix4<int>>::expose("mat4i", global);
-    ClassWrap<Matrix4<bool>>::expose("mat4b", global);
+    ClassWrap<Mat2<float>>::expose("mat2f", global);
+    ClassWrap<Mat2<int>>::expose("mat2i", global);
+    ClassWrap<Mat2<bool>>::expose("mat2b", global);
+    ClassWrap<Mat3<float>>::expose("mat3f", global);
+    ClassWrap<Mat3<int>>::expose("mat3i", global);
+    ClassWrap<Mat3<bool>>::expose("mat3b", global);
+    ClassWrap<Mat4<float>>::expose("mat4f", global);
+    ClassWrap<Mat4<int>>::expose("mat4i", global);
+    ClassWrap<Mat4<bool>>::expose("mat4b", global);
 }
 
 template<> const char* Module<NativeClass>::mFile = __FILE__;

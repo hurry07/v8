@@ -37,8 +37,13 @@ public:\
     glm::detail::tmat##size##x##size<T> mMatrix;\
 }
 
-MATRIX_DECLEAR(Matrix2, 2);
-MATRIX_DECLEAR(Matrix3, 3);
-MATRIX_DECLEAR(Matrix4, 4);
+MATRIX_DECLEAR(Mat2, 2);
+MATRIX_DECLEAR(Mat3, 3);
+MATRIX_DECLEAR(Mat4, 4);
+
+typedef Mat4<float> Matrix;
+typedef Mat2<float> Matrix2;
+typedef Mat3<float> Matrix3;
+typedef Mat4<float> Matrix4;
 
 #endif

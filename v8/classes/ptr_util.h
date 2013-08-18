@@ -35,13 +35,13 @@ static void valuePtr(ClassBase* obj, T** outer, int* plen) {
             static_cast<Vec2<T>*>(obj)->get_value(outer, plen);
             break;
         case CLASS_MATRIX4:
-            static_cast<Matrix4<T>*>(obj)->get_value(outer, plen);
+            static_cast<Mat4<T>*>(obj)->get_value(outer, plen);
             break;
         case CLASS_MATRIX3:
-            static_cast<Matrix3<T>*>(obj)->get_value(outer, plen);
+            static_cast<Mat3<T>*>(obj)->get_value(outer, plen);
             break;
         case CLASS_MATRIX2:
-            static_cast<Matrix2<T>*>(obj)->get_value(outer, plen);
+            static_cast<Mat2<T>*>(obj)->get_value(outer, plen);
             break;
         default:
             *plen = 0;

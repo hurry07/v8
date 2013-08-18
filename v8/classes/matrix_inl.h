@@ -56,8 +56,8 @@ void clzName<T>::get_value(T** outer, int* plen) {\
     *plen = sizepwo;\
 }
 
-MATRIX_IMPL(Matrix4, 4, 16);
-MATRIX_IMPL(Matrix3, 3, 9);
-MATRIX_IMPL(Matrix2, 2, 4);
+MATRIX_IMPL(Mat4, 4, 16);
+MATRIX_IMPL(Mat3, 3, 9);
+MATRIX_IMPL(Mat2, 2, 4);
 
 #endif /* defined(__v8__Matrix_inl__) */

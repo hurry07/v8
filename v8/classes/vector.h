@@ -34,4 +34,9 @@ VECTOR_DECLEAR(Vec2, 2);
 VECTOR_DECLEAR(Vec3, 3);
 VECTOR_DECLEAR(Vec4, 4);
 
+typedef Vec3<float> Vector;
+typedef Vec2<float> Vector2;
+typedef Vec3<float> Vector3;
+typedef Vec4<float> Vector4;
+
 #endif /* defined(__v8__Vec4__) */
