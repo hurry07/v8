@@ -24,7 +24,7 @@ template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& arg
     HandleScope scope;
     Local<Object> global = args[0]->ToObject();
 
-//    ClassWrap<Glm>::expose(global);
+    ClassWrap<Glm>::expose(global);
     ClassWrap<Point>::expose(global);
     ClassWrap<JSFile>::expose(global);
 
@@ -47,6 +47,17 @@ template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& arg
     ClassWrap<Mat4<float>>::expose("mat4f", global);
     ClassWrap<Mat4<int>>::expose("mat4i", global);
     ClassWrap<Mat4<bool>>::expose("mat4b", global);
+
+    // alines
+    ClassWrap<Mat4<float>>::expose("matrix", global);
+    ClassWrap<Mat4<float>>::expose("matrix4", global);
+    ClassWrap<Mat3<float>>::expose("matrix3", global);
+    ClassWrap<Mat2<float>>::expose("matrix2", global);
+
+    ClassWrap<Vec3<float>>::expose("vector", global);
+    ClassWrap<Vec4<float>>::expose("vector4", global);
+    ClassWrap<Vec3<float>>::expose("vector3", global);
+    ClassWrap<Vec2<float>>::expose("vector2", global);
 }
 
 template<> const char* Module<NativeClass>::mFile = __FILE__;

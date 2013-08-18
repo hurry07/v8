@@ -14,24 +14,9 @@
 #define MATRIX_IMPL(clzName, size, sizepwo) \
 template <typename T>\
 clzName<T>::clzName() {\
-    LOGI("maxinit");\
 }\
 template <typename T>\
 clzName<T>::~clzName() {\
-}\
-template <typename T>\
-v8::Local<v8::Function> clzName<T>::initClass(v8::Handle<v8::FunctionTemplate>& temp) {\
-    HandleScope scope;\
-\
-    Local<Function> expFn = temp->GetFunction();\
-    return scope.Close(expFn);\
-}\
-template <typename T>\
-class_struct* clzName<T>::getExportStruct() {\
-    static class_struct mTemplate = {\
-        initClass, "matrix"#size, CLASS_MATRIX##size\
-    };\
-    return &mTemplate;\
 }\
 template <typename T>\
 ClassType clzName<T>::getClassType() {\
@@ -39,7 +24,7 @@ ClassType clzName<T>::getClassType() {\
 }\
 template <typename T>\
 const char* clzName<T>::toString() {\
-    return printValue(#clzName#size, glm::value_ptr(mMatrix), sizepwo, size);\
+    return printValue(#clzName"_"#size, glm::value_ptr(mMatrix), sizepwo, size);\
 }\
 template <typename T>\
 void clzName<T>::init(const v8::FunctionCallbackInfo<v8::Value> &info) {\
@@ -56,8 +41,104 @@ void clzName<T>::get_value(T** outer, int* plen) {\
     *plen = sizepwo;\
 }
 
+#define MATIRX_INIT(clzName, size)\
+template <typename T>\
+class_struct* clzName<T>::getExportStruct() {\
+    static class_struct mTemplate = {\
+        0, "matrix"#size, CLASS_MATRIX##size\
+    };\
+    return &mTemplate;\
+}
+
 MATRIX_IMPL(Mat4, 4, 16);
 MATRIX_IMPL(Mat3, 3, 9);
+MATIRX_INIT(Mat3, 3);
 MATRIX_IMPL(Mat2, 2, 4);
+MATIRX_INIT(Mat2, 2);
+
+template <typename T>
+class_struct* Mat4<T>::getExportStruct() {
+    static class_struct mTemplate = {
+        0, "matrix4", CLASS_MATRIX4
+    };
+    return &mTemplate;
+}
+
+// export methods for float matrix
+METHOD_BEGIN(translate, info) {
+    HandleScope scope;
+    if(info.Length() == 0) {
+        return;
+    }
+
+    Matrix* m = internalPtr<Matrix>(info);
+    Vector* v = internalArg<Vector>(info[0], CLASS_VEC3);
+    if(v == 0) {
+        int size = 3;
+        float values[size];
+        flatVector<float>(info, values, size);
+        glm::vec3 v3;
+        fill_value_ptr<float>(glm::value_ptr(v3), values, size);
+        m->mMatrix = glm::translate(m->mMatrix, v3);
+    } else {
+        m->mMatrix = glm::translate(m->mMatrix, v->mVec);
+    }
+}
+METHOD_BEGIN(rotate, info) {
+    HandleScope scope;
+    if(info.Length() == 0) {
+        return;
+    }
+    
+    Matrix* m = internalPtr<Matrix>(info);
+    float arc = (float)V_2F(0);
+    Vector* aix = internalArg<Vector>(info[1]);
+    
+    m->mMatrix = glm::rotate(m->mMatrix, arc, aix->mVec);
+}
+METHOD_BEGIN(scale, info) {
+    HandleScope scope;
+    if(info.Length() == 0) {
+        return;
+    }
+    
+    Matrix* m = internalPtr<Matrix>(info);
+    Vector* v = internalArg<Vector>(info[0], CLASS_VEC3);
+
+    if(v == 0) {
+        int size = 3;
+        float values[size];
+        flatVector<float>(info, values, size);
+        glm::vec3 v3;
+        fill_value_ptr<float>(glm::value_ptr(v3), values, size);
+        m->mMatrix = glm::scale(m->mMatrix, v3);
+    } else {
+        m->mMatrix = glm::scale(m->mMatrix, v->mVec);
+    }
+}
+METHOD_BEGIN(identity, info) {
+    HandleScope scope;
+    
+    Matrix* m = internalPtr<Matrix>(info);
+    m->mMatrix = glm::mat4(1);
+}
+static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
+    HandleScope scope;
+
+    Local<ObjectTemplate> obj = temp->PrototypeTemplate();
+    EXPOSE_METHOD(obj, translate, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, rotate, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, scale, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, identity, ReadOnly | DontDelete);
+
+    return scope.Close(temp->GetFunction());
+}
+
+template<> class_struct* Mat4<float>::getExportStruct() {
+    static class_struct mTemplate = {
+        initClass, "matrix4", CLASS_MATRIX4
+    };
+    return &mTemplate;
+}
 
 #endif /* defined(__v8__Matrix_inl__) */

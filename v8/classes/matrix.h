@@ -27,7 +27,6 @@ public:\
     clzName();\
     virtual ~clzName();\
     static class_struct* getExportStruct();\
-    static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp);\
 \
     virtual ClassType getClassType();\
     virtual void init(const v8::FunctionCallbackInfo<v8::Value> &args);\

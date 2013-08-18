@@ -79,9 +79,16 @@ static void flatVector(const FunctionCallbackInfo<Value> &info, T* values, int l
             break;
         }
     }
-    
+
     while (copyed < length) {
         values[copyed++] = 0;
+    }
+}
+
+template <typename T>
+void fill_value_ptr(T* dest, T* from, int size) {
+    for(int i = 0;i < size; i++) {
+        dest[i] = from[i];
     }
 }
 
