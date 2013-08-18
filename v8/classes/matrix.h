@@ -1,0 +1,44 @@
+//
+//  matrix.h
+//  v8
+//
+//  Created by jie on 13-8-18.
+//  Copyright (c) 2013年 jie. All rights reserved.
+//
+
+#ifndef v8_matrix11_h
+#define v8_matrix11_h
+
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
+#include "../core/ClassBase.h"
+#include "../core/sturctures.h"
+
+#include <v8.h>
+using namespace v8;
+
+//glm::detail::tmat##size##x##size<T> mMatrix;\
+
+#define MATRIX_DECLEAR(clzName, size) \
+template<typename T>\
+class clzName : public ClassBase {\
+public:\
+    clzName();\
+    virtual ~clzName();\
+    static class_struct* getExportStruct();\
+    static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp);\
+\
+    virtual ClassType getClassType();\
+    virtual void init(const v8::FunctionCallbackInfo<v8::Value> &args);\
+    virtual const char* toString();\
+    virtual void get_value(T** outer, int* plen);\
+\
+    glm::detail::tmat##size##x##size<T> mMatrix;\
+}
+
+MATRIX_DECLEAR(Matrix2, 2);
+MATRIX_DECLEAR(Matrix3, 3);
+MATRIX_DECLEAR(Matrix4, 4);
+
+#endif

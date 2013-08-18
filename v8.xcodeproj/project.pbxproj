@@ -9,13 +9,8 @@
 /* Begin PBXBuildFile section */
 		182820A1179AFFCB003125B5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182820A0179AFFCB003125B5 /* main.cpp */; };
 		182F14DF17BE2AD0000F3A4C /* glmopt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182F14DD17BE2AD0000F3A4C /* glmopt.cpp */; };
-		182F14E217BE4126000F3A4C /* matrix3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182F14E017BE4125000F3A4C /* matrix3.cpp */; };
 		184407B017BE91C400201D2C /* NativeClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 184407AE17BE91C400201D2C /* NativeClass.cpp */; };
 		185BF54B17BBE6B600F7AE09 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185BF54917BBE6B600F7AE09 /* Point.cpp */; };
-		185BF54E17BBE81A00F7AE09 /* matrix4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185BF54C17BBE81A00F7AE09 /* matrix4.cpp */; };
-		186BE21717BCA67C000E8A62 /* vec2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE21517BCA67C000E8A62 /* vec2.cpp */; };
-		186BE21A17BCA792000E8A62 /* vec3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE21817BCA791000E8A62 /* vec3.cpp */; };
-		186BE21D17BCA7F6000E8A62 /* vec4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE21B17BCA7F6000E8A62 /* vec4.cpp */; };
 		186BE22117BCABD1000E8A62 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE21F17BCABD1000E8A62 /* file.cpp */; };
 		186BE22617BCE4E5000E8A62 /* ClassBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE22417BCE4E5000E8A62 /* ClassBase.cpp */; };
 		18AFB48C17AE06A900B7AFDA /* libv8_base.x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AFB48917AE06A900B7AFDA /* libv8_base.x64.a */; };
@@ -1969,22 +1964,12 @@
 		182820A0179AFFCB003125B5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		182F14DD17BE2AD0000F3A4C /* glmopt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glmopt.cpp; sourceTree = "<group>"; };
 		182F14DE17BE2AD0000F3A4C /* glmopt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glmopt.h; sourceTree = "<group>"; };
-		182F14E017BE4125000F3A4C /* matrix3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matrix3.cpp; sourceTree = "<group>"; };
-		182F14E117BE4125000F3A4C /* matrix3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix3.h; sourceTree = "<group>"; };
 		182F14E417BF786A000F3A4C /* vectorutil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vectorutil.h; sourceTree = "<group>"; };
 		184407AE17BE91C400201D2C /* NativeClass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NativeClass.cpp; sourceTree = "<group>"; };
 		184407AF17BE91C400201D2C /* NativeClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeClass.h; sourceTree = "<group>"; };
 		185BF54917BBE6B600F7AE09 /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
 		185BF54A17BBE6B600F7AE09 /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
-		185BF54C17BBE81A00F7AE09 /* matrix4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = matrix4.cpp; sourceTree = "<group>"; };
-		185BF54D17BBE81A00F7AE09 /* matrix4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix4.h; sourceTree = "<group>"; };
 		185BF54F17BBE8F400F7AE09 /* classenum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = classenum.h; sourceTree = "<group>"; };
-		186BE21517BCA67C000E8A62 /* vec2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vec2.cpp; sourceTree = "<group>"; };
-		186BE21617BCA67C000E8A62 /* vec2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec2.h; sourceTree = "<group>"; };
-		186BE21817BCA791000E8A62 /* vec3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vec3.cpp; sourceTree = "<group>"; };
-		186BE21917BCA791000E8A62 /* vec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec3.h; sourceTree = "<group>"; };
-		186BE21B17BCA7F6000E8A62 /* vec4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = vec4.cpp; sourceTree = "<group>"; };
-		186BE21C17BCA7F6000E8A62 /* vec4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec4.h; sourceTree = "<group>"; };
 		186BE21F17BCABD1000E8A62 /* file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
 		186BE22017BCABD1000E8A62 /* file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file.h; sourceTree = "<group>"; };
 		186BE22217BCD255000E8A62 /* sturctures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sturctures.h; sourceTree = "<group>"; };
@@ -1998,6 +1983,10 @@
 		18AFB4C717AE782000B7AFDA /* Console.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Console.cpp; sourceTree = "<group>"; };
 		18AFB4C817AE782000B7AFDA /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Console.h; sourceTree = "<group>"; };
 		18AFB4CA17AE7BB200B7AFDA /* modules.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = modules.h; sourceTree = "<group>"; };
+		18CCF99B17BFFD0F00094EFF /* vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
+		18CCF99C17BFFF9700094EFF /* matrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
+		18CCF9A317C06C9C00094EFF /* vector_inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector_inl.h; sourceTree = "<group>"; };
+		18CCF9A517C07E3600094EFF /* matrix_inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix_inl.h; sourceTree = "<group>"; };
 		18D6659417BA830B00021EA2 /* cctest */ = {isa = PBXFileReference; lastKnownFileType = folder; name = cctest; path = test/cctest; sourceTree = "<group>"; };
 		18E2252217BA56110079D25F /* assert.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = assert.js; sourceTree = "<group>"; };
 		18E2252417BA56110079D25F /* default-locale.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "default-locale.js"; sourceTree = "<group>"; };
@@ -4480,6 +4469,7 @@
 		18E236BD17BB55EA0079D25F /* ClassWrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassWrap.h; sourceTree = "<group>"; };
 		18E236BE17BB56120079D25F /* JSObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = JSObject.cpp; sourceTree = "<group>"; };
 		18E236BF17BB56120079D25F /* JSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSObject.h; sourceTree = "<group>"; };
+		18EBCD6B17C0C5FE00CDE948 /* ptr_util.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ptr_util.h; sourceTree = "<group>"; };
 		18EDB76317B7634E002E00CE /* AssetUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssetUtil.cpp; sourceTree = "<group>"; };
 		18EDB76417B7634E002E00CE /* AssetUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetUtil.h; sourceTree = "<group>"; };
 		18EDB76617B763B0002E00CE /* global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
@@ -4547,19 +4537,12 @@
 		185BF54817BBE5D900F7AE09 /* classes */ = {
 			isa = PBXGroup;
 			children = (
-				182F14E017BE4125000F3A4C /* matrix3.cpp */,
-				182F14E117BE4125000F3A4C /* matrix3.h */,
-				185BF54C17BBE81A00F7AE09 /* matrix4.cpp */,
-				185BF54D17BBE81A00F7AE09 /* matrix4.h */,
+				18CCF9A517C07E3600094EFF /* matrix_inl.h */,
+				18CCF9A317C06C9C00094EFF /* vector_inl.h */,
+				18CCF99B17BFFD0F00094EFF /* vector.h */,
 				185BF54917BBE6B600F7AE09 /* Point.cpp */,
 				185BF54A17BBE6B600F7AE09 /* Point.h */,
 				185BF54F17BBE8F400F7AE09 /* classenum.h */,
-				186BE21517BCA67C000E8A62 /* vec2.cpp */,
-				186BE21617BCA67C000E8A62 /* vec2.h */,
-				186BE21817BCA791000E8A62 /* vec3.cpp */,
-				186BE21917BCA791000E8A62 /* vec3.h */,
-				186BE21B17BCA7F6000E8A62 /* vec4.cpp */,
-				186BE21C17BCA7F6000E8A62 /* vec4.h */,
 				186BE21F17BCABD1000E8A62 /* file.cpp */,
 				186BE22017BCABD1000E8A62 /* file.h */,
 				182F14DD17BE2AD0000F3A4C /* glmopt.cpp */,
@@ -4567,6 +4550,8 @@
 				184407AE17BE91C400201D2C /* NativeClass.cpp */,
 				184407AF17BE91C400201D2C /* NativeClass.h */,
 				182F14E417BF786A000F3A4C /* vectorutil.h */,
+				18CCF99C17BFFF9700094EFF /* matrix.h */,
+				18EBCD6B17C0C5FE00CDE948 /* ptr_util.h */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -9297,14 +9282,9 @@
 				18E236BB17BA561C0079D25F /* vardecl-blocks-init.js in Sources */,
 				18E236C017BB56120079D25F /* JSObject.cpp in Sources */,
 				185BF54B17BBE6B600F7AE09 /* Point.cpp in Sources */,
-				185BF54E17BBE81A00F7AE09 /* matrix4.cpp in Sources */,
-				186BE21717BCA67C000E8A62 /* vec2.cpp in Sources */,
-				186BE21A17BCA792000E8A62 /* vec3.cpp in Sources */,
-				186BE21D17BCA7F6000E8A62 /* vec4.cpp in Sources */,
 				186BE22117BCABD1000E8A62 /* file.cpp in Sources */,
 				186BE22617BCE4E5000E8A62 /* ClassBase.cpp in Sources */,
 				182F14DF17BE2AD0000F3A4C /* glmopt.cpp in Sources */,
-				182F14E217BE4126000F3A4C /* matrix3.cpp in Sources */,
 				184407B017BE91C400201D2C /* NativeClass.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

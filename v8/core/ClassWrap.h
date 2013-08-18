@@ -128,6 +128,12 @@ public:
         class_struct* clz = T::getExportStruct();
         env->Set(String::New(clz->mClassName), getFunction());
     }
+    /**
+     * expose using a given class name
+     */
+    static void expose(const char* clzname, Local<Object> env) {
+        env->Set(String::New(clzname), getFunction());
+    }
     static Handle<Object> newInstance() {
 		HandleScope scope(node_isolate);
         return scope.Close(getFunction()->NewInstance());

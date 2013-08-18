@@ -16,7 +16,7 @@
 #include "../utils/AssetUtil.h"
 #include "../global.h"
 #include "../classes/Point.h"
-#include "../classes/vec4.h"
+#include "../classes/vector.h"
 
 #include <string>
 #include <OpenGL/gl.h>
@@ -193,13 +193,12 @@ void Application::init() {
 		game = new JSObject(gameExports->ToObject());
 		render = new JSObject(game->getAttribute<Object>("render"));
 
-        evalScript("");
         eval(
              "var clz = require('nativeclasses');"
-             "var m3 = new clz.matrix4(104);"
-             "var m4 = new clz.matrix4(51);"
-             "var m3c = m3.clone();"
-             "console.log(m3c);"
+//             "var m3 = new clz.mat4f(104);"
+//             "var m4 = new clz.mat4f(51);"
+//             "var m3c = m3.clone();"
+//             "console.log('clz', clz);"
              "require('test/vec3_test.js');"
 //             "var f = new clz.file();"
 //             "f.loadAsset('shader/v1.vtx');"

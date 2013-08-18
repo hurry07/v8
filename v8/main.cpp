@@ -31,6 +31,13 @@ void onDrawFrame() {
     glFlush();
 }
 
+template <typename T>
+void tt(T t) {
+    T* t1;
+    int len;
+    test1(&t1, &len);
+}
+
 int main(int argc, char ** argv)
 {
 	glutInit(&argc, argv);
@@ -42,8 +49,8 @@ int main(int argc, char ** argv)
     app->onSurfaceCreated();
     app->onSurfaceChanged(800, 480);
 
-	glutDisplayFunc(onDrawFrame);
-	glutMainLoop();
+//	glutDisplayFunc(onDrawFrame);
+//	glutMainLoop();
 
     app->destroy();
     delete app;

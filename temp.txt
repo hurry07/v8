@@ -1,190 +1,181 @@
-	case GL_CULL_FACE:
-		args.GetReturnValue().Set(getBooleanParameter(pname));
-return;
-	case GL_CULL_FACE_MODE:
-		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
-return;
-//	case GL_CURRENT_PROGRAM:
-//		args.GetReturnValue().Set(WebGLGetInfo(PassRefPtr<WebGLProgram>(m_currentProgram)));
-//return;
-	case GL_DEPTH_BITS:
-		args.GetReturnValue().Set(getIntParameter(pname));
-return;
-	case GL_DEPTH_CLEAR_VALUE:
-		args.GetReturnValue().Set(getFloatParameter(pname));
-return;
-	case GL_DEPTH_FUNC:
-		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
-return;
-	case GL_DEPTH_RANGE:
-		args.GetReturnValue().Set(getWebGLFloatArrayParameter(pname));
-return;
-	case GL_DEPTH_TEST:
-		args.GetReturnValue().Set(getBooleanParameter(pname));
-return;
-	case GL_DEPTH_WRITEMASK:
-		args.GetReturnValue().Set(getBooleanParameter(pname));
-return;
-	case GL_DITHER:
-		args.GetReturnValue().Set(getBooleanParameter(pname));
-return;
-	case GL_ELEMENT_ARRAY_BUFFER_BINDING:
-		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
-return;
-	case GL_FRAMEBUFFER_BINDING:
-		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
-return;
-	case GL_FRONT_FACE:
-		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
-return;
-	case GL_GENERATE_MIPMAP_HINT:
-		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
-return;
-	case GL_GREEN_BITS:
-		args.GetReturnValue().Set(getIntParameter(pname));
-return;
-	case GL_LINE_WIDTH:
-		args.GetReturnValue().Set(getFloatParameter(pname));
-return;
-	case GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS:
-		args.GetReturnValue().Set(getIntParameter(pname));
-return;
-	case GL_MAX_CUBE_MAP_TEXTURE_SIZE:
-		args.GetReturnValue().Set(getIntParameter(pname));
-return;
-//	case GL_MAX_FRAGMENT_UNIFORM_VECTORS:
-//		args.GetReturnValue().Set(getIntParameter(pname));
-//return;
-	case GL_MAX_RENDERBUFFER_SIZE:
-		args.GetReturnValue().Set(getIntParameter(pname));
-return;
-	case GL_MAX_TEXTURE_IMAGE_UNITS:
-		args.GetReturnValue().Set(getIntParameter(pname));
-return;
-	case GL_MAX_TEXTURE_SIZE:
-		args.GetReturnValue().Set(getIntParameter(pname));
-return;
-//	case GL_MAX_VARYING_VECTORS:
-//		args.GetReturnValue().Set(getIntParameter(pname));
-//return;
-	case GL_MAX_VERTEX_ATTRIBS:
-		args.GetReturnValue().Set(getIntParameter(pname));
-return;
-	case GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS:
-		args.GetReturnValue().Set(getIntParameter(pname));
-return;
-//	case GL_MAX_VERTEX_UNIFORM_VECTORS:
-//		args.GetReturnValue().Set(getIntParameter(pname));
-//return;
-	case GL_MAX_VIEWPORT_DIMS:
-		args.GetReturnValue().Set(getWebGLIntArrayParameter(pname));
-return;
-//	case GL_NUM_SHADER_BINARY_FORMATS:
-//		// FIXME: should we always return 0 for this?
-//		args.GetReturnValue().Set(getIntParameter(pname));
-//return;
-	case GL_PACK_ALIGNMENT:
-		args.GetReturnValue().Set(getIntParameter(pname));
-return;
-	case GL_POLYGON_OFFSET_FACTOR:
-		args.GetReturnValue().Set(getFloatParameter(pname));
-return;
-	case GL_POLYGON_OFFSET_FILL:
-		args.GetReturnValue().Set(getBooleanParameter(pname));
-return;
-	case GL_POLYGON_OFFSET_UNITS:
-		args.GetReturnValue().Set(getFloatParameter(pname));
-return;
-	case GL_RED_BITS:
-		args.GetReturnValue().Set(getIntParameter(pname));
-return;
-	case GL_RENDERBUFFER_BINDING:
-		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
-return;
-	case GL_RENDERER:
-		args.GetReturnValue().Set(getStringParameter(pname));
-return;
-	case GL_SAMPLE_BUFFERS:
-		args.GetReturnValue().Set(getIntParameter(pname));
-return;
-	case GL_SAMPLE_COVERAGE_INVERT:
-		args.GetReturnValue().Set(getBooleanParameter(pname));
-return;
-	case GL_SAMPLE_COVERAGE_VALUE:
-		args.GetReturnValue().Set(getFloatParameter(pname));
-return;
-	case GL_SAMPLES:
-		args.GetReturnValue().Set(getIntParameter(pname));
-return;
-	case GL_SCISSOR_BOX:
-		args.GetReturnValue().Set(getWebGLIntArrayParameter(pname));
-return;
-	case GL_SCISSOR_TEST:
-		args.GetReturnValue().Set(getBooleanParameter(pname));
-return;
-	case GL_SHADING_LANGUAGE_VERSION:
-		args.GetReturnValue().Set(getStringParameter(pname));
-return;
-	case GL_STENCIL_BACK_FAIL:
-		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
-return;
-	case GL_STENCIL_BACK_FUNC:
-		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
-return;
-	case GL_STENCIL_BACK_PASS_DEPTH_FAIL:
-		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
-return;
-	case GL_STENCIL_BACK_PASS_DEPTH_PASS:
-		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
-return;
-	case GL_STENCIL_BACK_REF:
-		args.GetReturnValue().Set(getIntParameter(pname));
-return;
-	case GL_STENCIL_BACK_VALUE_MASK:
-		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
-return;
-	case GL_STENCIL_BACK_WRITEMASK:
-		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
-return;
-	case GL_STENCIL_BITS:
-		args.GetReturnValue().Set(getIntParameter(pname));
-return;
-	case GL_STENCIL_CLEAR_VALUE:
-		args.GetReturnValue().Set(getIntParameter(pname));
-return;
-	case GL_STENCIL_FAIL:
-		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
-return;
-	case GL_STENCIL_FUNC:
-		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
-return;
-	case GL_STENCIL_PASS_DEPTH_FAIL:
-		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
-return;
-	case GL_STENCIL_PASS_DEPTH_PASS:
-		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
-return;
-	case GL_STENCIL_REF:
-		args.GetReturnValue().Set(getIntParameter(pname));
-return;
-	case GL_STENCIL_TEST:
-		args.GetReturnValue().Set(getBooleanParameter(pname));
-return;
-	case GL_STENCIL_VALUE_MASK:
-		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
-return;
-	case GL_STENCIL_WRITEMASK:
-		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
-return;
-	case GL_SUBPIXEL_BITS:
-		args.GetReturnValue().Set(getIntParameter(pname));
-return;
-	case GL_TEXTURE_BINDING_2D:
-		args.GetReturnValue().Set(getIntParameter(pname));
-return;
-	case GL_TEXTURE_BINDING_CUBE_MAP:
-		args.GetReturnValue().Set(getIntParameter(pname));
-return;
-	case GL_UNPACK_ALIGNMENT:
-		args.GetReturnValue().Set(getIntParameter(pname));
-return;
+//
+//  Vec4t.h
+//  v8
+//
+//  Created by jie on 13-8-15.
+//  Copyright (c) 2013年 jie. All rights reserved.
+//
+
+#ifndef __v8__Vec4t__
+#define __v8__Vec4t__
+
+#include "../core/ClassBase.h"
+#include "../core/v8Utils.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include "vectorutil.h"
+
+template <typename T>
+static void flatVectorT(const FunctionCallbackInfo<Value> &info, T* values, int length);
+
+// ========================== vec4
+template <typename T>
+class Vec4t : public ClassBase {
+public:
+    Vec4t() : mVec(0,0,0,0) {
+    }
+    static class_struct* getExportStruct() {
+        static class_struct mTemplate = {
+            0, "vec4t", CLASS_VEC4T
+        };
+        return &mTemplate;
+    }
+    virtual ClassType getClassType() {
+        return getExportStruct()->mType;
+    }
+    void init(const FunctionCallbackInfo<Value> &info) {
+        if(info.Length() == 0) {
+            return;
+        }
+        T values[4];
+        flatVectorT<T>(info, values, 4);
+        mVec.x = values[0];
+        mVec.y = values[1];
+        mVec.z = values[2];
+        mVec.w = values[3];
+    }
+    virtual const char* toString() {
+        return printValue(glm::value_ptr(mVec), 4);
+    }
+
+    glm::detail::tvec4<T> mVec;
+};
+
+// ========================== vec3
+template <typename T>
+class Vec3t : public ClassBase {
+public:
+    Vec3t() : mVec(0,0,0) {
+    }
+    static class_struct* getExportStruct() {
+        static class_struct mTemplate = {
+            0, "vec3t", CLASS_VEC3T
+        };
+        return &mTemplate;
+    }
+    virtual ClassType getClassType() {
+        return getExportStruct()->mType;
+    }
+    void init(const FunctionCallbackInfo<Value> &info) {
+        if(info.Length() == 0) {
+            return;
+        }
+        T values[3];
+        flatVectorT<T>(info, values, 3);
+        mVec.x = values[0];
+        mVec.y = values[1];
+        mVec.z = values[2];
+    }
+    virtual const char* toString() {
+        return printValue(glm::value_ptr(mVec), 3);
+    }
+
+    glm::detail::tvec3<T> mVec;
+};
+
+// ========================== vec2
+template <typename T>
+class Vec2t : public ClassBase {
+public:
+    Vec2t() : mVec(0,0) {
+    }
+    static class_struct* getExportStruct() {
+        static class_struct mTemplate = {
+            0, "Vec2t", CLASS_VEC2T
+        };
+        return &mTemplate;
+    }
+    virtual ClassType getClassType() {
+        return getExportStruct()->mType;
+    }
+    void init(const FunctionCallbackInfo<Value> &info) {
+        if(info.Length() == 0) {
+            return;
+        }
+        T values[2];
+        flatVectorT<T>(info, values, 2);
+        mVec.x = values[0];
+        mVec.y = values[1];
+    }
+    virtual const char* toString() {
+        return printValue(glm::value_ptr(mVec), 2);
+    }
+
+    glm::detail::tvec2<T> mVec;
+};
+
+template <typename T>
+static void valuePtr(ClassBase* obj, T** outer, int* plen);
+
+template <typename T>
+static void flatVectorT(const FunctionCallbackInfo<Value> &info, T* values, int length) {
+    int copyed = 0;
+    float* ptr = 0;
+    int plen = 0;
+    
+    int alen = info.Length();
+    for(int i = 0; i < alen; i++) {
+        ClassBase* p = internalArg<ClassBase>(info[i]);
+        if(p == 0) {
+            argValue(info, i, values + copyed);
+            copyed++;
+        } else {
+            valuePtr(p, &ptr, &plen);
+            LOGI("value:%f %d", ptr[0], plen);
+            if(plen > length - copyed) {
+                while (copyed < length) {
+                    values[copyed++] = *ptr;
+                    ptr++;
+                }
+            } else {
+                while (plen > 0) {
+                    values[copyed++] = *ptr;
+                    ptr++;
+                    plen--;
+                }
+            }
+        }
+        if(copyed == length) {
+            break;
+        }
+    }
+    
+    while (copyed < length) {
+        values[copyed++] = 0;
+    }
+}
+
+template <typename T>
+static void valuePtr(ClassBase* obj, T** outer, int* plen) {
+    T* ptr = 0;
+    switch (obj->getClassType()) {
+        case CLASS_VEC4T:
+            ptr = glm::value_ptr(static_cast<Vec4t<T>*>(obj)->mVec);
+            *plen = 4;
+            break;
+        case CLASS_VEC3T:
+            ptr = glm::value_ptr(static_cast<Vec3t<T>*>(obj)->mVec);
+            *plen = 3;
+            break;
+        case CLASS_VEC2T:
+            ptr = glm::value_ptr(static_cast<Vec2t<T>*>(obj)->mVec);
+            *plen = 2;
+            break;
+        default:
+            *plen = 0;
+            break;
+    }
+    outer[0] = ptr;
+}
+
+#endif /* defined(__v8__Vec4t__) */
