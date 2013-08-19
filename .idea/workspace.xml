@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/app/Application.cpp" afterPath="$PROJECT_DIR$/v8/app/Application.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/xcuserdata/jie.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" afterPath="$PROJECT_DIR$/v8.xcodeproj/xcuserdata/jie.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/modules/GLBinding.cpp" afterPath="$PROJECT_DIR$/v8/modules/GLBinding.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/v8/assets/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/shader/f1.frg" afterPath="$PROJECT_DIR$/v8/assets/shader/f1.frg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/classes/matrix_inl.h" afterPath="$PROJECT_DIR$/v8/classes/matrix_inl.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/modules/shader.js" afterPath="$PROJECT_DIR$/v8/assets/modules/shader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/test/vec3_test.js" afterPath="$PROJECT_DIR$/v8/assets/test/vec3_test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/classes/vectorutil.h" afterPath="$PROJECT_DIR$/v8/classes/vectorutil.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tdl/.idea/workspace.xml" afterPath="$PROJECT_DIR$/tdl/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/.idea/workspace.xml" afterPath="$PROJECT_DIR$/v8/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/.idea/workspace.xml" afterPath="$PROJECT_DIR$/v8/assets/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="" />
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376906350255" ignored="false" />
@@ -73,10 +56,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="programs.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="programs.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tdl/tdl/programs.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="35" selection-start="2580" selection-end="2591" vertical-scroll-proportion="0.0">
+            <state line="65" column="35" selection-start="2580" selection-end="2591" vertical-scroll-proportion="0.01664817">
               <folding />
             </state>
           </provider>
@@ -91,10 +74,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vec3_test.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="vec3_test.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/test/vec3_test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="20" selection-start="667" selection-end="884" vertical-scroll-proportion="0.34961155">
+            <state line="2" column="39" selection-start="52" selection-end="52" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -135,8 +118,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="10" />
-    <option name="y" value="29" />
+    <option name="x" value="340" />
+    <option name="y" value="35" />
     <option name="width" value="1900" />
     <option name="height" value="1047" />
   </component>
@@ -356,7 +339,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="29" width="1900" height="1047" extended-state="0" />
+    <frame x="340" y="35" width="1900" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -487,13 +470,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tdl/tdl/programs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="35" selection-start="2580" selection-end="2591" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/modules/programs.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="444" column="40" selection-start="15974" selection-end="15983" vertical-scroll-proportion="0.0">
@@ -524,7 +500,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/test/vec3_test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="20" selection-start="667" selection-end="884" vertical-scroll-proportion="0.34961155">
+        <state line="2" column="39" selection-start="52" selection-end="52" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tdl/tdl/programs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="35" selection-start="2580" selection-end="2591" vertical-scroll-proportion="0.01664817">
           <folding />
         </state>
       </provider>

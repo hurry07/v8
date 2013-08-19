@@ -29,6 +29,7 @@ Application* app = NULL;
 void onDrawFrame() {
     app->onDrawFrame();
     glFlush();
+    glutPostRedisplay();
 }
 
 template <typename T>
@@ -49,8 +50,8 @@ int main(int argc, char ** argv)
     app->onSurfaceCreated();
     app->onSurfaceChanged(800, 480);
 
-//	glutDisplayFunc(onDrawFrame);
-//	glutMainLoop();
+	glutDisplayFunc(onDrawFrame);
+	glutMainLoop();
 
     app->destroy();
     delete app;
