@@ -1940,6 +1940,7 @@ DELEGATE_TO_GL_N2(vertexAttrib1f, glVertexAttrib1f, GLuint, GLfloat);
 DELEGATE_TO_GL_N3(vertexAttrib2f, glVertexAttrib2f, GLuint, GLfloat, GLfloat);
 DELEGATE_TO_GL_N4(vertexAttrib3f, glVertexAttrib3f, GLuint, GLfloat, GLfloat, GLfloat);
 DELEGATE_TO_GL_N5(vertexAttrib4f, glVertexAttrib4f, GLuint, GLfloat, GLfloat, GLfloat, GLfloat);
+
 DELEGATE_TO_GL_N2(vertexAttrib1fv, glVertexAttrib1fv, GLuint, GLfloatP);
 DELEGATE_TO_GL_N2(vertexAttrib2fv, glVertexAttrib2fv, GLuint, GLfloatP);
 DELEGATE_TO_GL_N2(vertexAttrib3fv, glVertexAttrib3fv, GLuint, GLfloatP);
