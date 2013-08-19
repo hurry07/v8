@@ -38,3 +38,5 @@ bool ClassBase::isReleased() {
 const char* ClassBase::toString() {
     return "[object native]";
 }
+void ClassBase::getFeature(Feature* f) {
+}

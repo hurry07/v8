@@ -10,7 +10,7 @@ var clz = require('nativeclasses');
 var glm = new clz.glm();
 //console.log(glm);
 //
-////console.log(new clz.vec4f(new clz.vec2f(15, 21, 31, 41), new clz.vec2f(29, 39, 23, 17)));
+//console.log(new clz.vec4f(new clz.vec2f(15, 21, 31, 41), new clz.vec2f(29, 39, 23, 17)));
 //var m = new clz.mat4f(
 //                          new clz.vec4f(15, 21, 31, 41),
 //                          new clz.vec4f(29, 39, 23, 17),
@@ -30,7 +30,10 @@ var glm = new clz.glm();
 //
 //console.log(v3);
 //console.log(des);
-
+//
+//var mT = new clz.matrix(mat);
+//console.log(mT);
+//
 //var gl = require('opengl');
 //var shader = require('modules/shader.js');
 //var vs = shader.createWithFile('v1', 'shader/f1.frg', gl.VERTEX_SHADER);

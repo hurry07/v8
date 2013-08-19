@@ -14,6 +14,7 @@
 #include "../global.h"
 #include "../classes/classenum.h"
 #include "sturctures.h"
+#include "Feature.h"
 
 using namespace v8;
 
@@ -49,6 +50,10 @@ public:
     virtual ClassType getClassType();
     static class_struct* getExportStruct();
     virtual bool isReleased();
+    /**
+     * interact without class type message
+     */
+    virtual void getFeature(Feature* feature);
 
 protected:
 	bool mRelease;// has release called on current instance

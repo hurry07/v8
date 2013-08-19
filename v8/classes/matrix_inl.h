@@ -9,6 +9,7 @@
 #define __v8__Matrix_inl__
 
 #include "ptr_util.h"
+#include "vector.h"
 #include <glm/gtc/matrix_transform.hpp>
 
 template <typename T>
@@ -50,9 +51,10 @@ void clzName<T>::init(const v8::FunctionCallbackInfo<v8::Value> &info) {\
     fill_value_ptr<T>(glm::value_ptr(mMatrix), values, sizepwo);\
 }\
 template <typename T>\
-void clzName<T>::get_value(T** outer, int* plen) {\
-    *outer = glm::value_ptr(mMatrix);\
-    *plen = sizepwo;\
+void clzName<T>::getFeature(Feature* feature) {\
+    FeaturePtr<T>* fPtr = static_cast<FeaturePtr<T>*>(feature);\
+    fPtr->mPtr = glm::value_ptr(mMatrix);\
+    fPtr->mSize = sizepwo;\
 }
 
 #define MATIRX_INIT(clzName, size)\

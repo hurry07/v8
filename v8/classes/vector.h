@@ -13,7 +13,6 @@
 #include "../core/v8Utils.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include "vectorutil.h"
 
 // ========================== vec4
 #define VECTOR_DECLEAR(clzName, size)\
@@ -25,9 +24,9 @@ public:\
     virtual ClassType getClassType();\
     void init(const FunctionCallbackInfo<Value> &info);\
     virtual const char* toString();\
-    glm::detail::tvec##size<T> mVec;\
+    virtual void getFeature(Feature* feature);\
 \
-    virtual void get_value(T** outer, int* plen);\
+    glm::detail::tvec##size<T> mVec;\
 }
 
 VECTOR_DECLEAR(Vec2, 2);

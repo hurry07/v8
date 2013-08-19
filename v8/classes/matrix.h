@@ -26,12 +26,12 @@ class clzName : public ClassBase {\
 public:\
     clzName();\
     virtual ~clzName();\
-    static class_struct* getExportStruct();\
 \
+    static class_struct* getExportStruct();\
     virtual ClassType getClassType();\
     virtual void init(const v8::FunctionCallbackInfo<v8::Value> &args);\
     virtual const char* toString();\
-    virtual void get_value(T** outer, int* plen);\
+    virtual void getFeature(Feature* feature);\
 \
     glm::detail::tmat##size##x##size<T> mMatrix;\
 }

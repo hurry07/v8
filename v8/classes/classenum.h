@@ -22,4 +22,9 @@ enum ClassType {
     CLASS_FILE
 };
 
+enum FeatureType {
+    FEATURE_NULL,
+    FEATURE_PTR
+};
+
 #endif

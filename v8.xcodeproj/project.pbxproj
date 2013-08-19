@@ -1964,12 +1964,12 @@
 		182820A0179AFFCB003125B5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		182F14DD17BE2AD0000F3A4C /* glmopt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glmopt.cpp; sourceTree = "<group>"; };
 		182F14DE17BE2AD0000F3A4C /* glmopt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glmopt.h; sourceTree = "<group>"; };
-		182F14E417BF786A000F3A4C /* vectorutil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = vectorutil.h; sourceTree = "<group>"; };
 		184407AE17BE91C400201D2C /* NativeClass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NativeClass.cpp; sourceTree = "<group>"; };
 		184407AF17BE91C400201D2C /* NativeClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeClass.h; sourceTree = "<group>"; };
 		185BF54917BBE6B600F7AE09 /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
 		185BF54A17BBE6B600F7AE09 /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
 		185BF54F17BBE8F400F7AE09 /* classenum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = classenum.h; sourceTree = "<group>"; };
+		1864A7E417C243C600D894F5 /* Feature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feature.h; sourceTree = "<group>"; };
 		186BE21F17BCABD1000E8A62 /* file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
 		186BE22017BCABD1000E8A62 /* file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file.h; sourceTree = "<group>"; };
 		186BE22217BCD255000E8A62 /* sturctures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sturctures.h; sourceTree = "<group>"; };
@@ -4549,7 +4549,6 @@
 				182F14DE17BE2AD0000F3A4C /* glmopt.h */,
 				184407AE17BE91C400201D2C /* NativeClass.cpp */,
 				184407AF17BE91C400201D2C /* NativeClass.h */,
-				182F14E417BF786A000F3A4C /* vectorutil.h */,
 				18CCF99C17BFFF9700094EFF /* matrix.h */,
 				18EBCD6B17C0C5FE00CDE948 /* ptr_util.h */,
 			);
@@ -7297,6 +7296,7 @@
 				186BE22217BCD255000E8A62 /* sturctures.h */,
 				186BE22417BCE4E5000E8A62 /* ClassBase.cpp */,
 				186BE22517BCE4E5000E8A62 /* ClassBase.h */,
+				1864A7E417C243C600D894F5 /* Feature.h */,
 			);
 			path = core;
 			sourceTree = "<group>";
