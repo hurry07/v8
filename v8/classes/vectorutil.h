@@ -14,23 +14,16 @@
 #include "../core/v8Utils.h"
 #include <glm/gtc/type_ptr.hpp>
 
-static std::string int2str(int value) {
-    char* us = new char[25];
-    int len = sprintf(us, "%d", value);
-    std::string s = std::string(us, len).c_str();
-    delete[] us;
-    return s.c_str();
+static int int2str(char* dest, int value) {
+    return sprintf(dest, "%d", value);
 }
-static std::string float2str(float value) {
-    char* us = new char[30];
-    int len = sprintf(us, "%f", value);
-    std::string s = std::string(us, len).c_str();
-    delete[] us;
-    return s.c_str();
+static int float2str(char* dest, float value) {
+    return sprintf(dest, "%f", value);
 }
 
 #define PTR_TOSTRING(T, fn) \
 static const char* printValue(const char* name, T* ptr, int length, int step=0) {\
+    char us[30];\
     std::string buf;\
     buf.append("[");\
     buf.append(name);\
@@ -38,14 +31,17 @@ static const char* printValue(const char* name, T* ptr, int length, int step=0) 
     if(step != 0) {\
         buf.append("\n");\
     }\
+    int plen = 0;\
     if(length > 0) {\
-        buf.append(fn(ptr[0]));\
+        plen = fn(us, ptr[0]);\
+        buf.append(us, plen);\
         for (int i = 1; i < length; i++) {\
             buf.append(", ");\
             if(step > 0 && (i % step) == 0) {\
                 buf.append("\n");\
             }\
-            buf.append(fn(ptr[i]));\
+            plen = fn(us, ptr[i]);\
+            buf.append(us, plen);\
         }\
     }\
     buf.append("}]");\

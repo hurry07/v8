@@ -11,6 +11,18 @@
 #include "ptr_util.h"
 #include <glm/gtc/matrix_transform.hpp>
 
+template <typename T>
+void orderPtr(T* dest, T* from, int size, int stride = 0) {
+    if(stride == 0) {
+        return;
+    }
+    for(int i = 0; i < size; i++) {
+        int col = i % stride;
+        int row = i / stride;
+        dest[col * stride + row] = from[i];
+    }
+}
+
 #define MATRIX_IMPL(clzName, size, sizepwo) \
 template <typename T>\
 clzName<T>::clzName() {\
@@ -24,7 +36,9 @@ ClassType clzName<T>::getClassType() {\
 }\
 template <typename T>\
 const char* clzName<T>::toString() {\
-    return printValue(#clzName"_"#size, glm::value_ptr(mMatrix), sizepwo, size);\
+    T values[sizepwo];\
+    orderPtr(values, glm::value_ptr(mMatrix), sizepwo, size);\
+    return printValue(#clzName"_"#size, values, sizepwo, size);\
 }\
 template <typename T>\
 void clzName<T>::init(const v8::FunctionCallbackInfo<v8::Value> &info) {\

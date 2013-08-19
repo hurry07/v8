@@ -1648,11 +1648,13 @@ JS_METHOD(getProgramParameter) {
 		case GL_VALIDATE_STATUS:
 			glGetProgramiv(program, pname, &value);
 			args.GetReturnValue().Set(JS_BOOL(static_cast<bool>(value!=0)));
+            break;
 		case GL_ATTACHED_SHADERS:
 		case GL_ACTIVE_ATTRIBUTES:
 		case GL_ACTIVE_UNIFORMS:
 			glGetProgramiv(program, pname, &value);
-			args.GetReturnValue().Set(JS_INT(static_cast<long>(value)));// return number of parameters
+			args.GetReturnValue().Set(JS_INT(value));// return number of parameters
+            break;
 		default:
 			args.GetReturnValue().Set(v8::ThrowException(v8::Exception::TypeError(String::New("GetProgramParameter: Invalid Enum"))));
 	}
@@ -1687,14 +1689,17 @@ JS_METHOD(getShaderParameter) {
 		case GL_DELETE_STATUS:
 		case GL_COMPILE_STATUS:
 			glGetShaderiv(shader, pname, &value);
-			args.GetReturnValue().Set(JS_BOOL(static_cast<bool>(value!=0)));
+			args.GetReturnValue().Set(JS_BOOL(value!=0?true:false));
+            break;
 		case GL_SHADER_TYPE:
 			glGetShaderiv(shader, pname, &value);
-			args.GetReturnValue().Set(JS_INT(static_cast<unsigned long>(value)));
+			args.GetReturnValue().Set(JS_INT(value));
+            break;
 		case GL_INFO_LOG_LENGTH:
 		case GL_SHADER_SOURCE_LENGTH:
 			glGetShaderiv(shader, pname, &value);
-			args.GetReturnValue().Set(JS_INT(static_cast<long>(value)));
+			args.GetReturnValue().Set(JS_INT(value));
+            break;
 		default:
 			args.GetReturnValue().Set(ThrowException(Exception::TypeError(String::New("GetShaderParameter: Invalid Enum"))));
 	}
@@ -1874,6 +1879,7 @@ DELEGATE_TO_GL_N2(uniform1i, glUniform1i, GLint, GLint);
 DELEGATE_TO_GL_N3(uniform2i, glUniform2i, GLint, GLint, GLint);
 DELEGATE_TO_GL_N4(uniform3i, glUniform3i, GLint, GLint, GLint, GLint);
 DELEGATE_TO_GL_N5(uniform4i, glUniform4i, GLint, GLint, GLint, GLint, GLint);
+
 DELEGATE_TO_GL_N3(uniform1fv, glUniform1fv, GLint, GLsizei, GLfloatP);
 DELEGATE_TO_GL_N3(uniform2fv, glUniform2fv, GLint, GLsizei, GLfloatP);
 DELEGATE_TO_GL_N3(uniform3fv, glUniform3fv, GLint, GLsizei, GLfloatP);
@@ -1882,6 +1888,7 @@ DELEGATE_TO_GL_N3(uniform1iv, glUniform1iv, GLint, GLsizei, GLintP);
 DELEGATE_TO_GL_N3(uniform2iv, glUniform2iv, GLint, GLsizei, GLintP);
 DELEGATE_TO_GL_N3(uniform3iv, glUniform3iv, GLint, GLsizei, GLintP);
 DELEGATE_TO_GL_N3(uniform4iv, glUniform4iv, GLint, GLsizei, GLintP);
+
 JS_METHOD(uniformMatrix2fv) {
     HandleScope scope;
 
@@ -1928,6 +1935,7 @@ JS_METHOD(uniformMatrix4fv) {
 
 DELEGATE_TO_GL_N1(useProgram, glUseProgram, GLuint);
 DELEGATE_TO_GL_N1(validateProgram, glValidateProgram, GLuint);
+
 DELEGATE_TO_GL_N2(vertexAttrib1f, glVertexAttrib1f, GLuint, GLfloat);
 DELEGATE_TO_GL_N3(vertexAttrib2f, glVertexAttrib2f, GLuint, GLfloat, GLfloat);
 DELEGATE_TO_GL_N4(vertexAttrib3f, glVertexAttrib3f, GLuint, GLfloat, GLfloat, GLfloat);
@@ -1936,6 +1944,7 @@ DELEGATE_TO_GL_N2(vertexAttrib1fv, glVertexAttrib1fv, GLuint, GLfloatP);
 DELEGATE_TO_GL_N2(vertexAttrib2fv, glVertexAttrib2fv, GLuint, GLfloatP);
 DELEGATE_TO_GL_N2(vertexAttrib3fv, glVertexAttrib3fv, GLuint, GLfloatP);
 DELEGATE_TO_GL_N2(vertexAttrib4fv, glVertexAttrib4fv, GLuint, GLfloatP);
+
 JS_METHOD(vertexAttribPointer) {
     HandleScope scope;
 

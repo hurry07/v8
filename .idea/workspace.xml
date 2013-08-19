@@ -2,28 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/modules/programs.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/classes/vec2.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/classes/vec2.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/classes/vec3.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/classes/vec3.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/classes/vec4.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/classes/vec4.h" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/app/Application.cpp" afterPath="$PROJECT_DIR$/v8/app/Application.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/xcuserdata/jie.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" afterPath="$PROJECT_DIR$/v8.xcodeproj/xcuserdata/jie.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/core/ClassWrap.h" afterPath="$PROJECT_DIR$/v8/core/ClassWrap.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/classes/NativeClass.cpp" afterPath="$PROJECT_DIR$/v8/classes/NativeClass.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/classes/classenum.h" afterPath="$PROJECT_DIR$/v8/classes/classenum.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/main.cpp" afterPath="$PROJECT_DIR$/v8/main.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/classes/matrix3.cpp" afterPath="$PROJECT_DIR$/v8/classes/matrix3.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/temp.txt" afterPath="$PROJECT_DIR$/temp.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/modules/GLBinding.cpp" afterPath="$PROJECT_DIR$/v8/modules/GLBinding.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/v8/assets/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/shader/f1.frg" afterPath="$PROJECT_DIR$/v8/assets/shader/f1.frg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/classes/matrix_inl.h" afterPath="$PROJECT_DIR$/v8/classes/matrix_inl.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/modules/shader.js" afterPath="$PROJECT_DIR$/v8/assets/modules/shader.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/test/vec3_test.js" afterPath="$PROJECT_DIR$/v8/assets/test/vec3_test.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/classes/vectorutil.h" afterPath="$PROJECT_DIR$/v8/classes/vectorutil.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tdl/.idea/workspace.xml" afterPath="$PROJECT_DIR$/tdl/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/.idea/workspace.xml" afterPath="$PROJECT_DIR$/v8/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/.idea/workspace.xml" afterPath="$PROJECT_DIR$/v8/assets/.idea/workspace.xml" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376744981016" ignored="false" />
+    <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376906350255" ignored="false" />
     <file path="/game.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376745948179" ignored="false" />
     <file path="/a.dummy" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376748596972" ignored="false" />
     <file path="/temp.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376748679355" ignored="false" />
@@ -60,7 +58,16 @@
       <file leaf-file-name="example.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tdl/example/example.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="97.5">
+            <state line="285" column="22" selection-start="8994" selection-end="9004" vertical-scroll-proportion="-17.25">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tdl/tdl/models.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="163" column="52" selection-start="5479" selection-end="5479" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -70,9 +77,7 @@
         <entry file="file://$PROJECT_DIR$/tdl/tdl/programs.js">
           <provider selected="true" editor-type-id="text-editor">
             <state line="65" column="35" selection-start="2580" selection-end="2591" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -89,7 +94,7 @@
       <file leaf-file-name="vec3_test.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/test/vec3_test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="44" selection-start="1145" selection-end="1145" vertical-scroll-proportion="0.73039216">
+            <state line="21" column="20" selection-start="667" selection-end="884" vertical-scroll-proportion="0.34961155">
               <folding />
             </state>
           </provider>
@@ -124,16 +129,16 @@
       <list>
         <option value="$PROJECT_DIR$/v8/assets/game.js" />
         <option value="$PROJECT_DIR$/v8/assets/modules/programs.js" />
-        <option value="$PROJECT_DIR$/v8/assets/test/vec3_test.js" />
         <option value="$PROJECT_DIR$/temp.txt" />
+        <option value="$PROJECT_DIR$/v8/assets/test/vec3_test.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="10" />
     <option name="y" value="29" />
-    <option name="width" value="1260" />
-    <option name="height" value="760" />
+    <option name="width" value="1900" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -161,6 +166,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -307,7 +313,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -315,8 +320,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="options.lastSelected" value="JavaScript.Libraries" />
     <property name="FullScreen" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -332,6 +337,13 @@
       <option name="testName" />
       <method />
     </configuration>
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
+      <JSDebuggerConfigurationSettings>
+        <option name="engineId" />
+        <option name="fileUrl" />
+      </JSDebuggerConfigurationSettings>
+      <method />
+    </configuration>
     <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
@@ -344,25 +356,25 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="10" y="29" width="1260" height="760" extended-state="0" />
+    <frame x="10" y="29" width="1900" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22150365" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14597763" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -435,7 +447,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tdl/example/example.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="97.5">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -443,9 +455,42 @@
     <entry file="file://$PROJECT_DIR$/tdl/tdl/programs.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="65" column="35" selection-start="2580" selection-end="2591" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/modules/programs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="444" column="40" selection-start="15974" selection-end="15983" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/test/vec3_test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="44" selection-start="1205" selection-end="1205" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/temp.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="181" column="0" selection-start="4527" selection-end="4527" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="0" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tdl/tdl/programs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="35" selection-start="2580" selection-end="2591" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -463,9 +508,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tdl/tdl/models.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="163" column="52" selection-start="5479" selection-end="5479" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tdl/example/example.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="285" column="22" selection-start="8994" selection-end="9004" vertical-scroll-proportion="-17.25">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/test/vec3_test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="44" selection-start="1145" selection-end="1145" vertical-scroll-proportion="0.73039216">
+        <state line="21" column="20" selection-start="667" selection-end="884" vertical-scroll-proportion="0.34961155">
           <folding />
         </state>
       </provider>

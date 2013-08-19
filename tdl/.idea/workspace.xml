@@ -4,11 +4,21 @@
     <list default="true" id="bf906964-2438-4668-af9d-44b0b65c6083" name="Default" comment="" />
     <ignored path="tdl.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376717127726" ignored="false" />
+    <file path="/Dummy.txt" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376906350269" ignored="false" />
     <file path="/base.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376577833428" ignored="false" />
-    <file path="$PROJECT_DIR$/../v8/assets/test/vec3_test.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376737299109" ignored="false" />
-    <file path="/vec3_test.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376737262280" ignored="false" />
-    <file path="$PROJECT_DIR$/../v8/assets/game.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376738805555" ignored="false" />
+    <file path="$PROJECT_DIR$/../v8/assets/test/vec3_test.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376908464767" ignored="false" />
+    <file path="/vec3_test.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376885159545" ignored="false" />
+    <file path="$PROJECT_DIR$/../v8/assets/game.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376880259495" ignored="false" />
+    <file path="$PROJECT_DIR$/../v8/assets/modules/shader.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376893898632" ignored="false" />
+    <file path="/shader.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376893766141" ignored="false" />
+    <file path="$PROJECT_DIR$/../v8/assets/lib/i0.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376881389740" ignored="false" />
+    <file path="$PROJECT_DIR$/../v8/assets/lib/io.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376881479356" ignored="false" />
+    <file path="/io.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376881440676" ignored="false" />
+    <file path="$PROJECT_DIR$/../v8/assets/modules/p1.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376885056347" ignored="false" />
+    <file path="/p1.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376891187771" ignored="false" />
+    <file path="$PROJECT_DIR$/../v8/assets/modules/program.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376901695531" ignored="false" />
+    <file path="/program.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376901692692" ignored="false" />
+    <file path="$PROJECT_DIR$/../v8/assets/modules/programs.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376901475374" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,10 +41,8 @@
       <file leaf-file-name="example.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/example/example.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="281" column="0" selection-start="8850" selection-end="8850" vertical-scroll-proportion="-21.0">
-              <folding>
-                <element signature="n#style#0;n#canvas#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state line="281" column="0" selection-start="8850" selection-end="8850" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -42,7 +50,7 @@
       <file leaf-file-name="fast.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tdl/fast.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1587" column="38" selection-start="46518" selection-end="46523" vertical-scroll-proportion="-0.24631101">
+            <state line="1587" column="38" selection-start="46518" selection-end="46523" vertical-scroll-proportion="0.01655629">
               <folding />
             </state>
           </provider>
@@ -104,7 +112,6 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-30" />
     <option name="y" value="22" />
     <option name="width" value="1920" />
     <option name="height" value="1054" />
@@ -266,8 +273,8 @@
     <property name="options.lastSelected" value="Errors" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../v8/assets" />
     <property name="FullScreen" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
@@ -314,7 +321,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-30" y="22" width="1920" height="1054" extended-state="0" />
+    <frame x="0" y="22" width="1920" height="1054" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -472,16 +479,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/example/example.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="281" column="0" selection-start="8850" selection-end="8850" vertical-scroll-proportion="-21.0">
-          <folding>
-            <element signature="n#style#0;n#canvas#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state line="281" column="0" selection-start="8850" selection-end="8850" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tdl/fast.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1587" column="38" selection-start="46518" selection-end="46523" vertical-scroll-proportion="-0.24631101">
+        <state line="1587" column="38" selection-start="46518" selection-end="46523" vertical-scroll-proportion="0.01655629">
           <folding />
         </state>
       </provider>

@@ -194,22 +194,8 @@ void Application::init() {
 		render = new JSObject(game->getAttribute<Object>("render"));
 
         eval(
-             "var clz = require('nativeclasses');"
-//             "var m3 = new clz.mat4f(104);"
-//             "var m4 = new clz.mat4f(51);"
-//             "var m3c = m3.clone();"
-//             "console.log('clz', clz);"
              "require('test/vec3_test.js');"
-//             "var f = new clz.file();"
-//             "f.loadAsset('shader/v1.vtx');"
-//             "console.log(f.getContent());"
-//             "f.loadAsset('shader/f1.frg');"
-//             "console.log(f.getContent());"
              );
-
-        Local<Object> pjs = ClassWrap<Point>::newInstance();
-        Point* ptr = internalPtr<Point>(pjs);
-        LOGI("point.type:%d", ptr->getClassType());
 	}
 }
 void Application::destroy() {
