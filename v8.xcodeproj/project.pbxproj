@@ -13,8 +13,8 @@
 		185BF54B17BBE6B600F7AE09 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185BF54917BBE6B600F7AE09 /* Point.cpp */; };
 		186BE22117BCABD1000E8A62 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE21F17BCABD1000E8A62 /* file.cpp */; };
 		186BE22617BCE4E5000E8A62 /* ClassBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE22417BCE4E5000E8A62 /* ClassBase.cpp */; };
-		18AFB48C17AE06A900B7AFDA /* libv8_base.x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AFB48917AE06A900B7AFDA /* libv8_base.x64.a */; };
-		18AFB48E17AE06A900B7AFDA /* libv8_snapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18AFB48B17AE06A900B7AFDA /* libv8_snapshot.a */; };
+		18A6D21F17C3646A004931FD /* libv8_base.x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A6D21D17C36469004931FD /* libv8_base.x64.a */; };
+		18A6D22017C3646A004931FD /* libv8_snapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A6D21E17C3646A004931FD /* libv8_snapshot.a */; };
 		18AFB4BE17AE1C6300B7AFDA /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18AFB4BC17AE1C6300B7AFDA /* Application.cpp */; };
 		18AFB4C917AE782000B7AFDA /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18AFB4C717AE782000B7AFDA /* Console.cpp */; };
 		18E22F3917BA561B0079D25F /* assert.js in Sources */ = {isa = PBXBuildFile; fileRef = 18E2252217BA56110079D25F /* assert.js */; };
@@ -1945,6 +1945,7 @@
 		18EDB76817B7698C002E00CE /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EDB76717B7698C002E00CE /* OpenGL.framework */; };
 		18EDB76A17B76992002E00CE /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EDB76917B76992002E00CE /* GLUT.framework */; };
 		18EDB7BE17B78075002E00CE /* GLBinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18EDB7BA17B78075002E00CE /* GLBinding.cpp */; };
+		18EE2B8F17C30E0000161023 /* ArrayBufferAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18EE2B8D17C30E0000161023 /* ArrayBufferAllocator.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1975,6 +1976,8 @@
 		186BE22217BCD255000E8A62 /* sturctures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sturctures.h; sourceTree = "<group>"; };
 		186BE22417BCE4E5000E8A62 /* ClassBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClassBase.cpp; sourceTree = "<group>"; };
 		186BE22517BCE4E5000E8A62 /* ClassBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassBase.h; sourceTree = "<group>"; };
+		18A6D21D17C36469004931FD /* libv8_base.x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.x64.a; path = ../libv8_base.x64.a; sourceTree = "<group>"; };
+		18A6D21E17C3646A004931FD /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = ../libv8_snapshot.a; sourceTree = "<group>"; };
 		18AFB48917AE06A900B7AFDA /* libv8_base.x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.x64.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_base.x64.a; sourceTree = "<group>"; };
 		18AFB48B17AE06A900B7AFDA /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_snapshot.a; sourceTree = "<group>"; };
 		18AFB4BC17AE1C6300B7AFDA /* Application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
@@ -4479,6 +4482,8 @@
 		18EDB7A117B77E83002E00CE /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		18EDB7BA17B78075002E00CE /* GLBinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLBinding.cpp; sourceTree = "<group>"; };
 		18EDB7BB17B78075002E00CE /* GLBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLBinding.h; sourceTree = "<group>"; };
+		18EE2B8D17C30E0000161023 /* ArrayBufferAllocator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArrayBufferAllocator.cpp; sourceTree = "<group>"; };
+		18EE2B8E17C30E0000161023 /* ArrayBufferAllocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayBufferAllocator.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -4486,10 +4491,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18A6D21F17C3646A004931FD /* libv8_base.x64.a in Frameworks */,
+				18A6D22017C3646A004931FD /* libv8_snapshot.a in Frameworks */,
 				18EDB76A17B76992002E00CE /* GLUT.framework in Frameworks */,
 				18EDB76817B7698C002E00CE /* OpenGL.framework in Frameworks */,
-				18AFB48C17AE06A900B7AFDA /* libv8_base.x64.a in Frameworks */,
-				18AFB48E17AE06A900B7AFDA /* libv8_snapshot.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4499,6 +4504,8 @@
 		18282091179AFFCB003125B5 = {
 			isa = PBXGroup;
 			children = (
+				18A6D21D17C36469004931FD /* libv8_base.x64.a */,
+				18A6D21E17C3646A004931FD /* libv8_snapshot.a */,
 				18EDB76917B76992002E00CE /* GLUT.framework */,
 				18EDB76717B7698C002E00CE /* OpenGL.framework */,
 				18AFB48917AE06A900B7AFDA /* libv8_base.x64.a */,
@@ -4561,6 +4568,8 @@
 				18AFB4BC17AE1C6300B7AFDA /* Application.cpp */,
 				18AFB4BD17AE1C6300B7AFDA /* Application.h */,
 				18AFB4C217AE748A00B7AFDA /* node.h */,
+				18EE2B8D17C30E0000161023 /* ArrayBufferAllocator.cpp */,
+				18EE2B8E17C30E0000161023 /* ArrayBufferAllocator.h */,
 			);
 			path = app;
 			sourceTree = "<group>";
@@ -9286,6 +9295,7 @@
 				186BE22617BCE4E5000E8A62 /* ClassBase.cpp in Sources */,
 				182F14DF17BE2AD0000F3A4C /* glmopt.cpp in Sources */,
 				184407B017BE91C400201D2C /* NativeClass.cpp in Sources */,
+				18EE2B8F17C30E0000161023 /* ArrayBufferAllocator.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9316,7 +9326,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					$SRCROOT/v8/glm,
-					/Users/jie/xcodespace/v8/v8/include,
+					$SRCROOT/deps/v8/include,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
@@ -9344,7 +9354,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					"$SRCROOT/v8/glm/**",
-					/Users/jie/xcodespace/v8/v8/include,
+					$SRCROOT/deps/v8/include,
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
@@ -9363,6 +9373,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../git/node/deps/v8/out/x64.debug\"",
+					"\"$(SRCROOT)/deps/v8\"",
+					"\"$(SRCROOT)/..\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -9378,6 +9390,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../git/node/deps/v8/out/x64.debug\"",
+					"\"$(SRCROOT)/deps/v8\"",
+					"\"$(SRCROOT)/..\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

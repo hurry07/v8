@@ -8,6 +8,9 @@
 #include "GLBinding.h"
 #include <Opengl/gl.h>
 #include "../global.h"
+#include "../core/Feature.h"
+#include "../core/ClassBase.h"
+#include "../core/v8Utils.h"
 
 using v8::HandleScope;
 using v8::String;
@@ -157,18 +160,21 @@ static int _ExternalArrayTypeToElementSize(ExternalArrayType type) {
 }
 static int SizeOfArrayElementForType(v8::ExternalArrayType type) {
 	switch (type) {
-	case v8::kExternalByteArray:
-	case v8::kExternalUnsignedByteArray:
-		return 1;
-	case v8::kExternalShortArray:
-	case v8::kExternalUnsignedShortArray:
-		return 2;
-	case v8::kExternalIntArray:
-	case v8::kExternalUnsignedIntArray:
-	case v8::kExternalFloatArray:
-		return 4;
-	default:
-		return 0;
+        case v8::kExternalByteArray:
+        case v8::kExternalUnsignedByteArray:
+        case v8::kExternalPixelArray:
+            return 1;
+        case v8::kExternalShortArray:
+        case v8::kExternalUnsignedShortArray:
+            return 2;
+        case v8::kExternalIntArray:
+        case v8::kExternalUnsignedIntArray:
+        case v8::kExternalFloatArray:
+            return 4;
+        case v8::kExternalDoubleArray:
+            return 8;
+        default:
+            return 0;
 	}
 }
 static int elementSize(ExternalArrayType type) {
@@ -217,6 +223,94 @@ static void* getArrayPtr(const Local<v8::Object> obj, int offset=0) {
     }
     return 0;
 }
+
+/**
+ * get internal data from an arguments
+ */
+#define ARG_PTR(T, typename)\
+static void getArgPtr(FeaturePtr<T>* dest, const Local<Value>& arg) {\
+    if(arg->IsTypedArray()) {\
+        Local<v8::Object> obj = arg->ToObject();\
+        if(kExternal##typename##Array == obj->GetIndexedPropertiesExternalArrayDataType()) {\
+            dest->mPtr = static_cast<T*>(obj->GetIndexedPropertiesExternalArrayData());\
+            dest->mSize = obj->GetIndexedPropertiesExternalArrayDataLength();\
+        }\
+    } else {\
+        ClassBase* wrap = internalArg<ClassBase>(arg->ToObject());\
+        wrap->getFeature(dest);\
+    }\
+}
+//used for test
+//static void getArgPtr(FeaturePtr<float>* dest, const Local<Value>& arg) {
+//    if(arg->IsTypedArray()) {
+//        Local<v8::Object> obj = arg->ToObject();
+//        if(kExternalFloatArray == obj->GetIndexedPropertiesExternalArrayDataType()) {
+//            dest->mPtr = static_cast<float*>(obj->GetIndexedPropertiesExternalArrayData());
+//            dest->mSize = obj->GetIndexedPropertiesExternalArrayDataLength();
+//        }
+//    } else {
+//        ClassBase* wrap = internalArg<ClassBase>(arg->ToObject());
+//        wrap->getFeature(dest);
+//    }
+//}
+ARG_PTR(uint8_t, UnsignedByte);
+ARG_PTR(int16_t, Short);
+ARG_PTR(uint16_t, UnsignedShort);
+ARG_PTR(int32_t, Int);
+ARG_PTR(uint32_t, UnsignedInt);
+ARG_PTR(float, Float);
+ARG_PTR(double, Double);
+/**
+ * get internal pointer of arg
+ */
+static void getArgPtr(FeaturePtr<int8_t>* dest, const Local<Value>& arg) {
+    if(arg->IsTypedArray()) {
+        Local<v8::Object> obj = arg->ToObject();
+        ExternalArrayType type = obj->GetIndexedPropertiesExternalArrayDataType();
+        if(kExternalByteArray == type || kExternalPixelArray == type) {
+            dest->mPtr = static_cast<int8_t*>(obj->GetIndexedPropertiesExternalArrayData());
+        }
+    } else {
+        ClassBase* wrap = internalArg<ClassBase>(arg->ToObject());
+        wrap->getFeature(dest);
+    }
+}
+static void argsAsArray(FeaturePtr<float>* dest, const FunctionCallbackInfo<Value>& args, int start) {
+    int end = args.Length();
+    if (start + dest->mSize < end) {
+        end = start + dest->mSize;
+    }
+    for (int i = start; i < end; i++) {
+        dest->mPtr[i - start] = args[i]->NumberValue();
+    }
+    end -= start;
+    while (end < dest->mSize) {
+        dest->mPtr[end++] = 0;
+    }
+}
+
+//    switch (obj->GetIndexedPropertiesExternalArrayDataType()) {
+//        case kExternalByteArray:
+//            return ((int8_t*)obj->GetIndexedPropertiesExternalArrayData() + offset);
+//        case kExternalUnsignedByteArray:
+//            return ((uint8_t*)obj->GetIndexedPropertiesExternalArrayData() + offset);
+//        case kExternalShortArray:
+//            return ((int16_t*)obj->GetIndexedPropertiesExternalArrayData() + offset);
+//        case kExternalUnsignedShortArray:
+//            return ((uint16_t*)obj->GetIndexedPropertiesExternalArrayData() + offset);
+//        case kExternalIntArray:
+//            return ((int32_t*)obj->GetIndexedPropertiesExternalArrayData() + offset);
+//        case kExternalUnsignedIntArray:
+//            return ((uint32_t*)obj->GetIndexedPropertiesExternalArrayData() + offset);
+//        case kExternalFloatArray:
+//            return ((float*)obj->GetIndexedPropertiesExternalArrayData() + offset);
+//        case kExternalDoubleArray:
+//            return ((double*)obj->GetIndexedPropertiesExternalArrayData() + offset);
+//        case kExternalPixelArray:
+//            return ((uint8_t*)obj->GetIndexedPropertiesExternalArrayData() + offset);
+//    }
+//    return 0;
+//}
 template<typename Type>
 inline Type* getArrayData(Local<Value> arg, int* num = NULL) {
 	Type *data = NULL;
@@ -1082,6 +1176,7 @@ JS_METHOD(getExtension) {
     HandleScope scope;
 	args.GetReturnValue().Set(JS_STR(""));
 }
+
 DELEGATE_TO_GL_N1(activeTexture, glActiveTexture, GLenum);
 DELEGATE_TO_GL_N2(attachShader, glAttachShader, GLuint, GLuint);
 DELEGATE_TO_GL_N3(bindAttribLocation, glBindAttribLocation, GLuint, GLuint, GLcharP);
@@ -1880,58 +1975,50 @@ DELEGATE_TO_GL_N3(uniform2i, glUniform2i, GLint, GLint, GLint);
 DELEGATE_TO_GL_N4(uniform3i, glUniform3i, GLint, GLint, GLint, GLint);
 DELEGATE_TO_GL_N5(uniform4i, glUniform4i, GLint, GLint, GLint, GLint, GLint);
 
-DELEGATE_TO_GL_N3(uniform1fv, glUniform1fv, GLint, GLsizei, GLfloatP);
-DELEGATE_TO_GL_N3(uniform2fv, glUniform2fv, GLint, GLsizei, GLfloatP);
-DELEGATE_TO_GL_N3(uniform3fv, glUniform3fv, GLint, GLsizei, GLfloatP);
-DELEGATE_TO_GL_N3(uniform4fv, glUniform4fv, GLint, GLsizei, GLfloatP);
-DELEGATE_TO_GL_N3(uniform1iv, glUniform1iv, GLint, GLsizei, GLintP);
-DELEGATE_TO_GL_N3(uniform2iv, glUniform2iv, GLint, GLsizei, GLintP);
-DELEGATE_TO_GL_N3(uniform3iv, glUniform3iv, GLint, GLsizei, GLintP);
-DELEGATE_TO_GL_N3(uniform4iv, glUniform4iv, GLint, GLsizei, GLintP);
-
-JS_METHOD(uniformMatrix2fv) {
-    HandleScope scope;
-
-	GLint location = args[0]->Int32Value();
-	GLboolean transpose = args[1]->BooleanValue();
-
-	GLsizei count = 0;
-	GLfloat* data = getArrayData < GLfloat > (args[2], &count);
-
-	if (count < 4) {
-		args.GetReturnValue().Set(ThrowException(String::New("Not enough data for UniformMatrix2fv")));
-	}
-	glUniformMatrix2fv(location, count / 4, transpose, data);
-	args.GetReturnValue().Set(v8::Undefined());
+#define GL_UNIFORM(T, name, unit) \
+JS_METHOD(uniform##name) {\
+    HandleScope scope;\
+\
+    int location = args[0]->Int32Value();\
+    FeaturePtr<T> fPtr;\
+    getArgPtr(&fPtr, args[1]);\
+    glUniform##name(location, fPtr.mSize / unit, fPtr.mPtr);\
 }
-JS_METHOD(uniformMatrix3fv) {
-    HandleScope scope;
+GL_UNIFORM(float, 1fv, 1);
+GL_UNIFORM(float, 2fv, 2);
+GL_UNIFORM(float, 3fv, 3);
+GL_UNIFORM(float, 4fv, 4);
+GL_UNIFORM(int, 1iv, 1);
+GL_UNIFORM(int, 2iv, 2);
+GL_UNIFORM(int, 3iv, 3);
+GL_UNIFORM(int, 4iv, 4);
 
-	GLint location = args[0]->Int32Value();
-	GLboolean transpose = args[1]->BooleanValue();
-	GLsizei count = 0;
-	GLfloat* data = getArrayData < GLfloat > (args[2], &count);
+// for test
+//JS_METHOD(uniform1fv) {
+//    int location = args[0]->Int32Value();
+//    FeaturePtr<float> fPtr;
+//    getArgPtr(&fPtr, args[1]);
+//    printf("size:%d ", fPtr.mSize);
+//    for (int i = 0; i<fPtr.mSize; i++) {
+//        printf("%f, ", fPtr.mPtr[i]);
+//    }
+//    printf("\n");
+//    //    glUniform1fv(location, fPtr.mSize, fPtr.mPtr);
+//}
 
-	if (count < 9) {
-		args.GetReturnValue().Set(ThrowException(String::New("Not enough data for UniformMatrix3fv")));
-	}
-	glUniformMatrix3fv(location, count / 9, transpose, data);
-	args.GetReturnValue().Set(v8::Undefined());
+#define UNIFORM_MATRIX(name, unit) \
+JS_METHOD(uniformMatrix##name) {\
+    HandleScope scope;\
+\
+    GLint location = args[0]->Int32Value();\
+    GLboolean transpose = args[1]->BooleanValue();\
+    FeaturePtr<float> fPtr;\
+    getArgPtr(&fPtr, args[2]);\
+    glUniformMatrix3fv(location, fPtr.mSize / unit, transpose, fPtr.mPtr);\
 }
-JS_METHOD(uniformMatrix4fv) {
-    HandleScope scope;
-
-	GLint location = args[0]->Int32Value();
-	GLboolean transpose = args[1]->BooleanValue();
-	GLsizei count = 0;
-	GLfloat* data = getArrayData < GLfloat > (args[2], &count);
-
-	if (count < 16) {
-		args.GetReturnValue().Set(ThrowException(String::New("Not enough data for UniformMatrix4fv")));
-	}
-	glUniformMatrix4fv(location, count / 16, transpose, data);
-	args.GetReturnValue().Set(v8::Undefined());
-}
+UNIFORM_MATRIX(2fv, 4);
+UNIFORM_MATRIX(3fv, 9);
+UNIFORM_MATRIX(4fv, 16);
 
 DELEGATE_TO_GL_N1(useProgram, glUseProgram, GLuint);
 DELEGATE_TO_GL_N1(validateProgram, glValidateProgram, GLuint);
@@ -1941,10 +2028,19 @@ DELEGATE_TO_GL_N3(vertexAttrib2f, glVertexAttrib2f, GLuint, GLfloat, GLfloat);
 DELEGATE_TO_GL_N4(vertexAttrib3f, glVertexAttrib3f, GLuint, GLfloat, GLfloat, GLfloat);
 DELEGATE_TO_GL_N5(vertexAttrib4f, glVertexAttrib4f, GLuint, GLfloat, GLfloat, GLfloat, GLfloat);
 
-DELEGATE_TO_GL_N2(vertexAttrib1fv, glVertexAttrib1fv, GLuint, GLfloatP);
-DELEGATE_TO_GL_N2(vertexAttrib2fv, glVertexAttrib2fv, GLuint, GLfloatP);
-DELEGATE_TO_GL_N2(vertexAttrib3fv, glVertexAttrib3fv, GLuint, GLfloatP);
-DELEGATE_TO_GL_N2(vertexAttrib4fv, glVertexAttrib4fv, GLuint, GLfloatP);
+#define GL_VERTEX_ATTR(T, name) \
+JS_METHOD(vertexAttrib##name) {\
+    HandleScope scope;\
+\
+    int location = args[0]->Int32Value();\
+    FeaturePtr<T> fPtr;\
+    getArgPtr(&fPtr, args[1]);\
+    glVertexAttrib##name(location, fPtr.mPtr);\
+}
+GL_VERTEX_ATTR(float, 1fv);
+GL_VERTEX_ATTR(float, 2fv);
+GL_VERTEX_ATTR(float, 3fv);
+GL_VERTEX_ATTR(float, 4fv);
 
 JS_METHOD(vertexAttribPointer) {
     HandleScope scope;

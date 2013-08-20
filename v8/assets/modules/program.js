@@ -2,6 +2,61 @@ var gl = require('opengl');
 var shader = require('modules/shader.js');
 var clz = require('nativeclasses');
 
+var extend_ = require('core/extend.js');
+/**
+ * handle int float bool binding
+ *
+ * @param loc
+ * @param glfn
+ * @param data
+ */
+function uniformRaw(loc, glfn, data) {
+    this.loc = loc;
+    this.fn = glfn;
+    this.data = data;
+}
+uniformRaw.prototype.data = function() {
+    return this;
+}
+uniformRaw.prototype.init = function(a) {
+    this.data = a;
+}
+uniformRaw.prototype.bind = function(d) {
+    if(arguments.length == 0) {
+        this.fn(this.loc, this.data);
+    } else {
+        this.fn(this.loc, this.data = d);
+    }
+}
+uniformRaw.prototype.update = function() {
+    this.fn(this.loc, this.data);
+}
+
+/**
+ * handle for vector and matrix parameters
+ *
+ * @param loc
+ * @param glfn
+ * @param data
+ */
+function uniformParam(loc, glfn, data) {
+    this.loc = loc;
+    this.fn = glfn;
+    this.data = data;
+}
+uniformParam.prototype.bind = function() {
+    if(arguments.length == 0) {
+        this.fn(this.loc, this.data);
+    } else {
+        this.data.init.apply(this.data, Array.prototype.slice(0).call(arguments));
+        this.fn(this.loc, this.data);
+    }
+}
+uniformParam.prototype.update = function() {
+    this.fn(this.loc, this.data);
+}
+
+
 var programDB = {};
 
 function find(id) {
@@ -61,59 +116,6 @@ function initAttribute(program, attribs) {
     return attribs;
 }
 
-/**
- * handle int float bool binding
- *
- * @param loc
- * @param glfn
- * @param data
- */
-function uniformRaw(loc, glfn, data) {
-    this.loc = loc;
-    this.fn = glfn;
-    this.data = data;
-}
-uniformRaw.prototype.data = function() {
-    return this;
-}
-uniformRaw.prototype.init = function(a) {
-    this.data = a;
-}
-uniformRaw.prototype.bind = function(d) {
-    if(arguments.length == 0) {
-        this.fn(this.loc, this.data);
-    } else {
-        this.fn(this.loc, this.data = d);
-    }
-}
-uniformRaw.prototype.update = function() {
-    this.fn(this.loc, this.data);
-}
-
-/**
- * handle for vector and matrix parameters
- *
- * @param loc
- * @param glfn
- * @param data
- */
-function uniformParam(loc, glfn, data) {
-    this.loc = loc;
-    this.fn = glfn;
-    this.data = data;
-}
-uniformParam.prototype.bind = function() {
-    if(arguments.length == 0) {
-        this.fn(this.loc, this.data);
-    } else {
-        this.data.init.apply(this.data, Array.prototype.slice(0).call(arguments));
-        this.fn(this.loc, this.data);
-    }
-}
-uniformParam.prototype.update = function() {
-    this.fn(this.loc, this.data);
-}
-
 function createUniformSetter(info) {
     var loc = gl.getUniformLocation(program, info.name)
     var s;
@@ -134,34 +136,34 @@ function createUniformSetter(info) {
             s = new uniformRaw(loc, gl.uniform1fv, 0);
             break;
         case gl.INT_VEC2:
-            s = new uniformParam(loc, gl.uniform1fv, new clz.vec2i());
+            s = new uniformParam(loc, gl.uniform2fv, new clz.vec2i());
             break;
         case gl.INT_VEC3:
-            s = new uniformParam(loc, gl.uniform1fv, new clz.vec3i());
+            s = new uniformParam(loc, gl.uniform3fv, new clz.vec3i());
             break;
         case gl.INT_VEC4:
-            s = new uniformParam(loc, gl.uniform1fv, new clz.vec4i());
+            s = new uniformParam(loc, gl.uniform4fv, new clz.vec4i());
             break;
         case gl.BOOL:
-            s = new uniformRaw(loc, gl.uniform1fv, false);
+            s = new uniformRaw(loc, gl.uniform1iv, false);
             break;
         case gl.BOOL_VEC2:
-            s = new uniformParam(loc, gl.uniform1fv, new clz.vec2b());
+            s = new uniformParam(loc, gl.uniform2iv, new clz.vec2b());
             break;
         case gl.BOOL_VEC3:
-            s = new uniformParam(loc, gl.uniform1fv, new clz.vec4b());
+            s = new uniformParam(loc, gl.uniform3iv, new clz.vec4b());
             break;
         case gl.BOOL_VEC4:
-            s = new uniformParam(loc, gl.uniform1fv, new clz.vec4b());
+            s = new uniformParam(loc, gl.uniform4iv, new clz.vec4b());
             break;
         case gl.FLOAT_MAT2:
-            s = new uniformParam(loc, gl.uniform1fv, new clz.mat2f());
+            s = new uniformParam(loc, gl.uniformMatrix2fv, new clz.mat2f());
             break;
         case gl.FLOAT_MAT3:
-            s = new uniformParam(loc, gl.uniform1fv, new clz.mat3f());
+            s = new uniformParam(loc, gl.uniformMatrix3fv, new clz.mat3f());
             break;
         case gl.FLOAT_MAT4:
-            s = new uniformParam(loc, gl.uniform1fv, new clz.mat4f());
+            s = new uniformParam(loc, gl.uniformMatrix4fv, new clz.mat4f());
             break;
         case gl.SAMPLER_2D:
         case gl.SAMPLER_CUBE:

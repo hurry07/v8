@@ -4,7 +4,7 @@
     <list default="true" id="bf906964-2438-4668-af9d-44b0b65c6083" name="Default" comment="" />
     <ignored path="tdl.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376906350269" ignored="false" />
+    <file path="/Dummy.txt" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376962151127" ignored="false" />
     <file path="/base.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376577833428" ignored="false" />
     <file path="$PROJECT_DIR$/../v8/assets/test/vec3_test.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376908464767" ignored="false" />
     <file path="/vec3_test.js" changelist="bf906964-2438-4668-af9d-44b0b65c6083" time="1376885159545" ignored="false" />
@@ -41,7 +41,7 @@
       <file leaf-file-name="example.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/example/example.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="300" column="30" selection-start="9895" selection-end="9899" vertical-scroll-proportion="-25.0">
+            <state line="300" column="30" selection-start="9895" selection-end="9899" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -59,7 +59,7 @@
       <file leaf-file-name="programs.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tdl/programs.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="473" column="26" selection-start="17139" selection-end="17139" vertical-scroll-proportion="0.35099337">
+            <state line="473" column="26" selection-start="17139" selection-end="17139" vertical-scroll-proportion="7.350993">
               <folding />
             </state>
           </provider>
@@ -289,10 +289,10 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="options.lastSelected" value="Errors" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../v8/assets" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
     <property name="FullScreen" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
@@ -340,12 +340,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1920" height="1054" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21296784" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13125989" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13125989" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -392,7 +392,7 @@
     <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
-    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="false" />
     <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
     <option name="LIMIT_HISTORY" value="true" />
     <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
@@ -494,7 +494,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/example/example.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="300" column="30" selection-start="9895" selection-end="9899" vertical-scroll-proportion="-25.0">
+        <state line="300" column="30" selection-start="9895" selection-end="9899" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -508,7 +508,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tdl/programs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="473" column="26" selection-start="17139" selection-end="17139" vertical-scroll-proportion="0.35099337">
+        <state line="473" column="26" selection-start="17139" selection-end="17139" vertical-scroll-proportion="7.350993">
           <folding />
         </state>
       </provider>

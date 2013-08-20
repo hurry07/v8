@@ -17,6 +17,7 @@
 #include "../global.h"
 #include "../classes/Point.h"
 #include "../classes/vector.h"
+#include "ArrayBufferAllocator.h"
 
 #include <string>
 #include <OpenGL/gl.h>
@@ -43,6 +44,10 @@ Context::Scope context_scope(context)
 #define SAFE_DISPOSE(p) p.Dispose()
 
 Application::Application() {
+    const char typed_arrays_flag[] = "--harmony_typed_arrays";
+    V8::SetFlagsFromString(typed_arrays_flag, sizeof(typed_arrays_flag) - 1);
+    V8::SetArrayBufferAllocator(&ArrayBufferAllocator::the_singleton);
+
 	node_isolate = Isolate::New();
 	ENTER_ISOLATE;
 
@@ -164,6 +169,12 @@ void testImageLoad(std::string filename) {
 //	delete image;
 }
 
+void test1(Local<ArrayBuffer>& abuf) {
+    ArrayBuffer::Contents cont1(abuf->Externalize());
+    LOGI("cont1 %p", cont1.Data());
+    free(cont1.Data());
+}
+
 void Application::init() {
 	testImageLoad("battle/battle_bg_small.jpg");
 	testImageLoad("battle/battlearea_bg.png");
@@ -196,6 +207,38 @@ void Application::init() {
         eval(
              "require('test/vec3_test.js');"
              );
+        
+        Local<ArrayBuffer> b11 = ArrayBuffer::New(8);
+        Local<Float32Array> f11 = Float32Array::New(b11, 0, 2);
+        f11->Set(0, Number::New(58));
+        f11->Set(0, Number::New(59));
+        
+        Local<ArrayBuffer> abuf = ArrayBuffer::New(64);
+        Local<Float32Array> farr = Float32Array::New(abuf, 0, 16);
+        farr->Set(0, Number::New(100));
+        farr->Set(1, f11);
+        
+        float* fptr = (float*)farr->GetIndexedPropertiesExternalArrayData();
+        int flen = farr->Length();
+
+//        ArrayBuffer::Contents c = farr->Buffer()->d;
+//        void* av = farr->BaseAddress();
+//        LOGI("-----%f", av);
+//        Handle<i::JSArrayBuffer> iab1 = v8::Utils::OpenHandle(*ab1);
+        
+        LOGI("---%p %f %d", fptr, fptr[1]);
+        
+
+//        test1(abuf);
+//        test1(abuf);
+//        {
+//            ArrayBuffer::Contents cont1 = abuf->Externalize();
+//            LOGI("cont1 %p", cont1.Data());
+//        }
+//        {
+//            ArrayBuffer::Contents cont1 = abuf->Externalize();
+//            LOGI("cont1 %p", cont1.Data());
+//        }
 	}
 }
 void Application::destroy() {
