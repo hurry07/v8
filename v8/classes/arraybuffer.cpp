@@ -45,3 +45,9 @@ void NodeBuffer::onClone(NodeBuffer& current, const NodeBuffer& from) {
     }
     current.mData = new char[current.mLength = from.mLength];
 }
+int NodeBuffer::writeBytes(int offset, char* bytes, int length) {
+    return 0;// TODO
+}
+int NodeBuffer::readBytes(int offset, char* dest, int length) {
+    return 0;
+}

@@ -208,13 +208,8 @@ void Application::init() {
              "require('test/vec3_test.js');"
              );
         
-//        Local<ArrayBuffer> b11 = ArrayBuffer::New(8);
-//        Local<Float32Array> f11 = Float32Array::New(b11, 0, 2);
-//        f11->Set(0, Number::New(58));
-//        f11->Set(0, Number::New(59));
-//        
-//        Local<ArrayBuffer> abuf = ArrayBuffer::New(64);
-//        Local<Float32Array> farr = Float32Array::New(abuf, 0, 16);
+        Local<ArrayBuffer> abuf = ArrayBuffer::New(64);
+        Local<Float32Array> farr = Float32Array::New(abuf, 0, 16);
 //        farr->Set(0, Number::New(100));
 //        farr->Set(1, f11);
 //        
