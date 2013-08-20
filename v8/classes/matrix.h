@@ -31,7 +31,7 @@ public:\
     virtual ClassType getClassType();\
     virtual void init(const v8::FunctionCallbackInfo<v8::Value> &args);\
     virtual const char* toString();\
-    virtual void getFeature(Feature* feature);\
+    virtual void getUnderlying(Feature* feature);\
 \
     glm::detail::tmat##size##x##size<T> mMatrix;\
 }

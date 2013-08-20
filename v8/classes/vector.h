@@ -24,7 +24,7 @@ public:\
     virtual ClassType getClassType();\
     void init(const FunctionCallbackInfo<Value> &info);\
     virtual const char* toString();\
-    virtual void getFeature(Feature* feature);\
+    virtual void getUnderlying(Feature* feature);\
 \
     glm::detail::tvec##size<T> mVec;\
 }

@@ -22,7 +22,7 @@ public:
 
     virtual ClassType getClassType();
     static class_struct* getExportStruct();
-    virtual void getFeature(Feature* feature);
+    virtual void getUnderlying(Feature* feature);
     static void onClone(NodeBuffer& current, const NodeBuffer& from);
 
     template<typename T>

@@ -53,7 +53,7 @@ public:
     /**
      * interact without class type message
      */
-    virtual void getFeature(Feature* feature);
+    virtual void getUnderlying(Feature* feature);
 
 protected:
 	bool mRelease;// has release called on current instance

@@ -26,7 +26,7 @@ static void flatVector(const FunctionCallbackInfo<Value> &info, T* values, int l
     int copyed = 0;
     float* ptr = 0;
     int plen = 0;
-    FeaturePtr<float> fPtr;
+    Feature fPtr;
 
     int alen = info.Length();
     for(int i = 0; i < alen; i++) {
@@ -36,8 +36,8 @@ static void flatVector(const FunctionCallbackInfo<Value> &info, T* values, int l
             copyed++;
         } else {
             fPtr.mSize = 0;
-            p->getFeature(&fPtr);
-            ptr = fPtr.mPtr;
+            p->getUnderlying(&fPtr);
+            ptr = static_cast<float*>(fPtr.mPtr);
             plen = fPtr.mSize;
 
             if(plen > length - copyed) {

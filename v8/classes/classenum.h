@@ -26,7 +26,15 @@ enum ClassType {
 
 enum FeatureType {
     FEATURE_NULL,
-    FEATURE_PTR
+    FEATURE_BYTE,
+    FEATURE_UBYTE,
+    FEATURE_SHORT,
+    FEATURE_USHORT,
+    FEATURE_INT,
+    FEATURE_UINT,
+    FEATURE_FLOAT,
+    FEATURE_DOUBLE,
+    FEATURE_BOOL
 };
 
 #endif

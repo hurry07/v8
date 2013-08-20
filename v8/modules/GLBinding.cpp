@@ -224,22 +224,33 @@ static void* getArrayPtr(const Local<v8::Object> obj, int offset=0) {
     return 0;
 }
 
+static void getArgPtr(Feature* dest, ExternalArrayType wanted, FeatureType ftype, const Local<Value>& arg) {
+    if(arg->IsTypedArray()) {
+        Local<v8::Object> obj = arg->ToObject();
+        if(wanted == obj->GetIndexedPropertiesExternalArrayDataType()) {
+            dest->mType = ftype;
+            dest->mPtr = obj->GetIndexedPropertiesExternalArrayData();
+            dest->mSize = obj->GetIndexedPropertiesExternalArrayDataLength();
+        }
+    } else {
+        ClassBase* wrap = internalArg<ClassBase>(arg->ToObject());
+        wrap->getUnderlying(dest);
+        if(dest->mType != ftype) {
+            LOGI("arguments underlying datatype not match. %d", ftype);
+        }
+    }
+}
+
+template <typename T>
+static void getArgPtr(Feature* dest, const Local<Value>& arg);
 /**
  * get internal data from an arguments
  */
-#define ARG_PTR(T, typename)\
-static void getArgPtr(FeaturePtr<T>* dest, const Local<Value>& arg) {\
-    if(arg->IsTypedArray()) {\
-        Local<v8::Object> obj = arg->ToObject();\
-        if(kExternal##typename##Array == obj->GetIndexedPropertiesExternalArrayDataType()) {\
-            dest->mPtr = static_cast<T*>(obj->GetIndexedPropertiesExternalArrayData());\
-            dest->mSize = obj->GetIndexedPropertiesExternalArrayDataLength();\
-        }\
-    } else {\
-        ClassBase* wrap = internalArg<ClassBase>(arg->ToObject());\
-        wrap->getFeature(dest);\
-    }\
+#define ARG_PTR(T, ftype, typename)\
+template<> void getArgPtr<T>(Feature* dest, const Local<Value>& arg) {\
+    getArgPtr(dest, kExternal##typename##Array, ftype, arg);\
 }
+
 //used for test
 //static void getArgPtr(FeaturePtr<float>* dest, const Local<Value>& arg) {
 //    if(arg->IsTypedArray()) {
@@ -250,42 +261,34 @@ static void getArgPtr(FeaturePtr<T>* dest, const Local<Value>& arg) {\
 //        }
 //    } else {
 //        ClassBase* wrap = internalArg<ClassBase>(arg->ToObject());
-//        wrap->getFeature(dest);
+//        wrap->getUnderlying‎(dest);
 //    }
 //}
-ARG_PTR(uint8_t, UnsignedByte);
-ARG_PTR(int16_t, Short);
-ARG_PTR(uint16_t, UnsignedShort);
-ARG_PTR(int32_t, Int);
-ARG_PTR(uint32_t, UnsignedInt);
-ARG_PTR(float, Float);
-ARG_PTR(double, Double);
+ARG_PTR(uint8_t, FEATURE_UBYTE, UnsignedByte);
+ARG_PTR(int16_t, FEATURE_SHORT, Short);
+ARG_PTR(uint16_t, FEATURE_USHORT, UnsignedShort);
+ARG_PTR(int32_t, FEATURE_INT, Int);
+ARG_PTR(uint32_t, FEATURE_UINT, UnsignedInt);
+ARG_PTR(float, FEATURE_FLOAT, Float);
+ARG_PTR(double, FEATURE_DOUBLE, Double);
 /**
  * get internal pointer of arg
  */
-static void getArgPtr(FeaturePtr<int8_t>* dest, const Local<Value>& arg) {
+template<> void getArgPtr<int8_t>(Feature* dest, const Local<Value>& arg) {
     if(arg->IsTypedArray()) {
         Local<v8::Object> obj = arg->ToObject();
         ExternalArrayType type = obj->GetIndexedPropertiesExternalArrayDataType();
         if(kExternalByteArray == type || kExternalPixelArray == type) {
-            dest->mPtr = static_cast<int8_t*>(obj->GetIndexedPropertiesExternalArrayData());
+            dest->mPtr = obj->GetIndexedPropertiesExternalArrayData();
+            dest->mSize = obj->GetIndexedPropertiesExternalArrayDataLength();
+            dest->mType = FEATURE_BYTE;
         }
     } else {
         ClassBase* wrap = internalArg<ClassBase>(arg->ToObject());
-        wrap->getFeature(dest);
-    }
-}
-static void argsAsArray(FeaturePtr<float>* dest, const FunctionCallbackInfo<Value>& args, int start) {
-    int end = args.Length();
-    if (start + dest->mSize < end) {
-        end = start + dest->mSize;
-    }
-    for (int i = start; i < end; i++) {
-        dest->mPtr[i - start] = args[i]->NumberValue();
-    }
-    end -= start;
-    while (end < dest->mSize) {
-        dest->mPtr[end++] = 0;
+        wrap->getUnderlying(dest);
+        if(dest->mType != FEATURE_BYTE) {
+            LOGI("arguments underlying datatype not match. %d", FEATURE_BYTE);
+        }
     }
 }
 
@@ -1980,9 +1983,9 @@ JS_METHOD(uniform##name) {\
     HandleScope scope;\
 \
     int location = args[0]->Int32Value();\
-    FeaturePtr<T> fPtr;\
-    getArgPtr(&fPtr, args[1]);\
-    glUniform##name(location, fPtr.mSize / unit, fPtr.mPtr);\
+    Feature fPtr;\
+    getArgPtr<T>(&fPtr, args[1]);\
+    glUniform##name(location, fPtr.mSize / unit, static_cast<T*>(fPtr.mPtr));\
 }
 GL_UNIFORM(float, 1fv, 1);
 GL_UNIFORM(float, 2fv, 2);
@@ -2012,9 +2015,9 @@ JS_METHOD(uniformMatrix##name) {\
 \
     GLint location = args[0]->Int32Value();\
     GLboolean transpose = args[1]->BooleanValue();\
-    FeaturePtr<float> fPtr;\
-    getArgPtr(&fPtr, args[2]);\
-    glUniformMatrix3fv(location, fPtr.mSize / unit, transpose, fPtr.mPtr);\
+    Feature fPtr;\
+    getArgPtr<float>(&fPtr, args[2]);\
+    glUniformMatrix3fv(location, fPtr.mSize / unit, transpose, static_cast<float*>(fPtr.mPtr));\
 }
 UNIFORM_MATRIX(2fv, 4);
 UNIFORM_MATRIX(3fv, 9);
@@ -2033,9 +2036,9 @@ JS_METHOD(vertexAttrib##name) {\
     HandleScope scope;\
 \
     int location = args[0]->Int32Value();\
-    FeaturePtr<T> fPtr;\
-    getArgPtr(&fPtr, args[1]);\
-    glVertexAttrib##name(location, fPtr.mPtr);\
+    Feature fPtr;\
+    getArgPtr<T>(&fPtr, args[1]);\
+    glVertexAttrib##name(location, static_cast<T*>(fPtr.mPtr));\
 }
 GL_VERTEX_ATTR(float, 1fv);
 GL_VERTEX_ATTR(float, 2fv);

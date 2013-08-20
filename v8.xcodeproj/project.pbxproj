@@ -13,8 +13,8 @@
 		185BF54B17BBE6B600F7AE09 /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 185BF54917BBE6B600F7AE09 /* Point.cpp */; };
 		186BE22117BCABD1000E8A62 /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE21F17BCABD1000E8A62 /* file.cpp */; };
 		186BE22617BCE4E5000E8A62 /* ClassBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE22417BCE4E5000E8A62 /* ClassBase.cpp */; };
-		18A6D21F17C3646A004931FD /* libv8_base.x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A6D21D17C36469004931FD /* libv8_base.x64.a */; };
-		18A6D22017C3646A004931FD /* libv8_snapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A6D21E17C3646A004931FD /* libv8_snapshot.a */; };
+		18A2B6AE17C39A7B00C5F951 /* libv8_base.x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A2B6AC17C39A7B00C5F951 /* libv8_base.x64.a */; };
+		18A2B6AF17C39A7B00C5F951 /* libv8_snapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A2B6AD17C39A7B00C5F951 /* libv8_snapshot.a */; };
 		18A6D22617C3752B004931FD /* arraybuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D22417C3752B004931FD /* arraybuffer.cpp */; };
 		18A6D22917C37C39004931FD /* buffers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D22717C37C39004931FD /* buffers.cpp */; };
 		18AFB4BE17AE1C6300B7AFDA /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18AFB4BC17AE1C6300B7AFDA /* Application.cpp */; };
@@ -1976,12 +1976,12 @@
 		186BE21F17BCABD1000E8A62 /* file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
 		186BE22017BCABD1000E8A62 /* file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file.h; sourceTree = "<group>"; };
 		186BE22217BCD255000E8A62 /* sturctures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sturctures.h; sourceTree = "<group>"; };
-		186BE22417BCE4E5000E8A62 /* ClassBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ClassBase.cpp; sourceTree = "<group>"; };
-		186BE22517BCE4E5000E8A62 /* ClassBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassBase.h; sourceTree = "<group>"; };
-		18A6D21D17C36469004931FD /* libv8_base.x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.x64.a; path = ../libv8_base.x64.a; sourceTree = "<group>"; };
-		18A6D21E17C3646A004931FD /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = ../libv8_snapshot.a; sourceTree = "<group>"; };
-		18A6D22417C3752B004931FD /* arraybuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arraybuffer.cpp; sourceTree = "<group>"; };
-		18A6D22517C3752B004931FD /* arraybuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arraybuffer.h; sourceTree = "<group>"; };
+		186BE22417BCE4E5000E8A62 /* ClassBase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = ClassBase.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		186BE22517BCE4E5000E8A62 /* ClassBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ClassBase.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		18A2B6AC17C39A7B00C5F951 /* libv8_base.x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.x64.a; path = ../libv8_base.x64.a; sourceTree = "<group>"; };
+		18A2B6AD17C39A7B00C5F951 /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = ../libv8_snapshot.a; sourceTree = "<group>"; };
+		18A6D22417C3752B004931FD /* arraybuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = arraybuffer.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
+		18A6D22517C3752B004931FD /* arraybuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = arraybuffer.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		18A6D22717C37C39004931FD /* buffers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = buffers.cpp; sourceTree = "<group>"; };
 		18A6D22817C37C39004931FD /* buffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffers.h; sourceTree = "<group>"; };
 		18AFB48917AE06A900B7AFDA /* libv8_base.x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.x64.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_base.x64.a; sourceTree = "<group>"; };
@@ -1993,7 +1993,7 @@
 		18AFB4C817AE782000B7AFDA /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Console.h; sourceTree = "<group>"; };
 		18AFB4CA17AE7BB200B7AFDA /* modules.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = modules.h; sourceTree = "<group>"; };
 		18CCF99B17BFFD0F00094EFF /* vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
-		18CCF99C17BFFF9700094EFF /* matrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
+		18CCF99C17BFFF9700094EFF /* matrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = matrix.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		18CCF9A317C06C9C00094EFF /* vector_inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector_inl.h; sourceTree = "<group>"; };
 		18CCF9A517C07E3600094EFF /* matrix_inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix_inl.h; sourceTree = "<group>"; };
 		18D6659417BA830B00021EA2 /* cctest */ = {isa = PBXFileReference; lastKnownFileType = folder; name = cctest; path = test/cctest; sourceTree = "<group>"; };
@@ -4486,7 +4486,7 @@
 		18EDB76917B76992002E00CE /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		18EDB76B17B76C1F002E00CE /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		18EDB7A117B77E83002E00CE /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		18EDB7BA17B78075002E00CE /* GLBinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLBinding.cpp; sourceTree = "<group>"; };
+		18EDB7BA17B78075002E00CE /* GLBinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; path = GLBinding.cpp; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.cpp; };
 		18EDB7BB17B78075002E00CE /* GLBinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLBinding.h; sourceTree = "<group>"; };
 		18EE2B8D17C30E0000161023 /* ArrayBufferAllocator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArrayBufferAllocator.cpp; sourceTree = "<group>"; };
 		18EE2B8E17C30E0000161023 /* ArrayBufferAllocator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayBufferAllocator.h; sourceTree = "<group>"; };
@@ -4497,8 +4497,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18A6D21F17C3646A004931FD /* libv8_base.x64.a in Frameworks */,
-				18A6D22017C3646A004931FD /* libv8_snapshot.a in Frameworks */,
+				18A2B6AE17C39A7B00C5F951 /* libv8_base.x64.a in Frameworks */,
+				18A2B6AF17C39A7B00C5F951 /* libv8_snapshot.a in Frameworks */,
 				18EDB76A17B76992002E00CE /* GLUT.framework in Frameworks */,
 				18EDB76817B7698C002E00CE /* OpenGL.framework in Frameworks */,
 			);
@@ -4510,8 +4510,8 @@
 		18282091179AFFCB003125B5 = {
 			isa = PBXGroup;
 			children = (
-				18A6D21D17C36469004931FD /* libv8_base.x64.a */,
-				18A6D21E17C3646A004931FD /* libv8_snapshot.a */,
+				18A2B6AC17C39A7B00C5F951 /* libv8_base.x64.a */,
+				18A2B6AD17C39A7B00C5F951 /* libv8_snapshot.a */,
 				18EDB76917B76992002E00CE /* GLUT.framework */,
 				18EDB76717B7698C002E00CE /* OpenGL.framework */,
 				18AFB48917AE06A900B7AFDA /* libv8_base.x64.a */,

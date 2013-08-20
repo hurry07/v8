@@ -24,6 +24,13 @@ void orderPtr(T* dest, T* from, int size, int stride = 0) {
     }
 }
 
+#define MATRIX_UNDERLYING(clzName, T, fType, sizepwo)\
+template <> void clzName<T>::getUnderlying(Feature* feature) {\
+    feature->mPtr = glm::value_ptr(mMatrix);\
+    feature->mSize = sizepwo;\
+    feature->mType = fType;\
+}
+
 #define MATRIX_IMPL(clzName, size, sizepwo) \
 template <typename T>\
 clzName<T>::clzName() {\
@@ -50,12 +57,9 @@ void clzName<T>::init(const v8::FunctionCallbackInfo<v8::Value> &info) {\
     flatVector<T>(info, values, sizepwo);\
     fill_value_ptr<T>(glm::value_ptr(mMatrix), values, sizepwo);\
 }\
-template <typename T>\
-void clzName<T>::getFeature(Feature* feature) {\
-    FeaturePtr<T>* fPtr = static_cast<FeaturePtr<T>*>(feature);\
-    fPtr->mPtr = glm::value_ptr(mMatrix);\
-    fPtr->mSize = sizepwo;\
-}
+MATRIX_UNDERLYING(clzName, float, FEATURE_FLOAT, sizepwo)\
+MATRIX_UNDERLYING(clzName, int, FEATURE_INT, sizepwo)\
+MATRIX_UNDERLYING(clzName, bool, FEATURE_BOOL, sizepwo)
 
 #define MATIRX_INIT(clzName, size)\
 template <typename T>\

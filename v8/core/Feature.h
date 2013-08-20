@@ -13,19 +13,11 @@
 
 class Feature {
 public:
-    FeatureType mType;
-    Feature() : mType(FEATURE_NULL) {
-    }
-};
-
-template <typename T>
-class FeaturePtr : public Feature {
-public:
-    T* mPtr;
+    void* mPtr;
     int mSize;
+    FeatureType mType;
 
-    FeaturePtr() : mPtr(0), mSize(0) {
-        mType = FEATURE_PTR;
+    Feature() : mType(FEATURE_NULL), mPtr(0), mSize(0) {
     }
 };
 

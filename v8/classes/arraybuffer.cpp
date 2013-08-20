@@ -37,7 +37,7 @@ class_struct* NodeBuffer::getExportStruct() {
 ClassType NodeBuffer::getClassType() {
     return NodeBuffer::getExportStruct()->mType;
 }
-void NodeBuffer::getFeature(Feature* feature) {
+void NodeBuffer::getUnderlying(Feature* feature) {
 }
 void NodeBuffer::onClone(NodeBuffer& current, const NodeBuffer& from) {
     if(from.mLength == 0) {

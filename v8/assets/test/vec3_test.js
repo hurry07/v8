@@ -32,8 +32,8 @@ console.log(mat);
 //console.log(v3);
 //console.log(des);
 //
-//var mT = new clz.matrix(mat);
-//console.log(mT);
+var mT = new clz.matrix(mat);
+console.log(mT);
 //
 //var gl = require('opengl');
 //var shader = require('modules/shader.js');
