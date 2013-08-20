@@ -210,6 +210,8 @@ void Application::init() {
         
         Local<ArrayBuffer> abuf = ArrayBuffer::New(64);
         Local<Float32Array> farr = Float32Array::New(abuf, 0, 16);
+        
+        v8::internal::Heap;
 //        farr->Set(0, Number::New(100));
 //        farr->Set(1, f11);
 //        

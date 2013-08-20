@@ -34,6 +34,7 @@ template <> void clzName<T>::getUnderlying(Feature* feature) {\
 #define MATRIX_IMPL(clzName, size, sizepwo) \
 template <typename T>\
 clzName<T>::clzName() {\
+    LOGI("matrix.release");\
 }\
 template <typename T>\
 clzName<T>::~clzName() {\

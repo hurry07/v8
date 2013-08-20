@@ -16,5 +16,18 @@
          landmarkName = "NodeBuffer::~NodeBuffer()"
          landmarkType = "5">
       </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "v8/core/ClassWrap.h"
+         timestampString = "398709349.659832"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "39"
+         endingLineNumber = "39"
+         landmarkName = "constructorCallback(const FunctionCallbackInfo&lt;Value&gt; &amp;args)"
+         landmarkType = "5">
+      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

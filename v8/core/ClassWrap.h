@@ -35,6 +35,7 @@ public:
 		}
 
 		T* instance = new T();
+        instance->makeRefer();
 		instance->init(args);
 
 		Persistent<External> ret(Isolate::GetCurrent(), External::New(instance));
@@ -86,8 +87,7 @@ public:
      * when js release the last refer of this object
      */
 	static void unrefCallback(Isolate* isolate, Persistent<External>* value, T* parameter) {
-        parameter->release();
-		delete parameter;
+        parameter->releasePersistent();
 		value->Dispose();
 	}
 

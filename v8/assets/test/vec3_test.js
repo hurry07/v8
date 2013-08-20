@@ -20,10 +20,10 @@ var gl  = require('opengl');
 //);
 //console.log(m);
 //
-var mat = new clz.matrix();
-console.log(mat);
-mat.translate(10, 20, 40);
-console.log(mat);
+//var mat = new clz.matrix();
+//console.log(mat);
+//mat.translate(10, 20, 40);
+//console.log(mat);
 //
 //var des = new clz.vector();
 //var v3 = new clz.vector(1,1,0.5);
@@ -32,9 +32,8 @@ console.log(mat);
 //console.log(v3);
 //console.log(des);
 //
-var mT = new clz.matrix(mat);
-console.log(mT);
-//
+//var mT = new clz.matrix(mat);
+//console.log(mT);
 //var gl = require('opengl');
 //var shader = require('modules/shader.js');
 //var vs = shader.createWithFile('v1', 'shader/f1.frg', gl.VERTEX_SHADER);
@@ -51,6 +50,7 @@ var p = program.createWithFile('shader/v1.vtx', 'shader/f1.frg');
 ////var ab = new ArrayBuffer();
 //var fb = new Float32Array();
 
+console.log('split1');
 var atest = new clz.ArrayBuffer();
 
 //var str="Hello happy world!";

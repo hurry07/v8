@@ -8,7 +8,7 @@
 
 #include "ClassBase.h"
 
-ClassBase::ClassBase() : mRelease(true) {
+ClassBase::ClassBase() : mRelease(true), mReferCount(0) {
 }
 ClassBase::~ClassBase() {
 }
@@ -29,9 +29,6 @@ class_struct* ClassBase::getExportStruct() {
 ClassType ClassBase::getClassType() {
     return CLASS_NULL;
 }
-void ClassBase::noRefer() {
-    release();
-}
 bool ClassBase::isReleased() {
     return mRelease;
 }
@@ -39,4 +36,16 @@ const char* ClassBase::toString() {
     return "[object native]";
 }
 void ClassBase::getUnderlying(Feature *feature) {
+}
+void ClassBase::makeRefer() {
+    mReferCount++;
+}
+void ClassBase::disposeRefer() {
+    if(--mReferCount == 0) {
+        release();
+        delete this;
+    }
+}
+void ClassBase::releasePersistent() {
+    disposeRefer();
 }

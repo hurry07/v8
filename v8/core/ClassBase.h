@@ -34,10 +34,6 @@ public:
     virtual void doRelease();
 
     virtual void init(const FunctionCallbackInfo<Value> &args);
-    /**
-     * when js does not ref this object.
-     */
-    virtual void noRefer();
     virtual const char* toString();
 
     /**
@@ -46,7 +42,7 @@ public:
     template<class T>
     static void onClone(const T& current, const T& from) {
     }
-    
+
     virtual ClassType getClassType();
     static class_struct* getExportStruct();
     virtual bool isReleased();
@@ -54,9 +50,22 @@ public:
      * interact without class type message
      */
     virtual void getUnderlying(Feature* feature);
+    /**
+     * call when object other than current object's wrapper has a refer to this object
+     */
+    virtual void makeRefer();
+    /**
+     * dispose that refer
+     */
+    virtual void disposeRefer();
+    /**
+     * a special kind of disposet refer, called when js does not ref this object.
+     */
+    virtual void releasePersistent();
 
 protected:
 	bool mRelease;// has release called on current instance
+    int mReferCount;// other object that refer to current object
 };
 
 #endif /* defined(__v8__ClassBase__) */

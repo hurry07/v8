@@ -11,6 +11,7 @@
 
 #include "ClassBase.h"
 
+#define EXPOSE_PROPERTY(obj, name, attribute) obj->Set(String::New(#name), FunctionTemplate::New(name), PropertyAttribute(attribute))
 #define EXPOSE_METHOD(obj, name, attribute) obj->Set(String::New(#name), FunctionTemplate::New(name), PropertyAttribute(attribute))
 #define EXPOSE_TEMPLATE_METHOD(obj, name, attribute) obj->Set(String::New(#name), FunctionTemplate::New(name<T>), PropertyAttribute(attribute))
 #define METHOD_BEGIN(name, param) static void name(const FunctionCallbackInfo<Value>& param)

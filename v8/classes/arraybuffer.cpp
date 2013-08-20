@@ -18,11 +18,14 @@ NodeBuffer::~NodeBuffer() {
 }
 void NodeBuffer::init(const FunctionCallbackInfo<Value> &args) {
 }
-
+static void byteLength(Local<String> property, const PropertyCallbackInfo<Value>& info) {
+    LOGI("get byteLength");
+}
 static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
     HandleScope scope;
     
     Local<ObjectTemplate> obj = temp->PrototypeTemplate();
+    obj->SetAccessor(String::New("byteLength"), byteLength);
 //    EXPOSE_METHOD(obj, loadAsset, ReadOnly | DontDelete);
 //    EXPOSE_METHOD(obj, getContent, ReadOnly | DontDelete);
     
