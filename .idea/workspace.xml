@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/app/ArrayBufferAllocator.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/app/ArrayBufferAllocator.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/core/extend.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/app/Application.cpp" afterPath="$PROJECT_DIR$/v8/app/Application.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/xcuserdata/jie.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" afterPath="$PROJECT_DIR$/v8.xcodeproj/xcuserdata/jie.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/modules/GLBinding.cpp" afterPath="$PROJECT_DIR$/v8/modules/GLBinding.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tdl/example/example.html" afterPath="$PROJECT_DIR$/tdl/example/example.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/modules/program.js" afterPath="$PROJECT_DIR$/v8/assets/modules/program.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/test/vec3_test.js" afterPath="$PROJECT_DIR$/v8/assets/test/vec3_test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tdl/.idea/workspace.xml" afterPath="$PROJECT_DIR$/tdl/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="" />
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376962441115" ignored="false" />
@@ -117,7 +103,7 @@
           <file leaf-file-name="vec3_test.js" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/v8/assets/test/vec3_test.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="11" column="39" selection-start="296" selection-end="296" vertical-scroll-proportion="0.0">
+                <state line="13" column="39" selection-start="339" selection-end="339" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -575,7 +561,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/test/vec3_test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="39" selection-start="296" selection-end="296" vertical-scroll-proportion="0.0">
+        <state line="13" column="39" selection-start="339" selection-end="339" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
