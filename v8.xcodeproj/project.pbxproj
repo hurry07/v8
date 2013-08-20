@@ -15,6 +15,8 @@
 		186BE22617BCE4E5000E8A62 /* ClassBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE22417BCE4E5000E8A62 /* ClassBase.cpp */; };
 		18A6D21F17C3646A004931FD /* libv8_base.x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A6D21D17C36469004931FD /* libv8_base.x64.a */; };
 		18A6D22017C3646A004931FD /* libv8_snapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A6D21E17C3646A004931FD /* libv8_snapshot.a */; };
+		18A6D22617C3752B004931FD /* arraybuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D22417C3752B004931FD /* arraybuffer.cpp */; };
+		18A6D22917C37C39004931FD /* buffers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D22717C37C39004931FD /* buffers.cpp */; };
 		18AFB4BE17AE1C6300B7AFDA /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18AFB4BC17AE1C6300B7AFDA /* Application.cpp */; };
 		18AFB4C917AE782000B7AFDA /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18AFB4C717AE782000B7AFDA /* Console.cpp */; };
 		18E22F3917BA561B0079D25F /* assert.js in Sources */ = {isa = PBXBuildFile; fileRef = 18E2252217BA56110079D25F /* assert.js */; };
@@ -1978,6 +1980,10 @@
 		186BE22517BCE4E5000E8A62 /* ClassBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassBase.h; sourceTree = "<group>"; };
 		18A6D21D17C36469004931FD /* libv8_base.x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.x64.a; path = ../libv8_base.x64.a; sourceTree = "<group>"; };
 		18A6D21E17C3646A004931FD /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = ../libv8_snapshot.a; sourceTree = "<group>"; };
+		18A6D22417C3752B004931FD /* arraybuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arraybuffer.cpp; sourceTree = "<group>"; };
+		18A6D22517C3752B004931FD /* arraybuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arraybuffer.h; sourceTree = "<group>"; };
+		18A6D22717C37C39004931FD /* buffers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = buffers.cpp; sourceTree = "<group>"; };
+		18A6D22817C37C39004931FD /* buffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffers.h; sourceTree = "<group>"; };
 		18AFB48917AE06A900B7AFDA /* libv8_base.x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.x64.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_base.x64.a; sourceTree = "<group>"; };
 		18AFB48B17AE06A900B7AFDA /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_snapshot.a; sourceTree = "<group>"; };
 		18AFB4BC17AE1C6300B7AFDA /* Application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
@@ -4544,6 +4550,8 @@
 		185BF54817BBE5D900F7AE09 /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				18A6D22417C3752B004931FD /* arraybuffer.cpp */,
+				18A6D22517C3752B004931FD /* arraybuffer.h */,
 				18CCF9A517C07E3600094EFF /* matrix_inl.h */,
 				18CCF9A317C06C9C00094EFF /* vector_inl.h */,
 				18CCF99B17BFFD0F00094EFF /* vector.h */,
@@ -4558,6 +4566,8 @@
 				184407AF17BE91C400201D2C /* NativeClass.h */,
 				18CCF99C17BFFF9700094EFF /* matrix.h */,
 				18EBCD6B17C0C5FE00CDE948 /* ptr_util.h */,
+				18A6D22717C37C39004931FD /* buffers.cpp */,
+				18A6D22817C37C39004931FD /* buffers.h */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -9296,6 +9306,8 @@
 				182F14DF17BE2AD0000F3A4C /* glmopt.cpp in Sources */,
 				184407B017BE91C400201D2C /* NativeClass.cpp in Sources */,
 				18EE2B8F17C30E0000161023 /* ArrayBufferAllocator.cpp in Sources */,
+				18A6D22617C3752B004931FD /* arraybuffer.cpp in Sources */,
+				18A6D22917C37C39004931FD /* buffers.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

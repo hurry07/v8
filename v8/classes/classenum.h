@@ -19,7 +19,9 @@ enum ClassType {
     CLASS_VEC2,
     CLASS_VEC3,
     CLASS_VEC4,
-    CLASS_FILE
+    CLASS_FILE,
+    
+    CLASS_ARRAY_BUFFER
 };
 
 enum FeatureType {

@@ -44,12 +44,14 @@ console.log(mat);
 var program = require('modules/program.js');
 var p = program.createWithFile('shader/v1.vtx', 'shader/f1.frg');
 
-var farr = new Float32Array([100, 20, 30]);
-gl.uniform1fv(0, mat);
-gl.uniform1fv(0, farr);
+//var farr = new Float32Array([100, 20, 30]);
+//gl.uniform1fv(0, mat);
+//gl.uniform1fv(0, farr);
+//
+////var ab = new ArrayBuffer();
+//var fb = new Float32Array();
 
-//var ab = new ArrayBuffer();
-var fb = new Float32Array();
+var atest = new clz.ArrayBuffer();
 
 //var str="Hello happy world!";
 //console.log(str.slice(6,11));

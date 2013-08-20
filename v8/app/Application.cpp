@@ -208,27 +208,26 @@ void Application::init() {
              "require('test/vec3_test.js');"
              );
         
-        Local<ArrayBuffer> b11 = ArrayBuffer::New(8);
-        Local<Float32Array> f11 = Float32Array::New(b11, 0, 2);
-        f11->Set(0, Number::New(58));
-        f11->Set(0, Number::New(59));
+//        Local<ArrayBuffer> b11 = ArrayBuffer::New(8);
+//        Local<Float32Array> f11 = Float32Array::New(b11, 0, 2);
+//        f11->Set(0, Number::New(58));
+//        f11->Set(0, Number::New(59));
+//        
+//        Local<ArrayBuffer> abuf = ArrayBuffer::New(64);
+//        Local<Float32Array> farr = Float32Array::New(abuf, 0, 16);
+//        farr->Set(0, Number::New(100));
+//        farr->Set(1, f11);
+//        
+//        float* fptr = (float*)farr->GetIndexedPropertiesExternalArrayData();
+//        int flen = farr->Length();
+//
+////        ArrayBuffer::Contents c = farr->Buffer()->d;
+////        void* av = farr->BaseAddress();
+////        LOGI("-----%f", av);
+////        Handle<i::JSArrayBuffer> iab1 = v8::Utils::OpenHandle(*ab1);
+//        
+//        LOGI("---%p %f %d", fptr, fptr[1]);
         
-        Local<ArrayBuffer> abuf = ArrayBuffer::New(64);
-        Local<Float32Array> farr = Float32Array::New(abuf, 0, 16);
-        farr->Set(0, Number::New(100));
-        farr->Set(1, f11);
-        
-        float* fptr = (float*)farr->GetIndexedPropertiesExternalArrayData();
-        int flen = farr->Length();
-
-//        ArrayBuffer::Contents c = farr->Buffer()->d;
-//        void* av = farr->BaseAddress();
-//        LOGI("-----%f", av);
-//        Handle<i::JSArrayBuffer> iab1 = v8::Utils::OpenHandle(*ab1);
-        
-        LOGI("---%p %f %d", fptr, fptr[1]);
-        
-
 //        test1(abuf);
 //        test1(abuf);
 //        {

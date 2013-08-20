@@ -18,6 +18,7 @@ using namespace v8;
 #include "vector.h"
 #include "vector_inl.h"
 #include "file.h"
+#include "arraybuffer.h"
 #include "../core/ClassWrap.h"
 
 template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& args) {
@@ -27,6 +28,8 @@ template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& arg
     ClassWrap<Glm>::expose(global);
     ClassWrap<Point>::expose(global);
     ClassWrap<JSFile>::expose(global);
+    
+    ClassWrap<NodeBuffer>::expose(global);
 
     ClassWrap<Vec4<float>>::expose("vec4f", global);
     ClassWrap<Vec4<int>>::expose("vec4i", global);
