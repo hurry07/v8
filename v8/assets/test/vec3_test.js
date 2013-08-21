@@ -75,7 +75,14 @@ farr[0] = 100;
 farr[1] = 101;
 farr[2] = 102;
 farr[3] = 103;
-console.log('Float32Array', farr[0], farr[1], farr[2], farr[3], farr[4]);
+console.log('Float32Array', farr.length, farr[0], farr[1], farr[2], farr[3], farr[4]);
+
+//var arr = [100, 101];
+//console.log(arr.length, arr[0], arr[1]);
+//arr.length = 100;
+//arr[0] = 200;
+//console.log(arr.length, arr[0], arr[1], arr[3]);
+//console.log(arr.__proto__.length, arr.__proto__[0]);
 
 //console.log('split1');
 //var atest = new clz.ArrayBuffer();

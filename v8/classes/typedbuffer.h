@@ -239,15 +239,19 @@ static void getByIndex(uint32_t index, const PropertyCallbackInfo<Value>& info) 
 template <typename T>
 static void setByIndex(uint32_t index, Local<Value> value, const PropertyCallbackInfo<Value>& info) {
     ClassBase* ptr = internalPtr<ClassBase>(info);
+    info.GetReturnValue().Set(value);
+
     if(ptr == 0 || ptr->getClassType() != TypedBuffer<T>::mClassType) {
         return;
     }
-
     TypedBuffer<T>* view = static_cast<TypedBuffer<T>*>(ptr);
     if(index >= view->mByteLength / TypedBuffer<T>::mElementBytes) {
         return;
     }
     view->set_(index, unwrap<T>(value));
+}
+void qqq(uint32_t index, const PropertyCallbackInfo<Integer>& info) {
+    LOGI("qqq %d", index);
 }
 
 template <typename T>
@@ -258,7 +262,9 @@ static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp)
     obj->SetAccessor(String::New("byteOffset"), byteOffset<T>);
     obj->SetAccessor(String::New("byteLength"), byteLength<T>);
     obj->SetAccessor(String::New("length"), length<T>);
-    obj->SetIndexedPropertyHandler(getByIndex<T>, setByIndex<T>);
+
+    Local<ObjectTemplate> ins = temp->InstanceTemplate();
+    ins->SetIndexedPropertyHandler(getByIndex<T>, setByIndex<T>);
 
     return scope.Close(temp->GetFunction());
 }
