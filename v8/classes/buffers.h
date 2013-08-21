@@ -20,6 +20,8 @@ public:
     NodeBuffer* mBuffer;
     long mByteOffset;
     long mByteLength;
+
+    virtual char* value_ptr();
 };
 
 #endif /* defined(__v8__buffers__) */

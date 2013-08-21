@@ -153,7 +153,7 @@ long NodeBuffer::writeBytes(long offset, char* bytes, long length) {
             length = mLength - offset;
         }
     }
-    memcpy(mData, bytes, length);
+    memcpy(mData + offset, bytes, length);
     return length;
 }
 long NodeBuffer::readBytes(long offset, char* dest, long length) {
@@ -166,6 +166,6 @@ long NodeBuffer::readBytes(long offset, char* dest, long length) {
             length = mLength - offset;
         }
     }
-    memcpy(dest, mData, length);
+    memcpy(dest, mData + offset, length);
     return length;
 }

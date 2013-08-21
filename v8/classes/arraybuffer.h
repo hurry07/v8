@@ -37,7 +37,7 @@ public:
     long _writeDatas(long offset, int eSize, T* value, int length);
     template<typename T>
     long _readDatas(long offset, int eSize, T* dest, int length);
-    
+
     static bool isView(ClassType type);
 
     /**

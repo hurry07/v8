@@ -11,3 +11,6 @@ NodeBufferView::NodeBufferView() : mBuffer(0), mByteOffset(0), mByteLength(0) {
 }
 NodeBufferView::~NodeBufferView() {
 }
+char* NodeBufferView::value_ptr() {
+    return mBuffer->mData + mByteOffset;
+}

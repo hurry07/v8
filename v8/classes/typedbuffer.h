@@ -13,30 +13,6 @@
 #include "buffers.h"
 #include "../core/ClassWrap.h"
 
-//static ClassType getArrayClassType(ExternalArrayType type) {
-//    switch (type) {
-//        case kExternalByteArray:
-//            return CLASS_Int8Array;
-//        case kExternalUnsignedByteArray:
-//            return CLASS_Uint8Array;
-//        case kExternalShortArray:
-//            return CLASS_Int16Array;
-//        case kExternalUnsignedShortArray:
-//            return CLASS_Uint16Array;
-//        case kExternalIntArray:
-//            return CLASS_Int32Array;
-//        case kExternalUnsignedIntArray:
-//            return CLASS_Uint32Array;
-//        case kExternalFloatArray:
-//            return CLASS_Float32Array;
-//        case kExternalDoubleArray:
-//            return CLASS_Float64Array;
-//        case kExternalPixelArray:
-//            return CLASS_Int8Array;
-//    }
-//    return CLASS_NULL;
-//}
-
 template <typename T>
 class TypedBuffer : public NodeBufferView {
 public:
@@ -59,33 +35,32 @@ public:
     static class_struct* getExportStruct();
     
     virtual void init(const FunctionCallbackInfo<Value> &args);
-//    virtual void releasePersistent();
 
-private:
+public:
     static int mElementBytes;
     static const char* mClassName;
     static ClassType mClassType;
-
-    NodeBuffer* mBuffer;
 };
 
 template <typename T>
 static void initWithArray(TypedBuffer<T>* buffer, Handle<Array>& array);
 
-#define INIT_WITH_ARRAY(T, getter) \
-void initWithArray(TypedBuffer<T>* buffer, Handle<Array>& array) {\
-    for (int i = 0, aLen = array->Length(); i < aLen; i++) {\
-        buffer->set_(i, array->Get(i)->getter());\
-    }\
+template <typename T>
+static T unwrap(Local<Value> arg);// unwrap v8::Object to raw
+
+#define JS_UNWRAP(T, getter) \
+template<> T unwrap<T>(Local<Value> arg) {\
+    return arg->getter();\
 }
-INIT_WITH_ARRAY(int8_t, Int32Value);
-INIT_WITH_ARRAY(uint8_t, Uint32Value);
-INIT_WITH_ARRAY(int16_t, Int32Value);
-INIT_WITH_ARRAY(uint16_t, Uint32Value);
-INIT_WITH_ARRAY(int32_t, Int32Value);
-INIT_WITH_ARRAY(uint32_t, Uint32Value);
-INIT_WITH_ARRAY(float, NumberValue);
-INIT_WITH_ARRAY(double, NumberValue);
+
+JS_UNWRAP(int8_t, Int32Value);
+JS_UNWRAP(uint8_t, Uint32Value);
+JS_UNWRAP(int16_t, Int32Value);
+JS_UNWRAP(uint16_t, Uint32Value);
+JS_UNWRAP(int32_t, Int32Value);
+JS_UNWRAP(uint32_t, Uint32Value);
+JS_UNWRAP(float, NumberValue);
+JS_UNWRAP(double, NumberValue);
 
 static int getElemenetSize(ClassType type) {
     switch (type) {
@@ -107,7 +82,7 @@ static int getElemenetSize(ClassType type) {
 }
 
 template <typename T>
-TypedBuffer<T>::TypedBuffer() : mBuffer(0) {
+TypedBuffer<T>::TypedBuffer() {
 }
 template <typename T>
 TypedBuffer<T>::~TypedBuffer() {
@@ -116,33 +91,78 @@ template <typename T>
 void TypedBuffer<T>::subarray(TypedBuffer<T>* arr, int begin, int end) {
 }
 
+/**
+ * create a ArrayBuffer object with given byte length, binding it to current object, 
+ * and return a pointer to its inner NodeBuffer
+ */
+static NodeBuffer* createArrayBuffer(Local<Object>& thiz, long length) {
+    Local<Object> buffer = ClassWrap<NodeBuffer>::newInstance();
+    thiz->Set(String::New("buffer"), buffer, PropertyAttribute(ReadOnly | DontDelete));
+
+    NodeBuffer* mBuffer = internalPtr<NodeBuffer>(buffer);
+    mBuffer->allocate(length);
+    
+    return mBuffer;
+}
+
 template <typename T>
 void TypedBuffer<T>::init(const FunctionCallbackInfo<Value> &args) {
     if(args.Length() == 0 || !args.IsConstructCall()) {
         return;
     }
 
-    Local<Object> typed = args.This();
+    Local<Object> thiz = args.This();
     if(args[0]->IsTypedArray()) {
+
+        // TypedArray should not be used here
     } else if(args[0]->IsArray()) {
-        Local<Object> buffer = ClassWrap<NodeBuffer>::newInstance();
-        typed->Set(String::New("buffer"), buffer, PropertyAttribute(ReadOnly | DontDelete));
 
+        // init with raw array
         Handle<Array> array = Handle<Array>::Cast(args[0]);
-        mBuffer = internalPtr<NodeBuffer>(buffer);
-        mBuffer->allocate(array->Length() * mElementBytes);
+        mBuffer = createArrayBuffer(thiz, mByteLength = array->Length() * mElementBytes);
 
-        initWithArray(this, array);
+        // populate data
+        for(int i = 0, aLen = array->Length(); i < aLen; i++) {
+            this->set_(i, unwrap<T>(array->Get(i)));
+        }
     } else {
+
         ClassBase* ptr = internalArg<ClassBase>(args[0]);
         if(ptr == 0) {
             return;
         }
         if(ptr->getClassType() == CLASS_ArrayBuffer) {
+            // init using ArrayBuffer, point
+            mBuffer = internalArg<NodeBuffer>(args[0]);
+
             if(args.Length() == 1) {
-                mBuffer = internalArg<NodeBuffer>(args[0]);
                 mByteOffset = 0;
-                mByteLength = 0;
+                mByteLength = mBuffer->mLength;
+                if(mByteLength % mElementBytes != 0) {
+                    args.GetReturnValue().Set(ThrowException(String::New("There is bytes left when create TypedBuffer")));
+                }
+            } else if(args.Length() == 2) {
+                mByteOffset = args[1]->Int32Value();
+                mByteLength = mBuffer->mLength - mByteOffset;
+                if(mByteLength % mElementBytes != 0) {
+                    args.GetReturnValue().Set(ThrowException(String::New("There is bytes left when create TypedBuffer")));
+                }
+            } else {
+                mByteOffset = args[1]->Int32Value();
+                mByteLength = args[2]->Int32Value();
+                if(mByteOffset + mByteLength > mBuffer->mLength) {
+                    args.GetReturnValue().Set(ThrowException(String::New("TypedBuffer's data excceed the capacity of underlying ArrayBuffer")));
+                }
+            }
+        } else if(NodeBuffer::isView(ptr->getClassType())) {
+
+            // init using other TypedArray
+            if(ptr->getClassType() == mClassType) {
+                TypedBuffer<T>* from = static_cast<TypedBuffer<T>*>(ptr);
+                mBuffer = createArrayBuffer(thiz, mByteLength = from->mByteLength);
+                mBuffer->writeBytes(0, from->value_ptr(), mByteLength);
+            } else {
+                args.GetReturnValue().Set(ThrowException(String::New("TypedArray convert not implemented")));
             }
         }
     }
@@ -205,7 +225,7 @@ static void length(Local<String> property, const PropertyCallbackInfo<Value>& in
 template <typename T>
 static void getByIndex(uint32_t index, const PropertyCallbackInfo<Value>& info) {
     ClassBase* ptr = internalPtr<ClassBase>(info);
-    if(ptr == 0 || ptr->getClassType() != TypedBuffer<T>::getExportStruct()->mType) {
+    if(ptr == 0 || ptr->getClassType() != TypedBuffer<T>::mClassType) {
         return;
     }
 
@@ -214,51 +234,21 @@ static void getByIndex(uint32_t index, const PropertyCallbackInfo<Value>& info) 
         return;
     }
 
-    switch (TypedBuffer<T>::mClassType) {
-        case CLASS_Int8Array:
-        case CLASS_Int16Array:
-        case CLASS_Int32Array:
-            info.GetReturnValue().Set(Integer::New(view->get_(index)));
-            break;
-        case CLASS_Uint8Array:
-        case CLASS_Uint16Array:
-        case CLASS_Uint32Array:
-            info.GetReturnValue().Set(Integer::NewFromUnsigned(view->get_(index)));
-            break;
-        default:
-            info.GetReturnValue().Set(Number::New(view->get_(index)));
-            break;
-    }
+    info.GetReturnValue().Set(view->get_(index));
 }
 template <typename T>
 static void setByIndex(uint32_t index, Local<Value> value, const PropertyCallbackInfo<Value>& info) {
     ClassBase* ptr = internalPtr<ClassBase>(info);
-    if(ptr == 0 || ptr->getClassType() != TypedBuffer<T>::getExportStruct()->mType) {
+    if(ptr == 0 || ptr->getClassType() != TypedBuffer<T>::mClassType) {
         return;
     }
-    
+
     TypedBuffer<T>* view = static_cast<TypedBuffer<T>*>(ptr);
     if(index >= view->mByteLength / TypedBuffer<T>::mElementBytes) {
         return;
     }
-
-    switch (TypedBuffer<T>::mClassType) {
-        case CLASS_Int8Array:
-        case CLASS_Int16Array:
-        case CLASS_Int32Array:
-            view->set_(index, value->Int32Value());
-            break;
-        case CLASS_Uint8Array:
-        case CLASS_Uint16Array:
-        case CLASS_Uint32Array:
-            view->set_(index, value->Uint32Value());
-            break;
-        default:
-            view->set_(index, value->NumberValue());
-            break;
-    }
+    view->set_(index, unwrap<T>(value));
 }
-
 
 template <typename T>
 static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
@@ -276,7 +266,7 @@ static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp)
 template <typename T>
 class_struct* TypedBuffer<T>::getExportStruct() {
     static class_struct mTemplate = {
-        initClass, TypedBuffer<T>::mClassName, TypedBuffer<T>::mClassType
+        initClass<T>, TypedBuffer<T>::mClassName, TypedBuffer<T>::mClassType
     };
     return &mTemplate;
 }

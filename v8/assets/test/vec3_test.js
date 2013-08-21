@@ -63,11 +63,19 @@ var clz = require('nativeclasses');
 //f1[3] = 15;
 //console.log(f1[0], f1[1], f1[2], f1[3]);
 
-var ab = new clz.ArrayBuffer(10);
+var ab = new clz.ArrayBuffer(16);
 var slice = ab.slice(10, 20);
 console.log('slice', slice);
 console.log('slice', ab.isView(), ab.byteLength);
-var farr = new clz.Float32Array(3);
+var farr = new clz.Float32Array(ab, 0, 4);
+console.log('Float32Array', farr.length);
+console.log('Float32Array', farr.byteOffset, farr.byteLength);
+console.log('Float32Array', farr[0], farr[1], farr[2], farr[3], farr[4]);
+farr[0] = 100;
+farr[1] = 101;
+farr[2] = 102;
+farr[3] = 103;
+console.log('Float32Array', farr[0], farr[1], farr[2], farr[3], farr[4]);
 
 //console.log('split1');
 //var atest = new clz.ArrayBuffer();
