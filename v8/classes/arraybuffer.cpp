@@ -11,6 +11,11 @@
 
 NodeBuffer::NodeBuffer() : mData(0), mLength(0) {
 }
+NodeBuffer::NodeBuffer(int length) : mData(0), mLength(0) {
+    if(length > 0) {
+        mData = new char[mLength = length];
+    }
+}
 NodeBuffer::~NodeBuffer() {
     if(mLength > 0) {
         delete[] mData;
@@ -33,13 +38,14 @@ static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp)
 }
 class_struct* NodeBuffer::getExportStruct() {
     static class_struct mTemplate = {
-        initClass, "ArrayBuffer", CLASS_ARRAY_BUFFER
+        initClass, "ArrayBuffer", CLASS_ArrayBuffer
     };
     return &mTemplate;
 }
 ClassType NodeBuffer::getClassType() {
     return NodeBuffer::getExportStruct()->mType;
 }
+
 void NodeBuffer::getUnderlying(Feature* feature) {
 }
 void NodeBuffer::onClone(NodeBuffer& current, const NodeBuffer& from) {
@@ -48,9 +54,29 @@ void NodeBuffer::onClone(NodeBuffer& current, const NodeBuffer& from) {
     }
     current.mData = new char[current.mLength = from.mLength];
 }
-int NodeBuffer::writeBytes(int offset, char* bytes, int length) {
-    return 0;// TODO
+long NodeBuffer::writeBytes(long offset, char* bytes, long length) {
+    if(offset < 0 || offset + length > mLength) {
+        LOGE("ArrayBuffer write excceed from:%ld write:%ld length:%ld", offset, length, mLength);
+        if(offset < 0) {
+            offset = 0;
+        }
+        if(offset + length > mLength) {
+            length = mLength - offset;
+        }
+    }
+    memcpy(mData, bytes, length);
+    return length;
 }
-int NodeBuffer::readBytes(int offset, char* dest, int length) {
-    return 0;
+long NodeBuffer::readBytes(long offset, char* dest, long length) {
+    if(offset < 0 || offset + length > mLength) {
+        LOGE("ArrayBuffer write excceed from:%ld write:%ld length:%ld", offset, length, mLength);
+        if(offset < 0) {
+            offset = 0;
+        }
+        if(offset + length > mLength) {
+            length = mLength - offset;
+        }
+    }
+    memcpy(dest, mData, length);
+    return length;
 }

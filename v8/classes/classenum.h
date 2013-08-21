@@ -21,7 +21,15 @@ enum ClassType {
     CLASS_VEC4,
     CLASS_FILE,
     
-    CLASS_ARRAY_BUFFER
+    CLASS_ArrayBuffer,
+    CLASS_Int8Array,
+    CLASS_Uint8Array,
+    CLASS_Int16Array,
+    CLASS_Uint16Array,
+    CLASS_Int32Array,
+    CLASS_Uint32Array,
+    CLASS_Float32Array,
+    CLASS_Float64Array
 };
 
 enum FeatureType {

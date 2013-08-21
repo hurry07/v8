@@ -11,12 +11,16 @@
 #include "../core/ClassWrap.h"
 #include "../core/Module.h"
 #include "../core/v8Utils.h"
+
 #include "../modules/modules.h"
 #include "../modules/CCImage.h"
 #include "../utils/AssetUtil.h"
 #include "../global.h"
+
 #include "../classes/Point.h"
 #include "../classes/vector.h"
+#include "../classes/arraybuffer.h"
+
 #include "ArrayBufferAllocator.h"
 
 #include <string>
@@ -175,6 +179,19 @@ void test1(Local<ArrayBuffer>& abuf) {
     free(cont1.Data());
 }
 
+class A {
+public:
+    virtual void init() {
+        LOGI("A.init");
+    }
+};
+class B : public A {
+public:
+    virtual void init() {
+        LOGI("B.init");
+    }
+};
+
 void Application::init() {
 	testImageLoad("battle/battle_bg_small.jpg");
 	testImageLoad("battle/battlearea_bg.png");
@@ -208,10 +225,24 @@ void Application::init() {
              "require('test/vec3_test.js');"
              );
         
-        Local<ArrayBuffer> abuf = ArrayBuffer::New(64);
-        Local<Float32Array> farr = Float32Array::New(abuf, 0, 16);
+        B* b = new B();
+        b->init();
+        A* ab = b;
+        ab->init();
         
-        v8::internal::Heap;
+//        Local<ArrayBuffer> abuf = ArrayBuffer::New(64);
+//        Local<Float32Array> farr = Float32Array::New(abuf, 0, 16);
+//
+//        NodeBuffer nb(16);
+//        nb._write<float>(0, 100);
+//        LOGI("readed:%f", nb._read<float>(0));
+//
+//        float farr11[] = {1, 2, 3, 4};
+//        float destf[5];
+//        nb._writeDatas(0, farr11, 4);
+//        nb._readDatas(0, destf, 5);
+//        LOGI("");
+
 //        farr->Set(0, Number::New(100));
 //        farr->Set(1, f11);
 //        

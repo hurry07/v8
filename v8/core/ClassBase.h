@@ -40,24 +40,19 @@ public:
      * you can overwrite this method if you want a deep copy
      */
     template<class T>
-    static void onClone(const T& current, const T& from) {
+    static void onClone(T& current, const T& from) {
     }
-
     virtual ClassType getClassType();
     static class_struct* getExportStruct();
+
+    /**
+     * if js has call release on this object
+     */
     virtual bool isReleased();
     /**
      * interact without class type message
      */
     virtual void getUnderlying(Feature* feature);
-    /**
-     * call when object other than current object's wrapper has a refer to this object
-     */
-    virtual void makeRefer();
-    /**
-     * dispose that refer
-     */
-    virtual void disposeRefer();
     /**
      * a special kind of disposet refer, called when js does not ref this object.
      */
@@ -65,7 +60,6 @@ public:
 
 protected:
 	bool mRelease;// has release called on current instance
-    int mReferCount;// other object that refer to current object
 };
 
 #endif /* defined(__v8__ClassBase__) */

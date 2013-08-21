@@ -35,7 +35,6 @@ public:
 		}
 
 		T* instance = new T();
-        instance->makeRefer();
 		instance->init(args);
 
 		Persistent<External> ret(Isolate::GetCurrent(), External::New(instance));
@@ -49,15 +48,24 @@ public:
      */
     static void release(const FunctionCallbackInfo<Value>& info) {
 		HandleScope scope(node_isolate);
-        internalPtr<T>(info)->release();
+        ClassBase* t = internalPtr<ClassBase>(info);
+        if(t != 0) {
+            t->release();
+        }
     }
     static void init(const FunctionCallbackInfo<Value>& info) {
 		HandleScope scope(node_isolate);
-        internalPtr<T>(info)->init(info);
+        ClassBase* t = internalPtr<ClassBase>(info);
+        if(t != 0) {
+            t->init(info);
+        }
     }
     static void toString(const FunctionCallbackInfo<Value>& info) {
 		HandleScope scope(node_isolate);
-        info.GetReturnValue().Set(String::New(internalPtr<T>(info)->toString()));
+        ClassBase* t = internalPtr<ClassBase>(info);
+        if(t != 0) {
+            info.GetReturnValue().Set(String::New(t->toString()));
+        }
     }
 
     /**

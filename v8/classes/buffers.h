@@ -9,6 +9,18 @@
 #ifndef __v8__buffers__
 #define __v8__buffers__
 
-#include <iostream>
+#include "arraybuffer.h"
+#include "../core/ClassBase.h"
+
+class NodeBufferView : public ClassBase {
+public:
+    NodeBufferView();
+    virtual ~NodeBufferView();
+
+protected:
+    NodeBuffer* mBuffer;
+    long mByteOffset;
+    long mByteLength;
+};
 
 #endif /* defined(__v8__buffers__) */

@@ -19,6 +19,7 @@ using namespace v8;
 #include "vector_inl.h"
 #include "file.h"
 #include "arraybuffer.h"
+#include "typedbuffer.h"
 #include "../core/ClassWrap.h"
 
 template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& args) {
@@ -30,6 +31,14 @@ template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& arg
     ClassWrap<JSFile>::expose(global);
     
     ClassWrap<NodeBuffer>::expose(global);
+    ClassWrap<TypedBuffer<int8_t>>::expose(global);
+    ClassWrap<TypedBuffer<uint8_t>>::expose(global);
+    ClassWrap<TypedBuffer<int16_t>>::expose(global);
+    ClassWrap<TypedBuffer<uint16_t>>::expose(global);
+    ClassWrap<TypedBuffer<int32_t>>::expose(global);
+    ClassWrap<TypedBuffer<uint32_t>>::expose(global);
+    ClassWrap<TypedBuffer<float>>::expose(global);
+    ClassWrap<TypedBuffer<double>>::expose(global);
 
     ClassWrap<Vec4<float>>::expose("vec4f", global);
     ClassWrap<Vec4<int>>::expose("vec4i", global);

@@ -7,8 +7,9 @@
 //
 
 #include "ClassBase.h"
+#include "v8Utils.h"
 
-ClassBase::ClassBase() : mRelease(true), mReferCount(0) {
+ClassBase::ClassBase() : mRelease(true) {
 }
 ClassBase::~ClassBase() {
 }
@@ -22,6 +23,9 @@ void ClassBase::release() {
 void ClassBase::doRelease() {
 }
 void ClassBase::init(const FunctionCallbackInfo<Value> &args) {
+    ClassBase* t1 = internalArg<ClassBase>(args.This());
+    ClassBase* t2 = internalArg<ClassBase>(args.Holder());
+    LOGI("ClassBase.init.args:%d %p %p", args.IsConstructCall(), t1, t2);
 }
 class_struct* ClassBase::getExportStruct() {
     return 0;
@@ -37,15 +41,7 @@ const char* ClassBase::toString() {
 }
 void ClassBase::getUnderlying(Feature *feature) {
 }
-void ClassBase::makeRefer() {
-    mReferCount++;
-}
-void ClassBase::disposeRefer() {
-    if(--mReferCount == 0) {
-        release();
-        delete this;
-    }
-}
 void ClassBase::releasePersistent() {
-    disposeRefer();
+    release();
+    delete this;
 }

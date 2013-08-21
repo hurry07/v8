@@ -17,6 +17,8 @@
 class NodeBuffer : public ClassBase {
 public:
 	NodeBuffer();
+	NodeBuffer(int length);
+
 	virtual ~NodeBuffer();
     virtual void init(const FunctionCallbackInfo<Value> &args);
 
@@ -26,52 +28,50 @@ public:
     static void onClone(NodeBuffer& current, const NodeBuffer& from);
 
     template<typename T>
-    void _write(int offset, T value);
+    void _write(long offset, int eSize, T value);
     template<typename T>
-    T _read(int offset);
+    T _read(long offset, int eSize);
 
     template<typename T>
-    int _writeDatas(int offset, T* value, int length);
+    long _writeDatas(long offset, int eSize, T* value, int length);
     template<typename T>
-    int _readDatas(int offset, T* dest, int length);
+    long _readDatas(long offset, int eSize, T* dest, int length);
 
     /**
      * write byte into current buffer
      * @return bytes written
      */
-    virtual int writeBytes(int offset, char* bytes, int length);
-    virtual int readBytes(int offset, char* dest, int length);
+    virtual long writeBytes(long offset, char* bytes, long length);
+    virtual long readBytes(long offset, char* dest, long length);
 
 private:
-    int mLength;
+    long mLength;
     char* mData;
 };
 
 template<typename T>
-void NodeBuffer::_write(int offset, T value) {
-    if(offset < 0 || offset + sizeof(T) > mLength) {
-        LOGE("ArrayBuffer write excceed from:%d write:%d length:%d", offset, sizeof(T), mLength);
+void NodeBuffer::_write(long offset, int eSize, T value) {
+    if(offset < 0 || offset + eSize > mLength) {
+        LOGE("ArrayBuffer write excceed from:%ld write:%d length:%ld", offset, eSize, mLength);
     }
-    static_cast<T*>(mData + offset)[0] = value;
+    *((T*)(mData + offset)) = value;
 }
 template<typename T>
-T NodeBuffer::_read(int offset) {
-    if(offset < 0 || offset + sizeof(T) > mLength) {
-        LOGE("ArrayBuffer read excceed from:%d write:%d length:%d", offset, sizeof(T), mLength);
+T NodeBuffer::_read(long offset, int eSize) {
+    if(offset < 0 || offset + eSize > mLength) {
+        LOGE("ArrayBuffer read excceed from:%ld write:%d length:%ld", offset, eSize, mLength);
     }
-    return *static_cast<T*>(mData + offset);
+    return *((T*)(mData + offset));
 }
 template<typename T>
-int NodeBuffer::_writeDatas(int offset, T* value, int length) {
-    int sizeOf = sizeof(T);
-    int written = writeBytes(offset, static_cast<char*>(value), length * sizeOf);
-    return written / sizeOf;
+long NodeBuffer::_writeDatas(long offset, int eSize, T* value, int length) {
+    int written = writeBytes(offset, (char*)(value), length * eSize);
+    return written / eSize;
 }
 template<typename T>
-int NodeBuffer::_readDatas(int offset, T* dest, int length) {
-    int sizeOf = sizeof(T);
-    int readen = readBytes(offset, static_cast<char*>(dest), length * sizeOf);
-    return readen / sizeOf;
+long NodeBuffer::_readDatas(long offset, int eSize, T* dest, int length) {
+    int readen = readBytes(offset, (char*)(dest), length * eSize);
+    return readen / eSize;
 }
 
 #endif /* defined(__v8__NodeBuffer__) */

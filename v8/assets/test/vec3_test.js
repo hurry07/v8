@@ -8,7 +8,9 @@
 console.log('---------------');
 var clz = require('nativeclasses');
 var glm = new clz.glm();
-var gl  = require('opengl');
+//glm.init(111);
+//glm.init.call({}, 222);
+//var gl  = require('opengl');
 //console.log(glm);
 //
 //console.log(new clz.vec4f(new clz.vec2f(15, 21, 31, 41), new clz.vec2f(29, 39, 23, 17)));
@@ -19,6 +21,9 @@ var gl  = require('opengl');
 //                          new clz.vec4f(0, 1, 0, 1)
 //);
 //console.log(m);
+var v2 = new clz.vec2f(10, 10);
+v2.init(20, 28);
+console.log(v2);
 //
 //var mat = new clz.matrix();
 //console.log(mat);
@@ -40,8 +45,8 @@ var gl  = require('opengl');
 //var fs = shader.createWithFile('f1', 'shader/v1.vtx', gl.FRAGMENT_SHADER);
 //console.log(vs.getGLId(), fs.getGLId());
 
-var program = require('modules/program.js');
-var p = program.createWithFile('shader/v1.vtx', 'shader/f1.frg');
+//var program = require('modules/program.js');
+//var p = program.createWithFile('shader/v1.vtx', 'shader/f1.frg');
 
 //var farr = new Float32Array([100, 20, 30]);
 //gl.uniform1fv(0, mat);
@@ -50,8 +55,17 @@ var p = program.createWithFile('shader/v1.vtx', 'shader/f1.frg');
 ////var ab = new ArrayBuffer();
 //var fb = new Float32Array();
 
-console.log('split1');
-var atest = new clz.ArrayBuffer();
+var farr = new Float32Array([10, 11, 12, 13, 14]);
+console.log(farr, farr.length);
+var f1 = farr.subarray(-2, -1);
+console.log(f1, f1.length);
+console.log(f1[0], f1[1], f1[2], f1[3]);
+f1[3] = 15;
+console.log(f1[0], f1[1], f1[2], f1[3]);
+
+//console.log('split1');
+//var atest = new clz.ArrayBuffer();
+//console.log(atest);
 
 //var str="Hello happy world!";
 //console.log(str.slice(6,11));

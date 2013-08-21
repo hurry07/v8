@@ -29,6 +29,7 @@ const char* clzName<T>::toString() {\
 }\
 template <typename T>\
 void clzName<T>::init(const FunctionCallbackInfo<Value> &info) {\
+    LOGI("vector.init");\
     if(info.Length() == 0) {\
         return;\
     }\

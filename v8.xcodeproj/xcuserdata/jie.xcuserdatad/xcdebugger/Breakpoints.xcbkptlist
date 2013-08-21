@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "v8/classes/ArrayBuffer.cpp"
-         timestampString = "398687604.439922"
+         timestampString = "398743228.6589"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "15"
-         endingLineNumber = "15"
+         startingLineNumber = "20"
+         endingLineNumber = "20"
          landmarkName = "NodeBuffer::~NodeBuffer()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,13 +21,52 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "v8/core/ClassWrap.h"
-         timestampString = "398709349.659832"
+         timestampString = "398741871.626203"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "39"
-         endingLineNumber = "39"
+         startingLineNumber = "38"
+         endingLineNumber = "38"
          landmarkName = "constructorCallback(const FunctionCallbackInfo&lt;Value&gt; &amp;args)"
          landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "v8/app/Application.cpp"
+         timestampString = "398745241.166354"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "244"
+         endingLineNumber = "244"
+         landmarkName = "Application::init()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "v8/core/v8Utils.h"
+         timestampString = "398745018.114205"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "32"
+         endingLineNumber = "32"
+         landmarkName = "internalPtr(const FunctionCallbackInfo&lt;Value&gt;&amp; info)"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "v8/core/v8Utils.h"
+         timestampString = "398744894.19613"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "27"
+         endingLineNumber = "27"
+         landmarkName = "internalPtr(const FunctionCallbackInfo&lt;Value&gt;&amp; info)"
+         landmarkType = "7">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
