@@ -225,11 +225,10 @@ void Application::init() {
              "require('test/vec3_test.js');"
              );
         
-        B* b = new B();
-        b->init();
-        A* ab = b;
-        ab->init();
-        
+//        B* b = new B();
+//        b->init();
+//        A* ab = b;
+//        ab->init();        
 //        Local<ArrayBuffer> abuf = ArrayBuffer::New(64);
 //        Local<Float32Array> farr = Float32Array::New(abuf, 0, 16);
 //

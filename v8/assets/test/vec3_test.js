@@ -7,7 +7,7 @@
  */
 console.log('---------------');
 var clz = require('nativeclasses');
-var glm = new clz.glm();
+//var glm = new clz.glm();
 //glm.init(111);
 //glm.init.call({}, 222);
 //var gl  = require('opengl');
@@ -21,9 +21,9 @@ var glm = new clz.glm();
 //                          new clz.vec4f(0, 1, 0, 1)
 //);
 //console.log(m);
-var v2 = new clz.vec2f(10, 10);
-v2.init(20, 28);
-console.log(v2);
+//var v2 = new clz.vec2f(10, 10);
+//v2.init(20, 28);
+//console.log(v2);
 //
 //var mat = new clz.matrix();
 //console.log(mat);
@@ -55,13 +55,19 @@ console.log(v2);
 ////var ab = new ArrayBuffer();
 //var fb = new Float32Array();
 
-var farr = new Float32Array([10, 11, 12, 13, 14]);
-console.log(farr, farr.length);
-var f1 = farr.subarray(-2, -1);
-console.log(f1, f1.length);
-console.log(f1[0], f1[1], f1[2], f1[3]);
-f1[3] = 15;
-console.log(f1[0], f1[1], f1[2], f1[3]);
+//var farr = new Float32Array([10, 11, 12, 13, 14]);
+//console.log(farr, farr.length);
+//var f1 = farr.subarray(-2, -1);
+//console.log(f1, f1.length);
+//console.log(f1[0], f1[1], f1[2], f1[3]);
+//f1[3] = 15;
+//console.log(f1[0], f1[1], f1[2], f1[3]);
+
+var ab = new clz.ArrayBuffer(10);
+var slice = ab.slice(10, 20);
+console.log('slice', slice);
+console.log('slice', ab.isView(), ab.byteLength);
+var farr = new clz.Float32Array(3);
 
 //console.log('split1');
 //var atest = new clz.ArrayBuffer();

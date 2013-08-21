@@ -22,13 +22,20 @@
 // mast be called with a HandleScope
 template<typename T>
 static T* internalPtr(const FunctionCallbackInfo<Value>& info) {
-    Local<Object> self = info.Holder();
+    Local<Object> self = info.This();
     if(self->InternalFieldCount() == 1) {
         Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
-        LOGI("found %p", wrap->Value());
         return static_cast<T*>(wrap->Value());
     }
-    LOGI("not found");
+    return 0;
+}
+template<typename T>
+static T* internalPtr(const PropertyCallbackInfo<Value>& info) {
+    Local<Object> self = info.This();
+    if(self->InternalFieldCount() == 1) {
+        Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
+        return static_cast<T*>(wrap->Value());
+    }
     return 0;
 }
 template<typename T>
@@ -39,6 +46,7 @@ static T* internalPtr(Handle<Object>& self) {
     }
     return 0;
 }
+
 template<typename T>
 static T* internalArg(Local<Value> val) {
     Local<Object> self = val->ToObject();

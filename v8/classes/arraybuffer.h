@@ -21,6 +21,7 @@ public:
 
 	virtual ~NodeBuffer();
     virtual void init(const FunctionCallbackInfo<Value> &args);
+    virtual void allocate(long length);
 
     virtual ClassType getClassType();
     static class_struct* getExportStruct();
@@ -36,6 +37,8 @@ public:
     long _writeDatas(long offset, int eSize, T* value, int length);
     template<typename T>
     long _readDatas(long offset, int eSize, T* dest, int length);
+    
+    static bool isView(ClassType type);
 
     /**
      * write byte into current buffer
@@ -44,7 +47,6 @@ public:
     virtual long writeBytes(long offset, char* bytes, long length);
     virtual long readBytes(long offset, char* dest, long length);
 
-private:
     long mLength;
     char* mData;
 };
@@ -65,12 +67,12 @@ T NodeBuffer::_read(long offset, int eSize) {
 }
 template<typename T>
 long NodeBuffer::_writeDatas(long offset, int eSize, T* value, int length) {
-    int written = writeBytes(offset, (char*)(value), length * eSize);
+    long written = writeBytes(offset, (char*)(value), length * eSize);
     return written / eSize;
 }
 template<typename T>
 long NodeBuffer::_readDatas(long offset, int eSize, T* dest, int length) {
-    int readen = readBytes(offset, (char*)(dest), length * eSize);
+    long readen = readBytes(offset, (char*)(dest), length * eSize);
     return readen / eSize;
 }
 
