@@ -9,7 +9,6 @@
 #ifndef __v8__NativeClass__
 #define __v8__NativeClass__
 
-#include "../app/node.h"
 #include "../core/Module.h"
 
 class NativeClass : public Module<NativeClass> {

@@ -8,7 +8,7 @@
 #ifndef __v8__Matrix_inl__
 #define __v8__Matrix_inl__
 
-#include "ptr_util.h"
+#include "../classes/ptr_util.h"
 #include "vector.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include "../functions/array.h"

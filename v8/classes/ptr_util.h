@@ -10,11 +10,11 @@
 #define v8_ptr_util_h
 
 #include "../core/ClassBase.h"
-#include "../core/v8Utils.h"
-#include "bytebuffer.h"
 #include "../core/ClassWrap.h"
-#include "typedbuffer.h"
-#include "arraybuffer.h"
+#include "../core/v8Utils.h"
+#include "../core/bytebuffer.h"
+#include "../typedbuffer/arraybufferview.h"
+#include "../typedbuffer/typedbuffer.h"
 
 static void argValue(const FunctionCallbackInfo<Value> &info, int index, float* slot) {
     *slot = info[index]->NumberValue();

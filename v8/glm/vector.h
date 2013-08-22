@@ -11,11 +11,8 @@
 
 #include "../core/ClassBase.h"
 #include "../core/v8Utils.h"
-#include "bytebuffer.h"
 #include <glm/glm.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
-// ========================== vec4
 #define VECTOR_DECLEAR(clzName, size)\
 template <typename T>\
 class clzName : public ClassBase {\

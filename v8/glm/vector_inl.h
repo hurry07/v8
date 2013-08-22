@@ -1,7 +1,7 @@
 #ifndef __v8__Vec4_inl__
 #define __v8__Vec4_inl__
 
-#include "ptr_util.h"
+#include "../classes/ptr_util.h"
 
 #define VERTEX_UNDERLYING(clzName, T, fType, size)\
 template<> void clzName<T>::getUnderlying(ByteBuffer* feature) {\

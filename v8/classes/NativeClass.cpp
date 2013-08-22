@@ -11,15 +11,14 @@
 
 using namespace v8;
 
-#include "glmopt.h"
-#include "matrix.h"
-#include "matrix_inl.h"
-#include "vector.h"
-#include "vector_inl.h"
-#include "file.h"
-#include "../typedbuffer/arraybuffer.h"
+#include "../glm/glmopt.h"
+#include "../glm/matrix.h"
+#include "../glm/matrix_inl.h"
+#include "../glm/vector.h"
+#include "../glm/vector_inl.h"
 #include "../typedbuffer/typedbuffer.h"
 #include "../core/ClassWrap.h"
+#include "file.h"
 
 template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& args) {
     HandleScope scope;

@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include <v8.h>
-#include "node.h"
+#include "../app/node.h"
 #include "../global.h"
 
 using namespace v8;

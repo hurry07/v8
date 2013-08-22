@@ -8,7 +8,7 @@
 
 #include "ClassBase.h"
 #include "v8Utils.h"
-#include "../core/bytebuffer.h"
+#include "bytebuffer.h"
 
 ClassBase::ClassBase() : mRelease(true) {
 }
