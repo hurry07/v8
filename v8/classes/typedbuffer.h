@@ -45,23 +45,6 @@ public:
 template <typename T>
 static void initWithArray(TypedBuffer<T>* buffer, Handle<Array>& array);
 
-template <typename T>
-static T unwrap(Local<Value> arg);// unwrap v8::Object to raw
-
-#define JS_UNWRAP(T, getter) \
-template<> T unwrap<T>(Local<Value> arg) {\
-    return arg->getter();\
-}
-
-JS_UNWRAP(int8_t, Int32Value);
-JS_UNWRAP(uint8_t, Uint32Value);
-JS_UNWRAP(int16_t, Int32Value);
-JS_UNWRAP(uint16_t, Uint32Value);
-JS_UNWRAP(int32_t, Int32Value);
-JS_UNWRAP(uint32_t, Uint32Value);
-JS_UNWRAP(float, NumberValue);
-JS_UNWRAP(double, NumberValue);
-
 static int getElemenetSize(ClassType type) {
     switch (type) {
         case CLASS_Int8Array:
@@ -227,6 +210,8 @@ static void length(Local<String> property, const PropertyCallbackInfo<Value>& in
  */
 template <typename T>
 static void getByIndex(uint32_t index, const PropertyCallbackInfo<Value>& info) {
+    HandleScope scope;
+
     ClassBase* ptr = internalPtr<ClassBase>(info);
     if(ptr == 0 || ptr->getClassType() != TypedBuffer<T>::mClassType) {
         return;
@@ -241,6 +226,8 @@ static void getByIndex(uint32_t index, const PropertyCallbackInfo<Value>& info) 
 }
 template <typename T>
 static void setByIndex(uint32_t index, Local<Value> value, const PropertyCallbackInfo<Value>& info) {
+    HandleScope scope;
+
     ClassBase* ptr = internalPtr<ClassBase>(info);
     info.GetReturnValue().Set(value);
 

@@ -11,6 +11,7 @@
 #include "ptr_util.h"
 #include "vector.h"
 #include <glm/gtc/matrix_transform.hpp>
+#include "../functions/array.h"
 
 template <typename T>
 void orderPtr(T* dest, T* from, int size, int stride = 0) {
@@ -25,7 +26,7 @@ void orderPtr(T* dest, T* from, int size, int stride = 0) {
 }
 
 #define MATRIX_UNDERLYING(clzName, T, fType, sizepwo)\
-template <> void clzName<T>::getUnderlying(ByteBuffer* feature) {\
+template<> void clzName<T>::getUnderlying(ByteBuffer* feature) {\
     feature->mPtr = (char*)glm::value_ptr(mMatrix);\
     feature->mByteLength = sizepwo * sizeof(T);\
     feature->mElement = fType;\
@@ -33,7 +34,7 @@ template <> void clzName<T>::getUnderlying(ByteBuffer* feature) {\
 }
 #define MATRIX_IMPL(clzName, size, sizepwo) \
 template <typename T>\
-clzName<T>::clzName() {\
+clzName<T>::clzName() : mMatrix(1) {\
 }\
 template <typename T>\
 clzName<T>::~clzName() {\
@@ -61,73 +62,37 @@ template <typename T>\
 void clzName<T>::_value(const FunctionCallbackInfo<Value>& args) {\
     _valueFn(args, sizeof(T), (char*)glm::value_ptr(mMatrix), sizepwo);\
 }\
-MATRIX_UNDERLYING(clzName, float, CLASS_Float32Array, sizepwo)\
-MATRIX_UNDERLYING(clzName, int32_t, CLASS_Int16Array, sizepwo)\
-MATRIX_UNDERLYING(clzName, uint8_t, CLASS_Uint8Array, sizepwo)
-
-template <class M>
-static void lengthM(Local<String> property, const PropertyCallbackInfo<Value>& info) {
-    ClassBase* c = internalPtr<ClassBase>(info);
-    if(c == 0 || c->getClassType() != M::getExportStruct()->mType) {
-        info.GetReturnValue().Set(0);
-        return;
-    }
-
-    ByteBuffer buf;
-    M* m = static_cast<M*>(c);
-    m->getUnderlying(&buf);
-    info.GetReturnValue().Set(buf.typedLength());
-}
-template <class M, typename T>
-static void getByIndex(uint32_t index, const PropertyCallbackInfo<Value>& info) {
-    HandleScope scope;
-    ClassBase* c = internalPtr<ClassBase>(info);
-    if(c == 0 || c->getClassType() != M::getExportStruct()->mType) {
-        return;
-    }
-    M* m = static_cast<M*>(c);
-    ByteBuffer bPtr;
-}
-template <class M, typename T>
-static void setByIndex(uint32_t index, Local<Value> value, const PropertyCallbackInfo<Value>& info) {
-}
-template <class M, typename T>
-static v8::Local<v8::Function> initMatrixClass(v8::Handle<v8::FunctionTemplate>& temp) {
-    HandleScope scope;
-
-    Local<ObjectTemplate> obj = temp->PrototypeTemplate();
-    obj->SetAccessor(String::New("length"), lengthM<M>);
-
-    Local<ObjectTemplate> ins = temp->InstanceTemplate();
-//    ins->SetIndexedPropertyHandler(getByIndex<M, T>, setByIndex<M, T>);
-    
-    return scope.Close(temp->GetFunction());
-}
-
-#define MATIRX_INIT(clzName, size)\
 template <typename T>\
 class_struct* clzName<T>::getExportStruct() {\
     static class_struct mTemplate = {\
         initMatrixClass<clzName<T>, T>, "matrix"#size, CLASS_MATRIX##size\
     };\
     return &mTemplate;\
+}\
+MATRIX_UNDERLYING(clzName, float, CLASS_Float32Array, sizepwo)\
+MATRIX_UNDERLYING(clzName, int32_t, CLASS_Int16Array, sizepwo)\
+MATRIX_UNDERLYING(clzName, uint8_t, CLASS_Uint8Array, sizepwo)
+
+template <class M, typename T>
+static v8::Local<v8::Function> initMatrixClass(v8::Handle<v8::FunctionTemplate>& temp) {
+    HandleScope scope;
+
+    Local<ObjectTemplate> obj = temp->PrototypeTemplate();
+    obj->SetAccessor(String::New("length"), globalfn::array::length);
+
+    Local<ObjectTemplate> ins = temp->InstanceTemplate();
+    ins->SetIndexedPropertyHandler(globalfn::array::getter<T>, globalfn::array::setter<T>);
+    
+    return scope.Close(temp->GetFunction());
 }
 
 MATRIX_IMPL(Mat3, 3, 9);
-MATIRX_INIT(Mat3, 3);
 MATRIX_IMPL(Mat2, 2, 4);
-MATIRX_INIT(Mat2, 2);
 MATRIX_IMPL(Mat4, 4, 16);
 
-template <typename T>
-class_struct* Mat4<T>::getExportStruct() {
-    static class_struct mTemplate = {
-        0, "matrix4", CLASS_MATRIX4
-    };
-    return &mTemplate;
-}
-
-// export methods for float matrix
+// ====================================
+// export more methods for float matrix
+// ====================================
 METHOD_BEGIN(translate, info) {
     HandleScope scope;
     if(info.Length() == 0) {
@@ -193,10 +158,13 @@ static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp)
     EXPOSE_METHOD(obj, rotate, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, scale, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, identity, ReadOnly | DontDelete);
+    obj->SetAccessor(String::New("length"), globalfn::array::length);
+    
+    Local<ObjectTemplate> ins = temp->InstanceTemplate();
+    ins->SetIndexedPropertyHandler(globalfn::array::getter<float>, globalfn::array::setter<float>);
 
     return scope.Close(temp->GetFunction());
 }
-
 template<> class_struct* Mat4<float>::getExportStruct() {
     static class_struct mTemplate = {
         initClass, "matrix4", CLASS_MATRIX4

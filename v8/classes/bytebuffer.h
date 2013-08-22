@@ -39,7 +39,7 @@ public:
     static int getTypeSize(ClassType type);
 
     template<typename T>
-    T* value_ptr();
+    T* value_ptr(int index=0);
 
     char* value_ptr();
     long length();
@@ -47,8 +47,8 @@ public:
 };
 
 template<typename T>
-T* ByteBuffer::value_ptr() {
-    return (T*)(mPtr + mByteLength);
+T* ByteBuffer::value_ptr(int index) {
+    return (T*)(mPtr) + index;
 }
 
 #endif /* defined(__v8__bytebuffer__) */

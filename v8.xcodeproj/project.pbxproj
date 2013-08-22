@@ -20,6 +20,7 @@
 		18A6D24917C61E3B004931FD /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D23D17C61E3B004931FD /* Point.cpp */; };
 		18AFB4BE17AE1C6300B7AFDA /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18AFB4BC17AE1C6300B7AFDA /* Application.cpp */; };
 		18AFB4C917AE782000B7AFDA /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18AFB4C717AE782000B7AFDA /* Console.cpp */; };
+		18CE222F17C643F200B6DB8E /* array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18CE222D17C643F200B6DB8E /* array.cpp */; };
 		18E22F3917BA561B0079D25F /* assert.js in Sources */ = {isa = PBXBuildFile; fileRef = 18E2252217BA56110079D25F /* assert.js */; };
 		18E22F3A17BA561B0079D25F /* default-locale.js in Sources */ = {isa = PBXBuildFile; fileRef = 18E2252417BA56110079D25F /* default-locale.js */; };
 		18E22F3B17BA561B0079D25F /* en-break.js in Sources */ = {isa = PBXBuildFile; fileRef = 18E2252517BA56110079D25F /* en-break.js */; };
@@ -2000,6 +2001,8 @@
 		18AFB4C717AE782000B7AFDA /* Console.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Console.cpp; sourceTree = "<group>"; };
 		18AFB4C817AE782000B7AFDA /* Console.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Console.h; sourceTree = "<group>"; };
 		18AFB4CA17AE7BB200B7AFDA /* modules.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = modules.h; sourceTree = "<group>"; };
+		18CE222D17C643F200B6DB8E /* array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = array.cpp; sourceTree = "<group>"; };
+		18CE222E17C643F200B6DB8E /* array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array.h; sourceTree = "<group>"; };
 		18D6659417BA830B00021EA2 /* cctest */ = {isa = PBXFileReference; lastKnownFileType = folder; name = cctest; path = test/cctest; sourceTree = "<group>"; };
 		18E2252217BA56110079D25F /* assert.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = assert.js; sourceTree = "<group>"; };
 		18E2252417BA56110079D25F /* default-locale.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "default-locale.js"; sourceTree = "<group>"; };
@@ -4536,6 +4539,7 @@
 		1828209F179AFFCB003125B5 /* v8 */ = {
 			isa = PBXGroup;
 			children = (
+				18CE222C17C643F200B6DB8E /* functions */,
 				185BF54817BBE5D900F7AE09 /* classes */,
 				18D6659417BA830B00021EA2 /* cctest */,
 				18E224C617BA56110079D25F /* test */,
@@ -4600,6 +4604,15 @@
 				18AFB4CA17AE7BB200B7AFDA /* modules.h */,
 			);
 			path = modules;
+			sourceTree = "<group>";
+		};
+		18CE222C17C643F200B6DB8E /* functions */ = {
+			isa = PBXGroup;
+			children = (
+				18CE222D17C643F200B6DB8E /* array.cpp */,
+				18CE222E17C643F200B6DB8E /* array.h */,
+			);
+			path = functions;
 			sourceTree = "<group>";
 		};
 		18E224C617BA56110079D25F /* test */ = {
@@ -9314,6 +9327,7 @@
 				18A6D24717C61E3B004931FD /* glmopt.cpp in Sources */,
 				18A6D24817C61E3B004931FD /* NativeClass.cpp in Sources */,
 				18A6D24917C61E3B004931FD /* Point.cpp in Sources */,
+				18CE222F17C643F200B6DB8E /* array.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

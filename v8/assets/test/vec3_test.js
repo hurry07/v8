@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 console.log('---------------');
+var clz = require('nativeclasses');
 //var gl = require('opengl');
 //var program = require('modules/program.js');
 //var vs = program.createWithFile('shader/v1.vtx', 'shader/f1.frg');
@@ -25,4 +26,14 @@ console.log('---------------');
 //console.log(f2[1]);
 //console.log(f2[2]);
 
-console.log(new clz.mat4f().length);
+var m = new clz.mat4f();
+console.log(m.length);
+for(var i=0,len=m.length;i<len;i++) {
+    console.log(m[i]);
+    m[i] = i + 10;
+}
+console.log('====');
+for(var i=0,len=m.length;i<len;i++) {
+    console.log(m[i]);
+}
+

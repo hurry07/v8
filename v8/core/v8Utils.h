@@ -99,4 +99,20 @@ static T* internalArg(Local<Value> val, ClassType type) {
     return 0;
 }
 
+template <typename T>
+static T unwrap(Local<Value> arg);// unwrap v8::Object to raw
+
+#define JS_UNWRAP(T, getter) \
+template<> T unwrap<T>(Local<Value> arg) {\
+    return arg->getter();\
+}
+JS_UNWRAP(int8_t, Int32Value);
+JS_UNWRAP(uint8_t, Uint32Value);
+JS_UNWRAP(int16_t, Int32Value);
+JS_UNWRAP(uint16_t, Uint32Value);
+JS_UNWRAP(int32_t, Int32Value);
+JS_UNWRAP(uint32_t, Uint32Value);
+JS_UNWRAP(float, NumberValue);
+JS_UNWRAP(double, NumberValue);
+
 #endif
