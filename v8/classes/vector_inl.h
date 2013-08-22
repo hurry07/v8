@@ -15,7 +15,7 @@ template<> void clzName<T>::getUnderlying(ByteBuffer* feature) {\
 template <typename T>\
 class_struct* clzName<T>::getExportStruct() {\
     static class_struct mTemplate = {\
-        0, "vec"#size, CLASS_VEC##size\
+        initVectorClass<T>, "vec"#size, CLASS_VEC##size\
     };\
     return &mTemplate;\
 }\
@@ -44,45 +44,21 @@ VERTEX_UNDERLYING(clzName, float, CLASS_Float32Array, size)\
 VERTEX_UNDERLYING(clzName, int32_t, CLASS_Int32Array, size)\
 VERTEX_UNDERLYING(clzName, uint8_t, CLASS_Uint8Array, size)
 
+template <typename T>
+static v8::Local<v8::Function> initVectorClass(v8::Handle<v8::FunctionTemplate>& temp) {
+    HandleScope scope;
+
+    Local<ObjectTemplate> obj = temp->PrototypeTemplate();
+    obj->SetAccessor(String::New("length"), globalfn::array::length);
+
+    Local<ObjectTemplate> ins = temp->InstanceTemplate();
+    ins->SetIndexedPropertyHandler(globalfn::array::getter<T>, globalfn::array::setter<T>);
+
+    return scope.Close(temp->GetFunction());
+}
 VERTEX_IMPL(Vec2, 2);
 VERTEX_IMPL(Vec3, 3);
 VERTEX_IMPL(Vec4, 4);
-
-//template <typename T> 
-//void Vec4<T>::_value(const FunctionCallbackInfo<Value>& args) {
-//    while (1) {
-//        if(args.Length() == 0) {
-//            break;
-//        }
-//        ClassBase* destPtr = internalArg<ClassBase>(args[0]);
-//        if(destPtr == 0) {
-//            break;
-//        }
-//
-//        ClassType type = destPtr->getClassType();
-//        if(type == CLASS_ArrayBuffer) {
-//            NodeBuffer* bufPtr = static_cast<NodeBuffer*>(destPtr);
-//            bufPtr->_writeDatas(0, 4, glm::value_ptr(mVec), 4);
-//            return;
-//
-//        } else if(NodeBuffer::isView(type)) {
-//            // copy value dispite buffer type.
-//            NodeBufferView* viewPtr = static_cast<NodeBufferView*>(destPtr);
-//            viewPtr->writeBytes(0, (char*)glm::value_ptr(mVec), 4 * 4);
-//            return;
-//
-//        } else {
-//            args.GetReturnValue().Set(ThrowException(String::New("_value args[0] cannot be treated as a buffer obejct.")));
-//        }
-//
-//        break;
-//    }
-//
-//    Handle<Object> byteArray = ClassWrap<NodeBuffer>::newInstance(Integer::NewFromUnsigned(4 * 4));
-//    NodeBuffer* bPtr = internalPtr<NodeBuffer>(byteArray);
-//    bPtr->_writeDatas(0, 4, glm::value_ptr(mVec), 4);
-//    args.GetReturnValue().Set(ClassWrap<TypedBuffer<float>>::newInstance(byteArray));
-//}
 
 template <typename T>
 Vec2<T>::Vec2() : mVec(0,0) {

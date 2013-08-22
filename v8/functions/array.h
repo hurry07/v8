@@ -17,7 +17,7 @@
 namespace globalfn {
     namespace array {
         using namespace v8;
-        
+
         template <typename T>
         void getter(uint32_t index, const v8::PropertyCallbackInfo<v8::Value>& info);
         template <typename T>

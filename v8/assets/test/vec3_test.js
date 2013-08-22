@@ -26,7 +26,7 @@ var clz = require('nativeclasses');
 //console.log(f2[1]);
 //console.log(f2[2]);
 
-var m = new clz.mat4f();
+var m = new clz.vec4f();
 console.log(m.length);
 for(var i=0,len=m.length;i<len;i++) {
     console.log(m[i]);
