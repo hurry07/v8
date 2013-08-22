@@ -34,7 +34,6 @@ template <> void clzName<T>::getUnderlying(ByteBuffer* feature) {\
 #define MATRIX_IMPL(clzName, size, sizepwo) \
 template <typename T>\
 clzName<T>::clzName() {\
-    LOGI("matrix.release");\
 }\
 template <typename T>\
 clzName<T>::~clzName() {\

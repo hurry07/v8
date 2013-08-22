@@ -50,7 +50,7 @@ int main(int argc, char ** argv)
     app->onSurfaceCreated();
     app->onSurfaceChanged(800, 480);
 
-//	glutDisplayFunc(onDrawFrame);
+	glutDisplayFunc(onDrawFrame);
 //	glutMainLoop();
 
     app->destroy();

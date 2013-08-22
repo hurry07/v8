@@ -101,18 +101,6 @@ static void printf__(const FunctionCallbackInfo<Value>& args) {
 	LOGI("%s", buf.c_str());
 }
 
-////template <typename T>
-//void _aavalue(const FunctionCallbackInfo<Value> &args) {
-//    if(args.Length() == 0) {
-//        Handle<Value> args[1];
-//        args[0] = Integer::NewFromUnsigned(10);
-//        Handle<Object> byteArray = ClassWrap<NodeBuffer>::newInstance(1, args);
-//        args[0] = byteArray;
-////        ClassWrap<TypedBuffer<float>>::newInstance(1, args);
-////        args.GetReturnValue().Set(ClassWrap<TypedBuffer<float>>::newInstance(1, args));
-//    }
-//}
-
 Local<Function> Application::loadModuleFn(const char* name) {
 	HANDLE_SCOPE;
 
@@ -232,48 +220,7 @@ void Application::init() {
         eval(
              "require('test/vec3_test.js');"
              );
-        
-//        B* b = new B();
-//        b->init();
-//        A* ab = b;
-//        ab->init();        
-//        Local<ArrayBuffer> abuf = ArrayBuffer::New(64);
-//        Local<Float32Array> farr = Float32Array::New(abuf, 0, 16);
-//
-//        NodeBuffer nb(16);
-//        nb._write<float>(0, 100);
-//        LOGI("readed:%f", nb._read<float>(0));
-//
-//        float farr11[] = {1, 2, 3, 4};
-//        float destf[5];
-//        nb._writeDatas(0, farr11, 4);
-//        nb._readDatas(0, destf, 5);
-//        LOGI("");
-
-//        farr->Set(0, Number::New(100));
-//        farr->Set(1, f11);
-//        
-//        float* fptr = (float*)farr->GetIndexedPropertiesExternalArrayData();
-//        int flen = farr->Length();
-//
-////        ArrayBuffer::Contents c = farr->Buffer()->d;
-////        void* av = farr->BaseAddress();
-////        LOGI("-----%f", av);
-////        Handle<i::JSArrayBuffer> iab1 = v8::Utils::OpenHandle(*ab1);
-//        
-//        LOGI("---%p %f %d", fptr, fptr[1]);
-        
-//        test1(abuf);
-//        test1(abuf);
-//        {
-//            ArrayBuffer::Contents cont1 = abuf->Externalize();
-//            LOGI("cont1 %p", cont1.Data());
-//        }
-//        {
-//            ArrayBuffer::Contents cont1 = abuf->Externalize();
-//            LOGI("cont1 %p", cont1.Data());
-//        }
-	}
+    }
 }
 void Application::destroy() {
 	{

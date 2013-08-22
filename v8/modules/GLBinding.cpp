@@ -1227,7 +1227,7 @@ JS_METHOD(createShader) {
 	HandleScope scope;
     CHECK_ARG_1(glCreateShader, GLenum);
     GLuint value = glCreateShader(ARGS_GLenum(args[0]));
-    args.GetReturnValue().Set(Uint32::New(value));
+    args.GetReturnValue().Set(value);
 }
 DELEGATE_TO_GL_1R(createTexture, glGenTextures, GLuint, Uint32);
 DELEGATE_TO_GL_N1(cullFace, glCullFace, GLenum);

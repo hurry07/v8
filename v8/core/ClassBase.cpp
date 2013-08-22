@@ -23,11 +23,7 @@ void ClassBase::release() {
 }
 void ClassBase::doRelease() {
 }
-
 void ClassBase::init(const FunctionCallbackInfo<Value> &args) {
-    ClassBase* t1 = internalArg<ClassBase>(args.This());
-    ClassBase* t2 = internalArg<ClassBase>(args.Holder());
-    LOGI("ClassBase.init.args:%d %p %p", args.IsConstructCall(), t1, t2);
 }
 void ClassBase::reset(const FunctionCallbackInfo<Value> &args) {
     init(args);
