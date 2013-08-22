@@ -65,11 +65,50 @@ MATRIX_UNDERLYING(clzName, float, CLASS_Float32Array, sizepwo)\
 MATRIX_UNDERLYING(clzName, int32_t, CLASS_Int16Array, sizepwo)\
 MATRIX_UNDERLYING(clzName, uint8_t, CLASS_Uint8Array, sizepwo)
 
+template <class M>
+static void lengthM(Local<String> property, const PropertyCallbackInfo<Value>& info) {
+    ClassBase* c = internalPtr<ClassBase>(info);
+    if(c == 0 || c->getClassType() != M::getExportStruct()->mType) {
+        info.GetReturnValue().Set(0);
+        return;
+    }
+
+    ByteBuffer buf;
+    M* m = static_cast<M*>(c);
+    m->getUnderlying(&buf);
+    info.GetReturnValue().Set(buf.typedLength());
+}
+template <class M, typename T>
+static void getByIndex(uint32_t index, const PropertyCallbackInfo<Value>& info) {
+    HandleScope scope;
+    ClassBase* c = internalPtr<ClassBase>(info);
+    if(c == 0 || c->getClassType() != M::getExportStruct()->mType) {
+        return;
+    }
+    M* m = static_cast<M*>(c);
+    ByteBuffer bPtr;
+}
+template <class M, typename T>
+static void setByIndex(uint32_t index, Local<Value> value, const PropertyCallbackInfo<Value>& info) {
+}
+template <class M, typename T>
+static v8::Local<v8::Function> initMatrixClass(v8::Handle<v8::FunctionTemplate>& temp) {
+    HandleScope scope;
+
+    Local<ObjectTemplate> obj = temp->PrototypeTemplate();
+    obj->SetAccessor(String::New("length"), lengthM<M>);
+
+    Local<ObjectTemplate> ins = temp->InstanceTemplate();
+//    ins->SetIndexedPropertyHandler(getByIndex<M, T>, setByIndex<M, T>);
+    
+    return scope.Close(temp->GetFunction());
+}
+
 #define MATIRX_INIT(clzName, size)\
 template <typename T>\
 class_struct* clzName<T>::getExportStruct() {\
     static class_struct mTemplate = {\
-        0, "matrix"#size, CLASS_MATRIX##size\
+        initMatrixClass<clzName<T>, T>, "matrix"#size, CLASS_MATRIX##size\
     };\
     return &mTemplate;\
 }

@@ -10,17 +10,19 @@ console.log('---------------');
 //var program = require('modules/program.js');
 //var vs = program.createWithFile('shader/v1.vtx', 'shader/f1.frg');
 
-new ArrayBuffer(10);
+//new ArrayBuffer(10);
+//
+//var a1 = new ArrayBuffer(16);
+//var f1 = new Float32Array(a1);
+//f1[0] = 10;
+//f1[1] = 20;
+//f1[2] = 30;
+//f1[3] = 40;
+//
+//var a2 = a1.slice(4, -4);
+//var f2 = new Float32Array(a2);
+//console.log(f2[0]);
+//console.log(f2[1]);
+//console.log(f2[2]);
 
-var a1 = new ArrayBuffer(16);
-var f1 = new Float32Array(a1);
-f1[0] = 10;
-f1[1] = 20;
-f1[2] = 30;
-f1[3] = 40;
-
-var a2 = a1.slice(4, -4);
-var f2 = new Float32Array(a2);
-console.log(f2[0]);
-console.log(f2[1]);
-console.log(f2[2]);
+console.log(new clz.mat4f().length);
