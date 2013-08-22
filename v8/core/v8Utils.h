@@ -115,4 +115,11 @@ JS_UNWRAP(uint32_t, Uint32Value);
 JS_UNWRAP(float, NumberValue);
 JS_UNWRAP(double, NumberValue);
 
+template <typename T>
+static void populateValues(T* dest, Handle<Array>& array) {
+    for(int i = 0, len = array->Length(); i < len; i++) {
+        *(dest++) = unwrap<T>(array->Get(i));
+    }
+}
+
 #endif

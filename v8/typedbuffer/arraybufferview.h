@@ -17,12 +17,14 @@ public:
     NodeBufferView();
     virtual ~NodeBufferView();
     virtual char* value_ptr();
-    
+
     /**
      * handle the offset for you
      */
     virtual long writeBytes(long byteOffset, char* bytes, long byteLength);
     virtual long readBytes(long byteOffset, char* dest, long byteLength);
+
+    virtual void initWithArray(Handle<Array>& array, int offset)=0;
 
     NodeBuffer* mBuffer;
     long mByteOffset;
