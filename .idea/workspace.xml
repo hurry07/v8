@@ -3,20 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/app/Application.cpp" afterPath="$PROJECT_DIR$/v8/app/Application.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/xcuserdata/jie.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" afterPath="$PROJECT_DIR$/v8.xcodeproj/xcuserdata/jie.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/core/ClassBase.cpp" afterPath="$PROJECT_DIR$/v8/core/ClassBase.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/core/ClassWrap.h" afterPath="$PROJECT_DIR$/v8/core/ClassWrap.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/modules/GLBinding.cpp" afterPath="$PROJECT_DIR$/v8/modules/GLBinding.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/classes/buffers.cpp" afterPath="$PROJECT_DIR$/v8/classes/buffers.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/classes/buffers.h" afterPath="$PROJECT_DIR$/v8/classes/buffers.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/classes/classenum.h" afterPath="$PROJECT_DIR$/v8/classes/classenum.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/node.js" afterPath="$PROJECT_DIR$/v8/assets/node.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/classes/typedbuffer.h" afterPath="$PROJECT_DIR$/v8/classes/typedbuffer.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/test/vec3_test.js" afterPath="$PROJECT_DIR$/v8/assets/test/vec3_test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/classes/vector.h" afterPath="$PROJECT_DIR$/v8/classes/vector.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/classes/vector_inl.h" afterPath="$PROJECT_DIR$/v8/classes/vector_inl.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -117,19 +105,19 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="vec3_test.js" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="vec3_test.js" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/v8/assets/test/vec3_test.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="132" column="19" selection-start="3974" selection-end="3974" vertical-scroll-proportion="-10.470589">
+                <state line="147" column="0" selection-start="4208" selection-end="4208" vertical-scroll-proportion="0.91007197">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="HTML5.js" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="HTML5.js" pinned="false" current="false" current-in-tab="false">
             <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/HTML5.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="1825" column="9" selection-start="32348" selection-end="32348" vertical-scroll-proportion="0.5905963">
+                <state line="1825" column="9" selection-start="32348" selection-end="32348" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -614,16 +602,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/test/vec3_test.js">
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/HTML5.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="132" column="19" selection-start="3974" selection-end="3974" vertical-scroll-proportion="-10.470589">
+        <state line="1825" column="9" selection-start="32348" selection-end="32348" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/HTML5.js">
+    <entry file="file://$PROJECT_DIR$/v8/assets/test/vec3_test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1825" column="9" selection-start="32348" selection-end="32348" vertical-scroll-proportion="0.5905963">
+        <state line="147" column="0" selection-start="4208" selection-end="4208" vertical-scroll-proportion="0.91007197">
           <folding />
         </state>
       </provider>

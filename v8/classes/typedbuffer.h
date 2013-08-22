@@ -136,15 +136,15 @@ void TypedBuffer<T>::init(const FunctionCallbackInfo<Value> &args) {
 
             // init using ArrayBuffer, create a reference to it, and set start and end
             mBuffer = internalArg<NodeBuffer>(args[0]);
-            thiz->Set(String::New("buffer"), args[0], PropertyAttribute(ReadOnly | DontDelete));
+            thiz->Set(String::New("buffer"), args[0], PropertyAttribute(ReadOnly | DontDelete));// buffer refer count++
 
-            if(args.Length() == 1) {
+            if(args.Length() == 1) {// ArrayBuffer
                 mByteOffset = 0;
                 mByteLength = mBuffer->mLength;
                 if(mByteLength % mElementBytes != 0) {
                     args.GetReturnValue().Set(ThrowException(String::New("There is bytes left when create TypedBuffer")));
                 }
-            } else if(args.Length() == 2) {
+            } else if(args.Length() == 2) {// ArrayBuffer byteOffset
                 mByteOffset = args[1]->Int32Value();
                 mByteLength = mBuffer->mLength - mByteOffset;
                 if(mByteLength % mElementBytes != 0) {
@@ -152,7 +152,7 @@ void TypedBuffer<T>::init(const FunctionCallbackInfo<Value> &args) {
                 }
             } else {
                 mByteOffset = args[1]->Int32Value();
-                mByteLength = args[2]->Int32Value();
+                mByteLength = args[2]->Int32Value() * mElementBytes;
                 if(mByteOffset + mByteLength > mBuffer->mLength) {
                     args.GetReturnValue().Set(ThrowException(String::New("TypedBuffer's data excceed the capacity of underlying ArrayBuffer")));
                 }
@@ -161,7 +161,7 @@ void TypedBuffer<T>::init(const FunctionCallbackInfo<Value> &args) {
 
             // init using other TypedArray
             if(ptr->getClassType() == mClassType) {
-                TypedBuffer<T>* from = static_cast<TypedBuffer<T>*>(ptr);
+                NodeBufferView* from = static_cast<NodeBufferView*>(ptr);
                 mBuffer = createArrayBuffer(thiz, mByteLength = from->mByteLength);
                 mBuffer->writeBytes(0, from->value_ptr(), mByteLength);
             } else {

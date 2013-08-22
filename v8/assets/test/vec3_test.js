@@ -128,17 +128,23 @@ function printVec(v) {
 }
 
 var v4 = new clz.vec4f(1, 2, 3, 4);
-var b = new ArrayBuffer(32);
-var f1 = new Float32Array(b, 0, 16);
-var f2 = new Float32Array(b, 16, 16);
+var b = new ArrayBuffer(64);
+var f1 = new Float32Array(b, 0, 4);
+var f2 = new Float32Array(b, 16, 4);
+var f3 = new Float32Array(b, 32, 4);
+var f4 = new Float32Array(b, 48, 4);
 
 v4._value(b);
 printVec(f1);
 printVec(f2);
+printVec(f3);
+printVec(f4);
 
-v4._value(f2);
+v4._value(f3);
 printVec(f1);
 printVec(f2);
+printVec(f3);
+printVec(f4);
 
 //var str="Hello happy world!";
 //console.log(str.slice(6,11));
