@@ -26,6 +26,7 @@ public:\
     void init(const FunctionCallbackInfo<Value> &info);\
     virtual const char* toString();\
     virtual void getUnderlying(ByteBuffer* feature);\
+    virtual void _value(const FunctionCallbackInfo<Value> &args);\
 \
     glm::detail::tvec##size<T> mVec;\
 }

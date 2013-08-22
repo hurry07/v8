@@ -131,9 +131,12 @@ void TypedBuffer<T>::init(const FunctionCallbackInfo<Value> &args) {
         if(ptr == 0) {
             return;
         }
+
         if(ptr->getClassType() == CLASS_ArrayBuffer) {
-            // init using ArrayBuffer, point
+
+            // init using ArrayBuffer, create a reference to it, and set start and end
             mBuffer = internalArg<NodeBuffer>(args[0]);
+            thiz->Set(String::New("buffer"), args[0], PropertyAttribute(ReadOnly | DontDelete));
 
             if(args.Length() == 1) {
                 mByteOffset = 0;

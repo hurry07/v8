@@ -31,17 +31,5 @@ enum ClassType {
     CLASS_Float32Array,
     CLASS_Float64Array
 };
-enum FeatureType {
-    FEATURE_NULL,
-    FEATURE_BYTE,
-    FEATURE_UBYTE,
-    FEATURE_SHORT,
-    FEATURE_USHORT,
-    FEATURE_INT,
-    FEATURE_UINT,
-    FEATURE_FLOAT,
-    FEATURE_DOUBLE,
-    FEATURE_BOOL
-};
 
 #endif

@@ -7,6 +7,7 @@
  */
 console.log('---------------');
 var clz = require('nativeclasses');
+//console.log(Float32Array === clz.Float32Array);
 //var glm = new clz.glm();
 //glm.init(111);
 //glm.init.call({}, 222);
@@ -88,35 +89,56 @@ var clz = require('nativeclasses');
 //var atest = new clz.ArrayBuffer();
 //console.log(atest);
 
-// create an 8-byte ArrayBuffer
-var b = new clz.ArrayBuffer(8);
+//// create an 8-byte ArrayBuffer
+//var b = new clz.ArrayBuffer(8);
+//
+//// create a view v1 referring to b, of type Int32, starting at
+//// the default byte index (0) and extending until the end of the buffer
+//var v1 = new clz.Int32Array(b);
+//
+//// create a view v2 referring to b, of type Uint8, starting at
+//// byte index 2 and extending until the end of the buffer
+//var v2 = new clz.Uint8Array(b, 2);
+//
+//// create a view v3 referring to b, of type Int16, starting at
+//// byte index 2 and having a length of 2
+//var v3 = new clz.Int16Array(b, 2, 2);
+//
+//v2[0] = 0xff;
+//v2[1] = 0xff;
+//console.log(v3[0]);
 
-// create a view v1 referring to b, of type Int32, starting at
-// the default byte index (0) and extending until the end of the buffer
-var v1 = new clz.Int32Array(b);
+//var vf_all = new clz.Float32Array(b, 0, 8);
+//console.log(vf_all.length);
+//var vf_1 = new clz.Float32Array(b, 0, 4);
+//console.log(vf_1.length);
+//vf_1[0] = 100;
+//var vf_2 = new clz.Float32Array(b, 4, 4);
+//console.log(vf_2.length);
+//vf_2[0] = 200;
+//
+//console.log(vf_all[0],vf_all[1],vf_all[2]);
 
-// create a view v2 referring to b, of type Uint8, starting at
-// byte index 2 and extending until the end of the buffer
-var v2 = new clz.Uint8Array(b, 2);
+function printVec(v) {
+    var s = '';
+    for(var i=0,len = v.length;i<len;i++) {
+        s += ',' + v[i]
+    }
+    console.log('length:' + v.length + s);
+}
 
-// create a view v3 referring to b, of type Int16, starting at
-// byte index 2 and having a length of 2
-var v3 = new clz.Int16Array(b, 2, 2);
+var v4 = new clz.vec4f(1, 2, 3, 4);
+var b = new ArrayBuffer(32);
+var f1 = new Float32Array(b, 0, 16);
+var f2 = new Float32Array(b, 16, 16);
 
-v2[0] = 0xff;
-v2[1] = 0xff;
-console.log(v3[0]);
+v4._value(b);
+printVec(f1);
+printVec(f2);
 
-var vf_all = new clz.Float32Array(b, 0, 8);
-console.log(vf_all.length);
-var vf_1 = new clz.Float32Array(b, 0, 4);
-console.log(vf_1.length);
-vf_1[0] = 100;
-var vf_2 = new clz.Float32Array(b, 4, 4);
-console.log(vf_2.length);
-vf_2[0] = 200;
-
-console.log(vf_all[0],vf_all[1],vf_all[2]);
+v4._value(f2);
+printVec(f1);
+printVec(f2);
 
 //var str="Hello happy world!";
 //console.log(str.slice(6,11));

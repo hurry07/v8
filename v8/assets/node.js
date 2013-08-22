@@ -5,6 +5,7 @@
         startup.globalExtend();
         startup.globalRequire();
         startup.globalConsole();
+        startup.globalTypedArray();
     }
 
     startup.globalExtend = function() {
@@ -32,9 +33,22 @@
             return NativeModule.require('console');
         });
     };
-    startup.globalExtend = function() {
-
-    }
+    /**
+     * may triggered with a -typed_array condition
+     */
+    startup.globalTypedArray = function() {
+        var clz = NativeModule.require('nativeclasses');
+        console.log('global init:', clz);
+        global.ArrayBuffer = clz.ArrayBuffer;
+        global.Int8Array = clz.Int8Array;
+        global.Uint8Array = clz.Uint8Array;
+        global.Int16Array = clz.Int16Array;
+        global.Uint16Array = clz.Uint16Array;
+        global.Int32Array = clz.Int32Array;
+        global.Uint32Array = clz.Uint32Array;
+        global.Float32Array = clz.Float32Array;
+        global.Float64Array = clz.Float64Array;
+    };
 
     /**
      * 表示预先定义的 js 模块

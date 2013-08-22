@@ -30,6 +30,7 @@ void ClassBase::init(const FunctionCallbackInfo<Value> &args) {
     LOGI("ClassBase.init.args:%d %p %p", args.IsConstructCall(), t1, t2);
 }
 void ClassBase::reset(const FunctionCallbackInfo<Value> &args) {
+    init(args);
 }
 void ClassBase::_value(const FunctionCallbackInfo<Value> &args) {
 }

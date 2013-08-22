@@ -60,7 +60,7 @@ public:
 		HandleScope scope(node_isolate);
         ClassBase* t = internalPtr<ClassBase>(info);
         if(t != 0) {
-            t->init(info);
+            t->_value(info);
         }
     }
     /**
@@ -123,6 +123,7 @@ public:
         Local<ObjectTemplate> fnproto = fn->PrototypeTemplate();
         EXPOSE_METHOD(fnproto, release, ReadOnly | DontDelete);
         EXPOSE_METHOD(fnproto, _value, ReadOnly | DontDelete);
+        EXPOSE_METHOD(fnproto, reset, ReadOnly | DontDelete);
         EXPOSE_METHOD(fnproto, toString, ReadOnly | DontDelete);
         EXPOSE_METHOD(fnproto, clone, ReadOnly | DontDelete);
         fnproto->SetInternalFieldCount(1);
@@ -158,6 +159,15 @@ public:
     static Handle<Object> newInstance() {
 		HandleScope scope(node_isolate);
         return scope.Close(getFunction()->NewInstance());
+    }
+    static Handle<Object> newInstance(int argc, Handle<Value>* argv) {
+		HandleScope scope(node_isolate);
+        return scope.Close(getFunction()->NewInstance(argc, argv));
+    }
+    static Handle<Object> newInstance(Handle<Value> arg) {
+		HandleScope scope(node_isolate);
+        Handle<Value> argv[] = {arg};
+        return scope.Close(getFunction()->NewInstance(1, argv));
     }
 };
 

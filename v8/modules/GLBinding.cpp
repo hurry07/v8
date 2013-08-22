@@ -287,7 +287,7 @@ template<> void getArgPtr<int8_t>(ByteBuffer* dest, const Local<Value>& arg) {
         ClassBase* wrap = internalArg<ClassBase>(arg->ToObject());
         wrap->getUnderlying(dest);
         if(dest->mElement != CLASS_ArrayBuffer) {
-            LOGI("arguments underlying datatype not match. %d", FEATURE_BYTE);
+            LOGI("arguments underlying datatype not match. %d", dest->mElement);
         }
     }
 }

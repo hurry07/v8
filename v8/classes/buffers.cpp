@@ -15,3 +15,9 @@ NodeBufferView::~NodeBufferView() {
 char* NodeBufferView::value_ptr() {
     return mBuffer->mData + mByteOffset;
 }
+long NodeBufferView::writeBytes(long byteOffset, char* bytes, long byteLength) {
+    return mBuffer->writeBytes(mByteOffset + byteOffset, bytes, byteLength);
+}
+long NodeBufferView::readBytes(long byteOffset, char* dest, long byteLength) {
+    return mBuffer->readBytes(mByteOffset + byteOffset, dest, byteLength);
+}

@@ -17,10 +17,6 @@
 #include "../utils/AssetUtil.h"
 #include "../global.h"
 
-#include "../classes/Point.h"
-#include "../classes/vector.h"
-#include "../classes/arraybuffer.h"
-
 #include "ArrayBufferAllocator.h"
 
 #include <string>
@@ -48,9 +44,9 @@ Context::Scope context_scope(context)
 #define SAFE_DISPOSE(p) p.Dispose()
 
 Application::Application() {
-    const char typed_arrays_flag[] = "--harmony_typed_arrays";
-    V8::SetFlagsFromString(typed_arrays_flag, sizeof(typed_arrays_flag) - 1);
-    V8::SetArrayBufferAllocator(&ArrayBufferAllocator::the_singleton);
+//    const char typed_arrays_flag[] = "--harmony_typed_arrays";
+//    V8::SetFlagsFromString(typed_arrays_flag, sizeof(typed_arrays_flag) - 1);
+//    V8::SetArrayBufferAllocator(&ArrayBufferAllocator::the_singleton);
 
 	node_isolate = Isolate::New();
 	ENTER_ISOLATE;
@@ -102,8 +98,20 @@ static void printf__(const FunctionCallbackInfo<Value>& args) {
 		buf.append(",");
 		buf.append(*String::Utf8Value(args[i]->ToString()));
 	}
-	LOGI(buf.c_str());
+	LOGI("%s", buf.c_str());
 }
+
+////template <typename T>
+//void _aavalue(const FunctionCallbackInfo<Value> &args) {
+//    if(args.Length() == 0) {
+//        Handle<Value> args[1];
+//        args[0] = Integer::NewFromUnsigned(10);
+//        Handle<Object> byteArray = ClassWrap<NodeBuffer>::newInstance(1, args);
+//        args[0] = byteArray;
+////        ClassWrap<TypedBuffer<float>>::newInstance(1, args);
+////        args.GetReturnValue().Set(ClassWrap<TypedBuffer<float>>::newInstance(1, args));
+//    }
+//}
 
 Local<Function> Application::loadModuleFn(const char* name) {
 	HANDLE_SCOPE;
