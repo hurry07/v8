@@ -54,7 +54,7 @@ namespace globalfn {
             if(index >= buf.typedLength()) {
                 return;
             }
-            
+
             *(buf.value_ptr<T>(index)) = unwrap<T>(value);
         }
     }

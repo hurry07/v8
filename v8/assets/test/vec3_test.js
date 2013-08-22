@@ -11,29 +11,50 @@ var clz = require('nativeclasses');
 //var program = require('modules/program.js');
 //var vs = program.createWithFile('shader/v1.vtx', 'shader/f1.frg');
 
-//new ArrayBuffer(10);
-//
-//var a1 = new ArrayBuffer(16);
-//var f1 = new Float32Array(a1);
-//f1[0] = 10;
-//f1[1] = 20;
-//f1[2] = 30;
-//f1[3] = 40;
-//
-//var a2 = a1.slice(4, -4);
-//var f2 = new Float32Array(a2);
-//console.log(f2[0]);
-//console.log(f2[1]);
-//console.log(f2[2]);
+function test1() {
+    new ArrayBuffer(10);
+    
+    var a1 = new ArrayBuffer(16);
+    var f1 = new Float32Array(a1);
+    f1[0] = 10;
+    f1[1] = 20;
+    f1[2] = 30;
+    f1[3] = 40;
+    
+    var a2 = a1.slice(4, -4);
+    var f2 = new Float32Array(a2);
+    console.log(f2[0]);
+    console.log(f2[1]);
+    console.log(f2[2]);
+}
+function test2() {
+    new ArrayBuffer(10);
+    
+    var a1 = new ArrayBuffer(16);
+    var f1 = new Float32Array(a1, 4, 2);
+    f1[0] = 10;
+    f1[1] = 20;
+    f1[2] = 30;
 
-var m = new clz.vec4f();
-console.log(m.length);
-for(var i=0,len=m.length;i<len;i++) {
-    console.log(m[i]);
-    m[i] = i + 10;
+    var f2 = new Float32Array(a1);
+    console.log(f2[0]);
+    console.log(f2[1]);
+    console.log(f2[2]);
+    console.log(f2[3]);
 }
-console.log('====');
-for(var i=0,len=m.length;i<len;i++) {
-    console.log(m[i]);
-}
+//console.log('------------------');
+//test1();
+console.log('------------------');
+test2();
+
+//var m = new clz.vec4f();
+//console.log(m.length);
+//for(var i=0,len=m.length;i<len;i++) {
+//    console.log(m[i]);
+//    m[i] = i + 10;
+//}
+//console.log('====');
+//for(var i=0,len=m.length;i<len;i++) {
+//    console.log(m[i]);
+//}
 

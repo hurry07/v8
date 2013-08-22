@@ -48,7 +48,7 @@ public:
 
 template<typename T>
 T* ByteBuffer::value_ptr(int index) {
-    return (T*)(mPtr) + index;
+    return (T*)(mPtr + mByteOffset) + index;
 }
 
 #endif /* defined(__v8__bytebuffer__) */

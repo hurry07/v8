@@ -12,12 +12,14 @@
 #include <v8.h>
 #include "buffers.h"
 #include "../core/ClassWrap.h"
+#include "../functions/array.h"
 
 template <typename T>
 class TypedBuffer : public NodeBufferView {
 public:
     TypedBuffer();
     virtual ~TypedBuffer();
+    virtual void getUnderlying(ByteBuffer* feature);
 
     virtual T get_(long index);
     virtual void set_(long index, T value);
@@ -41,9 +43,6 @@ public:
     static const char* mClassName;
     static ClassType mClassType;
 };
-
-template <typename T>
-static void initWithArray(TypedBuffer<T>* buffer, Handle<Array>& array);
 
 static int getElemenetSize(ClassType type) {
     switch (type) {
@@ -170,6 +169,10 @@ template <typename T>
 long TypedBuffer<T>::set_a(long index, T* dest, int length) {
     return mBuffer->_writeDatas<T>(mByteOffset + index * mElementBytes, mElementBytes, dest, length);
 }
+template <typename T>
+void TypedBuffer<T>::getUnderlying(ByteBuffer* feature) {
+    feature->init(mBuffer, mByteOffset, mByteLength, mClassType, mElementBytes);
+}
 
 /**
  * methods of interface ArrayBufferView
@@ -193,68 +196,17 @@ static void byteLength(Local<String> property, const PropertyCallbackInfo<Value>
     info.GetReturnValue().Set(Integer::New(view->mByteLength));
 }
 
-/**
- * methods of TypedArray
- */
 template <typename T>
-static void length(Local<String> property, const PropertyCallbackInfo<Value>& info) {
-    ClassBase* ptr = internalPtr<ClassBase>(info);
-    if(ptr == 0 || !NodeBuffer::isView(ptr->getClassType())) {
-        return;
-    }
-    NodeBufferView* view = static_cast<NodeBufferView*>(ptr);
-    info.GetReturnValue().Set(Integer::New(view->mByteLength / getElemenetSize(ptr->getClassType())));
-}
-/**
- * operation []
- */
-template <typename T>
-static void getByIndex(uint32_t index, const PropertyCallbackInfo<Value>& info) {
-    HandleScope scope;
-
-    ClassBase* ptr = internalPtr<ClassBase>(info);
-    if(ptr == 0 || ptr->getClassType() != TypedBuffer<T>::mClassType) {
-        return;
-    }
-
-    TypedBuffer<T>* view = static_cast<TypedBuffer<T>*>(ptr);
-    if(index >= view->mByteLength / TypedBuffer<T>::mElementBytes) {
-        return;
-    }
-
-    info.GetReturnValue().Set(view->get_(index));
-}
-template <typename T>
-static void setByIndex(uint32_t index, Local<Value> value, const PropertyCallbackInfo<Value>& info) {
-    HandleScope scope;
-
-    ClassBase* ptr = internalPtr<ClassBase>(info);
-    info.GetReturnValue().Set(value);
-
-    if(ptr == 0 || ptr->getClassType() != TypedBuffer<T>::mClassType) {
-        return;
-    }
-    TypedBuffer<T>* view = static_cast<TypedBuffer<T>*>(ptr);
-    if(index >= view->mByteLength / TypedBuffer<T>::mElementBytes) {
-        return;
-    }
-    view->set_(index, unwrap<T>(value));
-}
-void qqq(uint32_t index, const PropertyCallbackInfo<Integer>& info) {
-    LOGI("qqq %d", index);
-}
-
-template <typename T>
-static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
+static v8::Local<v8::Function> initTypedArrayClass(v8::Handle<v8::FunctionTemplate>& temp) {
     HandleScope scope;
 
     Local<ObjectTemplate> obj = temp->PrototypeTemplate();
     obj->SetAccessor(String::New("byteOffset"), byteOffset<T>);
     obj->SetAccessor(String::New("byteLength"), byteLength<T>);
-    obj->SetAccessor(String::New("length"), length<T>);
+    obj->SetAccessor(String::New("length"), globalfn::array::length);
 
     Local<ObjectTemplate> ins = temp->InstanceTemplate();
-    ins->SetIndexedPropertyHandler(getByIndex<T>, setByIndex<T>);
+    ins->SetIndexedPropertyHandler(globalfn::array::getter<T>, globalfn::array::setter<T>);
 
     return scope.Close(temp->GetFunction());
 }
@@ -262,7 +214,7 @@ static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp)
 template <typename T>
 class_struct* TypedBuffer<T>::getExportStruct() {
     static class_struct mTemplate = {
-        initClass<T>, TypedBuffer<T>::mClassName, TypedBuffer<T>::mClassType
+        initTypedArrayClass<T>, TypedBuffer<T>::mClassName, TypedBuffer<T>::mClassType
     };
     return &mTemplate;
 }
