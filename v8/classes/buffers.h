@@ -16,11 +16,6 @@ class NodeBufferView : public ClassBase {
 public:
     NodeBufferView();
     virtual ~NodeBufferView();
-
-    NodeBuffer* mBuffer;
-    long mByteOffset;
-    long mByteLength;
-
     virtual char* value_ptr();
     
     /**
@@ -28,6 +23,10 @@ public:
      */
     virtual long writeBytes(long byteOffset, char* bytes, long byteLength);
     virtual long readBytes(long byteOffset, char* dest, long byteLength);
+
+    NodeBuffer* mBuffer;
+    long mByteOffset;
+    long mByteLength;
 };
 
 #endif /* defined(__v8__buffers__) */

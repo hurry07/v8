@@ -29,10 +29,10 @@ public:\
 \
     static class_struct* getExportStruct();\
     virtual ClassType getClassType();\
-    virtual void init(const v8::FunctionCallbackInfo<v8::Value> &args);\
     virtual const char* toString();\
     virtual void getUnderlying(ByteBuffer* feature);\
     virtual void _value(const FunctionCallbackInfo<Value> &args);\
+    virtual void init(const v8::FunctionCallbackInfo<v8::Value> &args);\
 \
     glm::detail::tmat##size##x##size<T> mMatrix;\
 }

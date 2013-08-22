@@ -25,6 +25,10 @@ static void argValue(const FunctionCallbackInfo<Value> &info, int index, uint8_t
 static void argValue(const FunctionCallbackInfo<Value> &info, int index, int32_t* slot) {
     *slot = info[index]->Int32Value();
 }
+
+/**
+ * create a data structor for init the object
+ */
 template <typename T>
 static void flatVector(const FunctionCallbackInfo<Value> &info, T* values, int length) {
     int copyed = 0;
@@ -59,7 +63,7 @@ static void flatVector(const FunctionCallbackInfo<Value> &info, T* values, int l
 }
 
 /**
- * translate between vector/matirx and ArrayBuffer
+ * translate between vector/matirx and ArrayBuffer, return a data structor of the curent object
  */
 static void _valueFn(const FunctionCallbackInfo<Value>& args, int eUnit, char* mPtr, int eSize) {
     while (1) {

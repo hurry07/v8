@@ -23,15 +23,14 @@ NodeBuffer::~NodeBuffer() {
     }
 }
 void NodeBuffer::init(const FunctionCallbackInfo<Value> &args) {
-    if(args.IsConstructCall()) {
-        if (args.Length() == 1) {
-            long size = args[0]->IntegerValue();
-            if(size > 0) {
-                allocate(size);
-            }
+    if (args.Length() == 1) {
+        long size = args[0]->IntegerValue();
+        if(size > 0) {
+            allocate(size);
         }
-        LOGI("NodeBuffer.init:%s", getExportStruct()->mClassName);
     }
+}
+void NodeBuffer::reset(const FunctionCallbackInfo<Value> &args) {
 }
 void NodeBuffer::allocate(long size) {
     mData = new char[mLength = size];
@@ -76,44 +75,42 @@ METHOD_BEGIN(slice, info) {
     }
     
     ClassBase* t = internalPtr<ClassBase>(info);
-    if(t != 0 && t->getClassType() == NodeBuffer::getExportStruct()->mType) {
-        if(!info[0]->IsInt32Array()) {
-            return;
-        }
-
-        long start = info[0]->IntegerValue();
-        long end = 0;
-        NodeBuffer* current = static_cast<NodeBuffer*>(t);
-        if (acount == 2) {
-            if(!info[1]->IsInt32Array()) {
-                return;
-            }
-            end = info[0]->IntegerValue();
-        } else {
-            end = current->mLength;
-        }
-        if(start < 0) {
-            start += current->mLength;
-        }
-        if(end < 0) {
-            end += current->mLength;
-        }
-
-        Handle<Object> dest = ClassWrap<NodeBuffer>::newInstance();
-        long length = end - start;
-        if(start < 0 || start >= current->mLength) {
-            info.GetReturnValue().Set(dest);
-            return;
-        }
-        if(start + length > current->mLength) {
-            length = current->mLength - start;
-        }
-
-        NodeBuffer* bufPtr = internalPtr<NodeBuffer>(dest);
-        bufPtr->mData = new char[bufPtr->mLength = length];
-        bufPtr->writeBytes(0, current->mData + start, length);
-        info.GetReturnValue().Set(dest);
+    if(t == 0 || t->getClassType() != CLASS_ArrayBuffer) {
+        return;
     }
+
+    NodeBuffer* thiz = static_cast<NodeBuffer*>(t);
+    long start = info[0]->IntegerValue();
+    long end = 0;
+    if(acount == 1) {
+        start = info[0]->IntegerValue();
+        end = thiz->mLength;
+    } else if(acount == 2) {
+        start = info[0]->IntegerValue();
+        end = info[1]->IntegerValue();
+    }
+    
+    if(start < 0) {
+        start += thiz->mLength;
+    }
+    if(end < 0) {
+        end += thiz->mLength;
+    }
+    
+    Handle<Object> dest = ClassWrap<NodeBuffer>::newInstance();
+    
+    if(start < 0 || start >= thiz->mLength || start >= end) {
+        info.GetReturnValue().Set(dest);
+        return;
+    }
+
+    if(end > thiz->mLength) {
+        end = thiz->mLength;
+    }
+    NodeBuffer* bufPtr = internalPtr<NodeBuffer>(dest);
+    bufPtr->allocate(end - start);
+    bufPtr->writeBytes(0, thiz->value_ptr(start) , end - start);
+    info.GetReturnValue().Set(dest);
 }
 static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
     HandleScope scope;
@@ -168,4 +165,7 @@ long NodeBuffer::readBytes(long offset, char* dest, long length) {
     }
     memcpy(dest, mData + offset, length);
     return length;
+}
+char* NodeBuffer::value_ptr(long offset) {
+    return mData + offset;
 }

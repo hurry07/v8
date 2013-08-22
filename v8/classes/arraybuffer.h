@@ -19,6 +19,9 @@
 
 using namespace v8;
 
+/**
+ * this underlying buffer of TypedBuffer
+ */
 class NodeBuffer : public ClassBase {
 public:
 	NodeBuffer();
@@ -26,6 +29,7 @@ public:
 
 	virtual ~NodeBuffer();
     virtual void init(const FunctionCallbackInfo<Value> &args);
+    virtual void reset(const FunctionCallbackInfo<Value> &args);
     virtual void allocate(long length);
 
     virtual ClassType getClassType();
@@ -51,6 +55,8 @@ public:
      */
     virtual long writeBytes(long offset, char* bytes, long length);
     virtual long readBytes(long offset, char* dest, long length);
+    
+    virtual char* value_ptr(long offset);
 
     long mLength;
     char* mData;

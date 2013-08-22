@@ -23,6 +23,9 @@
 template<typename T>
 static T* internalPtr(const FunctionCallbackInfo<Value>& info) {
     Local<Object> self = info.This();
+    if(self.IsEmpty()) {
+        return 0;
+    }
     if(self->InternalFieldCount() == 1) {
         Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
         return static_cast<T*>(wrap->Value());
@@ -32,6 +35,9 @@ static T* internalPtr(const FunctionCallbackInfo<Value>& info) {
 template<typename T>
 static T* internalPtr(const PropertyCallbackInfo<Value>& info) {
     Local<Object> self = info.This();
+    if(self.IsEmpty()) {
+        return 0;
+    }
     if(self->InternalFieldCount() == 1) {
         Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
         return static_cast<T*>(wrap->Value());
@@ -40,6 +46,9 @@ static T* internalPtr(const PropertyCallbackInfo<Value>& info) {
 }
 template<typename T>
 static T* internalPtr(Handle<Object>& self) {
+    if(self.IsEmpty()) {
+        return 0;
+    }
     if(self->InternalFieldCount() == 1) {
         Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
         return static_cast<T*>(wrap->Value());
@@ -50,6 +59,9 @@ static T* internalPtr(Handle<Object>& self) {
 template<typename T>
 static T* internalArg(Local<Value> val) {
     Local<Object> self = val->ToObject();
+    if(self.IsEmpty()) {
+        return 0;
+    }
     if(self->InternalFieldCount() == 1) {
         Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
         return static_cast<T*>(wrap->Value());
@@ -59,6 +71,9 @@ static T* internalArg(Local<Value> val) {
 
 template<typename T>
 static T* internalPtr(Handle<Object>& self, ClassType type) {
+    if(self.IsEmpty()) {
+        return 0;
+    }
     if(self->InternalFieldCount() == 1) {
         Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
         ClassBase* base = static_cast<ClassBase*>(wrap->Value());
@@ -71,6 +86,9 @@ static T* internalPtr(Handle<Object>& self, ClassType type) {
 template<typename T>
 static T* internalArg(Local<Value> val, ClassType type) {
     Local<Object> self = val->ToObject();
+    if(self.IsEmpty()) {
+        return 0;
+    }
     if(self->InternalFieldCount() == 1) {
         Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
         ClassBase* base = static_cast<ClassBase*>(wrap->Value());

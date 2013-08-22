@@ -120,8 +120,9 @@ function createUniformSetter(info) {
     var loc = gl.getUniformLocation(program, info.name)
     var s;
     switch (info.type) {
+// -----------------
         case gl.FLOAT:
-            s = new uniformRaw(loc, gl.uniform1fv, 0);
+            s = new uniformRaw(loc, gl.uniform1fv, new Float32Array([0]));
             break;
         case gl.FLOAT_VEC2:
             s = new uniformParam(loc, gl.uniform2fv, new clz.vec2f());
@@ -132,8 +133,9 @@ function createUniformSetter(info) {
         case gl.FLOAT_VEC4:
             s = new uniformParam(loc, gl.uniform4fv, new clz.vec4f());
             break;
+// -----------------
         case gl.INT:
-            s = new uniformRaw(loc, gl.uniform1fv, 0);
+            s = new uniformRaw(loc, gl.uniform1fv, new Int32Array([0]));
             break;
         case gl.INT_VEC2:
             s = new uniformParam(loc, gl.uniform2fv, new clz.vec2i());
@@ -144,18 +146,20 @@ function createUniformSetter(info) {
         case gl.INT_VEC4:
             s = new uniformParam(loc, gl.uniform4fv, new clz.vec4i());
             break;
+// -----------------
         case gl.BOOL:
-            s = new uniformRaw(loc, gl.uniform1iv, false);
+            s = new uniformRaw(loc, gl.uniform1iv, new Int32Array([0]));
             break;
         case gl.BOOL_VEC2:
-            s = new uniformParam(loc, gl.uniform2iv, new clz.vec2b());
+            s = new uniformParam(loc, gl.uniform2iv, new clz.vec2i());
             break;
         case gl.BOOL_VEC3:
-            s = new uniformParam(loc, gl.uniform3iv, new clz.vec4b());
+            s = new uniformParam(loc, gl.uniform3iv, new clz.vec3i());
             break;
         case gl.BOOL_VEC4:
-            s = new uniformParam(loc, gl.uniform4iv, new clz.vec4b());
+            s = new uniformParam(loc, gl.uniform4iv, new clz.vec4i());
             break;
+// -----------------
         case gl.FLOAT_MAT2:
             s = new uniformParam(loc, gl.uniformMatrix2fv, new clz.mat2f());
             break;
