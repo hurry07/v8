@@ -8,6 +8,7 @@ template<> void clzName<T>::getUnderlying(ByteBuffer* feature) {\
     feature->mPtr = (char*)glm::value_ptr(mVec);\
     feature->mByteLength = size * sizeof(T);\
     feature->mElement = fType;\
+    feature->mElementSize = sizeof(T);\
 }
 
 #define VERTEX_IMPL(clzName, size) \
