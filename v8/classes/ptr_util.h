@@ -12,6 +12,9 @@
 #include "../core/ClassBase.h"
 #include "../core/v8Utils.h"
 #include "bytebuffer.h"
+#include "../core/ClassWrap.h"
+#include "typedbuffer.h"
+#include "arraybuffer.h"
 
 static void argValue(const FunctionCallbackInfo<Value> &info, int index, float* slot) {
     *slot = info[index]->NumberValue();
@@ -53,6 +56,47 @@ static void flatVector(const FunctionCallbackInfo<Value> &info, T* values, int l
     while (copyed < length) {
         values[copyed++] = 0;
     }
+}
+
+/**
+ * translate between vector/matirx and ArrayBuffer
+ */
+static void _valueFn(const FunctionCallbackInfo<Value>& args, int eUnit, char* mPtr, int eSize) {
+    while (1) {
+        if(args.Length() == 0) {
+            break;
+        }
+        ClassBase* destPtr = internalArg<ClassBase>(args[0]);
+        if(destPtr == 0) {
+            break;
+        }
+        
+        ClassType type = destPtr->getClassType();
+        if(type == CLASS_ArrayBuffer) {
+            NodeBuffer* bufPtr = static_cast<NodeBuffer*>(destPtr);
+            bufPtr->_writeDatas(0, eUnit, mPtr, eSize);
+            
+            args.GetReturnValue().Set(args[0]);
+            return;
+            
+        } else if(NodeBuffer::isView(type)) {
+            // copy value dispite buffer type.
+            NodeBufferView* viewPtr = static_cast<NodeBufferView*>(destPtr);
+            viewPtr->writeBytes(0, mPtr, eSize * eUnit);
+            
+            args.GetReturnValue().Set(args[0]);
+            return;
+            
+        } else {
+            args.GetReturnValue().Set(ThrowException(String::New("_value args[0] cannot be treated as a buffer obejct.")));
+        }
+        break;
+    }
+
+    Handle<Object> byteArray = ClassWrap<NodeBuffer>::newInstance(Integer::NewFromUnsigned(eSize * eUnit));
+    NodeBuffer* bPtr = internalPtr<NodeBuffer>(byteArray);
+    bPtr->_writeDatas(0, eUnit, mPtr, eSize);
+    args.GetReturnValue().Set(ClassWrap<TypedBuffer<float>>::newInstance(byteArray));
 }
 
 template <typename T>

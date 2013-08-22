@@ -30,7 +30,6 @@ template <> void clzName<T>::getUnderlying(ByteBuffer* feature) {\
     feature->mByteLength = sizepwo * sizeof(T);\
     feature->mElement = fType;\
 }
-
 #define MATRIX_IMPL(clzName, size, sizepwo) \
 template <typename T>\
 clzName<T>::clzName() {\
@@ -57,6 +56,10 @@ void clzName<T>::init(const v8::FunctionCallbackInfo<v8::Value> &info) {\
     T values[sizepwo];\
     flatVector<T>(info, values, sizepwo);\
     fill_value_ptr<T>(glm::value_ptr(mMatrix), values, sizepwo);\
+}\
+template <typename T>\
+void clzName<T>::_value(const FunctionCallbackInfo<Value>& args) {\
+    _valueFn(args, sizeof(T), (char*)glm::value_ptr(mMatrix), sizepwo);\
 }\
 MATRIX_UNDERLYING(clzName, float, CLASS_Float32Array, sizepwo)\
 MATRIX_UNDERLYING(clzName, int32_t, CLASS_Int16Array, sizepwo)\

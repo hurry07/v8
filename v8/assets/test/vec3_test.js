@@ -140,11 +140,31 @@ printVec(f2);
 printVec(f3);
 printVec(f4);
 
+console.log('----------------');
 v4._value(f3);
 printVec(f1);
 printVec(f2);
 printVec(f3);
 printVec(f4);
+
+console.log('----------------');
+var f5 = v4._value();
+printVec(f5);
+
+//var m = new clz.mat4f();
+////var mf = m._value();
+////printVec(mf);
+////
+//m.translate(new clz.vec3f(100, 150, 223))
+////m._value(mf);
+////printVec(mf);
+//
+//var b = new ArrayBuffer(72);
+//var f1 = new Float32Array(b, 4);
+//var f2 = new Float32Array(b);
+//m._value(f1);
+//printVec(f1);
+//printVec(f2);
 
 //var str="Hello happy world!";
 //console.log(str.slice(6,11));
