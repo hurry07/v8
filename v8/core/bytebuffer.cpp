@@ -7,8 +7,8 @@
 //
 
 #include "bytebuffer.h"
-#include "buffers.h"
-#include "arraybuffer.h"
+//#include "arraybuffer.h"
+#include "../typedbuffer/arraybufferview.h"
 
 ByteBuffer::ByteBuffer() : mElement(CLASS_ArrayBuffer), mPtr(0), mByteOffset(0), mByteLength(0), mElementSize(1) {
 }

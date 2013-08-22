@@ -12,7 +12,7 @@
 #include <v8.h>
 #include "../core/ClassBase.h"
 #include "../core/v8Utils.h"
-#include "../classes/bytebuffer.h"
+#include "../core/bytebuffer.h"
 
 namespace globalfn {
     namespace array {

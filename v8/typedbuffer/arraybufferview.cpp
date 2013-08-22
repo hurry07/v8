@@ -5,8 +5,7 @@
 //  Created by jie on 13-8-20.
 //  Copyright (c) 2013年 jie. All rights reserved.
 //
-#include "buffers.h"
-
+#include "arraybufferview.h"
 
 NodeBufferView::NodeBufferView() : mBuffer(0), mByteOffset(0), mByteLength(0) {
 }

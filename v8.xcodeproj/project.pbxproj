@@ -11,16 +11,15 @@
 		186BE22617BCE4E5000E8A62 /* ClassBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 186BE22417BCE4E5000E8A62 /* ClassBase.cpp */; };
 		18A2B6AE17C39A7B00C5F951 /* libv8_base.x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A2B6AC17C39A7B00C5F951 /* libv8_base.x64.a */; };
 		18A2B6AF17C39A7B00C5F951 /* libv8_snapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A2B6AD17C39A7B00C5F951 /* libv8_snapshot.a */; };
-		18A6D24317C61E3B004931FD /* arraybuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D22E17C61E3B004931FD /* arraybuffer.cpp */; };
-		18A6D24417C61E3B004931FD /* buffers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D23017C61E3B004931FD /* buffers.cpp */; };
-		18A6D24517C61E3B004931FD /* bytebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D23217C61E3B004931FD /* bytebuffer.cpp */; };
 		18A6D24617C61E3B004931FD /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D23517C61E3B004931FD /* file.cpp */; };
-		18A6D24717C61E3B004931FD /* glmopt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D23717C61E3B004931FD /* glmopt.cpp */; };
 		18A6D24817C61E3B004931FD /* NativeClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D23B17C61E3B004931FD /* NativeClass.cpp */; };
-		18A6D24917C61E3B004931FD /* Point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D23D17C61E3B004931FD /* Point.cpp */; };
 		18AFB4BE17AE1C6300B7AFDA /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18AFB4BC17AE1C6300B7AFDA /* Application.cpp */; };
 		18AFB4C917AE782000B7AFDA /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18AFB4C717AE782000B7AFDA /* Console.cpp */; };
 		18CE222F17C643F200B6DB8E /* array.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18CE222D17C643F200B6DB8E /* array.cpp */; };
+		18CE223817C652E500B6DB8E /* arraybuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18CE223117C652E500B6DB8E /* arraybuffer.cpp */; };
+		18CE223917C652E500B6DB8E /* arraybufferview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18CE223317C652E500B6DB8E /* arraybufferview.cpp */; };
+		18CE223D17C6536300B6DB8E /* bytebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18CE223B17C6536300B6DB8E /* bytebuffer.cpp */; };
+		18CE224617C6567200B6DB8E /* glmopt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18CE224017C6567200B6DB8E /* glmopt.cpp */; };
 		18E22F3917BA561B0079D25F /* assert.js in Sources */ = {isa = PBXBuildFile; fileRef = 18E2252217BA56110079D25F /* assert.js */; };
 		18E22F3A17BA561B0079D25F /* default-locale.js in Sources */ = {isa = PBXBuildFile; fileRef = 18E2252417BA56110079D25F /* default-locale.js */; };
 		18E22F3B17BA561B0079D25F /* en-break.js in Sources */ = {isa = PBXBuildFile; fileRef = 18E2252517BA56110079D25F /* en-break.js */; };
@@ -1972,27 +1971,12 @@
 		186BE22517BCE4E5000E8A62 /* ClassBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ClassBase.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		18A2B6AC17C39A7B00C5F951 /* libv8_base.x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.x64.a; path = ../libv8_base.x64.a; sourceTree = "<group>"; };
 		18A2B6AD17C39A7B00C5F951 /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = ../libv8_snapshot.a; sourceTree = "<group>"; };
-		18A6D22E17C61E3B004931FD /* arraybuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arraybuffer.cpp; sourceTree = "<group>"; };
-		18A6D22F17C61E3B004931FD /* arraybuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arraybuffer.h; sourceTree = "<group>"; };
-		18A6D23017C61E3B004931FD /* buffers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = buffers.cpp; sourceTree = "<group>"; };
-		18A6D23117C61E3B004931FD /* buffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffers.h; sourceTree = "<group>"; };
-		18A6D23217C61E3B004931FD /* bytebuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bytebuffer.cpp; sourceTree = "<group>"; };
-		18A6D23317C61E3B004931FD /* bytebuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bytebuffer.h; sourceTree = "<group>"; };
 		18A6D23417C61E3B004931FD /* classenum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = classenum.h; sourceTree = "<group>"; };
 		18A6D23517C61E3B004931FD /* file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
 		18A6D23617C61E3B004931FD /* file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file.h; sourceTree = "<group>"; };
-		18A6D23717C61E3B004931FD /* glmopt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glmopt.cpp; sourceTree = "<group>"; };
-		18A6D23817C61E3B004931FD /* glmopt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glmopt.h; sourceTree = "<group>"; };
-		18A6D23917C61E3B004931FD /* matrix_inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix_inl.h; sourceTree = "<group>"; };
-		18A6D23A17C61E3B004931FD /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
 		18A6D23B17C61E3B004931FD /* NativeClass.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NativeClass.cpp; sourceTree = "<group>"; };
 		18A6D23C17C61E3B004931FD /* NativeClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeClass.h; sourceTree = "<group>"; };
-		18A6D23D17C61E3B004931FD /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
-		18A6D23E17C61E3B004931FD /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
 		18A6D23F17C61E3B004931FD /* ptr_util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ptr_util.h; sourceTree = "<group>"; };
-		18A6D24017C61E3B004931FD /* typedbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = typedbuffer.h; sourceTree = "<group>"; };
-		18A6D24117C61E3B004931FD /* vector_inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector_inl.h; sourceTree = "<group>"; };
-		18A6D24217C61E3B004931FD /* vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
 		18AFB48917AE06A900B7AFDA /* libv8_base.x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.x64.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_base.x64.a; sourceTree = "<group>"; };
 		18AFB48B17AE06A900B7AFDA /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_snapshot.a; sourceTree = "<group>"; };
 		18AFB4BC17AE1C6300B7AFDA /* Application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
@@ -2003,6 +1987,20 @@
 		18AFB4CA17AE7BB200B7AFDA /* modules.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = modules.h; sourceTree = "<group>"; };
 		18CE222D17C643F200B6DB8E /* array.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = array.cpp; sourceTree = "<group>"; };
 		18CE222E17C643F200B6DB8E /* array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = array.h; sourceTree = "<group>"; };
+		18CE223117C652E500B6DB8E /* arraybuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arraybuffer.cpp; sourceTree = "<group>"; };
+		18CE223217C652E500B6DB8E /* arraybuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arraybuffer.h; sourceTree = "<group>"; };
+		18CE223317C652E500B6DB8E /* arraybufferview.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = arraybufferview.cpp; sourceTree = "<group>"; };
+		18CE223417C652E500B6DB8E /* arraybufferview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = arraybufferview.h; sourceTree = "<group>"; };
+		18CE223717C652E500B6DB8E /* typedbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = typedbuffer.h; sourceTree = "<group>"; };
+		18CE223B17C6536300B6DB8E /* bytebuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bytebuffer.cpp; sourceTree = "<group>"; };
+		18CE223C17C6536300B6DB8E /* bytebuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bytebuffer.h; sourceTree = "<group>"; };
+		18CE223E17C6543800B6DB8E /* Module.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Module.h; sourceTree = "<group>"; };
+		18CE224017C6567200B6DB8E /* glmopt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = glmopt.cpp; sourceTree = "<group>"; };
+		18CE224117C6567200B6DB8E /* glmopt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glmopt.h; sourceTree = "<group>"; };
+		18CE224217C6567200B6DB8E /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
+		18CE224317C6567200B6DB8E /* matrix_inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix_inl.h; sourceTree = "<group>"; };
+		18CE224417C6567200B6DB8E /* vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
+		18CE224517C6567200B6DB8E /* vector_inl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector_inl.h; sourceTree = "<group>"; };
 		18D6659417BA830B00021EA2 /* cctest */ = {isa = PBXFileReference; lastKnownFileType = folder; name = cctest; path = test/cctest; sourceTree = "<group>"; };
 		18E2252217BA56110079D25F /* assert.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = assert.js; sourceTree = "<group>"; };
 		18E2252417BA56110079D25F /* default-locale.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "default-locale.js"; sourceTree = "<group>"; };
@@ -4539,6 +4537,8 @@
 		1828209F179AFFCB003125B5 /* v8 */ = {
 			isa = PBXGroup;
 			children = (
+				18CE223F17C6567100B6DB8E /* glm */,
+				18CE223017C652E500B6DB8E /* typedbuffer */,
 				18CE222C17C643F200B6DB8E /* functions */,
 				185BF54817BBE5D900F7AE09 /* classes */,
 				18D6659417BA830B00021EA2 /* cctest */,
@@ -4557,27 +4557,12 @@
 		185BF54817BBE5D900F7AE09 /* classes */ = {
 			isa = PBXGroup;
 			children = (
-				18A6D22E17C61E3B004931FD /* arraybuffer.cpp */,
-				18A6D22F17C61E3B004931FD /* arraybuffer.h */,
-				18A6D23017C61E3B004931FD /* buffers.cpp */,
-				18A6D23117C61E3B004931FD /* buffers.h */,
-				18A6D23217C61E3B004931FD /* bytebuffer.cpp */,
-				18A6D23317C61E3B004931FD /* bytebuffer.h */,
 				18A6D23417C61E3B004931FD /* classenum.h */,
 				18A6D23517C61E3B004931FD /* file.cpp */,
 				18A6D23617C61E3B004931FD /* file.h */,
-				18A6D23717C61E3B004931FD /* glmopt.cpp */,
-				18A6D23817C61E3B004931FD /* glmopt.h */,
-				18A6D23917C61E3B004931FD /* matrix_inl.h */,
-				18A6D23A17C61E3B004931FD /* matrix.h */,
 				18A6D23B17C61E3B004931FD /* NativeClass.cpp */,
 				18A6D23C17C61E3B004931FD /* NativeClass.h */,
-				18A6D23D17C61E3B004931FD /* Point.cpp */,
-				18A6D23E17C61E3B004931FD /* Point.h */,
 				18A6D23F17C61E3B004931FD /* ptr_util.h */,
-				18A6D24017C61E3B004931FD /* typedbuffer.h */,
-				18A6D24117C61E3B004931FD /* vector_inl.h */,
-				18A6D24217C61E3B004931FD /* vector.h */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -4613,6 +4598,31 @@
 				18CE222E17C643F200B6DB8E /* array.h */,
 			);
 			path = functions;
+			sourceTree = "<group>";
+		};
+		18CE223017C652E500B6DB8E /* typedbuffer */ = {
+			isa = PBXGroup;
+			children = (
+				18CE223117C652E500B6DB8E /* arraybuffer.cpp */,
+				18CE223217C652E500B6DB8E /* arraybuffer.h */,
+				18CE223317C652E500B6DB8E /* arraybufferview.cpp */,
+				18CE223417C652E500B6DB8E /* arraybufferview.h */,
+				18CE223717C652E500B6DB8E /* typedbuffer.h */,
+			);
+			path = typedbuffer;
+			sourceTree = "<group>";
+		};
+		18CE223F17C6567100B6DB8E /* glm */ = {
+			isa = PBXGroup;
+			children = (
+				18CE224017C6567200B6DB8E /* glmopt.cpp */,
+				18CE224117C6567200B6DB8E /* glmopt.h */,
+				18CE224217C6567200B6DB8E /* matrix.h */,
+				18CE224317C6567200B6DB8E /* matrix_inl.h */,
+				18CE224417C6567200B6DB8E /* vector.h */,
+				18CE224517C6567200B6DB8E /* vector_inl.h */,
+			);
+			path = glm;
 			sourceTree = "<group>";
 		};
 		18E224C617BA56110079D25F /* test */ = {
@@ -7327,6 +7337,9 @@
 		18EDB7C717B916BA002E00CE /* core */ = {
 			isa = PBXGroup;
 			children = (
+				18CE223E17C6543800B6DB8E /* Module.h */,
+				18CE223B17C6536300B6DB8E /* bytebuffer.cpp */,
+				18CE223C17C6536300B6DB8E /* bytebuffer.h */,
 				18E236BE17BB56120079D25F /* JSObject.cpp */,
 				18E236BF17BB56120079D25F /* JSObject.h */,
 				18E236BD17BB55EA0079D25F /* ClassWrap.h */,
@@ -9320,14 +9333,13 @@
 				18E236C017BB56120079D25F /* JSObject.cpp in Sources */,
 				186BE22617BCE4E5000E8A62 /* ClassBase.cpp in Sources */,
 				18EE2B8F17C30E0000161023 /* ArrayBufferAllocator.cpp in Sources */,
-				18A6D24317C61E3B004931FD /* arraybuffer.cpp in Sources */,
-				18A6D24417C61E3B004931FD /* buffers.cpp in Sources */,
-				18A6D24517C61E3B004931FD /* bytebuffer.cpp in Sources */,
 				18A6D24617C61E3B004931FD /* file.cpp in Sources */,
-				18A6D24717C61E3B004931FD /* glmopt.cpp in Sources */,
 				18A6D24817C61E3B004931FD /* NativeClass.cpp in Sources */,
-				18A6D24917C61E3B004931FD /* Point.cpp in Sources */,
 				18CE222F17C643F200B6DB8E /* array.cpp in Sources */,
+				18CE223817C652E500B6DB8E /* arraybuffer.cpp in Sources */,
+				18CE223917C652E500B6DB8E /* arraybufferview.cpp in Sources */,
+				18CE223D17C6536300B6DB8E /* bytebuffer.cpp in Sources */,
+				18CE224617C6567200B6DB8E /* glmopt.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9400,7 +9412,7 @@
 			buildSettings = {
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					/Users/jie/git/node/deps/v8/include,
-					"$SRCROOT/v8/glm/**",
+					"$SRCROOT/deps/glm/**",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9417,7 +9429,7 @@
 			buildSettings = {
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					/Users/jie/xcodespace/v8/v8/include,
-					"$SRCROOT/v8/glm/**",
+					"$SRCROOT/deps/glm/**",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

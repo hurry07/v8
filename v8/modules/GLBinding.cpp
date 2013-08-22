@@ -10,7 +10,7 @@
 #include "../global.h"
 #include "../core/ClassBase.h"
 #include "../core/v8Utils.h"
-#include "../classes/bytebuffer.h"
+#include "../core/bytebuffer.h"
 
 using v8::HandleScope;
 using v8::String;

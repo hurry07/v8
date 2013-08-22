@@ -12,14 +12,13 @@
 using namespace v8;
 
 #include "glmopt.h"
-#include "Point.h"
 #include "matrix.h"
 #include "matrix_inl.h"
 #include "vector.h"
 #include "vector_inl.h"
 #include "file.h"
-#include "arraybuffer.h"
-#include "typedbuffer.h"
+#include "../typedbuffer/arraybuffer.h"
+#include "../typedbuffer/typedbuffer.h"
 #include "../core/ClassWrap.h"
 
 template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& args) {
@@ -27,7 +26,6 @@ template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& arg
     Local<Object> global = args[0]->ToObject();
 
     ClassWrap<Glm>::expose(global);
-    ClassWrap<Point>::expose(global);
     ClassWrap<JSFile>::expose(global);
     
     ClassWrap<NodeBuffer>::expose(global);

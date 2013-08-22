@@ -10,7 +10,7 @@
 #define v8_typedbuffer_h
 
 #include <v8.h>
-#include "buffers.h"
+#include "arraybufferview.h"
 #include "../core/ClassWrap.h"
 #include "../functions/array.h"
 
@@ -111,6 +111,7 @@ void TypedBuffer<T>::init(const FunctionCallbackInfo<Value> &args) {
 
         ClassBase* ptr = internalArg<ClassBase>(args[0]);
         if(ptr == 0) {
+            LOGE("TypedArray init error");
             return;
         }
 
