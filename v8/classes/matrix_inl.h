@@ -59,9 +59,8 @@ void clzName<T>::init(const v8::FunctionCallbackInfo<v8::Value> &info) {\
     fill_value_ptr<T>(glm::value_ptr(mMatrix), values, sizepwo);\
 }\
 MATRIX_UNDERLYING(clzName, float, CLASS_Float32Array, sizepwo)\
-MATRIX_UNDERLYING(clzName, int, CLASS_Int16Array, sizepwo)\
-MATRIX_UNDERLYING(clzName, bool, CLASS_Int16Array, sizepwo)
-// TODO
+MATRIX_UNDERLYING(clzName, int32_t, CLASS_Int16Array, sizepwo)\
+MATRIX_UNDERLYING(clzName, uint8_t, CLASS_Int16Array, sizepwo)
 
 #define MATIRX_INIT(clzName, size)\
 template <typename T>\

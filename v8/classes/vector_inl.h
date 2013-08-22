@@ -37,9 +37,8 @@ void clzName<T>::init(const FunctionCallbackInfo<Value> &info) {\
     fill_value_ptr<T>(glm::value_ptr(mVec), values, size);\
 }\
 VERTEX_UNDERLYING(clzName, float, CLASS_Float32Array, size)\
-VERTEX_UNDERLYING(clzName, int, CLASS_Int32Array, size)\
-VERTEX_UNDERLYING(clzName, bool, CLASS_Int32Array, size)
-// TODO
+VERTEX_UNDERLYING(clzName, int32_t, CLASS_Int32Array, size)\
+VERTEX_UNDERLYING(clzName, uint8_t, CLASS_Uint8Array, size)
 
 VERTEX_IMPL(Vec2, 2);
 VERTEX_IMPL(Vec3, 3);

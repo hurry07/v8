@@ -16,10 +16,10 @@
 static void argValue(const FunctionCallbackInfo<Value> &info, int index, float* slot) {
     *slot = info[index]->NumberValue();
 }
-static void argValue(const FunctionCallbackInfo<Value> &info, int index, bool* slot) {
+static void argValue(const FunctionCallbackInfo<Value> &info, int index, uint8_t* slot) {
     *slot = info[index]->BooleanValue();
 }
-static void argValue(const FunctionCallbackInfo<Value> &info, int index, int* slot) {
+static void argValue(const FunctionCallbackInfo<Value> &info, int index, int32_t* slot) {
     *slot = info[index]->Int32Value();
 }
 template <typename T>
@@ -118,8 +118,8 @@ static const char* printValue(const char* name, T* ptr, int length, int step=0) 
 //    return buf.c_str();
 //}
 
-PTR_TOSTRING(int, int2str);
+PTR_TOSTRING(int32_t, int2str);
 PTR_TOSTRING(float, float2str);
-PTR_TOSTRING(bool, int2str);
+PTR_TOSTRING(uint8_t, int2str);
 
 #endif

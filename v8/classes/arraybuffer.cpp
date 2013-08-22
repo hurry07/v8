@@ -135,7 +135,7 @@ ClassType NodeBuffer::getClassType() {
     return NodeBuffer::getExportStruct()->mType;
 }
 
-void NodeBuffer::getUnderlying(Feature* feature) {
+void NodeBuffer::getUnderlying(ByteBuffer* feature) {
 }
 void NodeBuffer::onClone(NodeBuffer& current, const NodeBuffer& from) {
     if(from.mLength == 0) {
