@@ -33,7 +33,7 @@ public:
 
     virtual ClassType getClassType();
     static class_struct* getExportStruct();
-    
+
     virtual void init(const FunctionCallbackInfo<Value> &args);
 
 public:

@@ -53,7 +53,20 @@ public:
             t->release();
         }
     }
-    static void init(const FunctionCallbackInfo<Value>& info) {
+    /**
+     * reset the underlying byte structor of this object or expose these bytes outside
+     */
+    static void _value(const FunctionCallbackInfo<Value>& info) {
+		HandleScope scope(node_isolate);
+        ClassBase* t = internalPtr<ClassBase>(info);
+        if(t != 0) {
+            t->init(info);
+        }
+    }
+    /**
+     * reset current object with parameters you specific
+     */
+    static void reset(const FunctionCallbackInfo<Value>& info) {
 		HandleScope scope(node_isolate);
         ClassBase* t = internalPtr<ClassBase>(info);
         if(t != 0) {
@@ -109,7 +122,7 @@ public:
 
         Local<ObjectTemplate> fnproto = fn->PrototypeTemplate();
         EXPOSE_METHOD(fnproto, release, ReadOnly | DontDelete);
-        EXPOSE_METHOD(fnproto, init, ReadOnly | DontDelete);
+        EXPOSE_METHOD(fnproto, _value, ReadOnly | DontDelete);
         EXPOSE_METHOD(fnproto, toString, ReadOnly | DontDelete);
         EXPOSE_METHOD(fnproto, clone, ReadOnly | DontDelete);
         fnproto->SetInternalFieldCount(1);

@@ -11,6 +11,7 @@
 
 #include "../core/ClassBase.h"
 #include "../core/v8Utils.h"
+#include "bytebuffer.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
@@ -24,7 +25,7 @@ public:\
     virtual ClassType getClassType();\
     void init(const FunctionCallbackInfo<Value> &info);\
     virtual const char* toString();\
-    virtual void getUnderlying(Feature* feature);\
+    virtual void getUnderlying(ByteBuffer* feature);\
 \
     glm::detail::tvec##size<T> mVec;\
 }

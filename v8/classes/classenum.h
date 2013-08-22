@@ -20,8 +20,8 @@ enum ClassType {
     CLASS_VEC3,
     CLASS_VEC4,
     CLASS_FILE,
-    
-    CLASS_ArrayBuffer,
+
+    CLASS_ArrayBuffer,// byte
     CLASS_Int8Array,
     CLASS_Uint8Array,
     CLASS_Int16Array,
@@ -31,7 +31,6 @@ enum ClassType {
     CLASS_Float32Array,
     CLASS_Float64Array
 };
-
 enum FeatureType {
     FEATURE_NULL,
     FEATURE_BYTE,

@@ -17,6 +17,7 @@
 		18A2B6AF17C39A7B00C5F951 /* libv8_snapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A2B6AD17C39A7B00C5F951 /* libv8_snapshot.a */; };
 		18A6D22617C3752B004931FD /* arraybuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D22417C3752B004931FD /* arraybuffer.cpp */; };
 		18A6D22917C37C39004931FD /* buffers.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D22717C37C39004931FD /* buffers.cpp */; };
+		18A6D22D17C5B9F6004931FD /* bytebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D22B17C5B9F6004931FD /* bytebuffer.cpp */; };
 		18AFB4BE17AE1C6300B7AFDA /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18AFB4BC17AE1C6300B7AFDA /* Application.cpp */; };
 		18AFB4C917AE782000B7AFDA /* Console.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18AFB4C717AE782000B7AFDA /* Console.cpp */; };
 		18E22F3917BA561B0079D25F /* assert.js in Sources */ = {isa = PBXBuildFile; fileRef = 18E2252217BA56110079D25F /* assert.js */; };
@@ -1972,7 +1973,6 @@
 		185BF54917BBE6B600F7AE09 /* Point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Point.cpp; sourceTree = "<group>"; };
 		185BF54A17BBE6B600F7AE09 /* Point.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
 		185BF54F17BBE8F400F7AE09 /* classenum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = classenum.h; sourceTree = "<group>"; };
-		1864A7E417C243C600D894F5 /* Feature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Feature.h; sourceTree = "<group>"; };
 		186BE21F17BCABD1000E8A62 /* file.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = file.cpp; sourceTree = "<group>"; };
 		186BE22017BCABD1000E8A62 /* file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = file.h; sourceTree = "<group>"; };
 		186BE22217BCD255000E8A62 /* sturctures.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sturctures.h; sourceTree = "<group>"; };
@@ -1985,6 +1985,8 @@
 		18A6D22717C37C39004931FD /* buffers.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = buffers.cpp; sourceTree = "<group>"; };
 		18A6D22817C37C39004931FD /* buffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = buffers.h; sourceTree = "<group>"; };
 		18A6D22A17C47529004931FD /* typedbuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = typedbuffer.h; sourceTree = "<group>"; };
+		18A6D22B17C5B9F6004931FD /* bytebuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bytebuffer.cpp; sourceTree = "<group>"; };
+		18A6D22C17C5B9F6004931FD /* bytebuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bytebuffer.h; sourceTree = "<group>"; };
 		18AFB48917AE06A900B7AFDA /* libv8_base.x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.x64.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_base.x64.a; sourceTree = "<group>"; };
 		18AFB48B17AE06A900B7AFDA /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_snapshot.a; sourceTree = "<group>"; };
 		18AFB4BC17AE1C6300B7AFDA /* Application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
@@ -4570,6 +4572,8 @@
 				18EBCD6B17C0C5FE00CDE948 /* ptr_util.h */,
 				18A6D22717C37C39004931FD /* buffers.cpp */,
 				18A6D22817C37C39004931FD /* buffers.h */,
+				18A6D22B17C5B9F6004931FD /* bytebuffer.cpp */,
+				18A6D22C17C5B9F6004931FD /* bytebuffer.h */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -7317,7 +7321,6 @@
 				186BE22217BCD255000E8A62 /* sturctures.h */,
 				186BE22417BCE4E5000E8A62 /* ClassBase.cpp */,
 				186BE22517BCE4E5000E8A62 /* ClassBase.h */,
-				1864A7E417C243C600D894F5 /* Feature.h */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -9310,6 +9313,7 @@
 				18EE2B8F17C30E0000161023 /* ArrayBufferAllocator.cpp in Sources */,
 				18A6D22617C3752B004931FD /* arraybuffer.cpp in Sources */,
 				18A6D22917C37C39004931FD /* buffers.cpp in Sources */,
+				18A6D22D17C5B9F6004931FD /* bytebuffer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

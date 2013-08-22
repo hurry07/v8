@@ -25,10 +25,10 @@ void orderPtr(T* dest, T* from, int size, int stride = 0) {
 }
 
 #define MATRIX_UNDERLYING(clzName, T, fType, sizepwo)\
-template <> void clzName<T>::getUnderlying(Feature* feature) {\
-    feature->mPtr = glm::value_ptr(mMatrix);\
-    feature->mSize = sizepwo;\
-    feature->mType = fType;\
+template <> void clzName<T>::getUnderlying(ByteBuffer* feature) {\
+    feature->mPtr = (char*)glm::value_ptr(mMatrix);\
+    feature->mByteLength = sizepwo * sizeof(T);\
+    feature->mElement = fType;\
 }
 
 #define MATRIX_IMPL(clzName, size, sizepwo) \
@@ -58,9 +58,10 @@ void clzName<T>::init(const v8::FunctionCallbackInfo<v8::Value> &info) {\
     flatVector<T>(info, values, sizepwo);\
     fill_value_ptr<T>(glm::value_ptr(mMatrix), values, sizepwo);\
 }\
-MATRIX_UNDERLYING(clzName, float, FEATURE_FLOAT, sizepwo)\
-MATRIX_UNDERLYING(clzName, int, FEATURE_INT, sizepwo)\
-MATRIX_UNDERLYING(clzName, bool, FEATURE_BOOL, sizepwo)
+MATRIX_UNDERLYING(clzName, float, CLASS_Float32Array, sizepwo)\
+MATRIX_UNDERLYING(clzName, int, CLASS_Int16Array, sizepwo)\
+MATRIX_UNDERLYING(clzName, bool, CLASS_Int16Array, sizepwo)
+// TODO
 
 #define MATIRX_INIT(clzName, size)\
 template <typename T>\
@@ -71,11 +72,11 @@ class_struct* clzName<T>::getExportStruct() {\
     return &mTemplate;\
 }
 
-MATRIX_IMPL(Mat4, 4, 16);
 MATRIX_IMPL(Mat3, 3, 9);
 MATIRX_INIT(Mat3, 3);
 MATRIX_IMPL(Mat2, 2, 4);
 MATIRX_INIT(Mat2, 2);
+MATRIX_IMPL(Mat4, 4, 16);
 
 template <typename T>
 class_struct* Mat4<T>::getExportStruct() {

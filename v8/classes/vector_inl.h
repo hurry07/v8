@@ -4,12 +4,11 @@
 #include "ptr_util.h"
 
 #define VERTEX_UNDERLYING(clzName, T, fType, size)\
-template <> void clzName<T>::getUnderlying(Feature* feature) {\
-    feature->mPtr = glm::value_ptr(mVec);\
-    feature->mSize = size;\
-    feature->mType = fType;\
+template <> void clzName<T>::getUnderlying(ByteBuffer* feature) {\
+    feature->mPtr = (char*)glm::value_ptr(mVec);\
+    feature->mByteLength = size * sizeof(T);\
+    feature->mElement = fType;\
 }
-
 
 #define VERTEX_IMPL(clzName, size) \
 template <typename T>\
@@ -37,9 +36,10 @@ void clzName<T>::init(const FunctionCallbackInfo<Value> &info) {\
     flatVector<T>(info, values, size);\
     fill_value_ptr<T>(glm::value_ptr(mVec), values, size);\
 }\
-VERTEX_UNDERLYING(clzName, float, FEATURE_FLOAT, size)\
-VERTEX_UNDERLYING(clzName, int, FEATURE_INT, size)\
-VERTEX_UNDERLYING(clzName, bool, FEATURE_BOOL, size)
+VERTEX_UNDERLYING(clzName, float, CLASS_Float32Array, size)\
+VERTEX_UNDERLYING(clzName, int, CLASS_Int32Array, size)\
+VERTEX_UNDERLYING(clzName, bool, CLASS_Int32Array, size)
+// TODO
 
 VERTEX_IMPL(Vec2, 2);
 VERTEX_IMPL(Vec3, 3);

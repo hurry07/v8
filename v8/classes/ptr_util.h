@@ -11,6 +11,7 @@
 
 #include "../core/ClassBase.h"
 #include "../core/v8Utils.h"
+#include "bytebuffer.h"
 
 static void argValue(const FunctionCallbackInfo<Value> &info, int index, float* slot) {
     *slot = info[index]->NumberValue();
@@ -24,9 +25,6 @@ static void argValue(const FunctionCallbackInfo<Value> &info, int index, int* sl
 template <typename T>
 static void flatVector(const FunctionCallbackInfo<Value> &info, T* values, int length) {
     int copyed = 0;
-    float* ptr = 0;
-    int plen = 0;
-    Feature fPtr;
 
     int alen = info.Length();
     for(int i = 0; i < alen; i++) {
@@ -35,22 +33,16 @@ static void flatVector(const FunctionCallbackInfo<Value> &info, T* values, int l
             argValue(info, i, values + copyed);
             copyed++;
         } else {
-            fPtr.mSize = 0;
+            ByteBuffer fPtr;
             p->getUnderlying(&fPtr);
-            ptr = static_cast<float*>(fPtr.mPtr);
-            plen = fPtr.mSize;
+            int plen = fPtr.typedLength();
 
             if(plen > length - copyed) {
-                while (copyed < length) {
-                    values[copyed++] = *ptr;
-                    ptr++;
-                }
+                memccpy(values + copyed, fPtr.value_ptr<T>(), sizeof(T), length - copyed);
+                break;
             } else {
-                while (plen > 0) {
-                    values[copyed++] = *ptr;
-                    ptr++;
-                    plen--;
-                }
+                memccpy(values + copyed, fPtr.value_ptr<T>(), sizeof(T), plen);
+                copyed += plen;
             }
         }
         if(copyed == length) {

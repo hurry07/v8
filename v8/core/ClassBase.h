@@ -12,11 +12,11 @@
 #include <v8.h>
 #include <string>
 #include "../global.h"
-#include "../classes/classenum.h"
 #include "sturctures.h"
-#include "Feature.h"
 
 using namespace v8;
+
+class ByteBuffer;
 
 class ClassBase {
 public:
@@ -33,7 +33,18 @@ public:
 	virtual void release();
     virtual void doRelease();
 
+    /**
+     * init value after constructor
+     */
     virtual void init(const FunctionCallbackInfo<Value> &args);
+    /**
+     * change value at any time
+     */
+    virtual void reset(const FunctionCallbackInfo<Value> &args);
+    /**
+     * get and set underlying of this object
+     */
+    virtual void _value(const FunctionCallbackInfo<Value> &args);
     virtual const char* toString();
 
     /**
@@ -42,6 +53,7 @@ public:
     template<class T>
     static void onClone(T& current, const T& from) {
     }
+
     virtual ClassType getClassType();
     static class_struct* getExportStruct();
 
@@ -52,7 +64,7 @@ public:
     /**
      * interact without class type message
      */
-    virtual void getUnderlying(Feature* feature);
+    virtual void getUnderlying(ByteBuffer* feature);
     /**
      * a special kind of disposet refer, called when js does not ref this object.
      */

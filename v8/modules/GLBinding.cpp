@@ -8,9 +8,9 @@
 #include "GLBinding.h"
 #include <Opengl/gl.h>
 #include "../global.h"
-#include "../core/Feature.h"
 #include "../core/ClassBase.h"
 #include "../core/v8Utils.h"
+#include "../classes/bytebuffer.h"
 
 using v8::HandleScope;
 using v8::String;
@@ -224,30 +224,30 @@ static void* getArrayPtr(const Local<v8::Object> obj, int offset=0) {
     return 0;
 }
 
-static void getArgPtr(Feature* dest, ExternalArrayType wanted, FeatureType ftype, const Local<Value>& arg) {
+static void getArgPtr(ByteBuffer* dest, ExternalArrayType wanted, ClassType ftype, const Local<Value>& arg) {
     if(arg->IsTypedArray()) {
         Local<v8::Object> obj = arg->ToObject();
         if(wanted == obj->GetIndexedPropertiesExternalArrayDataType()) {
-            dest->mType = ftype;
-            dest->mPtr = obj->GetIndexedPropertiesExternalArrayData();
-            dest->mSize = obj->GetIndexedPropertiesExternalArrayDataLength();
+            dest->mElement = ftype;
+            dest->mPtr = (char*)obj->GetIndexedPropertiesExternalArrayData();
+            dest->mByteLength = obj->GetIndexedPropertiesExternalArrayDataLength();
         }
     } else {
         ClassBase* wrap = internalArg<ClassBase>(arg->ToObject());
         wrap->getUnderlying(dest);
-        if(dest->mType != ftype) {
+        if(dest->mElement != ftype) {
             LOGI("arguments underlying datatype not match. %d", ftype);
         }
     }
 }
 
 template <typename T>
-static void getArgPtr(Feature* dest, const Local<Value>& arg);
+static void getArgPtr(ByteBuffer* dest, const Local<Value>& arg);
 /**
  * get internal data from an arguments
  */
 #define ARG_PTR(T, ftype, typename)\
-template<> void getArgPtr<T>(Feature* dest, const Local<Value>& arg) {\
+template<> void getArgPtr<T>(ByteBuffer* dest, const Local<Value>& arg) {\
     getArgPtr(dest, kExternal##typename##Array, ftype, arg);\
 }
 
@@ -264,29 +264,29 @@ template<> void getArgPtr<T>(Feature* dest, const Local<Value>& arg) {\
 //        wrap->getUnderlying‎(dest);
 //    }
 //}
-ARG_PTR(uint8_t, FEATURE_UBYTE, UnsignedByte);
-ARG_PTR(int16_t, FEATURE_SHORT, Short);
-ARG_PTR(uint16_t, FEATURE_USHORT, UnsignedShort);
-ARG_PTR(int32_t, FEATURE_INT, Int);
-ARG_PTR(uint32_t, FEATURE_UINT, UnsignedInt);
-ARG_PTR(float, FEATURE_FLOAT, Float);
-ARG_PTR(double, FEATURE_DOUBLE, Double);
+ARG_PTR(uint8_t, CLASS_Uint8Array, UnsignedByte);
+ARG_PTR(int16_t, CLASS_Int16Array, Short);
+ARG_PTR(uint16_t, CLASS_Uint16Array, UnsignedShort);
+ARG_PTR(int32_t, CLASS_Int32Array, Int);
+ARG_PTR(uint32_t, CLASS_Uint32Array, UnsignedInt);
+ARG_PTR(float, CLASS_Float32Array, Float);
+ARG_PTR(double, CLASS_Float64Array, Double);
 /**
  * get internal pointer of arg
  */
-template<> void getArgPtr<int8_t>(Feature* dest, const Local<Value>& arg) {
+template<> void getArgPtr<int8_t>(ByteBuffer* dest, const Local<Value>& arg) {
     if(arg->IsTypedArray()) {
         Local<v8::Object> obj = arg->ToObject();
         ExternalArrayType type = obj->GetIndexedPropertiesExternalArrayDataType();
         if(kExternalByteArray == type || kExternalPixelArray == type) {
-            dest->mPtr = obj->GetIndexedPropertiesExternalArrayData();
-            dest->mSize = obj->GetIndexedPropertiesExternalArrayDataLength();
-            dest->mType = FEATURE_BYTE;
+            dest->mPtr = (char*)obj->GetIndexedPropertiesExternalArrayData();
+            dest->mByteLength = obj->GetIndexedPropertiesExternalArrayDataLength();
+            dest->mElement = CLASS_ArrayBuffer;
         }
     } else {
         ClassBase* wrap = internalArg<ClassBase>(arg->ToObject());
         wrap->getUnderlying(dest);
-        if(dest->mType != FEATURE_BYTE) {
+        if(dest->mElement != CLASS_ArrayBuffer) {
             LOGI("arguments underlying datatype not match. %d", FEATURE_BYTE);
         }
     }
@@ -1983,9 +1983,9 @@ JS_METHOD(uniform##name) {\
     HandleScope scope;\
 \
     int location = args[0]->Int32Value();\
-    Feature fPtr;\
+    ByteBuffer fPtr;\
     getArgPtr<T>(&fPtr, args[1]);\
-    glUniform##name(location, fPtr.mSize / unit, static_cast<T*>(fPtr.mPtr));\
+    glUniform##name(location, fPtr.typedLength() / unit, fPtr.value_ptr<T>());\
 }
 GL_UNIFORM(float, 1fv, 1);
 GL_UNIFORM(float, 2fv, 2);
@@ -2015,9 +2015,9 @@ JS_METHOD(uniformMatrix##name) {\
 \
     GLint location = args[0]->Int32Value();\
     GLboolean transpose = args[1]->BooleanValue();\
-    Feature fPtr;\
+    ByteBuffer fPtr;\
     getArgPtr<float>(&fPtr, args[2]);\
-    glUniformMatrix3fv(location, fPtr.mSize / unit, transpose, static_cast<float*>(fPtr.mPtr));\
+    glUniformMatrix3fv(location, fPtr.typedLength() / unit, transpose, fPtr.value_ptr<float>());\
 }
 UNIFORM_MATRIX(2fv, 4);
 UNIFORM_MATRIX(3fv, 9);
@@ -2036,9 +2036,9 @@ JS_METHOD(vertexAttrib##name) {\
     HandleScope scope;\
 \
     int location = args[0]->Int32Value();\
-    Feature fPtr;\
+    ByteBuffer fPtr;\
     getArgPtr<T>(&fPtr, args[1]);\
-    glVertexAttrib##name(location, static_cast<T*>(fPtr.mPtr));\
+    glVertexAttrib##name(location, fPtr.value_ptr<float>());\
 }
 GL_VERTEX_ATTR(float, 1fv);
 GL_VERTEX_ATTR(float, 2fv);

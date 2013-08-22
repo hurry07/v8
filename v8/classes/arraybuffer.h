@@ -11,8 +11,13 @@
 
 #include "../global.h"
 #include "classenum.h"
+#include "bytebuffer.h"
 #include "../core/ClassBase.h"
 #include "../core/sturctures.h"
+
+#include <v8.h>
+
+using namespace v8;
 
 class NodeBuffer : public ClassBase {
 public:
@@ -25,7 +30,7 @@ public:
 
     virtual ClassType getClassType();
     static class_struct* getExportStruct();
-    virtual void getUnderlying(Feature* feature);
+    virtual void getUnderlying(ByteBuffer* feature);
     static void onClone(NodeBuffer& current, const NodeBuffer& from);
 
     template<typename T>
