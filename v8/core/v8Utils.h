@@ -164,4 +164,52 @@ static int populateValues(T* dest, Handle<Array>& array, int left=0) {
     return initial == 0 ? array->Length() : initial - left;
 }
 
+template <typename T, typename S>
+static void convertValues(T* dest, S* source, int length) {
+    for (int i=0; i<length; i++) {
+        *(dest++) = (T)(*source);
+    }
+}
+
+template <typename T>
+static void populateValues(T* dest, char* source, ClassType type, int length) {
+    switch (type) {
+        case CLASS_ArrayBuffer:
+        case CLASS_Int8Array:
+            convertValues<T, int8_t>(dest, (int8_t*)source, length);
+            break;
+        case CLASS_Uint8Array:
+            convertValues<T, uint8_t>(dest, (uint8_t*)source, length);
+            break;
+        case CLASS_Int16Array:
+            convertValues<T, int16_t>(dest, (int16_t*)source, length);
+            break;
+        case CLASS_Uint16Array:
+            convertValues<T, uint16_t>(dest, (uint16_t*)source, length);
+            break;
+        case CLASS_Int32Array:
+            convertValues<T, int32_t>(dest, (int32_t*)source, length);
+            break;
+        case CLASS_Uint32Array:
+            convertValues<T, uint32_t>(dest, (uint32_t*)source, length);
+            break;
+        case CLASS_Float32Array:
+            convertValues<T, float>(dest, (float*)source, length);
+            break;
+        case CLASS_Float64Array:
+            convertValues<T, double>(dest, (double*)source, length);
+            break;
+        default:
+            ThrowException(String::New("invalide TypedBuffer type %d"));
+            break;
+    }
+}
+
+namespace classtype {
+    template <typename T>
+    ClassType getClassType();
+
+    bool isTheSameType(ClassType t1, ClassType t2);
+}
+
 #endif

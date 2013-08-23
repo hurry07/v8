@@ -62,13 +62,14 @@ static void flatVector(const FunctionCallbackInfo<Value> &info, T* values, int l
             p->getUnderlying(&fPtr);
             int plen = fPtr.typedLength();
 
-            if(plen > length - copyed) {
-                memcpy(values + copyed, fPtr.value_ptr(), sizeof(T) * (length - copyed));
-                copyed = length;
+            int maxCp = plen > length - copyed ? length - copyed : plen;
+            ClassType vType = classtype::getClassType<T>();
+            if(classtype::isTheSameType(vType, fPtr.mElement)) {
+                memcpy(values + copyed, fPtr.value_ptr(), sizeof(T) * maxCp);
             } else {
-                memcpy(values + copyed, fPtr.value_ptr(), sizeof(T) * plen);
-                copyed += plen;
+                populateValues(values + copyed, fPtr.value_ptr(), fPtr.mElement, maxCp);
             }
+            copyed += maxCp;
         }
     }
 
