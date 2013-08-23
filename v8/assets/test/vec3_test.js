@@ -173,7 +173,23 @@ function testBufferGet() {
 //testSubArray();
 //testVecSet();
 //testBufferSet();
-testBufferGet();
+//testBufferGet();
+
+var AttribBuffer = require('modules/buffer.js');
+console.log(AttribBuffer);
+
+var coll = new AttribBuffer(3, 10, clz.vec3f);
+var v0 = coll.getElement(0);
+coll.setElement(8, new clz.vec3f(10,18,20));
+coll.setElement(0, new clz.vec3f(1,2,3));
+console.log(v0);
+
+var coll2 = coll.clone();
+console.log(coll2.getElement(0));
+console.log(coll2.getElement(8));
+
+coll.setElement(6, new clz.vec3f(50,100,23));
+console.log(coll2.getElement(6), 100);
 
 //var m = new clz.vec4f();
 //console.log(m.length);
