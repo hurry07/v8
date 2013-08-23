@@ -218,7 +218,7 @@ void Application::init() {
 		render = new JSObject(game->getAttribute<Object>("render"));
 
         eval(
-             "require('test/vec3_test.js');"
+             "require('test/gametest.js');"
              );
     }
 }

@@ -1,3 +1,5 @@
+var AttribBuffer = require('modules/buffer.js');
+var clz = require('nativeclasses');
 
 /**
  * Creates sphere vertices.
@@ -17,7 +19,11 @@
  * @return {!Object.<string, !AttribBuffer>} The
  *         created plane vertices.
  */
-function createSphere(radius, subdivisionsAxis, subdivisionsHeight, opt_startLatitudeInRadians, opt_endLatitudeInRadians, opt_startLongitudeInRadians, opt_endLongitudeInRadians) {
+function createSphere(radius, subdivisionsAxis, subdivisionsHeight,
+                      opt_startLatitudeInRadians,
+                      opt_endLatitudeInRadians,
+                      opt_startLongitudeInRadians,
+                      opt_endLongitudeInRadians) {
     if (subdivisionsAxis <= 0 || subdivisionsHeight <= 0) {
         throw Error('subdivisionAxis and subdivisionHeight must be > 0');
     }
@@ -34,9 +40,10 @@ function createSphere(radius, subdivisionsAxis, subdivisionsHeight, opt_startLat
     // spherical coordinates and generating 2 triangles for each quad on a
     // ring of the sphere.
     var numVertices = (subdivisionsAxis + 1) * (subdivisionsHeight + 1);
-    var positions = new AttribBuffer(3, numVertices);
-    var normals = new AttribBuffer(3, numVertices);
-    var texCoords = new AttribBuffer(2, numVertices);
+
+    var positions = new AttribBuffer(3, numVertices, clz.vec3f);
+    var normals = new AttribBuffer(3, numVertices, clz.vec3f);
+    var texCoords = new AttribBuffer(2, numVertices, clz.vec2f);
 
     // Generate the individual vertices in our vertex buffer.
     for (var y = 0; y <= subdivisionsHeight; y++) {
@@ -82,7 +89,8 @@ function createSphere(radius, subdivisionsAxis, subdivisionsHeight, opt_startLat
         position: positions,
         normal: normals,
         texCoord: texCoords,
-        indices: indices};
+        indices: indices
+    };
 };
 
 exports.createSphere = createSphere;
