@@ -24,6 +24,7 @@ public:\
     virtual void getUnderlying(ByteBuffer* feature);\
     virtual void _value(const FunctionCallbackInfo<Value> &args);\
     virtual void init(const FunctionCallbackInfo<Value> &info);\
+    virtual void setValue(const FunctionCallbackInfo<Value> &info);\
 \
     glm::detail::tvec##size<T> mVec;\
 }
