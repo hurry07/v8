@@ -17,8 +17,6 @@
 #include "../typedbuffer/typedbuffer.h"
 
 static void argValue(const FunctionCallbackInfo<Value> &info, int index, float* slot) {
-    LOGI("argValue:%d %f", index, info[index]->NumberValue());
-    global::testValue(info[index]);
     *slot = info[index]->NumberValue();
 }
 static void argValue(const FunctionCallbackInfo<Value> &info, int index, uint8_t* slot) {
@@ -65,10 +63,10 @@ static void flatVector(const FunctionCallbackInfo<Value> &info, T* values, int l
             int plen = fPtr.typedLength();
 
             if(plen > length - copyed) {
-                memccpy(values + copyed, fPtr.value_ptr<T>(), sizeof(T), length - copyed);
-                break;
+                memcpy(values + copyed, fPtr.value_ptr(), sizeof(T) * (length - copyed));
+                copyed = length;
             } else {
-                memccpy(values + copyed, fPtr.value_ptr<T>(), sizeof(T), plen);
+                memcpy(values + copyed, fPtr.value_ptr(), sizeof(T) * plen);
                 copyed += plen;
             }
         }

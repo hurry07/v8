@@ -85,14 +85,20 @@ function testSubArray() {
     printBuffer(f1_1);
 }
 function testVecSet() {
-    var v2 = new clz.vec2f();
-    console.log(v2, v2.length);
+    var v2 = new clz.vec2i(100, 200);
+//    console.log(v2, v2.length);
 //    v2.set([100]);
 //    console.log(v2);
-    v2.set([100, 200]);
-    console.log(v2);
+//    v2.set([100, 200]);
+//    console.log(v2);
 //    v2.set([150]);
 //    console.log(v2);
+
+    var m = new clz.mat3i();
+    printBuffer(m);
+//    printBuffer(v2);
+    m.set(v2);
+    printBuffer(m);
 }
 //console.log('------------------');
 //test1();
