@@ -24,7 +24,9 @@ AttribBuffer.prototype.offset = function () {
 };
 AttribBuffer.prototype.getElement = function (index, element) {
     var offset = index * this.numComponents;
-    var value = [];
+    if(element) {
+        element
+    }
     for (var ii = 0; ii < this.numComponents; ++ii) {
         value.push(this.buffer[offset + ii]);
     }

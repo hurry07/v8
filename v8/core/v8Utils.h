@@ -16,6 +16,7 @@
 #define EXPOSE_METHOD_NAME(obj, mname, name, attribute) obj->Set(String::New(#mname), FunctionTemplate::New(name), PropertyAttribute(attribute))
 #define EXPOSE_TEMPLATE_METHOD(obj, name, attribute) obj->Set(String::New(#name), FunctionTemplate::New(name<T>), PropertyAttribute(attribute))
 #define METHOD_BEGIN(name, param) static void name(const FunctionCallbackInfo<Value>& param)
+#define NS_METHOD_BEGIN(name, param) void name(const FunctionCallbackInfo<Value>& param)
 #define INS_METHOD_BEGIN(T, name, param) void T::name(const FunctionCallbackInfo<Value>& param)
 
 #define V_2F(index) info[index]->NumberValue()

@@ -62,6 +62,7 @@ static void flatVector(const FunctionCallbackInfo<Value> &info, T* values, int l
             p->getUnderlying(&fPtr);
             int plen = fPtr.typedLength();
 
+            // memory copy or value conver one by one
             int maxCp = plen > length - copyed ? length - copyed : plen;
             ClassType vType = classtype::getClassType<T>();
             if(classtype::isTheSameType(vType, fPtr.mElement)) {
