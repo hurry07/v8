@@ -59,6 +59,12 @@ void clzName<T>::init(const v8::FunctionCallbackInfo<v8::Value> &info) {\
     fill_value_ptr<T>(glm::value_ptr(mMatrix), values, sizepwo);\
 }\
 template <typename T>\
+void clzName<T>::setValue(const FunctionCallbackInfo<Value> &info) {\
+    T values[sizepwo];\
+    flatVector<T>(info, values, sizepwo);\
+    fill_value_ptr<T>(glm::value_ptr(mMatrix), values, sizepwo);\
+}\
+template <typename T>\
 void clzName<T>::_value(const FunctionCallbackInfo<Value>& args) {\
     _valueFn(args, sizeof(T), (char*)glm::value_ptr(mMatrix), sizepwo);\
 }\
@@ -73,12 +79,28 @@ MATRIX_UNDERLYING(clzName, float, CLASS_Float32Array, sizepwo)\
 MATRIX_UNDERLYING(clzName, int32_t, CLASS_Int16Array, sizepwo)\
 MATRIX_UNDERLYING(clzName, uint8_t, CLASS_Uint8Array, sizepwo)
 
+namespace glm_matrix {
+    /**
+     * init current object with Array or ArrayBufferView|TypedBuffer
+     */
+    template <class M>
+    void set(const FunctionCallbackInfo<Value> &info) {
+        HandleScope scope;
+        ClassBase* c = internalPtr<ClassBase>(info, M::getExportStruct()->mType);
+        if(c == 0) {
+            return;
+        }
+        M* thiz = static_cast<M*>(c);
+        thiz->setValue(info);
+    }
+}
 template <class M, typename T>
 static v8::Local<v8::Function> initMatrixClass(v8::Handle<v8::FunctionTemplate>& temp) {
     HandleScope scope;
 
     Local<ObjectTemplate> obj = temp->PrototypeTemplate();
     obj->SetAccessor(String::New("length"), globalfn::array::length);
+    EXPOSE_METHOD_NAME(obj, set, glm_matrix::set<M>, ReadOnly | DontDelete);
 
     Local<ObjectTemplate> ins = temp->InstanceTemplate();
     ins->SetIndexedPropertyHandler(globalfn::array::getter<T>, globalfn::array::setter<T>);
@@ -159,7 +181,8 @@ static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp)
     EXPOSE_METHOD(obj, scale, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, identity, ReadOnly | DontDelete);
     obj->SetAccessor(String::New("length"), globalfn::array::length);
-    
+    EXPOSE_METHOD_NAME(obj, set, glm_matrix::set<Mat4<float>>, ReadOnly | DontDelete);
+
     Local<ObjectTemplate> ins = temp->InstanceTemplate();
     ins->SetIndexedPropertyHandler(globalfn::array::getter<float>, globalfn::array::setter<float>);
 

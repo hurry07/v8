@@ -33,6 +33,7 @@ public:\
     virtual void getUnderlying(ByteBuffer* feature);\
     virtual void _value(const FunctionCallbackInfo<Value> &args);\
     virtual void init(const v8::FunctionCallbackInfo<v8::Value> &args);\
+    virtual void setValue(const FunctionCallbackInfo<Value> &info);\
 \
     glm::detail::tmat##size##x##size<T> mMatrix;\
 }
