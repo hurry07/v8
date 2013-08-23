@@ -12,7 +12,7 @@
 ByteBuffer::ByteBuffer() : mElement(CLASS_ArrayBuffer), mPtr(0), mByteOffset(0), mByteLength(0), mElementSize(1) {
 }
 
-void ByteBuffer::init(char* ptr, int length, ClassType type) {
+void ByteBuffer::init(char* ptr, long length, ClassType type) {
     this->mPtr = ptr;
     this->mByteLength = length;
     this->mElement = type;
@@ -68,8 +68,8 @@ int ByteBuffer::getTypeSize(ClassType type) {
     }
 }
 
-char* ByteBuffer::value_ptr() {
-    return mPtr + mByteOffset;
+char* ByteBuffer::value_ptr(long offset) {
+    return mPtr + mByteOffset + offset;
 }
 long ByteBuffer::length() {
     return mByteLength;

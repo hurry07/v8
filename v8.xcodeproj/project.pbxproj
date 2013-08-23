@@ -26,6 +26,7 @@
 		18CE34AE17C6582D00B6DB8E /* arraybuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18CE2CBA17C6582B00B6DB8E /* arraybuffer.cpp */; };
 		18CE34AF17C6582D00B6DB8E /* arraybufferview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18CE2CBC17C6582B00B6DB8E /* arraybufferview.cpp */; };
 		18CE34B017C6582D00B6DB8E /* AssetUtil.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18CE2CC017C6582B00B6DB8E /* AssetUtil.cpp */; };
+		18CE34B717C7B7E400B6DB8E /* Arguments.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18CE34B517C7B7E400B6DB8E /* Arguments.cpp */; };
 		18E22F3917BA561B0079D25F /* assert.js in Sources */ = {isa = PBXBuildFile; fileRef = 18E2252217BA56110079D25F /* assert.js */; };
 		18E22F3A17BA561B0079D25F /* default-locale.js in Sources */ = {isa = PBXBuildFile; fileRef = 18E2252417BA56110079D25F /* default-locale.js */; };
 		18E22F3B17BA561B0079D25F /* en-break.js in Sources */ = {isa = PBXBuildFile; fileRef = 18E2252517BA56110079D25F /* en-break.js */; };
@@ -2016,6 +2017,8 @@
 		18CE2CBE17C6582B00B6DB8E /* typedbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = typedbuffer.h; sourceTree = "<group>"; };
 		18CE2CC017C6582B00B6DB8E /* AssetUtil.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AssetUtil.cpp; sourceTree = "<group>"; };
 		18CE2CC117C6582B00B6DB8E /* AssetUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetUtil.h; sourceTree = "<group>"; };
+		18CE34B517C7B7E400B6DB8E /* Arguments.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Arguments.cpp; sourceTree = "<group>"; };
+		18CE34B617C7B7E400B6DB8E /* Arguments.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Arguments.h; sourceTree = "<group>"; };
 		18D6659417BA830B00021EA2 /* cctest */ = {isa = PBXFileReference; lastKnownFileType = folder; name = cctest; path = test/cctest; sourceTree = "<group>"; };
 		18E2252217BA56110079D25F /* assert.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = assert.js; sourceTree = "<group>"; };
 		18E2252417BA56110079D25F /* default-locale.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "default-locale.js"; sourceTree = "<group>"; };
@@ -4655,6 +4658,8 @@
 			children = (
 				18CE2CC017C6582B00B6DB8E /* AssetUtil.cpp */,
 				18CE2CC117C6582B00B6DB8E /* AssetUtil.h */,
+				18CE34B517C7B7E400B6DB8E /* Arguments.cpp */,
+				18CE34B617C7B7E400B6DB8E /* Arguments.h */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -9350,6 +9355,7 @@
 				18CE34B017C6582D00B6DB8E /* AssetUtil.cpp in Sources */,
 				18A6D24C17C7455D004931FD /* global.cpp in Sources */,
 				18A6D24E17C75CBE004931FD /* v8Utils.cpp in Sources */,
+				18CE34B717C7B7E400B6DB8E /* Arguments.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

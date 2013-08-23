@@ -21,6 +21,19 @@
 
 #define V_2F(index) info[index]->NumberValue()
 
+namespace classtype {
+    template <typename T>
+    ClassType getClassType();
+    
+    template <typename T>
+    static T unwrap(Local<Value> arg);// unwrap v8::Object to raw
+    
+    template <typename T>
+    static Local<Value> wrap(T t);// unwrap raw data to v8::Value
+    
+    bool isTheSameType(ClassType t1, ClassType t2);
+}
+
 // mast be called with a HandleScope
 template<typename T>
 static T* internalPtr(const FunctionCallbackInfo<Value>& info) {
@@ -137,27 +150,10 @@ static T* internalArg(Local<Value> val, ClassType type) {
 }
 
 template <typename T>
-static T unwrap(Local<Value> arg);// unwrap v8::Object to raw
-
-#define JS_UNWRAP(T, getter) \
-template<> T unwrap<T>(Local<Value> arg) {\
-    return arg->getter();\
-}
-
-JS_UNWRAP(int8_t, Int32Value);
-JS_UNWRAP(uint8_t, Uint32Value);
-JS_UNWRAP(int16_t, Int32Value);
-JS_UNWRAP(uint16_t, Uint32Value);
-JS_UNWRAP(int32_t, Int32Value);
-JS_UNWRAP(uint32_t, Uint32Value);
-JS_UNWRAP(float, NumberValue);
-JS_UNWRAP(double, NumberValue);
-
-template <typename T>
 static int populateValues(T* dest, Handle<Array>& array, int left=0) {
     int initial = left;
     for(int i = 0, len = array->Length(); i < len; i++) {
-        *(dest++) = unwrap<T>(array->Get(i));
+        *(dest++) = classtype::unwrap<T>(array->Get(i));
         if(left-- == 0) {
             break;
         }
@@ -168,7 +164,7 @@ static int populateValues(T* dest, Handle<Array>& array, int left=0) {
 template <typename T, typename S>
 static void convertValues(T* dest, S* source, int length) {
     for (int i=0; i<length; i++) {
-        *(dest++) = (T)(*source);
+        *(dest++) = (T)(*source++);
     }
 }
 
@@ -207,10 +203,22 @@ static void populateValues(T* dest, char* source, ClassType type, int length) {
 }
 
 namespace classtype {
-    template <typename T>
-    ClassType getClassType();
+    #define JS_WRAP_UNWRAP(T, getter, setter) \
+    template<> T unwrap<T>(Local<Value> arg) {\
+        return arg->getter();\
+    }\
+    template<> Local<Value> wrap<T>(T t) {\
+        return setter(t);\
+    }
 
-    bool isTheSameType(ClassType t1, ClassType t2);
+    JS_WRAP_UNWRAP(int8_t, Int32Value, Integer::New)
+    JS_WRAP_UNWRAP(uint8_t, Uint32Value, Integer::NewFromUnsigned)
+    JS_WRAP_UNWRAP(int16_t, Int32Value, Integer::New)
+    JS_WRAP_UNWRAP(uint16_t, Uint32Value, Integer::NewFromUnsigned)
+    JS_WRAP_UNWRAP(int32_t, Int32Value, Integer::New)
+    JS_WRAP_UNWRAP(uint32_t, Uint32Value, Integer::NewFromUnsigned)
+    JS_WRAP_UNWRAP(float, NumberValue, Number::New)
+    JS_WRAP_UNWRAP(double, NumberValue, Number::New)
 }
 
 #endif

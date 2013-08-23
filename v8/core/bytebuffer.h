@@ -24,13 +24,13 @@ public:
     long mByteLength;
     int mElementSize;
     ClassType mElement;
-    
+
     ByteBuffer();
     
-    void init(char* ptr, int length, ClassType type);
+    void init(char* ptr, long length, ClassType type);
     void init(NodeBufferView* view, ClassType type);
     void init(NodeBufferView* view, ClassType type, int elementSize);
-    
+
     void init(NodeBuffer* buf);
     void init(NodeBuffer* buf, ClassType type);
     void init(NodeBuffer* buf, long bOffset, long bLength, ClassType type);
@@ -40,8 +40,8 @@ public:
 
     template<typename T>
     T* value_ptr(int index=0);
+    char* value_ptr(long offset=0);
 
-    char* value_ptr();
     long length();
     int typedLength();
 };

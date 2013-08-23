@@ -55,7 +55,7 @@ namespace globalfn {
                 return;
             }
 
-            *(buf.value_ptr<T>(index)) = unwrap<T>(value);
+            *(buf.value_ptr<T>(index)) = classtype::unwrap<T>(value);
         }
     }
 }

@@ -136,6 +136,7 @@ ClassType NodeBuffer::getClassType() {
 }
 
 void NodeBuffer::getUnderlying(ByteBuffer* feature) {
+    feature->init(mData, mLength, CLASS_ArrayBuffer);
 }
 void NodeBuffer::onClone(Local<Object> jsCurrent, NodeBuffer& current, Local<Object> jsFrom, const NodeBuffer& from) {
     if(from.mLength == 0) {

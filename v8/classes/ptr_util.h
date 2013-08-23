@@ -189,4 +189,8 @@ PTR_TOSTRING(int32_t, int2str);
 PTR_TOSTRING(float, float2str);
 PTR_TOSTRING(uint8_t, int2str);
 
+//namespace bytetools {
+//    void move(char* dest, char* from, long length);
+//}
+
 #endif

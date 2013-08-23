@@ -206,10 +206,10 @@ namespace glm_matrix {
         EXPOSE_METHOD(obj, identity, ReadOnly | DontDelete);
         obj->SetAccessor(String::New("length"), globalfn::array::length);
         EXPOSE_METHOD_NAME(obj, set, glm_matrix::set<Mat4<float>>, ReadOnly | DontDelete);
-        
+
         Local<ObjectTemplate> ins = temp->InstanceTemplate();
         ins->SetIndexedPropertyHandler(globalfn::array::getter<float>, globalfn::array::setter<float>);
-        
+
         return scope.Close(temp->GetFunction());
     }
     template <typename T>

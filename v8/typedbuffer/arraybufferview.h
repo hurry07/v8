@@ -25,6 +25,7 @@ public:
     virtual long readBytes(long byteOffset, char* dest, long byteLength);
 
     virtual void initWithArray(Handle<Array>& array, int offset)=0;
+    virtual void toArray(Handle<Array>& array, int offset)=0;
 
     NodeBuffer* mBuffer;
     long mByteOffset;
