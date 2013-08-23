@@ -84,11 +84,22 @@ function testSubArray() {
     var f1_1 = new Float32Array(a2);
     printBuffer(f1_1);
 }
+function testVecSet() {
+    var v2 = new clz.vec2f();
+    console.log(v2, v2.length);
+//    v2.set([100]);
+//    console.log(v2);
+    v2.set([100, 200]);
+    console.log(v2);
+//    v2.set([150]);
+//    console.log(v2);
+}
 //console.log('------------------');
 //test1();
 //console.log('------------------');
 //test2();
-testSubArray();
+//testSubArray();
+testVecSet();
 
 //var m = new clz.vec4f();
 //console.log(m.length);

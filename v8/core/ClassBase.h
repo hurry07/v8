@@ -38,10 +38,6 @@ public:
      */
     virtual void init(const FunctionCallbackInfo<Value> &args);
     /**
-     * change value at any time
-     */
-    virtual void reset(const FunctionCallbackInfo<Value> &args);
-    /**
      * get and set underlying of this object
      */
     virtual void _value(const FunctionCallbackInfo<Value> &args);

@@ -12,6 +12,7 @@ using namespace v8;
 using namespace globalfn::array;
 
 void globalfn::array::length(Local<String> property, const PropertyCallbackInfo<Value>& info) {
+    HandleScope scope;
     ClassBase* c = internalPtr<ClassBase>(info);
     if(c == 0) {
         return;

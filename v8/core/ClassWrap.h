@@ -63,16 +63,6 @@ public:
             t->_value(info);
         }
     }
-    /**
-     * reset current object with parameters you specific
-     */
-    static void reset(const FunctionCallbackInfo<Value>& info) {
-		HandleScope scope(node_isolate);
-        ClassBase* t = internalPtr<ClassBase>(info);
-        if(t != 0) {
-            t->init(info);
-        }
-    }
     static void toString(const FunctionCallbackInfo<Value>& info) {
 		HandleScope scope(node_isolate);
         ClassBase* t = internalPtr<ClassBase>(info);
@@ -100,7 +90,6 @@ public:
         // remove? too much default activity
         EXPOSE_METHOD(fnproto, release, ReadOnly | DontDelete);
         EXPOSE_METHOD(fnproto, _value, ReadOnly | DontDelete);
-        EXPOSE_METHOD(fnproto, reset, ReadOnly | DontDelete);
         EXPOSE_METHOD(fnproto, toString, ReadOnly | DontDelete);
         fnproto->SetInternalFieldCount(1);
 

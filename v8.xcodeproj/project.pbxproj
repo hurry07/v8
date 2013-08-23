@@ -10,6 +10,7 @@
 		182820A1179AFFCB003125B5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182820A0179AFFCB003125B5 /* main.cpp */; };
 		18A2B6AE17C39A7B00C5F951 /* libv8_base.x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A2B6AC17C39A7B00C5F951 /* libv8_base.x64.a */; };
 		18A2B6AF17C39A7B00C5F951 /* libv8_snapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A2B6AD17C39A7B00C5F951 /* libv8_snapshot.a */; };
+		18A6D24C17C7455D004931FD /* global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D24B17C7455C004931FD /* global.cpp */; };
 		18CE2CC217C6582C00B6DB8E /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18CE224817C6582800B6DB8E /* Application.cpp */; };
 		18CE2CC317C6582C00B6DB8E /* ArrayBufferAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18CE224A17C6582800B6DB8E /* ArrayBufferAllocator.cpp */; };
 		18CE2CCF17C6582C00B6DB8E /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18CE227317C6582800B6DB8E /* file.cpp */; };
@@ -1969,6 +1970,7 @@
 		18A2B6AC17C39A7B00C5F951 /* libv8_base.x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.x64.a; path = ../libv8_base.x64.a; sourceTree = "<group>"; };
 		18A2B6AD17C39A7B00C5F951 /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = ../libv8_snapshot.a; sourceTree = "<group>"; };
 		18A6D24A17C6FEBF004931FD /* clone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = clone.h; sourceTree = "<group>"; };
+		18A6D24B17C7455C004931FD /* global.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = global.cpp; sourceTree = "<group>"; };
 		18AFB48917AE06A900B7AFDA /* libv8_base.x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.x64.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_base.x64.a; sourceTree = "<group>"; };
 		18AFB48B17AE06A900B7AFDA /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_snapshot.a; sourceTree = "<group>"; };
 		18CE224817C6582800B6DB8E /* Application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
@@ -4538,6 +4540,7 @@
 		1828209F179AFFCB003125B5 /* v8 */ = {
 			isa = PBXGroup;
 			children = (
+				18A6D24B17C7455C004931FD /* global.cpp */,
 				18CE224717C6582800B6DB8E /* app */,
 				18CE227117C6582800B6DB8E /* classes */,
 				18CE227817C6582800B6DB8E /* core */,
@@ -9342,6 +9345,7 @@
 				18CE34AE17C6582D00B6DB8E /* arraybuffer.cpp in Sources */,
 				18CE34AF17C6582D00B6DB8E /* arraybufferview.cpp in Sources */,
 				18CE34B017C6582D00B6DB8E /* AssetUtil.cpp in Sources */,
+				18A6D24C17C7455D004931FD /* global.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

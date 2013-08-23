@@ -17,6 +17,8 @@
 #include "../typedbuffer/typedbuffer.h"
 
 static void argValue(const FunctionCallbackInfo<Value> &info, int index, float* slot) {
+    LOGI("argValue:%d %f", index, info[index]->NumberValue());
+    global::testValue(info[index]);
     *slot = info[index]->NumberValue();
 }
 static void argValue(const FunctionCallbackInfo<Value> &info, int index, uint8_t* slot) {
@@ -35,10 +37,28 @@ static void flatVector(const FunctionCallbackInfo<Value> &info, T* values, int l
 
     int alen = info.Length();
     for(int i = 0; i < alen; i++) {
+        if(copyed == length) {
+            break;
+        }
+
+        Local<Value> infoV = info[i];
+        if(info[i].IsEmpty() || infoV->IsUndefined()) {
+            continue;
+        }
+
+        if(info[i]->IsArray()) {
+            Handle<Array> array = Handle<Array>::Cast(info[i]);
+            int arrayPop = populateValues<T>(values + copyed, array, length - copyed);
+            copyed += arrayPop;
+            continue;
+        }
+
         ClassBase* p = internalArg<ClassBase>(info[i]);
         if(p == 0) {
-            argValue(info, i, values + copyed);
-            copyed++;
+            if(infoV->IsNumber()) {
+                argValue(info, i, values + copyed);
+                copyed++;
+            }
         } else {
             ByteBuffer fPtr;
             p->getUnderlying(&fPtr);
@@ -52,9 +72,6 @@ static void flatVector(const FunctionCallbackInfo<Value> &info, T* values, int l
                 copyed += plen;
             }
         }
-        if(copyed == length) {
-            break;
-        }
     }
 
     while (copyed < length) {
@@ -64,6 +81,8 @@ static void flatVector(const FunctionCallbackInfo<Value> &info, T* values, int l
 
 /**
  * translate between vector/matirx and ArrayBuffer, return a data structor of the curent object
+ *
+ * @param eUnit sizeof field
  */
 static void _valueFn(const FunctionCallbackInfo<Value>& args, int eUnit, char* mPtr, int eSize) {
     while (1) {
@@ -74,7 +93,7 @@ static void _valueFn(const FunctionCallbackInfo<Value>& args, int eUnit, char* m
         if(destPtr == 0) {
             break;
         }
-        
+
         ClassType type = destPtr->getClassType();
         if(type == CLASS_ArrayBuffer) {
             NodeBuffer* bufPtr = static_cast<NodeBuffer*>(destPtr);

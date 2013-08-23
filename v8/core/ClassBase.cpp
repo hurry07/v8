@@ -25,9 +25,6 @@ void ClassBase::doRelease() {
 }
 void ClassBase::init(const FunctionCallbackInfo<Value> &args) {
 }
-void ClassBase::reset(const FunctionCallbackInfo<Value> &args) {
-    init(args);
-}
 void ClassBase::_value(const FunctionCallbackInfo<Value> &args) {
 }
 const char* ClassBase::toString() {

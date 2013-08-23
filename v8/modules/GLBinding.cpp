@@ -1922,6 +1922,35 @@ DELEGATE_TO_GL_N3(uniform2i, glUniform2i, GLint, GLint, GLint);
 DELEGATE_TO_GL_N4(uniform3i, glUniform3i, GLint, GLint, GLint, GLint);
 DELEGATE_TO_GL_N5(uniform4i, glUniform4i, GLint, GLint, GLint, GLint, GLint);
 
+JS_METHOD(uniform1fv) {
+    HandleScope scope;
+    
+    int location = args[0]->Int32Value();
+    if(args[1]->IsNumber()) {
+        float f = args[1]->NumberValue();
+        glUniform1f(location, f);
+        return;
+    }
+    
+    ByteBuffer fPtr;
+    getArgPtr(&fPtr, CLASS_Float32Array, args[1]);
+    glUniform1fv(location, fPtr.typedLength(), fPtr.value_ptr<float>());
+}
+JS_METHOD(uniform1iv) {
+    HandleScope scope;
+    
+    int location = args[0]->Int32Value();
+    if(args[1]->IsNumber()) {
+        int32_t f = args[1]->Int32Value();
+        glUniform1i(location, f);
+        return;
+    }
+
+    ByteBuffer fPtr;
+    getArgPtr(&fPtr, CLASS_Int32Array, args[1]);
+    glUniform1iv(location, fPtr.typedLength(), fPtr.value_ptr<int32_t>());
+}
+
 #define GL_UNIFORM(T, checkType, name, unit) \
 JS_METHOD(uniform##name) {\
     HandleScope scope;\
@@ -1931,11 +1960,9 @@ JS_METHOD(uniform##name) {\
     getArgPtr(&fPtr, checkType, args[1]);\
     glUniform##name(location, fPtr.typedLength() / unit, fPtr.value_ptr<T>());\
 }
-GL_UNIFORM(float, CLASS_Float32Array, 1fv, 1);
 GL_UNIFORM(float, CLASS_Float32Array, 2fv, 2);
 GL_UNIFORM(float, CLASS_Float32Array, 3fv, 3);
 GL_UNIFORM(float, CLASS_Float32Array, 4fv, 4);
-GL_UNIFORM(int, CLASS_Int32Array, 1iv, 1);
 GL_UNIFORM(int, CLASS_Int32Array, 2iv, 2);
 GL_UNIFORM(int, CLASS_Int32Array, 3iv, 3);
 GL_UNIFORM(int, CLASS_Int32Array, 4iv, 4);

@@ -10,6 +10,7 @@
 #define v8_global_h
 
 #include <string>
+#include <v8.h>
 
 extern std::string source_root;
 
@@ -43,5 +44,9 @@ public: virtual varType get##funName(void) const { return varName; }
 #define glClearDepthf glClearDepth
 
 #define OS_MAC
+
+namespace global {
+    void testValue(v8::Handle<v8::Value> value);
+}
 
 #endif

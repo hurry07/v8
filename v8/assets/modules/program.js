@@ -2,36 +2,6 @@ var gl = require('opengl');
 var shader = require('modules/shader.js');
 var clz = require('nativeclasses');
 
-var extend_ = require('core/extend.js');
-/**
- * handle int float bool binding
- *
- * @param loc
- * @param glfn
- * @param data
- */
-function uniformRaw(loc, glfn, data) {
-    this.loc = loc;
-    this.fn = glfn;
-    this.data = data;
-}
-uniformRaw.prototype.data = function() {
-    return this;
-}
-uniformRaw.prototype.init = function(a) {
-    this.data = a;
-}
-uniformRaw.prototype.bind = function(d) {
-    if(arguments.length == 0) {
-        this.fn(this.loc, this.data);
-    } else {
-        this.fn(this.loc, this.data = d);
-    }
-}
-uniformRaw.prototype.update = function() {
-    this.fn(this.loc, this.data);
-}
-
 /**
  * handle for vector and matrix parameters
  *
@@ -39,23 +9,39 @@ uniformRaw.prototype.update = function() {
  * @param glfn
  * @param data
  */
-function uniformParam(loc, glfn, data) {
+function shaderParam(loc, glfn, data) {
     this.loc = loc;
     this.fn = glfn;
-    this.data = data;
+    this._data = data;
 }
-uniformParam.prototype.bind = function() {
-    if(arguments.length == 0) {
-        this.fn(this.loc, this.data);
+shaderParam.prototype.data = function() {
+    if(arguments.length > 0) {
+        this._data = arguments[0];
     } else {
-        this.data.init.apply(this.data, Array.prototype.slice(0).call(arguments));
-        this.fn(this.loc, this.data);
+        return this._data;
     }
 }
-uniformParam.prototype.update = function() {
-    this.fn(this.loc, this.data);
+shaderParam.prototype.upload = function(d) {
+    if(d != undefined) {
+        this.fn(this.loc, this._data = d);
+    } else {
+        this.fn(this.loc, this._data);
+    }
 }
 
+/**
+ * class used for binding buffer as attribute of program
+ * attribute is very large, and it may be changed frqnenctly, so there is no need to cash them
+ * @param index
+ */
+function attribute(index) {
+    this.index = index;
+}
+attribute.prototype.upload = function (b) {
+    gl.bindBuffer(gl.ARRAY_BUFFER, b.buffer());
+    gl.enableVertexAttribArray(index);
+    gl.vertexAttribPointer(this.index, b.numComponents(), b.type(), b.normalize(), b.stride(), b.offset());
+}
 
 var programDB = {};
 
@@ -76,102 +62,63 @@ function releaseById(id) {
     delete programDB[id];
 }
 
-/**
- * check if there is any link error
- * @param program
- */
-function checkProgram(program) {
-    var linked = gl.getProgramParameter(program, gl.LINK_STATUS);
-    if (!linked) {
-        var log = gl.getProgramInfoLog(program);
-        throw('Error in program linking:' + log);
-    }
-}
-/**
- * class used for binding buffer as attribute of program
- * @param index
- */
-function attribute(index) {
-    this.index = index;
-}
-attribute.prototype.upload = function (b) {
-    gl.bindBuffer(gl.ARRAY_BUFFER, b.buffer());
-    gl.enableVertexAttribArray(index);
-    gl.vertexAttribPointer(this.index, b.numComponents(), b.type(), b.normalize(), b.stride(), b.offset());
-}
-function initAttribute(program, attribs) {
-    var numAttribs = gl.getProgramParameter(program, gl.ACTIVE_ATTRIBUTES);
-    for (var ii = 0; ii < numAttribs; ++ii) {
-        var info = gl.getActiveAttrib(program, ii);
-        if (!info) {
-            break;
-        }
-        if (info.size != 1) {
-            throw("arrays of attribs not handled");
-        }
-
-        var index = gl.getAttribLocation(program, info.name);
-        attribs[info.name] = new attribute(index);
-    }
-    return attribs;
-}
 
 function createUniformSetter(info) {
     var loc = gl.getUniformLocation(program, info.name)
     var s;
     switch (info.type) {
-// -----------------
+        // -----------------
         case gl.FLOAT:
-            s = new uniformRaw(loc, gl.uniform1fv, new Float32Array([0]));
+            s = new shaderParam(loc, gl.uniform1fv, new Float32Array([0]));
             break;
         case gl.FLOAT_VEC2:
-            s = new uniformParam(loc, gl.uniform2fv, new clz.vec2f());
+            s = new shaderParam(loc, gl.uniform2fv, new clz.vec2f());
             break;
         case gl.FLOAT_VEC3:
-            s = new uniformParam(loc, gl.uniform3fv, new clz.vec3f());
+            s = new shaderParam(loc, gl.uniform3fv, new clz.vec3f());
             break;
         case gl.FLOAT_VEC4:
-            s = new uniformParam(loc, gl.uniform4fv, new clz.vec4f());
+            s = new shaderParam(loc, gl.uniform4fv, new clz.vec4f());
             break;
-// -----------------
+        // -----------------
         case gl.INT:
-            s = new uniformRaw(loc, gl.uniform1fv, new Int32Array([0]));
+            s = new shaderParam(loc, gl.uniform1fv, new Int32Array([0]));
             break;
         case gl.INT_VEC2:
-            s = new uniformParam(loc, gl.uniform2fv, new clz.vec2i());
+            s = new shaderParam(loc, gl.uniform2fv, new clz.vec2i());
             break;
         case gl.INT_VEC3:
-            s = new uniformParam(loc, gl.uniform3fv, new clz.vec3i());
+            s = new shaderParam(loc, gl.uniform3fv, new clz.vec3i());
             break;
         case gl.INT_VEC4:
-            s = new uniformParam(loc, gl.uniform4fv, new clz.vec4i());
+            s = new shaderParam(loc, gl.uniform4fv, new clz.vec4i());
             break;
-// -----------------
+        // -----------------
         case gl.BOOL:
-            s = new uniformRaw(loc, gl.uniform1iv, new Int32Array([0]));
+            s = new shaderParam(loc, gl.uniform1iv, new Int32Array([0]));
             break;
         case gl.BOOL_VEC2:
-            s = new uniformParam(loc, gl.uniform2iv, new clz.vec2i());
+            s = new shaderParam(loc, gl.uniform2iv, new clz.vec2i());
             break;
         case gl.BOOL_VEC3:
-            s = new uniformParam(loc, gl.uniform3iv, new clz.vec3i());
+            s = new shaderParam(loc, gl.uniform3iv, new clz.vec3i());
             break;
         case gl.BOOL_VEC4:
-            s = new uniformParam(loc, gl.uniform4iv, new clz.vec4i());
+            s = new shaderParam(loc, gl.uniform4iv, new clz.vec4i());
             break;
-// -----------------
+        // -----------------
         case gl.FLOAT_MAT2:
-            s = new uniformParam(loc, gl.uniformMatrix2fv, new clz.mat2f());
+            s = new shaderParam(loc, gl.uniformMatrix2fv, new clz.mat2f());
             break;
         case gl.FLOAT_MAT3:
-            s = new uniformParam(loc, gl.uniformMatrix3fv, new clz.mat3f());
+            s = new shaderParam(loc, gl.uniformMatrix3fv, new clz.mat3f());
             break;
         case gl.FLOAT_MAT4:
-            s = new uniformParam(loc, gl.uniformMatrix4fv, new clz.mat4f());
+            s = new shaderParam(loc, gl.uniformMatrix4fv, new clz.mat4f());
             break;
         case gl.SAMPLER_2D:
         case gl.SAMPLER_CUBE:
-            s = new uniformRaw(loc, gl.uniform1fv, [0]);
+            s = new shaderParam(loc, gl.uniform1fv, new Int32Array([0]));
             break;
         default:
             console.log('uniform param type not match');
@@ -195,7 +142,40 @@ function initUniform(program, uniforms, textures) {
         }
     }
 }
+function initAttribute(program, attribs) {
+    var numAttribs = gl.getProgramParameter(program, gl.ACTIVE_ATTRIBUTES);
+    for (var ii = 0; ii < numAttribs; ++ii) {
+        var info = gl.getActiveAttrib(program, ii);
+        if (!info) {
+            break;
+        }
+        if (info.size != 1) {
+            throw("arrays of attribs not handled");
+        }
 
+        var index = gl.getAttribLocation(program, info.name);
+        attribs[info.name] = new attribute(index);
+    }
+    return attribs;
+}
+
+/**
+ * check if there is any link error
+ * @param program
+ */
+function checkProgram(program) {
+    var linked = gl.getProgramParameter(program, gl.LINK_STATUS);
+    if (!linked) {
+        var log = gl.getProgramInfoLog(program);
+        throw('Error in program linking:' + log);
+    }
+}
+/**
+ *
+ * @param id
+ * @param vShader shader object
+ * @param fShader shader object
+ */
 function program(id, vShader, fShader) {
     var program = gl.createProgram();
     gl.attachShader(program, vShader.getGLId());
