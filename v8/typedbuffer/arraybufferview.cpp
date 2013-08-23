@@ -7,6 +7,8 @@
 //
 #include "arraybufferview.h"
 
+const char* NodeBufferView::BUFFER = "buffer";
+
 NodeBufferView::NodeBufferView() : mBuffer(0), mByteOffset(0), mByteLength(0) {
 }
 NodeBufferView::~NodeBufferView() {

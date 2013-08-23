@@ -35,7 +35,7 @@ public:
     virtual ClassType getClassType();
     static class_struct* getExportStruct();
     virtual void getUnderlying(ByteBuffer* feature);
-    static void onClone(NodeBuffer& current, const NodeBuffer& from);
+    static void onClone(Local<Object> jsCurrent, NodeBuffer& current, Local<Object> jsFrom, const NodeBuffer& from);
 
     template<typename T>
     void _write(long offset, int eSize, T value);

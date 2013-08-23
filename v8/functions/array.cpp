@@ -16,7 +16,6 @@ void globalfn::array::length(Local<String> property, const PropertyCallbackInfo<
     if(c == 0) {
         return;
     }
-
     ByteBuffer buf;
     c->getUnderlying(&buf);
     info.GetReturnValue().Set(buf.typedLength());

@@ -29,6 +29,8 @@ public:
     NodeBuffer* mBuffer;
     long mByteOffset;
     long mByteLength;
+    
+    static const char* BUFFER;
 };
 
 #endif /* defined(__v8__buffers__) */

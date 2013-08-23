@@ -11,6 +11,14 @@ var clz = require('nativeclasses');
 //var program = require('modules/program.js');
 //var vs = program.createWithFile('shader/v1.vtx', 'shader/f1.frg');
 
+function printBuffer(buf) {
+    var s = '';
+    for(var i=-1,len=buf.length;++i<len;) {
+        s += ' ,' + buf[i];
+    }
+    console.log('length:' + buf.length, s);
+}
+
 function test1() {
     new ArrayBuffer(10);
     
@@ -42,10 +50,45 @@ function test2() {
     console.log(f2[2]);
     console.log(f2[3]);
 }
+function testSubArray() {
+    var a1 = new ArrayBuffer(16);
+
+    var f1 = new Float32Array(a1);
+    f1[0] = 10;
+    f1[1] = 20;
+    f1[2] = 30;
+    f1[3] = 40;
+    printBuffer(f1);
+
+    var f2 = f1.subarray(0);
+    printBuffer(f2);
+    var f3 = f1.subarray(1);
+    printBuffer(f3);
+
+    var a2 = a1.slice(8, 16);
+
+    f3[1] = 100;
+    var f4 = f1.subarray(1,-1);
+    printBuffer(f4);
+    var f5 = f1.subarray(2,3);
+    printBuffer(f5);
+
+    console.log('----------------');
+    printBuffer(f1);
+    printBuffer(f2);
+    printBuffer(f3);
+    printBuffer(f4);
+    printBuffer(f5);
+    
+    console.log('----------------');
+    var f1_1 = new Float32Array(a2);
+    printBuffer(f1_1);
+}
 //console.log('------------------');
 //test1();
-console.log('------------------');
-test2();
+//console.log('------------------');
+//test2();
+testSubArray();
 
 //var m = new clz.vec4f();
 //console.log(m.length);

@@ -33,6 +33,23 @@ static T* internalPtr(const FunctionCallbackInfo<Value>& info) {
     return 0;
 }
 template<typename T>
+static T* internalPtr(const FunctionCallbackInfo<Value>& info, ClassType type) {
+    Local<Object> self = info.This();
+    if(self.IsEmpty()) {
+        return 0;
+    }
+    if(self->InternalFieldCount() == 1) {
+        Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
+        ClassBase* base = static_cast<ClassBase*>(wrap->Value());
+        if(base->getClassType() == type) {
+            return static_cast<T*>(base);
+        }
+    }
+    return 0;
+}
+
+
+template<typename T>
 static T* internalPtr(const PropertyCallbackInfo<Value>& info) {
     Local<Object> self = info.This();
     if(self.IsEmpty()) {
@@ -45,6 +62,23 @@ static T* internalPtr(const PropertyCallbackInfo<Value>& info) {
     return 0;
 }
 template<typename T>
+static T* internalPtr(const PropertyCallbackInfo<Value>& info, ClassType type) {
+    Local<Object> self = info.This();
+    if(self.IsEmpty()) {
+        return 0;
+    }
+    if(self->InternalFieldCount() == 1) {
+        Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
+        ClassBase* base = static_cast<ClassBase*>(wrap->Value());
+        if(base->getClassType() == type) {
+            return static_cast<T*>(base);
+        }
+    }
+    return 0;
+}
+
+
+template<typename T>
 static T* internalPtr(Handle<Object>& self) {
     if(self.IsEmpty()) {
         return 0;
@@ -55,20 +89,6 @@ static T* internalPtr(Handle<Object>& self) {
     }
     return 0;
 }
-
-template<typename T>
-static T* internalArg(Local<Value> val) {
-    Local<Object> self = val->ToObject();
-    if(self.IsEmpty()) {
-        return 0;
-    }
-    if(self->InternalFieldCount() == 1) {
-        Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
-        return static_cast<T*>(wrap->Value());
-    }
-    return 0;
-}
-
 template<typename T>
 static T* internalPtr(Handle<Object>& self, ClassType type) {
     if(self.IsEmpty()) {
@@ -83,6 +103,21 @@ static T* internalPtr(Handle<Object>& self, ClassType type) {
     }
     return 0;
 }
+
+
+template<typename T>
+static T* internalArg(Local<Value> val) {
+    Local<Object> self = val->ToObject();
+    if(self.IsEmpty()) {
+        return 0;
+    }
+    if(self->InternalFieldCount() == 1) {
+        Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
+        return static_cast<T*>(wrap->Value());
+    }
+    return 0;
+}
+
 template<typename T>
 static T* internalArg(Local<Value> val, ClassType type) {
     Local<Object> self = val->ToObject();

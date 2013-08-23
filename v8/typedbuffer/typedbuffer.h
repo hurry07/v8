@@ -31,13 +31,14 @@ public:
     virtual long get_a(long index, T* dest, int length);
     virtual long set_a(long index, T* value, int length);
 
-    virtual void subarray(TypedBuffer<T>* arr, int begin, int end);
-
     virtual ClassType getClassType();
     static class_struct* getExportStruct();
 
     virtual void init(const FunctionCallbackInfo<Value> &args);
     virtual void initWithArray(Handle<Array>& array, int offset);
+
+    virtual int length();
+    virtual long byteOffset(int index);
 
 public:
     static int mElementBytes;
@@ -63,29 +64,21 @@ static int getElemenetSize(ClassType type) {
             return 1;
     }
 }
-
 template <typename T>
 TypedBuffer<T>::TypedBuffer() {
+//    LOGI("TypedBuffer.create");
 }
 template <typename T>
 TypedBuffer<T>::~TypedBuffer() {
+//    LOGI("TypedBuffer.~release");
 }
 template <typename T>
-void TypedBuffer<T>::subarray(TypedBuffer<T>* arr, int begin, int end) {
-    int length = (int)(mByteLength / mElementBytes);
-    if(begin < 0) {
-        begin += length;
-    }
-    if(end < 0) {
-        end += length;
-    }
-    if(begin < 0 || begin >= length || begin > end) {
-        arr->mByteOffset = mByteOffset;
-        return;
-    }
-
-    arr->mByteOffset = mByteOffset + begin * mElementBytes;
-    arr->mByteLength = (end - begin) * mElementBytes;
+int TypedBuffer<T>::length() {
+    return (int)(mByteLength / mElementBytes);
+}
+template <typename T>
+long TypedBuffer<T>::byteOffset(int index) {
+    return mByteOffset + index * mElementBytes;
 }
 template <typename T>
 void TypedBuffer<T>::initWithArray(Handle<Array>& array, int offset) {
@@ -100,7 +93,7 @@ void TypedBuffer<T>::initWithArray(Handle<Array>& array, int offset) {
  */
 static NodeBuffer* createArrayBuffer(Local<Object>& thiz, long length) {
     Local<Object> buffer = ClassWrap<NodeBuffer>::newInstance();
-    thiz->Set(String::New("buffer"), buffer, PropertyAttribute(ReadOnly | DontDelete));
+    thiz->Set(String::New(NodeBufferView::BUFFER), buffer, PropertyAttribute(ReadOnly | DontDelete));
 
     NodeBuffer* mBuffer = internalPtr<NodeBuffer>(buffer);
     mBuffer->allocate(length);
@@ -140,7 +133,7 @@ void TypedBuffer<T>::init(const FunctionCallbackInfo<Value> &args) {
 
             // init using ArrayBuffer, create a reference to it, and set start and end
             mBuffer = internalArg<NodeBuffer>(args[0]);
-            thiz->Set(String::New("buffer"), args[0], PropertyAttribute(ReadOnly | DontDelete));// buffer refer count++
+            thiz->Set(String::New(NodeBufferView::BUFFER), args[0], PropertyAttribute(ReadOnly | DontDelete));// buffer refer count++
 
             if(args.Length() == 1) {// ArrayBuffer
                 mByteOffset = 0;
@@ -201,6 +194,8 @@ void TypedBuffer<T>::getUnderlying(ByteBuffer* feature) {
  */
 template <typename T>
 static void byteOffset(Local<String> property, const PropertyCallbackInfo<Value>& info) {
+    HandleScope scope;
+
     ClassBase* ptr = internalPtr<ClassBase>(info);
     if(ptr == 0 || !NodeBuffer::isView(ptr->getClassType())) {
         return;
@@ -210,6 +205,8 @@ static void byteOffset(Local<String> property, const PropertyCallbackInfo<Value>
 }
 template <typename T>
 static void byteLength(Local<String> property, const PropertyCallbackInfo<Value>& info) {
+    HandleScope scope;
+
     ClassBase* ptr = internalPtr<ClassBase>(info);
     if(ptr == 0 || !NodeBuffer::isView(ptr->getClassType())) {
         return;
@@ -217,8 +214,14 @@ static void byteLength(Local<String> property, const PropertyCallbackInfo<Value>
     NodeBufferView* view = static_cast<NodeBufferView*>(ptr);
     info.GetReturnValue().Set(Integer::New(view->mByteLength));
 }
+
 namespace typedbuffer {
+    /**
+     * init TypedBuffer with array/TypedArray data
+     */
     void set(const FunctionCallbackInfo<Value> &info) {
+        HandleScope scope;
+
         if(info.Length() == 0) {
             return;
         }
@@ -269,6 +272,7 @@ namespace typedbuffer {
             }
 
             if(valuePtr->mBuffer == view->mBuffer) {
+                // according to the specification, we should have another copy of these bytes before clone it
                 char* temp = new char[valuePtr->mByteLength];
                 valuePtr->readBytes(0, temp, valuePtr->mByteLength);
                 view->writeBytes(offset * buf.mElementSize, temp, valuePtr->mByteLength);
@@ -281,17 +285,49 @@ namespace typedbuffer {
 
     template <typename T>
     void subarray(const FunctionCallbackInfo<Value> &info) {
+        HandleScope scope;
         if(info.Length() == 0) {
+            ThrowException(String::New("TypeBuffer splice illigal argument number:0"));
             return;
         }
-        
+
         ClassBase* thiz = internalPtr<ClassBase>(info);
-        if(thiz == 0 || !NodeBuffer::isView(thiz->getClassType())) {
+        if(thiz == 0 || thiz->getClassType() != TypedBuffer<T>::getExportStruct()->mType) {
             return;
         }
-        TypedBuffer<T>* sroucePtr = static_cast<TypedBuffer<T>*>(thiz);
-        NodeBuffer buf;
-        sroucePtr->
+
+        TypedBuffer<T>* thizPtr = static_cast<TypedBuffer<T>*>(thiz);
+        int unit = TypedBuffer<T>::mElementBytes;
+        int length = thizPtr->length();
+        int begin = 0;
+        int end = length;
+
+        begin = info[0]->Int32Value();
+        if(begin < 0) {
+            begin += length;
+        }
+        if(info.Length() == 2) {
+            end = info[1]->Int32Value();
+            if(end < 0) {
+                end += length;
+            }
+        }
+        if(begin < 0 || begin >= length || begin >= end) {
+            begin = end = 0;
+        } else {
+            if(end > length) {
+                end = length;
+            }
+        }
+
+        Handle<Object> wrap = info.This();
+        Handle<Value> params[3];
+        params[0] = wrap->Get(String::New(NodeBufferView::BUFFER));
+        params[1] = Integer::New(thizPtr->byteOffset(begin));
+        params[2] = Integer::New(end - begin);
+
+        Handle<Object> obj = ClassWrap<TypedBuffer<T>>::newInstance(3, params);
+        info.GetReturnValue().Set(obj);
     }
 }
 template <typename T>
@@ -303,6 +339,7 @@ static v8::Local<v8::Function> initTypedArrayClass(v8::Handle<v8::FunctionTempla
     obj->SetAccessor(String::New("byteLength"), byteLength<T>);
     obj->SetAccessor(String::New("length"), globalfn::array::length);
     obj->Set(String::New("set"), FunctionTemplate::New(typedbuffer::set), PropertyAttribute(ReadOnly | DontDelete));
+    obj->Set(String::New("subarray"), FunctionTemplate::New(typedbuffer::subarray<T>), PropertyAttribute(ReadOnly | DontDelete));
 
     Local<ObjectTemplate> ins = temp->InstanceTemplate();
     ins->SetIndexedPropertyHandler(globalfn::array::getter<T>, globalfn::array::setter<T>);

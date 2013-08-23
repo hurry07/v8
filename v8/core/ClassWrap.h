@@ -80,30 +80,6 @@ public:
             info.GetReturnValue().Set(String::New(t->toString()));
         }
     }
-
-    /**
-     * create a copy of current js object
-     */
-    static void clone(const FunctionCallbackInfo<Value>& info) {
-		HandleScope scope(node_isolate);
-
-        if(info.Length() == 0) {
-            T* t1 = internalPtr<T>(info);
-            Local<Object> other = Local<Function>::New(node_isolate, _function)->NewInstance();
-            T* t2 = internalPtr<T>(other);
-
-            *t2 = *t1;
-            T::onClone(*t2, *t1);
-
-            info.GetReturnValue().Set(other);
-        } else {
-            T* t1 = internalPtr<T>(info);// this
-            T* t2 = internalArg<T>(info[0]);
-
-            *t1 = *t2;
-            T::onClone(*t1, *t2);
-        }
-    }
     /**
      * when js release the last refer of this object
      */
@@ -121,11 +97,11 @@ public:
 		fn->SetClassName(String::New(clz->mClassName));
 
         Local<ObjectTemplate> fnproto = fn->PrototypeTemplate();
+        // remove? too much default activity
         EXPOSE_METHOD(fnproto, release, ReadOnly | DontDelete);
         EXPOSE_METHOD(fnproto, _value, ReadOnly | DontDelete);
         EXPOSE_METHOD(fnproto, reset, ReadOnly | DontDelete);
         EXPOSE_METHOD(fnproto, toString, ReadOnly | DontDelete);
-        EXPOSE_METHOD(fnproto, clone, ReadOnly | DontDelete);
         fnproto->SetInternalFieldCount(1);
 
         Local<ObjectTemplate> fninst = fn->InstanceTemplate();
@@ -138,6 +114,38 @@ public:
             _function.Reset(node_isolate, fn->GetFunction());
         }
 	}
+
+    /**
+     * create a copy of current js object
+     */
+    static void clone(const FunctionCallbackInfo<Value>& info) {
+        HandleScope scope(node_isolate);
+        
+        T* t1 = internalPtr<T>(info, T::getExportStruct()->mType);
+        if(t1 == 0) {
+            return;
+        }
+        
+        if(info.Length() == 0) {
+            // create a copy on current object
+            Local<Object> other = Local<Function>::New(node_isolate, _function)->NewInstance();
+            T* t2 = internalPtr<T>(other);
+            
+            T::onClone(other, *t2, info.This(), *t1);
+            info.GetReturnValue().Set(other);
+        } else {
+            // copy from an existing object
+            if(info[0].IsEmpty() || !info[0]->IsObject()) {
+                return;
+            }
+            T* t2 = internalArg<T>(info[0], T::getExportStruct()->mType);
+            if(t2 == 0) {
+                return;
+            }
+            
+            T::onClone(info.This(), *t1, info[0]->ToObject(), *t2);
+        }
+    }
 
 	static Local<Function> getFunction() {
         if(!mInit) {

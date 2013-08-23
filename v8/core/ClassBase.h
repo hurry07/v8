@@ -47,13 +47,6 @@ public:
     virtual void _value(const FunctionCallbackInfo<Value> &args);
     virtual const char* toString();
 
-    /**
-     * you can overwrite this method if you want a deep copy
-     */
-    template<class T>
-    static void onClone(T& current, const T& from) {
-    }
-
     virtual ClassType getClassType();
     static class_struct* getExportStruct();
 

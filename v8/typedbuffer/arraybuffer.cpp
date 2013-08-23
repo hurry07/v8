@@ -9,10 +9,13 @@
 #include "arraybuffer.h"
 #include "../core/v8Utils.h"
 #include "../core/ClassWrap.h"
+#include "../functions/clone.h"
 
 NodeBuffer::NodeBuffer() : mData(0), mLength(0) {
+//    LOGI("ArrayBuffer.create");
 }
 NodeBuffer::NodeBuffer(int length) : mData(0), mLength(0) {
+//    LOGI("ArrayBuffer.create");
     if(length > 0) {
         mData = new char[mLength = length];
     }
@@ -21,6 +24,7 @@ NodeBuffer::~NodeBuffer() {
     if(mLength > 0) {
         delete[] mData;
     }
+//    LOGI("ArrayBuffer.~release");
 }
 void NodeBuffer::init(const FunctionCallbackInfo<Value> &args) {
     if (args.Length() == 1) {
@@ -83,10 +87,8 @@ METHOD_BEGIN(slice, info) {
     long start = info[0]->IntegerValue();
     long end = 0;
     if(acount == 1) {
-        start = info[0]->IntegerValue();
         end = thiz->mLength;
     } else if(acount == 2) {
-        start = info[0]->IntegerValue();
         end = info[1]->IntegerValue();
     }
     
@@ -114,12 +116,13 @@ METHOD_BEGIN(slice, info) {
 }
 static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
     HandleScope scope;
-    
+
     Local<ObjectTemplate> obj = temp->PrototypeTemplate();
     obj->SetAccessor(String::New("byteLength"), byteLength);
     EXPOSE_METHOD(obj, slice, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, isView, ReadOnly | DontDelete);
-    
+    obj->Set(String::New("clone"), FunctionTemplate::New(ClassWrap<NodeBuffer>::clone));
+
     return scope.Close(temp->GetFunction());
 }
 class_struct* NodeBuffer::getExportStruct() {
@@ -134,7 +137,7 @@ ClassType NodeBuffer::getClassType() {
 
 void NodeBuffer::getUnderlying(ByteBuffer* feature) {
 }
-void NodeBuffer::onClone(NodeBuffer& current, const NodeBuffer& from) {
+void NodeBuffer::onClone(Local<Object> jsCurrent, NodeBuffer& current, Local<Object> jsFrom, const NodeBuffer& from) {
     if(from.mLength == 0) {
         return;
     }
