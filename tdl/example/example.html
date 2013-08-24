@@ -46,25 +46,20 @@
         overflow: hidden;
         color: #fff;
     }
-
     a {
         color: #fff;
     }
-
     #info {
         font-size: small;
         position: absolute;
-        top: 0px;
-        width: 100%;
+        top: 0px; width: 100%;
         padding: 5px;
         text-align: center;
         z-index: 2;
     }
-
     CANVAS {
         background-color: gray;
     }
-
     .fpsContainer {
         position: absolute;
         top: 10px;
@@ -72,11 +67,10 @@
         z-index: 2;
         color: white;
         font-family: sans-serif;
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0,0,0,0.5);
         border-radius: 10px;
         padding: 10px;
     }
-
     #viewContainer {
         width: 100%;
         height: 100%;
@@ -109,9 +103,9 @@ var g_drawOnce = false;   // draw just one frame.
 //g_drawOnce = true;
 //g_debug = true;
 
-var g_eyeSpeed = 0.5;
-var g_eyeHeight = 2;
-var g_eyeRadius = 9;
+var g_eyeSpeed          = 0.5;
+var g_eyeHeight         = 2;
+var g_eyeRadius         = 9;
 
 function ValidateNoneOfTheArgsAreUndefined(functionName, args) {
     for (var ii = 0; ii < args.length; ++ii) {
@@ -189,7 +183,7 @@ function initialize() {
     var viewProjectionInverse = new Float32Array(16);
     var eyePosition = new Float32Array(3);
     var target = new Float32Array(3);
-    var up = new Float32Array([0, 1, 0]);
+    var up = new Float32Array([0,1,0]);
     var lightWorldPos = new Float32Array(3);
     var v3t0 = new Float32Array(3);
     var v3t1 = new Float32Array(3);
@@ -200,7 +194,7 @@ function initialize() {
     var m4t2 = new Float32Array(16);
     var m4t3 = new Float32Array(16);
     var zero4 = new Float32Array(4);
-    var one4 = new Float32Array([1, 1, 1, 1]);
+    var one4 = new Float32Array([1,1,1,1]);
 
     // Sphere uniforms.
     var sphereConst = {
@@ -208,18 +202,15 @@ function initialize() {
         lightWorldPos: lightWorldPos,
         specular: one4,
         shininess: 50,
-        specularFactor: 0.2
-    };
+        specularFactor: 0.2};
     var spherePer = {
-        lightColor: new Float32Array([0, 0, 0, 1]),
+        lightColor: new Float32Array([0,0,0,1]),
         world: world,
         worldViewProjection: worldViewProjection,
         worldInverse: worldInverse,
-        worldInverseTranspose: worldInverseTranspose
-    };
+        worldInverseTranspose: worldInverseTranspose};
 
     var frameCount = 0;
-
     function render() {
         ++frameCount;
         if (!g_drawOnce) {
@@ -227,7 +218,7 @@ function initialize() {
         }
         var now = (new Date()).getTime() * 0.001;
         var elapsedTime;
-        if (then == 0.0) {
+        if(then == 0.0) {
             elapsedTime = 0.0;
         } else {
             elapsedTime = now - then;
@@ -244,7 +235,7 @@ function initialize() {
 
         gl.colorMask(true, true, true, true);
         gl.depthMask(true);
-        gl.clearColor(0, 0, 0, 0);
+        gl.clearColor(0,0,0,0);
         gl.clearDepth(1);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT | gl.STENCIL_BUFFER_BIT);
 
@@ -276,8 +267,6 @@ function initialize() {
         fast.addVector(lightWorldPos, lightWorldPos, v3t1);
         fast.addVector(lightWorldPos, lightWorldPos, v3t2);
 
-        gl.drawArrays();
-
 //      view: view,
 //      projection: projection,
 //      viewProjection: viewProjection,
@@ -307,13 +296,12 @@ function initialize() {
 
         // Set the alpha to 255.
         gl.colorMask(false, false, false, true);
-        gl.clearColor(0, 0, 0, 1);
+        gl.clearColor(0,0,0,1);
         gl.clear(gl.COLOR_BUFFER_BIT);
 
         // turn off logging after 1 frame.
         g_logGLCalls = false;
     }
-
     render();
     return true;
 }
@@ -350,6 +338,7 @@ function initialize() {
     v_surfaceToView = (viewInverse[3] - (world * position)).xyz;
     gl_Position = v_position;
     }
+
 </script>
 <script id="sphereFragmentShader" type="text/something-not-javascript">
     #ifdef GL_ES
@@ -389,5 +378,4 @@ function initialize() {
     }
 </script>
 </html>
-
 

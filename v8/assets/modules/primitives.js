@@ -1,6 +1,9 @@
 var AttribBuffer = require('modules/buffer.js');
 var clz = require('nativeclasses');
 
+var vector2 = clz.vec2f;
+var vector3 = clz.vec3f;
+
 /**
  * Creates sphere vertices.
  * The created sphere has position, normal and uv streams.
@@ -41,9 +44,9 @@ function createSphere(radius, subdivisionsAxis, subdivisionsHeight,
     // ring of the sphere.
     var numVertices = (subdivisionsAxis + 1) * (subdivisionsHeight + 1);
 
-    var positions = new AttribBuffer(3, numVertices, clz.vec3f);
-    var normals = new AttribBuffer(3, numVertices, clz.vec3f);
-    var texCoords = new AttribBuffer(2, numVertices, clz.vec2f);
+    var positions = new AttribBuffer(3, numVertices, vector3);
+    var normals = new AttribBuffer(3, numVertices, vector3);
+    var texCoords = new AttribBuffer(2, numVertices, vector2);
 
     // Generate the individual vertices in our vertex buffer.
     for (var y = 0; y <= subdivisionsHeight; y++) {

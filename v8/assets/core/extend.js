@@ -1,4 +1,4 @@
-function _extends(sub, super_, props) {
+function inherit(sub, super_, props) {
     sub.prototype = Object.create(super_.prototype);
     if (props) {
         for (var i in props) {
@@ -8,5 +8,4 @@ function _extends(sub, super_, props) {
     sub.prototype.constructor = sub;
     return sub;
 }
-
-module.exports = _extends;
+module.exports = inherit;

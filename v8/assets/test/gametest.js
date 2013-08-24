@@ -7,16 +7,29 @@
  */
 console.log('---------------');
 var clz = require('nativeclasses');
+var program = require('modules/program.js');
 
 var AttribBuffer = require('modules/buffer.js');
 var primitives = require('modules/primitives.js');
+var texture = require('modules/textures.js');
+var Model = require('modules/models.js');
 
-var arrays = primitives.createSphere(0.4, 10, 12);
-console.log(arrays);
-for(var i in arrays) {
-    console.log(i, arrays[i]);
+//var arrays = primitives.createSphere(0.4, 10, 12);
+//console.log(arrays);
+//for(var i in arrays) {
+//    console.log(i, arrays[i]);
+//}
+//
+//program.createWithFile('shader/v1.vtx', 'shader/f1.frg');
+
+function setupSphere() {
+    var textures = {
+        diffuseSampler: new texture.SolidTexture([128,128,128,128])
+    };
+    var program = program.createWithFile('shader/v1.vtx', 'shader/f1.frg');
+    var arrays = primitives.createSphere(0.4, 10, 12);
+
+    return new Model(program, arrays, textures);
 }
 
-console.log(arrays.texCoord.getElement(0));
-console.log(arrays.normal.getElement(0));
-console.log(arrays.position.getElement(0));
+setupSphere();
