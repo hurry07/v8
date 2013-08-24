@@ -44,6 +44,49 @@ using v8::kExternalUnsignedIntArray;
 #define JS_BOOL(val) v8::Boolean::New(val)
 #define UNUSED_PARAM(variable) (void)variable
 
+static void argValue(Local<Value> &info, float* slot) {
+    *slot = info->NumberValue();
+}
+static void argValue(Local<Value> &info, uint8_t* slot) {
+    *slot = info->BooleanValue();
+}
+static void argValue(Local<Value> &info, int32_t* slot) {
+    *slot = info->Int32Value();
+}
+
+template<typename T>
+static bool flatValue(Local<Value> infoV, ByteBuffer* buffer) {
+    bool delete_ = false;
+    while (1) {
+        if(infoV.IsEmpty() || infoV->IsUndefined()) {
+            break;
+        }
+        
+        if(infoV->IsArray()) {
+            Handle<Array> array = Handle<Array>::Cast(infoV);
+            buffer->allocate(array->Length() * sizeof(T));
+            populateValues<T>((T*)buffer->mPtr, array, 0);
+            delete_ = true;
+            break;
+        }
+        
+        ClassBase* p = internalArg<ClassBase>(infoV);
+        if(p == 0) {
+            if(infoV->IsNumber()) {
+                buffer->allocate(sizeof(T));
+                argValue(infoV, (T*)buffer->mPtr);
+                delete_ = true;
+            }
+        } else {
+            p->getUnderlying(buffer);
+        }
+        
+        break;
+    }
+    
+    return delete_;
+}
+
 static GLuint ToGLuint(const void* ptr) {
 	return static_cast<GLuint>(reinterpret_cast<size_t>(ptr));
 }
@@ -317,6 +360,7 @@ inline Type* getArrayData(Local<Value> arg, int* num = NULL) {
 #define CHECK_GLintptr(a) !a->IsNumber()
 #define CHECK_GLbitfield(a) !a->IsUint32()
 
+// should not present
 #define ARGS_GLchar(a) !!!
 #define ARGS_GLenum(a) a->Uint32Value()
 #define ARGS_GLboolean(a) a->BooleanValue()
@@ -1910,6 +1954,27 @@ DELEGATE_TO_GL_N3(stencilOp, glStencilOp, GLenum, GLenum, GLenum);
 DELEGATE_TO_GL_N4(stencilOpSeparate, glStencilOpSeparate, GLenum, GLenum, GLenum, GLenum);
 //DELEGATE_TO_GL_N9(texImage2D, glTexImage2D, GLenum, GLint, GLint, GLsizei, GLsizei, GLint, GLenum, GLenum, GLvoidP);
 JS_METHOD(texImage2D) {
+    // GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height,
+    // GLint border, GLenum format, GLenum type, const GLvoid *pixels
+    ByteBuffer buf;
+    GLenum type = ARGS_GLenum(args[7]);
+    switch (type) {
+        case GL_UNSIGNED_BYTE:
+            flatValue<uint8_t>(args[8], &buf);
+            break;
+        default:
+            LOGE("texImage2D type not supported yet %d", type);
+            break;
+    }
+    glTexImage2D(ARGS_GLenum(args[0]),
+                 ARGS_GLint(args[1]),
+                 ARGS_GLint(args[2]),
+                 ARGS_GLsizei(args[3]),
+                 ARGS_GLsizei(args[4]),
+                 ARGS_GLint(args[5]),
+                 ARGS_GLenum(args[6]),
+                 type,
+                 buf.mPtr);
     LOGI("texImage2D %d", args.Length());
 }
 DELEGATE_TO_GL_N3(texParameterf, glTexParameterf, GLenum, GLenum, GLfloat);

@@ -168,7 +168,9 @@ SolidTexture.prototype.uploadTexture = function () {
      @param {Number} type
      @param {ArrayBufferView} pixels
      */
+    console.log('--11');
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
+    console.log('--12');
 };
 SolidTexture.prototype.recoverFromLostContext = function () {
     Texture.recoverFromLostContext.call(this);

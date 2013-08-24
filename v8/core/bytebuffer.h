@@ -24,9 +24,12 @@ public:
     long mByteLength;
     int mElementSize;
     ClassType mElement;
+    bool mRealse;
 
     ByteBuffer();
-    
+    virtual ~ByteBuffer();
+    void allocate(int byteLength);
+
     void init(char* ptr, long length, ClassType type);
     void init(NodeBufferView* view, ClassType type);
     void init(NodeBufferView* view, ClassType type, int elementSize);

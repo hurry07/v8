@@ -9,9 +9,18 @@
 #include "bytebuffer.h"
 #include "../typedbuffer/arraybufferview.h"
 
-ByteBuffer::ByteBuffer() : mElement(CLASS_ArrayBuffer), mPtr(0), mByteOffset(0), mByteLength(0), mElementSize(1) {
+ByteBuffer::ByteBuffer() : mElement(CLASS_ArrayBuffer), mPtr(0), mByteOffset(0), mByteLength(0), mElementSize(1), mRealse(false) {
 }
-
+ByteBuffer::~ByteBuffer() {
+    if(mRealse) {
+        delete[] mPtr;
+    }
+}
+void ByteBuffer::allocate(int byteLength) {
+    mPtr = new char[byteLength];
+    mByteLength = byteLength;
+    mRealse = true;
+}
 void ByteBuffer::init(char* ptr, long length, ClassType type) {
     this->mPtr = ptr;
     this->mByteLength = length;
