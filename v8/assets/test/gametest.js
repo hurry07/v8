@@ -8,6 +8,10 @@
 console.log('---------------');
 var clz = require('nativeclasses');
 var program = require('modules/program.js');
+console.log('program:', program);
+for(var i in program) {
+    console.log(i);
+}
 
 var AttribBuffer = require('modules/buffer.js');
 var primitives = require('modules/primitives.js');
@@ -26,10 +30,13 @@ function setupSphere() {
     var textures = {
         diffuseSampler: new texture.SolidTexture([128,128,128,128])
     };
-    var program = program.createWithFile('shader/v1.vtx', 'shader/f1.frg');
+    var p = program.createWithFile('shader/v1.vtx', 'shader/f1.frg');
     var arrays = primitives.createSphere(0.4, 10, 12);
 
-    return new Model(program, arrays, textures);
+    console.log('--1');
+    return new Model(p, arrays, textures);
 }
 
 setupSphere();
+console.log('--2');
+

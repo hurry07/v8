@@ -1908,7 +1908,10 @@ DELEGATE_TO_GL_N1(stencilMask, glStencilMask, GLuint);
 DELEGATE_TO_GL_N2(stencilMaskSeparate, glStencilMaskSeparate, GLenum, GLuint);
 DELEGATE_TO_GL_N3(stencilOp, glStencilOp, GLenum, GLenum, GLenum);
 DELEGATE_TO_GL_N4(stencilOpSeparate, glStencilOpSeparate, GLenum, GLenum, GLenum, GLenum);
-DELEGATE_TO_GL_N9(texImage2D, glTexImage2D, GLenum, GLint, GLint, GLsizei, GLsizei, GLint, GLenum, GLenum, GLvoidP);
+//DELEGATE_TO_GL_N9(texImage2D, glTexImage2D, GLenum, GLint, GLint, GLsizei, GLsizei, GLint, GLenum, GLenum, GLvoidP);
+JS_METHOD(texImage2D) {
+    LOGI("texImage2D %d", args.Length());
+}
 DELEGATE_TO_GL_N3(texParameterf, glTexParameterf, GLenum, GLenum, GLfloat);
 DELEGATE_TO_GL_N3(texParameteri, glTexParameteri, GLenum, GLenum, GLint);
 DELEGATE_TO_GL_N9(texSubImage2D, glTexSubImage2D, GLenum, GLint, GLint, GLint, GLsizei, GLsizei, GLenum, GLenum, GLvoidP);

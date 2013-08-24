@@ -30,6 +30,8 @@
  */
 //var buffer = require('modules/buffers.js');
 
+var gl = require('opengl');
+
 /**
  * Manages a program, buffers and textures for easier drawing.
  * @constructor
@@ -40,7 +42,9 @@
  */
 function Model(program, arrays, textures, opt_mode) {
     this.buffers = {};
+    console.log('00');
     this.setBuffers(arrays);
+    console.log('01');
 
     var textureUnits = {}
     var unit = 0;
@@ -48,10 +52,12 @@ function Model(program, arrays, textures, opt_mode) {
         textureUnits[texture] = unit++;
     }
 
+    console.log('11');
     this.mode = (opt_mode === undefined) ? gl.TRIANGLES : opt_mode;
     this.textures = textures;
     this.textureUnits = textureUnits;
     this.setProgram(program);
+    console.log('22');
 }
 
 Model.prototype.setProgram = function (program) {
@@ -69,16 +75,20 @@ Model.prototype.setBuffer = function (name, array, opt_newBuffer) {
 };
 Model.prototype.setBuffers = function (arrays, opt_newBuffers) {
     var that = this;
+    console.log('--01');
     for (var name in arrays) {
         this.setBuffer(name, arrays[name], opt_newBuffers);
     }
+    console.log('--02');
     // if there is a indices, shoud draw as Element, else Arrays
     if (this.buffers.indices) {
+        console.log('--03');
         this.baseBuffer = this.buffers.indices;
         this.drawFunc = function (totalComponents, startOffset) {
             gl.drawElements(that.mode, totalComponents, gl.UNSIGNED_SHORT, startOffset);
         }
     } else {
+        console.log('--04');
         for (var key in this.buffers) {
             this.baseBuffer = this.buffers[key];
             break;

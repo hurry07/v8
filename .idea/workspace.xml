@@ -2,20 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/modules/models.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/modules/textures.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/modules/buffers.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tdl/example/example.html" afterPath="$PROJECT_DIR$/tdl/example/example.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/core/extend.js" afterPath="$PROJECT_DIR$/v8/assets/core/extend.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/modules/GLBinding.cpp" afterPath="$PROJECT_DIR$/v8/modules/GLBinding.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/test/gametest.js" afterPath="$PROJECT_DIR$/v8/assets/test/gametest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/modules/primitives.js" afterPath="$PROJECT_DIR$/v8/assets/modules/primitives.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/modules/models.js" afterPath="$PROJECT_DIR$/v8/assets/modules/models.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377306385139" ignored="false" />
     <file path="/game.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376745948179" ignored="false" />
-    <file path="/a.dummy" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377321450684" ignored="false" />
+    <file path="/a.dummy" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377355261027" ignored="false" />
     <file path="/temp.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376748679355" ignored="false" />
     <file path="/programs.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376753166840" ignored="false" />
     <file path="/vec3_test.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377279668112" ignored="false" />
@@ -27,7 +25,8 @@
     <file path="/buffer.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377280351115" ignored="false" />
     <file path="/gametest.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377281086276" ignored="false" />
     <file path="/textures.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377321277744" ignored="false" />
-    <file path="/models.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377353752854" ignored="false" />
+    <file path="/models.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377355029991" ignored="false" />
+    <file path="/buffers.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377355878173" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +57,15 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="buffer.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/modules/buffer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="7" selection-start="718" selection-end="718" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/modules/main.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -76,10 +84,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="models.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/modules/models.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="40" selection-start="2227" selection-end="2235" vertical-scroll-proportion="0.38338658">
+            <state line="69" column="34" selection-start="2897" selection-end="2903" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="buffers.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tdl/tdl/buffers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="buffers.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/v8/assets/modules/buffers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="113" column="0" selection-start="3689" selection-end="3689" vertical-scroll-proportion="2.7076678">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="program.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/modules/program.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="47" selection-start="431" selection-end="431" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -118,6 +157,7 @@
         <option value="$PROJECT_DIR$/v8/assets/core/extend.js" />
         <option value="$PROJECT_DIR$/v8/assets/modules/textures.js" />
         <option value="$PROJECT_DIR$/v8/assets/modules/models.js" />
+        <option value="$PROJECT_DIR$/v8/assets/modules/buffers.js" />
       </list>
     </option>
   </component>
@@ -484,34 +524,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tdl/tdl/primitives.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="38" selection-start="3939" selection-end="3939" vertical-scroll-proportion="-10.6">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/test/vec3_test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="177" column="40" selection-start="3793" selection-end="3793" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/modules/buffer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="48" selection-start="1426" selection-end="1426" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tdl/example/assets/sometexture.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -594,10 +606,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/modules/program.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="47" selection-start="431" selection-end="431" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/modules/models.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="40" selection-start="2227" selection-end="2235" vertical-scroll-proportion="0.38338658">
+        <state line="69" column="34" selection-start="2897" selection-end="2903" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/modules/buffer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="7" selection-start="718" selection-end="718" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tdl/tdl/buffers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/modules/buffers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="113" column="0" selection-start="3689" selection-end="3689" vertical-scroll-proportion="2.7076678">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
