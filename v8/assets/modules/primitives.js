@@ -1,4 +1,4 @@
-var AttribBuffer = require('modules/buffer.js');
+var typedbuffer = require('modules/typedbuffer.js');
 var clz = require('nativeclasses');
 
 var vector2 = clz.vec2f;
@@ -44,9 +44,18 @@ function createSphere(radius, subdivisionsAxis, subdivisionsHeight,
     // ring of the sphere.
     var numVertices = (subdivisionsAxis + 1) * (subdivisionsHeight + 1);
 
-    var positions = new AttribBuffer(3, numVertices, vector3);
-    var normals = new AttribBuffer(3, numVertices, vector3);
-    var texCoords = new AttribBuffer(2, numVertices, vector2);
+    var positions = typedbuffer.createBuffer(3, numVertices, {
+        type : Float32Array,
+        element : vector3
+    });
+    var normals = typedbuffer.createBuffer(3, numVertices, {
+        type : Float32Array,
+        element : vector3
+    });
+    var texCoords = typedbuffer.createBuffer(2, numVertices, {
+        type : Float32Array,
+        element : vector2
+    });
 
     // Generate the individual vertices in our vertex buffer.
     for (var y = 0; y <= subdivisionsHeight; y++) {
@@ -70,8 +79,9 @@ function createSphere(radius, subdivisionsAxis, subdivisionsHeight,
     }
 
     var numVertsAround = subdivisionsAxis + 1;
-    var indices = new AttribBuffer(
-        3, subdivisionsAxis * subdivisionsHeight * 2, 'Uint16Array');
+    var indices = typedbuffer.createBuffer(3, subdivisionsAxis * subdivisionsHeight * 2, {
+        type : Uint16Array
+    });
     for (var x = 0; x < subdivisionsAxis; x++) {
         for (var y = 0; y < subdivisionsHeight; y++) {
             // Make triangle 1 of quad.

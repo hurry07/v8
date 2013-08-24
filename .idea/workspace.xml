@@ -2,18 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/modules/buffers.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/modules/buffer.js" afterPath="$PROJECT_DIR$/v8/assets/modules/typedbuffer.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/modules/GLBinding.cpp" afterPath="$PROJECT_DIR$/v8/modules/GLBinding.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/modules/buffers.js" afterPath="$PROJECT_DIR$/v8/assets/modules/buffers.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/test/gametest.js" afterPath="$PROJECT_DIR$/v8/assets/test/gametest.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/modules/models.js" afterPath="$PROJECT_DIR$/v8/assets/modules/models.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/modules/primitives.js" afterPath="$PROJECT_DIR$/v8/assets/modules/primitives.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/test/vec3_test.js" afterPath="$PROJECT_DIR$/v8/assets/test/vec3_test.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377306385139" ignored="false" />
     <file path="/game.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376745948179" ignored="false" />
-    <file path="/a.dummy" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377355261027" ignored="false" />
+    <file path="/a.dummy" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377360613189" ignored="false" />
     <file path="/temp.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376748679355" ignored="false" />
     <file path="/programs.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376753166840" ignored="false" />
     <file path="/vec3_test.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377279668112" ignored="false" />
@@ -21,12 +23,12 @@
     <file path="/program.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377235916999" ignored="false" />
     <file path="/extend.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376984512542" ignored="false" />
     <file path="/node.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377153315496" ignored="false" />
-    <file path="/primitives.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377306470892" ignored="false" />
-    <file path="/buffer.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377280351115" ignored="false" />
+    <file path="/primitives.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377360400294" ignored="false" />
+    <file path="/buffer.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377360453797" ignored="false" />
     <file path="/gametest.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377281086276" ignored="false" />
     <file path="/textures.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377321277744" ignored="false" />
-    <file path="/models.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377355029991" ignored="false" />
-    <file path="/buffers.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377355878173" ignored="false" />
+    <file path="/models.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377361021464" ignored="false" />
+    <file path="/buffers.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377361111512" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,31 +48,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="textures.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/modules/textures.js">
+      <file leaf-file-name="example.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tdl/example/example.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="147" column="21" selection-start="5019" selection-end="5031" vertical-scroll-proportion="-10.08">
+            <state line="149" column="28" selection-start="4801" selection-end="4801" vertical-scroll-proportion="-6.875">
               <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <element signature="n#style#0;n#canvas#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="buffer.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/modules/buffer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="7" selection-start="718" selection-end="718" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/modules/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="57" selection-start="419" selection-end="427" vertical-scroll-proportion="0.0">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -78,16 +62,7 @@
       <file leaf-file-name="models.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tdl/tdl/models.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="28" selection-start="1767" selection-end="1767" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/modules/models.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="34" selection-start="2897" selection-end="2903" vertical-scroll-proportion="0.0">
+            <state line="82" column="32" selection-start="3011" selection-end="3011" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -96,10 +71,19 @@
       <file leaf-file-name="buffers.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tdl/tdl/buffers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="53" column="31" selection-start="1941" selection-end="1941" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="typedbuffer.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/modules/typedbuffer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="50" column="63" selection-start="1809" selection-end="1809" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -107,7 +91,7 @@
       <file leaf-file-name="buffers.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/modules/buffers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="113" column="0" selection-start="3689" selection-end="3689" vertical-scroll-proportion="2.7076678">
+            <state line="30" column="24" selection-start="1587" selection-end="1587" vertical-scroll-proportion="0.57507986">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -115,10 +99,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="program.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/modules/program.js">
+      <file leaf-file-name="models.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/modules/models.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="47" selection-start="431" selection-end="431" vertical-scroll-proportion="0.0">
+            <state line="33" column="37" selection-start="1668" selection-end="1675" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="primitives.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tdl/tdl/primitives.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="91" column="33" selection-start="3129" selection-end="3129" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="primitives.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/modules/primitives.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="81" column="46" selection-start="3335" selection-end="3335" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -142,20 +144,20 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/v8/assets/game.js" />
         <option value="$PROJECT_DIR$/v8/assets/modules/programs.js" />
         <option value="$PROJECT_DIR$/temp.txt" />
         <option value="$PROJECT_DIR$/v8/assets/node.js" />
         <option value="$PROJECT_DIR$/v8/assets/modules/main.js" />
         <option value="$PROJECT_DIR$/v8/assets/modules/program.js" />
         <option value="$PROJECT_DIR$/v8/assets/test/vec3_test.js" />
-        <option value="$PROJECT_DIR$/v8/assets/modules/buffer.js" />
         <option value="$PROJECT_DIR$/v8/assets/test/gametest.js" />
-        <option value="$PROJECT_DIR$/v8/assets/modules/primitives.js" />
         <option value="$PROJECT_DIR$/tdl/tdl/textures.js" />
         <option value="$PROJECT_DIR$/tdl/example/example.html" />
         <option value="$PROJECT_DIR$/v8/assets/core/extend.js" />
         <option value="$PROJECT_DIR$/v8/assets/modules/textures.js" />
+        <option value="$PROJECT_DIR$/v8/assets/modules/buffer.js" />
+        <option value="$PROJECT_DIR$/v8/assets/modules/primitives.js" />
+        <option value="$PROJECT_DIR$/v8/assets/modules/typedbuffer.js" />
         <option value="$PROJECT_DIR$/v8/assets/modules/models.js" />
         <option value="$PROJECT_DIR$/v8/assets/modules/buffers.js" />
       </list>
@@ -395,6 +397,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="v8" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="v8" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tdl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="docs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -449,7 +469,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874617" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18416886" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17525773" sideWeight="0.6712538" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19429025" sideWeight="0.6712538" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -524,18 +544,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tdl/example/assets/sometexture.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/core/extend.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="16" selection-start="9" selection-end="16" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tdl/tdl/webgl.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="299" column="2" selection-start="8847" selection-end="8847" vertical-scroll-proportion="0.0">
@@ -549,22 +557,6 @@
     <entry file="file://$PROJECT_DIR$/v8/assets/test/gametest.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="0" selection-start="775" selection-end="775" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tdl/example/example.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="149" column="28" selection-start="4801" selection-end="4801" vertical-scroll-proportion="-19.291666">
-          <folding>
-            <element signature="n#style#0;n#canvas#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/modules/primitives.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="94" column="8" selection-start="3854" selection-end="3854" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -583,25 +575,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/modules/textures.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="147" column="21" selection-start="5019" selection-end="5031" vertical-scroll-proportion="-10.08">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/modules/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="57" selection-start="419" selection-end="427" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tdl/tdl/models.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="28" selection-start="1767" selection-end="1767" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -613,32 +589,78 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/modules/models.js">
+    <entry file="file://$PROJECT_DIR$/v8/assets/modules/textures.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="34" selection-start="2897" selection-end="2903" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/modules/buffer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="7" selection-start="718" selection-end="718" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tdl/tdl/buffers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="147" column="21" selection-start="5019" selection-end="5031" vertical-scroll-proportion="15.72">
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tdl/docs/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="18" selection-start="1912" selection-end="1912" vertical-scroll-proportion="-5.7083335">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tdl/tdl/primitives.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="91" column="33" selection-start="3129" selection-end="3129" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/modules/primitives.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="81" column="46" selection-start="3335" selection-end="3335" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tdl/example/example.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="149" column="28" selection-start="4801" selection-end="4801" vertical-scroll-proportion="-6.875">
+          <folding>
+            <element signature="n#style#0;n#canvas#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tdl/tdl/models.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="82" column="32" selection-start="3011" selection-end="3011" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tdl/tdl/buffers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="31" selection-start="1941" selection-end="1941" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/modules/typedbuffer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="63" selection-start="1809" selection-end="1809" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/modules/models.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="37" selection-start="1668" selection-end="1675" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/modules/buffers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="113" column="0" selection-start="3689" selection-end="3689" vertical-scroll-proportion="2.7076678">
+        <state line="30" column="24" selection-start="1587" selection-end="1587" vertical-scroll-proportion="0.57507986">
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>

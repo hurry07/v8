@@ -175,7 +175,7 @@ function testBufferGet() {
 //testBufferSet();
 //testBufferGet();
 
-var AttribBuffer = require('modules/buffer.js');
+var AttribBuffer = require('modules/typedbuffer.js');
 console.log(AttribBuffer);
 
 var coll = new AttribBuffer(3, 10, clz.vec3f);

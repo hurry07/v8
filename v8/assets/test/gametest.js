@@ -13,7 +13,7 @@ for(var i in program) {
     console.log(i);
 }
 
-var AttribBuffer = require('modules/buffer.js');
+var bytedbuffer = require('modules/typedbuffer.js');
 var primitives = require('modules/primitives.js');
 var texture = require('modules/textures.js');
 var Model = require('modules/models.js');
@@ -33,10 +33,7 @@ function setupSphere() {
     var p = program.createWithFile('shader/v1.vtx', 'shader/f1.frg');
     var arrays = primitives.createSphere(0.4, 10, 12);
 
-    console.log('--1');
     return new Model(p, arrays, textures);
 }
-
 setupSphere();
-console.log('--2');
 
