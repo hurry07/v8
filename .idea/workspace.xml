@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/modules/math.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/core/extend.js" afterPath="$PROJECT_DIR$/v8/assets/core/inherit.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/xcuserdata/jie.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" afterPath="$PROJECT_DIR$/v8.xcodeproj/xcuserdata/jie.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/modules/GLBinding.cpp" afterPath="$PROJECT_DIR$/v8/modules/GLBinding.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/test/gametest.js" afterPath="$PROJECT_DIR$/v8/assets/test/gametest.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/glm/glmopt.cpp" afterPath="$PROJECT_DIR$/v8/glm/glmopt.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/modules/models.js" afterPath="$PROJECT_DIR$/v8/assets/modules/models.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/modules/program.js" afterPath="$PROJECT_DIR$/v8/assets/modules/program.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/modules/textures.js" afterPath="$PROJECT_DIR$/v8/assets/modules/textures.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,10 +44,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="models.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="models.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/modules/models.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="81" column="30" selection-start="3356" selection-end="3356" vertical-scroll-proportion="0.31281197">
+            <state line="82" column="25" selection-start="3375" selection-end="3387" vertical-scroll-proportion="-11.12">
               <folding />
             </state>
           </provider>
@@ -78,10 +71,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WebGL.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="WebGL.js" pinned="false" current="true" current-in-tab="true">
         <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/WebGL.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1417" column="0" selection-start="19828" selection-end="19828" vertical-scroll-proportion="0.0">
+            <state line="2140" column="44" selection-start="33418" selection-end="33430" vertical-scroll-proportion="0.45207667">
               <folding />
             </state>
           </provider>
@@ -554,13 +547,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/WebGL.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1417" column="0" selection-start="19828" selection-end="19828" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/modules/program.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="231" column="0" selection-start="6388" selection-end="6388" vertical-scroll-proportion="0.0">
@@ -577,7 +563,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/modules/models.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="30" selection-start="3356" selection-end="3356" vertical-scroll-proportion="0.31281197">
+        <state line="82" column="25" selection-start="3375" selection-end="3387" vertical-scroll-proportion="-11.12">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/WebGL.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2140" column="44" selection-start="33418" selection-end="33430" vertical-scroll-proportion="0.45207667">
           <folding />
         </state>
       </provider>

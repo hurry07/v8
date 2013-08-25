@@ -1298,7 +1298,8 @@ JS_METHOD(drawElements) {
     GLenum mode = ARGS_GLenum(args[0]);
     GLsizei count = ARGS_GLsizei(args[1]);
     GLenum type = ARGS_GLenum(args[2]);
-    LOGI("drawElements %d %d %d", mode, count, type);
+    ClassBase* base = internalArg<ClassBase>(args[3]);
+    LOGI("drawElements siez:%d mode:%d count:%d type:%d", args.Length(), mode, count, type);
 }
 DELEGATE_TO_GL_N1(enable, glEnable, GLenum);
 DELEGATE_TO_GL_N1(enableVertexAttribArray, glEnableVertexAttribArray, GLuint);
