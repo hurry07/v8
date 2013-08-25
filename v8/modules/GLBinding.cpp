@@ -55,13 +55,13 @@ static void argValue(Local<Value> &info, int32_t* slot) {
 }
 
 template<typename T>
-static bool flatValue(Local<Value> infoV, ByteBuffer* buffer) {
+static bool getTypedArray(Local<Value> infoV, ByteBuffer* buffer) {
     bool delete_ = false;
     while (1) {
         if(infoV.IsEmpty() || infoV->IsUndefined()) {
             break;
         }
-        
+
         if(infoV->IsArray()) {
             Handle<Array> array = Handle<Array>::Cast(infoV);
             buffer->allocate(array->Length() * sizeof(T));
@@ -69,7 +69,7 @@ static bool flatValue(Local<Value> infoV, ByteBuffer* buffer) {
             delete_ = true;
             break;
         }
-        
+
         ClassBase* p = internalArg<ClassBase>(infoV);
         if(p == 0) {
             if(infoV->IsNumber()) {
@@ -80,11 +80,14 @@ static bool flatValue(Local<Value> infoV, ByteBuffer* buffer) {
         } else {
             p->getUnderlying(buffer);
         }
-        
+
         break;
     }
     
     return delete_;
+}
+
+static void getTypedArray(Local<Value> value, ClassType type, ByteBuffer* buffer) {
 }
 
 static GLuint ToGLuint(const void* ptr) {
@@ -1289,7 +1292,14 @@ DELEGATE_TO_GL_N1(disable, glDisable, GLenum);
 
 DELEGATE_TO_GL_N1(disableVertexAttribArray, glDisableVertexAttribArray, GLuint);
 DELEGATE_TO_GL_N3(drawArrays, glDrawArrays, GLenum, GLint, GLsizei);
-DELEGATE_TO_GL_N4(drawElements, glDrawElements, GLenum, GLsizei, GLenum, GLvoidP);
+//DELEGATE_TO_GL_N4(drawElements, glDrawElements, GLenum, GLsizei, GLenum, GLvoidP);
+JS_METHOD(drawElements) {
+    // GLenum mode, GLsizei count, GLenum type, const GLvoid *indices
+    GLenum mode = ARGS_GLenum(args[0]);
+    GLsizei count = ARGS_GLsizei(args[1]);
+    GLenum type = ARGS_GLenum(args[2]);
+    LOGI("drawElements %d %d %d", mode, count, type);
+}
 DELEGATE_TO_GL_N1(enable, glEnable, GLenum);
 DELEGATE_TO_GL_N1(enableVertexAttribArray, glEnableVertexAttribArray, GLuint);
 DELEGATE_TO_GL_N(finish, glFinish);
@@ -1960,7 +1970,7 @@ JS_METHOD(texImage2D) {
     GLenum type = ARGS_GLenum(args[7]);
     switch (type) {
         case GL_UNSIGNED_BYTE:
-            flatValue<uint8_t>(args[8], &buf);
+            getTypedArray<uint8_t>(args[8], &buf);
             break;
         default:
             LOGE("texImage2D type not supported yet %d", type);
@@ -2047,7 +2057,16 @@ JS_METHOD(uniformMatrix##name) {\
 }
 UNIFORM_MATRIX(2fv, 4);
 UNIFORM_MATRIX(3fv, 9);
-UNIFORM_MATRIX(4fv, 16);
+//UNIFORM_MATRIX(4fv, 16);
+JS_METHOD(uniformMatrix4fv) {
+    HandleScope scope;
+
+    GLint location = args[0]->Int32Value();
+    GLboolean transpose = args[1]->BooleanValue();
+    ByteBuffer fPtr;
+    getArgPtr(&fPtr, CLASS_Float32Array, args[2]);
+    glUniformMatrix3fv(location, fPtr.typedLength() / 16, transpose, fPtr.value_ptr<float>());
+}
 
 DELEGATE_TO_GL_N1(useProgram, glUseProgram, GLuint);
 DELEGATE_TO_GL_N1(validateProgram, glValidateProgram, GLuint);

@@ -32,7 +32,7 @@
  * @fileoverview This file contains objects to manage textures.
  */
 var gl = require('opengl');
-var inherit = require('core/extend.js');
+var inherit = require('core/inherit.js');
 
 textures = {};
 textures.loadingImages = [];

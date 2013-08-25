@@ -1,18 +1,18 @@
 var gl = require('opengl');
-var shader = require('modules/shader.js');
 var clz = require('nativeclasses');
+var inherit = require('core/inherit.js');
+var shader = require('modules/shader.js');
 
 /**
  * handle for vector and matrix parameters
  *
- * @param loc
- * @param glfn
- * @param data
+ * @param loc param location
+ * @param glfn glUniform function name
  */
-function shaderParam(loc, glfn, data) {
+function shaderParam(loc, glfn) {
     this.loc = loc;
     this.fn = glfn;
-    this._data = data;
+    this._data = 0;
 }
 shaderParam.prototype.data = function() {
     if(arguments.length > 0) {
@@ -28,6 +28,31 @@ shaderParam.prototype.upload = function(d) {
         this.fn(this.loc, this._data);
     }
 }
+function matrixParam(loc, glfn, transpose) {
+    shaderParam.apply(this, arguments);
+    this.transpose = transpose || false;
+}
+inherit(matrixParam, shaderParam);
+matrixParam.prototype.upload = function(d) {
+    if(d != undefined) {
+        this.fn(this.loc, this.transpose, this._data = d);
+    } else {
+        this.fn(this.loc, this.transpose, this._data);
+    }
+}
+function textureParam(loc, glfn, unit) {
+    shaderParam.apply(this, arguments);
+    this.unit = unit;
+}
+inherit(textureParam, shaderParam);
+textureParam.prototype.upload = function(d) {
+    this.fn(this.loc, this.unit);
+    if(d != undefined) {
+        (this._data = d).bindToUnit(this.unit);
+    } else {
+        this._data.bindToUnit(this.unit);
+    }
+}
 
 /**
  * class used for binding buffer as attribute of program
@@ -39,7 +64,7 @@ function attribute(index) {
 }
 attribute.prototype.upload = function (b) {
     gl.bindBuffer(gl.ARRAY_BUFFER, b.buffer());
-    gl.enableVertexAttribArray(index);
+    gl.enableVertexAttribArray(this.index);
     gl.vertexAttribPointer(this.index, b.numComponents(), b.type(), b.normalize(), b.stride(), b.offset());
 }
 
@@ -61,67 +86,70 @@ function releaseById(id) {
     }
     delete programDB[id];
 }
-
-
 function createUniformSetter(info) {
-    var loc = gl.getUniformLocation(program, info.name)
+    var loc = gl.getUniformLocation(this._glid, info.name)
     var s;
+    var size = info.size;
+    var textureCount = 0;
     switch (info.type) {
         // -----------------
         case gl.FLOAT:
-            s = new shaderParam(loc, gl.uniform1fv, new Float32Array([0]));
+            if(size > 1) {
+                s = new shaderParam(loc, gl.uniform1fv);
+            } else {
+                s = new shaderParam(loc, gl.uniform1f);
+            }
             break;
         case gl.FLOAT_VEC2:
-            s = new shaderParam(loc, gl.uniform2fv, new clz.vec2f());
+            s = new shaderParam(loc, gl.uniform2fv);
             break;
         case gl.FLOAT_VEC3:
-            s = new shaderParam(loc, gl.uniform3fv, new clz.vec3f());
+            s = new shaderParam(loc, gl.uniform3fv);
             break;
         case gl.FLOAT_VEC4:
-            s = new shaderParam(loc, gl.uniform4fv, new clz.vec4f());
+            s = new shaderParam(loc, gl.uniform4fv);
             break;
         // -----------------
         case gl.INT:
-            s = new shaderParam(loc, gl.uniform1fv, new Int32Array([0]));
+        case gl.BOOL:
+            if(size > 1) {
+                s = new shaderParam(loc, gl.uniform1iv);
+            } else {
+                s = new shaderParam(loc, gl.uniform1i);
+            }
             break;
         case gl.INT_VEC2:
-            s = new shaderParam(loc, gl.uniform2fv, new clz.vec2i());
+        case gl.BOOL_VEC2:
+            s = new shaderParam(loc, gl.uniform2iv);
             break;
         case gl.INT_VEC3:
-            s = new shaderParam(loc, gl.uniform3fv, new clz.vec3i());
+        case gl.BOOL_VEC3:
+            s = new shaderParam(loc, gl.uniform3fv);
             break;
         case gl.INT_VEC4:
-            s = new shaderParam(loc, gl.uniform4fv, new clz.vec4i());
-            break;
-        // -----------------
-        case gl.BOOL:
-            s = new shaderParam(loc, gl.uniform1iv, new Int32Array([0]));
-            break;
-        case gl.BOOL_VEC2:
-            s = new shaderParam(loc, gl.uniform2iv, new clz.vec2i());
-            break;
-        case gl.BOOL_VEC3:
-            s = new shaderParam(loc, gl.uniform3iv, new clz.vec3i());
-            break;
         case gl.BOOL_VEC4:
-            s = new shaderParam(loc, gl.uniform4iv, new clz.vec4i());
+            s = new shaderParam(loc, gl.uniform4fv);
             break;
         // -----------------
         case gl.FLOAT_MAT2:
-            s = new shaderParam(loc, gl.uniformMatrix2fv, new clz.mat2f());
+            s = new matrixParam(loc, gl.uniformMatrix2fv);
             break;
         case gl.FLOAT_MAT3:
-            s = new shaderParam(loc, gl.uniformMatrix3fv, new clz.mat3f());
+            s = new matrixParam(loc, gl.uniformMatrix3fv);
             break;
         case gl.FLOAT_MAT4:
-            s = new shaderParam(loc, gl.uniformMatrix4fv, new clz.mat4f());
+            s = new matrixParam(loc, gl.uniformMatrix4fv);
             break;
+        // -----------------
         case gl.SAMPLER_2D:
         case gl.SAMPLER_CUBE:
-            s = new shaderParam(loc, gl.uniform1fv, new Int32Array([0]));
+            if(size > 1) {
+                console.log('not supported TEXUTURE array');
+            } else {
+                s = new textureParam(loc, gl.uniform1i, textureCount++);
+            }
             break;
         default:
-            console.log('uniform param type not match');
             break;
     }
     return s;
@@ -134,8 +162,8 @@ function initUniform(program, uniforms, textures) {
             break;
         }
         var name = info.name;
-        console.log('uniform:', name);
         var setter = createUniformSetter(info);
+
         uniforms[name] = setter;
         if (info.type == gl.SAMPLER_2D || info.type == gl.SAMPLER_CUBE) {
             textures[name] = setter;
@@ -199,7 +227,7 @@ program.prototype.release = function () {
     }
 }
 program.prototype.createSetters = function () {
-    initAttribute(this._glid, this.attribs = {});
+    initAttribute(this._glid, this.attrib = {});
     initUniform(this._glid, this.uniforms = {}, this.textures = {});
 }
 program.prototype.getUniform = function(name) {
@@ -208,10 +236,13 @@ program.prototype.getUniform = function(name) {
 program.prototype.setUniform = function(name, value) {
     var setter = this.uniforms[name];
     if(setter) {
-        setter.data.init(value);
-        setter.update();
+        setter.data(value);
+        setter.upload();
     }
 }
+program.prototype.use = function () {
+    gl.useProgram(this._glid);
+};
 
 function getFileName(p) {
     var start = p.lastIndexOf('/') + 1;
@@ -235,7 +266,7 @@ function createWithFile(vpath, fpath) {
         }
         return programDB[id] = new program(id, vShader, fShader);
     } catch (e) {
-        console.log(e);
+        console.log('program.createWithFile', e);
     }
     return null;
 }

@@ -80,7 +80,7 @@ METHOD_BEGIN(mulMV4, info) {
     
     des->mVec = m->mMatrix * v->mVec;
 }
-METHOD_BEGIN(inverseM, info) {
+METHOD_BEGIN(inverse, info) {
     HandleScope scope;
     
     Matrix* res = internalArg<Matrix>(info[0]);
@@ -94,8 +94,16 @@ METHOD_BEGIN(mulMM, info) {
     Matrix* res = internalArg<Matrix>(info[0]);
     Matrix* m1 = internalArg<Matrix>(info[1]);
     Matrix* m2 = internalArg<Matrix>(info[2]);
-
+    
     res->mMatrix = m1->mMatrix * m2->mMatrix;
+}
+METHOD_BEGIN(transpose, info) {
+    HandleScope scope;
+    
+    Matrix* res = internalArg<Matrix>(info[0]);
+    Matrix* m = internalArg<Matrix>(info[1]);
+
+    res->mMatrix = glm::transpose(m->mMatrix);
 }
 /**
  * @param m
@@ -248,7 +256,7 @@ METHOD_BEGIN(rotate, info) {
 }
 METHOD_BEGIN(scale, info) {
     HandleScope scope;
-    
+
     Matrix* m = internalArg<Matrix>(info[0]);
     Vector* v = internalArg<Vector>(info[1]);
     m->mMatrix = glm::scale(m->mMatrix, v->mVec);
@@ -271,7 +279,7 @@ static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp)
     EXPOSE_METHOD(obj, subVec4, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, mulMV4, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, mulMV3, ReadOnly | DontDelete);
-    EXPOSE_METHOD(obj, inverseM, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, inverse, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, mulMM, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, setTranslation, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, identity, ReadOnly | DontDelete);
@@ -286,6 +294,7 @@ static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp)
     EXPOSE_METHOD(obj, rotateZ, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, rotate, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, scale, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, transpose, ReadOnly | DontDelete);
 
     return scope.Close(temp->GetFunction());
 }
