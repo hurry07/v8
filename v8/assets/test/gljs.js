@@ -74,16 +74,17 @@ function setupGraphics(w, h) {
 //	printGLString("Extensions", GL_EXTENSIONS);
 
     gProgram = createProgram('shader/gljs_v.vtx', 'shader/gljs_f.frg');
+    console.log('create.gProgram', gProgram);
     if (!gProgram) {
         console.log("Could not create program.");
         return false;
     }
-    var numAttribs = gl.getProgramParameter(gProgram, gl.ACTIVE_ATTRIBUTES);
-    console.log('numAttribs', numAttribs);
-    for (var ii = 0; ii < numAttribs; ++ii) {
-        var info = gl.getActiveAttrib(gProgram, ii);
-        console.log('info===:', info.name, info.type, info.size);
-    }
+//    var numAttribs = gl.getProgramParameter(gProgram, gl.ACTIVE_ATTRIBUTES);
+//    console.log('numAttribs', numAttribs);
+//    for (var ii = 0; ii < numAttribs; ++ii) {
+//        var info = gl.getActiveAttrib(gProgram, ii);
+//        console.log('info===:', info.name, info.type, info.size);
+//    }
     gvPositionHandle = gl.getAttribLocation(gProgram, "vPosition");
     console.log("glGetAttribLocation vPosition=", gvPositionHandle);
 
@@ -95,10 +96,8 @@ function setupGraphics(w, h) {
 }
 
 var grey = 0;
-var gTriangleVertices = new Float32Array([
-    0.0, 0.5, 0, 1,
-    -100, 100, 0, 1,
-    100, 100, 0, 1]);
+var gTriangleVertices = new Float32Array([0.0, 0.5, -0.5, -0.5, 0.5, -0.5]);
+
 function renderFrame() {
     grey += 0.001;
     if (grey > 1.0) {
@@ -108,15 +107,14 @@ function renderFrame() {
     if (alpha > 1) {
         alpha = 2 - alpha;
     }
-//    gl.clearColor(alpha, alpha, alpha, 1.0);
-//    gl.clear(gl.DEPTH_BUFFER_BIT | gl.COLOR_BUFFER_BIT);
+    gl.clearColor(alpha, alpha, alpha, 1.0);
+    gl.clear(gl.DEPTH_BUFFER_BIT | gl.COLOR_BUFFER_BIT);
 
     gl.useProgram(gProgram);
-
-//    gl.vertexAttribPointer(gvPositionHandle, 2, gl.FLOAT, false, 0, gTriangleVertices);
-    gl.vertexAttribPointer(gvPositionHandle, 4, gl.FLOAT, false, 0, gTriangleVertices);
+    gl.vertexAttribPointer(gvPositionHandle, 2, gl.FLOAT, false, 0, gTriangleVertices);
     gl.enableVertexAttribArray(gvPositionHandle);
-    gl.drawArrays(gl.TRIANGLES, 0, 1);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
 }
+
 exports.renderFrame = renderFrame;
 exports.setupGraphics = setupGraphics;

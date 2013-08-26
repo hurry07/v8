@@ -216,11 +216,6 @@ void Application::init() {
 		Handle<Value> gameExports = eval("require('game.js')");
 		game = new JSObject(gameExports->ToObject());
 		render = new JSObject(game->getAttribute<Object>("render"));
-
-        eval(
-//             "require('test/gametest.js');"
-             "require('test/gljs.js');"
-             );
     }
 }
 void Application::destroy() {
@@ -275,9 +270,8 @@ void Application::onSurfaceCreated() {
 	ENTER_ISOLATE;
 	HANDLE_SCOPE;
 	CONTEXT_SCOPE;
+
 	render->callFunction("onSurfaceCreated");
-	glViewport(0, 0, 100, 100);
-	glClearColor(1, 1, 0, 1);
 }
 void Application::onSurfaceChanged(float width, float height) {
 	ENTER_ISOLATE;
@@ -293,7 +287,7 @@ void Application::onDrawFrame() {
 	ENTER_ISOLATE;
 	HANDLE_SCOPE;
 	CONTEXT_SCOPE;
+
 	static const char* name = "onDrawFrame";
 	render->callFunction(name);
-	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 }

@@ -15,6 +15,17 @@
 
 using namespace v8;
 
+static void printGLString(const char *name, GLenum s) {
+	const char *v = (const char *) glGetString(s);
+	LOGI("GL %s = %s\n", name, v);
+}
+
+static void checkGlError(const char* op) {
+	for (GLint error = glGetError(); error; error = glGetError()) {
+		LOGI("after %s() glError (0x%x)\n", op, error);
+	}
+}
+
 std::string dir(std::string path, std::string subpath) {
     std::string::size_type index = path.find_last_of('/');
     if (index != std::string::npos){
@@ -27,44 +38,12 @@ std::string source_root = dir(__FILE__, "/assets/").c_str();
 
 Application* app = NULL;
 void onDrawFrame() {
-    glFlush();
     app->onDrawFrame();
+    glFlush();
     glutPostRedisplay();
 }
-
-template <typename T>
-void tt(T t) {
-    T* t1;
-    int len;
-    test1(&t1, &len);
-}
-
-class A {
-public:
-    A(int a) {
-        this->a = a;
-    }
-    int a;
-    void print() {
-        LOGI("A [%d]", a);
-    }
-};
-
-void copy(A& a1, A& a2) {
-    a1 = a2;
-}
-
 int main(int argc, char ** argv)
 {
-    A* a1 = new A(100);
-    A* a2 = new A(200);
-    a1->print();
-    a2->print();
-
-    copy(*a1, *a2);
-    a1->print();
-    a2->print();
-
 	glutInit(&argc, argv);
     glutInitWindowSize(800, 480);
 	glutCreateWindow("Xcode Glut Demo");

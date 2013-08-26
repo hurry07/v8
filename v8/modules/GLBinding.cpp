@@ -1157,9 +1157,14 @@ DELEGATE_TO_GL_N1(depthMask, glDepthMask, GLboolean);
 DELEGATE_TO_GL_N2(depthRange, glDepthRangef, GLclampf, GLclampf);
 DELEGATE_TO_GL_N2(detachShader, glDetachShader, GLuint, GLuint);
 DELEGATE_TO_GL_N1(disable, glDisable, GLenum);
-
 DELEGATE_TO_GL_N1(disableVertexAttribArray, glDisableVertexAttribArray, GLuint);
 //DELEGATE_TO_GL_N3(drawArrays, glDrawArrays, GLenum, GLint, GLsizei);
+
+static void checkGlError(const char* op) {
+	for (GLint error = glGetError(); error; error = glGetError()) {
+		LOGI("after %s() glError (0x%x)\n", op, error);
+	}
+}
 /**
  @param {Number} mode
  @param {Number} first
@@ -1171,6 +1176,8 @@ JS_METHOD(drawArrays) {
     GLint first = ARGS_GLint(args[1]);
     GLsizei count = ARGS_GLsizei(args[2]);
     glDrawArrays(mode, first, count);
+    checkGlError("glDrawArrays");
+//    glFlush();
 }
 /**
  * GLenum mode, GLsizei count, GLenum type, const GLvoid *indices
