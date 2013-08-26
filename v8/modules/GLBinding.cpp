@@ -25,16 +25,6 @@ using v8::Number;
 using v8::Uint32;
 using v8::Exception;
 using v8::FunctionCallbackInfo;
-using v8::ExternalArrayType;
-using v8::kExternalByteArray;
-using v8::kExternalUnsignedByteArray;
-using v8::kExternalUnsignedShortArray;
-using v8::kExternalDoubleArray;
-using v8::kExternalFloatArray;
-using v8::kExternalShortArray;
-using v8::kExternalPixelArray;
-using v8::kExternalIntArray;
-using v8::kExternalUnsignedIntArray;
 
 #define JS_METHOD(name) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& args)
 #define JS_STR(...) v8::String::New(__VA_ARGS__)
@@ -188,96 +178,6 @@ Handle<Value> getWebGLIntArrayParameter(GLenum pname)
     return v8::Int32Array::New(arrays, 0, length);
 }
 
-static int _ExternalArrayTypeToElementSize(ExternalArrayType type) {
-    switch (type) {
-        case kExternalByteArray:
-            return sizeof(int8_t);
-        case kExternalUnsignedByteArray:
-            return sizeof(uint8_t);
-        case kExternalShortArray:
-            return sizeof(int16_t);
-        case kExternalUnsignedShortArray:
-            return sizeof(uint16_t);
-        case kExternalIntArray:
-            return sizeof(int32_t);
-        case kExternalUnsignedIntArray:
-            return sizeof(uint32_t);
-        case kExternalFloatArray:
-            return sizeof(float);
-        case kExternalDoubleArray:
-            return sizeof(double);
-        case kExternalPixelArray:
-            return sizeof(uint8_t);
-        default:
-            return 0;
-    }
-}
-static int SizeOfArrayElementForType(v8::ExternalArrayType type) {
-	switch (type) {
-        case v8::kExternalByteArray:
-        case v8::kExternalUnsignedByteArray:
-        case v8::kExternalPixelArray:
-            return 1;
-        case v8::kExternalShortArray:
-        case v8::kExternalUnsignedShortArray:
-            return 2;
-        case v8::kExternalIntArray:
-        case v8::kExternalUnsignedIntArray:
-        case v8::kExternalFloatArray:
-            return 4;
-        case v8::kExternalDoubleArray:
-            return 8;
-        default:
-            return 0;
-	}
-}
-static int elementSize(ExternalArrayType type) {
-    switch (type) {
-        case kExternalByteArray:
-            return sizeof(int8_t);
-        case kExternalUnsignedByteArray:
-            return sizeof(uint8_t);
-        case kExternalShortArray:
-            return sizeof(int16_t);
-        case kExternalUnsignedShortArray:
-            return sizeof(uint16_t);
-        case kExternalIntArray:
-            return sizeof(int32_t);
-        case kExternalUnsignedIntArray:
-            return sizeof(uint32_t);
-        case kExternalFloatArray:
-            return sizeof(float);
-        case kExternalDoubleArray:
-            return sizeof(double);
-        case kExternalPixelArray:
-            return sizeof(uint8_t);
-    }
-    return 0;
-}
-static void* getArrayPtr(const Local<v8::Object> obj, int offset=0) {
-    switch (obj->GetIndexedPropertiesExternalArrayDataType()) {
-        case kExternalByteArray:
-            return ((int8_t*)obj->GetIndexedPropertiesExternalArrayData() + offset);
-        case kExternalUnsignedByteArray:
-            return ((uint8_t*)obj->GetIndexedPropertiesExternalArrayData() + offset);
-        case kExternalShortArray:
-            return ((int16_t*)obj->GetIndexedPropertiesExternalArrayData() + offset);
-        case kExternalUnsignedShortArray:
-            return ((uint16_t*)obj->GetIndexedPropertiesExternalArrayData() + offset);
-        case kExternalIntArray:
-            return ((int32_t*)obj->GetIndexedPropertiesExternalArrayData() + offset);
-        case kExternalUnsignedIntArray:
-            return ((uint32_t*)obj->GetIndexedPropertiesExternalArrayData() + offset);
-        case kExternalFloatArray:
-            return ((float*)obj->GetIndexedPropertiesExternalArrayData() + offset);
-        case kExternalDoubleArray:
-            return ((double*)obj->GetIndexedPropertiesExternalArrayData() + offset);
-        case kExternalPixelArray:
-            return ((uint8_t*)obj->GetIndexedPropertiesExternalArrayData() + offset);
-    }
-    return 0;
-}
-
 static void getArgPtr(ByteBuffer* dest, ClassType ftype, const Local<Value>& arg) {
     ClassBase* wrap = internalArg<ClassBase>(arg->ToObject());
     if(wrap == 0) {
@@ -288,52 +188,6 @@ static void getArgPtr(ByteBuffer* dest, ClassType ftype, const Local<Value>& arg
     if(dest->mElement != ftype) {
         LOGI("arguments underlying datatype not match. %d", ftype);
     }
-}
-
-//    switch (obj->GetIndexedPropertiesExternalArrayDataType()) {
-//        case kExternalByteArray:
-//            return ((int8_t*)obj->GetIndexedPropertiesExternalArrayData() + offset);
-//        case kExternalUnsignedByteArray:
-//            return ((uint8_t*)obj->GetIndexedPropertiesExternalArrayData() + offset);
-//        case kExternalShortArray:
-//            return ((int16_t*)obj->GetIndexedPropertiesExternalArrayData() + offset);
-//        case kExternalUnsignedShortArray:
-//            return ((uint16_t*)obj->GetIndexedPropertiesExternalArrayData() + offset);
-//        case kExternalIntArray:
-//            return ((int32_t*)obj->GetIndexedPropertiesExternalArrayData() + offset);
-//        case kExternalUnsignedIntArray:
-//            return ((uint32_t*)obj->GetIndexedPropertiesExternalArrayData() + offset);
-//        case kExternalFloatArray:
-//            return ((float*)obj->GetIndexedPropertiesExternalArrayData() + offset);
-//        case kExternalDoubleArray:
-//            return ((double*)obj->GetIndexedPropertiesExternalArrayData() + offset);
-//        case kExternalPixelArray:
-//            return ((uint8_t*)obj->GetIndexedPropertiesExternalArrayData() + offset);
-//    }
-//    return 0;
-//}
-template<typename Type>
-inline Type* getArrayData(Local<Value> arg, int* num = NULL) {
-	Type *data = NULL;
-	if (num)
-		*num = 0;
-
-	if (!arg->IsNull()) {
-		if (arg->IsArray()) {            
-            Array* arr = Array::Cast(*arg);
-			if (num)
-				*num = arr->Length();
-			data = reinterpret_cast<Type*>(arr->GetIndexedPropertiesExternalArrayData());
-		} else if (arg->IsObject()) {
-			if (num)
-				*num = arg->ToObject()->GetIndexedPropertiesExternalArrayDataLength();
-			data = reinterpret_cast<Type*>(arg->ToObject()->GetIndexedPropertiesExternalArrayData());
-		} else {
-			return NULL;
-		}
-	}
-
-	return data;
 }
 
 #define ARGS_NAME args
@@ -532,8 +386,6 @@ if(ARGS_NAME.Length() != 4 || CHECK_##t1(ARGS_NAME[0]) || CHECK_##t2(ARGS_NAME[1
 #define BIND_GL_CONST(proto, name, value) proto->Set(String::New(#name), Integer::New(value), v8::PropertyAttribute(v8::ReadOnly | v8::DontDelete))
 #define BIND_GL(proto, name) proto->Set(String::New(#name), FunctionTemplate::New(&GLBinding::name##Callback)->GetFunction())
 
-#define ARR_LENGTH(obj) obj->GetIndexedPropertiesExternalArrayDataLength()
-#define ARR_PTR(obj) obj->GetIndexedPropertiesExternalArrayData()
 #define GL_GENARRY_IMPL(name) \
 Handle<Value> GLBinding::name##Callback(const Arguments& args) {\
     HandleScope scope;\
@@ -1204,7 +1056,8 @@ JS_METHOD(bufferData) {
  	if(args[1]->IsObject()) {
         ClassBase* base = internalArg<ClassBase>(args[1]);
         if(base == NULL) {
-            LOGI("bufferData with NULL data");
+            ThrowException(String::New(("bufferData with NULL data")));
+            return;
         }
 
  		GLenum usage = args[2]->Int32Value();
@@ -1221,22 +1074,22 @@ JS_METHOD(bufferData) {
 /**
  @param {Number} target
  @param {Number} offset
- @param {ArrayBuffer} data
+ @param {ArrayBuffer} data | {ArrayBufferView} data
  */
 JS_METHOD(bufferSubData) {
     HandleScope scope;
 
  	int target = args[0]->Int32Value();
  	int offset = args[1]->Int32Value();
- 	Local<Object> obj = Local < Object > ::Cast(args[2]);
+    ClassBase* c = internalArg<ClassBase>(args[2]);
+    if(c == 0) {
+        ThrowException(String::New(("bufferSubData with NULL data")));
+        return;
+    }
 
- 	int element_size = SizeOfArrayElementForType(obj->GetIndexedPropertiesExternalArrayDataType());
- 	int size = obj->GetIndexedPropertiesExternalArrayDataLength() * element_size;
- 	void* data = obj->GetIndexedPropertiesExternalArrayData();
-
- 	glBufferSubData(target, offset, size, data);
-
- 	args.GetReturnValue().Set(v8::Undefined());
+    ByteBuffer buf;
+    c->getUnderlying(&buf);
+ 	glBufferSubData(target, offset, buf.mByteLength, buf.value_ptr());
 }
 /**
  @param {Number} target
@@ -1984,34 +1837,96 @@ DELEGATE_TO_GL_N1(stencilMask, glStencilMask, GLuint);
 DELEGATE_TO_GL_N2(stencilMaskSeparate, glStencilMaskSeparate, GLenum, GLuint);
 DELEGATE_TO_GL_N3(stencilOp, glStencilOp, GLenum, GLenum, GLenum);
 DELEGATE_TO_GL_N4(stencilOpSeparate, glStencilOpSeparate, GLenum, GLenum, GLenum, GLenum);
-//DELEGATE_TO_GL_N9(texImage2D, glTexImage2D, GLenum, GLint, GLint, GLsizei, GLsizei, GLint, GLenum, GLenum, GLvoidP);
+
+/**
+ * 9
+ @param {Number} target
+ @param {Number} level
+ @param {Number} internalformat
+ @param {Number} width
+ @param {Number} height
+ @param {Number} border
+ @param {Number} format
+ @param {Number} type
+ @param {ArrayBufferView} pixels
+ */
+/**
+ * 6
+ @param {Number} target
+ @param {Number} level
+ @param {Number} internalformat
+ @param {Number} format
+ @param {Number} type
+ @param {ImageData|HTMLImageElement|HTMLCanvasElement|HTMLVideoElement} pixelsImageCanvasOrVideo
+ */
 JS_METHOD(texImage2D) {
-    // GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height,
-    // GLint border, GLenum format, GLenum type, const GLvoid *pixels
-    ByteBuffer buf;
-    GLenum type = ARGS_GLenum(args[7]);
-    switch (type) {
-        case GL_UNSIGNED_BYTE:
-            getTypedArray<uint8_t>(args[8], &buf);
-            break;
-        default:
-            LOGE("texImage2D type not supported yet %d", type);
-            break;
+    if(args.Length() == 9) {
+        ByteBuffer buf;
+        ClassBase* c = internalArg<ClassBase>(args[8]);
+        if(c == 0) {
+            ThrowException(String::New("texImage2D param 8 must by ByteBuffer constance class"));
+            return;
+        }
+        c->getUnderlying(&buf);
+        glTexImage2D(ARGS_GLenum(args[0]),
+                     ARGS_GLint(args[1]),
+                     ARGS_GLint(args[2]),
+                     ARGS_GLsizei(args[3]),
+                     ARGS_GLsizei(args[4]),
+                     ARGS_GLint(args[5]),
+                     ARGS_GLenum(args[6]),
+                     ARGS_GLenum(args[7]),
+                     buf.value_ptr());
+    } else if(args.Length() == 7) {
+        LOGE("texImage2D 6 parameter not supported");
     }
-    glTexImage2D(ARGS_GLenum(args[0]),
-                 ARGS_GLint(args[1]),
-                 ARGS_GLint(args[2]),
-                 ARGS_GLsizei(args[3]),
-                 ARGS_GLsizei(args[4]),
-                 ARGS_GLint(args[5]),
-                 ARGS_GLenum(args[6]),
-                 type,
-                 buf.value_ptr());
-    LOGI("texImage2D %d", args.Length());
 }
 DELEGATE_TO_GL_N3(texParameterf, glTexParameterf, GLenum, GLenum, GLfloat);
 DELEGATE_TO_GL_N3(texParameteri, glTexParameteri, GLenum, GLenum, GLint);
-DELEGATE_TO_GL_N9(texSubImage2D, glTexSubImage2D, GLenum, GLint, GLint, GLint, GLsizei, GLsizei, GLenum, GLenum, GLvoidP);
+/**
+ * 9
+ @param {Number} target
+ @param {Number} level
+ @param {Number} xoffset
+ @param {Number} yoffset
+ @param {Number} width
+ @param {Number} height
+ @param {Number} format
+ @param {Number} type
+ @param {ArrayBufferView} pixels
+ */
+/**
+ * 7
+ @param {Number} target
+ @param {Number} level
+ @param {Number} xoffset
+ @param {Number} yoffset
+ @param {Number} format
+ @param {Number} type
+ @param {ImageData|HTMLImageElement|HTMLCanvasElement|HTMLVideoElement} pixelsImageCanvasOrVideo
+ */
+JS_METHOD(texSubImage2D) {
+    if(args.Length() == 9) {
+        ByteBuffer buf;
+        ClassBase* c = internalArg<ClassBase>(args[8]);
+        if(c == 0) {
+            ThrowException(String::New("texSubImage2D param 8 must by ByteBuffer constance class"));
+            return;
+        }
+        c->getUnderlying(&buf);
+        glTexSubImage2D(ARGS_GLenum(args[0]),// GLenum target
+                     ARGS_GLint(args[1]),// GLint level
+                     ARGS_GLint(args[2]),// GLint xoffset
+                     ARGS_GLint(args[3]),// GLint yoffset
+                     ARGS_GLsizei(args[4]),// GLsizei width
+                     ARGS_GLsizei(args[5]),// GLsizei height
+                     ARGS_GLenum(args[6]),// GLenum format
+                     ARGS_GLenum(args[7]),// GLenum type
+                     buf.value_ptr());// const GLvoid *pixels
+    } else if(args.Length() == 7) {
+    }
+}
+//DELEGATE_TO_GL_N9(texSubImage2D, glTexSubImage2D, GLenum, GLint, GLint, GLint, GLsizei, GLsizei, GLenum, GLenum, GLvoidP);
 
 DELEGATE_TO_GL_N2(uniform1f, glUniform1f, GLint, GLfloat);
 DELEGATE_TO_GL_N3(uniform2f, glUniform2f, GLint, GLfloat, GLfloat);
