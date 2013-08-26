@@ -68,17 +68,16 @@ int main(int argc, char ** argv)
 	glutInit(&argc, argv);
     glutInitWindowSize(800, 480);
 	glutCreateWindow("Xcode Glut Demo");
-    
+
     app = new Application();
     app->init();
     app->onSurfaceCreated();
     app->onSurfaceChanged(800, 480);
 
 	glutDisplayFunc(onDrawFrame);
-//	glutMainLoop();
+	glutMainLoop();
 
     app->destroy();
     delete app;
-
     return 0;
 }

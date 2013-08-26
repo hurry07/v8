@@ -218,7 +218,8 @@ void Application::init() {
 		render = new JSObject(game->getAttribute<Object>("render"));
 
         eval(
-             "require('test/gametest.js');"
+//             "require('test/gametest.js');"
+             "require('test/gljs.js');"
              );
     }
 }

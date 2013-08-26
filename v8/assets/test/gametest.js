@@ -12,7 +12,6 @@ var gl = require('opengl');
 var math = require('modules/math.js');
 var glm = new clz.glm();
 
-var bytedbuffer = require('modules/typedbuffer.js');
 var primitives = require('modules/primitives.js');
 var texture = require('modules/textures.js');
 var Model = require('modules/models.js');
@@ -111,7 +110,7 @@ function render() {
     console.log('---run 01');
     gl.colorMask(true, true, true, true);
     gl.depthMask(true);
-    gl.clearColor(0,0,0,0);
+    gl.clearColor(1,1,0,0);
     gl.clearDepth(1);
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT | gl.STENCIL_BUFFER_BIT);
     

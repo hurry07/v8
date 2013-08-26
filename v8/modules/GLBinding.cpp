@@ -1828,8 +1828,7 @@ JS_METHOD(shaderSource) {
 	codes[0] = *code;
 	GLint length = code.length();
 
-	glShaderSource (id, 1, codes, &length);
-	args.GetReturnValue().Set(v8::Undefined());
+	glShaderSource(id, 1, codes, &length);
 }
 DELEGATE_TO_GL_N3(stencilFunc, glStencilFunc, GLenum, GLint, GLuint);
 DELEGATE_TO_GL_N4(stencilFuncSeparate, glStencilFuncSeparate, GLenum, GLenum, GLint, GLuint);
