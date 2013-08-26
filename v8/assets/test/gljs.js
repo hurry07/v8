@@ -1,4 +1,4 @@
-var gl =  require('opengl');
+var gl = require('opengl');
 var file = require('lib/io.js');
 
 function checkShader(shader) {
@@ -78,9 +78,16 @@ function setupGraphics(w, h) {
         console.log("Could not create program.");
         return false;
     }
+    var numAttribs = gl.getProgramParameter(gProgram, gl.ACTIVE_ATTRIBUTES);
+    console.log('numAttribs', numAttribs);
+    for (var ii = 0; ii < numAttribs; ++ii) {
+        var info = gl.getActiveAttrib(gProgram, ii);
+        console.log('info===:', info.name, info.type, info.size);
+    }
     gvPositionHandle = gl.getAttribLocation(gProgram, "vPosition");
     console.log("glGetAttribLocation vPosition=", gvPositionHandle);
 
+    console.log('setupGraphics', w, h);
     gl.viewport(0, 0, w, h);
 
     console.log("done.");
@@ -88,23 +95,28 @@ function setupGraphics(w, h) {
 }
 
 var grey = 0;
-var gTriangleVertices = new Float32Array([0.0, 0.5, -0.5, -0.5, 0.5, -0.5]);
+var gTriangleVertices = new Float32Array([
+    0.0, 0.5, 0, 1,
+    -100, 100, 0, 1,
+    100, 100, 0, 1]);
 function renderFrame() {
-    grey += 0.1;
+    grey += 0.001;
     if (grey > 1.0) {
         grey = 0.0;
     }
-//    grey = 0.5;
-    gl.clearColor(grey, grey, grey, 1.0);
+    var alpha = 2 * grey;
+    if (alpha > 1) {
+        alpha = 2 - alpha;
+    }
+    gl.clearColor(alpha, alpha, alpha, 1.0);
     gl.clear(gl.DEPTH_BUFFER_BIT | gl.COLOR_BUFFER_BIT);
-    console.log('aa', grey);
 
-//    gl.useProgram(gProgram);
-//
-//    gl.enableVertexAttribArray(gvPositionHandle);
+    gl.useProgram(gProgram);
+
 //    gl.vertexAttribPointer(gvPositionHandle, 2, gl.FLOAT, false, 0, gTriangleVertices);
-//    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    gl.vertexAttribPointer(gvPositionHandle, 4, gl.FLOAT, false, 0, gTriangleVertices);
+    gl.enableVertexAttribArray(gvPositionHandle);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
 }
-
 exports.renderFrame = renderFrame;
 exports.setupGraphics = setupGraphics;

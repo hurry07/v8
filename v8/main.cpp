@@ -27,8 +27,8 @@ std::string source_root = dir(__FILE__, "/assets/").c_str();
 
 Application* app = NULL;
 void onDrawFrame() {
-    app->onDrawFrame();
     glFlush();
+    app->onDrawFrame();
     glutPostRedisplay();
 }
 

@@ -1103,7 +1103,7 @@ JS_METHOD(checkFramebufferStatus) {
 DELEGATE_TO_GL_N1(clear, glClear, GLbitfield);
 DELEGATE_TO_GL_N4(clearColor, glClearColor, GLclampf, GLclampf, GLclampf, GLclampf);
 //JS_METHOD(clearColor) {
-//    LOGI("args[0] %d %d", args[0]->IsNumber(), args[0]->IsNumberObject());
+//    LOGI("args[0] %lf", args[0]->NumberValue());
 //}
 DELEGATE_TO_GL_N1(clearDepth, glClearDepthf, GLclampf);
 DELEGATE_TO_GL_N1(clearStencil, glClearStencil, GLint);
@@ -2058,6 +2058,11 @@ JS_METHOD(vertexAttribPointer) {
         }
         ByteBuffer buf;
         c->getUnderlying(&buf);
+//        int count = buf.typedLength();
+//        for (int i=0; i<count; i++) {
+//            float v = *(buf.value_ptr<float>() + i);
+//            LOGI("%f", v);
+//        }
         glVertexAttribPointer(indx, size, type, normalized, stride, (const GLvoid*)buf.value_ptr());
     }
 }
