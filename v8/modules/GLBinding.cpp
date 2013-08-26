@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 jie. All rights reserved.
 //
 #include "GLBinding.h"
-#include <Opengl/gl.h>
+#include <Opengl/gl3.h>
 #include "../global.h"
 #include "../core/ClassBase.h"
 #include "../core/v8Utils.h"
@@ -54,6 +54,14 @@ static void argValue(Local<Value> &info, int32_t* slot) {
     *slot = info->Int32Value();
 }
 
+static void getInternal(Local<Value> infoV, ByteBuffer* buffer) {
+    if(infoV.IsEmpty() || infoV->IsUndefined()) {
+        LOGE("getInternal failed, value is Empty");
+        return;
+    }
+    ClassBase* p = internalArg<ClassBase>(infoV);
+    p->getUnderlying(buffer);
+}
 template<typename T>
 static bool getTypedArray(Local<Value> infoV, ByteBuffer* buffer) {
     bool delete_ = false;
@@ -143,7 +151,7 @@ Handle<Value> getWebGLFloatArrayParameter(GLenum pname)
 	glGetFloatv(pname, value);
     unsigned length = 0;
     switch (pname) {
-		case GL_ALIASED_POINT_SIZE_RANGE:
+//		case GL_ALIASED_POINT_SIZE_RANGE:
 		case GL_ALIASED_LINE_WIDTH_RANGE:
 		case GL_DEPTH_RANGE:
 			length = 2;
@@ -1184,24 +1192,31 @@ DELEGATE_TO_GL_N2(blendEquationSeparate, glBlendEquationSeparate, GLenum, GLenum
 DELEGATE_TO_GL_N2(blendFunc, glBlendFunc, GLenum, GLenum);
 DELEGATE_TO_GL_N4(blendFuncSeparate, glBlendFuncSeparate, GLenum, GLenum, GLenum, GLenum);
 
+/**
+ @param {Number} target
+ @param {Number} size | {ArrayBufferView} data | {ArrayBuffer} data
+ @param {Number} usage
+ */
 JS_METHOD(bufferData) {
  	HandleScope scope;
  	int target = args[0]->Int32Value();
- 	if(args[1]->IsObject()) {
- 		Local<Object> obj = Local<Object>::Cast(args[1]);
- 		GLenum usage = args[2]->Int32Value();
 
- 		int element_size = SizeOfArrayElementForType(obj->GetIndexedPropertiesExternalArrayDataType());
- 		GLsizeiptr size = obj->GetIndexedPropertiesExternalArrayDataLength() * element_size;
- 		void* data = obj->GetIndexedPropertiesExternalArrayData();
- 		glBufferData(target, size, data, usage);
- 	}
- 	else if(args[1]->IsNumber()) {
+ 	if(args[1]->IsObject()) {
+        ClassBase* base = internalArg<ClassBase>(args[1]);
+        if(base == NULL) {
+            LOGI("bufferData with NULL data");
+        }
+
+ 		GLenum usage = args[2]->Int32Value();
+        ByteBuffer buf;
+        base->getUnderlying(&buf);
+ 		glBufferData(target, buf.mByteLength, buf.value_ptr(), usage);
+
+ 	} else if(args[1]->IsNumber()) {// create an empty buffer
  		GLsizeiptr size = args[1]->Uint32Value();
  		GLenum usage = args[2]->Int32Value();
  		glBufferData(target, size, NULL, usage);
  	}
- 	args.GetReturnValue().Set(v8::Undefined());
 }
 /**
  @param {Number} target
@@ -1292,14 +1307,20 @@ DELEGATE_TO_GL_N1(disable, glDisable, GLenum);
 
 DELEGATE_TO_GL_N1(disableVertexAttribArray, glDisableVertexAttribArray, GLuint);
 DELEGATE_TO_GL_N3(drawArrays, glDrawArrays, GLenum, GLint, GLsizei);
-//DELEGATE_TO_GL_N4(drawElements, glDrawElements, GLenum, GLsizei, GLenum, GLvoidP);
+/**
+ * GLenum mode, GLsizei count, GLenum type, const GLvoid *indices
+ */
 JS_METHOD(drawElements) {
-    // GLenum mode, GLsizei count, GLenum type, const GLvoid *indices
     GLenum mode = ARGS_GLenum(args[0]);
     GLsizei count = ARGS_GLsizei(args[1]);
     GLenum type = ARGS_GLenum(args[2]);
-    ClassBase* base = internalArg<ClassBase>(args[3]);
-    LOGI("drawElements siez:%d mode:%d count:%d type:%d", args.Length(), mode, count, type);
+    if(args[3]->IsInt32()) {
+        glDrawElements(mode, count, type, (void*)(args[3]->Int32Value()));
+    } else {
+        ByteBuffer buf;
+        getInternal(args[3], &buf);
+        glDrawElements(mode, count, type, buf.value_ptr());
+    }
 }
 DELEGATE_TO_GL_N1(enable, glEnable, GLenum);
 DELEGATE_TO_GL_N1(enableVertexAttribArray, glEnableVertexAttribArray, GLuint);
@@ -1404,12 +1425,12 @@ JS_METHOD(getParameter) {
 	case GL_ALIASED_LINE_WIDTH_RANGE:
 		args.GetReturnValue().Set(getWebGLFloatArrayParameter(pname));
             return;
-	case GL_ALIASED_POINT_SIZE_RANGE:
-		args.GetReturnValue().Set(getWebGLFloatArrayParameter(pname));
-            return;
-	case GL_ALPHA_BITS:
-		args.GetReturnValue().Set(getIntParameter(pname));
-            return;
+//	case GL_ALIASED_POINT_SIZE_RANGE:
+//		args.GetReturnValue().Set(getWebGLFloatArrayParameter(pname));
+//            return;
+//	case GL_ALPHA_BITS:
+//		args.GetReturnValue().Set(getIntParameter(pname));
+//            return;
 //	case GL_ARRAY_BUFFER_BINDING:
 //		return WebGLGetInfo(PassRefPtr<WebGLBuffer>(m_boundArrayBuffer));
 	case GL_BLEND:
@@ -1436,9 +1457,9 @@ JS_METHOD(getParameter) {
 	case GL_BLEND_SRC_RGB:
 		args.GetReturnValue().Set(getUnsignedIntParameter(pname));
             return;
-	case GL_BLUE_BITS:
-		args.GetReturnValue().Set(getIntParameter(pname));
-            return;
+//	case GL_BLUE_BITS:
+//		args.GetReturnValue().Set(getIntParameter(pname));
+//            return;
 	case GL_COLOR_CLEAR_VALUE:
 		args.GetReturnValue().Set(getWebGLFloatArrayParameter(pname));
             return;
@@ -1456,9 +1477,9 @@ JS_METHOD(getParameter) {
             //	case GL_CURRENT_PROGRAM:
             //		args.GetReturnValue().Set(WebGLGetInfo(PassRefPtr<WebGLProgram>(m_currentProgram)));
             //return;
-        case GL_DEPTH_BITS:
-            args.GetReturnValue().Set(getIntParameter(pname));
-            return;
+//        case GL_DEPTH_BITS:
+//            args.GetReturnValue().Set(getIntParameter(pname));
+//            return;
         case GL_DEPTH_CLEAR_VALUE:
             args.GetReturnValue().Set(getFloatParameter(pname));
             return;
@@ -1486,12 +1507,12 @@ JS_METHOD(getParameter) {
         case GL_FRONT_FACE:
             args.GetReturnValue().Set(getUnsignedIntParameter(pname));
             return;
-        case GL_GENERATE_MIPMAP_HINT:
-            args.GetReturnValue().Set(getUnsignedIntParameter(pname));
-            return;
-        case GL_GREEN_BITS:
-            args.GetReturnValue().Set(getIntParameter(pname));
-            return;
+//        case GL_GENERATE_MIPMAP_HINT:
+//            args.GetReturnValue().Set(getUnsignedIntParameter(pname));
+//            return;
+//        case GL_GREEN_BITS:
+//            args.GetReturnValue().Set(getIntParameter(pname));
+//            return;
         case GL_LINE_WIDTH:
             args.GetReturnValue().Set(getFloatParameter(pname));
             return;
@@ -1544,9 +1565,9 @@ JS_METHOD(getParameter) {
         case GL_POLYGON_OFFSET_UNITS:
             args.GetReturnValue().Set(getFloatParameter(pname));
             return;
-        case GL_RED_BITS:
-            args.GetReturnValue().Set(getIntParameter(pname));
-            return;
+//        case GL_RED_BITS:
+//            args.GetReturnValue().Set(getIntParameter(pname));
+//            return;
         case GL_RENDERBUFFER_BINDING:
             args.GetReturnValue().Set(getUnsignedIntParameter(pname));
             return;
@@ -1595,9 +1616,9 @@ JS_METHOD(getParameter) {
         case GL_STENCIL_BACK_WRITEMASK:
             args.GetReturnValue().Set(getUnsignedIntParameter(pname));
             return;
-        case GL_STENCIL_BITS:
-            args.GetReturnValue().Set(getIntParameter(pname));
-            return;
+//        case GL_STENCIL_BITS:
+//            args.GetReturnValue().Set(getIntParameter(pname));
+//            return;
         case GL_STENCIL_CLEAR_VALUE:
             args.GetReturnValue().Set(getIntParameter(pname));
             return;
@@ -1985,7 +2006,7 @@ JS_METHOD(texImage2D) {
                  ARGS_GLint(args[5]),
                  ARGS_GLenum(args[6]),
                  type,
-                 buf.mPtr);
+                 buf.value_ptr());
     LOGI("texImage2D %d", args.Length());
 }
 DELEGATE_TO_GL_N3(texParameterf, glTexParameterf, GLenum, GLenum, GLfloat);

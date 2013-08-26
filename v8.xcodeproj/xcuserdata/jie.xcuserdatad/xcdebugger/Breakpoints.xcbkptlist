@@ -4,16 +4,16 @@
    version = "1.0">
    <FileBreakpoints>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "v8/modules/GLBinding.cpp"
-         timestampString = "399135681.085056"
+         timestampString = "399198779.357681"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1302"
-         endingLineNumber = "1302"
-         landmarkName = "JS_METHOD(drawElements)"
+         startingLineNumber = "1205"
+         endingLineNumber = "1205"
+         landmarkName = "JS_METHOD(bufferData)"
          landmarkType = "7">
       </FileBreakpoint>
    </FileBreakpoints>

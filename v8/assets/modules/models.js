@@ -73,13 +73,13 @@ Model.prototype.setBuffer = function (name, array, opt_newBuffer) {
 Model.prototype.setBuffers = function (arrays, opt_newBuffers) {
     var that = this;
     for (var name in arrays) {
+        console.log('setBuffer', name);
         this.setBuffer(name, arrays[name], opt_newBuffers);
     }
     // if there is a indices, shoud draw as Element, else Arrays
     if (this.buffers.indices) {
         this.baseBuffer = this.buffers.indices;
         this.drawFunc = function (totalComponents, startOffset) {
-            console.log('-->82');
             gl.drawElements(that.mode, totalComponents, gl.UNSIGNED_SHORT, startOffset);
         }
     } else {
@@ -115,12 +115,12 @@ Model.prototype.applyUniforms_ = function (opt_uniforms) {
  *     textures to set on this models uniforms.
  */
 Model.prototype.drawPrep = function () {
-    console.log('Model.prototype.drawPrep 01');
     var program = this.program;
     var buffers = this.buffers;
     var textures = this.textures;
 
     program.use();
+
     for (var buffer in buffers) {
         var b = buffers[buffer];
         if (buffer == 'indices') {
@@ -133,12 +133,10 @@ Model.prototype.drawPrep = function () {
         }
     }
 
-    console.log('Model.prototype.drawPrep 013');
     this.applyUniforms_(textures);
     for (var ii = 0; ii < arguments.length; ++ii) {
         this.applyUniforms_(arguments[ii]);
     }
-    console.log('Model.prototype.drawPrep 02');
 };
 
 /**

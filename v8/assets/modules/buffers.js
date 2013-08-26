@@ -80,7 +80,6 @@ Buffer.prototype.set = function (array, opt_usage) {
     gl.bindBuffer(this.target, this.buf);
     gl.bufferData(this.target, array.buffer, opt_usage || gl.STATIC_DRAW);
 }
-
 Buffer.prototype.setRange = function (array, offset) {
     gl.bindBuffer(this.target, this.buf);
     gl.bufferSubData(this.target, offset, array);// 更新数据的一部分
