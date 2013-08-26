@@ -108,15 +108,15 @@ function renderFrame() {
     if (alpha > 1) {
         alpha = 2 - alpha;
     }
-    gl.clearColor(alpha, alpha, alpha, 1.0);
-    gl.clear(gl.DEPTH_BUFFER_BIT | gl.COLOR_BUFFER_BIT);
+//    gl.clearColor(alpha, alpha, alpha, 1.0);
+//    gl.clear(gl.DEPTH_BUFFER_BIT | gl.COLOR_BUFFER_BIT);
 
     gl.useProgram(gProgram);
 
 //    gl.vertexAttribPointer(gvPositionHandle, 2, gl.FLOAT, false, 0, gTriangleVertices);
     gl.vertexAttribPointer(gvPositionHandle, 4, gl.FLOAT, false, 0, gTriangleVertices);
     gl.enableVertexAttribArray(gvPositionHandle);
-    gl.drawArrays(gl.TRIANGLES, 0, 3);
+    gl.drawArrays(gl.TRIANGLES, 0, 1);
 }
 exports.renderFrame = renderFrame;
 exports.setupGraphics = setupGraphics;

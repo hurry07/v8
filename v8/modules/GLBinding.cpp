@@ -1166,7 +1166,6 @@ DELEGATE_TO_GL_N1(disableVertexAttribArray, glDisableVertexAttribArray, GLuint);
  @param {Number} count
  */
 JS_METHOD(drawArrays) {
-    LOGI("drawArrays %d", args.Length());
     HandleScope scope;
     GLenum mode = ARGS_GLenum(args[0]);
     GLint first = ARGS_GLint(args[1]);
@@ -2047,6 +2046,7 @@ JS_METHOD(vertexAttribPointer) {
 	int type = args[2]->Int32Value();
 	int normalized = args[3]->BooleanValue();
 	int stride = args[4]->Int32Value();
+
     if (args[5]->IsInt32()) {
         int offset = args[5]->Int32Value();
         glVertexAttribPointer(indx, size, type, normalized, stride, (const GLvoid*)offset);
