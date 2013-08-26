@@ -403,9 +403,6 @@ void typedbuffer::set(const FunctionCallbackInfo<Value> &info) {
 /**
  * init TypedBuffer with array/TypedArray data
  */
-/**
- * init TypedBuffer with array/TypedArray data
- */
 void typedbuffer::get(const FunctionCallbackInfo<Value> &info) {
     HandleScope scope;
     if(info.Length() == 0) {
@@ -428,7 +425,7 @@ void typedbuffer::get(const FunctionCallbackInfo<Value> &info) {
     if(buf.typedLength() <= offset) {
         return;
     }
-    
+
     if(info[0]->IsArray()) {
         Handle<Array> array = Handle<Array>::Cast(info[0]);
         view->toArray(array, offset);
@@ -448,15 +445,15 @@ void typedbuffer::get(const FunctionCallbackInfo<Value> &info) {
         if(valueBuf.mByteLength < remainL) {
             remainL = valueBuf.mByteLength;
         }
-        
+
         // if param and current object use the same underlying bytes[]
         if(valueBuf.mPtr == buf.mPtr) {
             char* temp = new char[remainL];
             memcpy(temp, buf.value_ptr(offset * buf.mElementSize), remainL);
-            memcpy(valueBuf.mPtr, temp, remainL);
+            memcpy(valueBuf.value_ptr(), temp, remainL);
             delete[] temp;
         } else {
-            memcpy(valueBuf.mPtr, buf.value_ptr(offset * buf.mElementSize), remainL);
+            memcpy(valueBuf.value_ptr(), buf.value_ptr(offset * buf.mElementSize), remainL);
         }
     }
 }

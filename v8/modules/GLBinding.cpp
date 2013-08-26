@@ -63,7 +63,7 @@ static bool getTypedArray(Local<Value> infoV, ByteBuffer* buffer) {
         if(infoV->IsArray()) {
             Handle<Array> array = Handle<Array>::Cast(infoV);
             buffer->allocate(array->Length() * sizeof(T));
-            populateValues<T>((T*)buffer->mPtr, array, 0);
+            populateValues<T>(buffer->value_ptr<T>(), array, 0);// TODO check
             delete_ = true;
             break;
         }
@@ -72,7 +72,7 @@ static bool getTypedArray(Local<Value> infoV, ByteBuffer* buffer) {
         if(p == 0) {
             if(infoV->IsNumber()) {
                 buffer->allocate(sizeof(T));
-                argValue(infoV, (T*)buffer->mPtr);
+                argValue(infoV, buffer->value_ptr<T>());
                 delete_ = true;
             }
         } else {
@@ -1159,7 +1159,20 @@ DELEGATE_TO_GL_N2(detachShader, glDetachShader, GLuint, GLuint);
 DELEGATE_TO_GL_N1(disable, glDisable, GLenum);
 
 DELEGATE_TO_GL_N1(disableVertexAttribArray, glDisableVertexAttribArray, GLuint);
-DELEGATE_TO_GL_N3(drawArrays, glDrawArrays, GLenum, GLint, GLsizei);
+//DELEGATE_TO_GL_N3(drawArrays, glDrawArrays, GLenum, GLint, GLsizei);
+/**
+ @param {Number} mode
+ @param {Number} first
+ @param {Number} count
+ */
+JS_METHOD(drawArrays) {
+    LOGI("drawArrays %d", args.Length());
+    HandleScope scope;
+    GLenum mode = ARGS_GLenum(args[0]);
+    GLint first = ARGS_GLint(args[1]);
+    GLsizei count = ARGS_GLsizei(args[2]);
+    glDrawArrays(mode, first, count);
+}
 /**
  * GLenum mode, GLsizei count, GLenum type, const GLvoid *indices
  */
@@ -2034,11 +2047,19 @@ JS_METHOD(vertexAttribPointer) {
 	int type = args[2]->Int32Value();
 	int normalized = args[3]->BooleanValue();
 	int stride = args[4]->Int32Value();
-	int offset = args[5]->Int32Value();
-
-	glVertexAttribPointer(indx, size, type, normalized, stride, (const GLvoid*)offset);
-
-	args.GetReturnValue().Set(v8::Undefined());
+    if (args[5]->IsInt32()) {
+        int offset = args[5]->Int32Value();
+        glVertexAttribPointer(indx, size, type, normalized, stride, (const GLvoid*)offset);
+    } else {
+        ClassBase* c = internalArg<ClassBase>(args[5]);
+        if(c == 0) {
+            ThrowException(String::New("vertexAttribPointer args[5] is not an instance ArrayBuffer"));
+            return;
+        }
+        ByteBuffer buf;
+        c->getUnderlying(&buf);
+        glVertexAttribPointer(indx, size, type, normalized, stride, (const GLvoid*)buf.value_ptr());
+    }
 }
 DELEGATE_TO_GL_N4(viewport, glViewport, GLint, GLint, GLsizei, GLsizei);
 

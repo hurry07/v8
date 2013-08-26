@@ -33,10 +33,12 @@ function loadShader(shaderType, path) {
 }
 function createProgram(pVertexSource, pFragmentSource) {
     var vertexShader = loadShader(gl.VERTEX_SHADER, pVertexSource);
+    console.log('vertexShader', vertexShader);
     if (!vertexShader) {
         return 0;
     }
     var pixelShader = loadShader(gl.FRAGMENT_SHADER, pFragmentSource);
+    console.log('pixelShader', pixelShader);
     if (!pixelShader) {
         return 0;
     }
@@ -77,7 +79,7 @@ function setupGraphics(w, h) {
         return false;
     }
     gvPositionHandle = gl.getAttribLocation(gProgram, "vPosition");
-    console.log("glGetAttribLocation(vPosition=", gvPositionHandle);
+    console.log("glGetAttribLocation vPosition=", gvPositionHandle);
 
     gl.viewport(0, 0, w, h);
 
@@ -85,21 +87,23 @@ function setupGraphics(w, h) {
     return true;
 }
 
+var grey = 0;
 var gTriangleVertices = new Float32Array([0.0, 0.5, -0.5, -0.5, 0.5, -0.5]);
 function renderFrame() {
-    var grey = 0;
-    grey += 0.01;
+    grey += 0.1;
     if (grey > 1.0) {
         grey = 0.0;
     }
+//    grey = 0.5;
     gl.clearColor(grey, grey, grey, 1.0);
     gl.clear(gl.DEPTH_BUFFER_BIT | gl.COLOR_BUFFER_BIT);
+    console.log('aa', grey);
 
-    gl.useProgram(gProgram);
-
-    gl.vertexAttribPointer(gvPositionHandle, 2, gl.FLOAT, false, 0, gTriangleVertices);
-    gl.enableVertexAttribArray(gvPositionHandle);
-    gl.drawArrays(gl.TRIANGLES, 0, 3);
+//    gl.useProgram(gProgram);
+//
+//    gl.enableVertexAttribArray(gvPositionHandle);
+//    gl.vertexAttribPointer(gvPositionHandle, 2, gl.FLOAT, false, 0, gTriangleVertices);
+//    gl.drawArrays(gl.TRIANGLES, 0, 3);
 }
 
 exports.renderFrame = renderFrame;
