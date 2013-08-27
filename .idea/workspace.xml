@@ -2,9 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tdl/example/example.html" afterPath="$PROJECT_DIR$/tdl/example/example.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/glm/glmopt.cpp" afterPath="$PROJECT_DIR$/v8/glm/glmopt.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/modules/typedbuffer.js" afterPath="$PROJECT_DIR$/v8/assets/modules/typedbuffer.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter01/shader/basic.frag" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter01/shader/basic.vert" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter01/shader/basic_layout.frag" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter01/shader/basic_layout.vert" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter01/shader/basic_uniform.frag" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter01/shader/basic_uniform.vert" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter01/shader/basic_uniformblock.frag" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter01/shader/basic_uniformblock.vert" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/shader/gljs_v.vtx" afterPath="$PROJECT_DIR$/v8/assets/shader/gljs_v.vtx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="v8.iws" />
@@ -31,6 +38,7 @@
     <file path="/math3d.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377573006188" ignored="false" />
     <file path="/gljs_v.vtx" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377584886509" ignored="false" />
     <file path="/typedbuffer.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377592855375" ignored="false" />
+    <file path="$PROJECT_DIR$/v8/assets/test/gljs.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377594838444" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,73 +58,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="models.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tdl/tdl/models.js">
+      <file leaf-file-name="basic.frag" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/v8/assets/chapter01/shader/basic.frag">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="137" column="49" selection-start="4735" selection-end="4755" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="program.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/modules/program.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="48" selection-start="1837" selection-end="1837" vertical-scroll-proportion="-13.8">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="buffers.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/modules/buffers.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="39" selection-start="2012" selection-end="2012" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="typedbuffer.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/modules/typedbuffer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="81" selection-start="2140" selection-end="2140" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="primitives.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/modules/primitives.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="76" column="26" selection-start="3207" selection-end="3211" vertical-scroll-proportion="-21.52">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="v1.vtx" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/shader/v1.vtx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="12" selection-start="447" selection-end="455" vertical-scroll-proportion="-9.6">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="example.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tdl/example/example.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="291" column="78" selection-start="9844" selection-end="9856" vertical-scroll-proportion="-8.979591">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="f1.frg" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/v8/assets/shader/f1.frg">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="20" selection-start="537" selection-end="537" vertical-scroll-proportion="0.40770102">
+            <state line="8" column="61" selection-start="100" selection-end="100" vertical-scroll-proportion="0.13215859">
               <folding />
             </state>
           </provider>
@@ -293,123 +238,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
+              <option name="myItemId" value="chapter01" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="shader" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="modules" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tdl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tdl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tdl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tdl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="example" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -422,6 +255,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="options.lastSelected" value="Errors" />
+    <property name="last_opened_file_path" value="$USER_HOME$/git/philogl" />
     <property name="FullScreen" value="false" />
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="options.searchVisible" value="true" />
@@ -429,11 +263,13 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/v8/assets/chapter01" />
       <recent name="$PROJECT_DIR$/v8/assets/shader" />
       <recent name="$PROJECT_DIR$/v8/assets/modules" />
       <recent name="$PROJECT_DIR$/v8/assets/test" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/v8/assets/chapter01/shader" />
       <recent name="$PROJECT_DIR$/v8/assets/core" />
     </key>
   </component>
@@ -547,22 +383,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tdl/tdl/math.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1014" column="46" selection-start="29031" selection-end="29031" vertical-scroll-proportion="0.12910533">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/core/math3d.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="59" selection-start="280" selection-end="280" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/WebGL.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2622" column="32" selection-start="46380" selection-end="46380" vertical-scroll-proportion="-11.76">
@@ -656,7 +476,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/shader/f1.frg">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="20" selection-start="537" selection-end="537" vertical-scroll-proportion="0.40770102">
+        <state line="24" column="13" selection-start="537" selection-end="537" vertical-scroll-proportion="-14.4">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/chapter01/shader/basic_layout.frag">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/chapter01/shader/basic.frag">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="61" selection-start="100" selection-end="100" vertical-scroll-proportion="0.13215859">
           <folding />
         </state>
       </provider>
