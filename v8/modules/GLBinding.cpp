@@ -1052,6 +1052,7 @@ DELEGATE_TO_GL_N4(blendFuncSeparate, glBlendFuncSeparate, GLenum, GLenum, GLenum
 JS_METHOD(bufferData) {
  	HandleScope scope;
  	int target = args[0]->Int32Value();
+    GLenum usage = args[2]->Int32Value();
 
  	if(args[1]->IsObject()) {
         ClassBase* base = internalArg<ClassBase>(args[1]);
@@ -1060,14 +1061,12 @@ JS_METHOD(bufferData) {
             return;
         }
 
- 		GLenum usage = args[2]->Int32Value();
         ByteBuffer buf;
         base->getUnderlying(&buf);
  		glBufferData(target, buf.mByteLength, buf.value_ptr(), usage);
 
  	} else if(args[1]->IsNumber()) {// create an empty buffer
  		GLsizeiptr size = args[1]->Uint32Value();
- 		GLenum usage = args[2]->Int32Value();
  		glBufferData(target, size, NULL, usage);
  	}
 }
