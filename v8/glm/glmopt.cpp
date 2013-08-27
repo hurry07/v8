@@ -64,7 +64,7 @@ ALL_FN(SUB_VEC);
 
 METHOD_BEGIN(mulMV3, info) {
     HandleScope scope;
-    
+
     Vector* des = internalArg<Vector>(info[0]);
     Matrix* m = internalArg<Matrix>(info[1]);
     Vector* v = internalArg<Vector>(info[2]);
@@ -182,7 +182,7 @@ METHOD_BEGIN(ortho, info) {
  */
 METHOD_BEGIN(frustum, info) {
     HandleScope scope;
-    
+
     Matrix* m = internalArg<Matrix>(info[0]);
     m->mMatrix = glm::frustum(V_2F(1), V_2F(2), V_2F(3), V_2F(4), V_2F(5), V_2F(6));
 }
@@ -206,7 +206,7 @@ METHOD_BEGIN(lookAt, info) {
     }
 }
 /**
- * return a matrix only contains translation information
+ * return a matrix only contains translation informations
  */
 METHOD_BEGIN(translation, info) {
     HandleScope scope;
