@@ -205,17 +205,6 @@ METHOD_BEGIN(lookAt, info) {
         m->mMatrix = glm::lookAt(eye->mVec, center->mVec, up->mVec);
     }
 }
-/**
- * return a matrix only contains translation informations
- */
-METHOD_BEGIN(translation, info) {
-    HandleScope scope;
-    
-    Matrix* m = internalArg<Matrix>(info[0]);
-    Vector* t = internalArg<Vector>(info[1]);
-    m->mMatrix = glm::mat4(1);
-    m->mMatrix[3] = glm::vec4(t->mVec, 1);
-}
 METHOD_BEGIN(translate, info) {
     HandleScope scope;
     
@@ -262,6 +251,31 @@ METHOD_BEGIN(scale, info) {
     m->mMatrix = glm::scale(m->mMatrix, v->mVec);
 }
 
+/**
+ * return a matrix only contains translation information
+ */
+METHOD_BEGIN(translation, info) {
+    HandleScope scope;
+    
+    Matrix* m = internalArg<Matrix>(info[0]);
+    Vector* t = internalArg<Vector>(info[1]);
+    m->mMatrix = glm::mat4(1);
+    m->mMatrix[3] = glm::vec4(t->mVec, 1);
+}
+/**
+ * creating a matrix only contains scaling information
+ */
+METHOD_BEGIN(scaling, info) {
+    HandleScope scope;
+    
+    Matrix* m = internalArg<Matrix>(info[0]);
+    Vector* t = internalArg<Vector>(info[1]);
+    m->mMatrix = glm::mat4(1);
+    m->mMatrix[0][0] = t->mVec.x;
+    m->mMatrix[1][1] = t->mVec.y;
+    m->mMatrix[2][2] = t->mVec.z;
+}
+
 static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
     HandleScope scope;
 
@@ -287,7 +301,6 @@ static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp)
     EXPOSE_METHOD(obj, ortho, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, frustum, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, lookAt, ReadOnly | DontDelete);
-    EXPOSE_METHOD(obj, translation, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, translate, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, rotateX, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, rotateY, ReadOnly | DontDelete);
@@ -295,6 +308,9 @@ static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp)
     EXPOSE_METHOD(obj, rotate, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, scale, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, transpose, ReadOnly | DontDelete);
+
+    EXPOSE_METHOD(obj, translation, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, scaling, ReadOnly | DontDelete);
 
     return scope.Close(temp->GetFunction());
 }
