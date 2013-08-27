@@ -1,5 +1,6 @@
 var gl = require('opengl');
-var file = require('lib/io.js');
+var file = require('core/file.js');
+var math3d = require('core/math3d.js');
 
 function checkShader(shader) {
     var compiled = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
@@ -57,34 +58,12 @@ var gProgram;
 var gvPositionHandle;
 
 function setupGraphics(w, h) {
-//    glm::vec4 position = glm::vec4( 1.0f, 0.0f, 0.0f, 1.0f );
-//    glm::mat4 view = glm::lookAt(glm::vec3(0.0,0.0,5.0),
-//                                 glm::vec3(0.0,0.0,0.0),
-//                                 glm::vec3(0.0,1.0,0.0));
-//    glm::mat4 model = glm::mat4(1.0f);
-//    model = glm::rotate( model, 90.0f, glm::vec3(0.0f,1.0f,0.0) );
-//    glm::mat4 mv = view * model;
-//    glm::vec4 transformed = mv * position;
-//
-//	LOGI("setupGraphics(%d, %d)", w, h);
-//
-//	printGLString("Version", GL_VERSION);
-//	printGLString("Vendor", GL_VENDOR);
-//	printGLString("Renderer", GL_RENDERER);
-//	printGLString("Extensions", GL_EXTENSIONS);
-
     gProgram = createProgram('shader/gljs_v.vtx', 'shader/gljs_f.frg');
     console.log('create.gProgram', gProgram);
     if (!gProgram) {
         console.log("Could not create program.");
         return false;
     }
-//    var numAttribs = gl.getProgramParameter(gProgram, gl.ACTIVE_ATTRIBUTES);
-//    console.log('numAttribs', numAttribs);
-//    for (var ii = 0; ii < numAttribs; ++ii) {
-//        var info = gl.getActiveAttrib(gProgram, ii);
-//        console.log('info===:', info.name, info.type, info.size);
-//    }
     gvPositionHandle = gl.getAttribLocation(gProgram, "vPosition");
     console.log("glGetAttribLocation vPosition=", gvPositionHandle);
 

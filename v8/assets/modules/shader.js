@@ -1,5 +1,5 @@
 var gl = require('opengl');
-var file = require('lib/io.js');
+var file = require('core/file.js');
 
 var shaderDB = {};
 

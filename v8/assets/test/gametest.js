@@ -10,7 +10,7 @@ var clz = require('nativeclasses');
 var program = require('modules/program.js');
 var gl = require('opengl');
 var math = require('modules/math.js');
-var glm = new clz.glm();
+var glm = require('core/glm.js');
 
 var primitives = require('modules/primitives.js');
 var texture = require('modules/textures.js');
