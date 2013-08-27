@@ -59,11 +59,12 @@ AttribBuffer.prototype.cursor = function() {
  * @param numComponents element size
  * @param numElements element count
  * @param config options
+ * @param buffer, multip AttribBuffer may share the same underlying buffer object
  * @returns {AttribBuffer}
  */
-function createBuffer(numComponents, numElements, config) {
+function createBuffer(numComponents, numElements, config, buffer) {
     var type = (config && config.type) || Float32Array;
     var element = (config && config.element) || new type(numComponents);
-    return new AttribBuffer(numComponents, numElements, type, element);
+    return new AttribBuffer(numComponents, numElements, type, element, buffer);
 }
 exports.createBuffer = createBuffer;

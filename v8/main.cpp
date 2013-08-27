@@ -50,7 +50,7 @@ int main(int argc, char ** argv)
 
     app = new Application();
     app->init();
-    app->onSurfaceCreated();
+    app->onSurfaceCreated(800, 480);
     app->onSurfaceChanged(800, 480);
 
 	glutDisplayFunc(onDrawFrame);

@@ -30,7 +30,7 @@ public:
     void destroy();
     void gc();
 
-    void onSurfaceCreated();
+    void onSurfaceCreated(float width, float height);
     void onSurfaceChanged(float width, float height);
     void onDrawFrame();
     void evalScript(const char* sprite);

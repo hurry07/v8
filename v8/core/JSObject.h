@@ -34,14 +34,16 @@ public:
         return scope.Close(Local<T>::Cast(value));
     }
 
-    inline Local<Value> callFunction(const char* name, int size, Handle<Value> argv[]) {
+    inline Local<Value> callFunction(const char* name, int size, Handle<Value>* argv) {
         HandleScope scope;
+
         Local<Function> fn = getAttribute<Function>(name);
         return scope.Close(fn->Call(Local<Object>::New(node_isolate, object_), size, argv));
     }
 
     inline Local<Value> callFunction(const char* name) {
         HandleScope scope(node_isolate);
+        
         Local<Function> fn = getAttribute<Function>(name);
         Handle<Value> argv;
         Local<Value> fuRet = fn->Call(Local<Object>::New(node_isolate, object_), 0, &argv);

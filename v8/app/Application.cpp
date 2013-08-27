@@ -266,12 +266,15 @@ Handle<Value> Application::eval(const char* script) {
 	Local<Script> comp = Script::Compile(source);
 	return scope.Close(comp->Run());
 }
-void Application::onSurfaceCreated() {
+void Application::onSurfaceCreated(float width, float height) {
 	ENTER_ISOLATE;
 	HANDLE_SCOPE;
 	CONTEXT_SCOPE;
 
-	render->callFunction("onSurfaceCreated");
+    Handle<Value> argv[2];
+    argv[0] = Number::New(width);
+    argv[1] = Number::New(height);
+	render->callFunction("onSurfaceCreated", 2, argv);
 }
 void Application::onSurfaceChanged(float width, float height) {
 	ENTER_ISOLATE;

@@ -60,6 +60,7 @@ var gvPositionHandle;
 var projectView;
 
 function setupGraphics(w, h) {
+    console.log('setupGraphics', w, h);
     gProgram = createProgram('shader/gljs_v.vtx', 'shader/gljs_f.frg');
     console.log('create.gProgram', gProgram);
     if (!gProgram) {
