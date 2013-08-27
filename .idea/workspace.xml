@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/core/math3d.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/lib/script.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/lib/io.js" afterPath="$PROJECT_DIR$/v8/assets/core/file.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/test/gametest.js" afterPath="$PROJECT_DIR$/v8/assets/test/gametest.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/xcuserdata/jie.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" afterPath="$PROJECT_DIR$/v8.xcodeproj/xcuserdata/jie.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/modules/GLBinding.cpp" afterPath="$PROJECT_DIR$/v8/modules/GLBinding.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/test/gljs.js" afterPath="$PROJECT_DIR$/v8/assets/test/gljs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/modules/shader.js" afterPath="$PROJECT_DIR$/v8/assets/modules/shader.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/shader/gljs_v.vtx" afterPath="$PROJECT_DIR$/v8/assets/shader/gljs_v.vtx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/glm/glmopt.cpp" afterPath="$PROJECT_DIR$/v8/glm/glmopt.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="v8.iws" />
@@ -30,10 +29,10 @@
     <file path="/models.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377492842658" ignored="false" />
     <file path="/buffers.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377493565759" ignored="false" />
     <file path="/math.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377405352433" ignored="false" />
-    <file path="/gljs.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377573080982" ignored="false" />
-    <file path="$PROJECT_DIR$/v8/modules/GLBinding.cpp" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377571082113" ignored="false" />
+    <file path="/gljs.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377586810428" ignored="false" />
     <file path="/glm.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377572662506" ignored="false" />
     <file path="/math3d.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377573006188" ignored="false" />
+    <file path="/gljs_v.vtx" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377584886509" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,34 +55,7 @@
       <file leaf-file-name="gljs.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/test/gljs.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="39" selection-start="103" selection-end="103" vertical-scroll-proportion="0.033039648">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="file.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/core/file.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="41" selection-start="0" selection-end="62" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="math3d.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/core/math3d.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="32" selection-start="558" selection-end="558" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gametest.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/test/gametest.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="33" selection-start="368" selection-end="368" vertical-scroll-proportion="0.0">
+            <state line="96" column="42" selection-start="2900" selection-end="2900" vertical-scroll-proportion="0.5870044">
               <folding />
             </state>
           </provider>
@@ -92,7 +64,7 @@
       <file leaf-file-name="program.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/modules/program.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="230" column="12" selection-start="6323" selection-end="6334" vertical-scroll-proportion="0.0">
+            <state line="140" column="56" selection-start="3885" selection-end="3901" vertical-scroll-proportion="-25.56">
               <folding />
             </state>
           </provider>
@@ -101,16 +73,16 @@
       <file leaf-file-name="gljs_v.vtx" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/shader/gljs_v.vtx">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="18" selection-start="58" selection-end="58" vertical-scroll-proportion="0.0">
+            <state line="0" column="24" selection-start="13" selection-end="24" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gljs_f.frg" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/shader/gljs_f.frg">
+      <file leaf-file-name="v1.vtx" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/shader/v1.vtx">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="1" selection-start="60" selection-end="60" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="33" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -119,16 +91,34 @@
       <file leaf-file-name="WebGL.js" pinned="false" current="false" current-in-tab="false">
         <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/WebGL.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="799" column="0" selection-start="11315" selection-end="11315" vertical-scroll-proportion="0.0">
+            <state line="2622" column="32" selection-start="46380" selection-end="46380" vertical-scroll-proportion="-11.76">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="game.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
+      <file leaf-file-name="example.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tdl/example/example.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="21" selection-start="543" selection-end="554" vertical-scroll-proportion="0.0">
+            <state line="244" column="32" selection-start="7774" selection-end="7785" vertical-scroll-proportion="-3.75">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="math3d.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/core/math3d.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="59" selection-start="280" selection-end="280" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="f1.frg" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/shader/f1.frg">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="66" selection-start="521" selection-end="521" vertical-scroll-proportion="-13.2">
               <folding />
             </state>
           </provider>
@@ -162,11 +152,11 @@
         <option value="$PROJECT_DIR$/v8/assets/modules/models.js" />
         <option value="$PROJECT_DIR$/tdl/temp.txt" />
         <option value="$PROJECT_DIR$/v8/assets/test/gametest.js" />
-        <option value="$PROJECT_DIR$/v8/assets/shader/gljs_v.vtx" />
         <option value="$PROJECT_DIR$/v8/assets/shader/gljs_f.frg" />
         <option value="$PROJECT_DIR$/v8/assets/game.js" />
         <option value="$PROJECT_DIR$/v8/assets/core/glm.js" />
         <option value="$PROJECT_DIR$/v8/assets/core/math3d.js" />
+        <option value="$PROJECT_DIR$/v8/assets/shader/gljs_v.vtx" />
         <option value="$PROJECT_DIR$/v8/assets/test/gljs.js" />
       </list>
     </option>
@@ -559,30 +549,9 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/v8/assets/modules/models.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="12" selection-start="3477" selection-end="3477" vertical-scroll-proportion="-8.88">
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/test/mjsunit/regress/bitops-register-alias.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tdl/tdl/fast.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="136" column="9" selection-start="3714" selection-end="3714" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tdl/example/example.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="196" column="43" selection-start="6348" selection-end="6348" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/modules/textures.js">
@@ -606,27 +575,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/shader/gljs_v.vtx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="18" selection-start="58" selection-end="58" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/modules/program.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="230" column="12" selection-start="6323" selection-end="6334" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/WebGL.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="799" column="0" selection-start="11315" selection-end="11315" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="21" selection-start="543" selection-end="554" vertical-scroll-proportion="0.0">
@@ -641,23 +589,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/core/math3d.js">
+    <entry file="file://$PROJECT_DIR$/v8/assets/test/gametest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="32" selection-start="558" selection-end="558" vertical-scroll-proportion="0.0">
+        <state line="120" column="38" selection-start="3180" selection-end="3180" vertical-scroll-proportion="0.4834802">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/test/gametest.js">
+    <entry file="file://$PROJECT_DIR$/tdl/tdl/math.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="33" selection-start="368" selection-end="368" vertical-scroll-proportion="0.0">
+        <state line="1014" column="46" selection-start="29031" selection-end="29031" vertical-scroll-proportion="0.12910533">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tdl/example/example.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="244" column="32" selection-start="7774" selection-end="7785" vertical-scroll-proportion="-3.75">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/core/math3d.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="59" selection-start="280" selection-end="280" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/modules/program.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="140" column="56" selection-start="3885" selection-end="3901" vertical-scroll-proportion="-25.56">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/WebGL.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2622" column="32" selection-start="46380" selection-end="46380" vertical-scroll-proportion="-11.76">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/shader/f1.frg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="66" selection-start="521" selection-end="521" vertical-scroll-proportion="-13.2">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/shader/v1.vtx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="33" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/shader/gljs_v.vtx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="24" selection-start="13" selection-end="24" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/test/gljs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="39" selection-start="103" selection-end="103" vertical-scroll-proportion="0.033039648">
+        <state line="96" column="42" selection-start="2900" selection-end="2900" vertical-scroll-proportion="0.5870044">
           <folding />
         </state>
       </provider>

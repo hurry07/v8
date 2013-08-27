@@ -2000,7 +2000,7 @@ GL_UNIFORM(int, CLASS_Int32Array, 2iv, 2);
 GL_UNIFORM(int, CLASS_Int32Array, 3iv, 3);
 GL_UNIFORM(int, CLASS_Int32Array, 4iv, 4);
 
-#define UNIFORM_MATRIX(name, unit) \
+#define UNIFORM_MATRIX(name, edge, unit) \
 JS_METHOD(uniformMatrix##name) {\
     HandleScope scope;\
 \
@@ -2008,20 +2008,20 @@ JS_METHOD(uniformMatrix##name) {\
     GLboolean transpose = args[1]->BooleanValue();\
     ByteBuffer fPtr;\
     getArgPtr(&fPtr, CLASS_Float32Array, args[2]);\
-    glUniformMatrix3fv(location, fPtr.typedLength() / unit, transpose, fPtr.value_ptr<float>());\
+    glUniformMatrix##edge##fv(location, fPtr.typedLength() / unit, transpose, fPtr.value_ptr<float>());\
 }
-UNIFORM_MATRIX(2fv, 4);
-UNIFORM_MATRIX(3fv, 9);
-//UNIFORM_MATRIX(4fv, 16);
-JS_METHOD(uniformMatrix4fv) {
-    HandleScope scope;
-
-    GLint location = args[0]->Int32Value();
-    GLboolean transpose = args[1]->BooleanValue();
-    ByteBuffer fPtr;
-    getArgPtr(&fPtr, CLASS_Float32Array, args[2]);
-    glUniformMatrix3fv(location, fPtr.typedLength() / 16, transpose, fPtr.value_ptr<float>());
-}
+UNIFORM_MATRIX(2fv, 2, 4);
+UNIFORM_MATRIX(3fv, 3, 9);
+UNIFORM_MATRIX(4fv, 4, 16);
+//JS_METHOD(uniformMatrix4fv) {
+//    HandleScope scope;
+//
+//    GLint location = args[0]->Int32Value();
+//    GLboolean transpose = args[1]->BooleanValue();
+//    ByteBuffer fPtr;
+//    getArgPtr(&fPtr, CLASS_Float32Array, args[2]);
+//    glUniformMatrix4fv(location, fPtr.typedLength() / 16, transpose, fPtr.value_ptr<float>());
+//}
 
 DELEGATE_TO_GL_N1(useProgram, glUseProgram, GLuint);
 DELEGATE_TO_GL_N1(validateProgram, glValidateProgram, GLuint);
