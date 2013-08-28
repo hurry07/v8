@@ -77,34 +77,32 @@ template <typename T>
 Vec4<T>::Vec4() : mVec(0,0,0,0) {
 }
 
-namespace glm_vector {
-    /**
-     * init current object with Array or ArrayBufferView|TypedBuffer
-     */
-    template <class M>
-    void set(const FunctionCallbackInfo<Value> &info) {
-        HandleScope scope;
-        ClassBase* c = internalPtr<ClassBase>(info, M::getExportStruct()->mType);
-        if(c == 0) {
-            return;
-        }
-        M* thiz = static_cast<M*>(c);
-        thiz->setValue(info);
+/**
+ * init current object with Array or ArrayBufferView|TypedBuffer
+ */
+template <class M>
+void glm_vector::set(const FunctionCallbackInfo<Value> &info) {
+    HandleScope scope;
+    ClassBase* c = internalPtr<ClassBase>(info, M::getExportStruct()->mType);
+    if(c == 0) {
+        return;
     }
+    M* thiz = static_cast<M*>(c);
+    thiz->setValue(info);
+}
 
-    template <class M, typename T>
-    static v8::Local<v8::Function> initVectorClass(v8::Handle<v8::FunctionTemplate>& temp) {
-        HandleScope scope;
-        
-        Local<ObjectTemplate> obj = temp->PrototypeTemplate();
-        obj->SetAccessor(String::New("length"), globalfn::array::length);
-        EXPOSE_METHOD_NAME(obj, set, set<M>, ReadOnly | DontDelete);
-        
-        Local<ObjectTemplate> ins = temp->InstanceTemplate();
-        ins->SetIndexedPropertyHandler(globalfn::array::getter<T>, globalfn::array::setter<T>);
-        
-        return scope.Close(temp->GetFunction());
-    }
+template <class M, typename T>
+static v8::Local<v8::Function> glm_vector::initVectorClass(v8::Handle<v8::FunctionTemplate>& temp) {
+    HandleScope scope;
+    
+    Local<ObjectTemplate> obj = temp->PrototypeTemplate();
+    obj->SetAccessor(String::New("length"), globalfn::array::length);
+    EXPOSE_METHOD_NAME(obj, set, set<M>, ReadOnly | DontDelete);
+    
+    Local<ObjectTemplate> ins = temp->InstanceTemplate();
+    ins->SetIndexedPropertyHandler(globalfn::array::getter<T>, globalfn::array::setter<T>);
+    
+    return scope.Close(temp->GetFunction());
 }
 
 #endif /* defined(__v8__Vec4_inl__) */
