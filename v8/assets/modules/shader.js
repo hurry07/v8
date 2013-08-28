@@ -16,9 +16,13 @@ function find(id) {
 }
 function shader(id, shaderSource, shaderType) {
     var shader = gl.createShader(shaderType);
+    gl.checkGLError('shader=====01bb');
     gl.shaderSource(shader, shaderSource);
+    gl.checkGLError('shader=====01aa');
     gl.compileShader(shader);
+    gl.checkGLError('shader=====02');
     checkShader(shader);
+    gl.checkGLError('shader=====03');
 
     this._id = id;
     this._glid = shader;

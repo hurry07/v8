@@ -6,6 +6,7 @@
         startup.globalRequire();
         startup.globalConsole();
         startup.globalTypedArray();
+        startup.globalGL();
     }
 
     startup.globalExtend = function() {
@@ -49,6 +50,15 @@
         global.Float32Array = clz.Float32Array;
         global.Float64Array = clz.Float64Array;
     };
+    startup.globalGL = function() {
+        var gl = require('opengl');
+        gl.checkGLError = function(msg) {
+            var err = gl.getError();
+            if(err != 0) {
+                console.log('error found:' + err, msg);
+            };
+        }
+    }
 
     /**
      * 表示预先定义的 js 模块

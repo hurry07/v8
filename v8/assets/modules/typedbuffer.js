@@ -32,7 +32,7 @@ function glBuffer(config) {
         this.mVboId = gl.createBuffer();
     }
 
-    console.log('this.mVboId', this.mVboId);
+//    console.log('this.mVboId', this.mVboId);
     this.mCursor = 0;
 };
 /**
@@ -89,11 +89,19 @@ glBuffer.prototype.reload = function() {
     }
 }
 /**
- * bind this.mBuffer as an vertex variable
  * util method
+ * bind this.mBuffer as an vertex variable
+ *
+ * @param indx vertex index in shader
  */
-ArrayBuffer.prototype.bindVertex = function(position) {
-    gl.vertexAttribPointer(position, this.mStride, this.mGLtype, this.mNormalize, 0, this.mIsVbo ? 0 : this.mBuffer);
+glBuffer.prototype.bindVertex = function(indx) {
+    gl.enableVertexAttribArray(indx);
+    if(this.mIsVbo) {
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.mVboId);
+        gl.vertexAttribPointer(indx, this.mStride, this.mGLtype, this.mNormalize, 0, 0);
+    } else {
+        gl.vertexAttribPointer(indx, this.mStride, this.mGLtype, this.mNormalize, 0, this.mBuffer);
+    }
 }
 function getGLType(type) {
     if (type === Float32Array) {

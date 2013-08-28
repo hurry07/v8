@@ -21,7 +21,6 @@ function setupGraphics() {
 }
 game.render = {
     onSurfaceCreated: function (width, height) {
-        console.log('onSurfaceCreated');
         gljs.setupGraphics(width, height);
     },
     onSurfaceChanged: function (width, height) {

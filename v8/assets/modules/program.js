@@ -75,11 +75,10 @@ textureParam.prototype.upload = function(d) {
  */
 function attribute(index) {
     this.index = index;
+    this._data = 0;
 }
 attribute.prototype.upload = function (b) {
-    gl.bindBuffer(gl.ARRAY_BUFFER, b.buffer());
-    gl.enableVertexAttribArray(this.index);
-    gl.vertexAttribPointer(this.index, b.numComponents(), b.type(), b.normalize(), b.stride(), b.offset());
+    b.bindVertex(this.index);
 }
 
 var programDB = {};
@@ -194,7 +193,6 @@ function initAttribute(program, attribs) {
         if (info.size != 1) {
             throw("arrays of attribs not handled");
         }
-
         var index = gl.getAttribLocation(program, info.name);
         attribs[info.name] = new attribute(index);
     }
@@ -220,6 +218,7 @@ function checkProgram(program) {
  */
 function program(id, vShader, fShader) {
     var program = gl.createProgram();
+
     gl.attachShader(program, vShader.getGLId());
     gl.attachShader(program, fShader.getGLId());
     gl.linkProgram(program);
@@ -244,14 +243,22 @@ program.prototype.createSetters = function () {
     initAttribute(this._glid, this.attrib = {});
     initUniform(this._glid, this.uniforms = {}, this.textures = {});
 }
+program.prototype.getAttrib = function(name) {
+    return this.attrib[name];
+}
+program.prototype.setAttrib = function(name, value) {
+    var setter = this.attrib[name];
+    if(setter) {
+        setter.upload(value);
+    }
+}
 program.prototype.getUniform = function(name) {
     return this.uniforms[name];
 }
 program.prototype.setUniform = function(name, value) {
     var setter = this.uniforms[name];
     if(setter) {
-        setter.data(value);
-        setter.upload();
+        setter.upload(value);
     }
 }
 program.prototype.use = function () {
@@ -261,6 +268,10 @@ program.prototype.use = function () {
 function getFileName(p) {
     var start = p.lastIndexOf('/') + 1;
     return p.slice(start, p.indexOf('.', start));
+}
+function getFileId(p) {
+    var start = p.lastIndexOf('/') + 1;
+    return p.slice(start);
 }
 function makeProgramId(p1, p2) {
     return getFileName(p1) + '_' + getFileName(p2);
@@ -279,8 +290,8 @@ function createWithFile(vpath, fpath) {
     }
 
     try {
-        var vShader = shader.createWithFile(getFileName(vpath), vpath, gl.VERTEX_SHADER);
-        var fShader = shader.createWithFile(getFileName(fpath), fpath, gl.FRAGMENT_SHADER);
+        var vShader = shader.createWithFile(getFileId(vpath), vpath, gl.VERTEX_SHADER);
+        var fShader = shader.createWithFile(getFileId(fpath), fpath, gl.FRAGMENT_SHADER);
         if (!vShader || !fShader) {
             return null;
         }

@@ -26,6 +26,12 @@ using v8::Uint32;
 using v8::Exception;
 using v8::FunctionCallbackInfo;
 
+static void checkGlError(const char* op) {
+	for (GLint error = glGetError(); error; error = glGetError()) {
+		LOGI("after %s() glError (0x%x)\n", op, error);
+	}
+}
+
 #define JS_METHOD(name) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& args)
 #define JS_STR(...) v8::String::New(__VA_ARGS__)
 #define JS_INT(val) v8::Integer::New(val)
@@ -1035,6 +1041,13 @@ DELEGATE_TO_GL_N1(activeTexture, glActiveTexture, GLenum);
 DELEGATE_TO_GL_N2(attachShader, glAttachShader, GLuint, GLuint);
 DELEGATE_TO_GL_N3(bindAttribLocation, glBindAttribLocation, GLuint, GLuint, GLcharP);
 DELEGATE_TO_GL_N2(bindBuffer, glBindBuffer, GLenum, GLuint);
+//JS_METHOD(bindBuffer) {
+//    HandleScope scope;
+//    CHECK_ARG_2(bindBuffer, GLenum, GLuint);
+//    CALL_GL_2(glBindBuffer, GLenum, GLuint);
+//    LOGI("%x %x", args[0]->Uint32Value(), args[1]->Uint32Value());
+//    checkGlError("bindBuffer");
+//}
 DELEGATE_TO_GL_N2(bindFramebuffer, glBindFramebuffer, GLenum, GLuint);
 DELEGATE_TO_GL_N2(bindRenderbuffer, glBindRenderbuffer, GLenum, GLuint);
 DELEGATE_TO_GL_N2(bindTexture, glBindTexture, GLenum, GLuint);
@@ -1069,6 +1082,7 @@ JS_METHOD(bufferData) {
  		GLsizeiptr size = args[1]->Uint32Value();
  		glBufferData(target, size, NULL, usage);
  	}
+    checkGlError("glBufferData");
 }
 /**
  @param {Number} target
@@ -1159,11 +1173,6 @@ DELEGATE_TO_GL_N1(disable, glDisable, GLenum);
 DELEGATE_TO_GL_N1(disableVertexAttribArray, glDisableVertexAttribArray, GLuint);
 //DELEGATE_TO_GL_N3(drawArrays, glDrawArrays, GLenum, GLint, GLsizei);
 
-static void checkGlError(const char* op) {
-	for (GLint error = glGetError(); error; error = glGetError()) {
-		LOGI("after %s() glError (0x%x)\n", op, error);
-	}
-}
 /**
  @param {Number} mode
  @param {Number} first
@@ -1610,9 +1619,6 @@ JS_METHOD(getBufferParameter) {
 }
 JS_METHOD(getError) {
     HandleScope scope;
-    if (args.Length() != 0) {
-        args.GetReturnValue().Set(ThrowException(String::New("Bad arguments")));
-    }
     args.GetReturnValue().Set(Uint32::New(glGetError()));
 }
 JS_METHOD(getFramebufferAttachmentParameter) {
@@ -2066,6 +2072,7 @@ JS_METHOD(vertexAttribPointer) {
         c->getUnderlying(&buf);
         glVertexAttribPointer(indx, size, type, normalized, stride, (const GLvoid*)buf.value_ptr());
     }
+    checkGlError("vertexAttribPointer");
 }
 DELEGATE_TO_GL_N4(viewport, glViewport, GLint, GLint, GLsizei, GLsizei);
 
