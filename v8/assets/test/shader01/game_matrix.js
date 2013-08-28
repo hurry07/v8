@@ -43,7 +43,6 @@ function renderFrame() {
     rotationMatrix.identity();
     angle += 0.01;
     glm.rotate(rotationMatrix, angle, aix);
-    console.log(rotationMatrix);
 
     mProgram.use();
     mProgram.setUniform('RotationMatrix', rotationMatrix);
@@ -51,7 +50,6 @@ function renderFrame() {
     mProgram.setAttrib('VertexColor', colorBufferHandle);
 
     gl.drawArrays(gl.TRIANGLES, 0, 3);
-    gl.checkGLError('renderFrame 51');
 }
 
 exports.renderFrame = renderFrame;

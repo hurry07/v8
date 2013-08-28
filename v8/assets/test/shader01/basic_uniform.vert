@@ -1,7 +1,7 @@
 #version 120
 
-vec3 VertexPosition;
-vec3 VertexColor;
+attribute vec3 VertexPosition;
+attribute vec3 VertexColor;
 
 varying vec3 Color;
 

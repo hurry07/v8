@@ -3,6 +3,8 @@ var clz = require('nativeclasses');
 var inherit = require('core/inherit.js');
 var shader = require('modules/shader.js');
 
+var SHOW_UNDEFINED = true;
+
 /**
  * handle for vector and matrix parameters
  *
@@ -251,6 +253,8 @@ program.prototype.setAttrib = function(name, value) {
     var setter = this.attrib[name];
     if(setter) {
         setter.upload(value);
+    } else if(SHOW_UNDEFINED) {
+        console.log('attrib not found:' + name);
     }
 }
 program.prototype.getUniform = function(name) {
@@ -260,6 +264,8 @@ program.prototype.setUniform = function(name, value) {
     var setter = this.uniforms[name];
     if(setter) {
         setter.upload(value);
+    } else if(SHOW_UNDEFINED) {
+        console.log('uniform not found:' + name);
     }
 }
 program.prototype.use = function () {

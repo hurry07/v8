@@ -68,15 +68,15 @@ void onDrawFrame() {
 int main(int argc, char ** argv)
 {
 	glutInit(&argc, argv);
-    glutInitWindowSize(800, 480);
+    glutInitWindowSize(480, 480);
 	glutCreateWindow("Xcode Glut Demo");
 
     testVersion();
 
     app = new Application();
     app->init();
-    app->onSurfaceCreated(800, 480);
-    app->onSurfaceChanged(800, 480);
+    app->onSurfaceCreated(480, 480);
+    app->onSurfaceChanged(480, 480);
 
 	glutDisplayFunc(onDrawFrame);
 	glutMainLoop();
