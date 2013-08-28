@@ -35,15 +35,6 @@ function glBuffer(config) {
 //    console.log('this.mVboId', this.mVboId);
     this.mCursor = 0;
 };
-/**
- * vbo should load as your need
- */
-glBuffer.prototype.upload = function() {
-    if(this.mIsVbo) {
-        gl.bindBuffer(this.mTarget, this.mVboId);
-        gl.bufferData(this.mTarget, this.mBuffer, gl.STATIC_DRAW);
-    }
-}
 glBuffer.prototype.getElement = function (index, element) {
     if(this.mStride == 1 && !element && !this.mElement) {
         return this.mBuffer[index];
@@ -89,6 +80,21 @@ glBuffer.prototype.reload = function() {
     }
 }
 /**
+ * vbo should load as your need
+ */
+glBuffer.prototype.upload = function() {
+    if(this.mIsVbo) {
+        gl.bindBuffer(this.mTarget, this.mVboId);
+        gl.bufferData(this.mTarget, this.mBuffer, gl.STATIC_DRAW);
+    }
+}
+/**
+ * make this vbo the current buffer.
+ */
+glBuffer.prototype.bindBuffer = function() {
+    gl.bindBuffer(this.mTarget, this.mVboId);
+}
+/**
  * util method
  * bind this.mBuffer as an vertex variable
  *
@@ -123,9 +129,13 @@ function getGLType(type) {
  * @param count triggles
  * @returns {glBuffer}
  */
-function createIndexBuffer(count) {
+function createIndexBuffer(stride, count) {
+    if(arguments.length == 1) {
+        count = stride;
+        stride = 1;
+    }
     return new glBuffer({
-        stride : 3,
+        stride : stride,
         count : count,
         type : Uint16Array,
         normalize : false,

@@ -73,11 +73,11 @@ textureParam.prototype.upload = function(d) {
  * attribute is very large, and it may be changed frqnenctly, so there is no need to cash them
  * @param index
  */
-function attribute(index) {
+function attributeParam(index) {
     this.index = index;
     this._data = 0;
 }
-attribute.prototype.upload = function (b) {
+attributeParam.prototype.upload = function (b) {
     b.bindVertex(this.index);
 }
 
@@ -194,7 +194,7 @@ function initAttribute(program, attribs) {
             throw("arrays of attribs not handled");
         }
         var index = gl.getAttribLocation(program, info.name);
-        attribs[info.name] = new attribute(index);
+        attribs[info.name] = new attributeParam(index);
     }
     return attribs;
 }
