@@ -202,23 +202,21 @@ static void populateValues(T* dest, char* source, ClassType type, int length) {
     }
 }
 
-namespace classtype {
-    #define JS_WRAP_UNWRAP(T, getter, setter) \
-    template<> T unwrap<T>(Local<Value> arg) {\
-        return arg->getter();\
-    }\
-    template<> Local<Value> wrap<T>(T t) {\
-        return setter(t);\
-    }
-
-    JS_WRAP_UNWRAP(int8_t, Int32Value, Integer::New)
-    JS_WRAP_UNWRAP(uint8_t, Uint32Value, Integer::NewFromUnsigned)
-    JS_WRAP_UNWRAP(int16_t, Int32Value, Integer::New)
-    JS_WRAP_UNWRAP(uint16_t, Uint32Value, Integer::NewFromUnsigned)
-    JS_WRAP_UNWRAP(int32_t, Int32Value, Integer::New)
-    JS_WRAP_UNWRAP(uint32_t, Uint32Value, Integer::NewFromUnsigned)
-    JS_WRAP_UNWRAP(float, NumberValue, Number::New)
-    JS_WRAP_UNWRAP(double, NumberValue, Number::New)
+#define JS_WRAP_UNWRAP(T, getter, setter) \
+template<> T classtype::unwrap<T>(Local<Value> arg) {\
+return arg->getter();\
+}\
+template<> Local<Value> classtype::wrap<T>(T t) {\
+return setter(t);\
 }
+
+JS_WRAP_UNWRAP(int8_t, Int32Value, Integer::New)
+JS_WRAP_UNWRAP(uint8_t, Uint32Value, Integer::NewFromUnsigned)
+JS_WRAP_UNWRAP(int16_t, Int32Value, Integer::New)
+JS_WRAP_UNWRAP(uint16_t, Uint32Value, Integer::NewFromUnsigned)
+JS_WRAP_UNWRAP(int32_t, Int32Value, Integer::New)
+JS_WRAP_UNWRAP(uint32_t, Uint32Value, Integer::NewFromUnsigned)
+JS_WRAP_UNWRAP(float, NumberValue, Number::New)
+JS_WRAP_UNWRAP(double, NumberValue, Number::New)
 
 #endif

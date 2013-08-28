@@ -38,8 +38,8 @@
      */
     startup.globalTypedArray = function() {
         var clz = NativeModule.require('nativeclasses');
-        console.log('global init:', clz);
         global.ArrayBuffer = clz.ArrayBuffer;
+
         global.Int8Array = clz.Int8Array;
         global.Uint8Array = clz.Uint8Array;
         global.Int16Array = clz.Int16Array;

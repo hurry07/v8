@@ -235,6 +235,7 @@ TYPED_ATTAY_DEFINE(uint32_t, 4, Uint32Array);
 TYPED_ATTAY_DEFINE(float, 4, Float32Array);
 TYPED_ATTAY_DEFINE(double, 8, Float64Array);
 
+// ============== implementation
 template <typename T>
 void typedbuffer::subarray(const FunctionCallbackInfo<Value> &info) {
     HandleScope scope;

@@ -40,7 +40,7 @@ var gl = require('opengl');
  * @param opt_target 绑定的目标对象
  * @constructor
  */
-Buffer = function (array, opt_target) {
+function Buffer(array, opt_target) {
     var target = opt_target || gl.ARRAY_BUFFER;
     var buf = gl.createBuffer();// 立刻就建立一个插槽对象
     this.target = target;// 数据分配的位置
@@ -87,31 +87,24 @@ Buffer.prototype.setRange = function (array, offset) {
 Buffer.prototype.type = function () {
     return this.type_;// 内部数据类型
 };
-
 Buffer.prototype.numComponents = function () {
     return this.numComponents_;
 };
-
 Buffer.prototype.numElements = function () {
     return this.numElements_;
 };
-
 Buffer.prototype.totalComponents = function () {
     return this.totalComponents_;
 };
-
 Buffer.prototype.buffer = function () {
     return this.buf;
 };
-
 Buffer.prototype.stride = function () {
     return 0;
 };
-
 Buffer.prototype.normalize = function () {
     return this.normalize_;
 }
-
 Buffer.prototype.offset = function () {
     return 0;
 };

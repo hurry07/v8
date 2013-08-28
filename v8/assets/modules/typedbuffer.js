@@ -1,70 +1,142 @@
 var clz = require('nativeclasses');
+var gl = require('opengl');
+var math3d = require('core/math3d.js');
 
+var supportVbo = false;
 /**
- * AttribBuffer manages a TypedArray as an array of vectors.
- *
- * @param {number} numComponents Number of components per vector.
- * @param {number|!Array.<number>} numElements Number of vectors or the data.
- * @param {string} opt_type The type of the TypedArray to create. Default = 'Float32Array'.
- * @param {!Array.<number>} opt_data The data for the array.
+ * glBuffer manages a TypedArray as an array of vectors.
+ * @param config {
+ *     elementsize 1,2,3,4
+ *     gltype one of GL_BYTE,GL_UNSIGNED_BYTE,GL_SHORT,GL_UNSIGNED_SHORT,GL_FIXED,GL_FLOAT
+ *     type buffer's class type, use
+ *     element, auto wrap raw value of getElement
+ *     buffer, data buffer object used
+ * }
  */
-function AttribBuffer(numComponents, numElements, type, element, buffer) {
-    this.buffer = buffer || new type(numComponents * numElements);
-    this.numComponents = numComponents;// size of each element
-    this.numElements = numElements;// element count
-    this._type = type;// type of the buffer
-    this._element = element;// type of element
+function glBuffer(config) {
+    // require
+    this.mStride = config.stride;
+    this.mCount = config.count;
 
-    this._cursor = 0;
+    // optional
+    this.mType = config && config.type || Float32Array;
+    this.mGLtype = config && config.gltype || getGLType(this.mType);
+    this.mElement = config && config.element;
+    this.mNormalize = config && config.normalize || false;
+    this.mBuffer = config.buffer || new this.mType(this.mStride * this.mCount);
+    this.mTarget = config && config.target || gl.ARRAY_BUFFER;
+
+    this.mIsVbo = config && config.isvbo || true;
+    this.mVboId = 0;
+    if(this.mIsVbo) {
+        this.mVboId = gl.createBuffer();
+    }
+
+    console.log('this.mVboId', this.mVboId);
+    this.mCursor = 0;
 };
-AttribBuffer.prototype.stride = function () {
-    return 0;
-};
-AttribBuffer.prototype.offset = function () {
-    return 0;
-};
-AttribBuffer.prototype.getElement = function (index, element) {
-    this.buffer.get(element || (element = new this._element()), index * this.numComponents);
+/**
+ * vbo should load as your need
+ */
+glBuffer.prototype.upload = function() {
+    if(this.mIsVbo) {
+        gl.bindBuffer(this.mTarget, this.mVboId);
+        gl.bufferData(this.mTarget, this.mBuffer, gl.STATIC_DRAW);
+    }
+}
+glBuffer.prototype.getElement = function (index, element) {
+    if(this.mStride == 1 && !element && !this.mElement) {
+        return this.mBuffer[index];
+    }
+    this.mBuffer.get(element || (element = this.mElement ? new this.mElement() : new this.mType(this.mStride)), index * this.mStride);
     return element;
 };
-AttribBuffer.prototype.setElement = function (index, value) {
-    this.buffer.set(value, index * this.numComponents);
+glBuffer.prototype.setElement = function (index, value) {
+    this.mBuffer.set(value, index * this.mStride);
 };
-AttribBuffer.prototype.fillRange = function (index, count, value) {
-    var offset = index * this.numComponents;
-    for (var jj = 0; jj < count; ++jj) {
-        for (var ii = 0; ii < this.numComponents; ++ii) {
-            this.buffer[offset++] = value[ii];
-        }
-    }
-};
-AttribBuffer.prototype.clone = function () {
-    return new AttribBuffer(
-        this.numComponents,
-        this.numElements,
-        this._type,
-        this._element,
-        new Float32Array(this.buffer.buffer.slice(0)));
+glBuffer.prototype.clone = function () {
+    return new glBuffer({
+        stride : this.mStride,
+        count : this.mCount,
+        type : this.mType,
+        gltype : this.mGLtype,
+        element : this.mElement,
+        normalize : this.mNormalize,
+        buffer : new this.mType(this.mBuffer.buffer.slice(0))
+    });
 }
-AttribBuffer.prototype.push = function (value) {
-    this.setElement(this._cursor++, value);
+glBuffer.prototype.push = function (value) {
+    this.setElement(this.mCursor++, value);
 };
-AttribBuffer.prototype.cursor = function() {
+glBuffer.prototype.cursor = function() {
     if(arguments.length == 0) {
-        return this._cursor;
+        return this.mCursor;
     }
-    this._cursor = arguments[0];
+    this.mCursor = arguments[0];
+}
+glBuffer.prototype.__defineGetter__('length', function () {
+    return this.mCount;
+});
+glBuffer.prototype.buffer = function() {
+    return this.mBuffer;
 }
 /**
- * @param numComponents element size
- * @param numElements element count
- * @param config options
- * @param buffer, multip AttribBuffer may share the same underlying buffer object
- * @returns {AttribBuffer}
+ * regenerate a vbo id
  */
-function createBuffer(numComponents, numElements, config, buffer) {
-    var type = (config && config.type) || Float32Array;
-    var element = (config && config.element) || new type(numComponents);
-    return new AttribBuffer(numComponents, numElements, type, element, buffer);
+glBuffer.prototype.reload = function() {
+    if(this.mIsVbo) {
+        this.mVboId = gl.createBuffer();
+    }
 }
+/**
+ * bind this.mBuffer as an vertex variable
+ * util method
+ */
+ArrayBuffer.prototype.bindVertex = function(position) {
+    gl.vertexAttribPointer(position, this.mStride, this.mGLtype, this.mNormalize, 0, this.mIsVbo ? 0 : this.mBuffer);
+}
+function getGLType(type) {
+    if (type === Float32Array) {
+        return gl.FLOAT;
+    } else if (type === Uint8Array) {
+        return gl.UNSIGNED_BYTE;// 数据类型
+    } else if (type === Int8Array) {
+        return gl.BYTE;// 数据类型
+    } else if (type === Uint16Array) {
+        return gl.UNSIGNED_SHORT;
+    } else if (type === Int16Array) {
+        return gl.SHORT;
+    } else {
+        throw("unhandled type:" + type);
+    }
+}
+/**
+ * create an index buffer
+ * @param count triggles
+ * @returns {glBuffer}
+ */
+function createIndexBuffer(count) {
+    return new glBuffer({
+        stride : 3,
+        count : count,
+        type : Uint16Array,
+        normalize : false,
+        target : gl.ELEMENT_ARRAY_BUFFER
+    });
+}
+function createVectorBuffer(stride, count) {
+    return new glBuffer({
+        stride : stride,
+        count : count,
+        type : Float32Array,
+        element : math3d['vector' + stride],
+        normalize : false
+    });
+}
+function createBuffer(config) {
+    return new glBuffer(config);
+}
+
 exports.createBuffer = createBuffer;
+exports.createVectorBuffer = createVectorBuffer;
+exports.createIndexBuffer = createIndexBuffer;

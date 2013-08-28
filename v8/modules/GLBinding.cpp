@@ -2064,11 +2064,6 @@ JS_METHOD(vertexAttribPointer) {
         }
         ByteBuffer buf;
         c->getUnderlying(&buf);
-//        int count = buf.typedLength();
-//        for (int i=0; i<count; i++) {
-//            float v = *(buf.value_ptr<float>() + i);
-//            LOGI("%f", v);
-//        }
         glVertexAttribPointer(indx, size, type, normalized, stride, (const GLvoid*)buf.value_ptr());
     }
 }

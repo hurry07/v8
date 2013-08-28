@@ -28,6 +28,13 @@ shaderParam.prototype.upload = function(d) {
         this.fn(this.loc, this._data);
     }
 }
+/**
+ * a specific transpose param with uniformMatrix*fv
+ *
+ * @param loc
+ * @param glfn
+ * @param transpose
+ */
 function matrixParam(loc, glfn, transpose) {
     shaderParam.apply(this, arguments);
     this.transpose = transpose || false;
@@ -40,6 +47,13 @@ matrixParam.prototype.upload = function(d) {
         this.fn(this.loc, this.transpose, this._data);
     }
 }
+/**
+ * textureParam was created with a textureId with it
+ *
+ * @param loc
+ * @param glfn
+ * @param unit
+ */
 function textureParam(loc, glfn, unit) {
     shaderParam.apply(this, arguments);
     this.unit = unit;
@@ -251,6 +265,12 @@ function getFileName(p) {
 function makeProgramId(p1, p2) {
     return getFileName(p1) + '_' + getFileName(p2);
 }
+/**
+ *
+ * @param vpath vector shader file path
+ * @param fpath fragment shader file path
+ * @returns {*}
+ */
 function createWithFile(vpath, fpath) {
     var id = makeProgramId(vpath, fpath);
     var s = find(id);
