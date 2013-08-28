@@ -192,7 +192,7 @@ namespace glm_matrix {
     }
     NS_METHOD_BEGIN(identity, info) {
         HandleScope scope;
-        
+
         Matrix* m = internalPtr<Matrix>(info);
         m->mMatrix = glm::mat4(1);
     }

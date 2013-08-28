@@ -1,6 +1,7 @@
 var gl = require('opengl');
 //var gljs = require('test/gljs.js');
-var gljs = require('test/shader01/game.js');
+//var gljs = require('test/shader01/game.js');
+var gljs = require('test/shader01/game_matrix.js');
 
 /*
 for(var i in gl) {

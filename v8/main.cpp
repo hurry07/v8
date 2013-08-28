@@ -20,10 +20,12 @@ static void printGLString(const char *name, GLenum s) {
 	LOGI("GL %s = %s\n", name, v);
 }
 
-static void checkGlError(const char* op) {
+static bool checkGlError(const char* op) {
 	for (GLint error = glGetError(); error; error = glGetError()) {
 		LOGI("after %s() glError (0x%x)\n", op, error);
+        return false;
 	}
+    return true;
 }
 
 std::string dir(std::string path, std::string subpath) {
@@ -57,9 +59,11 @@ void testVersion() {
 Application* app = NULL;
 void onDrawFrame() {
     app->onDrawFrame();
+    if(!checkGlError("onDrawFrame==>")) {
+        return;
+    }
     glFlush();
     glutPostRedisplay();
-    checkGlError("onDrawFrame");
 }
 int main(int argc, char ** argv)
 {

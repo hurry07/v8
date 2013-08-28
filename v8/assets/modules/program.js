@@ -99,8 +99,9 @@ function releaseById(id) {
     }
     delete programDB[id];
 }
-function createUniformSetter(info) {
-    var loc = gl.getUniformLocation(this._glid, info.name)
+function createUniformSetter(program, info) {
+    var loc = gl.getUniformLocation(program, info.name);
+
     var s;
     var size = info.size;
     var textureCount = 0;
@@ -175,7 +176,7 @@ function initUniform(program, uniforms, textures) {
             break;
         }
         var name = info.name;
-        var setter = createUniformSetter(info);
+        var setter = createUniformSetter(program, info);
 
         uniforms[name] = setter;
         if (info.type == gl.SAMPLER_2D || info.type == gl.SAMPLER_CUBE) {
