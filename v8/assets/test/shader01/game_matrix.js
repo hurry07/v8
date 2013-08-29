@@ -35,6 +35,8 @@ function setupGraphics(w, h) {
     vboIndexBuffer = glBuffer.createIndexBuffer(3,2);
     vboIndexBuffer.buffer().set([0,1,2,0,1,2]);
     vboIndexBuffer.upload();
+
+    mProgram.setUniform('Blob', {r:0,g:0,b:0});
 }
 function renderFrame() {
     gl.clearColor(0, 0, 0, 0);
@@ -46,6 +48,8 @@ function renderFrame() {
 
     mProgram.use();
     mProgram.setUniform('RotationMatrix', rotationMatrix);
+//    mProgram.setUniform('Blob', {r:1,g:0,b:1});
+    mProgram.setUniform('Blob.g', 1);
     mProgram.setAttrib('VertexPosition', positionBufferHandle);
     mProgram.setAttrib('VertexColor', colorBufferHandle);
 

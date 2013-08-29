@@ -12,10 +12,10 @@ struct light {
 } lightVar;
 
 struct BlobSettings {
-    vec4 InnerColor;
-    vec4 OuterColor;
-    float RadiusInner;
-    float RadiusOuter;
+    float r;
+    float g;
+    float b;
+    float a;
 };
 
 uniform BlobSettings Blob;
@@ -29,7 +29,9 @@ uniform mat4 RotationMatrix;
 
 void main()
 {
-    Color = Blob.InnerColor.rgb;
     Color = VertexColor;
+    Color.r = Blob.r;
+    Color.g = Blob.g;
+    Color.b = Blob.b;
     gl_Position = RotationMatrix * vec4(VertexPosition, 1.0);
 }

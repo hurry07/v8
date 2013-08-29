@@ -72,14 +72,31 @@ textureParam.prototype.upload = function(d) {
 function structParam() {
     this.fields = {};
 }
-structParam.prototype.addField = function(name, setter) {
+structParam.prototype.setField = function(name, setter) {
     var index = name.indexOf('.');
     if(index != -1) {
         var n = name.slice(0, index);
         var f = this.fields[n] || (this.fields[n] = new structParam());
-        f.addField(name.slice(index + 1), setter);
+        f.setField(name.slice(index + 1), setter);
     } else {
         this.fields[name] = setter;
+    }
+}
+structParam.prototype.getField = function(name) {
+    var index = name.indexOf('.');
+    if(index != -1) {
+        var n = name.slice(0, index);
+        return this.fields[n] && this.fields[n].getField(name.slice(index + 1));
+    } else {
+        return this.fields[name];
+    }
+}
+structParam.prototype.data = function(data) {
+    for(var i in data) {
+        var f = this.fields[i];
+        if(f) {
+            f.data(data[i]);
+        }
     }
 }
 structParam.prototype.upload = function(data) {
@@ -90,15 +107,36 @@ structParam.prototype.upload = function(data) {
         }
     }
 }
-function appendSetter(obj, name, setter) {
-    var i = name.indexOf('.');
-    if(i == -1) {
-        obj[name] = setter;
+
+/**
+ * bind a new attribute getter
+ * @param obj
+ * @param name
+ * @param setter
+ */
+function addSetter(obj, name, setter) {
+    obj[name] = setter;
+    var index = name.indexOf('.');
+    if(index == -1) {
         return;
     }
-    var n = name.slice(0, i);
+
+    var n = name.slice(0, index);
     var s = obj[n] || (obj[n] = new structParam());
-    s.addField(name.slice(index + 1), setter);
+    s.setField(name.slice(index + 1), setter);
+}
+function getSetter(obj, name) {
+    var f = obj[name];
+    if(f) {
+        return f;
+    }
+    var index = name.indexOf('.');
+    if(index == -1) {
+        return null;
+    }
+
+    var n = name.slice(0, index);
+    return obj[n] && obj[n].getField(name.slice(index + 1));
 }
 
 /**
@@ -133,8 +171,6 @@ function releaseById(id) {
 }
 function createUniformSetter(program, info) {
     var loc = gl.getUniformLocation(program, info.name);
-    console.log(loc);
-
     var s;
     var size = info.size;
     var textureCount = 0;
@@ -210,10 +246,8 @@ function initUniform(program, uniforms, textures) {
         }
 
         var name = info.name;
-        console.log('initUniform', name);
         var setter = createUniformSetter(program, info);
-
-        uniforms[name] = setter;
+        addSetter(uniforms, name, setter);
         if (info.type == gl.SAMPLER_2D || info.type == gl.SAMPLER_CUBE) {
             textures[name] = setter;
         }
@@ -230,7 +264,6 @@ function initAttribute(program, attribs) {
             throw("arrays of attribs not handled");
         }
 
-        console.log('initAttribute', info.name);
         var index = gl.getAttribLocation(program, info.name);
         attribs[info.name] = new attributeParam(index);
     }
@@ -281,6 +314,11 @@ program.prototype.createSetters = function () {
     initAttribute(this._glid, this.attrib = {});
     initUniform(this._glid, this.uniforms = {}, this.textures = {});
 }
+/**
+ * uniform
+ * @param name
+ * @returns {*}
+ */
 program.prototype.getAttrib = function(name) {
     return this.attrib[name];
 }
@@ -292,26 +330,20 @@ program.prototype.setAttrib = function(name, value) {
         console.log('attrib not found:' + name);
     }
 }
+/**
+ * attirbute
+ * @param name
+ * @returns {*}
+ */
 program.prototype.getUniform = function(name) {
-    return this.uniforms[name];
+    return getSetter(this.uniforms, name);
 }
 program.prototype.setUniform = function(name, value) {
-    var setter = this.uniforms[name];
+    var setter = getSetter(this.uniforms, name);
     if(setter) {
         setter.upload(value);
-    } else {
-        if(name.indexOf('.') != -1) {
-            setter = this.uniforms;
-            for(var i= 0,names=name.split('.'),length=names.length;i<length;i++) {
-                setter = setter[names[i]];
-                if(setter) {
-
-                }
-            }
-        }
-        if(SHOW_UNDEFINED) {
-            console.log('uniform not found:' + name);
-        }
+    } else if(SHOW_UNDEFINED) {
+        console.log('uniform not found:' + name);
     }
 }
 program.prototype.use = function () {
