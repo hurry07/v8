@@ -24,7 +24,6 @@ var angle = 0;
 
 function setupGraphics(w, h) {
     mProgram = program.createWithFile('test/shader01/basic_uniform.vert', 'test/shader01/basic_uniform.frag');
-    console.log('mProgram', mProgram);
 
     positionBufferHandle = glBuffer.createVectorBuffer(3, 3);
     positionBufferHandle.buffer().set(positionData);
@@ -36,6 +35,7 @@ function setupGraphics(w, h) {
     vboIndexBuffer.buffer().set([0,1,2,0,1,2]);
     vboIndexBuffer.upload();
 
+    mProgram.use();
     mProgram.setUniform('Blob', {r:0,g:0,b:0});
 }
 function renderFrame() {
@@ -48,7 +48,6 @@ function renderFrame() {
 
     mProgram.use();
     mProgram.setUniform('RotationMatrix', rotationMatrix);
-//    mProgram.setUniform('Blob', {r:1,g:0,b:1});
     mProgram.setUniform('Blob.g', 1);
     mProgram.setAttrib('VertexPosition', positionBufferHandle);
     mProgram.setAttrib('VertexColor', colorBufferHandle);
