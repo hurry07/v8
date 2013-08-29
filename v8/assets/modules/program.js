@@ -69,6 +69,37 @@ textureParam.prototype.upload = function(d) {
         this._data.bindToUnit(this.unit);
     }
 }
+function structParam() {
+    this.fields = {};
+}
+structParam.prototype.addField = function(name, setter) {
+    var index = name.indexOf('.');
+    if(index != -1) {
+        var n = name.slice(0, index);
+        var f = this.fields[n] || (this.fields[n] = new structParam());
+        f.addField(name.slice(index + 1), setter);
+    } else {
+        this.fields[name] = setter;
+    }
+}
+structParam.prototype.upload = function(data) {
+    for(var i in data) {
+        var f = this.fields[i];
+        if(f) {
+            f.upload(data[i]);
+        }
+    }
+}
+function appendSetter(obj, name, setter) {
+    var i = name.indexOf('.');
+    if(i == -1) {
+        obj[name] = setter;
+        return;
+    }
+    var n = name.slice(0, i);
+    var s = obj[n] || (obj[n] = new structParam());
+    s.addField(name.slice(index + 1), setter);
+}
 
 /**
  * class used for binding buffer as attribute of program
@@ -77,7 +108,6 @@ textureParam.prototype.upload = function(d) {
  */
 function attributeParam(index) {
     this.index = index;
-    this._data = 0;
 }
 attributeParam.prototype.upload = function (b) {
     b.bindVertex(this.index);
@@ -103,6 +133,7 @@ function releaseById(id) {
 }
 function createUniformSetter(program, info) {
     var loc = gl.getUniformLocation(program, info.name);
+    console.log(loc);
 
     var s;
     var size = info.size;
@@ -177,7 +208,9 @@ function initUniform(program, uniforms, textures) {
         if (!info) {
             break;
         }
+
         var name = info.name;
+        console.log('initUniform', name);
         var setter = createUniformSetter(program, info);
 
         uniforms[name] = setter;
@@ -196,6 +229,8 @@ function initAttribute(program, attribs) {
         if (info.size != 1) {
             throw("arrays of attribs not handled");
         }
+
+        console.log('initAttribute', info.name);
         var index = gl.getAttribLocation(program, info.name);
         attribs[info.name] = new attributeParam(index);
     }
@@ -264,8 +299,19 @@ program.prototype.setUniform = function(name, value) {
     var setter = this.uniforms[name];
     if(setter) {
         setter.upload(value);
-    } else if(SHOW_UNDEFINED) {
-        console.log('uniform not found:' + name);
+    } else {
+        if(name.indexOf('.') != -1) {
+            setter = this.uniforms;
+            for(var i= 0,names=name.split('.'),length=names.length;i<length;i++) {
+                setter = setter[names[i]];
+                if(setter) {
+
+                }
+            }
+        }
+        if(SHOW_UNDEFINED) {
+            console.log('uniform not found:' + name);
+        }
     }
 }
 program.prototype.use = function () {
