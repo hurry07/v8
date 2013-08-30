@@ -4,64 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/v8/assets/test/shader01/basic_uniformblock.vert" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/.hg_archival.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/README" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/media/bs_ears.obj" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/chapter02.pro" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/defines.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/shader/diffuse.frag" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/shader/diffuse.vert" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/shader/discard.frag" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/shader/discard.vert" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/drawable.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/drawable.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/shader/flat.frag" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/shader/flat.vert" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/shader/function.frag" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/shader/function.vert" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/glslprogram.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/glslprogram.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/glutils.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/glutils.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/main.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/mainview.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/mainview.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/shader/phong.frag" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/shader/phong.vert" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/scene.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/sceneads.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/sceneads.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/scenediffuse.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/scenediffuse.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/scenediscard.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/scenediscard.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/sceneflat.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/sceneflat.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/scenesubroutine.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/scenesubroutine.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/scenetwoside.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/scenetwoside.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/shader/subroutine.frag" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/shader/subroutine.vert" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/teapotdata.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/shader/twoside.frag" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/shader/twoside.vert" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/vbomesh.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/vbomesh.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/modules/vbomesh.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/vboteapot.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/vboteapot.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/vbotorus.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/chapter02/vbotorus.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/classes/NativeClass.cpp" afterPath="$PROJECT_DIR$/v8/classes/NativeClass.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/game.js" afterPath="$PROJECT_DIR$/v8/assets/game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/core/math3d.js" afterPath="$PROJECT_DIR$/v8/assets/core/math3d.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/classes/ptr_util.h" afterPath="$PROJECT_DIR$/v8/classes/ptr_util.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/glm/vector_inl.h" afterPath="$PROJECT_DIR$/v8/glm/vector_inl.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="" />
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377826739942" ignored="false" />
