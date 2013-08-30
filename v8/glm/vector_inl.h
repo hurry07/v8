@@ -50,7 +50,9 @@ void clzName<T>::_value(const FunctionCallbackInfo<Value>& args) {\
 }\
 VERTEX_UNDERLYING(clzName, float, CLASS_Float32Array, size)\
 VERTEX_UNDERLYING(clzName, int32_t, CLASS_Int32Array, size)\
-VERTEX_UNDERLYING(clzName, uint8_t, CLASS_Uint8Array, size)
+VERTEX_UNDERLYING(clzName, uint8_t, CLASS_Uint8Array, size)\
+VERTEX_UNDERLYING(clzName, int16_t, CLASS_Uint8Array, size)\
+VERTEX_UNDERLYING(clzName, uint16_t, CLASS_Uint8Array, size)
 
 namespace glm_vector {
     /**
