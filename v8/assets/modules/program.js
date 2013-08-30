@@ -114,7 +114,7 @@ structParam.prototype.upload = function(data) {
  * @param name
  * @param setter
  */
-function addSetter(obj, name, setter) {
+function setUniform(obj, name, setter) {
     obj[name] = setter;
     var index = name.indexOf('.');
     if(index == -1) {
@@ -125,7 +125,7 @@ function addSetter(obj, name, setter) {
     var s = obj[n] || (obj[n] = new structParam());
     s.setField(name.slice(index + 1), setter);
 }
-function getSetter(obj, name) {
+function getUniform(obj, name) {
     var f = obj[name];
     if(f) {
         return f;
@@ -247,7 +247,7 @@ function initUniform(program, uniforms, textures) {
 
         var name = info.name;
         var setter = createUniformSetter(program, info);
-        addSetter(uniforms, name, setter);
+        setUniform(uniforms, name, setter);
         if (info.type == gl.SAMPLER_2D || info.type == gl.SAMPLER_CUBE) {
             textures[name] = setter;
         }
@@ -336,10 +336,10 @@ program.prototype.setAttrib = function(name, value) {
  * @returns {*}
  */
 program.prototype.getUniform = function(name) {
-    return getSetter(this.uniforms, name);
+    return getUniform(this.uniforms, name);
 }
 program.prototype.setUniform = function(name, value) {
-    var setter = getSetter(this.uniforms, name);
+    var setter = getUniform(this.uniforms, name);
     if(setter) {
         setter.upload(value);
     } else if(SHOW_UNDEFINED) {
