@@ -1,9 +1,9 @@
-#version 400
+#version 120
 
-layout (location = 0) in vec3 VertexPosition;
-layout (location = 1) in vec3 VertexTexCoord;
+attribute vec3 VertexPosition;
+attribute vec3 VertexTexCoord;
 
-out vec3 TexCoord;
+varying vec3 TexCoord;
 
 void main()
 {

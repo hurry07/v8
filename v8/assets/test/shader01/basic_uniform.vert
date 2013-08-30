@@ -29,9 +29,9 @@ uniform mat4 RotationMatrix;
 
 void main()
 {
-    Color = VertexColor;
     Color.r = Blob.r;
     Color.g = Blob.g;
     Color.b = Blob.b;
+    Color = VertexColor;
     gl_Position = RotationMatrix * vec4(VertexPosition, 1.0);
 }

@@ -3,9 +3,10 @@ var file = require('core/file.js');
 
 var shaderDB = {};
 
-function checkShader(shader) {
+function checkShader(shader, id) {
     var compiled = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
     if (!compiled) {
+        console.log('compile shader error:' + id);
         var log = gl.getShaderInfoLog(shader);
         gl.deleteShader(shader);
         throw('Error compiling shader:' + log);
@@ -18,7 +19,7 @@ function shader(id, shaderSource, shaderType) {
     var shader = gl.createShader(shaderType);
     gl.shaderSource(shader, shaderSource);
     gl.compileShader(shader);
-    checkShader(shader);
+    checkShader(shader, id);
 
     this._id = id;
     this._glid = shader;
