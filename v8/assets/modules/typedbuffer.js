@@ -33,7 +33,6 @@ function glBuffer(config) {
         this.mVboId = gl.createBuffer();
     }
 
-//    console.log('this.mVboId', this.mVboId);
     this.mCursor = 0;
 };
 glBuffer.prototype.getElement = function (index, element) {
@@ -111,20 +110,50 @@ glBuffer.prototype.bindVertex = function (indx) {
         gl.vertexAttribPointer(indx, this.mStride, this.mGLtype, this.mNormalize, 0, this.mBuffer);
     }
 }
-function getGLType(type) {
-    if (type === Float32Array) {
-        return gl.FLOAT;
-    } else if (type === Uint8Array) {
-        return gl.UNSIGNED_BYTE;// 数据类型
-    } else if (type === Int8Array) {
-        return gl.BYTE;// 数据类型
-    } else if (type === Uint16Array) {
-        return gl.UNSIGNED_SHORT;
-    } else if (type === Int16Array) {
-        return gl.SHORT;
-    } else {
-        throw("unhandled type:" + type);
+glBuffer.prototype.target = function() {
+    if(arguments.length == 0) {
+        return this.mTarget;
     }
+    this.mTarget = arguments[0];
+}
+
+function getGLType(type) {
+    switch (type) {
+        case Uint8Array:
+            return gl.UNSIGNED_BYTE;
+        case Int8Array:
+            return gl.BYTE;
+        case Uint16Array:
+            return gl.UNSIGNED_SHORT;
+        case Int16Array:
+            return gl.SHORT;
+        case Uint32Array:
+            return gl.UNSIGNED_INT;
+        case Int32Array:
+            return gl.INT;
+        case Float32Array:
+            return gl.FLOAT;
+        default:
+        case Float64Array:
+            throw("unhandled type:" + type);
+    }
+}
+function getTypSize(type) {
+    switch (type) {
+        case Uint8Array:
+        case Int8Array:
+            return 1;
+        case Uint16Array:
+        case Int16Array:
+            return 2;
+        case Uint32Array:
+        case Int32Array:
+        case Float32Array:
+            return 4;
+        case Float64Array:
+            return 8;
+    }
+    return 1;
 }
 
 /**
@@ -218,24 +247,8 @@ structBuilder.prototype.createBufMap = function (bufAccess) {
     for (var i = 0, ps = this.parts, length = ps.length; i < length; i++) {
         var p = ps[i];
         p.byteOffset = byteLength;
-        switch (p.type) {
-            case Uint8Array:
-            case Int8Array:
-                p.byteLength = ps[i].size;
-                break;
-            case Uint16Array:
-            case Int16Array:
-                p.byteLength = 2 * ps[i].size;
-                break;
-            case Uint32Array:
-            case Int32Array:
-            case Float32Array:
-                p.byteLength = 4 * ps[i].size;
-                break;
-            case Float64Array:
-                p.byteLength = 8 * ps[i].size;
-                break;
-        }
+        p.byteLength = getTypSize(p.type) * p.size;
+
         bufAccess[p.name || i] = p;
         byteLength += p.byteLength;
     }

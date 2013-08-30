@@ -9,15 +9,15 @@ struct BlobStruct {
   float RadiusOuter;
 };
 
-uniform BlobStruct BlobSettings;
+uniform BlobStruct Blob;
 
 void main() {
     float dx = TexCoord.x - 0.5;
     float dy = TexCoord.y - 0.5;
     float dist = sqrt(dx * dx + dy * dy);
     gl_FragColor = mix(
-            BlobSettings.InnerColor,
-            BlobSettings.OuterColor,
-            smoothstep(BlobSettings.RadiusInner, BlobSettings.RadiusOuter, dist)
+            Blob.InnerColor,
+            Blob.OuterColor,
+            smoothstep(Blob.RadiusInner, Blob.RadiusOuter, dist)
     );
 }
