@@ -37,25 +37,37 @@ template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& arg
     ClassWrap<TypedBuffer<float>>::expose(global);
     ClassWrap<TypedBuffer<double>>::expose(global);
 
-    ClassWrap<Vec4<float>>::expose("vec4f", global);
     ClassWrap<Vec4<int32_t>>::expose("vec4i", global);
-    ClassWrap<Vec4<uint8_t>>::expose("vec4b", global);
-    ClassWrap<Vec3<float>>::expose("vec3f", global);
     ClassWrap<Vec3<int32_t>>::expose("vec3i", global);
-    ClassWrap<Vec3<uint8_t>>::expose("vec3b", global);
-    ClassWrap<Vec2<float>>::expose("vec2f", global);
     ClassWrap<Vec2<int32_t>>::expose("vec2i", global);
+
+    ClassWrap<Vec4<int16_t>>::expose("vec4s", global);
+    ClassWrap<Vec3<int16_t>>::expose("vec3s", global);
+    ClassWrap<Vec2<int16_t>>::expose("vec2s", global);
+    
+    ClassWrap<Vec4<uint16_t>>::expose("vec4us", global);
+    ClassWrap<Vec3<uint16_t>>::expose("vec3us", global);
+    ClassWrap<Vec2<uint16_t>>::expose("vec2us", global);
+    
+    ClassWrap<Vec4<float>>::expose("vec4f", global);
+    ClassWrap<Vec3<float>>::expose("vec3f", global);
+    ClassWrap<Vec2<float>>::expose("vec2f", global);
+
+    ClassWrap<Vec4<uint8_t>>::expose("vec4b", global);
+    ClassWrap<Vec3<uint8_t>>::expose("vec3b", global);
     ClassWrap<Vec2<uint8_t>>::expose("vec2b", global);
 
-    ClassWrap<Mat2<float>>::expose("mat2f", global);
     ClassWrap<Mat2<int32_t>>::expose("mat2i", global);
-    ClassWrap<Mat2<uint8_t>>::expose("mat2b", global);
-    ClassWrap<Mat3<float>>::expose("mat3f", global);
     ClassWrap<Mat3<int32_t>>::expose("mat3i", global);
-    ClassWrap<Mat3<uint8_t>>::expose("mat3b", global);
-    ClassWrap<Mat4<float>>::expose("mat4f", global);
     ClassWrap<Mat4<int32_t>>::expose("mat4i", global);
+    
+    ClassWrap<Mat2<uint8_t>>::expose("mat2b", global);
+    ClassWrap<Mat3<uint8_t>>::expose("mat3b", global);
     ClassWrap<Mat4<uint8_t>>::expose("mat4b", global);
+    
+    ClassWrap<Mat2<float>>::expose("mat2f", global);
+    ClassWrap<Mat3<float>>::expose("mat3f", global);
+    ClassWrap<Mat4<float>>::expose("mat4f", global);
 
     // alines
     ClassWrap<Mat4<float>>::expose("matrix", global);

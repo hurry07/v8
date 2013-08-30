@@ -3,6 +3,15 @@ var clz = require('nativeclasses');
 exports.vec2i = clz.vec2i;
 exports.vec3i = clz.vec3i;
 exports.vec4i = clz.vec4i;
+
+exports.vec2s = clz.vec2s;
+exports.vec3s = clz.vec3s;
+exports.vec4s = clz.vec4s;
+
+exports.vec2us = clz.vec2us;
+exports.vec3us = clz.vec3us;
+exports.vec4us = clz.vec4us;
+
 exports.vec2f = clz.vec2f;
 exports.vec3f = clz.vec3f;
 exports.vec4f = clz.vec4f;

@@ -20,10 +20,16 @@ static void argValue(const FunctionCallbackInfo<Value> &info, int index, float* 
     *slot = info[index]->NumberValue();
 }
 static void argValue(const FunctionCallbackInfo<Value> &info, int index, uint8_t* slot) {
-    *slot = info[index]->BooleanValue();
+    *slot = info[index]->Uint32Value();
 }
 static void argValue(const FunctionCallbackInfo<Value> &info, int index, int32_t* slot) {
     *slot = info[index]->Int32Value();
+}
+static void argValue(const FunctionCallbackInfo<Value> &info, int index, int16_t* slot) {
+    *slot = info[index]->Int32Value();
+}
+static void argValue(const FunctionCallbackInfo<Value> &info, int index, uint16_t* slot) {
+    *slot = info[index]->Uint32Value();
 }
 
 /**
@@ -188,6 +194,8 @@ static const char* printValue(const char* name, T* ptr, int length, int step=0) 
 PTR_TOSTRING(int32_t, int2str);
 PTR_TOSTRING(float, float2str);
 PTR_TOSTRING(uint8_t, int2str);
+PTR_TOSTRING(int16_t, int2str);
+PTR_TOSTRING(uint16_t, int2str);
 
 //namespace bytetools {
 //    void move(char* dest, char* from, long length);
