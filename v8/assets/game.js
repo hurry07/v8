@@ -17,16 +17,18 @@ function loadOBJ(fileName) {
     var s = f.getContent();
     f.release();
 
-    var lines = s.split(/\r?\n/);
-    console.log(lines[0]);
-
     var points = [];
     var normals = [];
     var texCoords = [];
     var faces = [];
 
-    for (var i = 0, length = lines.length; i < length; i++) {
-        var line = lines[i];
+    var fpoint = new Array(3);
+    var fcount = 0;
+    var index = -1;
+    var current = 0;
+
+    while((current = s.indexOf('\n', index + 1)) != -1) {
+        var line = s.slice(index + 1, current);
         var tokens = line.split(/\s+/);
         var token = tokens.shift();
         if (token == 'v') {
@@ -36,14 +38,31 @@ function loadOBJ(fileName) {
         } else if (token == 'vn') {
             normals.push(new vector3(tokens));
         } else if (token == 'f') {
-            while (faces.length > 0) {
-                faces.push(new vec3s(tokens.shift().split('/')));
+            fcount = 0;
+            console.log('--->',tokens, tokens.length, tokens[0]);
+            while (tokens.length > 0) {
+                var sh = tokens.shift();
+                var refs = sh.split('/');
+                if(refs.length != 3) {
+                    throw("Missing some data for vertex" + ',' + refs.length + ',' + sh + ',' + line);
+                }
+                if(refs[0] != refs[1] || refs[0] != refs[2]) {
+                    throw("Indexes are not consistent.");
+                }
+                fpoint[fcount++] = refs[0];
             }
+            faces.push(new vec3s(fpoint));
         }
+
+        index = current;
     }
+    console.log(texCoords.length);
+    console.log(points.length);
 }
 
 loadOBJ('chapter02/media/bs_ears.obj');
+console.log('47');
+//console.test('47');
 
 /*
  for(var i in gl) {
@@ -59,18 +78,15 @@ game.pause = function () {
 }
 game.resume = function () {
 }
-function setupGraphics() {
-    console.log('gl', gl);
-}
 game.render = {
     onSurfaceCreated: function (width, height) {
-        gljs.setupGraphics(width, height);
+//        gljs.setupGraphics(width, height);
     },
     onSurfaceChanged: function (width, height) {
     },
     onDrawFrame: function () {
-        gljs.renderFrame();
-        game.runcount++;
+//        gljs.renderFrame();
+//        game.runcount++;
     }
 };
 exports = module.exports = game;
