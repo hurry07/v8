@@ -10,7 +10,10 @@
 #include "../global.h"
 
 using namespace v8;
-
+static void test(const FunctionCallbackInfo<Value>& args) {
+    global::testValue(args[0]);
+    LOGI("%f, %d", args[0]->NumberValue(), args[0]->Int32Value());
+}
 static void log(const FunctionCallbackInfo<Value>& args) {
     std::string buf;
     int length = args.Length();
@@ -30,6 +33,7 @@ template<> void Module<Console>::init(const FunctionCallbackInfo<Value>& args) {
     Local<Object> target = args[0]->ToObject();
     
     NODE_SET_METHOD(target, "log", log);
+    NODE_SET_METHOD(target, "test", test);
 }
 
 template<> const char* Module<Console>::mFile = __FILE__;
