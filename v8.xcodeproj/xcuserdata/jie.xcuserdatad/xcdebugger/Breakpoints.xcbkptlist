@@ -8,13 +8,26 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "v8/modules/Image.cpp"
-         timestampString = "399728922.825191"
+         timestampString = "399734115.905468"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "30"
-         endingLineNumber = "30"
+         startingLineNumber = "34"
+         endingLineNumber = "34"
          landmarkName = "Image::init(const v8::FunctionCallbackInfo&lt;v8::Value&gt; &amp;args)"
          landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "v8/modules/GLBinding.cpp"
+         timestampString = "399740775.359986"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1945"
+         endingLineNumber = "1945"
+         landmarkName = "JS_METHOD(internalTexImage2D)"
+         landmarkType = "7">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

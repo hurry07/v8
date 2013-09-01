@@ -68,6 +68,12 @@ console.log('47');
 
 var img = new Image('images/pngnow.png');
 console.log('img.width', img.width, 'height', img.height);
+var tid = gl.createTexture();
+console.log('tid:' + tid);
+gl.bindTexture(gl.TEXTURE_2D, tid);
+gl.internalTexImage2D(gl.TEXTURE_2D, 0, img);
+gl.checkGLError('check internal');
+console.log('after check internal');
 
 /*
  for(var i in gl) {

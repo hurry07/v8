@@ -120,9 +120,11 @@ public:
     DEFINE_GL(stencilOp);
     DEFINE_GL(stencilOpSeparate);
     DEFINE_GL(texImage2D);
+    DEFINE_GL(internalTexImage2D);
     DEFINE_GL(texParameterf);
     DEFINE_GL(texParameteri);
     DEFINE_GL(texSubImage2D);
+    DEFINE_GL(internalTexSubImage2D);
     DEFINE_GL(uniform1f);
     DEFINE_GL(uniform1fv);
     DEFINE_GL(uniform1i);

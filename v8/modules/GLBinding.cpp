@@ -11,6 +11,7 @@
 #include "../core/ClassBase.h"
 #include "../core/v8Utils.h"
 #include "../core/bytebuffer.h"
+#include "Image.h"
 
 using v8::HandleScope;
 using v8::String;
@@ -975,10 +976,12 @@ template<> void Module<GLBinding>::init(const FunctionCallbackInfo<Value>& args)
     BIND_GL(_proto_, stencilMaskSeparate);
     BIND_GL(_proto_, stencilOp);
     BIND_GL(_proto_, stencilOpSeparate);
-    BIND_GL(_proto_, texImage2D);// ImageData
+    BIND_GL(_proto_, texImage2D);
+    BIND_GL(_proto_, internalTexImage2D);
     BIND_GL(_proto_, texParameterf);
     BIND_GL(_proto_, texParameteri);
     BIND_GL(_proto_, texSubImage2D);
+    BIND_GL(_proto_, internalTexSubImage2D);
     BIND_GL(_proto_, uniform1f);
     BIND_GL(_proto_, uniform1fv);
     BIND_GL(_proto_, uniform1i);
@@ -1891,19 +1894,93 @@ JS_METHOD(texImage2D) {
             return;
         }
         c->getUnderlying(&buf);
-        glTexImage2D(ARGS_GLenum(args[0]),
-                     ARGS_GLint(args[1]),
-                     ARGS_GLint(args[2]),
-                     ARGS_GLsizei(args[3]),
-                     ARGS_GLsizei(args[4]),
-                     ARGS_GLint(args[5]),
-                     ARGS_GLenum(args[6]),
-                     ARGS_GLenum(args[7]),
+        glTexImage2D(ARGS_GLenum(args[0]),// target
+                     ARGS_GLint(args[1]),// level
+                     ARGS_GLint(args[2]),// internalformat
+                     ARGS_GLsizei(args[3]),// width
+                     ARGS_GLsizei(args[4]),// height
+                     ARGS_GLint(args[5]),// border
+                     ARGS_GLenum(args[6]),// format
+                     ARGS_GLenum(args[7]),// type
                      buf.value_ptr());
-    } else if(args.Length() == 7) {
-        LOGE("texImage2D 6 parameter not supported");
+
+    } else if(args.Length() == 6) {
+        Image* image = internalArg<Image>(args[5], CLASS_IMAGE);
+        if(image == 0) {
+            ThrowException(String::New("texImage2D args[5] must be an image"));
+            return;
+        }
+        if(image->isReleased()) {
+            ThrowException(String::New("texImage2D args[5] image instance has released"));
+            return;
+        }
+        glTexImage2D(ARGS_GLenum(args[0]),// target
+                     ARGS_GLint(args[1]),// level
+                     ARGS_GLint(args[2]),// internalformat
+                     image->getWidth(),//
+                     image->getHeight(),//
+                     0,// border
+                     ARGS_GLenum(args[3]),// format
+                     ARGS_GLenum(args[4]),// type
+                     image->getData());
     }
 }
+/**
+ * load texture to GL
+ * 3
+ @param {Number} target
+ @param {Number} level
+ @param {ImageData|HTMLImageElement|HTMLCanvasElement|HTMLVideoElement} pixelsImageCanvasOrVideo
+ */
+/**
+ * create a empty texture with the given width/height
+ * 5
+ @param {Number} target
+ @param {Number} level
+ @param {Number} width
+ @param {Number} height
+ @param {ImageData|HTMLImageElement|HTMLCanvasElement|HTMLVideoElement} pixelsImageCanvasOrVideo
+ */
+JS_METHOD(internalTexImage2D) {
+    int length = args.Length();
+    if(length != 3 && length != 5) {
+        ThrowException(String::New("internalTexImage2D invalide arguments number"));
+        return;
+    }
+
+    int last = args.Length() - 1;
+    Image* image = internalArg<Image>(args[last], CLASS_IMAGE);
+    if(image == 0) {
+        ThrowException(String::New("internalTexImage2D args[last] must be an image"));
+        return;
+    }
+    if(image->isReleased()) {
+        ThrowException(String::New("internalTexImage2D args[last] image instance has released"));
+        return;
+    }
+    if(length == 3) {
+        glTexImage2D(ARGS_GLenum(args[0]),// target
+                     ARGS_GLint(args[1]),// level
+                     image->getInternalFormat(),// internalformat
+                     image->getWidth(),//
+                     image->getHeight(),//
+                     0,// border
+                     image->getFormat(),// format
+                     image->getType(),// type
+                     image->getData());
+    } else {
+        glTexImage2D(ARGS_GLenum(args[0]),// target
+                     ARGS_GLint(args[1]),// level
+                     image->getInternalFormat(),// internalformat
+                     ARGS_GLint(args[2]),//
+                     ARGS_GLint(args[3]),//
+                     0,// border
+                     image->getFormat(),// format
+                     image->getType(),// type
+                     0);
+    }
+}
+
 DELEGATE_TO_GL_N3(texParameterf, glTexParameterf, GLenum, GLenum, GLfloat);
 DELEGATE_TO_GL_N3(texParameteri, glTexParameteri, GLenum, GLenum, GLint);
 /**
@@ -1920,12 +1997,12 @@ DELEGATE_TO_GL_N3(texParameteri, glTexParameteri, GLenum, GLenum, GLint);
  */
 /**
  * 7
- @param {Number} target
- @param {Number} level
- @param {Number} xoffset
- @param {Number} yoffset
- @param {Number} format
- @param {Number} type
+ @param {Number} target 0
+ @param {Number} level 1
+ @param {Number} xoffset 2
+ @param {Number} yoffset 3
+ @param {Number} format 4
+ @param {Number} type 5
  @param {ImageData|HTMLImageElement|HTMLCanvasElement|HTMLVideoElement} pixelsImageCanvasOrVideo
  */
 JS_METHOD(texSubImage2D) {
@@ -1947,9 +2024,56 @@ JS_METHOD(texSubImage2D) {
                      ARGS_GLenum(args[7]),// GLenum type
                      buf.value_ptr());// const GLvoid *pixels
     } else if(args.Length() == 7) {
+        Image* image = internalArg<Image>(args[6], CLASS_IMAGE);
+        if(image == 0) {
+            ThrowException(String::New("args[6] must be an image"));
+            return;
+        }
+        if(image->isReleased()) {
+            ThrowException(String::New("args[6] image instance has released"));
+            return;
+        }
+        glTexSubImage2D(ARGS_GLenum(args[0]),// GLenum target
+                        ARGS_GLint(args[1]),// GLint level
+                        ARGS_GLint(args[2]),// GLint xoffset
+                        ARGS_GLint(args[3]),// GLint yoffset
+                        image->getWidth(),// GLsizei width
+                        image->getHeight(),// GLsizei height
+                        ARGS_GLenum(args[4]),// GLenum format
+                        ARGS_GLenum(args[5]),// GLenum type
+                        image->getData());// const GLvoid *pixels
     }
 }
 //DELEGATE_TO_GL_N9(texSubImage2D, glTexSubImage2D, GLenum, GLint, GLint, GLint, GLsizei, GLsizei, GLenum, GLenum, GLvoidP);
+/**
+ * load image with it internal format
+ *
+ @param {Number} target
+ @param {Number} level
+ @param {Number} xoffset
+ @param {Number} yoffset
+ @param {ArrayBufferView} pixels
+ */
+JS_METHOD(internalTexSubImage2D) {
+    Image* image = internalArg<Image>(args[4], CLASS_IMAGE);
+    if(image == 0) {
+        ThrowException(String::New("internalTexSubImage2D args[4] must be an image"));
+        return;
+    }
+    if(image->isReleased()) {
+        ThrowException(String::New("internalTexSubImage2D args[4] image instance has released"));
+        return;
+    }
+    glTexSubImage2D(ARGS_GLenum(args[0]),// GLenum target
+                    ARGS_GLint(args[1]),// GLint level
+                    ARGS_GLint(args[2]),// GLint xoffset
+                    ARGS_GLint(args[3]),// GLint yoffset
+                    image->getWidth(),// GLsizei width
+                    image->getHeight(),// GLsizei height
+                    image->getFormat(),// GLenum format
+                    image->getType(),// GLenum type
+                    image->getData());// const GLvoid *pixels
+}
 
 DELEGATE_TO_GL_N2(uniform1f, glUniform1f, GLint, GLfloat);
 DELEGATE_TO_GL_N3(uniform2f, glUniform2f, GLint, GLfloat, GLfloat);

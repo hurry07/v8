@@ -36,14 +36,18 @@ THE SOFTWARE.
 NS_NODE_BEGIN
 
 TextImgParam::TextImgParam() : 
-    target(GL_TEXTURE_2D),
-    level(0),
     internalformat(GL_RGBA),
     width(1),
     height(1),
-    border(0),
     format(GL_RGBA),
-    type(GL_UNSIGNED_BYTE) {
+    type(GL_UNSIGNED_BYTE),
+    mData(0),
+    mDelete(false) {
+}
+TextImgParam::~TextImgParam() {
+    if(mDelete) {
+        delete[] mData;
+    }
 }
 
 //CLASS IMPLEMENTATIONS:
@@ -99,26 +103,44 @@ bool CCTexture2D::initWithData(const void *data, CCTexture2DPixelFormat pixelFor
     switch(pixelFormat)
     {
     case kCCTexture2DPixelFormat_RGBA8888:
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (GLsizei)pixelsWide, (GLsizei)pixelsHigh, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+            mParam.internalformat = GL_RGBA;
+            mParam.format = GL_RGBA;
+            mParam.type = GL_UNSIGNED_BYTE;
+//        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (GLsizei)pixelsWide, (GLsizei)pixelsHigh, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
         break;
     case kCCTexture2DPixelFormat_RGB888:
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, (GLsizei)pixelsWide, (GLsizei)pixelsHigh, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+            mParam.internalformat = GL_RGB;
+            mParam.format = GL_RGB;
+            mParam.type = GL_UNSIGNED_BYTE;
+//        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, (GLsizei)pixelsWide, (GLsizei)pixelsHigh, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
         break;
     case kCCTexture2DPixelFormat_RGBA4444:
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (GLsizei)pixelsWide, (GLsizei)pixelsHigh, 0, GL_RGBA, GL_UNSIGNED_SHORT_4_4_4_4, data);
+            mParam.internalformat = GL_RGBA;
+            mParam.format = GL_RGBA;
+            mParam.type = GL_UNSIGNED_SHORT_4_4_4_4;
+//        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (GLsizei)pixelsWide, (GLsizei)pixelsHigh, 0, GL_RGBA, GL_UNSIGNED_SHORT_4_4_4_4, data);
         break;
     case kCCTexture2DPixelFormat_RGB5A1:
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (GLsizei)pixelsWide, (GLsizei)pixelsHigh, 0, GL_RGBA, GL_UNSIGNED_SHORT_5_5_5_1, data);
+            mParam.internalformat = GL_RGBA;
+            mParam.format = GL_RGBA;
+            mParam.type = GL_UNSIGNED_SHORT_5_5_5_1;
+//        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, (GLsizei)pixelsWide, (GLsizei)pixelsHigh, 0, GL_RGBA, GL_UNSIGNED_SHORT_5_5_5_1, data);
         break;
     case kCCTexture2DPixelFormat_RGB565:
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, (GLsizei)pixelsWide, (GLsizei)pixelsHigh, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, data);
+            mParam.internalformat = GL_RGB;
+            mParam.format = GL_RGB;
+            mParam.type = GL_UNSIGNED_SHORT_5_6_5;
+//        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, (GLsizei)pixelsWide, (GLsizei)pixelsHigh, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, data);
         break;
     case kCCTexture2DPixelFormat_AI88:
             LOGE("conflit with gl_3.h");
 //        glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE_ALPHA, (GLsizei)pixelsWide, (GLsizei)pixelsHigh, 0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, data);
         break;
     case kCCTexture2DPixelFormat_A8:
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, (GLsizei)pixelsWide, (GLsizei)pixelsHigh, 0, GL_ALPHA, GL_UNSIGNED_BYTE, data);
+            mParam.internalformat = GL_ALPHA;
+            mParam.format = GL_ALPHA;
+            mParam.type = GL_UNSIGNED_BYTE;
+//        glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, (GLsizei)pixelsWide, (GLsizei)pixelsHigh, 0, GL_ALPHA, GL_UNSIGNED_BYTE, data);
         break;
     case kCCTexture2DPixelFormat_I8:
             LOGE("conflit with gl_3.h");
@@ -127,6 +149,9 @@ bool CCTexture2D::initWithData(const void *data, CCTexture2DPixelFormat pixelFor
     default:
         LOGI(0, "NSInternalInconsistencyException");
     }
+
+    mParam.width = pixelsWide;
+    mParam.height = pixelsHigh;
 
     m_uPixelsWide = pixelsWide;
     m_uPixelsHigh = pixelsHigh;
@@ -282,10 +307,13 @@ bool CCTexture2D::initPremultipliedATextureWithImage(CCImage *image, unsigned in
 
     initWithData(tempData, pixelFormat, width, height);
 
-    if (tempData != image->getData())
-    {
-        delete [] tempData;
-    }
+    mParam.mData = tempData;
+    mParam.mDelete = tempData != image->getData();
+
+//    if (tempData != image->getData())
+//    {
+//        delete [] tempData;
+//    }
 
     m_bHasPremultipliedAlpha = image->isPremultipliedAlpha();
     return true;

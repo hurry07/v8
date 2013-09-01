@@ -34,18 +34,16 @@ NS_NODE_BEGIN
 
 class TextImgParam {
 public:
-    GLenum target;
-    GLint level;
     GLint internalformat;
     GLsizei width;
     GLsizei height;
-    GLint border;
     GLenum format;
     GLenum type;
-    GLint offsetx;
-    GLint offsety;
+    unsigned char* mData;
+    bool mDelete;
 
     TextImgParam();
+    virtual ~TextImgParam();
 };
 
 class CCImage;
@@ -168,6 +166,8 @@ public:
 
     bool hasPremultipliedAlpha();
     bool hasMipmaps();
+
+    TextImgParam mParam;
 private:
     bool initPremultipliedATextureWithImage(CCImage * image, unsigned int pixelsWide, unsigned int pixelsHigh);
     

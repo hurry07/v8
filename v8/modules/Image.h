@@ -9,8 +9,10 @@
 #ifndef __v8__Image__
 #define __v8__Image__
 
+#include <Opengl/gl3.h>
 #include "../core/ClassBase.h"
 #include "CCImage.h"
+#include "CCTexture2D.h"
 #include <v8.h>
 
 class Image : public ClassBase {
@@ -22,8 +24,15 @@ public:
     virtual void doRelease();
     static class_struct* getExportStruct();
     virtual ClassType getClassType();
+    virtual void* getData();
+    virtual int getWidth();
+    virtual int getHeight();
+    virtual unsigned int getInternalFormat();
+    virtual unsigned int getFormat();
+    virtual unsigned int getType();
 
     node::CCImage* mImage;
+    node::CCTexture2D* mTexture;
 };
 
 #endif /* defined(__v8__Image__) */

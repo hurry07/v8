@@ -5,18 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/modules/Texture.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/modules/Texture.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/modules/CCImage.h" afterPath="$PROJECT_DIR$/v8/modules/CCImage.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/xcuserdata/jie.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" afterPath="$PROJECT_DIR$/v8.xcodeproj/xcuserdata/jie.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/modules/CCTexture2D.cpp" afterPath="$PROJECT_DIR$/v8/modules/CCTexture2D.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/modules/CCTexture2D.h" afterPath="$PROJECT_DIR$/v8/modules/CCTexture2D.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/modules/GLBinding.cpp" afterPath="$PROJECT_DIR$/v8/modules/GLBinding.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/modules/GLBinding.h" afterPath="$PROJECT_DIR$/v8/modules/GLBinding.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/modules/Image.cpp" afterPath="$PROJECT_DIR$/v8/modules/Image.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/modules/Image.h" afterPath="$PROJECT_DIR$/v8/modules/Image.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/game.js" afterPath="$PROJECT_DIR$/v8/assets/game.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378019225603" ignored="false" />
-    <file path="/game.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377857507019" ignored="false" />
+    <file path="/game.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378047883425" ignored="false" />
     <file path="/a.dummy" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377846548078" ignored="false" />
     <file path="/temp.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376748679355" ignored="false" />
     <file path="/programs.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376753166840" ignored="false" />
@@ -40,7 +44,6 @@
     <file path="/basic_uniform.vert" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377698405017" ignored="false" />
     <file path="/basic_uniform.frag" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377698474301" ignored="false" />
     <file path="/game_matrix.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377790222081" ignored="false" />
-    <file path="$PROJECT_DIR$/v8/modules/GLBinding.cpp" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377790136647" ignored="false" />
     <file path="/basic_uniformblock.frag" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377831006393" ignored="false" />
     <file path="/basic_uniformblock.vert" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377830626369" ignored="false" />
     <file path="/shader.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377830906650" ignored="false" />
@@ -65,10 +68,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="game.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="game.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="92" column="0" selection-start="2438" selection-end="2438" vertical-scroll-proportion="0.0">
+            <state line="75" column="31" selection-start="2324" selection-end="2324" vertical-scroll-proportion="0.37699682">
               <folding />
             </state>
           </provider>
@@ -92,10 +95,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WebGL.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="WebGL.js" pinned="false" current="false" current-in-tab="false">
         <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/WebGL.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2421" column="33" selection-start="40651" selection-end="40651" vertical-scroll-proportion="0.47923324">
+            <state line="1495" column="30" selection-start="20882" selection-end="20883" vertical-scroll-proportion="-8.0">
               <folding />
             </state>
           </provider>
@@ -687,13 +690,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="0" selection-start="2438" selection-end="2438" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/test/shader01/game_uniformblock.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="48" column="12" selection-start="1311" selection-end="1311" vertical-scroll-proportion="0.0">
@@ -703,7 +699,14 @@
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/WebGL.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2421" column="33" selection-start="40651" selection-end="40651" vertical-scroll-proportion="0.47923324">
+        <state line="1495" column="30" selection-start="20882" selection-end="20883" vertical-scroll-proportion="-8.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="75" column="31" selection-start="2324" selection-end="2324" vertical-scroll-proportion="0.37699682">
           <folding />
         </state>
       </provider>
