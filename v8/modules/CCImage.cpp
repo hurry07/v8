@@ -24,7 +24,7 @@ THE SOFTWARE.
 
 #include "CCImage.h"
 #include <png.h>
-#include <jpeglib.h>
+//#include <jpeglib.h>
 //#include <decode.h>
 //#include <types.h>
 #include <ctype.h>
@@ -123,11 +123,11 @@ bool CCImage::initWithImageData(void * pData,
             bRet = _initWithPngData(pData, nDataLen);
             break;
         }
-        else if (kFmtJpg == eFmt)
-        {
-            bRet = _initWithJpgData(pData, nDataLen);
-            break;
-        }
+//        else if (kFmtJpg == eFmt)
+//        {
+//            bRet = _initWithJpgData(pData, nDataLen);
+//            break;
+//        }
 //        else if (kFmtTiff == eFmt)
 //        {
 //            bRet = _initWithTiffData(pData, nDataLen);
@@ -177,16 +177,16 @@ bool CCImage::initWithImageData(void * pData,
 //            }
 
             // if it is a jpeg file buffer.
-            if (nDataLen > 2)
-            {
-                unsigned char* pHead = (unsigned char*)pData;
-                if (   pHead[0] == 0xff
-                    && pHead[1] == 0xd8)
-                {
-                    bRet = _initWithJpgData(pData, nDataLen);
-                    break;
-                }
-            }
+//            if (nDataLen > 2)
+//            {
+//                unsigned char* pHead = (unsigned char*)pData;
+//                if (   pHead[0] == 0xff
+//                    && pHead[1] == 0xd8)
+//                {
+//                    bRet = _initWithJpgData(pData, nDataLen);
+//                    break;
+//                }
+//            }
         }
     } while (0);
     return bRet;
@@ -215,129 +215,128 @@ bool CCImage::initWithImageData(void * pData,
  * Here's the extended error handler struct:
  */
 
-struct my_error_mgr {
-  struct jpeg_error_mgr pub;	/* "public" fields */
-
-  jmp_buf setjmp_buffer;	/* for return to caller */
-};
-
-typedef struct my_error_mgr * my_error_ptr;
-
-/*
- * Here's the routine that will replace the standard error_exit method:
- */
-
-METHODDEF(void)
-my_error_exit (j_common_ptr cinfo)
-{
-  /* cinfo->err really points to a my_error_mgr struct, so coerce pointer */
-  my_error_ptr myerr = (my_error_ptr) cinfo->err;
-
-  /* Always display the message. */
-  /* We could postpone this until after returning, if we chose. */
-  (*cinfo->err->output_message) (cinfo);
-
-  /* Return control to the setjmp point */
-  longjmp(myerr->setjmp_buffer, 1);
-}
-
-bool CCImage::_initWithJpgData(void * data, int nSize)
-{
-    /* these are standard libjpeg structures for reading(decompression) */
-    struct jpeg_decompress_struct cinfo;
-    /* We use our private extension JPEG error handler.
-	 * Note that this struct must live as long as the main JPEG parameter
-	 * struct, to avoid dangling-pointer problems.
-	 */
-	struct my_error_mgr jerr;
-    /* libjpeg data structure for storing one row, that is, scanline of an image */
-    JSAMPROW row_pointer[1] = {0};
-    unsigned long location = 0;
-    unsigned int i = 0;
-
-    bool bRet = false;
-    do 
-    {
-        /* We set up the normal JPEG error routines, then override error_exit. */
-		cinfo.err = jpeg_std_error(&jerr.pub);
-		jerr.pub.error_exit = my_error_exit;
-		/* Establish the setjmp return context for my_error_exit to use. */
-		if (setjmp(jerr.setjmp_buffer)) {
-			/* If we get here, the JPEG code has signaled an error.
-			 * We need to clean up the JPEG object, close the input file, and return.
-			 */
-			LOGI("%d", bRet);
-			jpeg_destroy_decompress(&cinfo);
-			break;
-		}
-
-        /* setup decompression process and source, then read JPEG header */
-        jpeg_create_decompress( &cinfo );
-
-        jpeg_mem_src( &cinfo, (unsigned char *) data, nSize );
-
-        /* reading the image header which contains image information */
-#if (JPEG_LIB_VERSION >= 90)
-        // libjpeg 0.9 adds stricter types.
-        jpeg_read_header( &cinfo, TRUE );
-#else
-        jpeg_read_header( &cinfo, true );
-#endif
-
-        // we only support RGB or grayscale
-        if (cinfo.jpeg_color_space != JCS_RGB)
-        {
-            if (cinfo.jpeg_color_space == JCS_GRAYSCALE || cinfo.jpeg_color_space == JCS_YCbCr)
-            {
-                cinfo.out_color_space = JCS_RGB;
-            }
-        }
-        else
-        {
-            break;
-        }
-
-        /* Start decompression jpeg here */
-        jpeg_start_decompress( &cinfo );
-
-        /* init image info */
-        m_nWidth  = (short)(cinfo.output_width);
-        m_nHeight = (short)(cinfo.output_height);
-        m_bHasAlpha = false;
-        m_bPreMulti = false;
-        m_nBitsPerComponent = 8;
-        row_pointer[0] = new unsigned char[cinfo.output_width*cinfo.output_components];
-        CC_BREAK_IF(! row_pointer[0]);
-
-        m_pData = new unsigned char[cinfo.output_width*cinfo.output_height*cinfo.output_components];
-        CC_BREAK_IF(! m_pData);
-
-        /* now actually read the jpeg into the raw buffer */
-        /* read one scan line at a time */
-        while( cinfo.output_scanline < cinfo.output_height )
-        {
-            jpeg_read_scanlines( &cinfo, row_pointer, 1 );
-            for( i=0; i<cinfo.output_width*cinfo.output_components;i++) 
-            {
-                m_pData[location++] = row_pointer[0][i];
-            }
-        }
-
-		/* When read image file with broken data, jpeg_finish_decompress() may cause error.
-		 * Besides, jpeg_destroy_decompress() shall deallocate and release all memory associated
-		 * with the decompression object.
-		 * So it doesn't need to call jpeg_finish_decompress().
-		 */
-		//jpeg_finish_decompress( &cinfo );
-        jpeg_destroy_decompress( &cinfo );
-        /* wrap up decompression, destroy objects, free pointers and close open files */        
-        bRet = true;
-    } while (0);
-
-    CC_SAFE_DELETE_ARRAY(row_pointer[0]);
-    return bRet;
-}
-
+//struct my_error_mgr {
+//  struct jpeg_error_mgr pub;	/* "public" fields */
+//
+//  jmp_buf setjmp_buffer;	/* for return to caller */
+//};
+//
+//typedef struct my_error_mgr * my_error_ptr;
+//
+///*
+// * Here's the routine that will replace the standard error_exit method:
+// */
+//METHODDEF(void)
+//my_error_exit (j_common_ptr cinfo)
+//{
+//  /* cinfo->err really points to a my_error_mgr struct, so coerce pointer */
+//  my_error_ptr myerr = (my_error_ptr) cinfo->err;
+//
+//  /* Always display the message. */
+//  /* We could postpone this until after returning, if we chose. */
+//  (*cinfo->err->output_message) (cinfo);
+//
+//  /* Return control to the setjmp point */
+//  longjmp(myerr->setjmp_buffer, 1);
+//}
+//
+//bool CCImage::_initWithJpgData(void * data, int nSize)
+//{
+//    /* these are standard libjpeg structures for reading(decompression) */
+//    struct jpeg_decompress_struct cinfo;
+//    /* We use our private extension JPEG error handler.
+//	 * Note that this struct must live as long as the main JPEG parameter
+//	 * struct, to avoid dangling-pointer problems.
+//	 */
+//	struct my_error_mgr jerr;
+//    /* libjpeg data structure for storing one row, that is, scanline of an image */
+//    JSAMPROW row_pointer[1] = {0};
+//    unsigned long location = 0;
+//    unsigned int i = 0;
+//
+//    bool bRet = false;
+//    do 
+//    {
+//        /* We set up the normal JPEG error routines, then override error_exit. */
+//		cinfo.err = jpeg_std_error(&jerr.pub);
+//		jerr.pub.error_exit = my_error_exit;
+//		/* Establish the setjmp return context for my_error_exit to use. */
+//		if (setjmp(jerr.setjmp_buffer)) {
+//			/* If we get here, the JPEG code has signaled an error.
+//			 * We need to clean up the JPEG object, close the input file, and return.
+//			 */
+//			LOGI("%d", bRet);
+//			jpeg_destroy_decompress(&cinfo);
+//			break;
+//		}
+//
+//        /* setup decompression process and source, then read JPEG header */
+//        jpeg_create_decompress( &cinfo );
+//
+//        jpeg_mem_src( &cinfo, (unsigned char *) data, nSize );
+//
+//        /* reading the image header which contains image information */
+//#if (JPEG_LIB_VERSION >= 90)
+//        // libjpeg 0.9 adds stricter types.
+//        jpeg_read_header( &cinfo, TRUE );
+//#else
+//        jpeg_read_header( &cinfo, true );
+//#endif
+//
+//        // we only support RGB or grayscale
+//        if (cinfo.jpeg_color_space != JCS_RGB)
+//        {
+//            if (cinfo.jpeg_color_space == JCS_GRAYSCALE || cinfo.jpeg_color_space == JCS_YCbCr)
+//            {
+//                cinfo.out_color_space = JCS_RGB;
+//            }
+//        }
+//        else
+//        {
+//            break;
+//        }
+//
+//        /* Start decompression jpeg here */
+//        jpeg_start_decompress( &cinfo );
+//
+//        /* init image info */
+//        m_nWidth  = (short)(cinfo.output_width);
+//        m_nHeight = (short)(cinfo.output_height);
+//        m_bHasAlpha = false;
+//        m_bPreMulti = false;
+//        m_nBitsPerComponent = 8;
+//        row_pointer[0] = new unsigned char[cinfo.output_width*cinfo.output_components];
+//        CC_BREAK_IF(! row_pointer[0]);
+//
+//        m_pData = new unsigned char[cinfo.output_width*cinfo.output_height*cinfo.output_components];
+//        CC_BREAK_IF(! m_pData);
+//
+//        /* now actually read the jpeg into the raw buffer */
+//        /* read one scan line at a time */
+//        while( cinfo.output_scanline < cinfo.output_height )
+//        {
+//            jpeg_read_scanlines( &cinfo, row_pointer, 1 );
+//            for( i=0; i<cinfo.output_width*cinfo.output_components;i++) 
+//            {
+//                m_pData[location++] = row_pointer[0][i];
+//            }
+//        }
+//
+//		/* When read image file with broken data, jpeg_finish_decompress() may cause error.
+//		 * Besides, jpeg_destroy_decompress() shall deallocate and release all memory associated
+//		 * with the decompression object.
+//		 * So it doesn't need to call jpeg_finish_decompress().
+//		 */
+//		//jpeg_finish_decompress( &cinfo );
+//        jpeg_destroy_decompress( &cinfo );
+//        /* wrap up decompression, destroy objects, free pointers and close open files */        
+//        bRet = true;
+//    } while (0);
+//
+//    CC_SAFE_DELETE_ARRAY(row_pointer[0]);
+//    return bRet;
+//}
+//
 bool CCImage::_initWithPngData(void * pData, int nDatalen)
 {
 // length of bytes to check if it is a valid png file

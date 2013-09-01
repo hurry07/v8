@@ -10,6 +10,9 @@
 #include <string>
 
 #include "app/Application.h"
+#include "classes/file.h"
+#include "utils/AssetUtil.h"
+#include "modules/CCImage.h"
 #include <GLUT/GLUT.h>
 #include <OpenGL/gl.h>
 
@@ -56,6 +59,16 @@ void testVersion() {
     printf("GLSL Version : %s\n", glslVersion);
 }
 
+void testImageLoad() {
+    JSFile* file = new JSFile();
+    AssetUtil::load(file, "images/pngnow.png");
+    node::CCImage* img = new node::CCImage();
+    img->initWithImageData((void*)file->chars(), file->size());
+    delete file;
+    
+    LOGI("width:%d, height:%d", img->getWidth(), img->getHeight());
+}
+
 Application* app = NULL;
 void onDrawFrame() {
     app->onDrawFrame();
@@ -71,6 +84,7 @@ int main(int argc, char ** argv)
     glutInitWindowSize(480, 480);
 	glutCreateWindow("Xcode Glut Demo");
 
+    testImageLoad();
     testVersion();
 
     app = new Application();

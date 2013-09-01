@@ -8,11 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		182820A1179AFFCB003125B5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182820A0179AFFCB003125B5 /* main.cpp */; };
+		183CE5AB17D2917200ADD5CE /* png.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE51817D2917200ADD5CE /* png.c */; };
+		183CE5AC17D2917200ADD5CE /* pngerror.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE51D17D2917200ADD5CE /* pngerror.c */; };
+		183CE5AD17D2917200ADD5CE /* pnggccrd.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE51E17D2917200ADD5CE /* pnggccrd.c */; };
+		183CE5AE17D2917200ADD5CE /* pngget.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE51F17D2917200ADD5CE /* pngget.c */; };
+		183CE5AF17D2917200ADD5CE /* pngmem.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE52017D2917200ADD5CE /* pngmem.c */; };
+		183CE5B117D2917200ADD5CE /* pngread.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE52317D2917200ADD5CE /* pngread.c */; };
+		183CE5B217D2917200ADD5CE /* pngrio.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE52417D2917200ADD5CE /* pngrio.c */; };
+		183CE5B317D2917200ADD5CE /* pngrtran.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE52517D2917200ADD5CE /* pngrtran.c */; };
+		183CE5B417D2917200ADD5CE /* pngrutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE52617D2917200ADD5CE /* pngrutil.c */; };
+		183CE5B517D2917200ADD5CE /* pngset.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE52717D2917200ADD5CE /* pngset.c */; };
+		183CE5B717D2917200ADD5CE /* pngtrans.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE52A17D2917200ADD5CE /* pngtrans.c */; };
+		183CE5B817D2917200ADD5CE /* pngvcrd.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE52C17D2917200ADD5CE /* pngvcrd.c */; };
+		183CE5B917D2917200ADD5CE /* pngwio.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE52D17D2917200ADD5CE /* pngwio.c */; };
+		183CE5BA17D2917200ADD5CE /* pngwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE52E17D2917200ADD5CE /* pngwrite.c */; };
+		183CE5BB17D2917200ADD5CE /* pngwtran.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE52F17D2917200ADD5CE /* pngwtran.c */; };
+		183CE5BC17D2917200ADD5CE /* pngwutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE53017D2917200ADD5CE /* pngwutil.c */; };
+		183CE5C417D2924500ADD5CE /* pngpread.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE5C317D2924500ADD5CE /* pngpread.c */; };
+		183CE5C617D2934C00ADD5CE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 183CE5C517D2934C00ADD5CE /* libz.dylib */; };
+		183CE6B917D2DF2500ADD5CE /* CCImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 183CE6B817D2DF2500ADD5CE /* CCImage.cpp */; };
 		18A2B6AE17C39A7B00C5F951 /* libv8_base.x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A2B6AC17C39A7B00C5F951 /* libv8_base.x64.a */; };
 		18A2B6AF17C39A7B00C5F951 /* libv8_snapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A2B6AD17C39A7B00C5F951 /* libv8_snapshot.a */; };
 		18A6D24C17C7455D004931FD /* global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D24B17C7455C004931FD /* global.cpp */; };
 		18A6D24E17C75CBE004931FD /* v8Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D24D17C75CBE004931FD /* v8Utils.cpp */; };
-		18B3EA9517D1DEB6009E78A2 /* CCImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18B3EA9417D1DEB6009E78A2 /* CCImage.mm */; };
 		18CE2CC217C6582C00B6DB8E /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18CE224817C6582800B6DB8E /* Application.cpp */; };
 		18CE2CC317C6582C00B6DB8E /* ArrayBufferAllocator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18CE224A17C6582800B6DB8E /* ArrayBufferAllocator.cpp */; };
 		18CE2CCF17C6582C00B6DB8E /* file.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18CE227317C6582800B6DB8E /* file.cpp */; };
@@ -1970,6 +1988,28 @@
 /* Begin PBXFileReference section */
 		1828209C179AFFCB003125B5 /* v8 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = v8; sourceTree = BUILT_PRODUCTS_DIR; };
 		182820A0179AFFCB003125B5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		183CE51817D2917200ADD5CE /* png.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = png.c; sourceTree = "<group>"; };
+		183CE51917D2917200ADD5CE /* png.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = png.h; sourceTree = "<group>"; };
+		183CE51C17D2917200ADD5CE /* pngconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pngconf.h; sourceTree = "<group>"; };
+		183CE51D17D2917200ADD5CE /* pngerror.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngerror.c; sourceTree = "<group>"; };
+		183CE51E17D2917200ADD5CE /* pnggccrd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pnggccrd.c; sourceTree = "<group>"; };
+		183CE51F17D2917200ADD5CE /* pngget.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngget.c; sourceTree = "<group>"; };
+		183CE52017D2917200ADD5CE /* pngmem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngmem.c; sourceTree = "<group>"; };
+		183CE52317D2917200ADD5CE /* pngread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngread.c; sourceTree = "<group>"; };
+		183CE52417D2917200ADD5CE /* pngrio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngrio.c; sourceTree = "<group>"; };
+		183CE52517D2917200ADD5CE /* pngrtran.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngrtran.c; sourceTree = "<group>"; };
+		183CE52617D2917200ADD5CE /* pngrutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngrutil.c; sourceTree = "<group>"; };
+		183CE52717D2917200ADD5CE /* pngset.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngset.c; sourceTree = "<group>"; };
+		183CE52A17D2917200ADD5CE /* pngtrans.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngtrans.c; sourceTree = "<group>"; };
+		183CE52B17D2917200ADD5CE /* pngusr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pngusr.h; sourceTree = "<group>"; };
+		183CE52C17D2917200ADD5CE /* pngvcrd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngvcrd.c; sourceTree = "<group>"; };
+		183CE52D17D2917200ADD5CE /* pngwio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwio.c; sourceTree = "<group>"; };
+		183CE52E17D2917200ADD5CE /* pngwrite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwrite.c; sourceTree = "<group>"; };
+		183CE52F17D2917200ADD5CE /* pngwtran.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwtran.c; sourceTree = "<group>"; };
+		183CE53017D2917200ADD5CE /* pngwutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwutil.c; sourceTree = "<group>"; };
+		183CE5C317D2924500ADD5CE /* pngpread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngpread.c; sourceTree = "<group>"; };
+		183CE5C517D2934C00ADD5CE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		183CE6B817D2DF2500ADD5CE /* CCImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCImage.cpp; sourceTree = "<group>"; };
 		18A2B6AC17C39A7B00C5F951 /* libv8_base.x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.x64.a; path = ../libv8_base.x64.a; sourceTree = "<group>"; };
 		18A2B6AD17C39A7B00C5F951 /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = ../libv8_snapshot.a; sourceTree = "<group>"; };
 		18A6D24A17C6FEBF004931FD /* clone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = clone.h; sourceTree = "<group>"; };
@@ -1978,7 +2018,6 @@
 		18AFB48917AE06A900B7AFDA /* libv8_base.x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.x64.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_base.x64.a; sourceTree = "<group>"; };
 		18AFB48B17AE06A900B7AFDA /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_snapshot.a; sourceTree = "<group>"; };
 		18B3EA9317D1DEB6009E78A2 /* CCImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCImage.h; sourceTree = "<group>"; };
-		18B3EA9417D1DEB6009E78A2 /* CCImage.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCImage.mm; sourceTree = "<group>"; };
 		18CE224817C6582800B6DB8E /* Application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
 		18CE224917C6582800B6DB8E /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		18CE224A17C6582800B6DB8E /* ArrayBufferAllocator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArrayBufferAllocator.cpp; sourceTree = "<group>"; };
@@ -4512,6 +4551,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				183CE5C617D2934C00ADD5CE /* libz.dylib in Frameworks */,
 				18A2B6AE17C39A7B00C5F951 /* libv8_base.x64.a in Frameworks */,
 				18A2B6AF17C39A7B00C5F951 /* libv8_snapshot.a in Frameworks */,
 				18EDB76A17B76992002E00CE /* GLUT.framework in Frameworks */,
@@ -4525,6 +4565,7 @@
 		18282091179AFFCB003125B5 = {
 			isa = PBXGroup;
 			children = (
+				183CE5C517D2934C00ADD5CE /* libz.dylib */,
 				18A2B6AC17C39A7B00C5F951 /* libv8_base.x64.a */,
 				18A2B6AD17C39A7B00C5F951 /* libv8_snapshot.a */,
 				18EDB76917B76992002E00CE /* GLUT.framework */,
@@ -4548,6 +4589,7 @@
 		1828209F179AFFCB003125B5 /* v8 */ = {
 			isa = PBXGroup;
 			children = (
+				183CE4A517D2917100ADD5CE /* platform_external_libpng */,
 				18A6D24B17C7455C004931FD /* global.cpp */,
 				18CE224717C6582800B6DB8E /* app */,
 				18CE227117C6582800B6DB8E /* classes */,
@@ -4565,6 +4607,34 @@
 			);
 			path = v8;
 			sourceTree = "<group>";
+		};
+		183CE4A517D2917100ADD5CE /* platform_external_libpng */ = {
+			isa = PBXGroup;
+			children = (
+				183CE5C317D2924500ADD5CE /* pngpread.c */,
+				183CE51817D2917200ADD5CE /* png.c */,
+				183CE51917D2917200ADD5CE /* png.h */,
+				183CE51C17D2917200ADD5CE /* pngconf.h */,
+				183CE51D17D2917200ADD5CE /* pngerror.c */,
+				183CE51E17D2917200ADD5CE /* pnggccrd.c */,
+				183CE51F17D2917200ADD5CE /* pngget.c */,
+				183CE52017D2917200ADD5CE /* pngmem.c */,
+				183CE52317D2917200ADD5CE /* pngread.c */,
+				183CE52417D2917200ADD5CE /* pngrio.c */,
+				183CE52517D2917200ADD5CE /* pngrtran.c */,
+				183CE52617D2917200ADD5CE /* pngrutil.c */,
+				183CE52717D2917200ADD5CE /* pngset.c */,
+				183CE52A17D2917200ADD5CE /* pngtrans.c */,
+				183CE52B17D2917200ADD5CE /* pngusr.h */,
+				183CE52C17D2917200ADD5CE /* pngvcrd.c */,
+				183CE52D17D2917200ADD5CE /* pngwio.c */,
+				183CE52E17D2917200ADD5CE /* pngwrite.c */,
+				183CE52F17D2917200ADD5CE /* pngwtran.c */,
+				183CE53017D2917200ADD5CE /* pngwutil.c */,
+			);
+			name = platform_external_libpng;
+			path = deps/platform_external_libpng;
+			sourceTree = SOURCE_ROOT;
 		};
 		18CE224717C6582800B6DB8E /* app */ = {
 			isa = PBXGroup;
@@ -4635,8 +4705,8 @@
 		18CE228D17C6582800B6DB8E /* modules */ = {
 			isa = PBXGroup;
 			children = (
+				183CE6B817D2DF2500ADD5CE /* CCImage.cpp */,
 				18B3EA9317D1DEB6009E78A2 /* CCImage.h */,
-				18B3EA9417D1DEB6009E78A2 /* CCImage.mm */,
 				18CE229217C6582800B6DB8E /* Console.cpp */,
 				18CE229317C6582800B6DB8E /* Console.h */,
 				18CE229417C6582800B6DB8E /* GLBinding.cpp */,
@@ -9361,7 +9431,24 @@
 				18A6D24C17C7455D004931FD /* global.cpp in Sources */,
 				18A6D24E17C75CBE004931FD /* v8Utils.cpp in Sources */,
 				18CE34B717C7B7E400B6DB8E /* Arguments.cpp in Sources */,
-				18B3EA9517D1DEB6009E78A2 /* CCImage.mm in Sources */,
+				183CE5AB17D2917200ADD5CE /* png.c in Sources */,
+				183CE5AC17D2917200ADD5CE /* pngerror.c in Sources */,
+				183CE5AD17D2917200ADD5CE /* pnggccrd.c in Sources */,
+				183CE5AE17D2917200ADD5CE /* pngget.c in Sources */,
+				183CE5AF17D2917200ADD5CE /* pngmem.c in Sources */,
+				183CE5B117D2917200ADD5CE /* pngread.c in Sources */,
+				183CE5B217D2917200ADD5CE /* pngrio.c in Sources */,
+				183CE5B317D2917200ADD5CE /* pngrtran.c in Sources */,
+				183CE5B417D2917200ADD5CE /* pngrutil.c in Sources */,
+				183CE5B517D2917200ADD5CE /* pngset.c in Sources */,
+				183CE5B717D2917200ADD5CE /* pngtrans.c in Sources */,
+				183CE5B817D2917200ADD5CE /* pngvcrd.c in Sources */,
+				183CE5B917D2917200ADD5CE /* pngwio.c in Sources */,
+				183CE5BA17D2917200ADD5CE /* pngwrite.c in Sources */,
+				183CE5BB17D2917200ADD5CE /* pngwtran.c in Sources */,
+				183CE5BC17D2917200ADD5CE /* pngwutil.c in Sources */,
+				183CE5C417D2924500ADD5CE /* pngpread.c in Sources */,
+				183CE6B917D2DF2500ADD5CE /* CCImage.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -9435,6 +9522,7 @@
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					/Users/jie/git/node/deps/v8/include,
 					"$SRCROOT/deps/glm/**",
+					$SRCROOT/deps/platform_external_libpng,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -9452,6 +9540,7 @@
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					/Users/jie/xcodespace/v8/v8/include,
 					"$SRCROOT/deps/glm/**",
+					$SRCROOT/deps/platform_external_libpng,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

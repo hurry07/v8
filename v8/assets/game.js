@@ -60,7 +60,7 @@ function loadOBJ(fileName) {
     console.log(points.length);
 }
 
-loadOBJ('chapter02/media/bs_ears.obj');
+//loadOBJ('chapter02/media/bs_ears.obj');
 console.log('47');
 //console.test('47');
 
