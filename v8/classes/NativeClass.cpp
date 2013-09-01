@@ -19,6 +19,7 @@ using namespace v8;
 #include "../typedbuffer/typedbuffer.h"
 #include "../core/ClassWrap.h"
 #include "file.h"
+#include "../modules/Image.h"
 
 template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& args) {
     HandleScope scope;
@@ -79,6 +80,8 @@ template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& arg
     ClassWrap<Vec4<float>>::expose("vector4", global);
     ClassWrap<Vec3<float>>::expose("vector3", global);
     ClassWrap<Vec2<float>>::expose("vector2", global);
+
+    ClassWrap<Image>::expose(global);
 }
 
 template<> const char* Module<NativeClass>::mFile = __FILE__;

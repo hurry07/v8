@@ -77,4 +77,3 @@ void JSFile::doRelease() {
     delete[] mBuffer;
 }
 
-

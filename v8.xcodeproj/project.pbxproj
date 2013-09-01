@@ -27,6 +27,8 @@
 		183CE5C417D2924500ADD5CE /* pngpread.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE5C317D2924500ADD5CE /* pngpread.c */; };
 		183CE5C617D2934C00ADD5CE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 183CE5C517D2934C00ADD5CE /* libz.dylib */; };
 		183CE6B917D2DF2500ADD5CE /* CCImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 183CE6B817D2DF2500ADD5CE /* CCImage.cpp */; };
+		183CE6C017D2F76100ADD5CE /* CCTexture2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 183CE6BE17D2F76000ADD5CE /* CCTexture2D.cpp */; };
+		183CE6C717D34A6C00ADD5CE /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 183CE6C517D34A6B00ADD5CE /* Image.cpp */; };
 		18A2B6AE17C39A7B00C5F951 /* libv8_base.x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A2B6AC17C39A7B00C5F951 /* libv8_base.x64.a */; };
 		18A2B6AF17C39A7B00C5F951 /* libv8_snapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A2B6AD17C39A7B00C5F951 /* libv8_snapshot.a */; };
 		18A6D24C17C7455D004931FD /* global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D24B17C7455C004931FD /* global.cpp */; };
@@ -2010,6 +2012,10 @@
 		183CE5C317D2924500ADD5CE /* pngpread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngpread.c; sourceTree = "<group>"; };
 		183CE5C517D2934C00ADD5CE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		183CE6B817D2DF2500ADD5CE /* CCImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCImage.cpp; sourceTree = "<group>"; };
+		183CE6BE17D2F76000ADD5CE /* CCTexture2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTexture2D.cpp; sourceTree = "<group>"; };
+		183CE6BF17D2F76000ADD5CE /* CCTexture2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTexture2D.h; sourceTree = "<group>"; };
+		183CE6C517D34A6B00ADD5CE /* Image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
+		183CE6C617D34A6C00ADD5CE /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
 		18A2B6AC17C39A7B00C5F951 /* libv8_base.x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.x64.a; path = ../libv8_base.x64.a; sourceTree = "<group>"; };
 		18A2B6AD17C39A7B00C5F951 /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = ../libv8_snapshot.a; sourceTree = "<group>"; };
 		18A6D24A17C6FEBF004931FD /* clone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = clone.h; sourceTree = "<group>"; };
@@ -4705,6 +4711,8 @@
 		18CE228D17C6582800B6DB8E /* modules */ = {
 			isa = PBXGroup;
 			children = (
+				183CE6BE17D2F76000ADD5CE /* CCTexture2D.cpp */,
+				183CE6BF17D2F76000ADD5CE /* CCTexture2D.h */,
 				183CE6B817D2DF2500ADD5CE /* CCImage.cpp */,
 				18B3EA9317D1DEB6009E78A2 /* CCImage.h */,
 				18CE229217C6582800B6DB8E /* Console.cpp */,
@@ -4712,6 +4720,8 @@
 				18CE229417C6582800B6DB8E /* GLBinding.cpp */,
 				18CE229517C6582800B6DB8E /* GLBinding.h */,
 				18CE229617C6582800B6DB8E /* modules.h */,
+				183CE6C517D34A6B00ADD5CE /* Image.cpp */,
+				183CE6C617D34A6C00ADD5CE /* Image.h */,
 			);
 			path = modules;
 			sourceTree = "<group>";
@@ -9449,6 +9459,8 @@
 				183CE5BC17D2917200ADD5CE /* pngwutil.c in Sources */,
 				183CE5C417D2924500ADD5CE /* pngpread.c in Sources */,
 				183CE6B917D2DF2500ADD5CE /* CCImage.cpp in Sources */,
+				183CE6C017D2F76100ADD5CE /* CCTexture2D.cpp in Sources */,
+				183CE6C717D34A6C00ADD5CE /* Image.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,6 +6,8 @@ var gljs = require('test/shader01/game_uniformblock.js');
 var file = require('core/file.js');
 var buffer = require('modules/typedbuffer.js');
 var math3d = require('core/math3d.js');
+var clz = require('nativeclasses');
+var Image = clz.image;
 
 var vector2 = math3d.vector2;
 var vector3 = math3d.vector3;
@@ -63,6 +65,9 @@ function loadOBJ(fileName) {
 //loadOBJ('chapter02/media/bs_ears.obj');
 console.log('47');
 //console.test('47');
+
+var img = new Image('images/pngnow.png');
+console.log('img.width', img.width, 'height', img.height);
 
 /*
  for(var i in gl) {

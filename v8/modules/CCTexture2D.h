@@ -28,13 +28,29 @@ THE SOFTWARE.
 
 #include "../global.h"
 #include <string>
+#include <Opengl/gl3.h>
 
 NS_NODE_BEGIN
 
+class TextImgParam {
+public:
+    GLenum target;
+    GLint level;
+    GLint internalformat;
+    GLsizei width;
+    GLsizei height;
+    GLint border;
+    GLenum format;
+    GLenum type;
+    GLint offsetx;
+    GLint offsety;
+
+    TextImgParam();
+};
+
 class CCImage;
 
-#include <GLES2/gl2.h>
-#include <GLES2/gl2ext.h>
+//#include <GLES2/gl2ext.h>
 
 //CONSTANTS:
 
@@ -63,20 +79,14 @@ typedef enum {
     //! 2-bit PVRTC-compressed texture: PVRTC2
     kCCTexture2DPixelFormat_PVRTC2,
 
-
     //! Default texture format: RGBA8888
     kCCTexture2DPixelFormat_Default = kCCTexture2DPixelFormat_RGBA8888,
-
-    // backward compatibility stuff
-    kTexture2DPixelFormat_RGBA8888 = kCCTexture2DPixelFormat_RGBA8888,
-    kTexture2DPixelFormat_RGB888 = kCCTexture2DPixelFormat_RGB888,
-    kTexture2DPixelFormat_RGB565 = kCCTexture2DPixelFormat_RGB565,
-    kTexture2DPixelFormat_A8 = kCCTexture2DPixelFormat_A8,
-    kTexture2DPixelFormat_RGBA4444 = kCCTexture2DPixelFormat_RGBA4444,
-    kTexture2DPixelFormat_RGB5A1 = kCCTexture2DPixelFormat_RGB5A1,
-    kTexture2DPixelFormat_Default = kCCTexture2DPixelFormat_Default
-
 } CCTexture2DPixelFormat;
+
+typedef enum {
+    targetTexImage2D,
+    targetTexSubImage2D
+} TextureLoadTarget;
 
 class CCGLProgram;
 
@@ -104,6 +114,7 @@ public:
     virtual ~CCTexture2D();
 
     const char* description(void);
+    bool mInternal;
 
 
     /** Initializes with a texture2d with data */
@@ -172,7 +183,6 @@ private:
 
     /** whether or not the texture has their Alpha premultiplied */
     bool m_bHasPremultipliedAlpha;
-
     bool m_bHasMipmaps;
 };
 

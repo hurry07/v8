@@ -34,7 +34,6 @@ NS_NODE_BEGIN
  * @addtogroup platform
  * @{
  */
-
 class CCImage {
 public:
     CCImage();
@@ -50,19 +49,35 @@ public:
         kFmtUnKnown
     } EImageFormat;
 
-    typedef enum
-    {
-        kAlignCenter        = 0x33, ///< Horizontal center and vertical center.
-        kAlignTop           = 0x13, ///< Horizontal center and vertical top.
-        kAlignTopRight      = 0x12, ///< Horizontal right and vertical top.
-        kAlignRight         = 0x32, ///< Horizontal right and vertical center.
-        kAlignBottomRight   = 0x22, ///< Horizontal right and vertical bottom.
-        kAlignBottom        = 0x23, ///< Horizontal center and vertical bottom.
-        kAlignBottomLeft    = 0x21, ///< Horizontal left and vertical bottom.
-        kAlignLeft          = 0x31, ///< Horizontal left and vertical center.
-        kAlignTopLeft       = 0x11, ///< Horizontal left and vertical top.
-    }ETextAlign;
-    
+    /** @typedef CCTexture2DPixelFormat
+     Possible texture pixel formats
+     */
+    typedef enum {
+        //! 32-bit texture: RGBA8888
+        kCCTexture2DPixelFormat_RGBA8888,
+        //! 24-bit texture: RGBA888
+        kCCTexture2DPixelFormat_RGB888,
+        //! 16-bit texture without Alpha channel
+        kCCTexture2DPixelFormat_RGB565,
+        //! 8-bit textures used as masks
+        kCCTexture2DPixelFormat_A8,
+        //! 8-bit intensity texture
+        kCCTexture2DPixelFormat_I8,
+        //! 16-bit textures used as masks
+        kCCTexture2DPixelFormat_AI88,
+        //! 16-bit textures: RGBA4444
+        kCCTexture2DPixelFormat_RGBA4444,
+        //! 16-bit textures: RGB5A1
+        kCCTexture2DPixelFormat_RGB5A1,
+        //! 4-bit PVRTC-compressed texture: PVRTC4
+        kCCTexture2DPixelFormat_PVRTC4,
+        //! 2-bit PVRTC-compressed texture: PVRTC2
+        kCCTexture2DPixelFormat_PVRTC2,
+        
+        //! Default texture format: RGBA8888
+        kCCTexture2DPixelFormat_Default = kCCTexture2DPixelFormat_RGBA8888,
+    } CCTexture2DPixelFormat;
+
     /**
     @brief  Load image from stream buffer.
 
@@ -78,6 +93,8 @@ public:
                            int nWidth = 0,
                            int nHeight = 0,
                            int nBitsPerComponent = 8);
+    /** Initializes a texture from a UIImage object */
+    bool initWithImage(CCImage * uiImage);
 
     unsigned char *   getData()               { return m_pData; }
     int               getDataLen()            { return m_nWidth * m_nHeight; }
@@ -110,6 +127,7 @@ protected:
 
 
 private:
+    bool initPremultipliedATextureWithImage(CCImage * image, unsigned int pixelsWide, unsigned int pixelsHigh);
     // noncopyable
     CCImage(const CCImage&    rImg);
     CCImage & operator=(const CCImage&);

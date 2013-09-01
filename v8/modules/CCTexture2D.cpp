@@ -35,6 +35,17 @@ THE SOFTWARE.
 
 NS_NODE_BEGIN
 
+TextImgParam::TextImgParam() : 
+    target(GL_TEXTURE_2D),
+    level(0),
+    internalformat(GL_RGBA),
+    width(1),
+    height(1),
+    border(0),
+    format(GL_RGBA),
+    type(GL_UNSIGNED_BYTE) {
+}
+
 //CLASS IMPLEMENTATIONS:
 
 // If the image has alpha, you can create RGBA8 (32-bit) or RGBA4 (16-bit) or RGB5A1 (16-bit)
@@ -50,6 +61,7 @@ CCTexture2D::CCTexture2D()
 , m_uPixelsHigh(0)
 , m_bHasPremultipliedAlpha(false)
 , m_bHasMipmaps(false)
+, mInternal(true)
 {
 }
 
@@ -79,6 +91,10 @@ bool CCTexture2D::hasPremultipliedAlpha()
 
 bool CCTexture2D::initWithData(const void *data, CCTexture2DPixelFormat pixelFormat, unsigned int pixelsWide, unsigned int pixelsHigh)
 {
+    if(mInternal) {
+    }
+    
+    
     // Specify OpenGL texture image
     switch(pixelFormat)
     {
@@ -98,13 +114,15 @@ bool CCTexture2D::initWithData(const void *data, CCTexture2DPixelFormat pixelFor
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, (GLsizei)pixelsWide, (GLsizei)pixelsHigh, 0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, data);
         break;
     case kCCTexture2DPixelFormat_AI88:
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE_ALPHA, (GLsizei)pixelsWide, (GLsizei)pixelsHigh, 0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, data);
+            LOGE("conflit with gl_3.h");
+//        glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE_ALPHA, (GLsizei)pixelsWide, (GLsizei)pixelsHigh, 0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, data);
         break;
     case kCCTexture2DPixelFormat_A8:
         glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, (GLsizei)pixelsWide, (GLsizei)pixelsHigh, 0, GL_ALPHA, GL_UNSIGNED_BYTE, data);
         break;
     case kCCTexture2DPixelFormat_I8:
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, (GLsizei)pixelsWide, (GLsizei)pixelsHigh, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, data);
+            LOGE("conflit with gl_3.h");
+//        glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, (GLsizei)pixelsWide, (GLsizei)pixelsHigh, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, data);
         break;
     default:
         LOGI(0, "NSInternalInconsistencyException");

@@ -13,6 +13,7 @@
 #include "classes/file.h"
 #include "utils/AssetUtil.h"
 #include "modules/CCImage.h"
+#include "modules/CCTexture2D.h"
 #include <GLUT/GLUT.h>
 #include <OpenGL/gl.h>
 
@@ -66,6 +67,9 @@ void testImageLoad() {
     img->initWithImageData((void*)file->chars(), file->size());
     delete file;
     
+    node::CCTexture2D* t2d = new node::CCTexture2D();
+    t2d->initWithImage(img);
+
     LOGI("width:%d, height:%d", img->getWidth(), img->getHeight());
 }
 
