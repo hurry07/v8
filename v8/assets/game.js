@@ -7,7 +7,7 @@ var file = require('core/file.js');
 var buffer = require('modules/typedbuffer.js');
 var math3d = require('core/math3d.js');
 var clz = require('nativeclasses');
-var Image = clz.image;
+var Texture2D = require('modules/textures.js').Texture2D;
 
 var vector2 = math3d.vector2;
 var vector3 = math3d.vector3;
@@ -62,18 +62,7 @@ function loadOBJ(fileName) {
     console.log(points.length);
 }
 
-//loadOBJ('chapter02/media/bs_ears.obj');
-console.log('47');
-//console.test('47');
-
-var img = new Image('images/pngnow.png');
-console.log('img.width', img.width, 'height', img.height);
-var tid = gl.createTexture();
-console.log('tid:' + tid);
-gl.bindTexture(gl.TEXTURE_2D, tid);
-gl.internalTexImage2D(gl.TEXTURE_2D, 0, img);
-gl.checkGLError('check internal');
-console.log('after check internal');
+//var img = new Texture2D('images/pngnow.png');
 
 /*
  for(var i in gl) {
@@ -91,12 +80,12 @@ game.resume = function () {
 }
 game.render = {
     onSurfaceCreated: function (width, height) {
-//        gljs.setupGraphics(width, height);
+        gljs.setupGraphics(width, height);
     },
     onSurfaceChanged: function (width, height) {
     },
     onDrawFrame: function () {
-//        gljs.renderFrame();
+        gljs.renderFrame();
 //        game.runcount++;
     }
 };

@@ -1,9 +1,9 @@
 #version 120
 
 attribute vec3 VertexPosition;
-attribute vec3 VertexTexCoord;
+attribute vec2 VertexTexCoord;
 
-varying vec3 TexCoord;
+varying vec2 TexCoord;
 
 void main()
 {

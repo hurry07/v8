@@ -1811,7 +1811,21 @@ DELEGATE_TO_GL_1_BR(isShader, glIsShader, GLuint);
 DELEGATE_TO_GL_1_BR(isTexture, glIsTexture, GLuint);
 DELEGATE_TO_GL_N1(lineWidth, glLineWidth, GLfloat);
 DELEGATE_TO_GL_N1(linkProgram, glLinkProgram, GLuint);
-DELEGATE_TO_GL_N2(pixelStorei, glPixelStorei, GLenum, GLint);
+//DELEGATE_TO_GL_N2(pixelStorei, glPixelStorei, GLenum, GLint);
+JS_METHOD(pixelStorei) {
+    if(args.Length() != 2) {
+        ThrowException(String::New("pixelStorei: Invalid arguments count, wanted 2"));
+        return;
+    }
+    GLenum pname = ARGS_GLenum(args[0]);
+    GLenum param = ARGS_GLint(args[1]);
+    // UNPACK_FLIP_Y_WEBGL - BROWSER_DEFAULT_WEBGL
+    if(pname >= 0x9240 && pname <= 0x9244) {
+        LOGE("pixelStorei: Invalid pname 0x%x", pname);
+        return;
+    }
+    glPixelStorei(pname, param);
+}
 DELEGATE_TO_GL_N2(polygonOffset, glPolygonOffset, GLfloat, GLfloat);
 JS_METHOD(readPixels) {
     HandleScope scope;
@@ -1883,17 +1897,15 @@ DELEGATE_TO_GL_N4(stencilOpSeparate, glStencilOpSeparate, GLenum, GLenum, GLenum
  @param {Number} internalformat
  @param {Number} format
  @param {Number} type
- @param {ImageData|HTMLImageElement|HTMLCanvasElement|HTMLVideoElement} pixelsImageCanvasOrVideo
+ @param {ImageData|HTMLImageElement|HTMLCanvasElement|HTMLVideoElement} pixelsImageCanvasOrVideo or null
  */
 JS_METHOD(texImage2D) {
     if(args.Length() == 9) {
         ByteBuffer buf;
         ClassBase* c = internalArg<ClassBase>(args[8]);
-        if(c == 0) {
-            ThrowException(String::New("texImage2D param 8 must by ByteBuffer constance class"));
-            return;
+        if(c != 0) {
+            c->getUnderlying(&buf);
         }
-        c->getUnderlying(&buf);
         glTexImage2D(ARGS_GLenum(args[0]),// target
                      ARGS_GLint(args[1]),// level
                      ARGS_GLint(args[2]),// internalformat
@@ -1903,6 +1915,18 @@ JS_METHOD(texImage2D) {
                      ARGS_GLenum(args[6]),// format
                      ARGS_GLenum(args[7]),// type
                      buf.value_ptr());
+//                     0);
+//        LOGI("target:%x level:%x internal:%x width:%d, height:%d, border:%d format:%x, type:%x ptr:%d",
+//             ARGS_GLenum(args[0]),
+//             ARGS_GLint(args[1]),
+//             ARGS_GLint(args[2]),
+//             ARGS_GLsizei(args[3]),
+//             ARGS_GLsizei(args[4]),
+//             ARGS_GLint(args[5]),
+//             ARGS_GLenum(args[6]),
+//             ARGS_GLenum(args[7]),
+//             c != 0);
+        checkGlError("texImage2D native");
 
     } else if(args.Length() == 6) {
         Image* image = internalArg<Image>(args[5], CLASS_IMAGE);
@@ -2009,11 +2033,9 @@ JS_METHOD(texSubImage2D) {
     if(args.Length() == 9) {
         ByteBuffer buf;
         ClassBase* c = internalArg<ClassBase>(args[8]);
-        if(c == 0) {
-            ThrowException(String::New("texSubImage2D param 8 must by ByteBuffer constance class"));
-            return;
+        if(c != 0) {
+            c->getUnderlying(&buf);
         }
-        c->getUnderlying(&buf);
         glTexSubImage2D(ARGS_GLenum(args[0]),// GLenum target
                      ARGS_GLint(args[1]),// GLint level
                      ARGS_GLint(args[2]),// GLint xoffset
@@ -2023,6 +2045,7 @@ JS_METHOD(texSubImage2D) {
                      ARGS_GLenum(args[6]),// GLenum format
                      ARGS_GLenum(args[7]),// GLenum type
                      buf.value_ptr());// const GLvoid *pixels
+
     } else if(args.Length() == 7) {
         Image* image = internalArg<Image>(args[6], CLASS_IMAGE);
         if(image == 0) {

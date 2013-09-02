@@ -73,6 +73,16 @@ void testImageLoad() {
     LOGI("width:%d, height:%d", img->getWidth(), img->getHeight());
 }
 
+int powOf2(int num) {
+    num--;
+    int offset = 1;
+    while ((num & (num + 1)) != 0) {
+        num |= num >> offset;
+        offset = offset << 1;
+    }
+    return num + 1;
+}
+
 Application* app = NULL;
 void onDrawFrame() {
     app->onDrawFrame();
@@ -101,5 +111,6 @@ int main(int argc, char ** argv)
 
     app->destroy();
     delete app;
+    
     return 0;
 }

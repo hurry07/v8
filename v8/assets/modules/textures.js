@@ -33,86 +33,32 @@
  */
 var gl = require('opengl');
 var inherit = require('core/inherit.js');
+var Image = require('core/image.js');
 
-textures = {};
-textures.loadingImages = [];
-//tdl.webgl.registerContextLostHandler(gl.canvas, handleContextLost_, true);
-textures.maxTextureSize = gl.getParameter(gl.MAX_TEXTURE_SIZE);
-textures.maxCubeMapSize = gl.getParameter(gl.MAX_CUBE_MAP_TEXTURE_SIZE);
-textures.db = {};
+var maxTextureSize = gl.getParameter(gl.MAX_TEXTURE_SIZE);
+var maxCubeMapSize = gl.getParameter(gl.MAX_CUBE_MAP_TEXTURE_SIZE);
+var db = {};
+var loadingImages = [];
 
 function isPowerOf2(value) {
     return (value & (value - 1)) == 0;
 };
-
-/**
- * Loads a texture
- * @param {{!tdl.math.Vector4|string|!Array.<string>|!img|!canvas}} Passing a
- *        color makes a solid 1pixel 2d texture, passing a URL
- *        makes a 2d texture with that url, passing an array of
- *        urls makes a cubemap, passing an img or canvas makes a 2d texture with
- *        that image.
- * @param {boolean} opt_flipY Flip the texture in Y?
- * @param {function} opt_callback Function to execute when texture is loaded.
- */
-function loadTexture(arg, opt_flipY, opt_callback) {
-    if (opt_callback) {
-        alert('callback!');
+function powOf2(num) {
+    num--;
+    var offset = 1;
+    while ((num & (num + 1)) != 0) {
+        num |= num >> offset;
+        offset = offset << 1;
     }
-    var id;
-    if (typeof arg == 'string') {
-        td = arg;
-    } else if (arg.length == 4 && typeof arg[0] == 'number') {
-        id = arg.toString();
-    } else if ((arg.length == 1 || arg.length == 6) && typeof arg[0] == 'string') {
-        id = arg.toString();
-    } else if (arg.tagName == 'CANVAS') {
-        id = undefined;
-    } else if (arg.tagName == 'IMG') {
-        id = arg.src;
-    } else if (arg.width) {
-        id = undefined;
-    } else {
-        throw "bad args";
-    }
-
-    var texture;
-    if (id !== undefined) {
-        texture = gl.db[id];
-    }
-    if (texture) {
-        return texture;
-    }
-    if (typeof arg == 'string') {
-        texture = new Texture2D(arg, opt_flipY, opt_callback);
-    } else if (arg.length == 4 && typeof arg[0] == 'number') {
-        texture = new SolidTexture(arg);
-    } else if ((arg.length == 1 || arg.length == 6) &&
-        typeof arg[0] == 'string') {
-        texture = new CubeMap(arg);
-    } else if (arg.tagName == 'CANVAS' || arg.tagName == 'IMG') {
-        texture = new Texture2D(arg, opt_flipY);
-    } else if (arg.width) {
-        texture = new ColorTexture2D(arg);
-    } else {
-        throw "bad args";
-    }
-    gl.db[arg.toString()] = texture;
-    return texture;
-}
-function addLoadingImage_(img) {
-    textures.loadingImages.push(img);
-}
-function removeLoadingImage_(img) {
-    textures.loadingImages.splice(gl.loadingImages.indexOf(img), 1);
+    return num + 1;
 }
 function handleContextLost_() {
-    delete textures.db;
-    var imgs = textures.loadingImages;
+    delete db;
+    var imgs = loadingImages;
     for (var ii = 0; ii < imgs.length; ++ii) {
         imgs[ii].onload = undefined;
     }
-    textures.loadingImages = [];
+    loadingImages = [];
 };
 
 /**
@@ -138,10 +84,20 @@ Texture.prototype.recoverFromLostContext = function() {
     for (var pname in this.params) {
         gl.texParameteri(this.target, pname, this.params[pname]);
     }
+    this.uploadTexture();
 }
+Texture.prototype.bindToUnit = function (unit) {
+    gl.activeTexture(gl.TEXTURE0 + unit);
+    gl.bindTexture(gl.TEXTURE_2D, this.texture);
+};
+Texture.prototype.uploadTexture = function() {
+    // waiting for implementation
+};
+
 
 /**
  * A solid color texture.
+ *
  * @constructor
  * @param {!tdl.math.vector4} color.
  */
@@ -157,29 +113,8 @@ inherit(SolidTexture, Texture);
 SolidTexture.prototype.uploadTexture = function () {
     gl.bindTexture(gl.TEXTURE_2D, this.texture);
     var pixel = new Uint8Array(this.color);
-    /**
-     @param {Number} target
-     @param {Number} level
-     @param {Number} internalformat
-     @param {Number} width
-     @param {Number} height
-     @param {Number} border
-     @param {Number} format
-     @param {Number} type
-     @param {ArrayBufferView} pixels
-     */
-    console.log('--11');
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
-    console.log('--12');
-};
-SolidTexture.prototype.recoverFromLostContext = function () {
-    Texture.recoverFromLostContext.call(this);
-    this.uploadTexture();
-};
-SolidTexture.prototype.bindToUnit = function (unit) {
-    gl.activeTexture(gl.TEXTURE0 + unit);
-    gl.bindTexture(gl.TEXTURE_2D, this.texture);
-};
+}
 
 /**
  * A depth texture.
@@ -197,24 +132,25 @@ inherit(DepthTexture, Texture);
 DepthTexture.prototype.uploadTexture = function () {
     gl.bindTexture(gl.TEXTURE_2D, this.texture);
     gl.texImage2D(
-        gl.TEXTURE_2D, 0, gl.DEPTH_COMPONENT, this.width, this.height, 0,
-        gl.DEPTH_COMPONENT, gl.UNSIGNED_INT, null);
+        gl.TEXTURE_2D,
+        0,
+        gl.DEPTH_COMPONENT,
+        this.width,
+        this.height,
+        0,
+        gl.DEPTH_COMPONENT,
+        gl.UNSIGNED_INT,
+        null);
     this.setParameter(gl.TEXTURE_MIN_FILTER, gl.NEAREST);
     this.setParameter(gl.TEXTURE_MAG_FILTER, gl.NEAREST);
     this.setParameter(gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
     this.setParameter(gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
 };
-DepthTexture.prototype.recoverFromLostContext = function () {
-    Texture.recoverFromLostContext.call(this);
-    this.uploadTexture();
-};
-DepthTexture.prototype.bindToUnit = function (unit) {
-    gl.activeTexture(gl.TEXTURE0 + unit);
-    gl.bindTexture(gl.TEXTURE_2D, this.texture);
-};
 
 /**
  * A color from an array of values texture.
+ * TODO should supply a data class later
+ *
  * @constructor
  * @param {!{width: number, height: number: pixels:
  *        !Array.<number>} data.
@@ -232,18 +168,17 @@ function ColorTexture(data, opt_format, opt_type) {
 inherit(ColorTexture, Texture);
 ColorTexture.prototype.uploadTexture = function () {
     gl.bindTexture(gl.TEXTURE_2D, this.texture);
-    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 0);
     gl.texImage2D(
-        gl.TEXTURE_2D, 0, this.format, this.data.width, this.data.height,
-        0, this.format, this.type, this.data.pixels);
-};
-ColorTexture.prototype.recoverFromLostContext = function () {
-    Texture.recoverFromLostContext.call(this);
-    this.uploadTexture();
-};
-ColorTexture.prototype.bindToUnit = function (unit) {
-    gl.activeTexture(gl.TEXTURE0 + unit);
-    gl.bindTexture(gl.TEXTURE_2D, this.texture);
+        gl.TEXTURE_2D,
+        0,
+        this.format,
+        this.data.width,
+        this.data.height,
+        0,
+        this.format,
+        this.type,
+        this.data.pixels);
 };
 
 /**
@@ -251,111 +186,38 @@ ColorTexture.prototype.bindToUnit = function (unit) {
  * @param {{string|!Element}} url URL of image to load into texture.
  * @param {function} opt_callback Function to execute when texture is loaded.
  */
-function Texture2D(url, opt_flipY, opt_callback) {
+function Texture2D(url, opt_flipY) {
     Texture.call(this, gl.TEXTURE_2D);
     this.flipY = opt_flipY || false;
-    var that = this;
-    var img;
-    // Handle dataURLs?
-    if (typeof url !== 'string') {
-        img = url;
-        this.loaded = true;
-        if (opt_callback) {
-            opt_callback();
-        }
-    } else {
-        img = document.createElement('img');
-        addLoadingImage_(img);
-        img.onload = function () {
-            removeLoadingImage_(img);
-            //console.log("loaded image: ", url);
-            that.updateTexture();
-            if (opt_callback) {
-                opt_callback();
-            }
-        };
-        img.onerror = function () {
-            console.log("could not load image: ", url);
-        };
-    }
-    this.img = img;
-    this.uploadTexture();
+    this.url = url;
+    this.wrapWidth = this.wrapHeight = 1;
+    this.width = this.height = 1;
 
-    if (!this.loaded) {
-        img.src = url;
-    }
+    this.setParameter(gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    this.setParameter(gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    this.setParameter(gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    this.setParameter(gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    this.uploadTexture();
 };
 inherit(Texture2D, Texture);
 Texture2D.prototype.uploadTexture = function () {
     gl.bindTexture(gl.TEXTURE_2D, this.texture);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-    if (this.loaded) {
-        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, this.flipY);
-        this.setTexture(this.img);
+    var pixel = new Uint8Array([255, 255, 255, 255]);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
+
+    var img = new Image(this.url);
+    this.width = img.width;
+    this.height = img.height;
+    this.wrapWidth = powOf2(this.width);
+    this.wrapHeight = powOf2(this.height);
+
+    if(this.width != this.wrapWidth || this.height != this.wrapHeight) {
+        gl.texImage2D(gl.TEXTURE_2D, 0, img.internalFormat, this.wrapWidth, this.wrapHeight, 0, img.format, img.type, 0);
+        gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 0, img.format, img.type, img);
     } else {
-        var pixel = new Uint8Array([255, 255, 255, 255]);
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
+        gl.texImage2D(gl.TEXTURE_2D, 0, img.internalFormat, img.format, img.type, img);
     }
 };
-Texture2D.prototype.setTexture = function (element) {
-    // TODO(gman): use texSubImage2D if the size is the same.
-    gl.bindTexture(gl.TEXTURE_2D, this.texture);
-    /**
-     @param {Number} target
-     @param {Number} level
-     @param {Number} internalformat
-     @param {Number} format
-     @param {Number} type
-     @param {ImageData|HTMLImageElement|HTMLCanvasElement|HTMLVideoElement} pixelsImageCanvasOrVideo
-     */
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, element);
-    if (isPowerOf2(element.width) && isPowerOf2(element.height)) {
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
-        gl.generateMipmap(gl.TEXTURE_2D);
-    } else {
-        this.setParameter(gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-        this.setParameter(gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-        this.setParameter(gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-    }
-};
-Texture2D.prototype.updateTexture = function () {
-    this.loaded = true;
-    this.uploadTexture();
-};
-Texture2D.prototype.recoverFromLostContext = function () {
-    Texture.recoverFromLostContext.call(this);
-    this.uploadTexture();
-};
-Texture2D.prototype.bindToUnit = function (unit) {
-    gl.activeTexture(gl.TEXTURE0 + unit);
-    gl.bindTexture(gl.TEXTURE_2D, this.texture);
-};
-
-/**
- * Create a texture to be managed externally.
- * @constructor
- * @param {string} type GL enum for texture type.
- */
-function ExternalTexture(type) {
-    Texture.call(this, type);
-    this.type = type;
-};
-inherit(ExternalTexture, Texture);
-ExternalTexture.prototype.recoverFromLostContext = function () {
-};
-ExternalTexture.prototype.bindToUnit = function (unit) {
-    gl.activeTexture(gl.TEXTURE0 + unit);
-    gl.bindTexture(this.type, this.texture);
-}
-
-/**
- * Create a 2D texture to be managed externally.
- * @constructor
- */
-ExternalTexture2D = function () {
-    ExternalTexture.call(this, gl.TEXTURE_2D);
-};
-inherit(ExternalTexture2D, ExternalTexture);
 
 /**
  * Create and load a CubeMap.
@@ -472,7 +334,7 @@ CubeMap.prototype.uploadTextures = function () {
             var face = this.faces[Math.min(this.faces.length - 1, faceIndex)];
             gl.bindTexture(gl.TEXTURE_CUBE_MAP, this.texture);
             if (allFacesLoaded) {
-                gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+                gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 0);
                 if (this.faces.length == 6) {
                     gl.texImage2D(
                         target, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE,
@@ -550,5 +412,6 @@ CubeMap.prototype.bindToUnit = function (unit) {
     gl.bindTexture(gl.TEXTURE_CUBE_MAP, this.texture);
 };
 
-exports.loadTexture = loadTexture;
 exports.SolidTexture = SolidTexture;
+exports.Texture2D = Texture2D;
+

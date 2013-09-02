@@ -59,25 +59,46 @@ void getWidth(Local<String> property, const PropertyCallbackInfo<Value>& info) {
     if(img == 0 || img->isReleased()) {
         return;
     }
-    return info.GetReturnValue().Set(img->mImage->getWidth());
+    return info.GetReturnValue().Set(img->getWidth());
 }
 void getHeight(Local<String> property, const PropertyCallbackInfo<Value>& info) {
     Image* img = internalPtr<Image>(info, CLASS_IMAGE);
     if(img == 0 || img->isReleased()) {
         return;
     }
-    LOGI("type:%x", img->mTexture->mParam.type);
-    LOGI("type:%p", img->mTexture->mParam.mData);
-    LOGI("type:%d", img->mTexture->mParam.mDelete);
-    return info.GetReturnValue().Set(img->mImage->getHeight());
+    return info.GetReturnValue().Set(img->getHeight());
+}
+void getInternalFormat(Local<String> property, const PropertyCallbackInfo<Value>& info) {
+    Image* img = internalPtr<Image>(info, CLASS_IMAGE);
+    if(img == 0 || img->isReleased()) {
+        return;
+    }
+    return info.GetReturnValue().Set(img->getInternalFormat());
+}
+void getFormat(Local<String> property, const PropertyCallbackInfo<Value>& info) {
+    Image* img = internalPtr<Image>(info, CLASS_IMAGE);
+    if(img == 0 || img->isReleased()) {
+        return;
+    }
+    return info.GetReturnValue().Set(img->getFormat());
+}
+void getType(Local<String> property, const PropertyCallbackInfo<Value>& info) {
+    Image* img = internalPtr<Image>(info, CLASS_IMAGE);
+    if(img == 0 || img->isReleased()) {
+        return;
+    }
+    return info.GetReturnValue().Set(img->getType());
 }
 static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
     HandleScope scope;
-    
+
     Local<ObjectTemplate> obj = temp->PrototypeTemplate();
     obj->SetAccessor(String::New("width"), getWidth);
     obj->SetAccessor(String::New("height"), getHeight);
-    
+    obj->SetAccessor(String::New("internalFormat"), getInternalFormat);
+    obj->SetAccessor(String::New("type"), getType);
+    obj->SetAccessor(String::New("format"), getFormat);
+
     return scope.Close(temp->GetFunction());
 }
 
