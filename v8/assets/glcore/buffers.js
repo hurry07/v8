@@ -16,7 +16,7 @@ var supportVbo = true;
  */
 function glBuffer(config) {
     // require
-    this.mStride = config.stride;
+    this.mStride = config.stride;// field in one buffer unit
     this.mCount = config.count;
 
     // optional
@@ -87,6 +87,8 @@ glBuffer.prototype.upload = function () {
     if (this.mIsVbo) {
         gl.bindBuffer(this.mTarget, this.mVboId);
         gl.bufferData(this.mTarget, this.mBuffer, gl.STATIC_DRAW);
+    } else {
+        gl.bindBuffer(this.mTarget, this.mBuffer);
     }
 }
 /**
@@ -104,14 +106,14 @@ glBuffer.prototype.bindBuffer = function () {
 glBuffer.prototype.bindVertex = function (indx) {
     gl.enableVertexAttribArray(indx);
     if (this.mIsVbo) {
-        gl.bindBuffer(gl.ARRAY_BUFFER, this.mVboId);
+        gl.bindBuffer(this.mTarget, this.mVboId);
         gl.vertexAttribPointer(indx, this.mStride, this.mGLtype, this.mNormalize, 0, 0);
     } else {
         gl.vertexAttribPointer(indx, this.mStride, this.mGLtype, this.mNormalize, 0, this.mBuffer);
     }
 }
-glBuffer.prototype.target = function() {
-    if(arguments.length == 0) {
+glBuffer.prototype.target = function () {
+    if (arguments.length == 0) {
         return this.mTarget;
     }
     this.mTarget = arguments[0];
@@ -187,22 +189,26 @@ mixBuffer.prototype.setElement = function (index, value) {
  */
 function structSuper() {
     var mBuffer = new ArrayBuffer(this.byteLength);
-    var bufAccess = this.bufAccess;
+    var arrayAccess = this.arrayAccess;
+
     var mSubBuffer = {};
-    for (var i in bufAccess) {
-        var p = bufAccess[i];
-        mSubBuffer[i] = new p.type(mBuffer, p.byteOffset, p.size);
+    var mSubArray = [];
+    for (var i = 0, l = arrayAccess.length; i < l; i++) {
+        var p = arrayAccess[i];
+        var acc = new p.type(mBuffer, p.byteOffset, p.size);
+        mSubBuffer[p.name || i] = acc;
+        mSubArray.push(acc);
     }
 
-    this.mSubBuffer = mSubBuffer;
     this.mBuffer = mBuffer;
+    this.mSubBuffer = mSubBuffer;
+    this.mSubArray = mSubArray;
 }
-structSuper.prototype.set = function (name, value) {
-    var f = this.mSubBuffer[name];
-    f && (arguments.length == 2 ? f.set(value) : f.set.apply(f, Array.prototype.slice.call(arguments, 1)));
-}
-structSuper.prototype.get = function (name) {
+structSuper.prototype.field = function (name) {
     return this.mSubBuffer[name];
+}
+structSuper.prototype.fieldAt = function (index) {
+    return this.mSubArray[index];
 }
 structSuper.prototype.buffer = function () {
     return this.mBuffer;
@@ -214,9 +220,9 @@ structSuper.prototype.buffer = function () {
  * @param byteLength
  * @param parts
  */
-function structInst(byteLength, bufAccess) {
+function structInst(byteLength, arrayAccess) {
     this.byteLength = byteLength;
-    this.bufAccess = bufAccess;
+    this.arrayAccess = arrayAccess;
     structSuper.call(this);
 }
 inherit(structInst, structSuper);
@@ -242,14 +248,20 @@ structBuilder.prototype.add = function (name, type, size) {
     }
     return this;
 }
-structBuilder.prototype.createBufMap = function (bufAccess) {
+/**
+ * calculate the elemenet's strides
+ *
+ * @param bufAccess
+ * @param arrayAccess
+ * @returns {number}
+ */
+structBuilder.prototype.initBufMap = function () {
     var byteLength = 0;
     for (var i = 0, ps = this.parts, length = ps.length; i < length; i++) {
         var p = ps[i];
         p.byteOffset = byteLength;
         p.byteLength = getTypSize(p.type) * p.size;
 
-        bufAccess[p.name || i] = p;
         byteLength += p.byteLength;
     }
     return byteLength;
@@ -259,34 +271,34 @@ structBuilder.prototype.createBufMap = function (bufAccess) {
  * @returns {structInst}
  */
 structBuilder.prototype.create = function () {
-    var bufAccess = {};
-    var byteLength = this.createBufMap(bufAccess);
-    return new structInst(byteLength, bufAccess);
+    var byteLength = this.initBufMap();
+    var arrayAccess = this.parts;
+    return new structInst(byteLength, arrayAccess);
 }
 /**
  * return a class of this mix buffer
  * @returns {*}
  */
 structBuilder.prototype.createClass = function () {
-    var bufAccess = {};
-    var byteLength = this.createBufMap(bufAccess);
+    var byteLength = this.initBufMap();
+    var arrayAccess = this.parts;
     var clz = inherit(
         function () {
             structSuper.call(this);
         }, structSuper, {
             byteLength: byteLength,
-            bufAccess: bufAccess
+            arrayAccess: arrayAccess
         }
     );
-    clz.createBuffer = function(count) {
-        if(arguments.length == 0) {
+    clz.createBuffer = function (count) {
+        if (arguments.length == 0) {
             count = 1;
         }
         return new mixBuffer(byteLength, count, clz);
     }
     return clz;
 }
-structBuilder.prototype.createBuffer = function(count) {
+structBuilder.prototype.createBuffer = function (count) {
     return this.createClass().createBuffer.apply(this, arguments);
 }
 
@@ -338,3 +350,4 @@ exports.createVectorBuffer = createVectorBuffer;
 exports.createIndexBuffer = createIndexBuffer;
 exports.createMixBuffer = createMixBuffer;
 exports.structure = structure;
+exports.glBuffer = glBuffer;
