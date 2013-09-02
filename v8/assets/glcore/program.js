@@ -1,7 +1,7 @@
 var gl = require('opengl');
 var clz = require('nativeclasses');
 var inherit = require('core/inherit.js');
-var shader = require('modules/shader.js');
+var shader = require('glcore/shader.js');
 
 var SHOW_UNDEFINED = true;
 

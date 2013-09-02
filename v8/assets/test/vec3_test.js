@@ -8,7 +8,7 @@
 console.log('---------------');
 var clz = require('nativeclasses');
 //var gl = require('opengl');
-//var program = require('modules/program.js');
+//var program = require('glcore/program.js');
 //var vs = program.createWithFile('shader/v1.vtx', 'shader/f1.frg');
 
 function printBuffer(buf) {
@@ -175,7 +175,7 @@ function testBufferGet() {
 //testBufferSet();
 //testBufferGet();
 
-var AttribBuffer = require('modules/typedbuffer.js');
+var AttribBuffer = require('glcore/buffers.js');
 console.log(AttribBuffer);
 
 var coll = new AttribBuffer(3, 10, clz.vec3f);

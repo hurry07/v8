@@ -1,6 +1,6 @@
 var gl = require('opengl');
 var file = require('core/file.js');
-var math3d = require('core/math3d.js');
+var math3d = require('core/glm.js');
 var glm = math3d.glm;
 
 function checkShader(shader) {

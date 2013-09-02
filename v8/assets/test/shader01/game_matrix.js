@@ -1,7 +1,7 @@
-var program = require('modules/program.js');
-var math3d = require('core/math3d.js');
+var program = require('glcore/program.js');
+var math3d = require('core/glm.js');
 var gl = require('opengl');
-var glBuffer = require('modules/typedbuffer.js');
+var glBuffer = require('glcore/buffers.js');
 var glm = math3d.glm;
 
 var positionData = [

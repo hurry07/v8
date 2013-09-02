@@ -1,9 +1,9 @@
-var program = require('modules/program.js');
-var math3d = require('core/math3d.js');
+var program = require('glcore/program.js');
+var math3d = require('core/glm.js');
 var gl = require('opengl');
-var glBuffer = require('modules/typedbuffer.js');
+var glBuffer = require('glcore/buffers.js');
 var glm = math3d.glm;
-var Texture2D = require('modules/textures.js').Texture2D;
+var Texture2D = require('glcore/textures.js').Texture2D;
 
 var positionData = new Float32Array([
     -0.8, -0.8, 0.0,

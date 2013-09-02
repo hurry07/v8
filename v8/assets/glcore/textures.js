@@ -1,65 +1,15 @@
-/*
- * Copyright 2009, Google Inc.
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
- *
- *     * Redistributions of source code must retain the above copyright
- * notice, this list of conditions and the following disclaimer.
- *     * Redistributions in binary form must reproduce the above
- * copyright notice, this list of conditions and the following disclaimer
- * in the documentation and/or other materials provided with the
- * distribution.
- *     * Neither the name of Google Inc. nor the names of its
- * contributors may be used to endorse or promote products derived from
- * this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
- * OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
- * SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
- * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
 /**
  * @fileoverview This file contains objects to manage textures.
  */
 var gl = require('opengl');
 var inherit = require('core/inherit.js');
 var Image = require('core/image.js');
+var math = require('core/math.js');
 
 var maxTextureSize = gl.getParameter(gl.MAX_TEXTURE_SIZE);
 var maxCubeMapSize = gl.getParameter(gl.MAX_CUBE_MAP_TEXTURE_SIZE);
-var db = {};
-var loadingImages = [];
 
-function isPowerOf2(value) {
-    return (value & (value - 1)) == 0;
-};
-function powOf2(num) {
-    num--;
-    var offset = 1;
-    while ((num & (num + 1)) != 0) {
-        num |= num >> offset;
-        offset = offset << 1;
-    }
-    return num + 1;
-}
-function handleContextLost_() {
-    delete db;
-    var imgs = loadingImages;
-    for (var ii = 0; ii < imgs.length; ++ii) {
-        imgs[ii].onload = undefined;
-    }
-    loadingImages = [];
-};
+var textureDB = {};
 
 /**
  * @param target parameter target
@@ -208,8 +158,8 @@ Texture2D.prototype.uploadTexture = function () {
     var img = new Image(this.url);
     this.width = img.width;
     this.height = img.height;
-    this.wrapWidth = powOf2(this.width);
-    this.wrapHeight = powOf2(this.height);
+    this.wrapWidth = math.powOf2(this.width);
+    this.wrapHeight = math.powOf2(this.height);
 
     if(this.width != this.wrapWidth || this.height != this.wrapHeight) {
         gl.texImage2D(gl.TEXTURE_2D, 0, img.internalFormat, this.wrapWidth, this.wrapHeight, 0, img.format, img.type, 0);
@@ -367,11 +317,9 @@ CubeMap.prototype.uploadTextures = function () {
     if (this.faces.length) {
         var faceImg = this.faces[0].img;
         if (this.faces.length == 6) {
-            genMips = isPowerOf2(faceImg.width) &&
-                isPowerOf2(faceImg.height);
+            genMips = math.isPowOf2(faceImg.width) && math.isPowOf2(faceImg.height);
         } else {
-            genMips = isPowerOf2(faceImg.width / 4) &&
-                isPowerOf2(faceImg.height / 3);
+            genMips = math.isPowOf2(faceImg.width / 4) && math.isPowOf2(faceImg.height / 3);
         }
     }
     if (genMips) {
@@ -411,6 +359,9 @@ CubeMap.prototype.bindToUnit = function (unit) {
     gl.activeTexture(gl.TEXTURE0 + unit);
     gl.bindTexture(gl.TEXTURE_CUBE_MAP, this.texture);
 };
+
+function createTexture2D(path) {
+}
 
 exports.SolidTexture = SolidTexture;
 exports.Texture2D = Texture2D;

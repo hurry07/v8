@@ -35,7 +35,7 @@
  *
  * The main point of this module is to provide a central place to
  * have an init function to register an tdl namespace object because many other
- * modules need access to it.
+ * glcore need access to it.
  */
 
 /**

@@ -1,9 +1,9 @@
 var clz = require('nativeclasses');
 var gl = require('opengl');
-var math3d = require('core/math3d.js');
+var glm = require('core/glm.js');
 var inherit = require('core/inherit.js');
 
-var supportVbo = false;
+var supportVbo = true;
 /**
  * glBuffer manages a TypedArray as an array of vectors.
  * @param config {
@@ -27,7 +27,7 @@ function glBuffer(config) {
     this.mBuffer = config.buffer || new this.mType(this.mStride * this.mCount);
     this.mTarget = config && config.target || gl.ARRAY_BUFFER;
 
-    this.mIsVbo = config && config.isvbo || true;
+    this.mIsVbo = config && config.isvbo || supportVbo;
     this.mVboId = 0;
     if (this.mIsVbo) {
         this.mVboId = gl.createBuffer();
@@ -313,7 +313,7 @@ function createVectorBuffer(stride, count) {
         stride: stride,
         count: count,
         type: Float32Array,
-        element: math3d['vector' + stride],
+        element: glm['vector' + stride],
         normalize: false
     });
 }

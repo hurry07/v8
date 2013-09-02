@@ -7,14 +7,14 @@
  */
 console.log('---------------');
 var clz = require('nativeclasses');
-var program = require('modules/program.js');
+var program = require('glcore/program.js');
 var gl = require('opengl');
-var math = require('modules/math.js');
+var math = require('glcore/math.js');
 var glm = require('core/glm.js');
 
-var primitives = require('modules/primitives.js');
-var texture = require('modules/textures.js');
-var Model = require('modules/models.js');
+var primitives = require('glcore/primitives.js');
+var texture = require('glcore/textures.js');
+var Model = require('glcore/models.js');
 
 //var fpsElem = document.getElementById("fps");
 

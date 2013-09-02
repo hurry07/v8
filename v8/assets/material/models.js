@@ -28,10 +28,10 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-//var buffer = require('modules/buffers.js');
+//var buffer = require('glcore/buffers.js');
 
 var gl = require('opengl');
-var Buffer = require('modules/buffers.js');
+var Buffer = require('glcore/buffers.js');
 
 /**
  * Manages a program, buffers and textures for easier drawing.

@@ -25,14 +25,14 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-// Flags: --harmony-modules --harmony-scoping
+// Flags: --harmony-glcore --harmony-scoping
 
 // Test basic module linking and initialization.
 
 "use strict";
 
 module R {
-  // At this point, only functions and modules are initialized.
+  // At this point, only functions and glcore are initialized.
   assertEquals(undefined, v)
   assertEquals(undefined, vv)
   assertEquals(undefined, R.v)
