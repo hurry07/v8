@@ -16,9 +16,6 @@ var vec3s = math3d.vec3s;
 var d = new Date();
 console.log('date:' + d + ',' + d.getTime());
 
-var mesh = require('render/mesh.js');
-var mTP = mesh.createMesh('tp', 2);
-
 /*
  for(var i in gl) {
  console.log(i, gl[i]);

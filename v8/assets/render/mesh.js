@@ -56,7 +56,7 @@ meshBuffer.prototype.copy = function (from, to, length) {
         sset.call(this, to + i, b);
     }
 }
-meshBuffer.prototype.bindVertexArray = function (locs) {
+meshBuffer.prototype.bindVertexSet = function (attrset) {
     if (this.mIsVbo) {
         gl.bindBuffer(this.mTarget, this.mVboId);
     }
@@ -64,7 +64,7 @@ meshBuffer.prototype.bindVertexArray = function (locs) {
     var stride = this.mClass.byteLength;
     var confs = this.mClass.arrayAccess;
 
-    for (var i = 0, l = locs.length; i < l; i++) {
+    for (var i = 0, locs = attrset.locs, l = locs.length; i < l; i++) {
         var f = confs[i];
         gl.enableVertexAttribArray(locs[i]);
         var offset = this.mIsVbo ? f.byteOffset : this.buffer().subarray(f.byteOffset);
@@ -74,16 +74,22 @@ meshBuffer.prototype.bindVertexArray = function (locs) {
 
 /**
  * @param order mesh field order
- * @param count
+ * @param points
  * @returns {meshBuffer}
  */
-function createMesh(order, count) {
+function createMesh(order, points) {
+    console.log('createMesh 08', order);
+
     var clz = meshDB[order];
     if (clz) {
-        return new meshBuffer(clz, count);
+        return new meshBuffer(clz, points);
     }
 
     clz = buffers.structure();
+    var arr = order.split(/\w\d*?/);
+    for (var i = 0; i < arr.length; i++) {
+        console.log('arr:' + arr);
+    }
     for (var i = 0, l = order.length; i < l; i++) {
         switch (order.charAt(i)) {
             case 't':
@@ -105,6 +111,7 @@ function createMesh(order, count) {
     }
     clz = clz.createClass();
     meshDB[order] = clz;
-    return new meshBuffer(clz, count);
+
+    return new meshBuffer(clz, points);
 }
 exports.createMesh = createMesh;

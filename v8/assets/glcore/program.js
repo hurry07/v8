@@ -16,15 +16,15 @@ function shaderParam(loc, glfn) {
     this.fn = glfn;
     this._data = 0;
 }
-shaderParam.prototype.data = function() {
-    if(arguments.length > 0) {
+shaderParam.prototype.data = function () {
+    if (arguments.length > 0) {
         this._data = arguments[0];
     } else {
         return this._data;
     }
 }
-shaderParam.prototype.upload = function(d) {
-    if(d != undefined) {
+shaderParam.prototype.upload = function (d) {
+    if (d != undefined) {
         this.fn(this.loc, this._data = d);
     } else {
         this.fn(this.loc, this._data);
@@ -46,8 +46,8 @@ function matrixParam(loc, glfn, transpose) {
     this.transpose = transpose || false;
 }
 inherit(matrixParam, shaderParam);
-matrixParam.prototype.upload = function(d) {
-    if(d != undefined) {
+matrixParam.prototype.upload = function (d) {
+    if (d != undefined) {
         this.fn(this.loc, this.transpose, this._data = d);
     } else {
         this.fn(this.loc, this.transpose, this._data);
@@ -65,9 +65,9 @@ function textureParam(loc, glfn, unit) {
     this.unit = unit;
 }
 inherit(textureParam, shaderParam);
-textureParam.prototype.upload = function(d) {
+textureParam.prototype.upload = function (d) {
     this.fn(this.loc, this.unit);
-    if(d != undefined) {
+    if (d != undefined) {
         (this._data = d).bindToUnit(this.unit);
     } else {
         this._data.bindToUnit(this.unit);
@@ -95,9 +95,9 @@ attributeParam.prototype.upload = function (b) {
 function structParam() {
     this.fields = {};
 }
-structParam.prototype.setField = function(name, setter) {
+structParam.prototype.setField = function (name, setter) {
     var index = name.indexOf('.');
-    if(index != -1) {
+    if (index != -1) {
         var n = name.slice(0, index);
         var f = this.fields[n] || (this.fields[n] = new structParam());
         f.setField(name.slice(index + 1), setter);
@@ -105,27 +105,27 @@ structParam.prototype.setField = function(name, setter) {
         this.fields[name] = setter;
     }
 }
-structParam.prototype.getField = function(name) {
+structParam.prototype.getField = function (name) {
     var index = name.indexOf('.');
-    if(index != -1) {
+    if (index != -1) {
         var n = name.slice(0, index);
         return this.fields[n] && this.fields[n].getField(name.slice(index + 1));
     } else {
         return this.fields[name];
     }
 }
-structParam.prototype.data = function(data) {
-    for(var i in data) {
+structParam.prototype.data = function (data) {
+    for (var i in data) {
         var f = this.fields[i];
-        if(f) {
+        if (f) {
             f.data(data[i]);
         }
     }
 }
-structParam.prototype.upload = function(data) {
-    for(var i in data) {
+structParam.prototype.upload = function (data) {
+    for (var i in data) {
         var f = this.fields[i];
-        if(f) {
+        if (f) {
             f.upload(data[i]);
         }
     }
@@ -140,7 +140,7 @@ structParam.prototype.upload = function(data) {
 function setUniform(obj, name, setter) {
     obj[name] = setter;
     var index = name.indexOf('.');
-    if(index == -1) {
+    if (index == -1) {
         return;
     }
 
@@ -150,11 +150,11 @@ function setUniform(obj, name, setter) {
 }
 function getUniform(obj, name) {
     var f = obj[name];
-    if(f) {
+    if (f) {
         return f;
     }
     var index = name.indexOf('.');
-    if(index == -1) {
+    if (index == -1) {
         return null;
     }
 
@@ -189,7 +189,7 @@ function createUniformSetter(program, info) {
     switch (info.type) {
         // -----------------
         case gl.FLOAT:
-            if(size > 1) {
+            if (size > 1) {
                 s = new shaderParam(loc, gl.uniform1fv);
             } else {
                 s = new shaderParam(loc, gl.uniform1f);
@@ -207,7 +207,7 @@ function createUniformSetter(program, info) {
         // -----------------
         case gl.INT:
         case gl.BOOL:
-            if(size > 1) {
+            if (size > 1) {
                 s = new shaderParam(loc, gl.uniform1iv);
             } else {
                 s = new shaderParam(loc, gl.uniform1i);
@@ -238,7 +238,7 @@ function createUniformSetter(program, info) {
         // -----------------
         case gl.SAMPLER_2D:
         case gl.SAMPLER_CUBE:
-            if(size > 1) {
+            if (size > 1) {
                 console.log('not supported TEXUTURE array');
             } else {
                 s = new textureParam(loc, gl.uniform1i, textureCount++);
@@ -312,6 +312,7 @@ function program(id, vShader, fShader) {
     this._release = false;
 
     this.createSetters();
+    this.mVarSet = {};
 }
 program.prototype.getGLId = function () {
     return this._id;
@@ -331,14 +332,31 @@ program.prototype.createSetters = function () {
  * @param name
  * @returns {*}
  */
-program.prototype.getAttrib = function(name) {
+program.prototype.getAttrib = function (name) {
     return this.attrib[name];
 }
-program.prototype.setAttrib = function(name, value) {
+program.prototype.getAttribArray = function (key) {
+    if (this.mVarSet[key]) {
+        return this.mVarSet[key];
+    }
+
+    var res = [];
+    var keys = [];
+    var a;
+    for (var i = 1, l = arguments.length; i < l; i++) {
+        (a = this.attrib[arguments[i]]) && res.push(a);
+        keys.push(arguments[i]);
+    }
+    if (res.length != arguments.length - 1) {
+        console.log('program.getAttribs some arguments names not found.');
+    }
+    return this.mVarSet[key] = new attrSet(res, keys);
+}
+program.prototype.setAttrib = function (name, value) {
     var setter = this.attrib[name];
-    if(setter) {
+    if (setter) {
         setter.upload(value);
-    } else if(SHOW_UNDEFINED) {
+    } else if (SHOW_UNDEFINED) {
         console.log('attrib not found:' + name);
     }
 }
@@ -347,20 +365,32 @@ program.prototype.setAttrib = function(name, value) {
  * @param name
  * @returns {*}
  */
-program.prototype.getUniform = function(name) {
+program.prototype.getUniform = function (name) {
     return getUniform(this.uniforms, name);
 }
-program.prototype.setUniform = function(name, value) {
+program.prototype.setUniform = function (name, value) {
     var setter = getUniform(this.uniforms, name);
-    if(setter) {
+    if (setter) {
         setter.upload(value);
-    } else if(SHOW_UNDEFINED) {
+    } else if (SHOW_UNDEFINED) {
         console.log('uniform not found:' + name);
     }
 }
 program.prototype.use = function () {
     gl.useProgram(this._glid);
 };
+
+/**
+ * key an array of attribute location
+ *
+ * @param locs
+ * @param keys
+ * @constructor
+ */
+function attrSet(locs, keys) {
+    this.locs = locs;
+    this.keys = keys;
+}
 
 function getFileName(p) {
     var start = p.lastIndexOf('/') + 1;

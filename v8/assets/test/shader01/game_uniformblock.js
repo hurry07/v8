@@ -4,6 +4,7 @@ var gl = require('opengl');
 var glBuffer = require('glcore/buffers.js');
 var glm = math3d.glm;
 var Texture2D = require('glcore/textures.js').Texture2D;
+var Mesh = require('render/mesh.js');
 
 var positionData = new Float32Array([
     -0.8, -0.8, 0.0,
@@ -26,9 +27,12 @@ var mProgram;
 var positionBufferHandle;
 var colorBufferHandle;
 var Tex1;
+var mMesh;
 
 function setupGraphics(w, h) {
     mProgram = program.createWithFile('test/shader01/basic_uniformblock.vert', 'test/shader01/basic_uniformblock.frag');
+
+//    mMesh = new Mesh('pt', 6);
 
     positionBufferHandle = glBuffer.createVectorBuffer(3, 6);
     positionBufferHandle.buffer().set(positionData);
