@@ -159,7 +159,8 @@ METHOD_BEGIN(perspective, info) {
  */
 METHOD_BEGIN(ortho, info) {
     HandleScope scope;
-    
+
+    LOGI("info.length:%d", info.Length());
     Matrix* m = internalArg<Matrix>(info[0]);
     m->mMatrix = glm::ortho(V_2F(1), V_2F(2), V_2F(3), V_2F(4), V_2F(5), V_2F(6));
 }

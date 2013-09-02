@@ -98,7 +98,7 @@ function createMesh(order, points) {
                 clz.add('t', Float32Array, stride || 2);// texture
                 break;
             case 'p':
-                clz.add('p', Float32Array, stride || 3);// position
+                clz.add('p', Float32Array, stride || 2);// position
                 break;
             case 'c':
                 clz.add('c', Float32Array, stride || 4);// color

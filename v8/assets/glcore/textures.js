@@ -365,4 +365,7 @@ function createTexture2D(path) {
 
 exports.SolidTexture = SolidTexture;
 exports.Texture2D = Texture2D;
+exports.createTexture2D = function(path) {
+    return new Texture2D(path);
+}
 
