@@ -191,24 +191,23 @@ function structSuper() {
     var mBuffer = new ArrayBuffer(this.byteLength);
     var arrayAccess = this.arrayAccess;
 
-    var mSubBuffer = {};
-    var mSubArray = [];
+    var mFieldMap = {};
     for (var i = 0, l = arrayAccess.length; i < l; i++) {
         var p = arrayAccess[i];
         var acc = new p.type(mBuffer, p.byteOffset, p.size);
-        mSubBuffer[p.name || i] = acc;
-        mSubArray.push(acc);
+
+        mFieldMap[i] = acc;
+        mFieldMap[p.name || i] = acc;
     }
 
     this.mBuffer = mBuffer;
-    this.mSubBuffer = mSubBuffer;
-    this.mSubArray = mSubArray;
+    this.mFieldMap = mFieldMap;
 }
 structSuper.prototype.field = function (name) {
-    return this.mSubBuffer[name];
+    return this.mFieldMap[name];
 }
-structSuper.prototype.fieldAt = function (index) {
-    return this.mSubArray[index];
+structSuper.prototype.fields = function () {
+    return this.mFieldMap;
 }
 structSuper.prototype.buffer = function () {
     return this.mBuffer;
@@ -261,6 +260,7 @@ structBuilder.prototype.initBufMap = function () {
         var p = ps[i];
         p.byteOffset = byteLength;
         p.byteLength = getTypSize(p.type) * p.size;
+        p.glType = getGLType(p.type);
 
         byteLength += p.byteLength;
     }

@@ -18,7 +18,6 @@ console.log('date:' + d + ',' + d.getTime());
 
 var mesh = require('render/mesh.js');
 var mTP = mesh.createMesh('tp', 2);
-mTP.bindAttrib();
 
 /*
  for(var i in gl) {

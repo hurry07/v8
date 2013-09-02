@@ -5,14 +5,17 @@ var inherit = require('core/inherit.js');
 var meshDB = {};
 
 function meshBuffer(elementClz, count) {
+    this.mClass = elementClz;
     this.mAdapter = new elementClz();
     this.mCursor = 0;
+
     buffers.glBuffer.call(this, {
-        stride: elementClz.byteLength,
+        stride: elementClz.prototype.byteLength,
         count: count,
         type: Int8Array,
         normalize: false
     });
+    this.mFields = this.mAdapter.fields();
 }
 inherit(meshBuffer, buffers.glBuffer);
 /**
@@ -26,20 +29,23 @@ meshBuffer.prototype.cursor = function (index) {
     return this;
 };
 /**
+ * return an accessor of specific name
+ *
+ * @param name
+ * @returns {*}
+ */
+meshBuffer.prototype.accessor = function (name) {
+    return this.mFields[name];
+}
+/**
  * if arguments was given, fill fields one by one
  */
 meshBuffer.prototype.set = function () {
-    if (arguments.length) {
-        var a = this.mAdapter;
-        for (var i = 0, fields = a.arrayAccess, l = fields.length; i < l; i++) {
-            fields[i].set.call(a, arguments[i]);
-        }
+    for (var i = 0, fields = this.mAdapter.arrayAccess, l = fields.length; i < l; i++) {
+        var f = this.mFields[i];
+        f.set.call(f, arguments[i]);
     }
     glBuffer.prototype.setElement.call(this, this.mCursor, this.mAdapter.buffer());
-};
-meshBuffer.prototype.get = function () {
-    glBuffer.prototype.getElement.call(this, this.mCursor, this.mAdapter.buffer());
-    return this.mAdapter;
 };
 meshBuffer.prototype.copy = function (from, to, length) {
     var sget = glBuffer.prototype.getElement;
@@ -50,34 +56,20 @@ meshBuffer.prototype.copy = function (from, to, length) {
         sset.call(this, to + i, b);
     }
 }
-meshBuffer.prototype.setField = function (name, value) {
-    var a = this.mAdapter;
-    var b = a.buffer();
-    var f;
-    if (f = a.field(name)) {
-        f.set.apply(f, Array.prototype.slice.call(arguments, 1));
-        glBuffer.prototype.setElement.call(this, this.mCursor, b);
+meshBuffer.prototype.bindVertexArray = function (locs) {
+    if (this.mIsVbo) {
+        gl.bindBuffer(this.mTarget, this.mVboId);
     }
-}
-meshBuffer.prototype.setFieldAt = function (index, value) {
-    var a = this.mAdapter;
-    var b = a.buffer();
-    var f;
-    if (f = a.fieldAt(index)) {
-        f.set.apply(f, Array.prototype.slice.call(arguments, 1));
-        glBuffer.prototype.setElement.call(this, this.mCursor, b);
+
+    var stride = this.mClass.byteLength;
+    var confs = this.mClass.arrayAccess;
+
+    for (var i = 0, l = locs.length; i < l; i++) {
+        var f = confs[i];
+        gl.enableVertexAttribArray(locs[i]);
+        var offset = this.mIsVbo ? f.byteOffset : this.buffer().subarray(f.byteOffset);
+        gl.vertexAttribPointer(locs[i], f.size, f.glType, this.mNormalize, stride, offset);
     }
-}
-meshBuffer.prototype.bindAttrib = function (name, loc) {
-    console.log('this.mVboId:' + this.mVboId);
-    console.log('this.mStride:' + this.mStride);
-//    gl.enableVertexAttribArray(loc);
-//    if (this.mIsVbo) {
-//        gl.bindBuffer(this.mTarget, this.mVboId);
-//        gl.vertexAttribPointer(loc, this.mStride, this.mGLtype, this.mNormalize, 0, 0);
-//    } else {
-//        gl.vertexAttribPointer(loc, this.mStride, this.mGLtype, this.mNormalize, 0, this.mBuffer);
-//    }
 }
 
 /**
@@ -90,17 +82,25 @@ function createMesh(order, count) {
     if (clz) {
         return new meshBuffer(clz, count);
     }
+
     clz = buffers.structure();
     for (var i = 0, l = order.length; i < l; i++) {
         switch (order.charAt(i)) {
             case 't':
-                clz.add('t', Float32Array, 2);
+                clz.add('t', Float32Array, 2);// texture
+                break;
             case 'p':
-                clz.add('p', Float32Array, 3);
+                clz.add('p', Float32Array, 3);// position
+                break;
             case 'c':
-                clz.add('c', Float32Array, 4);
+                clz.add('c', Float32Array, 4);// color
+                break;
             case 'n':
-                clz.add('n', Float32Array, 3);
+                clz.add('n', Float32Array, 3);// normalize
+                break;
+            default :
+                console.log('mesh key type:[' + order.charAt(i) + '] not found');
+                break;
         }
     }
     clz = clz.createClass();

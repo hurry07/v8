@@ -30,6 +30,10 @@ shaderParam.prototype.upload = function(d) {
         this.fn(this.loc, this._data);
     }
 }
+shaderParam.prototype.loc = function () {
+    return this.loc;
+}
+
 /**
  * a specific transpose param with uniformMatrix*fv
  *
@@ -69,6 +73,25 @@ textureParam.prototype.upload = function(d) {
         this._data.bindToUnit(this.unit);
     }
 }
+
+/**
+ * class used for binding buffer as attribute of program
+ * attribute is very large, and it may be changed frqnenctly, so there is no need to cash them
+ * @param index
+ */
+function attributeParam(index) {
+    this.index = index;
+}
+attributeParam.prototype.loc = function () {
+    return this.index;
+}
+attributeParam.prototype.upload = function (b) {
+    b.bindVertex(this.index);
+}
+
+/**
+ * upload data to shader struct
+ */
 function structParam() {
     this.fields = {};
 }
@@ -139,17 +162,6 @@ function getUniform(obj, name) {
     return obj[n] && obj[n].getField(name.slice(index + 1));
 }
 
-/**
- * class used for binding buffer as attribute of program
- * attribute is very large, and it may be changed frqnenctly, so there is no need to cash them
- * @param index
- */
-function attributeParam(index) {
-    this.index = index;
-}
-attributeParam.prototype.upload = function (b) {
-    b.bindVertex(this.index);
-}
 
 var programDB = {};
 
