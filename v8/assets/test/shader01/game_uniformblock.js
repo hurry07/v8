@@ -37,8 +37,8 @@ function setupGraphics(w, h) {
     colorBufferHandle.buffer().set(tcData);
     colorBufferHandle.upload();
 
-//    Tex1 = new Texture2D('images/doc.png');
-    Tex1 = new Texture2D('images/test.png');
+    Tex1 = new Texture2D('images/word.png');
+//    Tex1 = new Texture2D('images/test.png');
 //    Tex1 = new Texture2D('images/pngnow.png');
 
     mProgram.use();
@@ -53,7 +53,7 @@ function setupGraphics(w, h) {
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 }
 function renderFrame() {
-    gl.clearColor(0, 0, 0, 0);
+    gl.clearColor(1, 1, 1, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
 
     mProgram.use();

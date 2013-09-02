@@ -5,18 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/doc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/test.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/core/image.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/word.png" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/doc.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/xcuserdata/jie.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" afterPath="$PROJECT_DIR$/v8.xcodeproj/xcuserdata/jie.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/modules/GLBinding.cpp" afterPath="$PROJECT_DIR$/v8/modules/GLBinding.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/modules/Image.cpp" afterPath="$PROJECT_DIR$/v8/modules/Image.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/test/shader01/basic_uniformblock.frag" afterPath="$PROJECT_DIR$/v8/assets/test/shader01/basic_uniformblock.frag" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/test/shader01/basic_uniformblock.vert" afterPath="$PROJECT_DIR$/v8/assets/test/shader01/basic_uniformblock.vert" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/game.js" afterPath="$PROJECT_DIR$/v8/assets/game.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/test/shader01/game_uniformblock.js" afterPath="$PROJECT_DIR$/v8/assets/test/shader01/game_uniformblock.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/main.cpp" afterPath="$PROJECT_DIR$/v8/main.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/modules/textures.js" afterPath="$PROJECT_DIR$/v8/assets/modules/textures.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -35,7 +27,7 @@
     <file path="/primitives.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377360400294" ignored="false" />
     <file path="/buffer.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377360453797" ignored="false" />
     <file path="/gametest.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377442384239" ignored="false" />
-    <file path="/textures.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378092809258" ignored="false" />
+    <file path="/textures.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378098454271" ignored="false" />
     <file path="/models.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377492842658" ignored="false" />
     <file path="/buffers.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377493565759" ignored="false" />
     <file path="/math.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377405352433" ignored="false" />
@@ -81,10 +73,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="textures.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="textures.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/modules/textures.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="213" column="19" selection-start="6646" selection-end="6646" vertical-scroll-proportion="0.0">
+            <state line="196" column="57" selection-start="6029" selection-end="6029" vertical-scroll-proportion="0.49779737">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -92,10 +84,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="game_uniformblock.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="test.png" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/images/test.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="game_uniformblock.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/test/shader01/game_uniformblock.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="45" selection-start="1129" selection-end="1129" vertical-scroll-proportion="0.6795017">
+            <state line="55" column="25" selection-start="1585" selection-end="1585" vertical-scroll-proportion="-24.52">
               <folding />
             </state>
           </provider>
@@ -176,8 +175,8 @@
         <option value="$PROJECT_DIR$/v8/assets/game.js" />
         <option value="$PROJECT_DIR$/v8/assets/test/shader01/basic_uniformblock.vert" />
         <option value="$PROJECT_DIR$/v8/assets/test/shader01/basic_uniformblock.frag" />
-        <option value="$PROJECT_DIR$/v8/assets/modules/textures.js" />
         <option value="$PROJECT_DIR$/v8/assets/test/shader01/game_uniformblock.js" />
+        <option value="$PROJECT_DIR$/v8/assets/modules/textures.js" />
       </list>
     </option>
   </component>
@@ -550,20 +549,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/v8/assets/modules/typedbuffer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="292" column="36" selection-start="7872" selection-end="7872" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/WebGL.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1827" column="59" selection-start="25893" selection-end="25893" vertical-scroll-proportion="0.62643677">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/core/math3d.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="26" selection-start="424" selection-end="424" vertical-scroll-proportion="0.0">
@@ -627,13 +612,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/test/shader01/basic_uniformblock.vert">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="29" selection-start="130" selection-end="144" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/test/shader01/basic_uniformblock.frag">
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="31" selection-start="573" selection-end="573" vertical-scroll-proportion="0.0">
@@ -646,19 +624,31 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/modules/textures.js">
+    <entry file="file://$PROJECT_DIR$/v8/assets/images/test.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/test/shader01/basic_uniformblock.vert">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="213" column="19" selection-start="6646" selection-end="6646" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state line="9" column="29" selection-start="130" selection-end="144" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/test/shader01/game_uniformblock.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="45" selection-start="1129" selection-end="1129" vertical-scroll-proportion="0.6795017">
+        <state line="55" column="25" selection-start="1585" selection-end="1585" vertical-scroll-proportion="-24.52">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/modules/textures.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="196" column="57" selection-start="6029" selection-end="6029" vertical-scroll-proportion="0.49779737">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -193,8 +193,8 @@ function Texture2D(url, opt_flipY) {
     this.wrapWidth = this.wrapHeight = 1;
     this.width = this.height = 1;
 
-    this.setParameter(gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-    this.setParameter(gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    this.setParameter(gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+    this.setParameter(gl.TEXTURE_MAG_FILTER, gl.NEAREST);
     this.setParameter(gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
     this.setParameter(gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
     this.uploadTexture();
