@@ -1187,8 +1187,6 @@ JS_METHOD(drawArrays) {
     GLint first = ARGS_GLint(args[1]);
     GLsizei count = ARGS_GLsizei(args[2]);
     glDrawArrays(mode, first, count);
-    checkGlError("glDrawArrays");
-//    glFlush();
 }
 /**
  * GLenum mode, GLsizei count, GLenum type, const GLvoid *indices

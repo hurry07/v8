@@ -74,6 +74,9 @@ textureParam.prototype.upload = function (d) {
     }
 }
 
+// ==========================
+// --- attribute param ------
+// ==========================
 /**
  * class used for binding buffer as attribute of program
  * attribute is very large, and it may be changed frqnenctly, so there is no need to cash them
@@ -87,6 +90,22 @@ attributeParam.prototype.loc = function () {
 }
 attributeParam.prototype.upload = function (b) {
     b.bindVertex(this.index);
+}
+/**
+ * key an array of attribute location
+ *
+ * @param names
+ * @param locs
+ */
+function attrSet(names, locs) {
+    this.names = names;
+    this.locs = locs;
+}
+attrSet.prototype.loc = function () {
+    return this.index;
+}
+attrSet.prototype.upload = function(mesh) {
+    mesh.bindVertex(this.locs);
 }
 
 /**
@@ -312,7 +331,6 @@ function program(id, vShader, fShader) {
     this._release = false;
 
     this.createSetters();
-    this.mVarSet = {};
 }
 program.prototype.getGLId = function () {
     return this._id;
@@ -361,6 +379,22 @@ program.prototype.setAttrib = function (name, value) {
     }
 }
 /**
+ * add a custom attribute
+ * @param name
+ */
+program.prototype.addMeshAttrib = function(id) {
+    var locs = [];
+    var names = Array.prototype.slice.call(arguments, 1);
+    var a;
+    for (var i = 0, l = names.length; i < l; i++) {
+        (a = this.attrib[names[i]]) && locs.push(a.loc());
+    }
+    if (locs.length != names.length) {
+        console.log('program.getAttribs some arguments names not found.');
+    }
+    this.attrib[id] = new attrSet(names, locs);
+}
+/**
  * attirbute
  * @param name
  * @returns {*}
@@ -379,18 +413,6 @@ program.prototype.setUniform = function (name, value) {
 program.prototype.use = function () {
     gl.useProgram(this._glid);
 };
-
-/**
- * key an array of attribute location
- *
- * @param locs
- * @param keys
- * @constructor
- */
-function attrSet(locs, keys) {
-    this.locs = locs;
-    this.keys = keys;
-}
 
 function getFileName(p) {
     var start = p.lastIndexOf('/') + 1;

@@ -6,50 +6,30 @@ var glm = math3d.glm;
 var Texture2D = require('glcore/textures.js').Texture2D;
 var Mesh = require('render/mesh.js');
 
-var positionData = new Float32Array([
-    -0.8, -0.8, 0.0,
-    0.8, -0.8, 0.0,
-    0.8,  0.8, 0.0,
-    -0.8, -0.8, 0.0,
-    0.8, 0.8, 0.0,
-    -0.8, 0.8, 0.0
-]);
-var tcData = new Float32Array([
-    0.0, 1.0,
-    1.0, 1.0,
-    1.0, 0.0,
-    0.0, 1.0,
-    1.0, 0.0,
-    0.0, 0.0
-]);
-
 var mProgram;
-var positionBufferHandle;
-var colorBufferHandle;
 var Tex1;
+var mMesh;
 
 function setupGraphics(w, h) {
     mProgram = program.createWithFile('test/shader01/basic_uniformblock.vert', 'test/shader01/basic_uniformblock.frag');
+    mProgram.addMeshAttrib('p2t2', 'VertexPosition', 'VertexTexCoord');
 
-    positionBufferHandle = glBuffer.createVectorBuffer(3, 6);
-    positionBufferHandle.buffer().set(positionData);
-    positionBufferHandle.upload();
-    colorBufferHandle = glBuffer.createVectorBuffer(2, 6);
-    colorBufferHandle.buffer().set(tcData);
-    colorBufferHandle.upload();
+    mMesh = Mesh.createMesh('p2t2', 6);
+    mMesh.cursor(0).set([-0.8,-0.8], [0,1]);
+    mMesh.cursor(1).set([0.8,-0.8], [1,1]);
+    mMesh.cursor(2).set([0.8,0.8], [1,0]);
+    mMesh.copy(0, 3);
+    mMesh.copy(2, 4);
+    mMesh.cursor(5).set([-0.8,0.8], [0,0]);
+    mMesh.upload();
 
     Tex1 = new Texture2D('images/word.png');
 //    Tex1 = new Texture2D('images/test.png');
 //    Tex1 = new Texture2D('images/pngnow.png');
 
     mProgram.use();
-//    mProgram.setUniform('Blob', {
-//        InnerColor : new math3d.vector4(1.0, 1.0, 0.75, 1.0),
-//        OuterColor : new math3d.vector4(),
-//        RadiusInner : 0.1,
-//        RadiusOuter : 0.9
-//    });
     mProgram.setUniform('Tex1', Tex1);
+
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 }
@@ -58,9 +38,7 @@ function renderFrame() {
     gl.clear(gl.COLOR_BUFFER_BIT);
 
     mProgram.use();
-    mProgram.setAttrib('VertexPosition', positionBufferHandle);
-    mProgram.setAttrib('VertexTexCoord', colorBufferHandle);
-
+    mProgram.setAttrib('p2t2', mMesh);
     gl.drawArrays(gl.TRIANGLES, 0, 6);
 }
 

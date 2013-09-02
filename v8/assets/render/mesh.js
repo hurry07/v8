@@ -1,6 +1,7 @@
 var buffers = require('glcore/buffers.js');
 var glBuffer = buffers.glBuffer;
 var inherit = require('core/inherit.js');
+var gl = require('opengl');
 
 var meshDB = {};
 
@@ -48,6 +49,9 @@ meshBuffer.prototype.set = function () {
     glBuffer.prototype.setElement.call(this, this.mCursor, this.mAdapter.buffer());
 };
 meshBuffer.prototype.copy = function (from, to, length) {
+    if(arguments.length == 2) {
+        length = 1;
+    }
     var sget = glBuffer.prototype.getElement;
     var sset = glBuffer.prototype.setElement;
     var b = this.mAdapter.buffer();
@@ -56,62 +60,60 @@ meshBuffer.prototype.copy = function (from, to, length) {
         sset.call(this, to + i, b);
     }
 }
-meshBuffer.prototype.bindVertexSet = function (attrset) {
+meshBuffer.prototype.bindVertex = function (locs) {
+    var stride = this.mClass.prototype.byteLength;
+    var confs = this.mClass.prototype.arrayAccess;
+    var buf = this.buffer();
+
     if (this.mIsVbo) {
         gl.bindBuffer(this.mTarget, this.mVboId);
     }
-
-    var stride = this.mClass.byteLength;
-    var confs = this.mClass.arrayAccess;
-
-    for (var i = 0, locs = attrset.locs, l = locs.length; i < l; i++) {
+    for (var i = 0, l = locs.length; i < l; i++) {
         var f = confs[i];
         gl.enableVertexAttribArray(locs[i]);
-        var offset = this.mIsVbo ? f.byteOffset : this.buffer().subarray(f.byteOffset);
-        gl.vertexAttribPointer(locs[i], f.size, f.glType, this.mNormalize, stride, offset);
+        if(this.mIsVbo) {
+            gl.vertexAttribPointer(locs[i], f.size, f.glType, this.mNormalize, stride, f.byteOffset);
+        } else {
+            gl.vertexAttribPointer(locs[i], f.size, f.glType, this.mNormalize, stride, buf.subarray(f.byteOffset));
+        }
     }
 }
-
 /**
  * @param order mesh field order
  * @param points
  * @returns {meshBuffer}
  */
 function createMesh(order, points) {
-    console.log('createMesh 08', order);
-
     var clz = meshDB[order];
     if (clz) {
         return new meshBuffer(clz, points);
     }
 
     clz = buffers.structure();
-    var arr = order.split(/\w\d*?/);
-    for (var i = 0; i < arr.length; i++) {
-        console.log('arr:' + arr);
-    }
-    for (var i = 0, l = order.length; i < l; i++) {
-        switch (order.charAt(i)) {
+    var arr = order.match(/\w\d*/g);
+    for (var i = 0, l = arr.length; i < l; i++) {
+        var stride = arr[i].length > 1 ? arr[i].slice(1) : 0;
+        switch (arr[i].charAt(0)) {
             case 't':
-                clz.add('t', Float32Array, 2);// texture
+                clz.add('t', Float32Array, stride || 2);// texture
                 break;
             case 'p':
-                clz.add('p', Float32Array, 3);// position
+                clz.add('p', Float32Array, stride || 3);// position
                 break;
             case 'c':
-                clz.add('c', Float32Array, 4);// color
+                clz.add('c', Float32Array, stride || 4);// color
                 break;
             case 'n':
-                clz.add('n', Float32Array, 3);// normalize
+                clz.add('n', Float32Array, stride || 3);// normalize
                 break;
             default :
                 console.log('mesh key type:[' + order.charAt(i) + '] not found');
                 break;
         }
     }
+
     clz = clz.createClass();
     meshDB[order] = clz;
-
     return new meshBuffer(clz, points);
 }
 exports.createMesh = createMesh;
