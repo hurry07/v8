@@ -43,11 +43,6 @@ void clzName<T>::setValue(const FunctionCallbackInfo<Value> &info) {\
     flatVector<T>(info, values, size);\
     fill_value_ptr<T>(glm::value_ptr(mVec), values, size);\
 }\
-template <typename T>\
-void clzName<T>::_value(const FunctionCallbackInfo<Value>& args) {\
-    HandleScope scope;\
-    _valueFn(args, sizeof(T), (char*)glm::value_ptr(mVec), size);\
-}\
 VERTEX_UNDERLYING(clzName, float, CLASS_Float32Array, size)\
 VERTEX_UNDERLYING(clzName, int32_t, CLASS_Int32Array, size)\
 VERTEX_UNDERLYING(clzName, uint8_t, CLASS_Uint8Array, size)\

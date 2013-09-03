@@ -11,6 +11,59 @@ var mTexture;
 var mMesh;
 var mCamera;
 
+function testTexture(frame) {
+    var m = frame.getMatrix();
+
+    function testM(x, y) {
+        var dv = new geometry.vector();
+        var v = new geometry.vector();
+        var t = new geometry.vector();
+
+        frame.getPoint(v, t, x, y);
+        console.log('v:' + v);
+        glm.mulMV3(dv, m, v);
+        console.log(v, dv);
+
+        frame.getPointAbs(v, t, x * frame.width(), y * frame.height());
+        console.log('v:' + v);
+        glm.mulMV3(dv, m, v);
+        console.log(v, dv);
+
+//        frame.getVisiablePoint(v, t, x, y);
+//        console.log('v:' + v);
+//        glm.mulMV3(dv, m, v);
+//        console.log(v, dv);
+        console.log('-----------');
+    }
+
+    testM(0, 0);
+    testM(0, 1);
+    testM(1, 0);
+    testM(1, 1);
+}
+
+//var testxml = require('test/test_xml.js');
+var _textureFrame = require('render/textureframe.js');
+var frame = new _textureFrame({
+    width: function () {
+        return 256;
+    },
+    height: function () {
+        return 256;
+    }
+}, 100, 50, 48, 97, 1, 1, 98, 48);
+testTexture(frame);
+frame = new _textureFrame({
+    width: function () {
+        return 256;
+    },
+    height: function () {
+        return 256;
+    }
+}, 50, 100, 48, 97, 1, 1, 48, 98);
+frame.rotate = true;
+testTexture(frame);
+
 function setupGraphics(w, h) {
     mCamera = _camera.createCamera().lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(-w / 2, w / 2, -h / 2, h / 2, 9, 11);
 

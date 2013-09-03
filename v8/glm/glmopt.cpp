@@ -77,7 +77,7 @@ METHOD_BEGIN(mulMV4, info) {
     Vector4* des = internalArg<Vector4>(info[0]);
     Matrix* m = internalArg<Matrix>(info[1]);
     Vector4* v = internalArg<Vector4>(info[2]);
-    
+
     des->mVec = m->mMatrix * v->mVec;
 }
 METHOD_BEGIN(inverse, info) {
@@ -208,7 +208,7 @@ METHOD_BEGIN(lookAt, info) {
 }
 METHOD_BEGIN(translate, info) {
     HandleScope scope;
-    
+
     Matrix* m = internalArg<Matrix>(info[0]);
     Vector* v = internalArg<Vector>(info[1]);
     
@@ -239,7 +239,7 @@ METHOD_BEGIN(rotateZ, info) {
  */
 METHOD_BEGIN(rotate, info) {
     HandleScope scope;
-    
+
     Matrix* m = internalArg<Matrix>(info[0]);
     Vector* aix = internalArg<Vector>(info[2]);
     m->mMatrix = glm::rotate(m->mMatrix, (float)V_2F(1), aix->mVec);

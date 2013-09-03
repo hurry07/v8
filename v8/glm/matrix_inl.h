@@ -84,10 +84,6 @@ void clzName<T>::setValue(const FunctionCallbackInfo<Value> &info) {\
     fill_value_ptr<T>(glm::value_ptr(mMatrix), values, sizepwo);\
 }\
 template <typename T>\
-void clzName<T>::_value(const FunctionCallbackInfo<Value>& args) {\
-    _valueFn(args, sizeof(T), (char*)glm::value_ptr(mMatrix), sizepwo);\
-}\
-template <typename T>\
 class_struct* clzName<T>::getExportStruct() {\
     static class_struct mTemplate = {\
         glm_matrix::initMatrixClass<clzName<T>, T>, "matrix"#size, CLASS_MATRIX##size\

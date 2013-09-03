@@ -37,10 +37,6 @@ public:
      * init value after constructor
      */
     virtual void init(const FunctionCallbackInfo<Value> &args);
-    /**
-     * get and set underlying of this object
-     */
-    virtual void _value(const FunctionCallbackInfo<Value> &args);
     virtual const char* toString();
 
     virtual ClassType getClassType();

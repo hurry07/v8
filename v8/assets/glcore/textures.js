@@ -20,7 +20,7 @@ function Texture(target) {
     this.texture = gl.createTexture();
     this.params = {};
 };
-Texture.prototype.setParameter = function(pname, value) {
+Texture.prototype.setParameter = function (pname, value) {
     this.params[pname] = value;
     gl.bindTexture(this.target, this.texture);
     gl.texParameteri(this.target, pname, value);
@@ -28,7 +28,7 @@ Texture.prototype.setParameter = function(pname, value) {
 /**
  * bind texture again
  */
-Texture.prototype.recoverFromLostContext = function() {
+Texture.prototype.recoverFromLostContext = function () {
     this.texture = gl.createTexture();
     gl.bindTexture(this.target, this.texture);
     for (var pname in this.params) {
@@ -40,7 +40,7 @@ Texture.prototype.bindToUnit = function (unit) {
     gl.activeTexture(gl.TEXTURE0 + unit);
     gl.bindTexture(gl.TEXTURE_2D, this.texture);
 };
-Texture.prototype.uploadTexture = function() {
+Texture.prototype.uploadTexture = function () {
     // waiting for implementation
 };
 
@@ -140,8 +140,8 @@ function Texture2D(url, opt_flipY) {
     Texture.call(this, gl.TEXTURE_2D);
     this.flipY = opt_flipY || false;
     this.url = url;
-    this.wrapWidth = this.wrapHeight = 1;
-    this.width = this.height = 1;
+    this.mWidth = this.mHeight = 1;
+    this.mWrapWidth = this.mWrapHeight = 1;
 
     this.setParameter(gl.TEXTURE_MIN_FILTER, gl.NEAREST);
     this.setParameter(gl.TEXTURE_MAG_FILTER, gl.NEAREST);
@@ -156,18 +156,24 @@ Texture2D.prototype.uploadTexture = function () {
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
 
     var img = new Image(this.url);
-    this.width = img.width;
-    this.height = img.height;
-    this.wrapWidth = math.powOf2(this.width);
-    this.wrapHeight = math.powOf2(this.height);
+    this.mWidth = img.width;
+    this.mHeight = img.height;
+    this.mWrapWidth = math.powOf2(this.mWidth);
+    this.mWrapHeight = math.powOf2(this.mHeight);
 
-    if(this.width != this.wrapWidth || this.height != this.wrapHeight) {
-        gl.texImage2D(gl.TEXTURE_2D, 0, img.internalFormat, this.wrapWidth, this.wrapHeight, 0, img.format, img.type, 0);
+    if (this.mWidth != this.mWrapWidth || this.mHeight != this.mWrapHeight) {
+        gl.texImage2D(gl.TEXTURE_2D, 0, img.internalFormat, this.mWrapWidth, this.mWrapHeight, 0, img.format, img.type, 0);
         gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 0, img.format, img.type, img);
     } else {
         gl.texImage2D(gl.TEXTURE_2D, 0, img.internalFormat, img.format, img.type, img);
     }
 };
+Texture2D.prototype.width = function() {
+    return this.mWrapWidth;
+}
+Texture2D.prototype.height = function() {
+    return this.mWrapHeight;
+}
 
 /**
  * Create and load a CubeMap.
@@ -361,11 +367,9 @@ CubeMap.prototype.bindToUnit = function (unit) {
 };
 
 function createTexture2D(path) {
+    return new Texture2D(path);
 }
 
 exports.SolidTexture = SolidTexture;
 exports.Texture2D = Texture2D;
-exports.createTexture2D = function(path) {
-    return new Texture2D(path);
-}
-
+exports.createTexture2D = createTexture2D;

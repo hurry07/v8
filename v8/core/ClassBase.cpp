@@ -25,8 +25,6 @@ void ClassBase::doRelease() {
 }
 void ClassBase::init(const FunctionCallbackInfo<Value> &args) {
 }
-void ClassBase::_value(const FunctionCallbackInfo<Value> &args) {
-}
 const char* ClassBase::toString() {
     return "[object native]";
 }
