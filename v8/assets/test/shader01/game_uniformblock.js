@@ -4,7 +4,7 @@ var gl = require('opengl');
 var glBuffer = require('glcore/buffers.js');
 var glm = math3d.glm;
 var Texture2D = require('glcore/textures.js').Texture2D;
-var Mesh = require('render/mesh.js');
+var Mesh = require('render/meshbuffer.js');
 
 var positionData = new Float32Array([
     -0.8, -0.8, 0.0,

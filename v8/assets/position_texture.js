@@ -3,7 +3,7 @@ var gl = require('opengl');
 var geometry = require('core/glm.js');
 var glm = geometry.glm;
 var textures = require('glcore/textures.js');
-var mesh = require('render/mesh.js');
+var mesh = require('render/meshbuffer.js');
 var _camera = require('render/camera.js');
 
 var mProgram;
