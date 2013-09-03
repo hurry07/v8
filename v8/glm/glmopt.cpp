@@ -149,8 +149,8 @@ METHOD_BEGIN(perspective, info) {
  * @param {!tdl.fast.Matrix} dst Output matrix.
  * @param {number} left Left side of the near clipping plane viewport.
  * @param {number} right Right side of the near clipping plane viewport.
- * @param {number} top Top of the near clipping plane viewport.
  * @param {number} bottom Bottom of the near clipping plane viewport.
+ * @param {number} top Top of the near clipping plane viewport.
  * @param {number} near The depth (negative z coordinate)
  *     of the near clipping plane.
  * @param {number} far The depth (negative z coordinate)
@@ -160,7 +160,6 @@ METHOD_BEGIN(perspective, info) {
 METHOD_BEGIN(ortho, info) {
     HandleScope scope;
 
-    LOGI("info.length:%d", info.Length());
     Matrix* m = internalArg<Matrix>(info[0]);
     m->mMatrix = glm::ortho(V_2F(1), V_2F(2), V_2F(3), V_2F(4), V_2F(5), V_2F(6));
 }
@@ -175,8 +174,8 @@ METHOD_BEGIN(ortho, info) {
  * dimension.
  * @param {number} left The x coordinate of the left plane of the box.
  * @param {number} right The x coordinate of the right plane of the box.
- * @param {number} bottom The y coordinate of the bottom plane of the box.
  * @param {number} top The y coordinate of the right plane of the box.
+ * @param {number} bottom The y coordinate of the bottom plane of the box.
  * @param {number} near The negative z coordinate of the near plane of the box.
  * @param {number} far The negative z coordinate of the far plane of the box.
  * @return {!tdl.fast.Matrix} The perspective projection matrix.
@@ -283,9 +282,12 @@ static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp)
     Local<ObjectTemplate> obj = temp->PrototypeTemplate();
     EXPOSE_METHOD(obj, dotVec2, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, dotVec3, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, dotVec4, ReadOnly | DontDelete);
+
     EXPOSE_METHOD(obj, mulVec2, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, mulVec3, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, mulVec4, ReadOnly | DontDelete);
+    
     EXPOSE_METHOD(obj, addVec2, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, addVec3, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, addVec4, ReadOnly | DontDelete);

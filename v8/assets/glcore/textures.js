@@ -174,6 +174,12 @@ Texture2D.prototype.width = function() {
 Texture2D.prototype.height = function() {
     return this.mWrapHeight;
 }
+Texture2D.prototype.picWidth = function() {
+    return this.mWrapWidth;
+}
+Texture2D.prototype.picHeight = function() {
+    return this.mWrapHeight;
+}
 
 /**
  * Create and load a CubeMap.

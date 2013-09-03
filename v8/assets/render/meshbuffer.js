@@ -48,8 +48,28 @@ meshBuffer.prototype.set = function () {
     }
     glBuffer.prototype.setElement.call(this, this.mCursor, this.mAdapter.buffer());
 };
+/**
+ * upload data form adapter to underlying framebuffer
+ * @param cursor
+ */
+meshBuffer.prototype.push = function (cursor) {
+    if (arguments.length == 0) {
+        cursor = this.mCursor;
+    }
+    glBuffer.prototype.setElement.call(this, cursor, this.mAdapter.buffer());
+}
+/**
+ * copy data from framebuffer to adapter
+ * @param cursor
+ */
+meshBuffer.prototype.pull = function (cursor) {
+    if (arguments.length == 0) {
+        cursor = this.mCursor;
+    }
+    glBuffer.prototype.getElement.call(this, cursor, this.mAdapter.buffer());
+}
 meshBuffer.prototype.copy = function (from, to, length) {
-    if(arguments.length == 2) {
+    if (arguments.length == 2) {
         length = 1;
     }
     var sget = glBuffer.prototype.getElement;
@@ -71,7 +91,7 @@ meshBuffer.prototype.bindVertex = function (locs) {
     for (var i = 0, l = locs.length; i < l; i++) {
         var f = confs[i];
         gl.enableVertexAttribArray(locs[i]);
-        if(this.mIsVbo) {
+        if (this.mIsVbo) {
             gl.vertexAttribPointer(locs[i], f.size, f.glType, this.mNormalize, stride, f.byteOffset);
         } else {
             gl.vertexAttribPointer(locs[i], f.size, f.glType, this.mNormalize, stride, buf.subarray(f.byteOffset));
@@ -107,7 +127,7 @@ function createMesh(order, points) {
                 clz.add('n', Float32Array, stride || 3);// normalize
                 break;
             default :
-                console.log('mesh key type:[' + order.charAt(i) + '] not found');
+                console.log('mesh key type:[' + arr[i].charAt(0) + '] not found');
                 break;
         }
     }

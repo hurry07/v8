@@ -25,9 +25,10 @@ function Node() {
 _inherit(Node, _drawable);
 Node.prototype.setRotate = function (r) {
     this.mRotate = r;
+    this.mDirty = true;
 }
 Node.prototype.getRotate = function (r) {
-    return this.rotate;
+    return this.mRotate;
 }
 Node.prototype.setPosition = function (x, y) {
     if (arguments.length == 1) {
@@ -36,6 +37,7 @@ Node.prototype.setPosition = function (x, y) {
         this.mPosition[0] = x;
         this.mPosition[1] = y;
     }
+    this.mDirty = true;
 }
 Node.prototype.setAnthor = function (ax, ay) {
     if (arguments.length == 1) {
@@ -46,10 +48,21 @@ Node.prototype.setAnthor = function (ax, ay) {
     }
     this.updateOffset();
 }
+Node.prototype.setSize = function (w, h) {
+    this.mWidth = w;
+    this.mHeight = h;
+    this.updateOffset();
+}
 Node.prototype.setCenter = function (cx, cy) {
     this.mCenterX = cx;
     this.mCenterY = cy;
     this.updateOffset();
+}
+Node.prototype.updateOffset = function () {
+    this.mOffset.set(
+        -(this.mAnthorX - this.mCenterX) * this.mWidth,
+        -(this.mAnthorY - this.mCenterY) * this.mHeight
+    );
 }
 Node.prototype.setScale = function (sx, sy) {
     if (arguments.length == 1) {
@@ -58,22 +71,19 @@ Node.prototype.setScale = function (sx, sy) {
         this.mScale[0] = sx;
         this.mScale[1] = sy;
     }
-}
-Node.prototype.updateOffset = function () {
-    this.mOffset.set(
-        -(this.mAnthorX - this.mCenterX) * this.mWidth,
-        -(this.mAnthorY - this.mCenterY) * this.mHeight
-    );
+    this.mDirty = true;
 }
 Node.prototype.updateMatrix = function () {
     if (!this.mDirty) {
         return;
     }
+
+    // translate, rotate, scale
     var m = this.mMatirx;
     m.identity();
     m.translate(this.mPosition);
-    m.rotate(this.mRotate, this.mRotate, aixz);
-    m.scale(this.mRotate, this.mScale);
+    m.rotate(this.mRotate, aixz);
+    m.scale(this.mScale);
     m.translate(this.mOffset);
     this.mDirty = false;
 }

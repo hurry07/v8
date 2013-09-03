@@ -21,7 +21,12 @@ function textureFrame(texture, w, h, ox, oy, vx, vy, vw, vh) {
     this.tw = texture.width();
     this.th = texture.height();
 
-    if (arguments.length == 3) {
+    if (arguments.length == 1) {
+        this.w = this.vw = texture.picWidth();
+        this.h = this.vh = texture.picHeight();
+        this.ox = this.vx = 0;
+        this.oy = this.vy = 0;
+    } else if (arguments.length == 3) {
         this.w = this.vw = w;
         this.h = this.vh = h;
         this.ox = this.vx = 0;
