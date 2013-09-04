@@ -21,7 +21,6 @@ function textureFrame(texture, w, h, ox, oy, vx, vy, vw, vh) {
     this.tw = texture.width();
     this.th = texture.height();
 
-    console.log('function textureFrame', arguments.length, this.tw, this.th);
     if (arguments.length == 1) {
         this.w = this.vw = texture.picWidth();
         this.h = this.vh = texture.picHeight();
