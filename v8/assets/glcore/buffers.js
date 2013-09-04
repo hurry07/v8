@@ -10,7 +10,6 @@ function glBuffer(config) {
     // require
     this.mStride = config.stride;// field in one buffer unit
     this.mCount = config.count;
-    this.mCursor = 0;
 
     // optional
     this.mType = config && config.type || Float32Array;
@@ -43,16 +42,6 @@ glBuffer.prototype.clone = function () {
         normalize: this.mNormalize,
         buffer: new this.mType(this.mBuffer.buffer.slice(0))
     });
-}
-/**
- * set cursor
- *
- * @param c
- * @returns {number}
- */
-glBuffer.prototype.cursor = function (c) {
-    this.mCursor = c;
-    return this;
 }
 glBuffer.prototype.__defineGetter__('length', function () {
     return this.mCount;
@@ -87,7 +76,12 @@ glBuffer.prototype.upload = function () {
  * make this vbo the current buffer.
  */
 glBuffer.prototype.bindBuffer = function () {
-    gl.bindBuffer(this.mTarget, this.mVboId);
+    if (this.mIsVbo) {
+        gl.bindBuffer(this.mTarget, this.mVboId);
+    }
+}
+glBuffer.prototype.isVbo = function() {
+    return this.mIsVbo;
 }
 /**
  * util method
@@ -154,15 +148,17 @@ function createBuffer(config) {
     return new glBuffer(config);
 }
 
+/**
+ * set the default behaivour of all buffers
+ */
 exports.enableVBO = function () {
     supportVbo = true;
 }
 exports.disableVBO = function () {
     supportVbo = false;
 }
-exports.glBuffer = glBuffer || {
-    mCursor: 0
-};
+
+exports.glBuffer = glBuffer;
 exports.createBuffer = createBuffer;
 exports.createVectorBuffer = createVectorBuffer;
 exports.createIndexBuffer = createIndexBuffer;

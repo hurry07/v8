@@ -17,9 +17,9 @@ function Sprite(frame) {
 
     this.mFrame = frame;
     this.mBuffer = new Mesh('p3t2', 4, _gl.TRIANGLE_STRIP);
-    this.setSize(frame.width(), frame.height());
     this.mAccP = this.mBuffer.buffer().accessor('p');
     this.mAccT = this.mBuffer.buffer().accessor('t');
+    this.setSize(frame.width(), frame.height());
 
     this.initMesh();
 }

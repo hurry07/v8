@@ -6,9 +6,20 @@ var inherit = require('core/inherit.js');
 
 var meshDB = {};
 
+/**
+ * mesh {
+ *     bytestride,
+ *     isVbo
+ *     buffer
+ * }
+ * @param elementClz
+ * @param count
+ */
 function meshBuffer(elementClz, count) {
     this.mClass = elementClz;
     this.mAdapter = new elementClz();
+    this.bytestride = elementClz.prototype.byteLength;// element bytes count
+    this.mCursor = 0;
 
     glBuffer.call(this, {
         stride: elementClz.prototype.byteLength,
@@ -29,7 +40,17 @@ meshBuffer.prototype.accessor = function (name) {
     return this.mFields[name];
 }
 /**
- * set current mesh point
+ * set cursor
+ *
+ * @param c
+ * @returns {number}
+ */
+meshBuffer.prototype.cursor = function (c) {
+    this.mCursor = c;
+    return this;
+}
+/**
+ * set current mesh point with data in crate sequence
  */
 meshBuffer.prototype.set = function () {
     for (var i = 0, fields = this.mAdapter.arrayAccess, l = fields.length; i < l; i++) {
@@ -77,7 +98,6 @@ meshBuffer.prototype.copy = function (from, to, length) {
 meshBuffer.prototype.bindVertex = function (locs) {
     var stride = this.mClass.prototype.byteLength;
     var confs = this.mClass.prototype.arrayAccess;
-    var buf = this.buffer();
 
     if (this.mIsVbo) {
         gl.bindBuffer(this.mTarget, this.mVboId);
@@ -85,11 +105,7 @@ meshBuffer.prototype.bindVertex = function (locs) {
     for (var i = 0, l = locs.length; i < l; i++) {
         var f = confs[i];
         gl.enableVertexAttribArray(locs[i]);
-        if (this.mIsVbo) {
-            gl.vertexAttribPointer(locs[i], f.size, f.glType, this.mNormalize, stride, f.byteOffset);
-        } else {
-            gl.vertexAttribPointer(locs[i], f.size, f.glType, this.mNormalize, stride, buf.subarray(f.byteOffset));
-        }
+        f.bindVertex(this, locs[i]);
     }
 }
 

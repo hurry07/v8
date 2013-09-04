@@ -1,7 +1,41 @@
 var getGLType = require('glcore/utils.js').getGLType;
 var getByteSize = require('glcore/utils.js').getByteSize;
 var inherit = require('core/inherit.js');
+var gl = require('opengl');
 
+/**
+ * stands for a struct field
+ *
+ * @param name
+ * @param type
+ * @param size
+ * @param normalize
+ * @constructor
+ */
+function Accessor(name, type, size, normalize) {
+    this.name = name;
+    this.type = type;
+    this.glType = getGLType(type);
+    this.size = size;
+    this.normalize = normalize;
+    this.byteOffset = 0;
+    this.byteLength = getByteSize(type) * size;
+}
+/**
+ * @param {meshBuffer} mesh
+ * @param loc
+ */
+Accessor.prototype.bindVertex = function (mesh, loc) {
+    if (mesh.isVbo()) {
+        gl.vertexAttribPointer(loc, this.size, this.glType, this.normalize, mesh.bytestride, this.byteOffset);
+    } else {
+        gl.vertexAttribPointer(loc, this.size, this.glType, this.normalize, mesh.bytestride, mesh.buffer().subarray(this.byteOffset));
+    }
+}
+Accessor.prototype.createBuffer = function (bytebuffer) {
+    return new this.type(bytebuffer, this.byteOffset, this.size);
+}
+// ========================================================
 /**
  * use as super class of anonymous class of instance
  */
@@ -12,8 +46,8 @@ function structSuper() {
     var mFieldMap = {};
     for (var i = 0, l = arrayAccess.length; i < l; i++) {
         var p = arrayAccess[i];
-        var acc = new p.type(mBuffer, p.byteOffset, p.size);
-        acc.__order__ = i;// bind customer property to TypedBuffer object
+        var acc = p.createBuffer(mBuffer);
+        acc.__accessor__ = p;// bind customer property to TypedBuffer object
 
         mFieldMap[i] = acc;
         mFieldMap[p.name || i] = acc;
@@ -31,7 +65,7 @@ structSuper.prototype.fields = function () {
 structSuper.prototype.buffer = function () {
     return this.mBuffer;
 }
-
+// ========================================================
 /**
  * unit of a mix buffer
  *
@@ -44,12 +78,12 @@ function structInst(byteLength, arrayAccess) {
     structSuper.call(this);
 }
 inherit(structInst, structSuper);
-
+// ========================================================
 /**
  * helper class of creating a mix buffer structor
  */
 function structBuilder() {
-    this.parts = [];
+    this.accessor = [];
 }
 /**
  *
@@ -58,12 +92,8 @@ function structBuilder() {
  * @param size
  * @returns {*}
  */
-structBuilder.prototype.add = function (name, type, size) {
-    if (arguments.length == 2) {
-        this.parts.push({type: name, size: type});
-    } else {
-        this.parts.push({name: name, type: type, size: size});
-    }
+structBuilder.prototype.add = function (name, type, size, nor) {
+    this.accessor.push(new Accessor(name, type, size, nor || false));
     return this;
 }
 /**
@@ -75,12 +105,9 @@ structBuilder.prototype.add = function (name, type, size) {
  */
 structBuilder.prototype.initBufMap = function () {
     var byteLength = 0;
-    for (var i = 0, ps = this.parts, length = ps.length; i < length; i++) {
-        var p = ps[i];
+    for (var i = 0, as = this.accessor, length = as.length; i < length; i++) {
+        var p = as[i];
         p.byteOffset = byteLength;
-        p.byteLength = getByteSize(p.type) * p.size;
-        p.glType = getGLType(p.type);
-
         byteLength += p.byteLength;
     }
     return byteLength;
@@ -91,7 +118,7 @@ structBuilder.prototype.initBufMap = function () {
  */
 structBuilder.prototype.create = function () {
     var byteLength = this.initBufMap();
-    var arrayAccess = this.parts;
+    var arrayAccess = this.accessor;
     return new structInst(byteLength, arrayAccess);
 }
 /**
@@ -100,7 +127,7 @@ structBuilder.prototype.create = function () {
  */
 structBuilder.prototype.createClass = function () {
     var byteLength = this.initBufMap();
-    var arrayAccess = this.parts;
+    var arrayAccess = this.accessor;
     var clz = inherit(
         function () {
             structSuper.call(this);
