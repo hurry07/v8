@@ -5,15 +5,7 @@
     <bookmark url="file://$PROJECT_DIR$/v8/assets/render/object2d.js" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/render/camera.js" afterPath="$PROJECT_DIR$/v8/assets/render/camera.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/render/container.js" afterPath="$PROJECT_DIR$/v8/assets/render/container.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/render/context.js" afterPath="$PROJECT_DIR$/v8/assets/render/context.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/render/node.js" afterPath="$PROJECT_DIR$/v8/assets/render/node.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/position_texture.js" afterPath="$PROJECT_DIR$/v8/assets/position_texture.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="" />
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378295848862" ignored="false" />
