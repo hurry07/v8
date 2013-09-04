@@ -7,6 +7,17 @@ var inherit = require('core/inherit.js');
 var meshDB = {};
 
 /**
+ * create a accessor with current context
+ * @param accessor
+ * @param mesh
+ * @returns {Function}
+ */
+function createSetter(accessor, mesh) {
+    return function (loc) {
+        accessor.bindVertex(mesh, loc);
+    }
+}
+/**
  * as interface
  * mesh {
  *     bytestride,
@@ -31,17 +42,10 @@ function meshBuffer(elementClz, count, mode) {
         normalize: false
     });
 
-    var mesh = this;
-
-    function accessorVertex(loc) {
-        this.__accessor__.bindVertex(mesh, loc);
-    }
-
     // bind bindVertex to field accessor using closure
     var fields = this.mAdapter.fields();
     for (var i = 0, coll = elementClz.prototype.arrayAccess, l = coll.length; i < l; i++) {
-        fields[i].__accessor__ = coll[i];
-        fields[i].bindVertex = accessorVertex;
+        fields[i].bindVertex = createSetter(coll[i], this);
     }
     this.mAccessor = fields;
 }
