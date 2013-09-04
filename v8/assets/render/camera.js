@@ -5,7 +5,6 @@ function Camera() {
     this.mModelViewMatrix = new geometry.matrix4();
     this.mProjectMatrix = new geometry.matrix4();
     this.mProjectModelViewMatirx = new geometry.matrix4();
-    this.mMatirx = new geometry.matrix4();
 }
 Camera.prototype.lookAt = function (eye, center, up) {
     this.mModelViewMatrix.identity();
@@ -34,7 +33,7 @@ Camera.prototype.perspective = function (fovy, aspect, zNear, zFar) {
 Camera.prototype.updatePMV = function () {
     glm.mulMM(this.mProjectModelViewMatirx, this.mProjectMatrix, this.mModelViewMatrix);
 }
-Camera.prototype.pmvMatirx = function() {
+Camera.prototype.pvmMatirx = function() {
     return this.mProjectModelViewMatirx;
 }
 

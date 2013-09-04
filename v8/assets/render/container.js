@@ -2,6 +2,7 @@ var _Node = require('render/node.js');
 var _inherit = require('core/inherit.js');
 
 function Container() {
+    _Node.call(this);
     this.children = [];
 }
 _inherit(Container, _Node);
@@ -18,11 +19,14 @@ Container.prototype.removeChild = function (child) {
     return child;
 }
 Container.prototype.draw = function (context) {
+    this.updateMatrix();
+    context.pushMatrix(this.mMatrix);
     for (var i = 0, cs = this.children, l = cs.length; i < l; i++) {
         if (cs[i]) {
             cs[i].draw(context);
         }
     }
+    context.popMatrix();
 }
 
 module.exports = Container;

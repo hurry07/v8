@@ -23,7 +23,7 @@ function Node() {
     this.mPosition = new geometry.vec3f();
     this.mScale = new geometry.vec3f(1, 1, 1);
     this.mRotate = 0;
-    this.mMatirx = new geometry.matrix4();
+    this.mMatrix = new geometry.matrix4();
     this.mDirty = true;
 }
 _inherit(Node, _drawable);
@@ -83,7 +83,7 @@ Node.prototype.updateMatrix = function () {
     }
 
     // translate, rotate, scale
-    var m = this.mMatirx;
+    var m = this.mMatrix;
     m.identity();
     m.translate(this.mPosition);
     m.rotate(this.mRotate, aixz);

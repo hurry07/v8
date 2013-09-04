@@ -90,7 +90,7 @@ void onDrawFrame() {
         return;
     }
     glFlush();
-//    glutPostRedisplay();
+    glutPostRedisplay();
 }
 int main(int argc, char ** argv)
 {
