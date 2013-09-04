@@ -21,10 +21,11 @@ function setupGraphics(w, h) {
     mProgram = program.createWithFile('shader/position_texture.vert', 'shader/position_texture.frag');
     mProgram.addMeshAttrib('positionTexture', 'a_position', 'a_texCoord');
 
-    mTexture = textures.createTexture2D('images/word.png');
+//    mTexture = textures.createTexture2D('images/word.png');
+    mTexture = textures.createTexture2D('images/test.png');
     mSprite = new _sprite(new _material(mProgram, mTexture), new _frame(mTexture));
     mSprite.setAnthor(0.5, 0.5);
-    mSprite.setScale(0.5, -0.6);
+    mSprite.setScale(0.5, -0.5);
     mSprite.setRotate(30);
 
     mContext = {

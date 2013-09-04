@@ -174,11 +174,19 @@ Texture2D.prototype.width = function() {
 Texture2D.prototype.height = function() {
     return this.mWrapHeight;
 }
+/**
+ * visiable width
+ * @returns {*}
+ */
 Texture2D.prototype.picWidth = function() {
-    return this.mWrapWidth;
+    return this.mWidth;
 }
+/**
+ * visiable height
+ * @returns {number}
+ */
 Texture2D.prototype.picHeight = function() {
-    return this.mWrapHeight;
+    return this.mHeight;
 }
 
 /**

@@ -6,11 +6,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/render/meshnode.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/render/material.js" afterPath="$PROJECT_DIR$/v8/assets/render/material.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/position_texture.js" afterPath="$PROJECT_DIR$/v8/assets/position_texture.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/render/sprite.js" afterPath="$PROJECT_DIR$/v8/assets/render/sprite.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/render/textureframe.js" afterPath="$PROJECT_DIR$/v8/assets/render/textureframe.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/glcore/textures.js" afterPath="$PROJECT_DIR$/v8/assets/glcore/textures.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="v8.iws" />
@@ -28,7 +28,7 @@
     <file path="/primitives.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377360400294" ignored="false" />
     <file path="/buffer.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377360453797" ignored="false" />
     <file path="/gametest.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377442384239" ignored="false" />
-    <file path="/textures.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378220958891" ignored="false" />
+    <file path="/textures.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378289949533" ignored="false" />
     <file path="/models.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377492842658" ignored="false" />
     <file path="/buffers.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378283384478" ignored="false" />
     <file path="/math.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378100187784" ignored="false" />
@@ -56,10 +56,10 @@
     <file path="/file.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378175808073" ignored="false" />
     <file path="/node_xml.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378176117030" ignored="false" />
     <file path="/texturemgr.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378182586127" ignored="false" />
-    <file path="/textureframe.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378220980470" ignored="false" />
+    <file path="/textureframe.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378289908889" ignored="false" />
     <file path="/drawable.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378199325567" ignored="false" />
     <file path="/meshsprite.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378204346464" ignored="false" />
-    <file path="/sprite.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378288925054" ignored="false" />
+    <file path="/sprite.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378289844308" ignored="false" />
     <file path="/context.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378208685520" ignored="false" />
     <file path="/meshbuffer.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378286151239" ignored="false" />
     <file path="/struct.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378283568136" ignored="false" />
@@ -86,97 +86,60 @@
     <favorites_list name="v8" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.45111385">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="position_texture.js" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/v8/assets/position_texture.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="24" column="83" selection-start="909" selection-end="909" vertical-scroll-proportion="0.40223464">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="drawable.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/v8/assets/render/drawable.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="2" column="19" selection-start="43" selection-end="43" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="textures.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/v8/assets/glcore/textures.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="38" column="28" selection-start="1059" selection-end="1069" vertical-scroll-proportion="-0.6">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="textureframe.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/v8/assets/render/textureframe.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="19" column="16" selection-start="499" selection-end="506" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="meshbuffer.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/v8/assets/glcore/meshbuffer.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="9" column="41" selection-start="256" selection-end="256" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="meshnode.js" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/v8/assets/render/meshnode.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="16" column="55" selection-start="405" selection-end="405" vertical-scroll-proportion="0.26431718">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="game.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="24" column="0" selection-start="512" selection-end="512" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="material.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/v8/assets/render/material.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="4" column="25" selection-start="81" selection-end="88" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="sprite.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/v8/assets/render/sprite.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="3" column="4" selection-start="134" selection-end="134" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="position_texture.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/position_texture.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="30" selection-start="1035" selection-end="1035" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="test.png" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/images/test.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="drawable.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/render/drawable.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="19" selection-start="43" selection-end="43" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="textures.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/v8/assets/glcore/textures.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="184" column="18" selection-start="5331" selection-end="5331" vertical-scroll-proportion="0.4688562">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="textureframe.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/render/textureframe.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="39" selection-start="732" selection-end="732" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sprite.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/render/sprite.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="36" column="24" selection-start="1036" selection-end="1036" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -194,8 +157,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/v8/assets/render/node.js" />
-        <option value="$PROJECT_DIR$/v8/assets/render/object2d.js" />
         <option value="$PROJECT_DIR$/v8/assets/glcore/structor.js" />
         <option value="$PROJECT_DIR$/v8/assets/render/meshbuffer.js" />
         <option value="$PROJECT_DIR$/v8/assets/glcore/utils.js" />
@@ -209,7 +170,9 @@
         <option value="$PROJECT_DIR$/v8/assets/render/meshnode.js" />
         <option value="$PROJECT_DIR$/v8/assets/render/material.js" />
         <option value="$PROJECT_DIR$/v8/assets/render/sprite.js" />
+        <option value="$PROJECT_DIR$/v8/assets/render/textureframe.js" />
         <option value="$PROJECT_DIR$/v8/assets/position_texture.js" />
+        <option value="$PROJECT_DIR$/v8/assets/glcore/textures.js" />
       </list>
     </option>
   </component>
@@ -432,6 +395,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="v8" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="v8" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="v8" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="glcore" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -615,20 +600,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/v8/assets/material/buffers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="4" selection-start="2919" selection-end="2919" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/render/texturemgr.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="4" selection-start="360" selection-end="360" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/WebGL.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2132" column="64" selection-start="33260" selection-end="33265" vertical-scroll-proportion="0.0">
@@ -639,20 +610,6 @@
     <entry file="file://$PROJECT_DIR$/v8/assets/render/render.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="1" selection-start="0" selection-end="135" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/render/drawable.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="19" selection-start="43" selection-end="43" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/glcore/textures.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="28" selection-start="1059" selection-end="1069" vertical-scroll-proportion="-0.6">
           <folding />
         </state>
       </provider>
@@ -685,23 +642,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/render/textureframe.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="16" selection-start="499" selection-end="506" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/render/material.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="25" selection-start="81" selection-end="88" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/render/sprite.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="4" selection-start="134" selection-end="134" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -713,16 +656,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/images/pngnow.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/render/meshnode.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="55" selection-start="405" selection-end="405" vertical-scroll-proportion="0.26431718">
+        <state line="14" column="46" selection-start="324" selection-end="324" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/render/drawable.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="19" selection-start="43" selection-end="43" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/render/sprite.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="24" selection-start="1036" selection-end="1036" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/images/test.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/position_texture.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="83" selection-start="909" selection-end="909" vertical-scroll-proportion="0.40223464">
+        <state line="27" column="30" selection-start="1035" selection-end="1035" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/render/textureframe.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="39" selection-start="732" selection-end="732" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/glcore/textures.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="184" column="18" selection-start="5331" selection-end="5331" vertical-scroll-proportion="0.4688562">
           <folding />
         </state>
       </provider>

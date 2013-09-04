@@ -34,6 +34,7 @@ Sprite.prototype.initMesh = function () {
 
     for (var i = 0; i < 8; i += 2) {
         f.getPoint(v, t, _order[i], _order[i + 1]);
+        console.log(v, t);
         _glm.mulMV3(v, m, v);
 
         this.mAccessorT.set(t);
