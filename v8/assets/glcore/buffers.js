@@ -6,6 +6,10 @@ var getGLType = require('glcore/utils.js').getGLType;
 
 var supportVbo = true;
 
+/**
+ * stand for a vbo buffer, handle detail operation when you work with mesh data
+ * @param config
+ */
 function glBuffer(config) {
     // require
     this.mStride = config.stride;// field in one buffer unit

@@ -7,15 +7,17 @@ var inherit = require('core/inherit.js');
 var meshDB = {};
 
 /**
+ * as interface
  * mesh {
  *     bytestride,
  *     isVbo
  *     buffer
+ *     mode
  * }
  * @param elementClz
  * @param count
  */
-function meshBuffer(elementClz, count) {
+function meshBuffer(elementClz, count, mode) {
     this.mClass = elementClz;
     this.mAdapter = new elementClz();
     this.bytestride = elementClz.prototype.byteLength;// element bytes count
@@ -28,6 +30,7 @@ function meshBuffer(elementClz, count) {
         normalize: false
     });
     this.mFields = this.mAdapter.fields();
+    this.mode = mode;
 }
 inherit(meshBuffer, glBuffer);
 /**
@@ -96,19 +99,15 @@ meshBuffer.prototype.copy = function (from, to, length) {
  * @param locs
  */
 meshBuffer.prototype.bindVertex = function (locs) {
-    var stride = this.mClass.prototype.byteLength;
-    var confs = this.mClass.prototype.arrayAccess;
-
     if (this.mIsVbo) {
         gl.bindBuffer(this.mTarget, this.mVboId);
     }
+
+    var confs = this.mClass.prototype.arrayAccess;
     for (var i = 0, l = locs.length; i < l; i++) {
-        var f = confs[i];
-        gl.enableVertexAttribArray(locs[i]);
-        f.bindVertex(this, locs[i]);
+        confs[i].bindVertex(this, locs[i]);
     }
 }
-
 function setupMesh(protocal) {
     var builder = _struct.createStruct();
     var arr = protocal.match(/\w\d*/g);

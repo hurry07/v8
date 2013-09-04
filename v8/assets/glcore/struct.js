@@ -26,6 +26,7 @@ function Accessor(name, type, size, normalize) {
  * @param loc
  */
 Accessor.prototype.bindVertex = function (mesh, loc) {
+    gl.enableVertexAttribArray(loc);
     if (mesh.isVbo()) {
         gl.vertexAttribPointer(loc, this.size, this.glType, this.normalize, mesh.bytestride, this.byteOffset);
     } else {
