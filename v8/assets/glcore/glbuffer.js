@@ -1,9 +1,13 @@
 var _gl = require('opengl');
 var _glm = require('core/_glm.js');
 var _Buffer = require('glcore/buffer.js').Buffer;
-var _inherit = require('core/inherit.js');
 var _getGLType = require('glcore/utils.js').getGLType;
+var _inherit = require('core/inherit.js');
 
+/**
+ * Global flag
+ * @type {boolean}
+ */
 var supportVbo = true;
 
 /**

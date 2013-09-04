@@ -1,5 +1,3 @@
-var inherit = require('core/inherit.js');
-
 /**
  * stand for a typed buffer, handle detail operation when you work with mesh data
  * @param config
@@ -55,8 +53,7 @@ function createTypedBuffer(stride, count, type, element) {
         stride: stride,
         count: count,
         type: type,
-        element: element,
-        normalize: false
+        element: element
     });
 }
 
