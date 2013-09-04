@@ -22,6 +22,7 @@ function meshBuffer(elementClz, count, mode) {
     this.mAdapter = new elementClz();
     this.bytestride = elementClz.prototype.byteLength;// element bytes count
     this.mCursor = 0;
+    this.mode = mode;
 
     glBuffer.call(this, {
         stride: elementClz.prototype.byteLength,
@@ -29,8 +30,20 @@ function meshBuffer(elementClz, count, mode) {
         type: Int8Array,
         normalize: false
     });
-    this.mFields = this.mAdapter.fields();
-    this.mode = mode;
+
+    var mesh = this;
+
+    function accessorVertex(loc) {
+        this.__accessor__.bindVertex(mesh, loc);
+    }
+
+    // bind bindVertex to field accessor using closure
+    var fields = this.mAdapter.fields();
+    for (var i = 0, coll = elementClz.prototype.arrayAccess, l = coll.length; i < l; i++) {
+        fields[i].__accessor__ = coll[i];
+        fields[i].bindVertex = accessorVertex;
+    }
+    this.mAccessor = fields;
 }
 inherit(meshBuffer, glBuffer);
 /**
@@ -40,7 +53,7 @@ inherit(meshBuffer, glBuffer);
  * @returns {*}
  */
 meshBuffer.prototype.accessor = function (name) {
-    return this.mFields[name];
+    return this.mAccessor[name];
 }
 /**
  * set cursor
@@ -54,10 +67,12 @@ meshBuffer.prototype.cursor = function (c) {
 }
 /**
  * set current mesh point with data in crate sequence
+ * TODO test
  */
 meshBuffer.prototype.set = function () {
-    for (var i = 0, fields = this.mAdapter.arrayAccess, l = fields.length; i < l; i++) {
-        var f = this.mFields[i];
+    var fields = this.mAdapter.fields();
+    for (var i = 0, confs = this.mAdapter.arrayAccess, l = confs.length; i < l; i++) {
+        var f = fields[i];
         f.set.call(f, arguments[i]);
     }
     glBuffer.prototype.setElement.call(this, this.mCursor, this.mAdapter.buffer());
@@ -102,12 +117,17 @@ meshBuffer.prototype.bindVertex = function (locs) {
     if (this.mIsVbo) {
         gl.bindBuffer(this.mTarget, this.mVboId);
     }
-
     var confs = this.mClass.prototype.arrayAccess;
     for (var i = 0, l = locs.length; i < l; i++) {
         confs[i].bindVertex(this, locs[i]);
     }
 }
+meshBuffer.prototype.draw = function () {
+    gl.drawArrays(this.mode, 0, this.length);
+}
+/**
+ * crate a mesh class
+ */
 function setupMesh(protocal) {
     var builder = _struct.createStruct();
     var arr = protocal.match(/\w\d*/g);
@@ -135,16 +155,15 @@ function setupMesh(protocal) {
 
     return builder.createClass();
 }
-
 /**
  *
  * @param {string} protocal mesh field protocal
  * @param {number} points point count
  * @returns {meshBuffer}
  */
-function createMesh(protocal, points) {
+function createMesh(protocal, points, mode) {
     var clz = meshDB[protocal] || (meshDB[protocal] = setupMesh(protocal));
-    return new meshBuffer(clz, points);
+    return new meshBuffer(clz, points, mode);
 }
 
 exports.createMesh = createMesh;

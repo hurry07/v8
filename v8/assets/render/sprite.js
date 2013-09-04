@@ -3,6 +3,7 @@ var Node = require('render/node.js');
 var createMesh = require('glcore/meshbuffer.js').createMesh;
 var _gl = require('opengl');
 var _geometry = require('core/glm.js');
+
 var _glm = _geometry.glm;
 var _v2 = _geometry.vec2f;
 var _v3 = _geometry.vec3f;
@@ -12,13 +13,14 @@ var _order = [0, 0, 0, 1, 1, 0, 1, 1];
  * @param frame texture frame
  * @constructor
  */
-function Sprite(frame) {
+function Sprite(frame, material) {
     Node.call(this);
 
+    this.mMaterial = material;
     this.mFrame = frame;
     this.mBuffer = createMesh('p3t2', 4, _gl.TRIANGLE_STRIP);
-    this.mAccP = this.mBuffer.accessor('p');
-    this.mAccT = this.mBuffer.accessor('t');
+    this.mAccessorP = this.mBuffer.accessor('p');
+    this.mAccessorT = this.mBuffer.accessor('t');
     this.setSize(frame.width(), frame.height());
 
     this.initMesh();
@@ -35,8 +37,8 @@ Sprite.prototype.initMesh = function () {
         f.getPoint(v, t, _order[i], _order[i + 1]);
         _glm.mulMV3(v, m, v);
 
-        this.mAccT.set(t);
-        this.mAccP.set(v);
+        this.mAccessorT.set(t);
+        this.mAccessorP.set(v);
         b.push(i / 2);
     }
 
@@ -44,13 +46,7 @@ Sprite.prototype.initMesh = function () {
 }
 Sprite.prototype.draw = function (context) {
     this.updateMatrix();
-
-    var program = context.program;
-    program.use();
-    program.setUniform('u_texture', this.mFrame.texture);
-    program.setUniform('u_pvmMatrix', context.getMatrix(this.mMatirx));
-    program.setAttrib('positionTexture', this.mBuffer);
-    _gl.drawArrays(_gl.TRIANGLE_STRIP, 0, 4);
+    context.render(this, this.mBuffer, this.mFrame, this.mMaterial);
 }
 
 module.exports = Sprite;

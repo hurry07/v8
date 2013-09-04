@@ -333,7 +333,7 @@ v8::Local<v8::Function> typedbuffer::initTypedArrayClass(v8::Handle<v8::Function
     obj->Set(String::New("set"), FunctionTemplate::New(typedbuffer::set), PropertyAttribute(ReadOnly | DontDelete));
     obj->Set(String::New("get"), FunctionTemplate::New(typedbuffer::get), PropertyAttribute(ReadOnly | DontDelete));
     obj->Set(String::New("subarray"), FunctionTemplate::New(typedbuffer::subarray<T>), PropertyAttribute(ReadOnly | DontDelete));
-    
+
     Local<ObjectTemplate> ins = temp->InstanceTemplate();
     ins->SetIndexedPropertyHandler(globalfn::array::getter<T>, globalfn::array::setter<T>);
     

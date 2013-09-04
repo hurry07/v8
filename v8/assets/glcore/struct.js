@@ -48,7 +48,6 @@ function structSuper() {
     for (var i = 0, l = arrayAccess.length; i < l; i++) {
         var p = arrayAccess[i];
         var acc = p.createBuffer(mBuffer);
-        acc.__accessor__ = p;// bind customer property to TypedBuffer object
 
         mFieldMap[i] = acc;
         mFieldMap[p.name || i] = acc;
