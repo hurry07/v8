@@ -1,11 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/v8/assets/test/shader01/basic_uniformblock.vert" />
+    <bookmark url="file://$PROJECT_DIR$/history/test/shader01/basic_uniformblock.vert" />
     <bookmark url="file://$PROJECT_DIR$/v8/assets/render/object2d.js" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="" />
+    <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter01/shader/basic.frag" afterPath="$PROJECT_DIR$/history/chapter01/shader/basic.frag" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter01/shader/basic.vert" afterPath="$PROJECT_DIR$/history/chapter01/shader/basic.vert" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter01/shader/basic_layout.frag" afterPath="$PROJECT_DIR$/history/test/shader01/basic_layout.frag" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter01/shader/basic_layout.vert" afterPath="$PROJECT_DIR$/history/test/shader01/basic_layout.vert" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter01/shader/basic_uniform.frag" afterPath="$PROJECT_DIR$/history/chapter01/shader/basic_uniform.frag" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter01/shader/basic_uniform.vert" afterPath="$PROJECT_DIR$/history/chapter01/shader/basic_uniform.vert" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter01/shader/basic_uniformblock.frag" afterPath="$PROJECT_DIR$/history/chapter01/shader/basic_uniformblock.frag" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter01/shader/basic_uniformblock.vert" afterPath="$PROJECT_DIR$/history/chapter01/shader/basic_uniformblock.vert" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/.hg_archival.txt" afterPath="$PROJECT_DIR$/history/chapter02/.hg_archival.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/README" afterPath="$PROJECT_DIR$/history/chapter02/README" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/chapter02.pro" afterPath="$PROJECT_DIR$/history/chapter02/chapter02.pro" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/defines.h" afterPath="$PROJECT_DIR$/history/chapter02/defines.h" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/drawable.cpp" afterPath="$PROJECT_DIR$/history/chapter02/drawable.cpp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/drawable.h" afterPath="$PROJECT_DIR$/history/chapter02/drawable.h" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/glslprogram.cpp" afterPath="$PROJECT_DIR$/history/chapter02/glslprogram.cpp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/glslprogram.h" afterPath="$PROJECT_DIR$/history/chapter02/glslprogram.h" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/glutils.cpp" afterPath="$PROJECT_DIR$/history/chapter02/glutils.cpp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/glutils.h" afterPath="$PROJECT_DIR$/history/chapter02/glutils.h" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/main.cpp" afterPath="$PROJECT_DIR$/history/chapter02/main.cpp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/mainview.cpp" afterPath="$PROJECT_DIR$/history/chapter02/mainview.cpp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/mainview.h" afterPath="$PROJECT_DIR$/history/chapter02/mainview.h" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/media/bs_ears.obj" afterPath="$PROJECT_DIR$/history/chapter02/media/bs_ears.obj" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/scene.h" afterPath="$PROJECT_DIR$/history/chapter02/scene.h" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/sceneads.cpp" afterPath="$PROJECT_DIR$/history/chapter02/sceneads.cpp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/sceneads.h" afterPath="$PROJECT_DIR$/history/chapter02/sceneads.h" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/scenediffuse.cpp" afterPath="$PROJECT_DIR$/history/chapter02/scenediffuse.cpp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/scenediffuse.h" afterPath="$PROJECT_DIR$/history/chapter02/scenediffuse.h" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/scenediscard.cpp" afterPath="$PROJECT_DIR$/history/chapter02/scenediscard.cpp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/scenediscard.h" afterPath="$PROJECT_DIR$/history/chapter02/scenediscard.h" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/sceneflat.cpp" afterPath="$PROJECT_DIR$/history/chapter02/sceneflat.cpp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/sceneflat.h" afterPath="$PROJECT_DIR$/history/chapter02/sceneflat.h" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/scenesubroutine.cpp" afterPath="$PROJECT_DIR$/history/chapter02/scenesubroutine.cpp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/scenesubroutine.h" afterPath="$PROJECT_DIR$/history/chapter02/scenesubroutine.h" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/scenetwoside.cpp" afterPath="$PROJECT_DIR$/history/chapter02/scenetwoside.cpp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/scenetwoside.h" afterPath="$PROJECT_DIR$/history/chapter02/scenetwoside.h" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/shader/diffuse.frag" afterPath="$PROJECT_DIR$/history/chapter02/shader/diffuse.frag" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/shader/diffuse.vert" afterPath="$PROJECT_DIR$/history/chapter02/shader/diffuse.vert" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/shader/discard.frag" afterPath="$PROJECT_DIR$/history/chapter02/shader/discard.frag" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/shader/discard.vert" afterPath="$PROJECT_DIR$/history/chapter02/shader/discard.vert" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/shader/flat.frag" afterPath="$PROJECT_DIR$/history/chapter02/shader/flat.frag" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/shader/flat.vert" afterPath="$PROJECT_DIR$/history/chapter02/shader/flat.vert" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/shader/function.frag" afterPath="$PROJECT_DIR$/history/chapter02/shader/function.frag" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/shader/function.vert" afterPath="$PROJECT_DIR$/history/chapter02/shader/function.vert" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/shader/phong.frag" afterPath="$PROJECT_DIR$/history/chapter02/shader/phong.frag" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/shader/phong.vert" afterPath="$PROJECT_DIR$/history/chapter02/shader/phong.vert" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/shader/subroutine.frag" afterPath="$PROJECT_DIR$/history/chapter02/shader/subroutine.frag" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/shader/subroutine.vert" afterPath="$PROJECT_DIR$/history/chapter02/shader/subroutine.vert" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/shader/twoside.frag" afterPath="$PROJECT_DIR$/history/chapter02/shader/twoside.frag" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/shader/twoside.vert" afterPath="$PROJECT_DIR$/history/chapter02/shader/twoside.vert" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/teapotdata.h" afterPath="$PROJECT_DIR$/history/chapter02/teapotdata.h" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/vbomesh.cpp" afterPath="$PROJECT_DIR$/history/chapter02/vbomesh.cpp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/vbomesh.h" afterPath="$PROJECT_DIR$/history/chapter02/vbomesh.h" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/vboteapot.cpp" afterPath="$PROJECT_DIR$/history/chapter02/vboteapot.cpp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/vboteapot.h" afterPath="$PROJECT_DIR$/history/chapter02/vboteapot.h" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/vbotorus.cpp" afterPath="$PROJECT_DIR$/history/chapter02/vbotorus.cpp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/chapter02/vbotorus.h" afterPath="$PROJECT_DIR$/history/chapter02/vbotorus.h" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/material/README.txt" afterPath="$PROJECT_DIR$/history/material/README.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/material/buffers.js" afterPath="$PROJECT_DIR$/history/material/buffers.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/material/main.js" afterPath="$PROJECT_DIR$/history/material/main.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/material/models.js" afterPath="$PROJECT_DIR$/history/material/models.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/material/obj.js" afterPath="$PROJECT_DIR$/history/material/obj.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/material/primitives.js" afterPath="$PROJECT_DIR$/history/material/primitives.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/material/vbomesh.js" afterPath="$PROJECT_DIR$/history/material/vbomesh.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/test/gametest.js" afterPath="$PROJECT_DIR$/history/test/gametest.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/test/gljs.js" afterPath="$PROJECT_DIR$/history/test/gljs.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/test/sample.xml" afterPath="$PROJECT_DIR$/history/test/sample.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/test/shader01/basic.frag" afterPath="$PROJECT_DIR$/history/test/shader01/basic.frag" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/test/shader01/basic.vert" afterPath="$PROJECT_DIR$/history/test/shader01/basic.vert" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/test/shader01/basic_layout.frag" afterPath="$PROJECT_DIR$/history/chapter01/shader/basic_layout.frag" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/test/shader01/basic_layout.vert" afterPath="$PROJECT_DIR$/history/chapter01/shader/basic_layout.vert" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/test/shader01/basic_uniform.frag" afterPath="$PROJECT_DIR$/history/test/shader01/basic_uniform.frag" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/test/shader01/basic_uniform.vert" afterPath="$PROJECT_DIR$/history/test/shader01/basic_uniform.vert" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/test/shader01/basic_uniformblock.frag" afterPath="$PROJECT_DIR$/history/test/shader01/basic_uniformblock.frag" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/test/shader01/basic_uniformblock.vert" afterPath="$PROJECT_DIR$/history/test/shader01/basic_uniformblock.vert" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/test/shader01/game.js" afterPath="$PROJECT_DIR$/history/test/shader01/game.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/test/shader01/game_matrix.js" afterPath="$PROJECT_DIR$/history/test/shader01/game_matrix.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/test/shader01/game_mesh.js" afterPath="$PROJECT_DIR$/history/test/shader01/game_mesh.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/test/shader01/game_uniformblock.js" afterPath="$PROJECT_DIR$/history/test/shader01/game_uniformblock.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/test/test_xml.js" afterPath="$PROJECT_DIR$/history/test/test_xml.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/test/vec3_test.js" afterPath="$PROJECT_DIR$/history/test/vec3_test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378295848862" ignored="false" />
@@ -83,19 +166,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="position_texture.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="position_texture.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/position_texture.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="26" selection-start="1963" selection-end="1963" vertical-scroll-proportion="0.6754808">
+            <state line="57" column="21" selection-start="1820" selection-end="1820" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="camera.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/render/camera.js">
+      <file leaf-file-name="glm.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/core/glm.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="17" selection-start="1370" selection-end="1370" vertical-scroll-proportion="0.0">
+            <state line="90" column="13" selection-start="2054" selection-end="2059" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -110,10 +193,37 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="meshnode.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/render/meshnode.js">
+      <file leaf-file-name="sprite.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/render/sprite.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="79" selection-start="435" selection-end="435" vertical-scroll-proportion="0.0">
+            <state line="35" column="37" selection-start="979" selection-end="979" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="constants.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/constants.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="game.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="node.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/v8/assets/node.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -141,15 +251,6 @@
         <entry file="file://$PROJECT_DIR$/v8/assets/render/container.js">
           <provider selected="true" editor-type-id="text-editor">
             <state line="31" column="20" selection-start="801" selection-end="801" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="matrixstack.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/render/matrixstack.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="4" selection-start="397" selection-end="397" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -347,24 +448,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="classes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -379,135 +462,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="render" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="glcore" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tdl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tdl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tdl" />
+              <option name="myItemId" value="history" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -535,6 +490,7 @@
       <recent name="$PROJECT_DIR$/v8/assets/chapter02" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/history" />
       <recent name="$PROJECT_DIR$/v8/assets/glcore" />
       <recent name="$PROJECT_DIR$/v8/assets/core" />
       <recent name="$PROJECT_DIR$/v8/assets/material" />
@@ -570,13 +526,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="7" y="22" width="1270" height="774" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32110092" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32110092" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1839747" sideWeight="0.6730769" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21251002" sideWeight="0.6788991" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21251002" sideWeight="0.6788991" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -654,41 +610,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/WebGL.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="385" column="34" selection-start="5495" selection-end="5507" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/render/sprite.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="222" selection-end="222" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/core/image.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/core/glm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="13" selection-start="2054" selection-end="2059" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/glcore/glbuffer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="21" selection-start="212" selection-end="212" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tdl/tdl/buffers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -761,9 +682,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/core/glm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="90" column="13" selection-start="2054" selection-end="2059" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/position_texture.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="26" selection-start="1963" selection-end="1963" vertical-scroll-proportion="0.6754808">
+        <state line="57" column="21" selection-start="1820" selection-end="1820" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/render/sprite.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="37" selection-start="979" selection-end="979" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/constants.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/node.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
