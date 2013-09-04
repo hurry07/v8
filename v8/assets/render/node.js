@@ -4,6 +4,10 @@ var _drawable = require('render/drawable.js');
 var _inherit = require('core/inherit.js');
 var aixz = new geometry.vec3f(0, 0, 1);
 
+/**
+ * an objec with given position
+ * @constructor
+ */
 function Node() {
     _drawable.call(this);
 

@@ -8,6 +8,7 @@ function Material(program, texture) {
 }
 Material.prototype.use = function () {
     this.program.use();
+    this.program.setUniform('u_texture', this.texture);
 }
 Material.prototype.bindMesh = function (mesh) {
     var p = this.program;
@@ -17,9 +18,6 @@ Material.prototype.bindMesh = function (mesh) {
 }
 Material.prototype.bindMatrix = function (matrix) {
     this.program.setUniform('u_pvmMatrix', matrix);
-}
-Material.prototype.bindTexture = function (frame) {
-    this.program.setUniform('u_texture', frame.texture);
 }
 
 module.exports = Material;

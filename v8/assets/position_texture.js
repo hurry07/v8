@@ -5,15 +5,15 @@ var glm = geometry.glm;
 var textures = require('glcore/textures.js');
 
 var _camera = require('render/camera.js');
-var _sprite = require('render/sprite.js');
+var _Sprite = require('render/sprite.js');
+var _Container = require('render/container.js');
 var _frame = require('render/textureframe.js');
 var _material = require('render/material.js');
 
 var mProgram;
-var mTexture;
 var mCamera;
-var mSprite;
 var mContext;
+var mContainer;
 
 function setupGraphics(w, h) {
     mCamera = _camera.createCamera().lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(-w / 2, w / 2, -h / 2, h / 2, 9, 11);
@@ -21,12 +21,20 @@ function setupGraphics(w, h) {
     mProgram = program.createWithFile('shader/position_texture.vert', 'shader/position_texture.frag');
     mProgram.addMeshAttrib('positionTexture', 'a_position', 'a_texCoord');
 
-//    mTexture = textures.createTexture2D('images/word.png');
-    mTexture = textures.createTexture2D('images/test.png');
-    mSprite = new _sprite(new _material(mProgram, mTexture), new _frame(mTexture));
-    mSprite.setAnthor(0.5, 0.5);
-    mSprite.setScale(0.5, -0.5);
-    mSprite.setRotate(30);
+    mContainer = new _Container();
+
+    var t1 = textures.createTexture2D('images/test.png');
+    var sprite1 = new _Sprite(new _material(mProgram, t1), new _frame(t1));
+    sprite1.setAnthor(0.5, 0.5);
+    sprite1.setScale(0.5, -0.5);
+    sprite1.setRotate(30);
+    mContainer.addChild(sprite1);
+
+    var t2 = textures.createTexture2D('images/word.png');
+    var sprite2 = new _Sprite(new _material(mProgram, t2), new _frame(t2));
+    sprite2.setAnthor(1, 1);
+    sprite2.setScale(0.2, 0.2);
+    mContainer.addChild(sprite2);
 
     mContext = {
         program: mProgram,
@@ -47,12 +55,16 @@ function setupGraphics(w, h) {
 
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+    gl.disable(gl.DEPTH_TEST);
+    gl.disable(gl.STENCIL_TEST);
+    gl.disable(gl.SCISSOR_TEST);
 }
 function renderFrame() {
     gl.clearColor(1, 1, 1, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
 
-    mSprite.draw(mContext);
+    mContainer.draw(mContext);
 }
 
 exports.renderFrame = renderFrame;
