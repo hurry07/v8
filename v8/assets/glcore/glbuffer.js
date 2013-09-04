@@ -1,5 +1,5 @@
 var _gl = require('opengl');
-var _glm = require('core/_glm.js');
+var _glm = require('core/glm.js');
 var _Buffer = require('glcore/buffer.js').Buffer;
 var _getGLType = require('glcore/utils.js').getGLType;
 var _inherit = require('core/inherit.js');

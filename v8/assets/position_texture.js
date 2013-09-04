@@ -9,11 +9,20 @@ var _Sprite = require('render/sprite.js');
 var _Container = require('render/container.js');
 var _frame = require('render/textureframe.js');
 var _material = require('render/material.js');
+var _stack = require('render/matrixstack.js');
 
 var mProgram;
 var mCamera;
 var mContext;
 var mContainer;
+
+function printArr(arr) {
+    var s = '';
+    for (var i = 0; i < arr.length; i++) {
+        s += ',' + arr[i];
+    }
+    console.log(s);
+}
 
 function setupGraphics(w, h) {
     mCamera = _camera.createCamera().lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(-w / 2, w / 2, -h / 2, h / 2, 9, 11);
@@ -33,7 +42,7 @@ function setupGraphics(w, h) {
     var t2 = textures.createTexture2D('images/word.png');
     var sprite2 = new _Sprite(new _material(mProgram, t2), new _frame(t2));
     sprite2.setAnthor(1, 1);
-    sprite2.setScale(0.2, 0.2);
+    sprite2.setScale(0.6, 0.6);
     mContainer.addChild(sprite2);
 
     mContext = {
