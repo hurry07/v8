@@ -1,8 +1,8 @@
-var _inherit = require('core/inherit.js');
-var Node = require('render/node.js');
 var createMesh = require('glcore/meshbuffer.js').createMesh;
 var _gl = require('opengl');
 var _geometry = require('core/glm.js');
+var _MeshNode = require('render/meshnode.js');
+var _inherit = require('core/inherit.js');
 
 var _glm = _geometry.glm;
 var _v2 = _geometry.vec2f;
@@ -10,22 +10,21 @@ var _v3 = _geometry.vec3f;
 var _order = [0, 0, 0, 1, 1, 0, 1, 1];
 
 /**
+ * @param material
  * @param frame texture frame
  * @constructor
  */
-function Sprite(frame, material) {
-    Node.call(this);
+function Sprite(material, frame) {
+    _MeshNode.call(this, createMesh('p3t2', 4, _gl.TRIANGLE_STRIP), material);
 
-    this.mMaterial = material;
     this.mFrame = frame;
-    this.mBuffer = createMesh('p3t2', 4, _gl.TRIANGLE_STRIP);
     this.mAccessorP = this.mBuffer.accessor('p');
     this.mAccessorT = this.mBuffer.accessor('t');
     this.setSize(frame.width(), frame.height());
 
     this.initMesh();
 }
-_inherit(Sprite, Node);
+_inherit(Sprite, _MeshNode);
 Sprite.prototype.initMesh = function () {
     var f = this.mFrame;
     var m = f.getMatrix();
@@ -43,10 +42,6 @@ Sprite.prototype.initMesh = function () {
     }
 
     b.upload();
-}
-Sprite.prototype.draw = function (context) {
-    this.updateMatrix();
-    context.render(this, this.mBuffer, this.mFrame, this.mMaterial);
 }
 
 module.exports = Sprite;

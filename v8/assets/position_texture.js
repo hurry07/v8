@@ -22,14 +22,11 @@ function setupGraphics(w, h) {
     mProgram.addMeshAttrib('positionTexture', 'a_position', 'a_texCoord');
 
     mTexture = textures.createTexture2D('images/word.png');
-    mSprite = new _sprite(new _frame(mTexture), new _material(mProgram));
+    mSprite = new _sprite(new _material(mProgram, mTexture), new _frame(mTexture));
     mSprite.setAnthor(0.5, 0.5);
     mSprite.setScale(0.5, -0.6);
     mSprite.setRotate(30);
 
-    mProgram.use();
-//    mProgram.setUniform('u_texture', mTexture);
-//    mProgram.setUniform('u_pvmMatrix', mCamera.pmvMatirx());
     mContext = {
         program: mProgram,
         pvmMatirx: mCamera.pmvMatirx(),
@@ -38,10 +35,10 @@ function setupGraphics(w, h) {
             glm.mulMM(this.matirx, this.pvmMatirx, spriteM);
             return this.matirx;
         },
-        render: function (node, mesh, textureframe, material) {
+        render: function (node, mesh, material) {
             this.program.use();
-            this.program.setUniform('u_pvmMatrix', this.getMatrix(node.mMatirx));
-            material.bindTexture(textureframe);
+            material.use();
+            material.bindMatrix(this.getMatrix(node.mMatirx));
             material.bindMesh(mesh);
             mesh.draw();
         }
@@ -54,7 +51,6 @@ function renderFrame() {
     gl.clearColor(1, 1, 1, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
 
-    mProgram.use();
     mSprite.draw(mContext);
 }
 
