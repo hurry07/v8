@@ -1,4 +1,4 @@
-var _buffers = require('glcore/buffers.js');
+var _buffers = require('glcore/glbuffer.js');
 var glBuffer = _buffers.glBuffer;
 var _struct = require('glcore/struct.js');
 var gl = require('opengl');

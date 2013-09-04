@@ -175,7 +175,7 @@ function testBufferGet() {
 //testBufferSet();
 //testBufferGet();
 
-var AttribBuffer = require('glcore/buffers.js');
+var AttribBuffer = require('glcore/glbuffer.js');
 console.log(AttribBuffer);
 
 var coll = new AttribBuffer(3, 10, clz.vec3f);

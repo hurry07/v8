@@ -1,8 +1,8 @@
-var clz = require('nativeclasses');
-var gl = require('opengl');
-var glm = require('core/glm.js');
-var inherit = require('core/inherit.js');
-var getGLType = require('glcore/utils.js').getGLType;
+var _gl = require('opengl');
+var _glm = require('core/_glm.js');
+var _Buffer = require('glcore/buffer.js').Buffer;
+var _inherit = require('core/inherit.js');
+var _getGLType = require('glcore/utils.js').getGLType;
 
 var supportVbo = true;
 
@@ -11,31 +11,20 @@ var supportVbo = true;
  * @param config
  */
 function glBuffer(config) {
-    // require
-    this.mStride = config.stride;// field in one buffer unit
-    this.mCount = config.count;
+    _Buffer.call(this, config);
 
     // optional
-    this.mType = config && config.type || Float32Array;
-    this.mGLtype = config && config.gltype || getGLType(this.mType);
-    this.mElement = config && config.element;
+    this.mGLtype = config && config.gltype || _getGLType(this.mType);
     this.mNormalize = config && config.normalize || false;
-    this.mBuffer = config.buffer || new this.mType(this.mStride * this.mCount);
-    this.mTarget = config && config.target || gl.ARRAY_BUFFER;
+    this.mTarget = config && config.target || _gl.ARRAY_BUFFER;
 
     this.mIsVbo = config && config.isvbo || supportVbo;
     this.mVboId = 0;
     if (this.mIsVbo) {
-        this.mVboId = gl.createBuffer();
+        this.mVboId = _gl.createBuffer();
     }
 };
-glBuffer.prototype.getElement = function (index, element) {
-    this.mBuffer.get(element || (element = this.mElement ? new this.mElement() : new this.mType(this.mStride)), index * this.mStride);
-    return element;
-};
-glBuffer.prototype.setElement = function (index, value) {
-    this.mBuffer.set(value, index * this.mStride);
-};
+_inherit(glBuffer, _Buffer);
 glBuffer.prototype.clone = function () {
     return new glBuffer({
         stride: this.mStride,
@@ -47,22 +36,12 @@ glBuffer.prototype.clone = function () {
         buffer: new this.mType(this.mBuffer.buffer.slice(0))
     });
 }
-glBuffer.prototype.__defineGetter__('length', function () {
-    return this.mCount;
-});
-/**
- * return inner buffer
- * @returns {*}
- */
-glBuffer.prototype.buffer = function () {
-    return this.mBuffer;
-}
 /**
  * regenerate a vbo id
  */
 glBuffer.prototype.reload = function () {
     if (this.mIsVbo) {
-        this.mVboId = gl.createBuffer();
+        this.mVboId = _gl.createBuffer();
     }
 }
 /**
@@ -70,10 +49,10 @@ glBuffer.prototype.reload = function () {
  */
 glBuffer.prototype.upload = function () {
     if (this.mIsVbo) {
-        gl.bindBuffer(this.mTarget, this.mVboId);
-        gl.bufferData(this.mTarget, this.mBuffer, gl.STATIC_DRAW);
+        _gl.bindBuffer(this.mTarget, this.mVboId);
+        _gl.bufferData(this.mTarget, this.mBuffer, _gl.STATIC_DRAW);
     } else {
-        gl.bindBuffer(this.mTarget, this.mBuffer);
+        _gl.bindBuffer(this.mTarget, this.mBuffer);
     }
 }
 /**
@@ -81,7 +60,7 @@ glBuffer.prototype.upload = function () {
  */
 glBuffer.prototype.bindBuffer = function () {
     if (this.mIsVbo) {
-        gl.bindBuffer(this.mTarget, this.mVboId);
+        _gl.bindBuffer(this.mTarget, this.mVboId);
     }
 }
 glBuffer.prototype.isVbo = function() {
@@ -94,12 +73,12 @@ glBuffer.prototype.isVbo = function() {
  * @param indx vertex index in shader
  */
 glBuffer.prototype.bindVertex = function (indx) {
-    gl.enableVertexAttribArray(indx);
+    _gl.enableVertexAttribArray(indx);
     if (this.mIsVbo) {
-        gl.bindBuffer(this.mTarget, this.mVboId);
-        gl.vertexAttribPointer(indx, this.mStride, this.mGLtype, this.mNormalize, 0, 0);
+        _gl.bindBuffer(this.mTarget, this.mVboId);
+        _gl.vertexAttribPointer(indx, this.mStride, this.mGLtype, this.mNormalize, 0, 0);
     } else {
-        gl.vertexAttribPointer(indx, this.mStride, this.mGLtype, this.mNormalize, 0, this.mBuffer);
+        _gl.vertexAttribPointer(indx, this.mStride, this.mGLtype, this.mNormalize, 0, this.mBuffer);
     }
 }
 glBuffer.prototype.target = function () {
@@ -124,7 +103,7 @@ function createIndexBuffer(stride, count) {
         count: count,
         type: Uint16Array,
         normalize: false,
-        target: gl.ELEMENT_ARRAY_BUFFER
+        target: _gl.ELEMENT_ARRAY_BUFFER
     });
 }
 /**
@@ -139,7 +118,7 @@ function createVectorBuffer(stride, count) {
         stride: stride,
         count: count,
         type: Float32Array,
-        element: glm['vector' + stride],
+        element: _glm['vector' + stride],
         normalize: false
     });
 }

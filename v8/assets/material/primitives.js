@@ -1,4 +1,4 @@
-var typedbuffer = require('glcore/buffers.js');
+var typedbuffer = require('glcore/glbuffer.js');
 var clz = require('nativeclasses');
 
 var vector2 = clz.vec2f;

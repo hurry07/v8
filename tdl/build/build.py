@@ -13,7 +13,7 @@ from optparse import OptionParser
 VERBOSE = False
 JS_FILES = [
   "../tdl/base.js",
-  "../tdl/buffers.js",
+  "../tdl/glbuffer.js",
   "../tdl/clock.js",
   "../tdl/fast.js",
   "../tdl/fps.js",

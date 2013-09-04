@@ -1,7 +1,7 @@
 var program = require('glcore/program.js');
 var math3d = require('core/glm.js');
 var gl = require('opengl');
-var glBuffer = require('glcore/buffers.js');
+var glBuffer = require('glcore/glbuffer.js');
 
 var positionData = new Float32Array([
     -0.8, -0.8,
