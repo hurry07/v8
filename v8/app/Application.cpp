@@ -109,11 +109,16 @@ Local<Function> Application::loadModuleFn(const char* name) {
 		printf("error, file not found:%s\n", name);
 	}
 
-	std::string sc("(function (exports, require, module, __filename) {\n");
+	std::string sc("(function (exports, require, module, __filename) {\n"
+                   "try {\n");
 	if (!file->isEmpty()) {
 		sc.append(file->chars());
 	}
-	sc.append("\n});");
+
+	sc.append("\n}catch(e){console.log('Exception occur:");
+    sc.append(name);
+    sc.append(" ['+e+']');}"
+              "\n});");
     delete file;
 
 	v8::Handle<v8::String> source = String::New(sc.c_str());

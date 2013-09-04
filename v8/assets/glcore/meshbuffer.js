@@ -1,16 +1,16 @@
-var buffers = require('glcore/buffers.js');
-var glBuffer = buffers.glBuffer;
-var inherit = require('core/inherit.js');
+var _buffers = require('glcore/buffers.js');
+var glBuffer = _buffers.glBuffer;
+var _struct = require('glcore/struct.js');
 var gl = require('opengl');
+var inherit = require('core/inherit.js');
 
 var meshDB = {};
 
 function meshBuffer(elementClz, count) {
     this.mClass = elementClz;
     this.mAdapter = new elementClz();
-    this.mCursor = 0;
 
-    buffers.glBuffer.call(this, {
+    glBuffer.call(this, {
         stride: elementClz.prototype.byteLength,
         count: count,
         type: Int8Array,
@@ -18,17 +18,7 @@ function meshBuffer(elementClz, count) {
     });
     this.mFields = this.mAdapter.fields();
 }
-inherit(meshBuffer, buffers.glBuffer);
-/**
- * cursor.set, cursor.get
- *
- * @param index
- * @returns {*}
- */
-meshBuffer.prototype.cursor = function (index) {
-    this.mCursor = index;
-    return this;
-};
+inherit(meshBuffer, glBuffer);
 /**
  * return an accessor of specific name
  *
@@ -39,7 +29,7 @@ meshBuffer.prototype.accessor = function (name) {
     return this.mFields[name];
 }
 /**
- * if arguments was given, fill fields one by one
+ * set current mesh point
  */
 meshBuffer.prototype.set = function () {
     for (var i = 0, fields = this.mAdapter.arrayAccess, l = fields.length; i < l; i++) {
@@ -80,6 +70,10 @@ meshBuffer.prototype.copy = function (from, to, length) {
         sset.call(this, to + i, b);
     }
 }
+/**
+ * bind buffer
+ * @param locs
+ */
 meshBuffer.prototype.bindVertex = function (locs) {
     var stride = this.mClass.prototype.byteLength;
     var confs = this.mClass.prototype.arrayAccess;
@@ -98,33 +92,25 @@ meshBuffer.prototype.bindVertex = function (locs) {
         }
     }
 }
-/**
- * @param order mesh field order
- * @param points
- * @returns {meshBuffer}
- */
-function createMesh(order, points) {
-    var clz = meshDB[order];
-    if (clz) {
-        return new meshBuffer(clz, points);
-    }
 
-    clz = buffers.structure();
-    var arr = order.match(/\w\d*/g);
+function setupMesh(protocal) {
+    var builder = _struct.createStruct();
+    var arr = protocal.match(/\w\d*/g);
+
     for (var i = 0, l = arr.length; i < l; i++) {
         var stride = arr[i].length > 1 ? arr[i].slice(1) : 0;
         switch (arr[i].charAt(0)) {
             case 't':
-                clz.add('t', Float32Array, stride || 2);// texture
+                builder.add('t', Float32Array, stride || 2);// texture
                 break;
             case 'p':
-                clz.add('p', Float32Array, stride || 2);// position
+                builder.add('p', Float32Array, stride || 2);// position
                 break;
             case 'c':
-                clz.add('c', Float32Array, stride || 4);// color
+                builder.add('c', Float32Array, stride || 4);// color
                 break;
             case 'n':
-                clz.add('n', Float32Array, stride || 3);// normalize
+                builder.add('n', Float32Array, stride || 3);// normalize
                 break;
             default :
                 console.log('mesh key type:[' + arr[i].charAt(0) + '] not found');
@@ -132,8 +118,18 @@ function createMesh(order, points) {
         }
     }
 
-    clz = clz.createClass();
-    meshDB[order] = clz;
+    return builder.createClass();
+}
+
+/**
+ *
+ * @param {string} protocal mesh field protocal
+ * @param {number} points point count
+ * @returns {meshBuffer}
+ */
+function createMesh(protocal, points) {
+    var clz = meshDB[protocal] || (meshDB[protocal] = setupMesh(protocal));
     return new meshBuffer(clz, points);
 }
+
 exports.createMesh = createMesh;
