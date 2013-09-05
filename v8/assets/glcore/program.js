@@ -102,7 +102,7 @@ function attrSet(names, locs) {
     this.locs = locs;
 }
 attrSet.prototype.loc = function () {
-    return this.index;
+    return this.locs;
 }
 attrSet.prototype.upload = function(mesh) {
     mesh.bindVertex(this.locs);

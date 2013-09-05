@@ -286,10 +286,10 @@ void Application::onSurfaceChanged(float width, float height) {
 	HANDLE_SCOPE;
 	CONTEXT_SCOPE;
 
-	Handle<Value> args[2];
-	args[0] = Number::New(width);
-	args[1] = Number::New(height);
-	render->callFunction("onSurfaceChanged");
+	Handle<Value> argv[2];
+	argv[0] = Number::New(width);
+	argv[1] = Number::New(height);
+	render->callFunction("onSurfaceChanged",2, argv);
 }
 void Application::onDrawFrame() {
 	ENTER_ISOLATE;

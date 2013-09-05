@@ -12,7 +12,6 @@ var mMesh;
 
 function setupGraphics(w, h) {
     mProgram = program.createWithFile('test/shader01/basic_uniformblock.vert', 'test/shader01/basic_uniformblock.frag');
-    mProgram.addMeshAttrib('p2t2', 'VertexPosition', 'VertexTexCoord');
 
     mMesh = Mesh.createMesh('p2t2', 6);
     mMesh.cursor(0).set([-0.8,-0.8], [0,1]);

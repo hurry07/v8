@@ -18,22 +18,24 @@ function createSetter(accessor, mesh) {
     }
 }
 /**
- * as interface
+ * as an interface
  * mesh {
  *     bytestride,
  *     isVbo
  *     buffer
- *     mode
+ *     mode drawing mode
  * }
+ *
  * @param elementClz
  * @param count
+ * @param mode
  */
 function meshBuffer(elementClz, count, mode) {
     this.mClass = elementClz;
     this.mAdapter = new elementClz();
     this.bytestride = elementClz.prototype.byteLength;// element bytes count
     this.mCursor = 0;
-    this.mode = mode;
+    this.mMode = mode;
 
     glBuffer.call(this, {
         stride: elementClz.prototype.byteLength,
@@ -127,7 +129,7 @@ meshBuffer.prototype.bindVertex = function (locs) {
     }
 }
 meshBuffer.prototype.draw = function () {
-    gl.drawArrays(this.mode, 0, this.length);
+    gl.drawArrays(this.mMode, 0, this.length);
 }
 /**
  * crate a mesh class
