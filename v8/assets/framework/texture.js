@@ -25,6 +25,10 @@ var R = {
         points_bg: '.png',
         slide: '.png'
     },
+    upgrade: {
+        b_01: '.png',
+        b_02: '.png'
+    },
     pngnow: '.png',
     test: '.png',
     word: '.png'

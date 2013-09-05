@@ -6,7 +6,7 @@ var _Container = require('render/container.js');
 var _material = require('render/material.js');
 var _Context = require('render/context.js');
 
-var R = require('framework/R.js');
+var R = require('framework/r.js');
 var _textures = require('framework/texture.js');
 var _program = require('glcore/program.js');
 
@@ -27,9 +27,13 @@ Timer.prototype.getTimePass = function () {
 var mProgram;
 var mCamera;
 var mContext;
-var sprite2;
 var mContainer;
 var mRotate = 0;
+
+function createSprite(id) {
+    var f = _textures.createFrame(id);
+    return new _Sprite(new _material(mProgram, f.texture), f);
+}
 
 function Game() {
     this.mTimer = new Timer();
@@ -43,7 +47,7 @@ game.resume = function () {
 }
 game.update = function () {
     mRotate += 100 * this.mTimer.getTimePass();
-    sprite2.setRotate(mRotate);
+    mContainer.setRotate(mRotate);
 }
 game.render = {
     onSurfaceCreated: function (width, height) {
@@ -63,13 +67,15 @@ game.render = {
 
         {
             mContainer = new _Container();
+            mContainer.setPosition(width / 2, height / 2);
 
-            var f2 = _textures.createFrame(R.word);
-            sprite2 = new _Sprite(new _material(mProgram, f2.texture), f2);
-            sprite2.setAnthor(0.5, 0.5);
-            sprite2.setScale(0.6, 0.6);
-            sprite2.setPosition(width / 2, height / 2);
-            mContainer.addChild(sprite2);
+            var b_1 = createSprite(R.upgrade.b_01);
+            b_1.setAnthor(0.5, 0.5);
+            mContainer.addChild(b_1);
+            var b_2 = createSprite(R.upgrade.b_02);
+            b_2.setAnthor(0.5, 0.5);
+            b_2.setRotate(90);
+            mContainer.addChild(b_2);
         }
     },
     onSurfaceChanged: function (width, height) {
