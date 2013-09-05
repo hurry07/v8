@@ -164,39 +164,7 @@ Handle<Object> Application::SetupProcessObject() {
 	return scope.Close(process);
 }
 
-void testImageLoad(std::string filename) {
-//	AssetFile* file = AssetUtil::load(filename.c_str());
-//	CCImage::EImageFormat type = node::CCImage::getType(filename);
-//	node::CCImage* image = new node::CCImage();
-//	image->initWithImageData(file->chars(), file->size(), type);
-//	LOGI("read picture name:%s length:%d width:%d height:%d", filename.c_str(), file->size(), image->getWidth(), image->getHeight());
-//	file->release();
-//	delete image;
-}
-
-void test1(Local<ArrayBuffer>& abuf) {
-    ArrayBuffer::Contents cont1(abuf->Externalize());
-    LOGI("cont1 %p", cont1.Data());
-    free(cont1.Data());
-}
-
-class A {
-public:
-    virtual void init() {
-        LOGI("A.init");
-    }
-};
-class B : public A {
-public:
-    virtual void init() {
-        LOGI("B.init");
-    }
-};
-
 void Application::init() {
-	testImageLoad("battle/battle_bg_small.jpg");
-	testImageLoad("battle/battlearea_bg.png");
-
 	{
 		ENTER_ISOLATE;
 		HANDLE_SCOPE;

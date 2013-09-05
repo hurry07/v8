@@ -106,6 +106,7 @@ int main(int argc, char ** argv)
 
     app = new Application();
     app->init();
+    app->resume();
     app->onSurfaceCreated(width, height);
     app->onSurfaceChanged(width, height);
 
