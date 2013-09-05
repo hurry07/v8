@@ -4,105 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/v8/assets/render/object2d.js" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/Thumbs.db" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/others/Thumbs.db" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/b_01.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/b_02.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/b_addcoins.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/b_close.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/b_close_01.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/b_close_02.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/b_shop_01.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/b_shop_02.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/b_shop_选中.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/b_unlock_01.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/others/b_unlock_01.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/b_unlock_02.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/others/b_unlock_02.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/b_z_achievement.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/b_z_avatar.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/b_z_shop.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/b_z_skill.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/b_z_upgrade.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/b_选中.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/bg_coins&amp;star.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/bg_level_01.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/bg_level_02.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/bg_unlock.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/others/bg_unlock.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/bg_upgrade-coins.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/bg_upgrade.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/bg_升级背景.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/bg_获得STAR数量_1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/bg_获得STAR数量_2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/coin_bg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/icon_boy_clothes.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/icon_boy_gloves.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/icon_boy_hat.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/icon_boy_shoes.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/icon_girl_clothes.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/icon_girl_gloves.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/icon_girl_hat.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/icon_girl_shoes.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/icon_成就_01.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/icon_成就_02.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/icon_道具_01.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/icon_道具_02.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/icon_道具_选中.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/item_01.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/item_02.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/item_03.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/item_04.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/item_05.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/item_06.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/j_01.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/others/j_01.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/j_02.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/others/j_02.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/j_03.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/others/j_03.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/j_04.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/others/j_04.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/kid_boy.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/others/kid_boy.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/kid_boy_01.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/others/kid_boy_01.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/kid_boy_02.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/others/kid_boy_02.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/kid_girl.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/others/kid_girl.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/kid_girl_01.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/others/kid_girl_01.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/kid_girl_02.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/others/kid_girl_02.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/p_coin.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/p_star.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/z_iceball.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/z_magnet.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/z_turbo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/z_unlock.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/others/z_unlock.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/分割线.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/分割线02.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/others/分割线02.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/复件 问号.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/成就进度条_01.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/成就进度条_02.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/效果图02.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/效果图03.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/滚动_01.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/滚动_02.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/箭头level.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/纸_01.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/纸_02.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/问号.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/others/问号.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/game.js" afterPath="$PROJECT_DIR$/v8/assets/game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/framework/texture.js" afterPath="$PROJECT_DIR$/v8/assets/framework/texture.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="" />
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378345925937" ignored="false" />
@@ -185,7 +87,7 @@
       <file leaf-file-name="game.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="39" selection-start="1507" selection-end="1507" vertical-scroll-proportion="0.38876653">
+            <state line="70" column="61" selection-start="1889" selection-end="1889" vertical-scroll-proportion="0.53744495">
               <folding />
             </state>
           </provider>
@@ -300,7 +202,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="7" />
+    <option name="x" value="6" />
     <option name="y" value="22" />
     <option name="width" value="1911" />
     <option name="height" value="1054" />
@@ -654,14 +556,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="7" y="22" width="1911" height="1054" extended-state="0" />
-    <editor active="false" />
+    <frame x="6" y="22" width="1911" height="1054" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32051283" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1839747" sideWeight="0.6730769" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16525424" sideWeight="0.67948717" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16525424" sideWeight="0.67948717" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -834,7 +736,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="39" selection-start="1507" selection-end="1507" vertical-scroll-proportion="0.38876653">
+        <state line="70" column="61" selection-start="1889" selection-end="1889" vertical-scroll-proportion="0.53744495">
           <folding />
         </state>
       </provider>
