@@ -99,6 +99,13 @@ textureFrame.prototype.getPoint = function (v, t, rx, ry) {
     v.set(x, y);
     t.set((x + this.ox) / this.tw, (y + this.oy) / this.th);
 }
+/**
+ * rx, ry is relative to visiable area
+ * @param v
+ * @param t
+ * @param rx
+ * @param ry
+ */
 textureFrame.prototype.getVisiablePoint = function (v, t, rx, ry) {
     if (this.rotate) {
         var _t = ry;

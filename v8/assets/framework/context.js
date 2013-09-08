@@ -3,7 +3,7 @@ var _program = require('framework/program.js');
 var _Context = require('render/context.js');
 var _camera = require('render/camera.js');
 
-var _Sprite = require('render/spritenode.js');
+var _Sprite = require('drawable/spritenode.js');
 var _Color = require('drawable/colornode.js');
 
 // keep all global variables

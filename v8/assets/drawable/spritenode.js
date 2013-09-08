@@ -36,7 +36,7 @@ SpriteNode.prototype.initMesh = function () {
     var m = f.getMatrix();
 
     for (var i = 0; i < 8; i += 2) {
-        f.getPoint(v, t, _order[i], _order[i + 1]);
+        f.getVisiablePoint(v, t, _order[i], _order[i + 1]);
         _glm.mulMV3(v, m, v);
 
         acct.set(t);
