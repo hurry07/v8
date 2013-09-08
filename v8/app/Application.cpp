@@ -112,7 +112,7 @@ Local<Function> Application::loadModuleFn(const char* name) {
 	std::string sc("(function (exports, require, module, __filename) {\n"
                    "try {\n");
 	if (!file->isEmpty()) {
-		sc.append(file->chars());
+		sc.append(file->chars(), file->size());
 	}
 
 	sc.append("\n}catch(e){console.log('Exception occur:");
@@ -120,6 +120,7 @@ Local<Function> Application::loadModuleFn(const char* name) {
     sc.append(" ['+e+']');}"
               "\n});");
     delete file;
+    LOGI("%s", sc.c_str());
 
 	v8::Handle<v8::String> source = String::New(sc.c_str());
 	Local<Script> comp = Script::Compile(source);

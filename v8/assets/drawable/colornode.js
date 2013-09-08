@@ -38,9 +38,8 @@ ColorNode.prototype.initMesh = function () {
     var m = _rectangle(this.mWidth, this.mHeight);
 
     for (var i = 0; i < 8; i += 2) {
-        f.getPoint(v, t, _order[i], _order[i + 1]);
+        v.set(_order[i], _order[i + 1], 0);
         _glm.mulMV3(v, m, v);
-
         accp.set(v);
         b.push(i / 2);
     }
