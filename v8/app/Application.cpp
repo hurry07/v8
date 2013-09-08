@@ -120,7 +120,7 @@ Local<Function> Application::loadModuleFn(const char* name) {
     sc.append(" ['+e+']');}"
               "\n});");
     delete file;
-    LOGI("%s", sc.c_str());
+//    LOGI("%s", sc.c_str());
 
 	v8::Handle<v8::String> source = String::New(sc.c_str());
 	Local<Script> comp = Script::Compile(source);
