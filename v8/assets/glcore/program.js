@@ -104,7 +104,7 @@ function attrSet(names, locs) {
 attrSet.prototype.loc = function () {
     return this.locs;
 }
-attrSet.prototype.upload = function(mesh) {
+attrSet.prototype.upload = function (mesh) {
     mesh.bindVertex(this.locs);
 }
 
@@ -382,7 +382,7 @@ program.prototype.setAttrib = function (name, value) {
  * add a custom attribute
  * @param name
  */
-program.prototype.addMeshAttrib = function(id) {
+program.prototype.addMeshAttrib = function (id) {
     var locs = [];
     var names = Array.prototype.slice.call(arguments, 1);
     var a;
@@ -450,8 +450,12 @@ function createWithFile(vpath, fpath) {
     }
     return null;
 }
+function create(id, vShader, fShader) {
+    return new program(id, vShader, fShader);
+}
 
 exports.find = find;
+exports.create = create;
 exports.createWithFile = createWithFile;
 exports.releaseAll = releaseAll;
 exports.releaseById = releaseById;

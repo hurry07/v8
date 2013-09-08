@@ -3,12 +3,19 @@ var _gl = require('opengl');
 var _camera = require('render/camera.js');
 var _Sprite = require('render/spritenode.js');
 var _Container = require('render/container.js');
-var _material = require('render/material.js');
 var _Context = require('render/context.js');
 
 var R = require('framework/r.js');
 var _textures = require('framework/texture.js');
-var _program = require('glcore/program.js');
+var _program = require('framework/program.js');
+var _coll = require('core/collection.js');
+
+var coll = _coll.createCollection({
+    create: function (id) {
+    }
+});
+coll.findopt(1, 'aaa', 'bbb');
+
 
 function Timer() {
     this.lasttime = 0;
@@ -24,7 +31,6 @@ Timer.prototype.getTimePass = function () {
     return seconds;
 }
 
-var mProgram;
 var mCamera;
 var mContext;
 var mContainer;
@@ -32,7 +38,7 @@ var mRotate = 0;
 
 function createSprite(id) {
     var f = _textures.createFrame(id);
-    return new _Sprite(new _material(mProgram, f.texture), f);
+    return new _Sprite(_program.positionTexture.material(f), f);
 }
 
 function Game() {
@@ -63,13 +69,13 @@ game.render = {
         mCamera = _camera.createCamera().lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(0, width, 0, height, 9, 11);
         mContext = new _Context(mCamera);
 
-        mProgram = _program.createWithFile('shader/position_texture.vert', 'shader/position_texture.frag');
-
         {
             mContainer = new _Container();
             mContainer.setPosition(width / 2, height / 2);
 
+            console.log('--->1');
             var b_1 = createSprite(R.upgrade.b_01);
+            console.log('--->1');
             b_1.setAnthor(0.5, 0.5);
             mContainer.addChild(b_1);
             var b_2 = createSprite(R.upgrade.b_02);

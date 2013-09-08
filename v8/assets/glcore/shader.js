@@ -36,17 +36,18 @@ shader.prototype.release = function () {
 }
 
 function create(id, shaderSource, shaderType) {
-    var s = shaderDB[id];
-    if (s) {
-        return s;
-    }
-    try {
-        s = new shader(id, shaderSource, shaderType);
-        return shaderDB[id] = s;
-    } catch (e) {
-        console.log(e);
-    }
-    return null;
+//    var s = shaderDB[id];
+//    if (s) {
+//        return s;
+//    }
+//    try {
+//        s = new shader(id, shaderSource, shaderType);
+//        return shaderDB[id] = s;
+//    } catch (e) {
+//        console.log(e);
+//    }
+//    return null;
+    return new shader(id, shaderSource, shaderType);
 }
 function createWithFile(id, path, shaderType) {
     var s = find(id);
