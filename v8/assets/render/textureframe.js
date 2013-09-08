@@ -127,4 +127,28 @@ textureFrame.prototype.getPointAbs = function (v, t, x, y) {
     t.set((x + this.ox) / this.tw, (y + this.oy) / this.th);
 }
 
+/**
+ * return an matrix that can map 1,1 to width,height
+ *
+ * @param w
+ * @param h
+ * @param m
+ * @returns {*}
+ */
+function rectangle(w, h, m) {
+    if (!m) {
+        m = new matrix4();
+    } else {
+        m.identity();
+    }
+
+    var v = new vector();
+    v.set(w, -h, 1);
+    glm.scale(m, v);
+    v.set(0, -1, 0);
+    glm.translate(m, v);
+    return m;
+}
+
 module.exports = textureFrame;
+module.exports.rectangle = rectangle;

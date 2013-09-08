@@ -3,9 +3,9 @@ var _geometry = require('core/glm.js');
 var _MeshNode = require('render/meshnode.js');
 var _createMesh = require('glcore/meshbuffer.js').createMesh;
 var _inherit = require('core/inherit.js');
+var _rectangle = require('render/textureframe.js').rectangle;
 
 var _glm = _geometry.glm;
-var _v2 = _geometry.vec2f;
 var _v3 = _geometry.vec3f;
 var _order = require('glcore/constance.js').STRIP_ORDER;
 
@@ -14,32 +14,33 @@ var _order = require('glcore/constance.js').STRIP_ORDER;
  * @param frame texture frame
  * @constructor
  */
-function SpriteNode(material, frame) {
+function ColorNode(material, w, h) {
     _MeshNode.call(this, this.createMesh(), material);
-
-    this.mFrame = frame;
-    this.setSize(frame.width(), frame.height());
+    if (arguments.length == 3) {
+        this.setSize(w, h);
+    } else {
+        this.setSize(0, 0);
+    }
+}
+_inherit(ColorNode, _MeshNode);
+ColorNode.prototype.setSize = function (w, h) {
+    _MeshNode.prototype.setSize.call(this, w, h);
     this.initMesh();
 }
-_inherit(SpriteNode, _MeshNode);
-SpriteNode.prototype.createMesh = function () {
-    return _createMesh('p3t2', 4, _gl.TRIANGLE_STRIP);
+ColorNode.prototype.createMesh = function () {
+    return _createMesh('p3', 4, _gl.TRIANGLE_STRIP);
 }
-SpriteNode.prototype.initMesh = function () {
-    var t = new _v2();
+ColorNode.prototype.initMesh = function () {
     var v = new _v3();
     var b = this.mBuffer;
 
     var accp = b.accessor('p');
-    var acct = b.accessor('t');
-    var f = this.mFrame;
-    var m = f.getMatrix();
+    var m = _rectangle(this.mWidth, this.mHeight);
 
     for (var i = 0; i < 8; i += 2) {
         f.getPoint(v, t, _order[i], _order[i + 1]);
         _glm.mulMV3(v, m, v);
 
-        acct.set(t);
         accp.set(v);
         b.push(i / 2);
     }
@@ -47,4 +48,4 @@ SpriteNode.prototype.initMesh = function () {
     b.upload();
 }
 
-module.exports = SpriteNode;
+module.exports = ColorNode;

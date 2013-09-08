@@ -1,7 +1,6 @@
 var _material = require('render/material.js');
 var _inherit = require('core/inherit.js');
 
-
 // create user defined material
 exports.positionTexture = _inherit(function (program, frame) {
     _material.call(this, program);
@@ -28,7 +27,7 @@ exports.positionTexture = _inherit(function (program, frame) {
 
 exports.positionColor = _inherit(function (program, color) {
     _material.call(this, program);
-    this.color = new Uint8Array(color);
+    this.color = new Float32Array(color);
 }, _material, {
     use: function () {
         this.program.use();
