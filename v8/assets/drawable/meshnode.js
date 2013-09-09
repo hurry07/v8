@@ -1,4 +1,4 @@
-var Node = require('render/node.js');
+var Node = require('component/node.js');
 var _inherit = require('core/inherit.js');
 
 /**

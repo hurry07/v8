@@ -1,6 +1,6 @@
 var _gl = require('opengl');
 var _geometry = require('core/glm.js');
-var _MeshNode = require('render/meshnode.js');
+var _MeshNode = require('drawable/meshnode.js');
 var _createMesh = require('glcore/meshbuffer.js').createMesh;
 var _inherit = require('core/inherit.js');
 

@@ -3,7 +3,7 @@ var gl = require('opengl');
 
 var _camera = require('render/camera.js');
 var _Sprite = require('drawable/spritenode.js');
-var _Container = require('render/container.js');
+var _Container = require('component/container.js');
 var _material = require('render/material.js');
 var _Context = require('render/global.js');
 

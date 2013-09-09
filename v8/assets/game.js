@@ -1,7 +1,7 @@
 var _gl = require('opengl');
 var Timer = require('core/timer.js');
 
-var _Container = require('render/container.js');
+var _Container = require('component/container.js');
 var _global = require('framework/global.js');
 
 var R = require('framework/r.js');
