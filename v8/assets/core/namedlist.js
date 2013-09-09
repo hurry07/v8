@@ -7,20 +7,21 @@ function Iterator(list) {
     this.reset();
 }
 Iterator.prototype.reset = function () {
-    this.cursor = this.list.first();
+    this.nextelement = this.cursor = this.list.first();
 }
 Iterator.prototype.hasNext = function () {
-    return !this.list.isTail(this.cursor);
+    return !this.list.isTail(this.cursor = this.nextelement);
 }
 Iterator.prototype.next = function () {
-    var n = this.cursor;
-    this.cursor = this.cursor._next;
-    return n.data;
+    this.nextelement = this.cursor._next;
+    return this.cursor.data;
 }
+/**
+ * remove current element
+ */
 Iterator.prototype.remove = function () {
-    var n = this.cursor;
-    this.cursor = this.cursor._next;
-    this.list.removeNode(n);
+    this.nextelement = this.cursor._next;
+    this.list.removeNode(this.cursor);
 }
 
 /**
