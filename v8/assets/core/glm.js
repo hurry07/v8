@@ -78,6 +78,13 @@ function jlmJsImplement() {
         mulMV3: function (des, m, v) {
         },
         /**
+         * @param {clz.vector3} des
+         * @param {matrix} m
+         * @param {clz.vector3} v
+         */
+        mulMV3: function (des, m, v) {
+        },
+        /**
          * @param {matrix} des
          * @param {matrix} m
          */

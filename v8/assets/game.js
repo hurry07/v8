@@ -21,8 +21,8 @@ game.resume = function () {
     this.mTimer.reset();
 }
 game.update = function () {
-    mRotate += 100 * this.mTimer.getTimePass();
-    mContainer.setRotate(mRotate);
+//    mRotate += 100 * this.mTimer.getTimePass();
+//    mContainer.setRotate(mRotate);
 }
 game.render = {
     onSurfaceCreated: function (width, height) {
@@ -40,6 +40,8 @@ game.render = {
         {
             mContainer = new _Container();
             mContainer.setPosition(width / 2, height / 2);
+
+            var $9patch = _global.sprite(R.upgrade.b_01).$9patch();
 
             var b_1 = _global.spriteNode(R.upgrade.b_01);
             b_1.setAnthor(0.5, 0.5);

@@ -4,10 +4,41 @@ var _MeshNode = require('render/meshnode.js');
 var _createMesh = require('glcore/meshbuffer.js').createMesh;
 var _inherit = require('core/inherit.js');
 
-var _glm = _geometry.glm;
+var _matrix4 = _geometry.matrix4;
 var _v2 = _geometry.vec2f;
 var _v3 = _geometry.vec3f;
-var _order = require('glcore/constance.js').STRIP_ORDER;
+var _glm = _geometry.glm;
+
+/**
+ * underlying detail operation
+ *
+ * @param buf
+ * @param frame
+ * @constructor
+ */
+function Filler(buf, frame) {
+    this.index = 0;
+    this.buf = buf;
+    this.frame = frame;
+    this.v = new _v3();
+    this.t = new _v2();
+    this.accp = buf.accessor('p');
+    this.acct = buf.accessor('t');
+}
+Filler.prototype.copyPoint = function (from, to) {
+    this.buf.copy(from, to, 1);
+}
+Filler.prototype.fillPoint = function (m, x, y, start) {
+    this.index = start;
+    var v = this.v;
+    this.frame.getPointAbs(v, this.t, x, y);
+    _glm.mulMV3(v, m, v);
+
+    this.acct.set(this.t);
+    this.accp.set(this.v);
+    this.buf.push(this.index);
+}
+
 
 /**
  * @param material
@@ -20,15 +51,14 @@ function NinePatch(material, frame) {
 
     this.init();
     this.setSize(frame.width(), frame.height);
-}
-_inherit(NinePatch, _MeshNode);
-NinePatch.prototype.setSize = function (w, h) {
-    _MeshNode.prototype.setSize.call(this, w, h);
     this.updateMesh();
 }
+_inherit(NinePatch, _MeshNode);
 NinePatch.prototype.createMesh = function () {
 }
 NinePatch.prototype.updateMesh = function () {
+}
+NinePatch.prototype.init = function () {
 }
 
 function Border(material, frame) {
@@ -51,37 +81,22 @@ Border.prototype.init = function () {
         this._bottom = arguments[3];
     }
 }
-/**
- * x1, y1 left top
- * x2, y2 right bottom, int texture coordinate
- *
- * @param x1
- * @param y1
- * @param x2
- * @param y2
- */
-Border.prototype.updateCell = function (x1, y1, x2, y2, xidx, yidx, temp) {
-    var p1 = 6 * (xidx + yidx * 3);
-    if (xidx > 0) {
-        this.mBuffer.copy(p1 - 4, p1, 1);
-    } else {
-    }
-}
-Border.prototype.updateRow = function (x1, x2, y1, y2, xidx, yidx, temp) {
-    this.updateCell(0, y1, x1, y2, xidx, yidx, temp);
-    this.updateCell(x1, y1, x2, y2, xidx + 1, yidx, temp);
-    this.updateCell(x2, y1, this.mWidth, y2, xidx + 2, yidx, temp);
+Border.prototype.fillRect = function (acc, m, x1, y1, x2, y2, start) {
+    acc.fillPoint(m, x1, y1, start);
+    acc.fillPoint(m, x1, y2, start + 1);
+    acc.fillPoint(m, x2, y1, start + 2);
+    acc.copyPoint(start + 2, start + 3);
+    acc.copyPoint(start + 1, start + 4);
+    acc.fillPoint(m, x2, y2, start + 5);
 }
 Border.prototype.updateMesh = function () {
-    var sx = this._left;
-    var sy = this._top;// start x and start y
-    var ex = this.mWidth - this._right;
-    var ey = this.mHeight - this._bottom;// end x and end y
-    var temp = [new _v3(), new _v2()];
+    var fw = this.mFrame.width();
+    var fh = this.mFrame.height();
+    var m = new _matrix4();
+    var acc = new Filler(this.mBuffer, this.mFrame);
 
-    this.updateRow(sx, ex, 0, sy, 0, 0, temp);
-    this.updateRow(sx, ex, sy, ey, 3, 0, temp);
-    this.updateRow(sx, ex, ey, this.mHeight, 6, 0, temp);
+    this.mFrame.getMatrix(m);
+    this.fillRect(acc, m, 0, fh - this._bottom, this._left, fh, 36);
 }
 Border.prototype.createMesh = function () {
     return _createMesh('p3t2', 54, _gl.TRIANGLES);
@@ -127,5 +142,19 @@ function Horizontal() {
 addProp(Horizontal.prototype, 'left');
 addProp(Horizontal.prototype, 'right');
 
+/**
+ * create a general nine patch
+ *
+ * @param material
+ * @param frame
+ */
+function create9Patch(material, frame) {
+    var nine = new Border(material, frame);
+    if (arguments.length > 2) {
+        nine.init.apply(nine, Array.prototype.slice.call(arguments, 2));
+        nine.updateMesh();
+    }
+    return nine;
+}
 
-module.exports = NinePatch;
+module.exports.create9Patch = create9Patch;
