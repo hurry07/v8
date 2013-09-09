@@ -7,6 +7,7 @@ var _global = require('framework/global.js');
 var R = require('framework/r.js');
 var mCamera = _global.mCamera;
 var mContext = _global.mContext;
+var mUpdateContext = _global.updateContext;
 var mContainer;
 var mRotate = 0;
 
@@ -20,9 +21,9 @@ game.pause = function () {
 game.resume = function () {
     this.mTimer.reset();
 }
-game.update = function () {
-//    mRotate += 100 * this.mTimer.getTimePass();
-//    mContainer.setRotate(mRotate);
+game.update = function (context) {
+    mRotate += 100 * context.stride();
+    mContainer.setRotate(mRotate);
 }
 game.render = {
     onSurfaceCreated: function (width, height) {
@@ -58,6 +59,7 @@ game.render = {
 //            mContainer.addChild(b_2);
             mContainer.addChild($9patch);
             _global.scheduleRender.schedule(mContainer);
+            _global.scheduleUpdate.schedule(game);
         }
     },
     onSurfaceChanged: function (width, height) {
@@ -66,7 +68,12 @@ game.render = {
         _gl.viewport(0, 0, width, height);
     },
     onDrawFrame: function () {
-        game.update();
+        // update
+        mUpdateContext.ticktack();
+        var itor = _global.scheduleUpdate.iterator();
+        while (itor.hasNext()) {
+            itor.next().update(mUpdateContext);
+        }
 
         // drawing
         _gl.clear(_gl.COLOR_BUFFER_BIT);

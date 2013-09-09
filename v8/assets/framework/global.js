@@ -2,6 +2,7 @@ var _textures = require('framework/texture.js');
 var _program = require('framework/program.js');
 var _Context = require('render/context.js');
 var _Camera = require('render/camera.js');
+var _UpdateContext = require('render/updatecontext.js');
 
 var _Sprite = require('drawable/spritenode.js');
 var _9Patch = require('drawable/ninepatch.js');
@@ -9,7 +10,9 @@ var _Color = require('drawable/colornode.js');
 
 var _NamedList = require('core/namedlist.js');
 
+// ==============================================
 // keep all global variables
+// ==============================================
 var mCamera = _Camera.createCamera().lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(0, 1, 0, 1, 9, 11);
 var mContext = new _Context(mCamera);
 
@@ -77,3 +80,5 @@ Schedule.prototype.iterator = function () {
 
 exports.scheduleRender = new Schedule(new _NamedList('__render__'));
 exports.scheduleUpdate = new Schedule(new _NamedList('__update__'));
+exports.updateContext= new _UpdateContext(exports.scheduleUpdate.iterator());
+
