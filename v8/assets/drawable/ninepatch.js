@@ -175,7 +175,22 @@ addProp(Border.prototype, 'top');
 addProp(Border.prototype, 'right');
 addProp(Border.prototype, 'bottom');
 
-function Vertical() {
+/**
+ * vertical 9patch sprite
+ *
+ * @param material
+ * @param frame
+ * @constructor
+ */
+function Vertical(material, frame) {
+    NinePatch.call(this, material, frame);
+}
+_inherit(Vertical, NinePatch);
+Vertical.prototype.setSize = function (w, h) {
+    _MeshNode.prototype.setSize.call(this, this.mFrame.width(), h);
+    return this;
+}
+Vertical.prototype.init = function () {
     if (arguments.length == 0) {
         this._top = this._bottom = 0;
     } else if (arguments.length == 1) {
@@ -185,10 +200,46 @@ function Vertical() {
         this._bottom = arguments[1];
     }
 }
+Vertical.prototype.fillRect = function (acc, x1, y1, x2, y2, start) {
+    acc.fillPoint(x1, y2, start);
+    acc.fillPoint(x2, y2, start + 1);
+    acc.fillPoint(x1, y1, start + 2);
+    acc.fillPoint(x2, y1, start + 3);
+}
+Vertical.prototype.updateMesh = function () {
+    var fw = this.mFrame.width();
+    var fh = this.mFrame.height();
+    var acc = new Filler(this.mBuffer, this.mFrame);
+
+    this.fillRect(acc, 0, fh - this._bottom, fw, fh, 0);// bottom
+    acc.translation(0, this.mHeight - fh, 0);
+    this.fillRect(acc, 0, 0, fw, this._top, 4);// top
+
+    this.mBuffer.upload();
+    return this;
+}
+Vertical.prototype.createMesh = function () {
+    return _createMesh('p3t2', 8, _gl.TRIANGLE_STRIP);
+}
 addProp(Vertical.prototype, 'top');
 addProp(Vertical.prototype, 'bottom');
 
-function Horizontal() {
+/**
+ * horizontal 9patch sprite
+ *
+ * @param material
+ * @param frame
+ * @constructor
+ */
+function Horizontal(material, frame) {
+    NinePatch.call(this, material, frame);
+}
+_inherit(Horizontal, NinePatch);
+Horizontal.prototype.setSize = function (w, h) {
+    _MeshNode.prototype.setSize.call(this, w, this.mFrame.height());
+    return this;
+}
+Horizontal.prototype.init = function () {
     if (arguments.length == 0) {
         this._left = this._right = 0;
     } else if (arguments.length == 1) {
@@ -197,6 +248,27 @@ function Horizontal() {
         this._left = arguments[0];
         this._right = arguments[1];
     }
+}
+Horizontal.prototype.fillRect = function (acc, x1, y1, x2, y2, start) {
+    acc.fillPoint(x1, y1, start);
+    acc.fillPoint(x1, y2, start + 1);
+    acc.fillPoint(x2, y1, start + 2);
+    acc.fillPoint(x2, y2, start + 3);
+}
+Horizontal.prototype.updateMesh = function () {
+    var fw = this.mFrame.width();
+    var fh = this.mFrame.height();
+    var acc = new Filler(this.mBuffer, this.mFrame);
+
+    this.fillRect(acc, 0, 0, this._left, fh, 0);// left
+    acc.translation(this.mWidth - fw, 0);
+    this.fillRect(acc, fw - this._right, 0, fw, fh, 4);// right
+
+    this.mBuffer.upload();
+    return this;
+}
+Horizontal.prototype.createMesh = function () {
+    return _createMesh('p3t2', 8, _gl.TRIANGLE_STRIP);
 }
 addProp(Horizontal.prototype, 'left');
 addProp(Horizontal.prototype, 'right');
@@ -215,5 +287,23 @@ function create9Patch(material, frame) {
     }
     return nine;
 }
+function create9Patch_h(material, frame) {
+    var nine = new Horizontal(material, frame);
+    if (arguments.length > 2) {
+        nine.init.apply(nine, Array.prototype.slice.call(arguments, 2));
+        nine.updateMesh();
+    }
+    return nine;
+}
+function create9Patch_v(material, frame) {
+    var nine = new Vertical(material, frame);
+    if (arguments.length > 2) {
+        nine.init.apply(nine, Array.prototype.slice.call(arguments, 2));
+        nine.updateMesh();
+    }
+    return nine;
+}
 
 module.exports.create9Patch = create9Patch;
+module.exports.create9Patch_h = create9Patch_h;
+module.exports.create9Patch_v = create9Patch_v;

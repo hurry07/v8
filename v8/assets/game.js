@@ -44,9 +44,13 @@ game.render = {
             var $9patch = _global.sprite(R.word).$9patch().left(200).bottom(200).top(200).right(200).setSize(1024, 600).updateMesh();
             $9patch.setScale(0.5);
 
-            var b_1 = _global.spriteNode(R.upgrade.b_01);
-            b_1.setAnthor(0.5, 0.5);
-            mContainer.addChild(b_1);
+            var $9patch_h = _global.sprite(R.upgrade.b_01).$9patch_h().left(50).right(30).setSize(300, 0).updateMesh();
+            $9patch_h.setPosition(100, 100);
+
+//            var b_1 = _global.spriteNode(R.upgrade.b_01);
+//            b_1.setAnthor(0.5, 0.5);
+//            mContainer.addChild(b_1);
+            mContainer.addChild($9patch_h);
 //            var b_2 = _global.colorNode([1, 0, 0, 1], 100, 100);
 //            b_2.setAnthor(0.5, 0.5);
 //            b_2.setRotate(90);

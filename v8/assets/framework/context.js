@@ -31,9 +31,14 @@ Sprite.prototype.sprite = function () {
     return new _Sprite(this.material, this.texture);
 }
 Sprite.prototype.$9patch = function () {
-    return _9Patch.create9Patch(this.material, this.texture);
+    return _9Patch.create9Patch.apply(this, [this.material, this.texture].concat(Array.prototype.slice.call(arguments, 0)));
 }
-
+Sprite.prototype.$9patch_v = function () {
+    return _9Patch.create9Patch_v.apply(this, [this.material, this.texture].concat(Array.prototype.slice.call(arguments, 0)));
+}
+Sprite.prototype.$9patch_h = function () {
+    return _9Patch.create9Patch_h.apply(this, [this.material, this.texture].concat(Array.prototype.slice.call(arguments, 0)));
+}
 
 function sprite(id) {
     var f = _textures.createFrame(id);
