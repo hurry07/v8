@@ -36,6 +36,7 @@ game.render = {
         _gl.disable(_gl.SCISSOR_TEST);
 
         mCamera.lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(0, width, 0, height, 9, 11);
+        _gl.viewport(0, 0, width, height);
 
         {
             mContainer = new _Container();
@@ -44,8 +45,8 @@ game.render = {
             var $9patch = _global.sprite(R.word).$9patch().left(200).bottom(200).top(200).right(200).setSize(1024, 600).updateMesh();
             $9patch.setScale(0.5);
 
-            var $9patch_h = _global.sprite(R.upgrade.b_01).$9patch_h().left(50).right(30).setSize(300, 0).updateMesh();
-            $9patch_h.setPosition(100, 100);
+            var $9patch_h = _global.sprite(R.upgrade.b_01).$9patch_v().top(20).bottom(20).setSize(0, 300).updateMesh();
+//            $9patch_h.setPosition(100, 100);
 
 //            var b_1 = _global.spriteNode(R.upgrade.b_01);
 //            b_1.setAnthor(0.5, 0.5);
@@ -61,6 +62,7 @@ game.render = {
     onSurfaceChanged: function (width, height) {
         mCamera.lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(0, width, 0, height, 9, 11);
         mContext.onChange();
+        _gl.viewport(0, 0, width, height);
     },
     onDrawFrame: function () {
         game.update();

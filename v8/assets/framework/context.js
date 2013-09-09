@@ -11,14 +11,6 @@ var _Color = require('drawable/colornode.js');
 mCamera = _camera.createCamera().lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(0, 1, 0, 1, 9, 11);
 mContext = new _Context(mCamera);
 
-function spriteNode(id) {
-    var f = _textures.createFrame(id);
-    return new _Sprite(_program.positionTexture.material(f), f);
-}
-function colorNode(color, w, h) {
-    return new _Color(_program.positionColor.material(color), w, h);
-}
-
 /**
  * hold all dependencies for creating a sprite like node
  * @constructor
@@ -39,14 +31,28 @@ Sprite.prototype.$9patch_v = function () {
 Sprite.prototype.$9patch_h = function () {
     return _9Patch.create9Patch_h.apply(this, [this.material, this.texture].concat(Array.prototype.slice.call(arguments, 0)));
 }
-
 function sprite(id) {
     var f = _textures.createFrame(id);
     return new Sprite(_program.positionTexture.material(f), f);
+}
+
+exports.sprite = sprite;
+
+/**
+ * create node
+ *
+ * @param id
+ * @returns {_Sprite}
+ */
+function spriteNode(id) {
+    var f = _textures.createFrame(id);
+    return new _Sprite(_program.positionTexture.material(f), f);
+}
+function colorNode(color, w, h) {
+    return new _Color(_program.positionColor.material(color), w, h);
 }
 
 exports.mCamera = mCamera;
 exports.mContext = mContext;
 exports.spriteNode = spriteNode;
 exports.colorNode = colorNode;
-exports.sprite = sprite;

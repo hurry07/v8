@@ -92,6 +92,18 @@ void onDrawFrame() {
     glFlush();
     glutPostRedisplay();
 }
+void onSurfaceChanged(int w, int h) {
+    app->onSurfaceChanged(w, h);
+}
+void onTouch(int w, int h, int a, int b) {
+    LOGI("onTouch %d %d %d %d", w, h, a, b);
+}
+void onMove(int w, int h) {
+    LOGI("onMove %d %d", w, h);
+}
+void onKeyPress(unsigned char name, int x, int y) {
+    LOGI("onTouch %d %d %d", name, x, y);
+}
 int main(int argc, char ** argv)
 {
     int width = 800;
@@ -111,6 +123,10 @@ int main(int argc, char ** argv)
     app->onSurfaceChanged(width, height);
 
 	glutDisplayFunc(onDrawFrame);
+    glutReshapeFunc(onSurfaceChanged);
+    glutMouseFunc(onTouch);
+    glutMotionFunc(onMove);
+    glutKeyboardFunc(onKeyPress);
 	glutMainLoop();
 
     app->destroy();
