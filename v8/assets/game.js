@@ -1,22 +1,18 @@
 var _gl = require('opengl');
-var Timer = require('core/timer.js');
-
 var _global = require('framework/global.js');
 
-var R = require('framework/r.js');
 var mCamera = _global.mCamera;
 var mContext = _global.mContext;
 var mUpdateContext = _global.updateContext;
 
 function Game() {
-    this.mTimer = new Timer();
 }
 
 var game = new Game();
 game.pause = function () {
 }
 game.resume = function () {
-    this.mTimer.reset();
+    _global.updateContext.reset();
 }
 game.render = {
     onSurfaceCreated: function (width, height) {
@@ -33,6 +29,7 @@ game.render = {
         _gl.viewport(0, 0, width, height);
 
         _global.registerScene(require('scenes/cover.js').newInstance());
+        _global.updateContext.reset();
     },
     onSurfaceChanged: function (width, height) {
         mCamera.lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(0, width, 0, height, 9, 11);
