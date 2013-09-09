@@ -32,7 +32,7 @@ game.render = {
         mCamera.lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(0, width, 0, height, 9, 11);
         _gl.viewport(0, 0, width, height);
 
-        _global.registerScene(require('scenes/cover.js').newInstance(100));
+        _global.registerScene(require('scenes/cover.js').newInstance());
     },
     onSurfaceChanged: function (width, height) {
         mCamera.lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(0, width, 0, height, 9, 11);
