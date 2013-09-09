@@ -4,23 +4,11 @@ var _inherit = require('core/inherit.js');
 
 function Scene() {
     _Container.call(this);
-    _global.scheduleUpdate.add(this);
-    _global.scheduleRender.add(this);
 }
 _inherit(Scene, _Container);
 Scene.prototype.update = function (context) {
 }
 
-/**
- * create a anonymous scene instance
- *
- * @param init
- * @param props
- * @returns {subScene}
- */
-function createScene(init, props) {
-    return new subScene(init, props);
-}
 /**
  * create a anonymous scene class, this scene may used many times
  *
@@ -28,13 +16,18 @@ function createScene(init, props) {
  * @param props
  * @returns {*}
  */
-function subScene(init, props) {
-    return _inherit(function () {
+function createScene(init, props) {
+    var clz = _inherit(function () {
         Scene.call(this);
-        init();
     }, Scene, props);
+
+    clz.newInstance = function () {
+        var instance = new clz();
+        init.apply(instance, arguments);
+        return instance;
+    }
+    return clz;
 }
 
 exports.Scene = Scene;
-exports.subScene = subScene;
 exports.createScene = createScene;

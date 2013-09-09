@@ -80,5 +80,14 @@ Schedule.prototype.iterator = function () {
 
 exports.scheduleRender = new Schedule(new _NamedList('__render__'));
 exports.scheduleUpdate = new Schedule(new _NamedList('__update__'));
-exports.updateContext= new _UpdateContext(exports.scheduleUpdate.iterator());
+exports.updateContext = new _UpdateContext(exports.scheduleUpdate.iterator());
+
+exports.registerScene = function (scene) {
+    exports.scheduleRender.schedule(scene);
+    exports.scheduleUpdate.schedule(scene);
+};
+exports.unregisterScene = function (scene) {
+    exports.scheduleRender.cancel(scene);
+    exports.scheduleUpdate.cancel(scene);
+};
 

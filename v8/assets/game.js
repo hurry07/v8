@@ -1,15 +1,12 @@
 var _gl = require('opengl');
 var Timer = require('core/timer.js');
 
-var _Container = require('component/container.js');
 var _global = require('framework/global.js');
 
 var R = require('framework/r.js');
 var mCamera = _global.mCamera;
 var mContext = _global.mContext;
 var mUpdateContext = _global.updateContext;
-var mContainer;
-var mRotate = 0;
 
 function Game() {
     this.mTimer = new Timer();
@@ -20,10 +17,6 @@ game.pause = function () {
 }
 game.resume = function () {
     this.mTimer.reset();
-}
-game.update = function (context) {
-    mRotate += 100 * context.stride();
-    mContainer.setRotate(mRotate);
 }
 game.render = {
     onSurfaceCreated: function (width, height) {
@@ -39,28 +32,7 @@ game.render = {
         mCamera.lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(0, width, 0, height, 9, 11);
         _gl.viewport(0, 0, width, height);
 
-        {
-            mContainer = new _Container();
-//            mContainer.setPosition(width / 2, height / 2);
-
-            var $9patch = _global.sprite(R.word).$9patch().left(200).bottom(200).top(200).right(200).setSize(1024, 600).updateMesh();
-            $9patch.setScale(0.5);
-
-            var $9patch_h = _global.sprite(R.upgrade.b_01).$9patch_v().top(20).bottom(20).setSize(0, 300).updateMesh();
-//            $9patch_h.setPosition(100, 100);
-
-//            var b_1 = _global.spriteNode(R.upgrade.b_01);
-//            b_1.setAnthor(0.5, 0.5);
-//            mContainer.addChild(b_1);
-            mContainer.addChild($9patch_h);
-//            var b_2 = _global.colorNode([1, 0, 0, 1], 100, 100);
-//            b_2.setAnthor(0.5, 0.5);
-//            b_2.setRotate(90);
-//            mContainer.addChild(b_2);
-            mContainer.addChild($9patch);
-            _global.scheduleRender.schedule(mContainer);
-            _global.scheduleUpdate.schedule(game);
-        }
+        _global.registerScene(require('scenes/cover.js').newInstance(100));
     },
     onSurfaceChanged: function (width, height) {
         mCamera.lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(0, width, 0, height, 9, 11);
