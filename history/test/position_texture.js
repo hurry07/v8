@@ -5,7 +5,7 @@ var _camera = require('render/camera.js');
 var _Sprite = require('drawable/spritenode.js');
 var _Container = require('render/container.js');
 var _material = require('render/material.js');
-var _Context = require('render/context.js');
+var _Context = require('render/global.js');
 
 var R = require('framework/R.js');
 var _textures = require('framework/texture.js');

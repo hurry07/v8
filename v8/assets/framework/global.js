@@ -1,15 +1,17 @@
 var _textures = require('framework/texture.js');
 var _program = require('framework/program.js');
 var _Context = require('render/context.js');
-var _camera = require('render/camera.js');
+var _Camera = require('render/camera.js');
 
 var _Sprite = require('drawable/spritenode.js');
 var _9Patch = require('drawable/ninepatch.js');
 var _Color = require('drawable/colornode.js');
 
+var _NamedList = require('core/namedlist.js');
+
 // keep all global variables
-mCamera = _camera.createCamera().lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(0, 1, 0, 1, 9, 11);
-mContext = new _Context(mCamera);
+var mCamera = _Camera.createCamera().lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(0, 1, 0, 1, 9, 11);
+var mContext = new _Context(mCamera);
 
 /**
  * hold all dependencies for creating a sprite like node
@@ -35,7 +37,6 @@ function sprite(id) {
     var f = _textures.createFrame(id);
     return new Sprite(_program.positionTexture.material(f), f);
 }
-
 exports.sprite = sprite;
 
 /**
@@ -56,3 +57,23 @@ exports.mCamera = mCamera;
 exports.mContext = mContext;
 exports.spriteNode = spriteNode;
 exports.colorNode = colorNode;
+
+var _LinkedList = require('core/linkedlist.js').LinkedList;
+function Schedule(namedlist) {
+    this._coll = namedlist;
+    this._list = new _LinkedList('');
+    this._itor = namedlist.iterator();
+}
+Schedule.prototype.schedule = function (obj) {
+    this._coll.add(obj);
+}
+Schedule.prototype.cancel = function (obj) {
+    this._coll.remove(obj);
+}
+Schedule.prototype.iterator = function () {
+    this._itor.reset();
+    return this._itor;
+}
+
+exports.scheduleRender = new Schedule(new _NamedList('__render__'));
+exports.scheduleUpdate = new Schedule(new _NamedList('__update__'));

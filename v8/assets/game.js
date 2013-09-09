@@ -2,7 +2,7 @@ var _gl = require('opengl');
 var Timer = require('core/timer.js');
 
 var _Container = require('render/container.js');
-var _global = require('framework/context.js');
+var _global = require('framework/global.js');
 
 var R = require('framework/r.js');
 var mCamera = _global.mCamera;
@@ -57,6 +57,7 @@ game.render = {
 //            b_2.setRotate(90);
 //            mContainer.addChild(b_2);
             mContainer.addChild($9patch);
+            _global.scheduleRender.schedule(mContainer);
         }
     },
     onSurfaceChanged: function (width, height) {
@@ -66,8 +67,13 @@ game.render = {
     },
     onDrawFrame: function () {
         game.update();
+
+        // drawing
         _gl.clear(_gl.COLOR_BUFFER_BIT);
-        mContainer.draw(mContext);
+        var itor = _global.scheduleRender.iterator();
+        while (itor.hasNext()) {
+            itor.next().draw(mContext);
+        }
     }
 };
 

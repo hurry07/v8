@@ -192,26 +192,8 @@ for (var p in proto) {
     LinkedList.prototype[p] = proto[p];
 }
 
-var listId = 0;
-
-function ListWrap() {
-    this._list = new LinkedList();
-    this._key = '__' + (listId++) + '__';
-}
-ListWrap.prototype.addNode = function (obj) {
-    if (!obj) {
-        return;
-    }
-    var node = obj[this._key];
-    if (node) {
-        this._list.removeNode(node);
-    } else {
-        node = new Node(obj);
-    }
-    this._list.addNode(node);
-}
-
-module.exports = ListWrap;
+exports.LinkedList = LinkedList;
+exports.Node = Node;
 
 
 
