@@ -44,7 +44,6 @@ Texture.prototype.uploadTexture = function () {
     // waiting for implementation
 };
 
-
 /**
  * A solid color texture.
  *

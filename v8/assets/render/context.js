@@ -1,6 +1,7 @@
 var _stack = require('render/matrixstack.js');
 var _geometry = require('core/glm.js');
 var _glm = _geometry.glm;
+var _gl = require('opengl');
 
 function Context(camera) {
     this.mCamera = camera;

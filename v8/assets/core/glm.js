@@ -97,6 +97,13 @@ function jlmJsImplement() {
          */
         mulMM: function (des, m1, m2) {
         },
+        /**
+         * @param {matrix4} des
+         * @param {matrix4} m1
+         * @param {matrix4} m2
+         */
+        mulMM: function (des, m1, m2) {
+        },
         setTranslation: function () {
         },
         identity: function () {

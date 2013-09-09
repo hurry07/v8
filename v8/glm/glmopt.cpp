@@ -267,7 +267,7 @@ METHOD_BEGIN(translation, info) {
  */
 METHOD_BEGIN(scaling, info) {
     HandleScope scope;
-    
+
     Matrix* m = internalArg<Matrix>(info[0]);
     Vector* t = internalArg<Vector>(info[1]);
     m->mMatrix = glm::mat4(1);

@@ -33,6 +33,8 @@ Sprite.prototype.sprite = function () {
 Sprite.prototype.$9patch = function () {
     return _9Patch.create9Patch(this.material, this.texture);
 }
+
+
 function sprite(id) {
     var f = _textures.createFrame(id);
     return new Sprite(_program.positionTexture.material(f), f);

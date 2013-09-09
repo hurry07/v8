@@ -39,17 +39,19 @@ game.render = {
 
         {
             mContainer = new _Container();
-            mContainer.setPosition(width / 2, height / 2);
+//            mContainer.setPosition(width / 2, height / 2);
 
-            var $9patch = _global.sprite(R.upgrade.b_01).$9patch();
+            var $9patch = _global.sprite(R.word).$9patch().left(200).bottom(200).top(200).right(200).setSize(1024, 600).updateMesh();
+            $9patch.setScale(0.5);
 
             var b_1 = _global.spriteNode(R.upgrade.b_01);
             b_1.setAnthor(0.5, 0.5);
             mContainer.addChild(b_1);
-            var b_2 = _global.colorNode([1, 0, 0, 1], 100, 100);
-            b_2.setAnthor(0.5, 0.5);
-            b_2.setRotate(90);
-            mContainer.addChild(b_2);
+//            var b_2 = _global.colorNode([1, 0, 0, 1], 100, 100);
+//            b_2.setAnthor(0.5, 0.5);
+//            b_2.setRotate(90);
+//            mContainer.addChild(b_2);
+            mContainer.addChild($9patch);
         }
     },
     onSurfaceChanged: function (width, height) {

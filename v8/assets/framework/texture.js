@@ -47,6 +47,9 @@ function getPath(id) {
 }
 function createFrame(id) {
     var path = getPath(id);
+    if (!path) {
+        console.log('createFrame image not found:' + id);
+    }
     if (path.frame) {
         return path.frame;
     }

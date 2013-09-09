@@ -1048,7 +1048,7 @@ DELEGATE_TO_GL_N2(bindBuffer, glBindBuffer, GLenum, GLuint);
 //    HandleScope scope;
 //    CHECK_ARG_2(bindBuffer, GLenum, GLuint);
 //    CALL_GL_2(glBindBuffer, GLenum, GLuint);
-//    LOGI("%x %x", args[0]->Uint32Value(), args[1]->Uint32Value());
+//    LOGI("bindBuffer %x %x", args[0]->Uint32Value(), args[1]->Uint32Value());
 //    checkGlError("bindBuffer");
 //}
 DELEGATE_TO_GL_N2(bindFramebuffer, glBindFramebuffer, GLenum, GLuint);
@@ -1186,7 +1186,9 @@ JS_METHOD(drawArrays) {
     GLenum mode = ARGS_GLenum(args[0]);
     GLint first = ARGS_GLint(args[1]);
     GLsizei count = ARGS_GLsizei(args[2]);
+    checkGlError("before drawArrays");
     glDrawArrays(mode, first, count);
+    checkGlError("after drawArrays");
 }
 /**
  * GLenum mode, GLsizei count, GLenum type, const GLvoid *indices
