@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/game.js" afterPath="$PROJECT_DIR$/v8/assets/game.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/framework/render.js" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -121,7 +120,16 @@
       <file leaf-file-name="game.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="0" selection-start="884" selection-end="884" vertical-scroll-proportion="0.7428115">
+            <state line="16" column="0" selection-start="323" selection-end="323" vertical-scroll-proportion="0.35303515">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="render.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/framework/render.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -181,7 +189,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/v8/assets/core/objectlist.js" />
         <option value="$PROJECT_DIR$/v8/assets/framework/context.js" />
         <option value="$PROJECT_DIR$/v8/assets/render/context.js" />
         <option value="$PROJECT_DIR$/v8/assets/render/updatecontext.js" />
@@ -197,6 +204,7 @@
         <option value="$PROJECT_DIR$/v8/assets/component/scene.js" />
         <option value="$PROJECT_DIR$/v8/assets/scenes/cover.js" />
         <option value="$PROJECT_DIR$/v8/assets/game.js" />
+        <option value="$PROJECT_DIR$/v8/assets/framework/render.js" />
       </list>
     </option>
   </component>
@@ -662,13 +670,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/v8/assets/render/context.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="26" selection-start="1219" selection-end="1227" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/history/test/position_texture.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="35" selection-start="191" selection-end="200" vertical-scroll-proportion="0.0">
@@ -767,9 +768,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/framework/render.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="884" selection-end="884" vertical-scroll-proportion="0.7428115">
+        <state line="16" column="0" selection-start="323" selection-end="323" vertical-scroll-proportion="0.35303515">
           <folding />
         </state>
       </provider>
