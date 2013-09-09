@@ -95,10 +95,10 @@ void onDrawFrame() {
 void onSurfaceChanged(int w, int h) {
     app->onSurfaceChanged(w, h);
 }
-void onTouch(int w, int h, int a, int b) {
+void onMouseClick(int w, int h, int a, int b) {
     LOGI("onTouch %d %d %d %d", w, h, a, b);
 }
-void onMove(int w, int h) {
+void onMouseMove(int w, int h) {
     LOGI("onMove %d %d", w, h);
 }
 void onKeyPress(unsigned char name, int x, int y) {
@@ -124,8 +124,8 @@ int main(int argc, char ** argv)
 
 	glutDisplayFunc(onDrawFrame);
     glutReshapeFunc(onSurfaceChanged);
-    glutMouseFunc(onTouch);
-    glutMotionFunc(onMove);
+    glutMouseFunc(onMouseClick);
+    glutMotionFunc(onMouseMove);
     glutKeyboardFunc(onKeyPress);
 	glutMainLoop();
 

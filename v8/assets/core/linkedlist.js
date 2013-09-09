@@ -1,8 +1,12 @@
-var listId = 0;
+function Node(data) {
+    this.data = data;
+    this._prev = null;// previous
+    this._next = null;// next
+}
 
-var LinkedList = exports.LinkedList = function () {
-    this.head = {};
-    this.tail = {};
+function LinkedList() {
+    this.head = new Node();
+    this.tail = new Node();
     this.clear();
 };
 
@@ -188,14 +192,26 @@ for (var p in proto) {
     LinkedList.prototype[p] = proto[p];
 }
 
-LinkedList.createNode = function (data) {
-    return {
-        data: data,
-        _prev: null,
-        _next: null
-    };
+var listId = 0;
+
+function ListWrap() {
+    this._list = new LinkedList();
+    this._key = '__' + (listId++) + '__';
+}
+ListWrap.prototype.addNode = function (obj) {
+    if (!obj) {
+        return;
+    }
+    var node = obj[this._key];
+    if (node) {
+        this._list.removeNode(node);
+    } else {
+        node = new Node(obj);
+    }
+    this._list.addNode(node);
 }
 
+module.exports = ListWrap;
 
 
 
