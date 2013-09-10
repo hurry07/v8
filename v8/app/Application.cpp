@@ -53,6 +53,8 @@ Application::Application() {
 
 	game = 0;
 	render = 0;
+    touchEvent = 0;
+    keyEvent = 0;
 
 	HANDLE_SCOPE;
 	context_p.Reset(node_isolate, Context::New(node_isolate));
@@ -66,6 +68,8 @@ Application::~Application() {
 
 		SAFE_DELETE(render);
 		SAFE_DELETE(game);
+		SAFE_DELETE(touchEvent);
+		SAFE_DELETE(keyEvent);
 	}
 	node_isolate->Dispose();
 }
@@ -190,6 +194,11 @@ void Application::init() {
 		Handle<Value> gameExports = eval("require('game.js')");
 		game = new JSObject(gameExports->ToObject());
 		render = new JSObject(game->getAttribute<Object>("render"));
+
+        // bind event
+        Handle<Object> eventExports = eval("require('core/event.js')")->ToObject();
+        touchEvent = new TouchEvent(eventExports->Get(String::New("touchEvent"))->ToObject());
+        keyEvent = new TouchEvent(eventExports->Get(String::New("keyEvent"))->ToObject());
     }
 }
 void Application::destroy() {

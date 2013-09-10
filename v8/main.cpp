@@ -94,14 +94,14 @@ void onDrawFrame() {
 void onSurfaceChanged(int w, int h) {
     app->onSurfaceChanged(w, h);
 }
-void onMouseClick(int w, int h, int a, int b) {
-    LOGI("onTouch %d %d %d %d", w, h, a, b);
+void onMouseClick(int button, int state, int x, int y) {
+    LOGI("onTouch %d %d %d %d", button, state, x, y);
 }
-void onMouseMove(int w, int h) {
-    LOGI("onMove %d %d", w, h);
+void onMouseMove(int x, int y) {
+    LOGI("onMove %d %d", x, y);
 }
-void onKeyPress(unsigned char name, int x, int y) {
-    LOGI("onTouch %d %d %d", name, x, y);
+void onKeyPress(unsigned char key, int x, int y) {
+    LOGI("onTouch %d %d %d", key, x, y);
 }
 int main(int argc, char ** argv)
 {

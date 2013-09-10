@@ -22,6 +22,7 @@ enum ClassType {
     CLASS_VEC4,
     CLASS_FILE,
     CLASS_IMAGE,
+    CLASS_EVENT,
 
     CLASS_ArrayBuffer,// byte
     CLASS_Int8Array,

@@ -5,7 +5,6 @@
 //  Created by jie on 13-9-10.
 //  Copyright (c) 2013年 jie. All rights reserved.
 //
-
 #include "eventstructor.h"
 
 DataRange::DataRange(EventStructor* eStruct, char type) {
@@ -33,10 +32,17 @@ int DataRange::write(char* src) {
     mStructor->write(src, mStart++);
     return mEnd - mStart;
 }
+void DataRange::next() {
+    mStart++;
+}
 void DataRange::end() {
+    mStructor->endRange(this);
 }
 void DataRange::clear() {
     mStart = mEnd = 0;
+}
+bool DataRange::isEmpty() {
+    return mStart == mEnd;
 }
 
 EventStructor::EventStructor(int stride, int count) {

@@ -13,6 +13,7 @@
 #include <v8.h>
 #include "node.h"
 #include "../core/JSObject.h"
+#include "../core/Event.h"
 
 using namespace v8;
 
@@ -47,6 +48,8 @@ private:
 
     JSObject* game;
     JSObject* render;
+    TouchEvent* touchEvent;
+    TouchEvent* keyEvent;
 
     Handle<Value> eval(const char* script);
 

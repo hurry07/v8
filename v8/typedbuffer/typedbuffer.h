@@ -14,7 +14,7 @@
 #include "../core/ClassWrap.h"
 #include "../functions/array.h"
 
-namespace typedbuffer {    
+namespace typedbuffer {
     /**
      * create a ArrayBuffer object with given byte length, binding it to current object,
      * and return a pointer to its inner NodeBuffer

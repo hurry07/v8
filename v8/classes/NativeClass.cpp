@@ -17,6 +17,7 @@ using namespace v8;
 #include "../glm/vector.h"
 #include "../glm/vector_inl.h"
 #include "../typedbuffer/typedbuffer.h"
+#include "../core/Event.h"
 #include "../core/ClassWrap.h"
 #include "file.h"
 #include "../modules/Image.h"
@@ -82,10 +83,9 @@ template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& arg
     ClassWrap<Vec3<float>>::expose("vector3", global);
     ClassWrap<Vec2<float>>::expose("vector2", global);
 
-    // watch if gc could happen
-    ClassWrap<GcObserver>::expose(global);
-
+    ClassWrap<GcObserver>::expose(global);// watch if gc could happen
     ClassWrap<Image>::expose(global);
+    ClassWrap<EventAccessor>::expose(global);
 }
 
 template<> const char* Module<NativeClass>::mFile = __FILE__;
