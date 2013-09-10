@@ -8,6 +8,7 @@ var mUpdateContext = _global.updateContext;
 function Game() {
 }
 
+var firstInit = true;
 var game = new Game();
 game.pause = function () {
 }
@@ -28,7 +29,10 @@ game.render = {
         mCamera.lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(0, width, 0, height, 9, 11);
         _gl.viewport(0, 0, width, height);
 
-        _global.registerScene(require('scenes/cover.js').newInstance());
+        if (firstInit) {
+            _global.registerScene(require('scenes/cover.js').newInstance());
+            firstInit = false;
+        }
         _global.updateContext.reset();
     },
     onSurfaceChanged: function (width, height) {

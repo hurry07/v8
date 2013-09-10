@@ -1,5 +1,4 @@
 var _Container = require('component/container.js');
-var _global = require('framework/global.js');
 var _inherit = require('core/inherit.js');
 
 function Scene() {
@@ -7,6 +6,11 @@ function Scene() {
 }
 _inherit(Scene, _Container);
 Scene.prototype.update = function (context) {
+}
+Scene.prototype.onRegister = function (global) {
+    global.scheduleRender.schedule(this);
+    global.scheduleUpdate.schedule(this);
+    global.scheduleEvent.schedule(this);
 }
 
 /**
@@ -17,14 +21,17 @@ Scene.prototype.update = function (context) {
  * @returns {*}
  */
 function createScene(init, props) {
-    var clz = _inherit(function () {
-        Scene.call(this);
+    var clz = _inherit(function (id) {
+        Scene.call(this, id);
     }, Scene, props);
-
-    clz.newInstance = function () {
-        var instance = new clz();
-        init.apply(instance, arguments);
+    var instance;
+    clz.newInstance = function (id) {
+        var instance = new clz(id);
+        init.apply(instance, arguments.length > 0 ? Array.prototype.slice.call(arguments, 1) : []);
         return instance;
+    }
+    clz.singleInstance = function () {
+        return instance || (instance = clz.newInstance.call(this, arguments));
     }
     return clz;
 }
