@@ -5,8 +5,6 @@
 //  Created by jie on 13-7-22.
 //  Copyright (c) 2013年 jie. All rights reserved.
 //
-
-
 #include <string>
 
 #include "app/Application.h"
@@ -16,6 +14,7 @@
 #include "modules/CCTexture2D.h"
 #include <GLUT/GLUT.h>
 #include <OpenGL/gl.h>
+//#include "TestGc.h"
 
 using namespace v8;
 
@@ -130,7 +129,6 @@ int main(int argc, char ** argv)
 	glutMainLoop();
 
     app->destroy();
-    delete app;
-    
+    delete app;    
     return 0;
 }

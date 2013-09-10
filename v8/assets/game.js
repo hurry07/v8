@@ -27,6 +27,7 @@ game.render = {
         _gl.disable(_gl.SCISSOR_TEST);
 
         mCamera.lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(0, width, 0, height, 9, 11);
+        mContext.onChange(width, height);
         _gl.viewport(0, 0, width, height);
 
         if (firstInit) {
@@ -37,7 +38,7 @@ game.render = {
     },
     onSurfaceChanged: function (width, height) {
         mCamera.lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(0, width, 0, height, 9, 11);
-        mContext.onChange();
+        mContext.onChange(width, height);
         _gl.viewport(0, 0, width, height);
     },
     onDrawFrame: function () {
@@ -53,6 +54,11 @@ game.render = {
         var itor = _global.scheduleRender.iterator();
         while (itor.hasNext()) {
             itor.next().draw(mContext);
+        }
+
+        var i = 0;
+        while (i++ < 100) {
+            new Float32Array(10);
         }
     }
 };

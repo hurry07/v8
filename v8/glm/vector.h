@@ -18,6 +18,7 @@ template <typename T>\
 class clzName : public ClassBase {\
 public:\
     clzName();\
+    virtual ~clzName();\
     static class_struct* getExportStruct();\
     virtual ClassType getClassType();\
     virtual const char* toString();\

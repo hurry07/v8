@@ -73,6 +73,18 @@ Vec3<T>::Vec3() : mVec(0,0,0) {
 template <typename T>
 Vec4<T>::Vec4() : mVec(0,0,0,0) {
 }
+template <typename T>
+Vec2<T>::~Vec2() {
+//    LOGI("~Vec2");
+}
+template <typename T>
+Vec3<T>::~Vec3() {
+//    LOGI("~Vec3");
+}
+template <typename T>
+Vec4<T>::~Vec4() {
+//    LOGI("~Vec4");
+}
 
 /**
  * init current object with Array or ArrayBufferView|TypedBuffer

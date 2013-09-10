@@ -13,7 +13,10 @@ function Buffer(config) {
     this.mBuffer = config.buffer || new this.mType(this.mStride * this.mCount);
 };
 Buffer.prototype.getElement = function (index, element) {
-    this.mBuffer.get(element || (element = this.mElement ? new this.mElement() : new this.mType(this.mStride)), index * this.mStride);
+    if (!element) {
+        element = this.mElement ? new this.mElement() : new this.mType(this.mStride);
+    }
+    this.mBuffer.get(element, index * this.mStride);
     return element;
 };
 Buffer.prototype.setElement = function (index, value) {

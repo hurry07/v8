@@ -37,7 +37,7 @@ public:
 		T* instance = new T();
 		instance->init(args);
 
-		Persistent<External> ret(Isolate::GetCurrent(), External::New(instance));
+		Persistent<Object> ret(node_isolate, args.This());
 		ret.MakeWeak(node_isolate, instance, unrefCallback);
 
 		args.This()->SetInternalField(0, External::New(instance));
@@ -63,9 +63,11 @@ public:
     /**
      * when js release the last refer of this object
      */
-	static void unrefCallback(Isolate* isolate, Persistent<External>* value, T* parameter) {
+	static void unrefCallback(Isolate* isolate, Persistent<Object>* value, T* parameter) {
+        bool nearDeath = value->IsNearDeath();
         parameter->releasePersistent();
-		value->Dispose();
+		value->Dispose();// dispose first
+        value->Clear();
 	}
 
 	static void initFunction() {
@@ -77,7 +79,6 @@ public:
 		fn->SetClassName(String::New(clz->mClassName));
 
         Local<ObjectTemplate> fnproto = fn->PrototypeTemplate();
-        // remove? too much default activity
         EXPOSE_METHOD(fnproto, release, ReadOnly | DontDelete);
         EXPOSE_METHOD(fnproto, toString, ReadOnly | DontDelete);
         fnproto->SetInternalFieldCount(1);

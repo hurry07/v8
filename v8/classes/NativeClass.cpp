@@ -20,6 +20,7 @@ using namespace v8;
 #include "../core/ClassWrap.h"
 #include "file.h"
 #include "../modules/Image.h"
+#include "gcobserver.h"
 
 template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& args) {
     HandleScope scope;
@@ -80,6 +81,9 @@ template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& arg
     ClassWrap<Vec4<float>>::expose("vector4", global);
     ClassWrap<Vec3<float>>::expose("vector3", global);
     ClassWrap<Vec2<float>>::expose("vector2", global);
+
+    // watch if gc could happen
+    ClassWrap<GcObserver>::expose(global);
 
     ClassWrap<Image>::expose(global);
 }

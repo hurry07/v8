@@ -11,6 +11,7 @@
 
 enum ClassType {
     CLASS_NULL = 0,
+    CLASS_GC,
     CLASS_GLM,
     CLASS_POINT,
     CLASS_MATRIX2,
