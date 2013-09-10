@@ -39,6 +39,10 @@ public:
     static char* source_root;
     static bool debug;
 
+    void appendMouseTouch(int button, int state, int x, int y);
+    void appendMouseMove(int x, int y);
+    void appendKeyPress(unsigned char key, int x, int y);
+
 private:
     /**
      * 加载一个 function

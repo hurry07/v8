@@ -48,9 +48,11 @@ bool DataRange::isEmpty() {
 EventStructor::EventStructor(int stride, int count) {
     mStride = stride;
     mCount = count + 1;
+
     mBuffer = new char[mStride * mCount];
     mReadRange = new DataRange(this, 'r');
     mWriteRange = new DataRange(this, 'w');
+    clear();
 }
 EventStructor::~EventStructor() {
     delete[] mBuffer;
@@ -80,6 +82,8 @@ void EventStructor::endRange(DataRange* range) {
     }
 }
 void EventStructor::clear() {
+    mReadRange->clear();
+    mWriteRange->clear();
     mRead = mWrite = 0;
 }
 char* EventStructor::value_ptr(int index) {

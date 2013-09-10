@@ -115,7 +115,7 @@ bool TouchEvent::appendMouseMove(int x, int y) {
     return true;
 }
 bool TouchEvent::appendKeyPress(unsigned char key, int x, int y) {
-    DataRange* target =mStruct->startWrite();
+    DataRange* target = mStruct->startWrite();
     if(target->isEmpty()) {
         return false;
     }

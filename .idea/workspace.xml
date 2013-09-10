@@ -2,20 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/core/Event.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/core/Event.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/app/Application.cpp" afterPath="$PROJECT_DIR$/v8/app/Application.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/app/Application.h" afterPath="$PROJECT_DIR$/v8/app/Application.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/xcuserdata/jie.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" afterPath="$PROJECT_DIR$/v8.xcodeproj/xcuserdata/jie.xcuserdatad/xcdebugger/Breakpoints.xcbkptlist" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/classes/NativeClass.cpp" afterPath="$PROJECT_DIR$/v8/classes/NativeClass.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/classes/classenum.h" afterPath="$PROJECT_DIR$/v8/classes/classenum.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/core/event.js" afterPath="$PROJECT_DIR$/v8/assets/core/event.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/core/Event.cpp" afterPath="$PROJECT_DIR$/v8/core/Event.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/modules/eventstructor.cpp" afterPath="$PROJECT_DIR$/v8/modules/eventstructor.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/modules/eventstructor.h" afterPath="$PROJECT_DIR$/v8/modules/eventstructor.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/main.cpp" afterPath="$PROJECT_DIR$/v8/main.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/typedbuffer/typedbuffer.h" afterPath="$PROJECT_DIR$/v8/typedbuffer/typedbuffer.h" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />

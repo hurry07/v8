@@ -96,12 +96,15 @@ void onSurfaceChanged(int w, int h) {
 }
 void onMouseClick(int button, int state, int x, int y) {
     LOGI("onTouch %d %d %d %d", button, state, x, y);
+    app->appendMouseTouch(button, state, x, y);
 }
 void onMouseMove(int x, int y) {
     LOGI("onMove %d %d", x, y);
+    app->appendMouseMove(x, y);
 }
 void onKeyPress(unsigned char key, int x, int y) {
     LOGI("onTouch %d %d %d", key, x, y);
+    app->appendKeyPress(key, x, y);
 }
 int main(int argc, char ** argv)
 {
