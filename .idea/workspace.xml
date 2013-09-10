@@ -2,23 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/TestGc.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/TestGc.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/classes/gcobserver.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/classes/gcobserver.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/testgc.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/core/ClassWrap.h" afterPath="$PROJECT_DIR$/v8/core/ClassWrap.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/classes/NativeClass.cpp" afterPath="$PROJECT_DIR$/v8/classes/NativeClass.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/glcore/buffer.js" afterPath="$PROJECT_DIR$/v8/assets/glcore/buffer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/classes/classenum.h" afterPath="$PROJECT_DIR$/v8/classes/classenum.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/render/drawcontext.js" afterPath="$PROJECT_DIR$/v8/assets/render/drawcontext.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/game.js" afterPath="$PROJECT_DIR$/v8/assets/game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/main.cpp" afterPath="$PROJECT_DIR$/v8/main.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/glm/vector.h" afterPath="$PROJECT_DIR$/v8/glm/vector.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/glm/vector_inl.h" afterPath="$PROJECT_DIR$/v8/glm/vector_inl.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/typedbuffer/typedbuffer.h" afterPath="$PROJECT_DIR$/v8/typedbuffer/typedbuffer.h" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -139,7 +125,7 @@
       <file leaf-file-name="game.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="0" selection-start="1685" selection-end="1685" vertical-scroll-proportion="0.75220263">
+            <state line="50" column="0" selection-start="1487" selection-end="1487" vertical-scroll-proportion="0.719163">
               <folding />
             </state>
           </provider>
@@ -631,7 +617,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="0" selection-start="1685" selection-end="1685" vertical-scroll-proportion="0.75220263">
+        <state line="50" column="0" selection-start="1487" selection-end="1487" vertical-scroll-proportion="0.719163">
           <folding />
         </state>
       </provider>

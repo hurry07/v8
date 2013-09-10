@@ -55,11 +55,6 @@ game.render = {
         while (itor.hasNext()) {
             itor.next().draw(mContext);
         }
-
-        var i = 0;
-        while (i++ < 100) {
-            new Float32Array(10);
-        }
     }
 };
 
