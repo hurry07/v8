@@ -30,7 +30,7 @@ public:
     NodeBuffer* mBuffer;
     long mByteOffset;
     long mByteLength;
-    
+
     static const char* BUFFER;
 };
 

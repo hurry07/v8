@@ -216,6 +216,7 @@ void Application::resume() {
 	game->callFunction("resume");
 }
 void Application::gc() {
+	ENTER_ISOLATE;
 	HANDLE_SCOPE;
 	CONTEXT_SCOPE;
 

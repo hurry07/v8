@@ -50,6 +50,7 @@
 		18CE34B717C7B7E400B6DB8E /* Arguments.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18CE34B517C7B7E400B6DB8E /* Arguments.cpp */; };
 		18DF8A7617DEB7EA007A2A31 /* gcobserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18DF8A7417DEB7EA007A2A31 /* gcobserver.cpp */; };
 		18DF8A7917DED9FF007A2A31 /* TestGc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18DF8A7717DED9FF007A2A31 /* TestGc.cpp */; };
+		18DF8A7F17DF369E007A2A31 /* eventstructor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18DF8A7D17DF369E007A2A31 /* eventstructor.cpp */; };
 		18EDB76817B7698C002E00CE /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EDB76717B7698C002E00CE /* OpenGL.framework */; };
 		18EDB76A17B76992002E00CE /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EDB76917B76992002E00CE /* GLUT.framework */; };
 /* End PBXBuildFile section */
@@ -150,6 +151,8 @@
 		18DF8A7517DEB7EA007A2A31 /* gcobserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gcobserver.h; sourceTree = "<group>"; };
 		18DF8A7717DED9FF007A2A31 /* TestGc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestGc.cpp; sourceTree = "<group>"; };
 		18DF8A7817DED9FF007A2A31 /* TestGc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestGc.h; sourceTree = "<group>"; };
+		18DF8A7D17DF369E007A2A31 /* eventstructor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = eventstructor.cpp; sourceTree = "<group>"; };
+		18DF8A7E17DF369E007A2A31 /* eventstructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eventstructor.h; sourceTree = "<group>"; };
 		18EDB76617B763B0002E00CE /* global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = global.h; sourceTree = "<group>"; };
 		18EDB76717B7698C002E00CE /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		18EDB76917B76992002E00CE /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
@@ -329,6 +332,8 @@
 				18CE229617C6582800B6DB8E /* modules.h */,
 				183CE6C517D34A6B00ADD5CE /* Image.cpp */,
 				183CE6C617D34A6C00ADD5CE /* Image.h */,
+				18DF8A7D17DF369E007A2A31 /* eventstructor.cpp */,
+				18DF8A7E17DF369E007A2A31 /* eventstructor.h */,
 			);
 			path = modules;
 			sourceTree = "<group>";
@@ -455,6 +460,7 @@
 				183CE6C717D34A6C00ADD5CE /* Image.cpp in Sources */,
 				18DF8A7617DEB7EA007A2A31 /* gcobserver.cpp in Sources */,
 				18DF8A7917DED9FF007A2A31 /* TestGc.cpp in Sources */,
+				18DF8A7F17DF369E007A2A31 /* eventstructor.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
