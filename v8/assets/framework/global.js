@@ -1,6 +1,6 @@
 var _textures = require('framework/texture.js');
 var _program = require('framework/program.js');
-var _Context = require('render/context.js');
+var _Context = require('render/drawcontext.js');
 var _Camera = require('render/camera.js');
 var _UpdateContext = require('render/updatecontext.js');
 
@@ -15,6 +15,8 @@ var _NamedList = require('core/namedlist.js');
 // ==============================================
 var mCamera = _Camera.createCamera().lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(0, 1, 0, 1, 9, 11);
 var mContext = new _Context(mCamera);
+exports.mCamera = mCamera;
+exports.mContext = mContext;
 
 /**
  * hold all dependencies for creating a sprite like node
@@ -55,16 +57,11 @@ function spriteNode(id) {
 function colorNode(color, w, h) {
     return new _Color(_program.positionColor.material(color), w, h);
 }
-
-exports.mCamera = mCamera;
-exports.mContext = mContext;
 exports.spriteNode = spriteNode;
 exports.colorNode = colorNode;
 
-var _LinkedList = require('core/linkedlist.js').LinkedList;
 function Schedule(namedlist) {
     this._coll = namedlist;
-    this._list = new _LinkedList('');
     this._itor = namedlist.iterator();
 }
 Schedule.prototype.schedule = function (obj) {
