@@ -1,11 +1,15 @@
-var mElementCount = 0;
+var mElementId = 0;
+
+function generatorId() {
+    return mElementId++;
+}
 
 /**
  * like HtmlElement
  * @constructor
  */
 function Element() {
-    this.mId = mElementCount++;// give an auto increase id
+    this.mId = generatorId();// give an auto increase id
     this.mClass = '';// an aulter describe, like css
     this.mParent = null;
 }
@@ -17,5 +21,6 @@ Element.prototype.setId = function (id) {
 Element.prototype.getId = function () {
     return  this.mId;
 };
+Element.prototype.generatorId = generatorId;
 
 module.exports = Element;
