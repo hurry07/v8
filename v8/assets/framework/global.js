@@ -14,9 +14,9 @@ var _NamedList = require('core/namedlist.js');
 // keep all global variables
 // ==============================================
 var mCamera = _Camera.createCamera().lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(0, 1, 0, 1, 9, 11);
-var mContext = new _Context(mCamera);
+var mRenderContext = new _Context(mCamera);
 exports.mCamera = mCamera;
-exports.mContext = mContext;
+exports.mRenderContext = mRenderContext;
 
 /**
  * hold all dependencies for creating a sprite like node

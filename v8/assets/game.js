@@ -4,8 +4,9 @@ var _event = require('core/event.js');
 var _framerate = require('tools/framerate.js');
 
 var mCamera = _global.mCamera;
-var mContext = _global.mContext;
+var mRenderContext = _global.mRenderContext;
 var mUpdateContext = _global.updateContext;
+
 var mTouchBuffer = new Int32Array(4);
 var mKeyBuffer = new Int32Array(3);
 
@@ -31,7 +32,7 @@ game.render = {
         _gl.disable(_gl.SCISSOR_TEST);
 
         mCamera.lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(0, width, 0, height, 9, 11);
-        mContext.onChange(width, height);
+        mRenderContext.onChange(width, height);
         _gl.viewport(0, 0, width, height);
 
         if (firstInit) {
@@ -42,7 +43,7 @@ game.render = {
     },
     onSurfaceChanged: function (width, height) {
         mCamera.lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(0, width, 0, height, 9, 11);
-        mContext.onChange(width, height);
+        mRenderContext.onChange(width, height);
         _gl.viewport(0, 0, width, height);
     },
     onDrawFrame: function () {
@@ -57,7 +58,7 @@ game.render = {
         _gl.clear(_gl.COLOR_BUFFER_BIT);
         var itor = _global.scheduleRender.iterator();
         while (itor.hasNext()) {
-            itor.next().draw(mContext);
+            itor.next().draw(mRenderContext);
         }
 
         var remain = _event.touchEvent.getEvent(mTouchBuffer);
@@ -69,7 +70,7 @@ game.render = {
             console.log('keyEvent', Array.prototype.join.call(mKeyBuffer, ','));
         }
 
-        _framerate.update();
+//        _framerate.update();
     }
 };
 
