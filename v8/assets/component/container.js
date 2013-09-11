@@ -21,12 +21,15 @@ Container.prototype.removeChild = function (child) {
 Container.prototype.draw = function (context) {
     this.updateMatrix();
     context.pushMatrix(this.mMatrix);
+    this.drawContent(context);
+    context.popMatrix();
+}
+Container.prototype.drawContent = function (context) {
     for (var i = 0, cs = this.children, l = cs.length; i < l; i++) {
         if (cs[i]) {
             cs[i].draw(context);
         }
     }
-    context.popMatrix();
 }
 
 module.exports = Container;

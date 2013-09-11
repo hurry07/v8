@@ -5,6 +5,7 @@ function Scene() {
     _Container.call(this);
 }
 _inherit(Scene, _Container);
+Scene.prototype.mTag = 'scene';
 Scene.prototype.update = function (context) {
 }
 Scene.prototype.onRegister = function (global) {

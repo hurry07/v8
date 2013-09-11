@@ -1,15 +1,16 @@
+var _Element = require('component/element.js');
 var geometry = require('core/glm.js');
 var glm = geometry.glm;
-var _drawable = require('render/drawable.js');
-var _inherit = require('core/inherit.js');
 var aixz = new geometry.vec3f(0, 0, 1);
+var _inherit = require('core/inherit.js');
 
 /**
  * an objec with given position
+ *
  * @constructor
  */
 function Node() {
-    _drawable.call(this);
+    _Element.call(this);
 
     // these should set internal
     this.mCenterX = 0;
@@ -26,7 +27,8 @@ function Node() {
     this.mMatrix = new geometry.matrix4();
     this.mDirty = true;
 }
-_inherit(Node, _drawable);
+_inherit(Node, _Element);
+Node.prototype.mTag = 'node';
 Node.prototype.setRotate = function (r) {
     this.mRotate = r;
     this.mDirty = true;
@@ -77,9 +79,12 @@ Node.prototype.setScale = function (sx, sy) {
     }
     this.mDirty = true;
 }
+/**
+ * @returns {boolean} whether or not this node is updated
+ */
 Node.prototype.updateMatrix = function () {
     if (!this.mDirty) {
-        return;
+        return false;
     }
 
     // translate, rotate, scale
@@ -90,6 +95,9 @@ Node.prototype.updateMatrix = function () {
     m.scale(this.mScale);
     m.translate(this.mOffset);
     this.mDirty = false;
+    return true;
+}
+Node.prototype.draw = function (context) {
 }
 
 module.exports = Node;

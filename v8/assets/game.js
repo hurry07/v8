@@ -7,8 +7,8 @@ var mCamera = _global.mCamera;
 var mRenderContext = _global.mRenderContext;
 var mUpdateContext = _global.updateContext;
 
-var mTouchBuffer = new Int32Array(4);
-var mKeyBuffer = new Int32Array(3);
+var mTouchBuffer = new Int32Array(16);
+var mKeyBuffer = new Int32Array(12);
 
 function Game() {
 }
@@ -51,15 +51,15 @@ game.render = {
     onDrawFrame: function () {
         _global.runSchedule();
 
-        if(mCount++ > 2000) {
+        if (mCount++ > 2000) {
             mCount = 0;
-            var remain = _event.touchEvent.getEvent(mTouchBuffer);
-            if(remain != -1) {
-                console.log('touchEvent', Array.prototype.join.call(mTouchBuffer, ','));
+            var remain = _event.touchEvent.getEvents(mTouchBuffer);
+            if (remain != -1) {
+                console.log('touchEvent:' + remain, Array.prototype.join.call(mTouchBuffer, ','));
             }
-            remain = _event.keyEvent.getEvent(mKeyBuffer);
-            if(remain != -1) {
-                console.log('keyEvent', Array.prototype.join.call(mKeyBuffer, ','));
+            remain = _event.keyEvent.getEvents(mKeyBuffer);
+            if (remain != -1) {
+                console.log('keyEvent:' + remain, Array.prototype.join.call(mKeyBuffer, ','));
             }
         }
         _framerate.update();
