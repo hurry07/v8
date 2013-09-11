@@ -1,9 +1,10 @@
 var _inherit = require('core/inherit.js');
-var _Container = require('component/constainer.js');
+var _Container = require('component/container.js');
 
 function Button(id, skin) {
     _Container.call(this);
-    this.mId = id || this.generatorId();
+
+    (id != undefined && id != null) && (this.mId = id);
     this.mSkin = skin;
     this.setSize(skin.width(), skin.height());
 }
@@ -15,7 +16,7 @@ Button.prototype.drawContent = function (context) {
 
 function Skin() {
     this.valid = true;
-    this.state = 'n';// n c d
+    this.state = 'n';// n,c,d
 }
 Skin.prototype.init = function (normal, click, disable) {
     var l = arguments.length;
@@ -33,14 +34,14 @@ Skin.prototype.init = function (normal, click, disable) {
         this.disable = disable;
     }
 }
-Skin.prototype.width = function() {
-    if(this.valid) {
+Skin.prototype.width = function () {
+    if (this.valid) {
         return this.normal.width();
     }
     return 0;
 }
-Skin.prototype.height = function() {
-    if(this.valid) {
+Skin.prototype.height = function () {
+    if (this.valid) {
         return this.normal.height();
     }
     return 0;
@@ -64,7 +65,7 @@ Skin.prototype.draw = function (context) {
 
 function createButtonWithId(id, normal, click, disable) {
     var s = new Skin();
-    s.init.apply(s, arguments);
+    s.init.apply(s, Array.prototype.slice.call(arguments, 1));
     return new Button(id, s);
 }
 function createButton(normal, click, disable) {

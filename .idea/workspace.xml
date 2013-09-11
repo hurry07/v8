@@ -2,43 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/Thumbs.db" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/b_shop_选中.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/bg_upgrade-coins.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/icon_成就_01.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/icon_成就_02.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/icon_道具_01.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/icon_道具_02.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/icon_道具_选中.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/others/Thumbs.db" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/others/分割线02.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/others/问号.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/分割线.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/分割线02.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/复件 问号.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/成就进度条_01.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/成就进度条_02.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/滚动_01.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/滚动_02.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/箭头level.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/纸_01.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/纸_02.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/问号.png" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/b_选中.png" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/b_select.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/bg_升级背景.png" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/bg_upgrade.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/bg_获得STAR数量_1.png" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/bg_start_gains_1.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/bg_获得STAR数量_2.png" afterPath="$PROJECT_DIR$/v8/assets/images/upgrade/bg_start_gains_2.png" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/images/upgrade/bg_coins&amp;star.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/widget/button.js" afterPath="$PROJECT_DIR$/v8/assets/widget/button.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/scenes/cover.js" afterPath="$PROJECT_DIR$/v8/assets/scenes/cover.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/component/element.js" afterPath="$PROJECT_DIR$/v8/assets/component/element.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/component/node.js" afterPath="$PROJECT_DIR$/v8/assets/component/node.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/framework/texture.js" afterPath="$PROJECT_DIR$/v8/assets/framework/texture.js" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378863938789" ignored="false" />
     <file path="/game.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378881224008" ignored="false" />
-    <file path="/a.dummy" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378882986502" ignored="false" />
+    <file path="/a.dummy" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378891047548" ignored="false" />
     <file path="/temp.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376748679355" ignored="false" />
     <file path="/programs.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376753166840" ignored="false" />
     <file path="/vec3_test.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377279668112" ignored="false" />
@@ -93,7 +67,7 @@
     <file path="/matrixstack.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378792979173" ignored="false" />
     <file path="/glbuffer.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378293116330" ignored="false" />
     <file path="/R.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378307788387" ignored="false" />
-    <file path="/texture.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378699500180" ignored="false" />
+    <file path="/texture.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378889863626" ignored="false" />
     <file path="/collection.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378540660961" ignored="false" />
     <file path="/material_types.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378621989053" ignored="false" />
     <file path="/position_color.frag" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378622973889" ignored="false" />
@@ -108,12 +82,12 @@
     <file path="/objectlist.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378743162686" ignored="false" />
     <file path="/updatecontext.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378742676645" ignored="false" />
     <file path="/scene.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378772653766" ignored="false" />
-    <file path="/cover.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378887817652" ignored="false" />
+    <file path="/cover.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378893231431" ignored="false" />
     <file path="/global.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378880087319" ignored="false" />
     <file path="/drawcontext.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378777890745" ignored="false" />
     <file path="/testgc.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378800898842" ignored="false" />
     <file path="/framerate.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378874510821" ignored="false" />
-    <file path="/button.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378887329924" ignored="false" />
+    <file path="/button.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378893400320" ignored="false" />
     <file path="/element.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378886541372" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -134,26 +108,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="button.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/widget/button.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="73" column="1" selection-start="1777" selection-end="1777" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="cover.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/scenes/cover.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="79" selection-start="706" selection-end="706" vertical-scroll-proportion="0.0">
+            <state line="8" column="26" selection-start="448" selection-end="448" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="render.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/framework/render.js">
+      <file leaf-file-name="button.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/v8/assets/widget/button.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="28" selection-start="497" selection-end="497" vertical-scroll-proportion="0.2973568">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="node.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/component/node.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="59" column="26" selection-start="1458" selection-end="1458" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="container.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/component/container.js">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
@@ -161,51 +144,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="r.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/framework/r.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="50" selection-start="50" selection-end="50" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="texture.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/framework/texture.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="0" selection-start="1291" selection-end="1291" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bg_start_gains_2.png" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/images/upgrade/bg_start_gains_2.png">
+      <file leaf-file-name="b_shop_01.png" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/images/upgrade/b_shop_01.png">
           <provider selected="true" editor-type-id="images">
             <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bg_upgrade.png" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/v8/assets/images/upgrade/bg_upgrade.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bg_start_gains_1.png" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/images/upgrade/bg_start_gains_1.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="global.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/framework/global.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="19" selection-start="2068" selection-end="2078" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
           </provider>
         </entry>
       </file>
@@ -227,7 +169,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/v8/assets/render/matrixstack.js" />
         <option value="$PROJECT_DIR$/v8/assets/testgc.js" />
         <option value="$PROJECT_DIR$/v8/assets/glcore/buffer.js" />
         <option value="$PROJECT_DIR$/v8/assets/core/event.js" />
@@ -241,8 +182,9 @@
         <option value="$PROJECT_DIR$/v8/assets/component/scene.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/element.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/node.js" />
-        <option value="$PROJECT_DIR$/v8/assets/widget/button.js" />
+        <option value="$PROJECT_DIR$/v8/assets/framework/texture.js" />
         <option value="$PROJECT_DIR$/v8/assets/scenes/cover.js" />
+        <option value="$PROJECT_DIR$/v8/assets/widget/button.js" />
       </list>
     </option>
   </component>
@@ -533,62 +475,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="upgrade" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="upgrade" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="others" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="framework" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -798,13 +684,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/v8/assets/component/scene.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="19" selection-start="1045" selection-end="1045" vertical-scroll-proportion="-10.882353">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/component/element.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="26" selection-start="154" selection-end="165" vertical-scroll-proportion="0.0">
@@ -826,13 +705,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/component/node.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="25" selection-start="714" selection-end="714" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/node.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="33" column="48" selection-start="1016" selection-end="1023" vertical-scroll-proportion="0.0">
@@ -840,44 +712,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/widget/button.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="1" selection-start="1777" selection-end="1777" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/framework/global.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="19" selection-start="2068" selection-end="2078" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/scenes/cover.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="79" selection-start="706" selection-end="706" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/framework/render.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/framework/r.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="50" selection-start="50" selection-end="50" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/framework/texture.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="0" selection-start="1291" selection-end="1291" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -895,6 +732,60 @@
     <entry file="file://$PROJECT_DIR$/v8/assets/images/upgrade/bg_upgrade.png">
       <provider selected="true" editor-type-id="images">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/framework/r.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="50" selection-start="50" selection-end="50" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/framework/texture.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="41" selection-start="816" selection-end="816" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/framework/global.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="17" selection-start="1445" selection-end="1445" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/images/upgrade/b_shop_01.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/component/container.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/component/node.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="26" selection-start="1458" selection-end="1458" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/scenes/cover.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="26" selection-start="448" selection-end="448" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/widget/button.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="28" selection-start="497" selection-end="497" vertical-scroll-proportion="0.2973568">
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>
