@@ -148,14 +148,16 @@ Border.prototype.fillRect = function (acc, x1, y1, x2, y2, start) {
 Border.prototype.updateMesh = function () {
     var fw = this.mFrame.width();
     var fh = this.mFrame.height();
+    var w = this.mSize[0];
+    var h = this.mSize[1];
     var acc = new Filler(this.mBuffer, this.mFrame);
 
     this.fillRect(acc, 0, fh - this._bottom, this._left, fh, 36);// left bottom
-    acc.translation(0, this.mHeight - fh);
+    acc.translation(0, h - fh);
     this.fillRect(acc, 0, 0, this._left, this._top, 0);// left top
-    acc.translation(this.mWidth - fw, 0);
+    acc.translation(w - fw, 0);
     this.fillRect(acc, fw - this._right, fh - this._bottom, fw, fh, 48);// right bottom
-    acc.translation(this.mWidth - fw, this.mHeight - fh);
+    acc.translation(w - fw, h - fh);
     this.fillRect(acc, fw - this._right, 0, fw, this._top, 12);// right top
 
     this.fill_h(acc, 1);
@@ -209,10 +211,11 @@ Vertical.prototype.fillRect = function (acc, x1, y1, x2, y2, start) {
 Vertical.prototype.updateMesh = function () {
     var fw = this.mFrame.width();
     var fh = this.mFrame.height();
+    var h = this.mSize[1];
     var acc = new Filler(this.mBuffer, this.mFrame);
 
     this.fillRect(acc, 0, fh - this._bottom, fw, fh, 0);// bottom
-    acc.translation(0, this.mHeight - fh, 0);
+    acc.translation(0, h - fh, 0);
     this.fillRect(acc, 0, 0, fw, this._top, 4);// top
 
     this.mBuffer.upload();
@@ -258,10 +261,11 @@ Horizontal.prototype.fillRect = function (acc, x1, y1, x2, y2, start) {
 Horizontal.prototype.updateMesh = function () {
     var fw = this.mFrame.width();
     var fh = this.mFrame.height();
+    var w = this.mSize[0];
     var acc = new Filler(this.mBuffer, this.mFrame);
 
     this.fillRect(acc, 0, 0, this._left, fh, 0);// left
-    acc.translation(this.mWidth - fw, 0);
+    acc.translation(w - fw, 0);
     this.fillRect(acc, fw - this._right, 0, fw, fh, 4);// right
 
     this.mBuffer.upload();

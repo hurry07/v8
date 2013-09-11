@@ -35,7 +35,7 @@ ColorNode.prototype.initMesh = function () {
     var b = this.mBuffer;
 
     var accp = b.accessor('p');
-    var m = _rectangle(this.mWidth, this.mHeight);
+    var m = _rectangle(this.mSize[0], this.mSize[1]);
 
     for (var i = 0; i < 8; i += 2) {
         v.set(_order[i], _order[i + 1], 0);

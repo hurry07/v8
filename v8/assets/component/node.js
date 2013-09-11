@@ -1,8 +1,10 @@
 var _Element = require('component/element.js');
-var geometry = require('core/glm.js');
-var glm = geometry.glm;
-var aixz = new geometry.vec3f(0, 0, 1);
+var _geometry = require('core/glm.js');
+var _vec3f = _geometry.vec3f;
+var _matrix4 = _geometry.matrix4;
 var _inherit = require('core/inherit.js');
+
+var aixz = new _vec3f(0, 0, 1);
 
 /**
  * an objec with given position
@@ -12,19 +14,15 @@ var _inherit = require('core/inherit.js');
 function Node() {
     _Element.call(this);
 
-    // these should set internal
-    this.mCenterX = 0;
-    this.mCenterY = 0;
-    this.mWidth = 0;
-    this.mHeight = 0;
-
-    this.mAnthorX = 0;
-    this.mAnthorY = 0;
-    this.mOffset = new geometry.vec3f();
-    this.mPosition = new geometry.vec3f();
-    this.mScale = new geometry.vec3f(1, 1, 1);
+    // these vector should rener be removed or replace
+    this.mAnthor = new _vec3f();// anthor point in percent
+    this.mCenter = new _vec3f();// center in size coordinate
+    this.mSize = new _vec3f();// width height depth
+    this.mOffset = new _vec3f();
+    this.mPosition = new _vec3f();
+    this.mScale = new _vec3f(1, 1, 1);
+    this.mMatrix = new _matrix4();
     this.mRotate = 0;
-    this.mMatrix = new geometry.matrix4();
     this.mDirty = true;
 }
 _inherit(Node, _Element);
@@ -45,36 +43,47 @@ Node.prototype.setPosition = function (x, y) {
     }
     this.mDirty = true;
 }
+Node.prototype.getPosition = function () {
+    return this.mPosition;
+}
 Node.prototype.setAnthor = function (ax, ay) {
     if (arguments.length == 1) {
-        this.mAnthorX = this.mAnthorY = ax;
+        this.mAnthor.set(ax);
     } else {
-        this.mAnthorX = ax;
-        this.mAnthorY = ay;
+        this.mAnthor[0] = ax;
+        this.mAnthor[1] = ay;
     }
     this.updateOffset();
 }
 Node.prototype.setSize = function (w, h) {
-    this.mWidth = w;
-    this.mHeight = h;
+    if (arguments.length == 1) {
+        this.mSize.set(w);
+    } else {
+        this.mSize[0] = w;
+        this.mSize[1] = h;
+    }
     this.updateOffset();
 }
-Node.prototype.width = function () {
-    return this.mWidth;
-}
-Node.prototype.height = function () {
-    return this.mHeight;
-}
 Node.prototype.setCenter = function (cx, cy) {
-    this.mCenterX = cx;
-    this.mCenterY = cy;
+    if (arguments.length == 1) {
+        this.mCenter.set(cx);
+    } else {
+        this.mCenter[0] = cx;
+        this.mCenter[1] = cy;
+    }
     this.updateOffset();
 }
 Node.prototype.updateOffset = function () {
     this.mOffset.set(
-        -(this.mAnthorX - this.mCenterX) * this.mWidth,
-        -(this.mAnthorY - this.mCenterY) * this.mHeight
+        this.mCenter[0] - this.mAnthor[0] * this.mSize[0],
+        this.mCenter[1] - this.mAnthor[1] * this.mSize[1]
     );
+}
+Node.prototype.width = function () {
+    return this.mSize[0];
+}
+Node.prototype.height = function () {
+    return this.mSize[1];
 }
 Node.prototype.setScale = function (sx, sy) {
     if (arguments.length == 1) {
@@ -107,7 +116,7 @@ Node.prototype.updateMatrix = function () {
     return true;
 }
 Node.prototype.getMatrix = function (m) {
-    return _getMatrix.call(this, m || new geometry.matrix4());
+    return _getMatrix.call(this, m || new _geometry.matrix4());
 }
 Node.prototype.draw = function (context) {
 }
