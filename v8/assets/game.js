@@ -20,6 +20,8 @@ game.pause = function () {
 game.resume = function () {
     _global.updateContext.reset();
 }
+
+var mCount = 0;
 game.render = {
     onSurfaceCreated: function (width, height) {
         _gl.clearColor(1, 1, 1, 0);
@@ -47,30 +49,20 @@ game.render = {
         _gl.viewport(0, 0, width, height);
     },
     onDrawFrame: function () {
-        // update
-        mUpdateContext.ticktack();
-        var itor = _global.scheduleUpdate.iterator();
-        while (itor.hasNext()) {
-            itor.next().update(mUpdateContext);
-        }
+        _global.runSchedule();
 
-        // drawing
-        _gl.clear(_gl.COLOR_BUFFER_BIT);
-        var itor = _global.scheduleRender.iterator();
-        while (itor.hasNext()) {
-            itor.next().draw(mRenderContext);
+        if(mCount++ > 2000) {
+            mCount = 0;
+            var remain = _event.touchEvent.getEvent(mTouchBuffer);
+            if(remain != -1) {
+                console.log('touchEvent', Array.prototype.join.call(mTouchBuffer, ','));
+            }
+            remain = _event.keyEvent.getEvent(mKeyBuffer);
+            if(remain != -1) {
+                console.log('keyEvent', Array.prototype.join.call(mKeyBuffer, ','));
+            }
         }
-
-        var remain = _event.touchEvent.getEvent(mTouchBuffer);
-        if(remain != -1) {
-            console.log('touchEvent', Array.prototype.join.call(mTouchBuffer, ','));
-        }
-        remain = _event.keyEvent.getEvent(mKeyBuffer);
-        if(remain != -1) {
-            console.log('keyEvent', Array.prototype.join.call(mKeyBuffer, ','));
-        }
-
-//        _framerate.update();
+        _framerate.update();
     }
 };
 

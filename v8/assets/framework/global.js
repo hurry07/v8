@@ -1,3 +1,4 @@
+var _gl = require('opengl');
 var _textures = require('framework/texture.js');
 var _program = require('framework/program.js');
 var _Context = require('render/drawcontext.js');
@@ -44,6 +45,19 @@ function sprite(id) {
 }
 exports.sprite = sprite;
 
+var mTasks = [];
+function Task(fn, bind) {
+    this.fn = fn;
+    this.bind = bind || this;
+}
+Task.prototype.run = function () {
+    this.fn.call(this.bind);
+}
+
+exports.scheduleTask = function (fn, bind) {
+    mTasks.push(new Task(fn, bind));
+}
+
 /**
  * create node
  *
@@ -75,10 +89,15 @@ Schedule.prototype.iterator = function () {
     return this._itor;
 }
 
-exports.scheduleRender = new Schedule(new _NamedList('__render__'));
-exports.scheduleUpdate = new Schedule(new _NamedList('__update__'));
-exports.scheduleEvent = new Schedule(new _NamedList('__event__'));
-exports.updateContext = new _UpdateContext(exports.scheduleUpdate.iterator());
+var scheduleRender = new Schedule(new _NamedList('__render__'));
+var scheduleUpdate = new Schedule(new _NamedList('__update__'));
+var scheduleEvent = new Schedule(new _NamedList('__event__'));
+var updateContext = new _UpdateContext(scheduleUpdate.iterator());
+
+exports.scheduleRender = scheduleRender;
+exports.scheduleUpdate = scheduleUpdate;
+exports.scheduleEvent = scheduleEvent;
+exports.updateContext = updateContext;
 
 exports.registerScene = function (scene) {
     scene.onRegister(exports);
@@ -89,3 +108,44 @@ exports.unregisterScene = function (scene) {
     exports.scheduleEvent.cancel(scene);
 };
 
+/**
+ * update and draw all elements
+ */
+exports.runSchedule = function () {
+    updateContext.ticktack();
+
+    // update
+    var itor = scheduleUpdate.iterator();
+    while (itor.hasNext()) {
+        itor.next().update(updateContext);
+    }
+
+    // drawing
+    _gl.clear(_gl.COLOR_BUFFER_BIT);
+    var itor = scheduleRender.iterator();
+    while (itor.hasNext()) {
+        itor.next().draw(mRenderContext);
+    }
+
+    // run task;
+    while (mTasks.length > 0) {
+        mTasks.shift().run();
+    }
+}
+
+/**
+ * render all elements
+ */
+exports.renderSchedule = function () {
+    // drawing
+    _gl.clear(_gl.COLOR_BUFFER_BIT);
+    var itor = scheduleRender.iterator();
+    while (itor.hasNext()) {
+        itor.next().draw(mRenderContext);
+    }
+
+    // run task;
+    while (mTasks.length > 0) {
+        mTasks.shift().run();
+    }
+}
