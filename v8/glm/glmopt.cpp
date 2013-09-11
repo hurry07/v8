@@ -41,7 +41,16 @@ METHOD_BEGIN(mulVec##size, info) {\
     $V(size)* v2 = internalArg<$V(size)>(info[2]);\
     internalArg<$V(size)>(info[0])->mVec = v1->mVec * v2->mVec;\
 }
-ALL_FN(MUL_VEC);
+//ALL_FN(MUL_VEC);
+MUL_VEC(2);
+MUL_VEC(4);
+METHOD_BEGIN(mulVec3, info) {
+    HandleScope scope;
+    Vec3<float>* v1 = internalArg<Vec3<float>>(info[1]);
+    Vec3<float>* v2 = internalArg<Vec3<float>>(info[2]);
+    glm::vec3 v = v1->mVec * v2->mVec;
+    internalArg<Vec3<float>>(info[0])->mVec = v1->mVec * v2->mVec;
+}
 
 #define ADD_VEC(size) \
 METHOD_BEGIN(addVec##size, info) {\

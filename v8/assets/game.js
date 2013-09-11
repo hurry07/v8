@@ -22,6 +22,22 @@ console.log(v1);
 v1.sub(v2);
 console.log(v1);
 
+v1.set(1, 0, 0);
+v2.set(0, 1, 0);
+var v3 = new _v3();
+_glm.mulVec3(v3, v1, v2);
+console.log(v3);
+v3.set(v1);
+v3.cross(v2);
+console.log(v3);
+
+v1.set(1, 0.2, 2);
+v2.set(0.3, 1, 0.8);
+var v3 = new _v3(v1);
+v3.mul(v2);
+//_glm.mulVec3(v3, v1, v2);
+console.log(v3);
+
 function Game() {
 }
 
