@@ -1,9 +1,12 @@
 var _gl = require('opengl');
 var _global = require('framework/global.js');
+var _event = require('core/event.js');
 
 var mCamera = _global.mCamera;
 var mContext = _global.mContext;
 var mUpdateContext = _global.updateContext;
+var mTouchBuffer = new Int32Array(4);
+var mKeyBuffer = new Int32Array(3);
 
 function Game() {
 }
@@ -54,6 +57,15 @@ game.render = {
         var itor = _global.scheduleRender.iterator();
         while (itor.hasNext()) {
             itor.next().draw(mContext);
+        }
+
+        var remain = _event.touchEvent.getEvent(mTouchBuffer);
+        if(remain != -1) {
+            console.log('touchEvent', Array.prototype.join.call(mTouchBuffer, ','));
+        }
+        remain = _event.keyEvent.getEvent(mKeyBuffer);
+        if(remain != -1) {
+            console.log('keyEvent', Array.prototype.join.call(mKeyBuffer, ','));
         }
     }
 };

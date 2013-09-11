@@ -7,7 +7,7 @@
 //
 #include "Event.h"
 #include "v8Utils.h"
-#include "../typedbuffer/arraybufferview.h"
+#include "../typedbuffer/arraybuffer.h"
 
 METHOD_BEGIN(getEvent, info) {
     HandleScope scope;
@@ -21,23 +21,52 @@ METHOD_BEGIN(getEvent, info) {
 
     // dest buffer
     ClassBase* ptr = internalArg<ClassBase>(info[0]);
-    if(ptr == 0 || !NodeBuffer::isView(ptr->getClassType())) {
-        info.GetReturnValue().Set(false);
+    if(ptr == 0) {
+        ThrowException(String::New("EventAccessor.getEvent's arguments[0] is not typeof TypedArray or Vector"));
         return;
     }
-    NodeBufferView* destview = (NodeBufferView*)(ptr);
+    ByteBuffer buf;
+    ptr->getUnderlying(&buf);
 
     // copy data to info[0], return event count remain
     DataRange* range = event->mStruct->startRead();
-    int remain = range->readOne(destview->value_ptr());
+    int remain = range->readOne(buf.value_ptr());
     range->end();
+
     info.GetReturnValue().Set(remain);
+}
+METHOD_BEGIN(getEvents, info) {
+    HandleScope scope;
+    if(info.Length() == 0) {
+        return;
+    }
+    EventAccessor* event = internalPtr<EventAccessor>(info, CLASS_EVENT);
+    if(event == 0) {
+        return;
+    }
+
+    // dest buffer
+    ClassBase* ptr = internalArg<ClassBase>(info[0]);
+    if(ptr == 0 || !NodeBuffer::isView(ptr->getClassType())) {
+        ThrowException(String::New("EventAccessor.getEvent's arguments[0] is not typeof TypedArray"));
+        return;
+    }
+    ByteBuffer buf;
+    ptr->getUnderlying(&buf);
+
+    // copy data to info[0], return event count remain
+    DataRange* range = event->mStruct->startRead();
+    int readed = range->read(buf.value_ptr(), (int)buf.length());
+    range->end();
+
+    info.GetReturnValue().Set(readed);
 }
 static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
     HandleScope scope;
     
     Local<ObjectTemplate> obj = temp->PrototypeTemplate();
     EXPOSE_METHOD(obj, getEvent, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, getEvents, ReadOnly | DontDelete);
     
     return scope.Close(temp->GetFunction());
 }

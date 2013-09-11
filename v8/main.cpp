@@ -15,6 +15,7 @@
 #include <GLUT/GLUT.h>
 #include <OpenGL/gl.h>
 //#include "TestGc.h"
+#include "core/RingBuffer.h"
 
 using namespace v8;
 
@@ -95,15 +96,15 @@ void onSurfaceChanged(int w, int h) {
     app->onSurfaceChanged(w, h);
 }
 void onMouseClick(int button, int state, int x, int y) {
-    LOGI("onTouch %d %d %d %d", button, state, x, y);
+//    LOGI("onTouch %d %d %d %d", button, state, x, y);
     app->appendMouseTouch(button, state, x, y);
 }
 void onMouseMove(int x, int y) {
-    LOGI("onMove %d %d", x, y);
+//    LOGI("onMove %d %d", x, y);
     app->appendMouseMove(x, y);
 }
 void onKeyPress(unsigned char key, int x, int y) {
-    LOGI("onTouch %d %d %d", key, x, y);
+//    LOGI("onTouch %d %d %d", key, x, y);
     app->appendKeyPress(key, x, y);
 }
 int main(int argc, char ** argv)
@@ -132,6 +133,22 @@ int main(int argc, char ** argv)
 	glutMainLoop();
 
     app->destroy();
-    delete app;    
+    delete app;
+
+//    RingBuffer* buf = new RingBuffer(4, 32);
+//    int i = -1;
+//    int a = 0;
+//    int b = 0;
+//    while(++i < 50) {
+//        a++;
+//        DataRange* w = buf->startWrite();
+//        w->writeOne((char*)(&a));
+//        w->end();
+//
+//        DataRange* r = buf->startRead();
+//        r->readOne((char*)(&b));
+//        r->end();
+//        LOGI("put get %d %d", a, b);
+//    }
     return 0;
 }

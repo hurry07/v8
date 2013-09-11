@@ -279,14 +279,11 @@ void Application::onDrawFrame() {
 	render->callFunction(name);
 }
 void Application::appendMouseTouch(int button, int state, int x, int y) {
-    int remain = touchEvent->appendMouseTouch(button, state, x, y);
-    LOGI("success %d", remain);
+    touchEvent->appendMouseTouch(button, state, x, y);
 }
 void Application::appendMouseMove(int x, int y) {
-    int remain = touchEvent->appendMouseMove(x, y);
-    LOGI("success %d", remain);
+    touchEvent->appendMouseMove(x, y);
 }
 void Application::appendKeyPress(unsigned char key, int x, int y) {
-    int remain = keyEvent->appendKeyPress(key, x, y);
-    LOGI("success %d", remain);
+    keyEvent->appendKeyPress(key, x, y);
 }

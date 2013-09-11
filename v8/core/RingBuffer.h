@@ -32,8 +32,9 @@ public:
      */
     virtual void clear();
     char* value_ptr(int index);
+    int stride();
 
-protected:
+private:
     int mRead;
     int mWrite;
     int mCount;
@@ -79,6 +80,13 @@ public:
      * write a structor unit and return empty slot remain
      */
     virtual int writeOne(char* dest);
+    /**
+     * @param dest dest byte pointer
+     * @param length max byte avaiable in dest
+     * return element readed
+     */
+    virtual int read(char* dest, int length);
+    virtual int write(char* dest, int length);
     /**
      * finish read and tell the underlying EventStructor how much data was readed or written
      */
