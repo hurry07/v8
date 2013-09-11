@@ -267,7 +267,7 @@ METHOD_BEGIN(translation, info) {
  */
 METHOD_BEGIN(scaling, info) {
     HandleScope scope;
-
+    
     Matrix* m = internalArg<Matrix>(info[0]);
     Vector* t = internalArg<Vector>(info[1]);
     m->mMatrix = glm::mat4(1);
@@ -275,6 +275,33 @@ METHOD_BEGIN(scaling, info) {
     m->mMatrix[1][1] = t->mVec.y;
     m->mMatrix[2][2] = t->mVec.z;
 }
+
+//template <class M, typename T>
+//void _addVector(const FunctionCallbackInfo<Value> &info) {
+//    HandleScope scope;
+//    
+//    M* thiz = internalPtr<M>(info, M::getExportStruct()->mType);
+//    if(thiz == 0) {
+//        return;
+//    }
+//    M* param = internalArg<M>(info[0], M::getExportStruct()->mType);
+//    if(param == 0) {
+//        return;
+//    }
+//    
+//    ByteBuffer tbuf;
+//    thiz->getUnderlying(&tbuf);
+//    T* ptrThis = tbuf.value_ptr<T>();
+//    
+//    ByteBuffer parambuf;
+//    param->getUnderlying(&parambuf);
+//    T* ptrParam = parambuf.value_ptr<T>();
+//    
+//    int count = tbuf.typedLength();
+//    for (int i = 0; i < count; i++) {
+//        *(ptrThis + i) = *(ptrThis + i) + *(ptrParam + i);
+//    }
+//}
 
 static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
     HandleScope scope;
@@ -314,6 +341,8 @@ static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp)
 
     EXPOSE_METHOD(obj, translation, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, scaling, ReadOnly | DontDelete);
+    
+//    obj->Set(String::New("addVector"), FunctionTemplate::New(name), PropertyAttribute(attribute))
 
     return scope.Close(temp->GetFunction());
 }

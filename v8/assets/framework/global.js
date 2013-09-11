@@ -92,20 +92,24 @@ Schedule.prototype.iterator = function () {
 var scheduleRender = new Schedule(new _NamedList('__render__'));
 var scheduleUpdate = new Schedule(new _NamedList('__update__'));
 var scheduleEvent = new Schedule(new _NamedList('__event__'));
+var sceneCollection = new Schedule(new _NamedList('__scene__'));
 var updateContext = new _UpdateContext(scheduleUpdate.iterator());
 
 exports.scheduleRender = scheduleRender;
 exports.scheduleUpdate = scheduleUpdate;
 exports.scheduleEvent = scheduleEvent;
 exports.updateContext = updateContext;
+exports.scenes = sceneCollection;
 
 exports.registerScene = function (scene) {
     scene.onRegister(exports);
+    sceneCollection.schedule(scene);
 };
 exports.unregisterScene = function (scene) {
-    exports.scheduleRender.cancel(scene);
-    exports.scheduleUpdate.cancel(scene);
-    exports.scheduleEvent.cancel(scene);
+    scheduleRender.cancel(scene);
+    scheduleUpdate.cancel(scene);
+    scheduleEvent.cancel(scene);
+    sceneCollection.cancel(scene);
 };
 
 /**

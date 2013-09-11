@@ -10,6 +10,18 @@ var mUpdateContext = _global.updateContext;
 var mTouchBuffer = new Int32Array(16);
 var mKeyBuffer = new Int32Array(12);
 
+var _geometry = require('core/glm.js');
+var _glm = _geometry.glm;
+var _v3 = _geometry.vec3f;
+
+var v1 = new _v3(100, 2, 5);
+var v2 = new _v3(20.5, 1, 5);
+console.log(v1, v2);
+v1.add(v2);
+console.log(v1);
+v1.sub(v2);
+console.log(v1);
+
 function Game() {
 }
 
@@ -38,7 +50,7 @@ game.render = {
         _gl.viewport(0, 0, width, height);
 
         if (firstInit) {
-            _global.registerScene(require('scenes/cover.js').newInstance());
+            _global.registerScene(require('scenes/cover.js').newInstance(width, height));
             firstInit = false;
         }
         _global.updateContext.reset();
@@ -47,6 +59,12 @@ game.render = {
         mCamera.lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(0, width, 0, height, 9, 11);
         mRenderContext.onChange(width, height);
         _gl.viewport(0, 0, width, height);
+
+        // update
+        var itor = _global.scenes.iterator();
+        while (itor.hasNext()) {
+            itor.next().onSizeChange(width, height);
+        }
     },
     onDrawFrame: function () {
         _global.runSchedule();

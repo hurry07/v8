@@ -3,25 +3,20 @@ var _scene = require('component/scene.js');
 var _button = require('widget/button.js');
 var R = require('framework/r.js');
 
-function n9patchBt(id1, id2, left, right, width) {
+function n9patchBt(id, id1, id2, left, right, width) {
     var p1 = _global.sprite(id1).$9patch_h().left(left).right(right).setSize(width, 0).updateMesh();
     var p2 = _global.sprite(id2).$9patch_h().left(left).right(right).setSize(width, 0).updateMesh();
-    return _button.createButtonWithId('bt_1', p1, p2);
+    return _button.createButtonWithId(id, p1, p2);
 }
 
-module.exports = _scene.createScene(function () {
-//    var $9patch = _global.sprite(R.word).$9patch().left(200).bottom(200).top(200).right(200).setSize(1024, 600).updateMesh();
-//    $9patch.setScale(0.5);
-//    this.addChild($9patch);
+module.exports = _scene.createScene(function (w, h) {
+    console.log('_scene.createScene', w, h);
+    this.mBg = _global.sprite(R.upgrade.bg).$9patch_h().left(30).right(30).setSize(w, h).updateMesh();
+    this.addChild(this.mBg);
 
-    this.addChild(n9patchBt(R.upgrade.b_shop_01, R.upgrade.b_shop_02, 40, 30, 300));
-//    console.log('n9patchBt 02');
-
-//    var p1 = _global.sprite(R.upgrade.b_shop_01).$9patch_h().left(40).right(30).setSize(300, 0).updateMesh();
-//    this.addChild(p1);
-
-//    var $9patch_h = _global.sprite(R.upgrade.b_01).$9patch_v().top(20).bottom(20).setSize(0, 300).updateMesh();
-//    this.addChild($9patch_h);
+    this.addChild(n9patchBt('bt_avator', R.upgrade.b_shop_01, R.upgrade.b_shop_02, 40, 30, 155));
+    this.addChild(n9patchBt('bt_skill', R.upgrade.b_shop_01, R.upgrade.b_shop_02, 40, 30, 155));
+    this.addChild(n9patchBt('bt_achive', R.upgrade.b_shop_01, R.upgrade.b_shop_02, 40, 30, 155));
 
     this.mRotate = 0;
 }, {
@@ -31,5 +26,8 @@ module.exports = _scene.createScene(function () {
 //            this.mRotate -= 360;
 //        }
 //        this.setRotate(this.mRotate);
+    },
+    onSizeChange: function (w, h) {
+        this.mBg.setSize(w, h).updateMesh();
     }
 });

@@ -85,6 +85,16 @@ Node.prototype.setScale = function (sx, sy) {
     }
     this.mDirty = true;
 }
+
+function _getMatrix(m) {
+    // translate, rotate, scale
+    m.identity();
+    m.translate(this.mPosition);
+    m.rotate(this.mRotate, aixz);
+    m.scale(this.mScale);
+    m.translate(this.mOffset);
+    return m;
+}
 /**
  * @returns {boolean} whether or not this node is updated
  */
@@ -92,16 +102,12 @@ Node.prototype.updateMatrix = function () {
     if (!this.mDirty) {
         return false;
     }
-
-    // translate, rotate, scale
-    var m = this.mMatrix;
-    m.identity();
-    m.translate(this.mPosition);
-    m.rotate(this.mRotate, aixz);
-    m.scale(this.mScale);
-    m.translate(this.mOffset);
+    _getMatrix.call(this, this.mMatrix);
     this.mDirty = false;
     return true;
+}
+Node.prototype.getMatrix = function (m) {
+    return _getMatrix.call(this, m || new geometry.matrix4());
 }
 Node.prototype.draw = function (context) {
 }

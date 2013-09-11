@@ -53,7 +53,7 @@ var R = {
         bg_start_gains_1: '.png',
         bg_start_gains_2: '.png',
         bg_unlock: '.png',
-        bg_upgrade: '.png',
+        bg: '.png',
         bg_upgrade: '.png',
         bg_upgrade_coins: '.png',
         coin_bg: '.png',

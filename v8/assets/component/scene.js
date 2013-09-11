@@ -8,6 +8,8 @@ _inherit(Scene, _Container);
 Scene.prototype.mTag = 'scene';
 Scene.prototype.update = function (context) {
 }
+Scene.prototype.onSizeChange = function (w, h) {
+}
 Scene.prototype.onRegister = function (global) {
     global.scheduleRender.schedule(this);
     global.scheduleUpdate.schedule(this);

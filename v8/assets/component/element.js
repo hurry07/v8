@@ -22,5 +22,7 @@ Element.prototype.getId = function () {
     return  this.mId;
 };
 Element.prototype.generatorId = generatorId;
+Element.prototype.layoutToRelativ = function (rx, ry, element, rx, ry, offsetx, offsety) {
+}
 
 module.exports = Element;
