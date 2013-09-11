@@ -1,6 +1,7 @@
 var _gl = require('opengl');
 var _global = require('framework/global.js');
 var _event = require('core/event.js');
+var _framerate = require('tools/framerate.js');
 
 var mCamera = _global.mCamera;
 var mContext = _global.mContext;
@@ -67,6 +68,8 @@ game.render = {
         if(remain != -1) {
             console.log('keyEvent', Array.prototype.join.call(mKeyBuffer, ','));
         }
+
+        _framerate.update();
     }
 };
 

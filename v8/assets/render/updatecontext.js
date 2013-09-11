@@ -12,6 +12,7 @@ function updateContext(itor) {
  * called before a new update begin
  */
 updateContext.prototype.ticktack = function () {
+    this.mTimer.ticktack();
     this.mStride = this.mTimer.getTimePass();
 }
 updateContext.prototype.stride = function () {

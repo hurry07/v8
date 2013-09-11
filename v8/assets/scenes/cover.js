@@ -17,6 +17,9 @@ module.exports = _scene.createScene(function () {
 }, {
     update: function (context) {
         this.mRotate += 100 * context.stride();
+        if(this.mRotate > 360) {
+            this.mRotate -= 360;
+        }
         this.setRotate(this.mRotate);
     }
 });
