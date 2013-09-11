@@ -13,35 +13,10 @@ var mKeyBuffer = new Int32Array(12);
 var _geometry = require('core/glm.js');
 var _glm = _geometry.glm;
 var _v3 = _geometry.vec3f;
-
-var v1 = new _v3(100, 2, 5);
-var v2 = new _v3(20.5, 1, 5);
-console.log(v1, v2);
-v1.add(v2);
-console.log(v1);
-v1.sub(v2);
-console.log(v1);
-
-v1.set(1, 0, 0);
-v2.set(0, 1, 0);
-var v3 = new _v3();
-_glm.crossVec3(v3, v1, v2);
-console.log(v3);
-//v3.set(v1);
-//v3.cross(v2);
-//console.log(v3);
-//
-//v1.set(1, 0.2, 2);
-//v2.set(0.3, 1, 0.8);
-//var v3 = new _v3(v1);
-////v3.mul(v2);
-//_glm.mulVec3(v3, v1, v2);
-//console.log(v3);
+var firstInit = true;
 
 function Game() {
 }
-
-var firstInit = true;
 var game = new Game();
 game.pause = function () {
 }
@@ -85,18 +60,18 @@ game.render = {
     onDrawFrame: function () {
         _global.runSchedule();
 
-        if (mCount++ > 2000) {
-            mCount = 0;
-            var remain = _event.touchEvent.getEvents(mTouchBuffer);
-            if (remain != -1) {
-                console.log('touchEvent:' + remain, Array.prototype.join.call(mTouchBuffer, ','));
-            }
-            remain = _event.keyEvent.getEvents(mKeyBuffer);
-            if (remain != -1) {
-                console.log('keyEvent:' + remain, Array.prototype.join.call(mKeyBuffer, ','));
-            }
-        }
-        _framerate.update();
+//        if (mCount++ > 2000) {
+//            mCount = 0;
+//            var remain = _event.touchEvent.getEvents(mTouchBuffer);
+//            if (remain != -1) {
+//                console.log('touchEvent:' + remain, Array.prototype.join.call(mTouchBuffer, ','));
+//            }
+//            remain = _event.keyEvent.getEvents(mKeyBuffer);
+//            if (remain != -1) {
+//                console.log('keyEvent:' + remain, Array.prototype.join.call(mKeyBuffer, ','));
+//            }
+//        }
+//        _framerate.update();
     }
 };
 
