@@ -13,7 +13,7 @@
 #include <v8.h>
 #include "node.h"
 #include "../core/JSObject.h"
-#include "../core/Event.h"
+#include "../modules/Event.h"
 
 using namespace v8;
 

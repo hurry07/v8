@@ -1,13 +1,13 @@
 //
-//  eventstructor.cpp
+//  RingBuffer.cpp
 //  v8
 //
 //  Created by jie on 13-9-10.
 //  Copyright (c) 2013年 jie. All rights reserved.
 //
-#include "eventstructor.h"
+#include "RingBuffer.h"
 
-DataRange::DataRange(EventStructor* eStruct, char type) {
+DataRange::DataRange(RingBuffer* eStruct, char type) {
     mStructor = eStruct;
     mType = type;
 }
@@ -18,22 +18,22 @@ void DataRange::start(int start, int end) {
     mStart = start;
     mEnd = end;
 }
-int DataRange::read(char* dest) {
+int DataRange::readOne(char* dest) {
     if(mStart == mEnd) {
         return -1;
     }
     mStructor->read(dest, mStart++);
     return mEnd - mStart;
 }
-int DataRange::write(char* src) {
+int DataRange::writeOne(char* src) {
     if(mStart == mEnd) {
         return -1;
     }
     mStructor->write(src, mStart++);
     return mEnd - mStart;
 }
-void DataRange::next() {
-    mStart++;
+int DataRange::next() {
+    return mEnd - ++mStart;
 }
 void DataRange::end() {
     mStructor->endRange(this);
@@ -44,8 +44,11 @@ void DataRange::clear() {
 bool DataRange::isEmpty() {
     return mStart == mEnd;
 }
+int DataRange::remain() {
+    return mEnd - mStart;
+}
 
-EventStructor::EventStructor(int stride, int count) {
+RingBuffer::RingBuffer(int stride, int count) {
     mStride = stride;
     mCount = count + 1;
 
@@ -54,38 +57,38 @@ EventStructor::EventStructor(int stride, int count) {
     mWriteRange = new DataRange(this, 'w');
     clear();
 }
-EventStructor::~EventStructor() {
+RingBuffer::~RingBuffer() {
     delete[] mBuffer;
     delete mReadRange;
     delete mWriteRange;
 }
-void EventStructor::read(char* dest, int index) {
+void RingBuffer::read(char* dest, int index) {
     memcpy(dest, value_ptr(index), mStride);
 }
-void EventStructor::write(char* src, int index) {
+void RingBuffer::write(char* src, int index) {
     memcpy(value_ptr(index), src, mStride);
 }
 
-DataRange* EventStructor::startRead() {
+DataRange* RingBuffer::startRead() {
     mReadRange->start(mRead, mWrite < mRead ? mWrite + mCount : mWrite);
     return mReadRange;
 }
-DataRange* EventStructor::startWrite() {
+DataRange* RingBuffer::startWrite() {
     mWriteRange->start(mWrite, mRead <= mWrite ? mRead + mCount - 1 : mRead - 1);
     return mWriteRange;
 }
-void EventStructor::endRange(DataRange* range) {
+void RingBuffer::endRange(DataRange* range) {
     if(range->mType == 'r') {
         mRead = range->mStart;
     } else if(range->mType == 'w') {
         mWrite = range->mStart;
     }
 }
-void EventStructor::clear() {
+void RingBuffer::clear() {
     mReadRange->clear();
     mWriteRange->clear();
     mRead = mWrite = 0;
 }
-char* EventStructor::value_ptr(int index) {
+char* RingBuffer::value_ptr(int index) {
     return mBuffer + (index < mCount ? index : index - mCount) * mStride;
 }

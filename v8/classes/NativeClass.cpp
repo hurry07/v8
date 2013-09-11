@@ -17,10 +17,10 @@ using namespace v8;
 #include "../glm/vector.h"
 #include "../glm/vector_inl.h"
 #include "../typedbuffer/typedbuffer.h"
-#include "../core/Event.h"
 #include "../core/ClassWrap.h"
 #include "file.h"
 #include "../modules/Image.h"
+#include "../modules/Event.h"
 #include "gcobserver.h"
 
 template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& args) {

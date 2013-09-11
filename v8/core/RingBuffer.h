@@ -13,14 +13,14 @@
 
 class DataRange;
 
-class EventStructor : public ClassBase {
+class RingBuffer {
 public:
     /**
      * @param stride element size in bytes
      * @param count element count
      */
-    EventStructor(int stride, int count);
-    virtual ~EventStructor();
+    RingBuffer(int stride, int count);
+    virtual ~RingBuffer();
     virtual void read(char* dest, int index);
     virtual void write(char* src, int index);
 
@@ -49,13 +49,13 @@ protected:
  */
 class DataRange {
 public:
-    DataRange(EventStructor* eStruct, char type);
+    DataRange(RingBuffer* eStruct, char type);
     virtual ~DataRange();
 
     int mStart;
     int mEnd;
     char mType;
-    EventStructor* mStructor;
+    RingBuffer* mStructor;
     virtual void clear();
 
     template <typename T>
@@ -74,19 +74,21 @@ public:
     /**
      * read a structor unit and return structors remain
      */
-    virtual int read(char* dest);
+    virtual int readOne(char* dest);
     /**
      * write a structor unit and return empty slot remain
      */
-    virtual int write(char* dest);
+    virtual int writeOne(char* dest);
     /**
      * finish read and tell the underlying EventStructor how much data was readed or written
      */
     virtual void end();
     /**
      * increase the cursor
+     * return avaiable slot remain
      */
-    virtual void next();
+    virtual int next();
+    virtual int remain();
 };
 
 #endif /* defined(__v8__eventstructor__) */
