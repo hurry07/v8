@@ -157,6 +157,20 @@ function jlmJsImplement() {
         translation: function () {
         },
         scaling: function () {
+        },
+        /**
+         * @param {clz.vec3f} des
+         * @param {clz.vec3f} v1
+         * @param {clz.vec3f} v2
+         */
+        crossVec3: function (des, v1, v2) {
+        },
+        /**
+         * @param {vector} des
+         * @param {vector} v1
+         * @param {vector} v2
+         */
+        crossVec3: function (des, v1, v2) {
         }
     };
 

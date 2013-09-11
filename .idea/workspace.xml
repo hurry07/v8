@@ -4,14 +4,13 @@
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/game.js" afterPath="$PROJECT_DIR$/v8/assets/game.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/core/glm.js" afterPath="$PROJECT_DIR$/v8/assets/core/glm.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/glm/glmopt.cpp" afterPath="$PROJECT_DIR$/v8/glm/glmopt.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/glm/vector_inl.h" afterPath="$PROJECT_DIR$/v8/glm/vector_inl.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378904352271" ignored="false" />
-    <file path="/game.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378917591280" ignored="false" />
+    <file path="/game.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378918677235" ignored="false" />
     <file path="/a.dummy" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378915892429" ignored="false" />
     <file path="/temp.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376748679355" ignored="false" />
     <file path="/programs.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376753166840" ignored="false" />
@@ -28,7 +27,7 @@
     <file path="/buffers.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378292838795" ignored="false" />
     <file path="/math.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378100187784" ignored="false" />
     <file path="/gljs.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377590351894" ignored="false" />
-    <file path="/glm.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378220155028" ignored="false" />
+    <file path="/glm.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378918774114" ignored="false" />
     <file path="/math3d.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377857241005" ignored="false" />
     <file path="/gljs_v.vtx" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377584886509" ignored="false" />
     <file path="/typedbuffer.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378099591109" ignored="false" />
@@ -112,7 +111,16 @@
       <file leaf-file-name="game.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="4" selection-start="841" selection-end="841" vertical-scroll-proportion="0.7907348">
+            <state line="23" column="14" selection-start="593" selection-end="593" vertical-scroll-proportion="0.5511182">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="glm.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/core/glm.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="163" column="28" selection-start="4526" selection-end="4526" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -145,7 +153,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/v8/assets/core/timer.js" />
         <option value="$PROJECT_DIR$/v8/assets/render/updatecontext.js" />
         <option value="$PROJECT_DIR$/v8/assets/tools/framerate.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/selector.js" />
@@ -161,6 +168,7 @@
         <option value="$PROJECT_DIR$/v8/assets/component/node.js" />
         <option value="$PROJECT_DIR$/v8/assets/drawable/ninepatch.js" />
         <option value="$PROJECT_DIR$/v8/assets/game.js" />
+        <option value="$PROJECT_DIR$/v8/assets/core/glm.js" />
       </list>
     </option>
   </component>
@@ -714,13 +722,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/v8/assets/framework/global.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="125" column="0" selection-start="3631" selection-end="3765" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/framework/texture.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="144" column="10" selection-start="3650" selection-end="3650" vertical-scroll-proportion="0.0">
@@ -819,9 +820,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/core/glm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="163" column="28" selection-start="4526" selection-end="4526" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="4" selection-start="841" selection-end="841" vertical-scroll-proportion="0.7907348">
+        <state line="23" column="14" selection-start="593" selection-end="593" vertical-scroll-proportion="0.5511182">
           <folding />
         </state>
       </provider>

@@ -41,16 +41,16 @@ METHOD_BEGIN(mulVec##size, info) {\
     $V(size)* v2 = internalArg<$V(size)>(info[2]);\
     internalArg<$V(size)>(info[0])->mVec = v1->mVec * v2->mVec;\
 }
-//ALL_FN(MUL_VEC);
-MUL_VEC(2);
-MUL_VEC(4);
-METHOD_BEGIN(mulVec3, info) {
-    HandleScope scope;
-    Vec3<float>* v1 = internalArg<Vec3<float>>(info[1]);
-    Vec3<float>* v2 = internalArg<Vec3<float>>(info[2]);
-    glm::vec3 v = v1->mVec * v2->mVec;
-    internalArg<Vec3<float>>(info[0])->mVec = v1->mVec * v2->mVec;
-}
+ALL_FN(MUL_VEC);
+//MUL_VEC(2);
+//MUL_VEC(4);
+//METHOD_BEGIN(mulVec3, info) {
+//    HandleScope scope;
+//    Vec3<float>* v1 = internalArg<Vec3<float>>(info[1]);
+//    Vec3<float>* v2 = internalArg<Vec3<float>>(info[2]);
+//    glm::vec3 v = v1->mVec * v2->mVec;
+//    internalArg<Vec3<float>>(info[0])->mVec = v1->mVec * v2->mVec;
+//}
 
 #define ADD_VEC(size) \
 METHOD_BEGIN(addVec##size, info) {\
@@ -284,33 +284,14 @@ METHOD_BEGIN(scaling, info) {
     m->mMatrix[1][1] = t->mVec.y;
     m->mMatrix[2][2] = t->mVec.z;
 }
+METHOD_BEGIN(crossVec3, info) {
+    HandleScope scope;
 
-//template <class M, typename T>
-//void _addVector(const FunctionCallbackInfo<Value> &info) {
-//    HandleScope scope;
-//    
-//    M* thiz = internalPtr<M>(info, M::getExportStruct()->mType);
-//    if(thiz == 0) {
-//        return;
-//    }
-//    M* param = internalArg<M>(info[0], M::getExportStruct()->mType);
-//    if(param == 0) {
-//        return;
-//    }
-//    
-//    ByteBuffer tbuf;
-//    thiz->getUnderlying(&tbuf);
-//    T* ptrThis = tbuf.value_ptr<T>();
-//    
-//    ByteBuffer parambuf;
-//    param->getUnderlying(&parambuf);
-//    T* ptrParam = parambuf.value_ptr<T>();
-//    
-//    int count = tbuf.typedLength();
-//    for (int i = 0; i < count; i++) {
-//        *(ptrThis + i) = *(ptrThis + i) + *(ptrParam + i);
-//    }
-//}
+    Vector* dest = internalArg<Vector>(info[0]);
+    Vector* v1 = internalArg<Vector>(info[1]);
+    Vector* v2 = internalArg<Vector>(info[2]);
+    dest->mVec = glm::cross(v1->mVec, v2->mVec);
+}
 
 static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
     HandleScope scope;
@@ -323,13 +304,17 @@ static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp)
     EXPOSE_METHOD(obj, mulVec2, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, mulVec3, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, mulVec4, ReadOnly | DontDelete);
-    
+
+    EXPOSE_METHOD(obj, crossVec3, ReadOnly | DontDelete);
+
     EXPOSE_METHOD(obj, addVec2, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, addVec3, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, addVec4, ReadOnly | DontDelete);
+    
     EXPOSE_METHOD(obj, subVec2, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, subVec3, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, subVec4, ReadOnly | DontDelete);
+
     EXPOSE_METHOD(obj, mulMV4, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, mulMV3, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, inverse, ReadOnly | DontDelete);
@@ -350,8 +335,6 @@ static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp)
 
     EXPOSE_METHOD(obj, translation, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, scaling, ReadOnly | DontDelete);
-    
-//    obj->Set(String::New("addVector"), FunctionTemplate::New(name), PropertyAttribute(attribute))
 
     return scope.Close(temp->GetFunction());
 }
