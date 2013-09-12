@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/widget/button.js" afterPath="$PROJECT_DIR$/v8/assets/widget/button.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/scenes/cover.js" afterPath="$PROJECT_DIR$/v8/assets/scenes/cover.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/tools/layout.js" afterPath="$PROJECT_DIR$/v8/assets/tools/layout.js" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -79,14 +80,14 @@
     <file path="/objectlist.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378743162686" ignored="false" />
     <file path="/updatecontext.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378742676645" ignored="false" />
     <file path="/scene.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378893921918" ignored="false" />
-    <file path="/cover.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378965229775" ignored="false" />
+    <file path="/cover.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378966313500" ignored="false" />
     <file path="/global.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378893841268" ignored="false" />
     <file path="/drawcontext.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378920355087" ignored="false" />
     <file path="/testgc.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378800898842" ignored="false" />
     <file path="/framerate.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378874510821" ignored="false" />
     <file path="/button.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378965521039" ignored="false" />
     <file path="/element.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378895395595" ignored="false" />
-    <file path="/layout.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378964685483" ignored="false" />
+    <file path="/layout.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378966685218" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,19 +107,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="cover.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="cover.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/scenes/cover.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="31" selection-start="507" selection-end="507" vertical-scroll-proportion="0.0">
+            <state line="30" column="125" selection-start="1356" selection-end="1356" vertical-scroll-proportion="0.4955947">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="button.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="layout.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/tools/layout.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="137" column="33" selection-start="4120" selection-end="4120" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="button.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/widget/button.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="24" selection-start="302" selection-end="302" vertical-scroll-proportion="0.1486784">
+            <state line="9" column="24" selection-start="302" selection-end="302" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -163,10 +173,10 @@
         <option value="$PROJECT_DIR$/tdl/tdl/math.js" />
         <option value="$PROJECT_DIR$/v8/assets/core/glm.js" />
         <option value="$PROJECT_DIR$/v8/assets/game.js" />
-        <option value="$PROJECT_DIR$/v8/assets/tools/layout.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/node.js" />
-        <option value="$PROJECT_DIR$/v8/assets/scenes/cover.js" />
         <option value="$PROJECT_DIR$/v8/assets/widget/button.js" />
+        <option value="$PROJECT_DIR$/v8/assets/tools/layout.js" />
+        <option value="$PROJECT_DIR$/v8/assets/scenes/cover.js" />
       </list>
     </option>
   </component>
@@ -851,23 +861,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/tools/layout.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="17" selection-start="1079" selection-end="1079" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/component/node.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="71" column="32" selection-start="1847" selection-end="1847" vertical-scroll-proportion="-42.6">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/scenes/cover.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="31" selection-start="507" selection-end="507" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -881,7 +877,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/widget/button.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="24" selection-start="302" selection-end="302" vertical-scroll-proportion="0.1486784">
+        <state line="9" column="24" selection-start="302" selection-end="302" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/tools/layout.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="137" column="33" selection-start="4120" selection-end="4120" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/scenes/cover.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="125" selection-start="1356" selection-end="1356" vertical-scroll-proportion="0.4955947">
           <folding />
         </state>
       </provider>

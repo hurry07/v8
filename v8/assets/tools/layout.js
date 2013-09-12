@@ -75,7 +75,7 @@ function getLayoutTo(trans) {
                 layoutTo(a[0], new _v3(a[1], a[2]), a[3], new _v3(a[4], a[5]), new _v3(a[6], a[7]));
                 break;
             default :
-                console.log('LayoutUtil.getLayout arguments number not supported, please check');
+                console.log('LayoutUtil.layoutTo arguments number [' + a.length + '] not supported, please check');
                 break;
         }
     }
@@ -97,25 +97,26 @@ function getLayout(trans) {
         switch (arguments.length) {
             case 3:
                 layout(a[0], a[1], a[2]);
+                break;
             case 5:
                 layout(a[0], new _v3(a[1], a[2]), new _v3(a[3], a[4]));
                 break;
             default :
-                console.log('LayoutUtil.getLayout arguments number not supported, please check');
+                console.log('LayoutUtil.layout arguments number [' + a.length + '] not supported, please check');
                 break;
         }
     }
 }
-function pointToLocal(trans) {
+function pointToLocal(pointToLocal) {
     // function (fnode, p)
     // function (fnode, x, y)
     return function () {
         var a = arguments;
         switch (arguments.length) {
             case 2:
-                return getPointToLocal(a[0], a[1]);
+                return pointToLocal(a[0], a[1]);
             case 3:
-                return getPointToLocal(a[0], new _v3(a[1], a[2]));
+                return pointToLocal(a[0], new _v3(a[1], a[2]));
             default :
                 console.log('LayoutUtil.localPoint arguments number not supported, please check');
                 break;
