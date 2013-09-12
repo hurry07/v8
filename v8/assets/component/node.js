@@ -68,6 +68,9 @@ Node.prototype.setSize = function (w, h) {
     }
     this.updateOffset();
 }
+Node.prototype.getSize = function () {
+    return this.mSize;
+}
 Node.prototype.setCenter = function (cx, cy) {
     if (arguments.length == 1) {
         this.mCenter.set(cx);
