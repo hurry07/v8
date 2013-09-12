@@ -54,6 +54,10 @@ var proto = {
         }
     },
 
+    isEmpty: function () {
+        return this.length == 0;
+    },
+
     removeNode: function (node) {
         node._prev._next = node._next;
         node._next._prev = node._prev;

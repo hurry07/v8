@@ -1,5 +1,4 @@
 var _geometry = require('core/glm.js');
-
 var _glm = _geometry.glm;
 var _v3 = _geometry.vec3f;
 

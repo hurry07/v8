@@ -1,3 +1,4 @@
+var _inherit = require('core/inherit.js');
 var _clz = require('nativeclasses');
 
 function eventInterface() {
@@ -21,5 +22,9 @@ function eventInterface() {
     return EventAccessor;
 }
 
-exports.touchEvent = new _clz.EventAccess(16, 64) || eventInterface();
-exports.keyEvent = new _clz.EventAccess(12, 64) || eventInterface();
+// bridge, that can get event from cpp
+var mTouchEvent = new _clz.EventAccess(16, 64) || eventInterface();
+var mKeyEvent = new _clz.EventAccess(12, 64) || eventInterface();
+
+exports.touchEvent = mTouchEvent;
+exports.keyEvent = mKeyEvent;

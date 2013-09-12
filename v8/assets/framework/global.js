@@ -4,6 +4,7 @@ var _program = require('framework/program.js');
 var _Context = require('render/drawcontext.js');
 var _Camera = require('render/camera.js');
 var _UpdateContext = require('render/updatecontext.js');
+var _TouchContext = require('render/touchcontext.js');
 
 var _Sprite = require('drawable/spritenode.js');
 var _9Patch = require('drawable/ninepatch.js');
@@ -94,6 +95,7 @@ var scheduleUpdate = new Schedule(new _NamedList('__update__'));
 var scheduleEvent = new Schedule(new _NamedList('__event__'));
 var sceneCollection = new Schedule(new _NamedList('__scene__'));
 var updateContext = new _UpdateContext(scheduleUpdate.iterator());
+var touchContext = new _TouchContext();
 
 exports.scheduleRender = scheduleRender;
 exports.scheduleUpdate = scheduleUpdate;
@@ -112,18 +114,32 @@ exports.unregisterScene = function (scene) {
     sceneCollection.cancel(scene);
 };
 
+var mCount = 0;
 /**
  * update and draw all elements
  */
 exports.runSchedule = function () {
     updateContext.ticktack();
 
+    if (mCount++ > 200) {
+        mCount = 0;
+        touchContext.pullEvents();
+        var event;
+        while (event = touchContext.pop()) {
+            console.log(event);
+        }
+    }
+
+//    // touch
+//    var itor = scheduleEvent.iterator();
+//    while (itor.hasNext()) {
+//        itor.next().onTouch(updateContext);
+//    }
     // update
     var itor = scheduleUpdate.iterator();
     while (itor.hasNext()) {
         itor.next().update(updateContext);
     }
-
     // drawing
     _gl.clear(_gl.COLOR_BUFFER_BIT);
     var itor = scheduleRender.iterator();

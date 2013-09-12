@@ -1,6 +1,7 @@
 var _gl = require('opengl');
 var _global = require('framework/global.js');
 var _event = require('core/event.js');
+var _touchContext = _event.touchContext;
 var _framerate = require('tools/framerate.js');
 
 var mCamera = _global.mCamera;
@@ -59,18 +60,6 @@ game.render = {
     },
     onDrawFrame: function () {
         _global.runSchedule();
-
-//        if (mCount++ > 2000) {
-//            mCount = 0;
-//            var remain = _event.touchEvent.getEvents(mTouchBuffer);
-//            if (remain != -1) {
-//                console.log('touchEvent:' + remain, Array.prototype.join.call(mTouchBuffer, ','));
-//            }
-//            remain = _event.keyEvent.getEvents(mKeyBuffer);
-//            if (remain != -1) {
-//                console.log('keyEvent:' + remain, Array.prototype.join.call(mKeyBuffer, ','));
-//            }
-//        }
 //        _framerate.update();
     }
 };

@@ -1,9 +1,13 @@
 var _Node = require('component/node.js');
+var _geometry = require('core/glm.js');
+var _glm = _geometry.glm;
+var _matrix = _geometry.matrix4;
 var _inherit = require('core/inherit.js');
 
 function Container() {
     _Node.call(this);
     this.children = [];
+    this.mTouchMatrix = new _matrix();
 }
 _inherit(Container, _Node);
 Container.prototype.addChild = function (child) {
@@ -33,6 +37,8 @@ Container.prototype.drawContent = function (context) {
             cs[i].draw(context);
         }
     }
+}
+Container.prototype.onTouch = function (event) {
 }
 
 module.exports = Container;
