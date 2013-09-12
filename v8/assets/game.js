@@ -58,7 +58,6 @@ game.render = {
         }
     },
     onDrawFrame: function () {
-        console.log('onDrawFrame');
         _global.runSchedule();
 
 //        if (mCount++ > 2000) {
@@ -72,7 +71,7 @@ game.render = {
 //                console.log('keyEvent:' + remain, Array.prototype.join.call(mKeyBuffer, ','));
 //            }
 //        }
-//        _framerate.update();
+        _framerate.update();
     }
 };
 

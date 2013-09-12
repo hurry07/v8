@@ -92,7 +92,7 @@ void onDrawFrame() {
         return;
     }
     glFlush();
-//    glutPostRedisplay();
+    glutPostRedisplay();
 }
 void onSurfaceChanged(int w, int h) {
     app->onSurfaceChanged(w, h);
