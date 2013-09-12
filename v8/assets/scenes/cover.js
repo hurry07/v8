@@ -68,7 +68,6 @@ function ToolsPanel() {
 
     this.addChild(this.mBg = _global.spriteNode(R.upgrade.paper_01));
     this.setSize(this.mBg.getSize());
-    console.log(this.getSize());
     this.addChild(this.split = _global.spriteNode(R.upgrade.split_v));
 
     this.layout();

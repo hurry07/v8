@@ -42,6 +42,7 @@ std::string dir(std::string path, std::string subpath) {
         return subpath;
     }
 }
+
 std::string source_root = dir(__FILE__, "/assets/").c_str();
 
 void testVersion() {
@@ -111,12 +112,6 @@ void onKeyPress(unsigned char key, int x, int y) {
 }
 int main(int argc, char ** argv)
 {
-    glm::detail::tvec4<bool> v1(1,2,3,4);
-    glm::detail::tvec4<bool> v2(4,5,6,7);
-    glm::detail::tvec4<bool> v3 = v1 * v2;
-
-    LOGI("v %d %d %d %d", v3[0], v3[1], v3[2], v3[3]);
-
     int width = 800;
     int height = 480;
     
