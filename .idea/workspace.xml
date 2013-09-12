@@ -3,17 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/scenes/cover.js" afterPath="$PROJECT_DIR$/v8/assets/scenes/cover.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/render/drawcontext.js" afterPath="$PROJECT_DIR$/v8/assets/render/drawcontext.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/game.js" afterPath="$PROJECT_DIR$/v8/assets/game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/tools/layout.js" afterPath="$PROJECT_DIR$/v8/assets/tools/layout.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/component/node.js" afterPath="$PROJECT_DIR$/v8/assets/component/node.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/core/glm.js" afterPath="$PROJECT_DIR$/v8/assets/core/glm.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/glm/glmopt.cpp" afterPath="$PROJECT_DIR$/v8/glm/glmopt.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/main.cpp" afterPath="$PROJECT_DIR$/v8/main.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/glm/vector_inl.h" afterPath="$PROJECT_DIR$/v8/glm/vector_inl.h" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378950053363" ignored="false" />
-    <file path="/game.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378950104157" ignored="false" />
+    <file path="/game.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378957729822" ignored="false" />
     <file path="/a.dummy" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378950972859" ignored="false" />
     <file path="/temp.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376748679355" ignored="false" />
     <file path="/programs.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376753166840" ignored="false" />
@@ -30,7 +29,7 @@
     <file path="/buffers.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378292838795" ignored="false" />
     <file path="/math.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378951493309" ignored="false" />
     <file path="/gljs.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377590351894" ignored="false" />
-    <file path="/glm.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378918774114" ignored="false" />
+    <file path="/glm.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378957510410" ignored="false" />
     <file path="/math3d.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377857241005" ignored="false" />
     <file path="/gljs_v.vtx" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377584886509" ignored="false" />
     <file path="/typedbuffer.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378099591109" ignored="false" />
@@ -114,7 +113,7 @@
       <file leaf-file-name="cover.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/scenes/cover.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="33" selection-start="1370" selection-end="1370" vertical-scroll-proportion="0.0">
+            <state line="21" column="17" selection-start="1067" selection-end="1067" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -165,19 +164,37 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="math.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="math.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tdl/tdl/math.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2018" column="38" selection-start="62963" selection-end="62968" vertical-scroll-proportion="0.33295584">
+            <state line="645" column="35" selection-start="17631" selection-end="17631" vertical-scroll-proportion="-17.16">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="game.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="EcmaScript5.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript5.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="70" column="7" selection-start="1125" selection-end="1125" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="game.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="31" selection-start="1503" selection-end="1511" vertical-scroll-proportion="0.0">
+            <state line="23" column="32" selection-start="628" selection-end="628" vertical-scroll-proportion="0.37995595">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="glm.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/core/glm.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="179" column="8" selection-start="4896" selection-end="4896" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -209,14 +226,14 @@
         <option value="$PROJECT_DIR$/v8/assets/component/element.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/scene.js" />
         <option value="$PROJECT_DIR$/v8/assets/drawable/colornode.js" />
-        <option value="$PROJECT_DIR$/v8/assets/core/glm.js" />
         <option value="$PROJECT_DIR$/v8/assets/drawable/ninepatch.js" />
-        <option value="$PROJECT_DIR$/v8/assets/game.js" />
         <option value="$PROJECT_DIR$/v8/assets/scenes/cover.js" />
         <option value="$PROJECT_DIR$/v8/assets/render/drawcontext.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/node.js" />
         <option value="$PROJECT_DIR$/v8/assets/tools/layout.js" />
         <option value="$PROJECT_DIR$/tdl/tdl/math.js" />
+        <option value="$PROJECT_DIR$/v8/assets/core/glm.js" />
+        <option value="$PROJECT_DIR$/v8/assets/game.js" />
       </list>
     </option>
   </component>
@@ -745,8 +762,8 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24893162" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25180432" sideWeight="0.6391437" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21330518" sideWeight="0.75106835" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25131994" sideWeight="0.6391437" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21330518" sideWeight="0.75106835" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
@@ -824,13 +841,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/v8/assets/component/scene.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="24" selection-start="749" selection-end="749" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/glcore/textures.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="141" column="9" selection-start="3860" selection-end="3860" vertical-scroll-proportion="0.0">
@@ -841,11 +851,6 @@
     <entry file="file://$PROJECT_DIR$/v8/assets/node.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/core/glm.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="163" column="28" selection-start="4526" selection-end="4526" vertical-scroll-proportion="0.4968051" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/history/test/shader01/game_mesh.js">
@@ -890,20 +895,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="31" selection-start="1503" selection-end="1511" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/scenes/cover.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="33" selection-start="1370" selection-end="1370" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/render/drawcontext.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="23" selection-start="733" selection-end="733" vertical-scroll-proportion="0.0">
@@ -925,9 +916,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript5.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="70" column="7" selection-start="1125" selection-end="1125" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tdl/tdl/math.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2018" column="38" selection-start="62963" selection-end="62968" vertical-scroll-proportion="0.33295584">
+        <state line="645" column="35" selection-start="17631" selection-end="17631" vertical-scroll-proportion="-17.16">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/scenes/cover.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="17" selection-start="1067" selection-end="1067" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/core/glm.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="179" column="8" selection-start="4896" selection-end="4896" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="32" selection-start="628" selection-end="628" vertical-scroll-proportion="0.37995595">
           <folding />
         </state>
       </provider>

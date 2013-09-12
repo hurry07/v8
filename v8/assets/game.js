@@ -15,6 +15,15 @@ var _glm = _geometry.glm;
 var _v3 = _geometry.vec3f;
 var firstInit = true;
 
+var v1 = new _v3(1,2,3);
+v1.scale(100);
+console.log(v1);
+var v2 = new _v3();
+_glm.scaleVec3f(v2, 2, v1);
+console.log(v2);
+_glm.scaleVec3f(v2, 2.5, v2);
+console.log(v2);
+
 function Game() {
 }
 var game = new Game();

@@ -171,6 +171,48 @@ function jlmJsImplement() {
          * @param {vector} v2
          */
         crossVec3: function (des, v1, v2) {
+        },
+        /**
+         * @param {vector2} des
+         * @param {number} scale
+         * @param {vector2} v2
+         */
+        scaleVec2f: function (des, scale, v2) {
+        },
+        /**
+         * @param {clz.vec2f} des
+         * @param {number} scale
+         * @param {clz.vec2f} v2
+         */
+        scaleVec2f: function (des, scale, v2) {
+        },
+        /**
+         * @param {vector3} des
+         * @param {number} scale
+         * @param {vector3} v3
+         */
+        scaleVec3f: function (des, scale, v3) {
+        },
+        /**
+         * @param {clz.vec3f} des
+         * @param {number} scale
+         * @param {clz.vec3f} v3
+         */
+        scaleVec3f: function (des, scale, v3) {
+        },
+        /**
+         * @param {vector4} des
+         * @param {number} scale
+         * @param {vector4} v4
+         */
+        scaleVec4f: function (des, scale, v4) {
+        },
+        /**
+         * @param {clz.vec4f} des
+         * @param {number} scale
+         * @param {clz.vec4f} v4
+         */
+        scaleVec4f: function (des, scale, v4) {
         }
     };
 

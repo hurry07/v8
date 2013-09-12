@@ -50,6 +50,12 @@ namespace glm_vector {
     void set(const FunctionCallbackInfo<Value> &info);
     template <typename T>
     void cross(const FunctionCallbackInfo<Value> &info);
+    template <typename T>
+    void scaleVec2(const FunctionCallbackInfo<Value> &info);
+    template <typename T>
+    void scaleVec3(const FunctionCallbackInfo<Value> &info);
+    template <typename T>
+    void scaleVec4(const FunctionCallbackInfo<Value> &info);
     template <class M, typename T>
     void mul(const FunctionCallbackInfo<Value> &info);
     template <class M, typename T>
@@ -57,9 +63,11 @@ namespace glm_vector {
     template <class M, typename T>
     void sub(const FunctionCallbackInfo<Value> &info);
     template <class M, typename T>
-    static v8::Local<v8::Function> initVectorClass(v8::Handle<v8::FunctionTemplate>& temp);
+    static v8::Local<v8::Function> initVector2(v8::Handle<v8::FunctionTemplate>& temp);
     template <class M, typename T>
     static v8::Local<v8::Function> initVector3(v8::Handle<v8::FunctionTemplate>& temp);
+    template <class M, typename T>
+    static v8::Local<v8::Function> initVector4(v8::Handle<v8::FunctionTemplate>& temp);
 }
 
 VERTEX_IMPL(Vec2, 2);
@@ -69,7 +77,7 @@ VERTEX_IMPL(Vec4, 4);
 template <typename T>
 class_struct* Vec2<T>::getExportStruct() {
     static class_struct mTemplate = {
-        glm_vector::initVectorClass<Vec2<T>, T>, "vec2", CLASS_VEC2
+        glm_vector::initVector2<Vec2<T>, T>, "vec2", CLASS_VEC2
     };
     return &mTemplate;
 }
@@ -84,7 +92,7 @@ class_struct* Vec3<T>::getExportStruct() {
 template <typename T>
 class_struct* Vec4<T>::getExportStruct() {
     static class_struct mTemplate = {
-        glm_vector::initVectorClass<Vec4<T>, T>, "vec4", CLASS_VEC4
+        glm_vector::initVector4<Vec4<T>, T>, "vec4", CLASS_VEC4
     };
     return &mTemplate;
 }
@@ -141,7 +149,7 @@ void glm_vector::mul(const FunctionCallbackInfo<Value> &info) {
 template <typename T>
 void glm_vector::cross(const FunctionCallbackInfo<Value> &info) {
     HandleScope scope;
-
+    
     Vec3<T>* thiz = internalPtr<Vec3<T>>(info, Vec3<T>::getExportStruct()->mType);
     if(thiz == 0) {
         return;
@@ -152,6 +160,26 @@ void glm_vector::cross(const FunctionCallbackInfo<Value> &info) {
     }
     thiz->mVec = glm::cross(thiz->mVec, param->mVec);
 }
+
+#define DUPLICATE_2(name) name,name
+#define DUPLICATE_3(name) name,name,name
+#define DUPLICATE_4(name) name,name,name,name
+#define SCALE_VEC(size) \
+template <typename T>\
+void glm_vector::scaleVec##size(const FunctionCallbackInfo<Value> &info) {\
+    HandleScope scope;\
+    Vec##size<T>* thiz = internalPtr<Vec##size<T>>(info, Vec3<T>::getExportStruct()->mType);\
+    if(thiz == 0) {\
+        return;\
+    }\
+    T scale = classtype::unwrap<T>(info[0]);\
+    glm::detail::tvec##size<T> sVec(DUPLICATE_##size(scale));\
+    thiz->mVec = thiz->mVec * sVec;\
+}
+SCALE_VEC(2);
+SCALE_VEC(3);
+SCALE_VEC(4);
+
 template <class M, typename T>
 void glm_vector::add(const FunctionCallbackInfo<Value> &info) {
     HandleScope scope;
@@ -181,7 +209,7 @@ void glm_vector::sub(const FunctionCallbackInfo<Value> &info) {
     thiz->mVec = thiz->mVec - param->mVec;
 }
 template <class M, typename T>
-static v8::Local<v8::Function> glm_vector::initVectorClass(v8::Handle<v8::FunctionTemplate>& temp) {
+static v8::Local<v8::Function> glm_vector::initVector2(v8::Handle<v8::FunctionTemplate>& temp) {
     HandleScope scope;
     
     Local<ObjectTemplate> obj = temp->PrototypeTemplate();
@@ -190,7 +218,8 @@ static v8::Local<v8::Function> glm_vector::initVectorClass(v8::Handle<v8::Functi
     obj->Set(String::New("add"), FunctionTemplate::New(add<M, T>), PropertyAttribute(ReadOnly | DontDelete));
     obj->Set(String::New("sub"), FunctionTemplate::New(sub<M, T>), PropertyAttribute(ReadOnly | DontDelete));
     obj->Set(String::New("mul"), FunctionTemplate::New(mul<M, T>), PropertyAttribute(ReadOnly | DontDelete));
-    
+    obj->Set(String::New("scale"), FunctionTemplate::New(scaleVec2<T>), PropertyAttribute(ReadOnly | DontDelete));
+
     Local<ObjectTemplate> ins = temp->InstanceTemplate();
     ins->SetIndexedPropertyHandler(globalfn::array::getter<T>, globalfn::array::setter<T>);
     
@@ -206,7 +235,25 @@ static v8::Local<v8::Function> glm_vector::initVector3(v8::Handle<v8::FunctionTe
     obj->Set(String::New("add"), FunctionTemplate::New(add<M, T>), PropertyAttribute(ReadOnly | DontDelete));
     obj->Set(String::New("sub"), FunctionTemplate::New(sub<M, T>), PropertyAttribute(ReadOnly | DontDelete));
     obj->Set(String::New("mul"), FunctionTemplate::New(mul<M, T>), PropertyAttribute(ReadOnly | DontDelete));
-    obj->Set(String::New("cross"), FunctionTemplate::New(cross<T>), PropertyAttribute(ReadOnly | DontDelete));
+    obj->Set(String::New("scale"), FunctionTemplate::New(scaleVec3<T>), PropertyAttribute(ReadOnly | DontDelete));
+    obj->Set(String::New("cross"), FunctionTemplate::New(cross<T>), PropertyAttribute(ReadOnly | DontDelete));// only vector3 can cross
+
+    Local<ObjectTemplate> ins = temp->InstanceTemplate();
+    ins->SetIndexedPropertyHandler(globalfn::array::getter<T>, globalfn::array::setter<T>);
+    
+    return scope.Close(temp->GetFunction());
+}
+template <class M, typename T>
+static v8::Local<v8::Function> glm_vector::initVector4(v8::Handle<v8::FunctionTemplate>& temp) {
+    HandleScope scope;
+    
+    Local<ObjectTemplate> obj = temp->PrototypeTemplate();
+    obj->SetAccessor(String::New("length"), globalfn::array::length);
+    EXPOSE_METHOD_NAME(obj, set, set<M>, ReadOnly | DontDelete);
+    obj->Set(String::New("add"), FunctionTemplate::New(add<M, T>), PropertyAttribute(ReadOnly | DontDelete));
+    obj->Set(String::New("sub"), FunctionTemplate::New(sub<M, T>), PropertyAttribute(ReadOnly | DontDelete));
+    obj->Set(String::New("mul"), FunctionTemplate::New(mul<M, T>), PropertyAttribute(ReadOnly | DontDelete));
+    obj->Set(String::New("scale"), FunctionTemplate::New(scaleVec4<T>), PropertyAttribute(ReadOnly | DontDelete));
 
     Local<ObjectTemplate> ins = temp->InstanceTemplate();
     ins->SetIndexedPropertyHandler(globalfn::array::getter<T>, globalfn::array::setter<T>);

@@ -16,6 +16,8 @@
 #include <OpenGL/gl.h>
 //#include "TestGc.h"
 #include "core/RingBuffer.h"
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/swizzle.hpp>
 
 using namespace v8;
 
@@ -109,6 +111,12 @@ void onKeyPress(unsigned char key, int x, int y) {
 }
 int main(int argc, char ** argv)
 {
+    glm::detail::tvec4<bool> v1(1,2,3,4);
+    glm::detail::tvec4<bool> v2(4,5,6,7);
+    glm::detail::tvec4<bool> v3 = v1 * v2;
+
+    LOGI("v %d %d %d %d", v3[0], v3[1], v3[2], v3[3]);
+
     int width = 800;
     int height = 480;
     

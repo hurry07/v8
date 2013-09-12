@@ -71,6 +71,22 @@ METHOD_BEGIN(subVec##size, info) {\
 }
 ALL_FN(SUB_VEC);
 
+// dest v scale
+#define SCALE_VEC(size) \
+METHOD_BEGIN(scaleVec##size##f, info) {\
+    HandleScope scope;\
+\
+    $V(size)* des = internalArg<$V(size)>(info[0]);\
+    float s = classtype::unwrap<float>(info[1]);\
+    $V(size)* v = internalArg<$V(size)>(info[2]);\
+    glm::vec##size scaleV;\
+    for(int i = 0; i < size; i++) {\
+        scaleV[i] = s;\
+    }\
+    des->mVec = v->mVec * scaleV;\
+}
+ALL_FN(SCALE_VEC);
+
 METHOD_BEGIN(mulMV3, info) {
     HandleScope scope;
 
@@ -314,6 +330,10 @@ static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp)
     EXPOSE_METHOD(obj, subVec2, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, subVec3, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, subVec4, ReadOnly | DontDelete);
+
+    EXPOSE_METHOD(obj, scaleVec2f, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, scaleVec3f, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, scaleVec4f, ReadOnly | DontDelete);
 
     EXPOSE_METHOD(obj, mulMV4, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, mulMV3, ReadOnly | DontDelete);
