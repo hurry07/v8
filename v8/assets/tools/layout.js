@@ -2,18 +2,18 @@ var _geometry = require('core/glm.js');
 
 var _glm = _geometry.glm;
 var _v3 = _geometry.vec3f;
-var _matrix = _geometry.matrix4;
 
 function getPointRelative(node, rx, ry) {
-    var fx = (rx - node.mCenterX) * node.mWidth;
-    var fy = (ry - node.mCenterY) * node.mHeight;
+    var v = new _v3(rx, ry);
+    v.mul(node.mSize);
+    v.sub(node.mCenter);
+
     var m = node.getMatrix();
-    var v = new _v3(fx, fy);
     _glm.mulMV3(v, m, v);
     return v;
 }
 /**
- * given a point in customer view, that is outer the object
+ * given a point in customer view, that is outer of the object
  *
  * @param node
  * @param x
@@ -21,51 +21,62 @@ function getPointRelative(node, rx, ry) {
  * @returns {_v3} return the customer point in world coordinate
  */
 function getPoint(node, x, y) {
-    var m = node.getMatrix();
     var v = new _v3(x, y);
+    v.sub(node.mCenter);
+
+    var m = node.getMatrix();
+    _glm.mulMV3(v, m, v);
+    return v;
+}
+/**
+ * get a point in object coordinate system
+ * @param node
+ * @param x
+ * @param y
+ * @returns {_v3}
+ */
+function getLocalPoint(node, x, y) {
+    var v = new _v3(x, y);
+    var m = node.getMatrix();
     _glm.mulMV3(v, m, v);
     return v;
 }
 
-exports.LayoutUtil = {
-    relative: {
-        layoutTo: function (fnode, fx, fy, tnode, tx, ty, offsetx, offsety) {
-            offsetx = offsetx || 0;
-            offsety = offsety || 0;
+function getLayoutTo(trans) {
+    return function (fnode, fx, fy, tnode, tx, ty, offsetx, offsety) {
+        offsetx = offsetx || 0;
+        offsety = offsety || 0;
 
-            var fromVec = getPointRelative(fnode, fx, fy);
-            var toVec = getPointRelative(tnode, tx, ty);
-            toVec.sub(fromVec);
-            fromVec.set(offsetx, offsety, 0);
-            toVec.add(fromVec);
+        var fromVec = trans(fnode, fx, fy);
+        var toVec = trans(tnode, tx, ty);
+        toVec.sub(fromVec);
+        fromVec.set(offsetx, offsety, 0);
+        toVec.add(fromVec);// append offset
 
-            fnode.getPosition().add(toVec);
-        },
-        layout: function (fnode, fx, fy, x, y) {
-            var fromVec = getPointRelative(fnode, fx, fy);
-            var toVec = new _v3(x, y, 0);
-            toVec.sub(fromVec);
-            fnode.getPosition().add(toVec);
-        }
-    },
-    absolute: {
-        layoutTo: function (fnode, fx, fy, tnode, tx, ty, offsetx, offsety) {
-            offsetx = offsetx || 0;
-            offsety = offsety || 0;
-
-            var fromVec = getPoint(fnode, fx, fy);
-            var toVec = getPoint(tnode, tx, ty);
-            toVec.sub(fromVec);
-            fromVec.set(offsetx, offsety, 0);
-            toVec.add(fromVec);
-
-            fnode.getPosition().add(toVec);
-        },
-        layout: function (fnode, fx, fy, x, y) {
-            var fromVec = getPoint(fnode, fx, fy);
-            var toVec = new _v3(x, y, 0);
-            toVec.sub(fromVec);
-            fnode.getPosition().add(toVec);
-        }
+        fnode.translate(toVec);
     }
+}
+function getLayout(trans) {
+    return function (fnode, fx, fy, x, y) {
+        var fromVec = trans(fnode, fx, fy);
+        var toVec = new _v3(x, y, 0);
+        toVec.sub(fromVec);
+
+        fnode.translate(toVec);
+    }
+}
+
+// layout using world coordinate
+exports.relative = {
+    layoutTo: getLayoutTo(getPointRelative),
+    layout: getLayout(getPointRelative)
 };
+exports.absolute = {
+    layoutTo: getLayoutTo(getPoint),
+    layout: getLayout(getPoint)
+}
+// layout using object coordinate
+exports.local = {
+    layoutTo: getLayoutTo(getLocalPoint),
+    layout: getLayout(getLocalPoint)
+}

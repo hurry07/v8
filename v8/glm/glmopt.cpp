@@ -235,7 +235,7 @@ METHOD_BEGIN(translate, info) {
 
     Matrix* m = internalArg<Matrix>(info[0]);
     Vector* v = internalArg<Vector>(info[1]);
-    
+
     m->mMatrix = glm::translate(m->mMatrix, v->mVec);
 }
 METHOD_BEGIN(rotateX, info) {

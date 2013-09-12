@@ -16,7 +16,7 @@ function Node() {
 
     // these vector should rener be removed or replace
     this.mAnthor = new _vec3f();// anthor point in percent
-    this.mCenter = new _vec3f();// center in size coordinate
+    this.mCenter = new _vec3f();// center in size(absoult) coordinate
     this.mSize = new _vec3f();// width height depth
     this.mOffset = new _vec3f();
     this.mPosition = new _vec3f();
@@ -41,6 +41,10 @@ Node.prototype.setPosition = function (x, y) {
         this.mPosition[0] = x;
         this.mPosition[1] = y;
     }
+    this.mDirty = true;
+}
+Node.prototype.translate = function(offset) {
+    this.mPosition.add(offset);
     this.mDirty = true;
 }
 Node.prototype.getPosition = function () {
