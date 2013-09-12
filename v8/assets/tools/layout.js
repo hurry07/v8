@@ -107,16 +107,32 @@ function getLayout(trans) {
         }
     }
 }
-function pointToLocal(pointToLocal) {
+function pointToLocal(getLocal) {
     // function (fnode, p)
     // function (fnode, x, y)
     return function () {
         var a = arguments;
         switch (arguments.length) {
             case 2:
-                return pointToLocal(a[0], a[1]);
+                return getLocal(a[0], a[1]);
             case 3:
-                return pointToLocal(a[0], new _v3(a[1], a[2]));
+                return getLocal(a[0], new _v3(a[1], a[2]));
+            default :
+                console.log('LayoutUtil.localPoint arguments number not supported, please check');
+                break;
+        }
+    }
+}
+function pointToWorld(getLocal) {
+    // function (fnode, p)
+    // function (fnode, x, y)
+    return function () {
+        var a = arguments;
+        switch (arguments.length) {
+            case 2:
+                return localToWorld(a[0], getLocal(a[0], a[1]));
+            case 3:
+                return localToWorld(a[0], getLocal(a[0], new _v3(a[1], a[2])));
             default :
                 console.log('LayoutUtil.localPoint arguments number not supported, please check');
                 break;
@@ -128,15 +144,18 @@ function pointToLocal(pointToLocal) {
 exports.relative = {
     layoutTo: getLayoutTo(getPointRelative),
     layout: getLayout(getPointRelative),
-    localPoint: pointToLocal(getRelativePointToLocal)
-};
+    localPoint: pointToLocal(getRelativePointToLocal),
+    worldPoint: pointToWorld(getRelativePointToLocal)
+}
 exports.absolute = {
     layoutTo: getLayoutTo(getPointAbsoult),
     layout: getLayout(getPointAbsoult),
-    localPoint: pointToLocal(getPointToLocal)
+    localPoint: pointToLocal(getPointToLocal),
+    worldPoint: pointToWorld(getPointToLocal)
 }
 // layout using object coordinate
 exports.local = {
     layoutTo: getLayoutTo(getPointLocal),
-    layout: getLayout(getPointLocal)
+    layout: getLayout(getPointLocal),
+    worldPoint: pointToWorld(getRelativePointToLocal)
 }

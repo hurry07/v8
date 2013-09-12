@@ -19,6 +19,9 @@ Container.prototype.removeChild = function (child) {
     return child;
 }
 Container.prototype.draw = function (context) {
+    if (!this.mVisiable) {
+        return;
+    }
     this.updateMatrix();
     context.pushMatrix(this.mMatrix);
     this.drawContent(context);

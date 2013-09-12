@@ -23,13 +23,22 @@ function Node() {
     this.mScale = new _vec3f(1, 1, 1);
     this.mMatrix = new _matrix4();
     this.mRotate = 0;
+
     this.mDirty = true;
+    this.mVisiable = true;
 }
 _inherit(Node, _Element);
 Node.prototype.mTag = 'node';
 Node.prototype.setRotate = function (r) {
     this.mRotate = r;
     this.mDirty = true;
+}
+Node.prototype.visiable = function () {
+    if (arguments.length > 0) {
+        this.mVisiable = arguments[0];
+        return this;
+    }
+    return this.mVisiable;
 }
 Node.prototype.getRotate = function (r) {
     return this.mRotate;
@@ -43,7 +52,7 @@ Node.prototype.setPosition = function (x, y) {
     }
     this.mDirty = true;
 }
-Node.prototype.translate = function(offset) {
+Node.prototype.translate = function (offset) {
     this.mPosition.add(offset);
     this.mDirty = true;
 }

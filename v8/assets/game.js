@@ -30,7 +30,7 @@ game.render = {
         _gl.clearColor(1, 1, 1, 0);
 
         _gl.enable(_gl.BLEND);
-        _gl.blendFunc(_gl.SRC_ALPHA, _gl.ONE_MINUS_SRC_ALPHA);
+        _gl.blendFunc(_gl.ONE, _gl.ONE_MINUS_SRC_ALPHA);
 
         _gl.disable(_gl.DEPTH_TEST);
         _gl.disable(_gl.STENCIL_TEST);
@@ -71,7 +71,7 @@ game.render = {
 //                console.log('keyEvent:' + remain, Array.prototype.join.call(mKeyBuffer, ','));
 //            }
 //        }
-        _framerate.update();
+//        _framerate.update();
     }
 };
 

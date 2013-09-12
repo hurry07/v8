@@ -13,6 +13,9 @@ function MeshNode(mesh, material) {
 }
 _inherit(MeshNode, Node);
 MeshNode.prototype.draw = function (context) {
+    if (!this.mVisiable) {
+        return;
+    }
     this.updateMatrix();
     context.render(this, this.mBuffer, this.mMaterial);
 }
