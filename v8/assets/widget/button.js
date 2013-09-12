@@ -7,12 +7,10 @@ function Button(id, skin) {
     (id != undefined && id != null) && (this.mId = id);
     this.mSkin = skin;
     this.setSize(skin.width(), skin.height());
+    this.addChild(skin);
 }
 _inherit(Button, _Container);
 Button.prototype.mId = 'button';
-Button.prototype.drawContent = function (context) {
-    this.mSkin.draw(context);
-}
 
 function Skin() {
     this.valid = true;

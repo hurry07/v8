@@ -4,11 +4,13 @@ var _button = require('widget/button.js');
 var _layout = require('tools/layout.js');
 var R = require('framework/r.js');
 
-function n9patchBt(id, id1, id2, left, right, width) {
+function n9patchBt(id, id1, id2, left, right, width, sprite) {
     var p1 = _global.sprite(id1).$9patch_h().left(left).right(right).setSize(width, 0).updateMesh();
     var p2 = _global.sprite(id2).$9patch_h().left(left).right(right).setSize(width, 0).updateMesh();
     var bt = _button.createButtonWithId(id, p1, p2);
-    console.log(bt.getSize());
+    if(sprite) {
+        _global.spriteNode(sprite);
+    }
     return bt;
 }
 
