@@ -23,12 +23,12 @@ module.exports = _scene.createScene(
         this.mRotate = 0;
     }, {
         update: function (context) {
-            this.mRotate += 100 * context.stride();
-            if (this.mRotate > 360) {
-                this.mRotate -= 360;
-            }
+//            this.mRotate += 100 * context.stride();
+//            if (this.mRotate > 360) {
+//                this.mRotate -= 360;
+//            }
 //            this.mBg.setRotate(this.mRotate);
-//            this.mBg.setRotate(1);
+            this.mBg.setRotate(30);
         },
         onSizeChange: function (w, h) {
             this.mBg.setSize(w, h).updateMesh();

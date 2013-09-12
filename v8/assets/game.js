@@ -58,6 +58,7 @@ game.render = {
         }
     },
     onDrawFrame: function () {
+        console.log('onDrawFrame');
         _global.runSchedule();
 
 //        if (mCount++ > 2000) {

@@ -25,9 +25,7 @@ function Context(camera) {
  * @returns {*}
  */
 Context.prototype.getMatrix = function (m) {
-    console.log('====getMatrix', this.pvmCurrent);
     _glm.mulMM(this.matrix, this.pvmCurrent, m);
-    console.log('====getMatrix', this.matrix);
     return this.matrix;
 }
 Context.prototype.render = function (node, mesh, material) {

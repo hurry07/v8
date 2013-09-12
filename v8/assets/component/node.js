@@ -101,8 +101,8 @@ function _getMatrix(m) {
     m.translate(this.mPosition);
     m.rotate(this.mRotate, aixz);
     m.scale(this.mScale);
-    console.log('___getMatrix', m);
-//    m.translate(this.mOffset);
+    m.translate(this.mOffset);
+    //console.log('___getMatrix', this.mTag, m, this.mPosition, this.mRotate, this.mScale, this.mOffset);
     return m;
 }
 /**
