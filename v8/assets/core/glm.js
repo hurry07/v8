@@ -213,6 +213,15 @@ function jlmJsImplement() {
          * @param {clz.vec4f} v4
          */
         scaleVec4f: function (des, scale, v4) {
+        },
+        /**
+         * @param {matrix}
+         * @param {clz.vec4f} positon
+         * @param {number} rotate
+         * @param {clz.vec4f} scale
+         * @param {clz.vec4f} offset
+         */
+        nodeMatrix: function (m, position, rotate, scale, offset) {
         }
     };
 

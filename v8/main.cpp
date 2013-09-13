@@ -138,6 +138,7 @@ int main(int argc, char ** argv)
     app->destroy();
     delete app;
 
+    glm::mat3 m4;
 //    RingBuffer* buf = new RingBuffer(4, 32);
 //    int i = -1;
 //    int a = 0;

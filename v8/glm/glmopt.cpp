@@ -93,7 +93,7 @@ METHOD_BEGIN(mulMV3, info) {
     Vector* des = internalArg<Vector>(info[0]);
     Matrix* m = internalArg<Matrix>(info[1]);
     Vector* v = internalArg<Vector>(info[2]);
-    
+
     des->mVec = glm::swizzle<glm::X, glm::Y, glm::Z>(m->mMatrix * glm::vec4(v->mVec, 1));
 }
 METHOD_BEGIN(mulMV4, info) {
@@ -308,6 +308,21 @@ METHOD_BEGIN(crossVec3, info) {
     Vector* v2 = internalArg<Vector>(info[2]);
     dest->mVec = glm::cross(v1->mVec, v2->mVec);
 }
+METHOD_BEGIN(nodeMatrix, info) {
+    HandleScope scope;
+
+    Matrix* m = internalArg<Matrix>(info[0]);
+    Vector* position = internalArg<Vector>(info[1]);
+    float angle = info[2]->NumberValue();
+    Vector* scale = internalArg<Vector>(info[3]);
+    Vector* offset = internalArg<Vector>(info[4]);
+
+    m->mMatrix = glm::mat4(1);
+    m->mMatrix[3] = glm::vec4(position->mVec, 1);
+    m->mMatrix = glm::rotate(m->mMatrix, angle, glm::vec3(0, 0, 1));
+    m->mMatrix = glm::scale(m->mMatrix, scale->mVec);
+    m->mMatrix = glm::translate(m->mMatrix, offset->mVec);
+}
 
 static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
     HandleScope scope;
@@ -355,6 +370,7 @@ static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp)
 
     EXPOSE_METHOD(obj, translation, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, scaling, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, nodeMatrix, ReadOnly | DontDelete);
 
     return scope.Close(temp->GetFunction());
 }

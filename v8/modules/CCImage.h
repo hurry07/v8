@@ -125,7 +125,6 @@ protected:
 
     void initWithData();
 
-
 private:
     bool initPremultipliedATextureWithImage(CCImage * image, unsigned int pixelsWide, unsigned int pixelsHigh);
     // noncopyable

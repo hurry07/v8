@@ -1,5 +1,6 @@
 var _Element = require('component/element.js');
 var _geometry = require('core/glm.js');
+var _glm = _geometry.glm;
 var _vec3f = _geometry.vec3f;
 var _matrix4 = _geometry.matrix4;
 var _inherit = require('core/inherit.js');
@@ -113,11 +114,12 @@ Node.prototype.setScale = function (sx, sy) {
 
 function _getMatrix(m) {
     // translate, rotate, scale
-    m.identity();
-    m.translate(this.mPosition);
-    m.rotate(this.mRotate, aixz);
-    m.scale(this.mScale);
-    m.translate(this.mOffset);
+    //m.identity();
+    //m.translate(this.mPosition);
+    //m.rotate(this.mRotate, aixz);
+    //m.scale(this.mScale);
+    //m.translate(this.mOffset);
+    _glm.nodeMatrix(m, this.mPosition, this.mRotate, this.mScale, this.mOffset);
     //console.log('___getMatrix', this.mTag, m, this.mPosition, this.mRotate, this.mScale, this.mOffset);
     return m;
 }
