@@ -26,8 +26,8 @@ function setupGraphics(w, h) {
     vboColorBufferHandle = glBuffer.createVectorBuffer(3, 3);
     vboColorBufferHandle.buffer().set(colorData);
     vboColorBufferHandle.upload();
-    vboIndexBuffer = glBuffer.createIndexBuffer(3,2);
-    vboIndexBuffer.buffer().set([0,1,2,0,1,2]);
+    vboIndexBuffer = glBuffer.createIndexBuffer(3, 2);
+    vboIndexBuffer.buffer().set([0, 1, 2, 0, 1, 2]);
     vboIndexBuffer.upload();
 }
 function renderFrame() {

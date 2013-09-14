@@ -15,6 +15,21 @@ var _geometry = require('core/glm.js');
 var _glm = _geometry.glm;
 var _v3 = _geometry.vec3f;
 
+var _inherit = require('core/inherit.js');
+function A() {
+}
+A.prototype.tag_b = 1;
+function B() {
+}
+_inherit(B, A);
+B.prototype.tag_b |= 2;
+function C() {
+}
+_inherit(C, B);
+C.prototype.tag_b |= 4;
+var c = new C();
+console.log('--->', c.tag_b);
+
 var firstInit = true;
 function Game() {
 }

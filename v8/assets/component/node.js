@@ -31,6 +31,7 @@ function Node() {
 }
 _inherit(Node, _Element);
 Node.prototype.mTag = 'node';
+Node.prototype.__elementType |= Node.prototype.ElementTypeNode;
 Node.prototype.setUiNode = function (isUi) {
     this.__isUiNode = isUi;
 }

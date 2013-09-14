@@ -1,12 +1,19 @@
 var _Container = require('component/container.js');
 var _inherit = require('core/inherit.js');
 var __removeChild = _Container.__removeChild;
+var _EventNodes = require('component/nodeevent.js');
+var _EventNode = _EventNodes.EventNode;
 
 var UIContainer = _inherit(function () {
     _Container.call(this);
+    this.mEventNode = this.createEventNode();
 }, _Container);
+UIContainer.prototype.createEventNode = function () {
+    return new _EventNode(this);
+}
 UIContainer.prototype.nodeListener = null;
 UIContainer.prototype.__isUiNode = true;
+UIContainer.prototype.__elementType |= UIContainer.prototype.ElementTypeUIContainer;
 UIContainer.prototype.addChild = function (child) {
     if (!child) {
         return;

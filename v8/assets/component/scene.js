@@ -6,7 +6,7 @@ function Scene() {
 }
 _inherit(Scene, _UIContainer);
 Scene.prototype.mTag = 'scene';
-Scene.prototype.__isScene = true;
+Scene.prototype.__elementType |= Scene.prototype.ElementTypeScene;
 Scene.prototype.update = function (context) {
 }
 Scene.prototype.onSizeChange = function (w, h) {
