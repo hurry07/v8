@@ -31,6 +31,9 @@ function Node() {
 }
 _inherit(Node, _Element);
 Node.prototype.mTag = 'node';
+Node.prototype.setUiNode = function (isUi) {
+    this.__isUiNode = isUi;
+}
 Node.prototype.setRotate = function (r) {
     this.mRotate = r;
     this.mDirty = true;
