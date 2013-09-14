@@ -1,15 +1,15 @@
 var _inherit = require('core/inherit.js');
-var _Container = require('component/container.js');
+var _UIContainer = require('component/uicontainer.js');
 
 function Button(id, skin) {
-    _Container.call(this);
+    _UIContainer.call(this);
 
     (id != undefined && id != null) && (this.mId = id);
     this.mSkin = skin;
     this.setSize(skin.width(), skin.height());
     this.addChild(skin);
 }
-_inherit(Button, _Container);
+_inherit(Button, _UIContainer);
 Button.prototype.mId = 'button';
 
 function Skin() {

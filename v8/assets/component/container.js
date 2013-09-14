@@ -14,15 +14,6 @@ function __removeChild(children, child) {
     return false;
 }
 
-function NodeListener() {
-}
-NodeListener.prototype.onNodeAdd = function (parent, child) {
-}
-NodeListener.prototype.onNodeRemove = function (parent, child) {
-}
-NodeListener.prototype.onNodeMove = function (from, to, child) {
-}
-
 function Container() {
     _Node.call(this);
     this.children = [];

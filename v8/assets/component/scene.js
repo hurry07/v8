@@ -1,11 +1,12 @@
-var _Container = require('component/container.js');
+var _UIContainer = require('component/uicontainer.js');
 var _inherit = require('core/inherit.js');
 
 function Scene() {
-    _Container.call(this);
+    _UIContainer.call(this);
 }
-_inherit(Scene, _Container);
+_inherit(Scene, _UIContainer);
 Scene.prototype.mTag = 'scene';
+Scene.prototype.__isScene = true;
 Scene.prototype.update = function (context) {
 }
 Scene.prototype.onSizeChange = function (w, h) {

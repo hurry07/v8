@@ -5,6 +5,7 @@ var _Context = require('render/drawcontext.js');
 var _Camera = require('render/camera.js');
 var _UpdateContext = require('render/updatecontext.js');
 var _TouchContext = require('render/touchcontext.js');
+var _UIContainer = require('component/uicontainer.js');
 
 var _Sprite = require('drawable/spritenode.js');
 var _9Patch = require('drawable/ninepatch.js');
@@ -92,16 +93,18 @@ Schedule.prototype.iterator = function () {
 
 var scheduleRender = new Schedule(new _NamedList('__render__'));
 var scheduleUpdate = new Schedule(new _NamedList('__update__'));
-var scheduleEvent = new Schedule(new _NamedList('__event__'));
+var scheduleEvent = new Schedule(new _NamedList('__event__'));// touch event currently
 var sceneCollection = new Schedule(new _NamedList('__scene__'));
+
 var updateContext = new _UpdateContext(scheduleUpdate.iterator());
 var touchContext = new _TouchContext();
+console.log('_UIContainer', _UIContainer);
 
 exports.scheduleRender = scheduleRender;
 exports.scheduleUpdate = scheduleUpdate;
 exports.scheduleEvent = scheduleEvent;
-exports.updateContext = updateContext;
 exports.scenes = sceneCollection;
+exports.updateContext = updateContext;
 
 exports.registerScene = function (scene) {
     scene.onRegister(exports);
@@ -113,6 +116,12 @@ exports.unregisterScene = function (scene) {
     scheduleEvent.cancel(scene);
     sceneCollection.cancel(scene);
 };
+exports.onSizeChange = function (width, height) {
+    var itor = sceneCollection.iterator();
+    while (itor.hasNext()) {
+        itor.next().onSizeChange(width, height);
+    }
+}
 
 var mCount = 0;
 /**

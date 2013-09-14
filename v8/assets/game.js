@@ -52,11 +52,7 @@ game.render = {
         mRenderContext.onChange(width, height);
         _gl.viewport(0, 0, width, height);
 
-        // update
-        var itor = _global.scenes.iterator();
-        while (itor.hasNext()) {
-            itor.next().onSizeChange(width, height);
-        }
+        _global.onSizeChange(width, height);
     },
     onDrawFrame: function () {
         _global.runSchedule();
