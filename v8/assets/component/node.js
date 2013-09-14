@@ -27,6 +27,7 @@ function Node() {
 
     this.mDirty = true;
     this.mVisiable = true;
+    this.mParent = null;
 }
 _inherit(Node, _Element);
 Node.prototype.mTag = 'node';
