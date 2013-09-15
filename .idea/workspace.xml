@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/widget/button.js" afterPath="$PROJECT_DIR$/v8/assets/widget/button.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/component/element.js" afterPath="$PROJECT_DIR$/v8/assets/component/element.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/component/nodeevent.js" afterPath="$PROJECT_DIR$/v8/assets/component/nodeevent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/component/uicontainer.js" afterPath="$PROJECT_DIR$/v8/assets/component/uicontainer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/scenes/cover.js" afterPath="$PROJECT_DIR$/v8/assets/scenes/cover.js" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -164,7 +159,7 @@
       <file leaf-file-name="cover.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/scenes/cover.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="52" selection-start="1474" selection-end="1484" vertical-scroll-proportion="0.35623002">
+            <state line="7" column="40" selection-start="317" selection-end="317" vertical-scroll-proportion="0.16773163">
               <folding />
             </state>
           </provider>
@@ -216,12 +211,12 @@
         <option value="$PROJECT_DIR$/v8/assets/component/node.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/scene.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/eventnode.js" />
-        <option value="$PROJECT_DIR$/v8/assets/scenes/cover.js" />
         <option value="$PROJECT_DIR$/v8/assets/framework/global.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/uicontainer.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/nodeevent.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/element.js" />
         <option value="$PROJECT_DIR$/v8/assets/widget/button.js" />
+        <option value="$PROJECT_DIR$/v8/assets/scenes/cover.js" />
       </list>
     </option>
   </component>
@@ -780,7 +775,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/scenes/cover.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="52" selection-start="1474" selection-end="1484" vertical-scroll-proportion="0.35623002">
+        <state line="7" column="40" selection-start="317" selection-end="317" vertical-scroll-proportion="0.16773163">
           <folding />
         </state>
       </provider>

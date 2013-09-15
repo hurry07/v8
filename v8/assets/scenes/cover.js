@@ -5,7 +5,7 @@ var _layout = require('tools/layout.js');
 var _relative = _layout.relative;
 var _absoult = _layout.absolute;
 var R = require('framework/r.js');
-var _Container = require('component/container.js');
+var _UIContainer = require('component/uicontainer.js');
 var _inherit = require('core/inherit.js');
 var _DB = require('framework/database.js');
 
@@ -40,31 +40,31 @@ function chargeButton(id) {
 }
 
 function Icon() {
-    _Container.call(this);
+    _UIContainer.call(this);
 
     this.addChild(this.mBg = _global.spriteNode(R.upgrade.paper_01));
     this.setSize(this.mBg.getSize());
 }
-_inherit(Icon, _Container);
+_inherit(Icon, _UIContainer);
 
 /**
  * tool list panel
  * @constructor
  */
 function ToolsLeft() {
-    _Container.call(this);
+    _UIContainer.call(this);
 
     this.addChild(this.mBg = _global.spriteNode(R.upgrade.paper_01));
     this.setSize(this.mBg.getSize());
 }
-_inherit(ToolsLeft, _Container);
+_inherit(ToolsLeft, _UIContainer);
 
 /**
  * tool list panel
  * @constructor
  */
 function ToolsPanel() {
-    _Container.call(this);
+    _UIContainer.call(this);
 
     this.addChild(this.mBg = _global.spriteNode(R.upgrade.paper_01));
     this.setSize(this.mBg.getSize());
@@ -72,7 +72,7 @@ function ToolsPanel() {
 
     this.layout();
 }
-_inherit(ToolsPanel, _Container);
+_inherit(ToolsPanel, _UIContainer);
 ToolsPanel.prototype.layout = function () {
     _relative.layoutTo(this.split, .5, .5, this.mBg, 0, 0.5, 140, 0);
 }
@@ -81,7 +81,7 @@ ToolsPanel.prototype.layout = function () {
 // CoinsSlot
 // ========================================================
 function CoinsSlot() {
-    _Container.call(this);
+    _UIContainer.call(this);
 
     var bg = _global.spriteNode(R.upgrade.bg_upgrade_coins);
     this.addChild(bg);
@@ -90,7 +90,7 @@ function CoinsSlot() {
 
     this.layout();
 }
-_inherit(CoinsSlot, _Container);
+_inherit(CoinsSlot, _UIContainer);
 CoinsSlot.prototype.layout = function () {
     var halfh = this.height() / 2;
     _relative.layout(this.icon, [.5, .5], _absoult.localPoint(this, halfh, halfh - 1));
@@ -100,7 +100,7 @@ CoinsSlot.prototype.layout = function () {
 // CoinsStarSlot
 // ========================================================
 function CoinsStarSlot() {
-    _Container.call(this);
+    _UIContainer.call(this);
 
     var bg = _global.spriteNode(R.upgrade.bg_coins_star);
     this.setSize(bg.getSize());
@@ -112,7 +112,7 @@ function CoinsStarSlot() {
 
     this.layout();
 }
-_inherit(CoinsStarSlot, _Container);
+_inherit(CoinsStarSlot, _UIContainer);
 CoinsStarSlot.prototype.layout = function () {
     var halfh = this.height() / 2;
     _relative.layout(this.icon, [.5, .5], _absoult.localPoint(this, halfh, halfh - 1));
@@ -130,7 +130,7 @@ function createCoinSlot(slotClass, bgId, w) {
  * @constructor
  */
 function UpgradePanel() {
-    _Container.call(this);
+    _UIContainer.call(this);
     this.setSize(250, 388);
 
     this.addChild(this.title = _global.spriteNode(R.upgrade.z_turbo));
@@ -141,7 +141,7 @@ function UpgradePanel() {
 
     this.layout();
 }
-_inherit(UpgradePanel, _Container);
+_inherit(UpgradePanel, _UIContainer);
 UpgradePanel.prototype.layout = function () {
     _relative.layoutTo(this.mBg, 0.5, 1, this, 0.5, 1, 0, -53);
     _relative.layoutTo(this.title, 0.5, 0, this.mBg, 0.5, 1);
