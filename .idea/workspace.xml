@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/framework/global.js" afterPath="$PROJECT_DIR$/v8/assets/framework/global.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/main.cpp" afterPath="$PROJECT_DIR$/v8/main.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/component/nodeevent.js" afterPath="$PROJECT_DIR$/v8/assets/component/nodeevent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/render/touchcontext.js" afterPath="$PROJECT_DIR$/v8/assets/render/touchcontext.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="" />
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379224114123" ignored="false" />
@@ -128,7 +121,7 @@
       <file leaf-file-name="touchcontext.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/render/touchcontext.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="73" column="0" selection-start="1970" selection-end="1970" vertical-scroll-proportion="0.8115016">
+            <state line="129" column="29" selection-start="3449" selection-end="3455" vertical-scroll-proportion="3.0910542">
               <folding />
             </state>
           </provider>
@@ -823,7 +816,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/render/touchcontext.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="0" selection-start="1970" selection-end="1970" vertical-scroll-proportion="0.8115016">
+        <state line="129" column="29" selection-start="3449" selection-end="3455" vertical-scroll-proportion="3.0910542">
           <folding />
         </state>
       </provider>
