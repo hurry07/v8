@@ -129,17 +129,20 @@ exports.runSchedule = function () {
     updateContext.ticktack();
 
     // touch
+    var pvmMatrix = mCamera.pvmMatirx();
     touchContext.pullEvents();
     var itor = scheduleEvent.iterator();
     while (itor.hasNext()) {
-        itor.next().onTouch(touchContext);
+        touchContext.onEvent(pvmMatrix, itor.next());
     }
-    touchContext.clear();
+    touchContext.endTouch();
+
     // update
     var itor = scheduleUpdate.iterator();
     while (itor.hasNext()) {
         itor.next().update(updateContext);
     }
+
     // drawing
     _gl.clear(_gl.COLOR_BUFFER_BIT);
     var itor = scheduleRender.iterator();

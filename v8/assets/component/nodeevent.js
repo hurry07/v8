@@ -51,6 +51,25 @@ EventNode.prototype.print = function (prefix) {
     }
     console.log(prefix + '}');
 }
+EventNode.prototype.startItor = function () {
+    this.index = -1;
+}
+EventNode.prototype.head = function () {
+    this.index = 0;
+}
+EventNode.prototype.hasNext = function () {
+//    console.log('EventNode.prototype.hasNext', this.index, this.children.length);
+    return this.index < this.children.length;
+}
+EventNode.prototype.next = function () {
+    return this.children[this.index++];
+}
+EventNode.prototype.childrenCount = function () {
+    return this.children.length;
+}
+EventNode.prototype.getIndex = function () {
+    return this.index;
+}
 
 function TouchNode(node) {
     EventNode.call(this, node);
@@ -91,12 +110,9 @@ function onNodeAdd(parent, child) {
     }
 }
 function onNodeRemove(parent, child) {
-    console.log('onNodeRemove', parent, child);
     var parentTouch = parent.__touchnode__;
     var childTouch = child.__touchnode__;
-    console.log('removeChild 01', parentTouch.children.length);
     parentTouch.removeChild(childTouch);
-    console.log('removeChild 02', parentTouch.children.length);
 
     parent = parent.mParent;
     childTouch = parentTouch;
