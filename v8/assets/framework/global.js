@@ -128,20 +128,13 @@ var mCount = 0;
 exports.runSchedule = function () {
     updateContext.ticktack();
 
-    if (mCount++ > 200) {
-        mCount = 0;
-        touchContext.pullEvents();
-        var event;
-        while (event = touchContext.pop()) {
-            console.log(event);
-        }
+    // touch
+    touchContext.pullEvents();
+    var itor = scheduleEvent.iterator();
+    while (itor.hasNext()) {
+        itor.next().onTouch(touchContext);
     }
-
-//    // touch
-//    var itor = scheduleEvent.iterator();
-//    while (itor.hasNext()) {
-//        itor.next().onTouch(updateContext);
-//    }
+    touchContext.clear();
     // update
     var itor = scheduleUpdate.iterator();
     while (itor.hasNext()) {

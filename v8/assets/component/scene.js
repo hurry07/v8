@@ -9,6 +9,8 @@ Scene.prototype.mTag = 'scene';
 Scene.prototype.__elementType |= Scene.prototype.ElementTypeScene;
 Scene.prototype.update = function (context) {
 }
+Scene.prototype.onTouch = function (context) {
+}
 Scene.prototype.onSizeChange = function (w, h) {
 }
 Scene.prototype.onRegister = function (global) {

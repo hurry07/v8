@@ -25,19 +25,19 @@ function Node() {
     this.mMatrix = new _matrix4();
     this.mRotate = 0;
 
-    this.mDirty = true;
+    this.mFlags = -1;
     this.mVisiable = true;
     this.mParent = null;
 }
 _inherit(Node, _Element);
+var FlagMatrix = 1;
+var FlagEvent = 1 << 1;
 Node.prototype.mTag = 'node';
+Node.prototype.FlagMatrix = FlagMatrix;
+Node.prototype.FlagEvent = FlagEvent;
 Node.prototype.__elementType |= Node.prototype.ElementTypeNode;
 Node.prototype.setUiNode = function (isUi) {
     this.__isUiNode = isUi;
-}
-Node.prototype.setRotate = function (r) {
-    this.mRotate = r;
-    this.mDirty = true;
 }
 Node.prototype.visiable = function () {
     if (arguments.length > 0) {
@@ -45,6 +45,10 @@ Node.prototype.visiable = function () {
         return this;
     }
     return this.mVisiable;
+}
+Node.prototype.setRotate = function (r) {
+    this.mRotate = r;
+    this.mFlags = -1;
 }
 Node.prototype.getRotate = function (r) {
     return this.mRotate;
@@ -56,11 +60,20 @@ Node.prototype.setPosition = function (x, y) {
         this.mPosition[0] = x;
         this.mPosition[1] = y;
     }
-    this.mDirty = true;
+    this.mFlags = -1;
 }
 Node.prototype.translate = function (offset) {
     this.mPosition.add(offset);
-    this.mDirty = true;
+    this.mFlags = -1;
+}
+Node.prototype.setScale = function (sx, sy) {
+    if (arguments.length == 1) {
+        this.mScale[0] = this.mScale[1] = sx;
+    } else {
+        this.mScale[0] = sx;
+        this.mScale[1] = sy;
+    }
+    this.mFlags = -1;
 }
 Node.prototype.getPosition = function () {
     return this.mPosition;
@@ -107,15 +120,6 @@ Node.prototype.width = function () {
 Node.prototype.height = function () {
     return this.mSize[1];
 }
-Node.prototype.setScale = function (sx, sy) {
-    if (arguments.length == 1) {
-        this.mScale[0] = this.mScale[1] = sx;
-    } else {
-        this.mScale[0] = sx;
-        this.mScale[1] = sy;
-    }
-    this.mDirty = true;
-}
 
 function _getMatrix(m) {
     // translate, rotate, scale
@@ -132,11 +136,12 @@ function _getMatrix(m) {
  * @returns {boolean} whether or not this node is updated
  */
 Node.prototype.updateMatrix = function () {
-    if (!this.mDirty) {
+    var flag = this.mFlags;
+    if ((flag & FlagMatrix) == 0) {
         return false;
     }
     _getMatrix.call(this, this.mMatrix);
-    this.mDirty = false;
+    this.mFlags = flag & (~FlagMatrix);
     return true;
 }
 Node.prototype.getMatrix = function (m) {

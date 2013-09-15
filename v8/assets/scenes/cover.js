@@ -119,12 +119,6 @@ CoinsStarSlot.prototype.layout = function () {
     _relative.layout(this.star, [.5, .5], _absoult.localPoint(this, this.width() / 2, halfh - 1));
     _relative.layout(this.button, [.5, .5], _absoult.localPoint(this, this.width() - halfh, halfh));
 }
-CoinsStarSlot.prototype.removeButton = function () {
-    this.removeChild(this.button);
-}
-CoinsStarSlot.prototype.addButton = function () {
-    this.addChild(this.button);
-}
 
 function createCoinSlot(slotClass, bgId, w) {
     var bg = _global.sprite(bgId).$9patch_h().left(20).right(20).setSize(w, 0).updateMesh();
@@ -176,15 +170,6 @@ module.exports = _scene.createScene(
         this.mRotate = 0;
         this.layout();
 
-        this.__touchnode__.print();
-        this.coinStar.removeButton();
-        this.__touchnode__.print();
-        this.coinStar.addButton();
-        this.__touchnode__.print();
-        console.log('---');
-        this.coinStar.removeButton();
-        this.__touchnode__.print();
-        this.coinStar.addButton();
         this.__touchnode__.print();
     }, {
         update: function (context) {
