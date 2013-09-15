@@ -7,14 +7,18 @@ function Button(id, skin) {
     _UIContainer.call(this);
 
     (id != undefined && id != null) && (this.mId = id);
+    console.log('button:', this.mId);
     this.mSkin = skin;
     this.setSize(skin.width(), skin.height());
     this.addChild(skin);
 }
 _inherit(Button, _UIContainer);
-Button.prototype.mId = 'button';
-Button.prototype.createEventNode = function() {
+Button.prototype.mTag = 'button';
+Button.prototype.createEventNode = function () {
     return new _TouchNode(this);
+}
+Button.prototype.toString = function () {
+    return this.mTag + ':' + this.mId;
 }
 
 function Skin() {

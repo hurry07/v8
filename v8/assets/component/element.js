@@ -14,6 +14,9 @@ function Element() {
     this.mParent = null;
 }
 Element.prototype.mTag = 'element';// describe current type(class)
+Element.prototype.toString = function () {
+    return this.mTag;
+}
 Element.prototype.setId = function (id) {
     this.mId = id;
     return this;

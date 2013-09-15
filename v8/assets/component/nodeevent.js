@@ -52,8 +52,8 @@ EventNode.prototype.print = function (prefix) {
     console.log(prefix + '}');
 }
 
-function TouchNode() {
-    EventNode.call(this);
+function TouchNode(node) {
+    EventNode.call(this, node);
 }
 _inherit(TouchNode, EventNode);
 TouchNode.prototype.type = TypeTouchNode;

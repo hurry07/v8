@@ -43,7 +43,4 @@ UIContainer.prototype.removeChild = function (child) {
     }
     return child;
 }
-UIContainer.prototype.toString = function () {
-    return this.mTag;
-}
 module.exports = UIContainer;
