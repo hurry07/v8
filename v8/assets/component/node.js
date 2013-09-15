@@ -30,12 +30,12 @@ function Node() {
     this.mParent = null;
 }
 _inherit(Node, _Element);
+Node.prototype.__elementType |= Node.prototype.ElementTypeNode;
+Node.prototype.mTag = 'node';
 var FlagMatrix = 1;
 var FlagEvent = 1 << 1;
-Node.prototype.mTag = 'node';
 Node.prototype.FlagMatrix = FlagMatrix;
 Node.prototype.FlagEvent = FlagEvent;
-Node.prototype.__elementType |= Node.prototype.ElementTypeNode;
 Node.prototype.setUiNode = function (isUi) {
     this.__isUiNode = isUi;
 }
