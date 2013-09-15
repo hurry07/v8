@@ -7,7 +7,6 @@ function Button(id, skin) {
     _UIContainer.call(this);
 
     (id != undefined && id != null) && (this.mId = id);
-    console.log('button:', this.mId);
     this.mSkin = skin;
     this.setSize(skin.width(), skin.height());
     this.addChild(skin);

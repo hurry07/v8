@@ -17,7 +17,7 @@ EventNode.prototype.addChild = function (child) {
 EventNode.prototype.removeChild = function (child) {
     var index = this.indexOf(child);
     if (index != -1) {
-        this.children.slice(index, 1);
+        this.children.splice(index, 1);
         child.parent = null;
     }
 }
@@ -91,14 +91,17 @@ function onNodeAdd(parent, child) {
     }
 }
 function onNodeRemove(parent, child) {
-    var childTouch = child.__touchnode__;
+    console.log('onNodeRemove', parent, child);
     var parentTouch = parent.__touchnode__;
-    parentTouch.addChild(childTouch);
+    var childTouch = child.__touchnode__;
+    console.log('removeChild 01', parentTouch.children.length);
+    parentTouch.removeChild(childTouch);
+    console.log('removeChild 02', parentTouch.children.length);
 
     parent = parent.mParent;
     childTouch = parentTouch;
     while (parent) {
-        if (parent.isReachable()) {
+        if (childTouch.isReachable()) {
             break;
         }
 
