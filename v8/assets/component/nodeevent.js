@@ -37,6 +37,20 @@ EventNode.prototype.isTouchable = function () {
 }
 EventNode.prototype.onEvent = function (context) {
 }
+EventNode.prototype.print = function (prefix) {
+    prefix = prefix || '';
+    if (this.children.length == 0) {
+        console.log(prefix + this.node);
+        return;
+    }
+
+    var header = prefix + '    ';
+    console.log(prefix + this.node + ': {');
+    for (var i = -1, arr = this.children, l = arr.length; ++i < l;) {
+        arr[i].print(header);
+    }
+    console.log(prefix + '}');
+}
 
 function TouchNode() {
     EventNode.call(this);
@@ -48,29 +62,32 @@ TouchNode.prototype.onEvent = function () {
 
 function onNodeAdd(parent, child) {
     var childTouch = child.__touchnode__;
-    if (childTouch.type != TypeTouchNode) {
+    if (!childTouch.isReachable()) {
         return;
     }
+
     var parentTouch = parent.__touchnode__;
     parentTouch.addChild(childTouch);
 
     parent = parent.mParent;
     childTouch = parentTouch;
     while (parent) {
-        parentTouch = parent.__touchnode__;
         // if parent contains child
+        parentTouch = parent.__touchnode__;
         if (parentTouch.indexOf(childTouch) != -1) {
             break;
         }
+
         // if parent is already touchable or parent is root of event dispatch
         if (parentTouch.isReachable() || parent.isElementType(_Element.ElementTypeScene)) {
             parentTouch.addChild(childTouch);
             break;
         }
+
         // make sure parent has a reference of child, and check parent's parent
         parentTouch.addChild(childTouch);
-        parent = parent.mParent;
         childTouch = parentTouch;
+        parent = parent.mParent;
     }
 }
 function onNodeRemove(parent, child) {
@@ -84,10 +101,11 @@ function onNodeRemove(parent, child) {
         if (parent.isReachable()) {
             break;
         }
+
         parentTouch = parent.__touchnode__;
         parentTouch.removeChild(childTouch);
-        parent = parent.mParent;
         childTouch = parentTouch;
+        parent = parent.mParent;
     }
 }
 function onNodeMove(from, to, child) {
@@ -107,6 +125,7 @@ function onNodeMove(from, to, child) {
 
 exports.EventNode = EventNode;
 exports.TouchNode = TouchNode;
+
 exports.onNodeAdd = onNodeAdd;
 exports.onNodeRemove = onNodeRemove;
 exports.onNodeMove = onNodeMove;

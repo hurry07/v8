@@ -24,14 +24,40 @@ Element.prototype.getId = function () {
 Element.prototype.generatorId = generatorId;
 Element.prototype.layoutToRelativ = function (rx, ry, element, rx, ry, offsetx, offsety) {
 }
-Element.prototype.ElementTypeElement = 1;
-Element.prototype.ElementTypeNode = 1 << 1;
-Element.prototype.ElementTypeContainer = 1 << 2;
-Element.prototype.ElementTypeUIContainer = 1 << 3;
-Element.prototype.ElementTypeScene = 1 << 4;
+
+var _types = {
+    ElementTypeElement: 1,
+    ElementTypeNode: 1 << 1,
+    ElementTypeContainer: 1 << 2,
+    ElementTypeUIContainer: 1 << 3,
+    ElementTypeScene: 1 << 4
+}
+for (var i in _types) {
+    Element.prototype[i] = _types[i];
+}
 Element.prototype.__elementType = Element.prototype.ElementTypeElement;
 Element.prototype.isElementType = function (type) {
     return (this.__elementType & type) > 0;
+}
+Element.prototype.isUIElement = function () {
+    return (this.__elementType & _types.ElementTypeUIContainer) > 0;
+}
+Element.prototype.containsAll = function (type) {
+    var basetype = -1;
+    for (var i = -1, arr = Array.prototype.slice.call(arguments, 1), l = arr.length; ++i < l;) {
+        basetype &= arr[i];
+    }
+    return (basetype & type) > 0;
+}
+Element.prototype.containsAny = function (type) {
+    var basetype = 0;
+    for (var i = -1, arr = Array.prototype.slice.call(arguments, 1), l = arr.length; ++i < l;) {
+        basetype |= arr[i];
+        if ((basetype & type) > 0) {
+            return true;
+        }
+    }
+    return false;
 }
 
 module.exports = Element;

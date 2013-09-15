@@ -169,6 +169,8 @@ module.exports = _scene.createScene(
 
         this.mRotate = 0;
         this.layout();
+
+        this.__touchnode__.print();
     }, {
         update: function (context) {
         },

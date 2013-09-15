@@ -5,7 +5,6 @@ var _Context = require('render/drawcontext.js');
 var _Camera = require('render/camera.js');
 var _UpdateContext = require('render/updatecontext.js');
 var _TouchContext = require('render/touchcontext.js');
-var _UIContainer = require('component/uicontainer.js');
 
 var _Sprite = require('drawable/spritenode.js');
 var _9Patch = require('drawable/ninepatch.js');
@@ -98,7 +97,6 @@ var sceneCollection = new Schedule(new _NamedList('__scene__'));
 
 var updateContext = new _UpdateContext(scheduleUpdate.iterator());
 var touchContext = new _TouchContext();
-console.log('_UIContainer', _UIContainer);
 
 exports.scheduleRender = scheduleRender;
 exports.scheduleUpdate = scheduleUpdate;
