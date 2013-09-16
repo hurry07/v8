@@ -6,7 +6,6 @@ var _glm = _geometry.glm;
 
 var _Node = require('component/node.js');
 var FlagTouchMatrix = _Node.prototype.FlagTouchMatrix;
-var FlagTouchMatrixInverse = _Node.prototype.FlagTouchMatrixInverse;
 
 var TypeEventNode = 1;
 var TypeTouchNode = 1 << 1;
@@ -17,13 +16,24 @@ function EventNode(element) {
     this.parent = null;
     this.matrix = new _Matrix();// matrix to root
     this.matrixInverse = new _Matrix();// reverse of matrix
+    this.mTimestamp = 0;
 }
 EventNode.prototype.type = TypeEventNode;
+/**
+ * @param time
+ * @returns {boolean} return is different
+ */
+EventNode.prototype.setTimeStamp = function (time) {
+    if (this.mTimestamp == time) {
+        return false;
+    }
+    this.mTimestamp = time;
+    return true;
+}
 EventNode.prototype.addChild = function (child) {
     this.children.push(child);
     child.parent = this;
     child.element.addFlag(FlagTouchMatrix);
-    child.element.addFlag(FlagTouchMatrixInverse);
 }
 EventNode.prototype.removeChild = function (child) {
     var index = this.indexOf(child);

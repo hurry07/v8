@@ -3,6 +3,7 @@ var _inherit = require('core/inherit.js');
 
 function Scene() {
     _UIContainer.call(this);
+    this.mTimestamp = 0;
 }
 _inherit(Scene, _UIContainer);
 Scene.prototype.mTag = 'scene';

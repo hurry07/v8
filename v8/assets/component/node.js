@@ -34,11 +34,9 @@ Node.prototype.mTag = 'node';
 
 var FlagMatrix = 1;
 var FlagTouchMatrix = 1 << 1;
-var FlagTouchMatrixInverse = 1 << 2;
 
 Node.prototype.FlagMatrix = FlagMatrix;
 Node.prototype.FlagTouchMatrix = FlagTouchMatrix;
-Node.prototype.FlagTouchMatrixInverse = FlagTouchMatrixInverse;
 
 Node.prototype.setUiNode = function (isUi) {
     this.__isUiNode = isUi;

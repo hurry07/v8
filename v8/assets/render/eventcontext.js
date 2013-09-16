@@ -119,31 +119,29 @@ NodeStack.prototype.next = function () {
 // EventContext
 // ========================================================
 var _Node = require('component/node.js');
-var FlagTouchMatrixInverse = _Node.prototype.FlagTouchMatrixInverse;
 var _geometry = require('core/glm.js');
 var _glm = _geometry.glm;
 var _vec3f = _geometry.vec3f;
 
 function EventContext() {
-//    this.events = new _LinkedList();
     this.events = [];
     this.buffer = new Int32Array(4 * 64);
     this.mStack = new NodeStack();
 }
+EventContext.prototype.startTouch = function () {
+    this.pullEvents();
+}
 EventContext.prototype.endTouch = function () {
     this.events = [];
+    this.mDirty = false;
 }
 EventContext.prototype.onEvent = function (camera, scene) {
-    var modelView = camera.modelViewMatrix();
-    var dirty = camera.isDirty();
-
     if (!this.events.length) {
         return;
     }
 
+    var timestamp  = camera.mTimestamp;
     var e = this.peek();
-    var e1 = new _vec3f(e.vector);
-//    e1[1] = 480 - e1[1];
     var vector = new _vec3f();
 
     // go throught all nodes
@@ -151,11 +149,11 @@ EventContext.prototype.onEvent = function (camera, scene) {
     stack.startItor(scene.__touchnode__);
     while (!stack.isEmpty()) {
         var node = stack.next();
-        var element = node.element;
-        if (element.getRemove(FlagTouchMatrixInverse) || dirty) {
+        if (node.setTimeStamp(timestamp)) {
+            console.log('update');
             camera.getInverseMatrix(node.matrixInverse, node.matrix);
         }
-        _glm.mulMV3(vector, node.matrixInverse, e1);
+        _glm.mulMV3(vector, node.matrixInverse, e.vector);
         console.log(vector);
     }
 
@@ -169,31 +167,15 @@ EventContext.prototype.pullEvents = function () {
     var count = mTouchEvent.getEvents(buf);
     for (var i = 0; i < count; i++) {
         this.events.push(new TouchEvent(0).init(buf, 4 * i));
-//        var e = new TouchEvent(0).init(buf, 4 * i);
-//        console.log(e);
-//        this.events.push(e);
     }
 }
 EventContext.prototype.isEmpty = function () {
-//    return this.events.isEmpty();
     return this.events.length == 0;
 }
 EventContext.prototype.pop = function () {
-//    var e = this.events;
-//    var first = e.first();
-//    if (e.isTail(first)) {
-//        return null;
-//    }
-//    e.removeNode(first);
     return this.events.shift();
 }
 EventContext.prototype.peek = function () {
-//    var e = this.events;
-//    var first = e.first();
-//    if (e.isTail(first)) {
-//        return null;
-//    }
-//    return first;
     return this.events[0];
 }
 

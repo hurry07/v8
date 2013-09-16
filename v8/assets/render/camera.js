@@ -9,6 +9,7 @@ function Camera() {
     this.mProjectModelViewMatirx = new _geometry.matrix4();
     this.mTouchMatrix = new _geometry.matrix4();
     this.mDirty = true;
+    this.mTimestamp = 0;
     this.setViewport(0, 0, 1, 1);
 }
 Camera.prototype.viewport = function () {
@@ -63,6 +64,7 @@ Camera.prototype.perspective = function (fovy, aspect, zNear, zFar) {
 
 Camera.prototype.updatePVM = function () {
     this.mDirty = true;
+    this.mTimestamp = new Date().getTime();
     _glm.mulMM(this.mProjectModelViewMatirx, this.mProjectMatrix, this.mModelViewMatrix);
     this.mTouchMatrix.identity();
     this.mTouchMatrix.scale(new _vec3f(1, -1, 1));

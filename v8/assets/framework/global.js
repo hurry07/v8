@@ -121,7 +121,6 @@ exports.onSizeChange = function (width, height) {
     }
 }
 
-var mCount = 0;
 /**
  * update and draw all elements
  */
@@ -129,7 +128,7 @@ exports.runSchedule = function () {
     updateContext.ticktack();
 
     // touch
-    touchContext.pullEvents();
+    touchContext.startTouch();
     var itor = scheduleEvent.iterator();
     while (itor.hasNext()) {
         touchContext.onEvent(mCamera, itor.next());
