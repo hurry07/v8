@@ -159,15 +159,15 @@ module.exports = _scene.createScene(
 
         var buttons = this.buttons = {};
         this.addChild(buttons.avator = titleButton('bt_avator', R.upgrade.b_z_avatar));
-        this.addChild(buttons.skill = titleButton('bt_skill', R.upgrade.b_z_skill));
-        this.addChild(buttons.achive = titleButton('bt_achive', R.upgrade.b_z_achievement));
-        this.addChild(this.coinStar = new CoinsStarSlot('slot_coinstart'));
-        this.addChild(buttons.close = closeButton('bt_close'));
-
-        this.addChild(this.toolsPanel = new ToolsPanel());
-        this.addChild(this.desPanel = new UpgradePanel());
-
-        this.mRotate = 0;
+//        this.addChild(buttons.skill = titleButton('bt_skill', R.upgrade.b_z_skill));
+//        this.addChild(buttons.achive = titleButton('bt_achive', R.upgrade.b_z_achievement));
+//        this.addChild(this.coinStar = new CoinsStarSlot('slot_coinstart'));
+//        this.addChild(buttons.close = closeButton('bt_close'));
+//
+//        this.addChild(this.toolsPanel = new ToolsPanel());
+//        this.addChild(this.desPanel = new UpgradePanel());
+//
+//        this.mRotate = 0;
         this.layout();
 
         this.__touchnode__.print();
@@ -177,7 +177,7 @@ module.exports = _scene.createScene(
         onSizeChange: function (w, h) {
             this.setSize(w, h);
             this.mBg.setSize(w, h).updateMesh();
-            _relative.layoutTo(this.buttons.close, 1, 0.5, this, 1, 1, -6, -42);
+//            _relative.layoutTo(this.buttons.close, 1, 0.5, this, 1, 1, -6, -42);
         },
         layout: function () {
             this.mBg.setSize(this.width(), this.height()).updateMesh();
@@ -185,15 +185,15 @@ module.exports = _scene.createScene(
 
             var b = this.buttons;
             _relative.layoutTo(b.avator, 0, 0.5, this, 0, 1, 6, -42);
-            _relative.layoutTo(b.skill, 0, 0.5, b.avator, 1, 0.5);
-            _relative.layoutTo(b.achive, 0, 0.5, b.skill, 1, 0.5);
-            _relative.layoutTo(b.close, 1, 0.5, this, 1, 1, -6, -42);
-            _relative.layoutTo(this.coinStar, 0, 0, b.achive, 1, 0, 7, 4);
-
-            _absoult.layout(this.toolsPanel, 0, 0, 13, 13);
-
-            var cencer = _relative.worldPoint(this.toolsPanel, 1, 0);
-            cencer[0] += (this.width() - cencer[0] - 20) / 2;
-            _relative.layout(this.desPanel, [0.5, 0], cencer);
+//            _relative.layoutTo(b.skill, 0, 0.5, b.avator, 1, 0.5);
+//            _relative.layoutTo(b.achive, 0, 0.5, b.skill, 1, 0.5);
+//            _relative.layoutTo(b.close, 1, 0.5, this, 1, 1, -6, -42);
+//            _relative.layoutTo(this.coinStar, 0, 0, b.achive, 1, 0, 7, 4);
+//
+//            _absoult.layout(this.toolsPanel, 0, 0, 13, 13);
+//
+//            var cencer = _relative.worldPoint(this.toolsPanel, 1, 0);
+//            cencer[0] += (this.width() - cencer[0] - 20) / 2;
+//            _relative.layout(this.desPanel, [0.5, 0], cencer);
         }
     });

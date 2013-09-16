@@ -25,10 +25,6 @@ EventNode.prototype.addChild = function (child) {
     child.element.addFlag(FlagTouchMatrix);
     child.element.addFlag(FlagTouchMatrixInverse);
 }
-EventNode.prototype.updateInverse = function (pvm) {
-    _glm.mulMM(this.matrixInverse, pvm, this.matrix);
-    this.matrixInverse.inverse();
-}
 EventNode.prototype.removeChild = function (child) {
     var index = this.indexOf(child);
     if (index != -1) {

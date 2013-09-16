@@ -122,6 +122,7 @@ var _Node = require('component/node.js');
 var FlagTouchMatrixInverse = _Node.prototype.FlagTouchMatrixInverse;
 var _geometry = require('core/glm.js');
 var _glm = _geometry.glm;
+var _vec3f = _geometry.vec3f;
 
 function EventContext() {
 //    this.events = new _LinkedList();
@@ -133,8 +134,17 @@ EventContext.prototype.endTouch = function () {
     this.events = [];
 }
 EventContext.prototype.onEvent = function (camera, scene) {
-    var pvm = camera.pvmMatirx();
+    var modelView = camera.modelViewMatrix();
     var dirty = camera.isDirty();
+
+    if (!this.events.length) {
+        return;
+    }
+
+    var e = this.peek();
+    var e1 = new _vec3f(e.vector);
+//    e1[1] = 480 - e1[1];
+    var vector = new _vec3f();
 
     // go throught all nodes
     var stack = this.mStack;
@@ -143,10 +153,13 @@ EventContext.prototype.onEvent = function (camera, scene) {
         var node = stack.next();
         var element = node.element;
         if (element.getRemove(FlagTouchMatrixInverse) || dirty) {
-            node.updateInverse(pvm);
+            camera.getInverseMatrix(node.matrixInverse, node.matrix);
         }
-//        console.log('--->', node.element, node.matrix);
+        _glm.mulMV3(vector, node.matrixInverse, e1);
+        console.log(vector);
     }
+
+    console.log('-----------');
 }
 /**
  * get event as much as possiable

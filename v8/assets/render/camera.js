@@ -7,6 +7,7 @@ function Camera() {
     this.mModelViewMatrix = new _geometry.matrix4();
     this.mProjectMatrix = new _geometry.matrix4();
     this.mProjectModelViewMatirx = new _geometry.matrix4();
+    this.mTouchMatrix = new _geometry.matrix4();
     this.mDirty = true;
     this.setViewport(0, 0, 1, 1);
 }
@@ -25,6 +26,7 @@ Camera.prototype.setViewport = function (x, y, width, height) {
         this.width = width;
         this.height = height;
     }
+    this.updatePVM();
 }
 
 // ========================================================
@@ -62,15 +64,27 @@ Camera.prototype.perspective = function (fovy, aspect, zNear, zFar) {
 Camera.prototype.updatePVM = function () {
     this.mDirty = true;
     _glm.mulMM(this.mProjectModelViewMatirx, this.mProjectMatrix, this.mModelViewMatrix);
+    this.mTouchMatrix.identity();
+    this.mTouchMatrix.scale(new _vec3f(1, -1, 1));
+    this.mTouchMatrix.translate(new _vec3f(0, -this.height, 0));
 }
 Camera.prototype.pvmMatirx = function () {
     return this.mProjectModelViewMatirx;
+}
+Camera.prototype.modelViewMatrix = function () {
+    return this.mModelViewMatrix;
 }
 Camera.prototype.isDirty = function () {
     return this.mDirty;
 }
 Camera.prototype.clean = function () {
     this.mDirty = false;
+}
+
+Camera.prototype.getInverseMatrix = function (inverse, model) {
+    _glm.mulMM(inverse, this.mModelViewMatrix, model);
+    inverse.inverse();
+    _glm.mulMM(inverse, inverse, this.mTouchMatrix);
 }
 
 exports.createCamera = function () {

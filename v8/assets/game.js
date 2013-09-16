@@ -66,6 +66,7 @@ game.render = {
     },
     onDrawFrame: function () {
         _global.runSchedule();
+        mCamera.clean();
 //        _framerate.update();
     }
 };

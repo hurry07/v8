@@ -152,14 +152,14 @@ Node.prototype.addFlag = function (flag) {
     this.mFlags |= flag;
 }
 Node.prototype.removeFlag = function (flag) {
-    this.mFlags = this.mFlags & (~flag);
+    this.mFlags &= ~flag;
 }
 Node.prototype.hasFlag = function (flag) {
-    return (this.mFlags | flag) > 0;
+    return (this.mFlags & flag) > 0;
 }
 Node.prototype.getRemove = function (flag) {
-    if (this.mFlags | flag) {
-        this.mFlags -= flag;
+    if (this.mFlags & flag) {
+        this.mFlags &= ~flag;
         return true;
     }
     return false;
