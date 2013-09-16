@@ -1,8 +1,8 @@
-var _Container = require('component/container.js');
 var _inherit = require('core/inherit.js');
-var __removeChild = _Container.__removeChild;
-var _EventNode = require('component/nodeevent.js').EventNode;
+var _EventNode = require('component/touchnode.js').EventNode;
 var _listener = require('component/nodeevent.js');
+var _Container = require('component/container.js');
+var __removeChild = _Container.__removeChild;
 
 var UIContainer = _inherit(function () {
     _Container.call(this);
@@ -43,4 +43,5 @@ UIContainer.prototype.removeChild = function (child) {
     }
     return child;
 }
+
 module.exports = UIContainer;

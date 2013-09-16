@@ -83,7 +83,7 @@ Camera.prototype.clean = function () {
     this.mDirty = false;
 }
 
-Camera.prototype.getInverseMatrix = function (inverse, model) {
+Camera.prototype.updateTouchMatrix = function (inverse, model) {
     _glm.mulMM(inverse, this.mModelViewMatrix, model);
     inverse.inverse();
     _glm.mulMM(inverse, inverse, this.mTouchMatrix);

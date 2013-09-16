@@ -1,7 +1,7 @@
 var _inherit = require('core/inherit.js');
 var _UIContainer = require('component/uicontainer.js');
 var _Node = require('component/node.js');
-var _TouchNode = require('component/nodeevent.js').TouchNode;
+var _TouchNode = require('component/touchnode.js').TouchNode;
 
 function Button(id, skin) {
     _UIContainer.call(this);
@@ -15,6 +15,10 @@ _inherit(Button, _UIContainer);
 Button.prototype.mTag = 'button';
 Button.prototype.createEventNode = function () {
     return new _TouchNode(this);
+}
+Button.prototype.onTouch = function (event, stack) {
+    console.log(this, event.vector, event.state);
+    return true;
 }
 Button.prototype.toString = function () {
     return this.mTag + ':' + this.mId;

@@ -20,9 +20,6 @@ var _inherit = require('core/inherit.js');
 var a = -1;
 var b = 1;
 
-console.log('---------');
-console.log(a & b);
-
 var firstInit = true;
 function Game() {
 }

@@ -16,14 +16,14 @@ function TouchEvent(time) {
     this.time = time;
     this.button = 0;
     this.state = 0;
+    this._vector = new _vec3f();
     this.vector = new _vec3f();
 }
 TouchEvent.prototype.init = function (buffer, offset) {
     this.button = buffer[offset];
     this.state = buffer[offset + 1];
-    this.vector[0] = buffer[offset + 2];
-    this.vector[1] = buffer[offset + 3];
-    console.log(this.toString());
+    this._vector[0] = buffer[offset + 2];
+    this._vector[1] = buffer[offset + 3];
     return this;
 }
 TouchEvent.prototype.toString = function () {
@@ -31,9 +31,17 @@ TouchEvent.prototype.toString = function () {
         'time:' + this.time,
         'button:' + this.button,
         'state:' + this.state,
-        'x:' + this.vector[0],
-        'y:' + this.vector[1]
+        'x:' + this._vector[0],
+        'y:' + this._vector[1]
     ].join(',') + '}';
+}
+/**
+ * mapping click point from screen coordinate to node coordinate
+ * @param m
+ */
+TouchEvent.prototype.toLocal = function (m) {
+    _glm.mulMV3(this.vector, m, this._vector);
+    return this;
 }
 
 // ========================================================
@@ -91,8 +99,10 @@ NodeStack.prototype.startItor = function (rootnode) {
     this.clear();
     this.nodesCount = 1;
     this.nodesAccess = 0;
-
     this.push(rootnode);
+}
+NodeStack.prototype.cancelItor = function () {
+    this.nodesAccess = this.nodesCount;
 }
 NodeStack.prototype.isEmpty = function () {
     return this.nodesAccess == this.nodesCount;
@@ -140,24 +150,19 @@ EventContext.prototype.onEvent = function (camera, scene) {
         return;
     }
 
-    var timestamp  = camera.mTimestamp;
-    var e = this.peek();
-    var vector = new _vec3f();
+    var timestamp = camera.mTimestamp;
 
     // go throught all nodes
     var stack = this.mStack;
     stack.startItor(scene.__touchnode__);
+
     while (!stack.isEmpty()) {
         var node = stack.next();
         if (node.setTimeStamp(timestamp)) {
-            console.log('update');
-            camera.getInverseMatrix(node.matrixInverse, node.matrix);
+            camera.updateTouchMatrix(node.matrixInverse, node.matrix);
         }
-        _glm.mulMV3(vector, node.matrixInverse, e.vector);
-        console.log(vector);
+        node.onEvent(this, stack);
     }
-
-    console.log('-----------');
 }
 /**
  * get event as much as possiable
@@ -169,8 +174,8 @@ EventContext.prototype.pullEvents = function () {
         this.events.push(new TouchEvent(0).init(buf, 4 * i));
     }
 }
-EventContext.prototype.isEmpty = function () {
-    return this.events.length == 0;
+EventContext.prototype.hasEvent = function () {
+    return this.events.length > 0;
 }
 EventContext.prototype.pop = function () {
     return this.events.shift();

@@ -146,7 +146,7 @@ namespace glm_matrix {
         if(info.Length() == 0) {
             return;
         }
-        
+
         Matrix* m = internalPtr<Matrix>(info);
         Vector* v = internalArg<Vector>(info[0], CLASS_VEC3);
         if(v == 0) {
