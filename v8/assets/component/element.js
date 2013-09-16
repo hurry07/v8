@@ -32,7 +32,7 @@ var _types = {
     ElementTypeElement: 1,
     ElementTypeNode: 1 << 1,
     ElementTypeContainer: 1 << 2,
-    ElementTypeUIContainer: 1 << 3,
+    ElementTypeUIElement: 1 << 3,
     ElementTypeScene: 1 << 4
 }
 for (var i in _types) {
@@ -43,7 +43,7 @@ Element.prototype.isElementType = function (type) {
     return (this.__elementType & type) > 0;
 }
 Element.prototype.isUIElement = function () {
-    return (this.__elementType & _types.ElementTypeUIContainer) > 0;
+    return (this.__elementType & _types.ElementTypeUIElement) > 0;
 }
 Element.prototype.containsAll = function (type) {
     var basetype = -1;

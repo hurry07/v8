@@ -130,7 +130,7 @@ int TouchEvent::appendMouseMove(int x, int y) {
 
     int* dest = target->value_ptr<int>();
     dest[0] = -1;
-    dest[1] = -1;
+    dest[1] = 2;// move
     dest[2] = x;
     dest[3] = y;
     int remain = target->next();

@@ -12,7 +12,7 @@ UIContainer.prototype.createEventNode = function () {
     return new _EventNode(this);
 }
 UIContainer.prototype.__isUiNode = true;
-UIContainer.prototype.__elementType |= UIContainer.prototype.ElementTypeUIContainer;
+UIContainer.prototype.__elementType |= UIContainer.prototype.ElementTypeUIElement;
 UIContainer.prototype.addChild = function (child) {
     if (!child) {
         return;

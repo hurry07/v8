@@ -2,26 +2,29 @@ var _inherit = require('core/inherit.js');
 var _UIContainer = require('component/uicontainer.js');
 var _Node = require('component/node.js');
 var _TouchNode = require('component/touchnode.js').TouchNode;
+var _TouchDelegate = require('widget/touchdelegate.js');
 
 function Button(id, skin) {
-    _UIContainer.call(this);
-
-    (id != undefined && id != null) && (this.mId = id);
     this.mSkin = skin;
+    this.mTouchDelegate = new _TouchDelegate(this);
+    _UIContainer.call(this);
+    (id != undefined && id != null) && (this.mId = id);
     this.setSize(skin.width(), skin.height());
     this.addChild(skin);
 }
 _inherit(Button, _UIContainer);
 Button.prototype.mTag = 'button';
 Button.prototype.createEventNode = function () {
-    return new _TouchNode(this);
+    return new _TouchNode(this, this.mTouchDelegate);
 }
-Button.prototype.onTouch = function (event, stack) {
-    console.log(this, event.vector, event.state);
-    return true;
+Button.prototype.setActive = function (active) {
+    active ? this.mSkin.state = 'c' : this.mSkin.state = 'n';
 }
 Button.prototype.toString = function () {
     return this.mTag + ':' + this.mId;
+}
+Button.prototype.onclick = function () {
+    console.log('onclick:' + this);
 }
 
 function Skin() {

@@ -101,6 +101,9 @@ Node.prototype.setSize = function (w, h) {
 Node.prototype.getSize = function () {
     return this.mSize;
 }
+Node.prototype.getCenter = function () {
+    return this.mCenter;
+}
 Node.prototype.setCenter = function (cx, cy) {
     if (arguments.length == 1) {
         this.mCenter.set(cx);

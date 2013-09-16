@@ -2,15 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/component/touchnode.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/widget/touchdelegate.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/widget/button.js" afterPath="$PROJECT_DIR$/v8/assets/widget/button.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/render/camera.js" afterPath="$PROJECT_DIR$/v8/assets/render/camera.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/scenes/cover.js" afterPath="$PROJECT_DIR$/v8/assets/scenes/cover.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/render/eventcontext.js" afterPath="$PROJECT_DIR$/v8/assets/render/eventcontext.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/game.js" afterPath="$PROJECT_DIR$/v8/assets/game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/glm/matrix_inl.h" afterPath="$PROJECT_DIR$/v8/glm/matrix_inl.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/component/nodeevent.js" afterPath="$PROJECT_DIR$/v8/assets/component/nodeevent.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/component/element.js" afterPath="$PROJECT_DIR$/v8/assets/component/element.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/component/node.js" afterPath="$PROJECT_DIR$/v8/assets/component/node.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/component/touchnode.js" afterPath="$PROJECT_DIR$/v8/assets/component/touchnode.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/component/uicontainer.js" afterPath="$PROJECT_DIR$/v8/assets/component/uicontainer.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -18,14 +15,14 @@
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379333400828" ignored="false" />
     <file path="/game.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379337163379" ignored="false" />
-    <file path="/a.dummy" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379340407284" ignored="false" />
+    <file path="/a.dummy" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379342035365" ignored="false" />
     <file path="/temp.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376748679355" ignored="false" />
     <file path="/programs.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376753166840" ignored="false" />
     <file path="/vec3_test.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377279668112" ignored="false" />
     <file path="/example.html" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376972054219" ignored="false" />
     <file path="/program.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378625184167" ignored="false" />
     <file path="/extend.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376984512542" ignored="false" />
-    <file path="/node.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379319661946" ignored="false" />
+    <file path="/node.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379342234231" ignored="false" />
     <file path="/primitives.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377360400294" ignored="false" />
     <file path="/buffer.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378793452174" ignored="false" />
     <file path="/gametest.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377442384239" ignored="false" />
@@ -93,8 +90,8 @@
     <file path="/drawcontext.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378920355087" ignored="false" />
     <file path="/testgc.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378800898842" ignored="false" />
     <file path="/framerate.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378874510821" ignored="false" />
-    <file path="/button.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379340306014" ignored="false" />
-    <file path="/element.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379221529868" ignored="false" />
+    <file path="/button.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379347787506" ignored="false" />
+    <file path="/element.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379342070932" ignored="false" />
     <file path="/layout.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378971402963" ignored="false" />
     <file path="/database.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378973642549" ignored="false" />
     <file path="/touchcontext.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379299809423" ignored="false" />
@@ -103,7 +100,8 @@
     <file path="/eventnode.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379174025575" ignored="false" />
     <file path="/nodeevent.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379335861811" ignored="false" />
     <file path="/eventcontext.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379339876981" ignored="false" />
-    <file path="/touchnode.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379339331803" ignored="false" />
+    <file path="/touchnode.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379345314201" ignored="false" />
+    <file path="/touchdelegate.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379347202778" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,10 +121,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="eventcontext.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="eventcontext.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/render/eventcontext.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="45" selection-start="1369" selection-end="1369" vertical-scroll-proportion="0.34664536">
+            <state line="150" column="27" selection-start="4263" selection-end="4263" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="uicontainer.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/component/uicontainer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="81" selection-start="599" selection-end="599" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="node.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/component/node.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="element.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/component/element.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="45" column="60" selection-start="1205" selection-end="1205" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -141,10 +166,37 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="button.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="button.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/widget/button.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="34" selection-start="646" selection-end="652" vertical-scroll-proportion="0.0">
+            <state line="26" column="25" selection-start="956" selection-end="956" vertical-scroll-proportion="0.6467662">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="touchnode.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/component/touchnode.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="119" column="31" selection-start="3294" selection-end="3294" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="touchdelegate.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/widget/touchdelegate.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="35" selection-start="762" selection-end="769" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cover.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/scenes/cover.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="184" column="0" selection-start="6256" selection-end="6256" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -168,22 +220,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/v8/assets/component/eventnode.js" />
-        <option value="$PROJECT_DIR$/v8/assets/component/element.js" />
         <option value="$PROJECT_DIR$/v8/assets/render/touchcontext.js" />
         <option value="$PROJECT_DIR$/v8/assets/render/matrixstack.js" />
         <option value="$PROJECT_DIR$/v8/assets/render/drawcontext.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/scene.js" />
-        <option value="$PROJECT_DIR$/v8/assets/component/node.js" />
         <option value="$PROJECT_DIR$/v8/assets/framework/global.js" />
         <option value="$PROJECT_DIR$/v8/assets/render/camera.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/nodeevent.js" />
-        <option value="$PROJECT_DIR$/v8/assets/component/uicontainer.js" />
         <option value="$PROJECT_DIR$/v8/assets/game.js" />
         <option value="$PROJECT_DIR$/v8/assets/scenes/cover.js" />
-        <option value="$PROJECT_DIR$/v8/assets/component/touchnode.js" />
-        <option value="$PROJECT_DIR$/v8/assets/widget/button.js" />
         <option value="$PROJECT_DIR$/v8/assets/render/eventcontext.js" />
+        <option value="$PROJECT_DIR$/v8/assets/component/element.js" />
+        <option value="$PROJECT_DIR$/v8/assets/component/uicontainer.js" />
+        <option value="$PROJECT_DIR$/v8/assets/component/node.js" />
+        <option value="$PROJECT_DIR$/v8/assets/component/touchnode.js" />
+        <option value="$PROJECT_DIR$/v8/assets/widget/touchdelegate.js" />
+        <option value="$PROJECT_DIR$/v8/assets/widget/button.js" />
       </list>
     </option>
   </component>
@@ -366,6 +418,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="widget" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="v8" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="v8" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="v8" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scenes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -573,27 +647,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/v8/assets/framework/texture.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/framework/database.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/framework/global.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/framework/materials.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="21" selection-start="496" selection-end="496" vertical-scroll-proportion="0.0">
@@ -629,20 +682,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/component/uicontainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="39" selection-start="688" selection-end="688" vertical-scroll-proportion="-9.2">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/scenes/cover.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="184" column="0" selection-start="6256" selection-end="6256" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="23" column="0" selection-start="586" selection-end="586" vertical-scroll-proportion="0.0">
@@ -657,13 +696,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/component/touchnode.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="119" column="38" selection-start="3301" selection-end="3301" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/component/nodeevent.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -671,16 +703,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/widget/button.js">
+    <entry file="file://$PROJECT_DIR$/v8/assets/scenes/cover.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="34" selection-start="646" selection-end="652" vertical-scroll-proportion="0.0">
+        <state line="184" column="0" selection-start="6256" selection-end="6256" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/render/eventcontext.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="45" selection-start="1369" selection-end="1369" vertical-scroll-proportion="0.34664536">
+        <state line="150" column="27" selection-start="4263" selection-end="4263" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/component/uicontainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="81" selection-start="599" selection-end="599" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/component/node.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/component/element.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="60" selection-start="1205" selection-end="1205" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/component/touchnode.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="119" column="31" selection-start="3294" selection-end="3294" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/widget/touchdelegate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="35" selection-start="762" selection-end="769" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/widget/button.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="25" selection-start="956" selection-end="956" vertical-scroll-proportion="0.6467662">
           <folding />
         </state>
       </provider>
