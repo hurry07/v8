@@ -6,6 +6,9 @@ var _inherit = require('core/inherit.js');
 
 var $defaultDepth = 64;
 
+// ========================================================
+// Matrix Stack
+// ========================================================
 function MatrixStack(depth) {
     _Buffer.call(this, {
         stride: 16,
@@ -24,6 +27,20 @@ MatrixStack.prototype.push = function (m) {
     }
     var cm = this.matrix;
     _glm.mulMM(cm, this.getElement(this.cursor, cm), m);
+    this.setElement(++this.cursor, cm);
+    return cm;
+}
+/**
+ * push and reset the next matrix
+ * @param m
+ * @returns {*}
+ */
+MatrixStack.prototype.pushNext = function (m) {
+    if (this.cursor == this.mCount - 1) {
+        throw ('MatrixStac.push depth overflow');
+    }
+    var cm = this.matrix;
+    cm.set(m);
     this.setElement(++this.cursor, cm);
     return cm;
 }
@@ -50,6 +67,9 @@ MatrixStack.prototype.clear = function () {
     this.identity();
 }
 
+// ========================================================
+// Alpha Stack
+// ========================================================
 function AlphaStack(depth) {
     this.data = new Float32Array(depth || $defaultDepth);
     this.cursor = 0;

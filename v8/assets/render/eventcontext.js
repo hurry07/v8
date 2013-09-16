@@ -1,6 +1,7 @@
-var _LinkedList = require('core/linkedlist.js').LinkedList;
+//var _LinkedList = require('core/linkedlist.js').LinkedList;
 var _event = require('core/event.js');
 var _Matrix = require('core/glm.js').matrix4;
+var _MatrixStack = require('render/matrixstack.js').MatrixStack;
 
 var mTouchEvent = _event.touchEvent;// get events data from native
 var mKeyEvent = _event.keyEvent;
@@ -34,31 +35,63 @@ TouchEvent.prototype.toString = function () {
     ].join(',') + '}';
 }
 
+// ========================================================
+// Dirty Stack
+// ========================================================
+function DirtyStack(depth) {
+    this.data = new Array(depth);
+    this.cursor = 0;
+    this.value = false;
+    this.clear();
+}
+DirtyStack.prototype.push = function (a) {
+    return this.data[++this.cursor] = this.value &= a;
+}
+DirtyStack.prototype.pop = function () {
+    return this.value = this.data[--this.cursor];
+}
+DirtyStack.prototype.clear = function () {
+    this.data[this.cursor = 0] = this.value = false;
+}
+DirtyStack.prototype.set = function (b) {
+    this.data[this.cursor] = this.value = b;
+}
+
+// ========================================================
+// Node Iterator
+// ========================================================
 function NodeStack() {
+    this.matrix = new _Matrix();
+
     this.depth = 0;
     this.nodes = [];
-    this.matrix = new _Matrix();
-    this.dirty = true;
     this.nodesCount = 0;
     this.nodesAccess = 0;
+    this.matrixStack = new _MatrixStack(64);
+    this.dirtyStack = new DirtyStack(64);
 }
 NodeStack.prototype.push = function (node) {
     node.startItor();
     this.nodes[this.depth++] = node;
+    this.dirtyStack.push(node.enterNode(this.dirtyStack.value, this.matrixStack));
 }
 NodeStack.prototype.pop = function () {
     this.depth--;
+    this.dirtyStack.pop();
+    this.matrixStack.pop();
 }
 NodeStack.prototype.clear = function () {
     this.depth = 0;
     this.matrix.identity();
+    this.dirtyStack.clear();
+    this.matrixStack.clear();
 }
 NodeStack.prototype.startItor = function (dirty, pvm, rootnode) {
-    this.depth = 0;
-    this.dirty = dirty;
+    this.clear();
+    this.dirtyStack.set(dirty);
+    this.matrix.set(pvm);
     this.nodesCount = 1;
     this.nodesAccess = 0;
-    this.matrix.set(pvm);
 
     this.push(rootnode);
 }
@@ -84,38 +117,39 @@ NodeStack.prototype.next = function () {
 }
 
 // ========================================================
-// TouchContext
+// EventContext
 // ========================================================
-function TouchContext() {
+function EventContext() {
 //    this.events = new _LinkedList();
     this.events = [];
     this.buffer = new Int32Array(4 * 64);
     this.mDirty = true;
     this.mStack = new NodeStack();
 }
-TouchContext.prototype.isDirty = function () {
+EventContext.prototype.isDirty = function () {
     return this.mDirty;
 }
-TouchContext.prototype.setDirty = function (d) {
+EventContext.prototype.setDirty = function (d) {
     this.mDirty = d;
 }
-TouchContext.prototype.endTouch = function () {
+EventContext.prototype.endTouch = function () {
     this.events = [];
     this.mDirty = false;
 }
-TouchContext.prototype.onEvent = function (pvm, scene) {
+EventContext.prototype.onEvent = function (pvm, scene) {
     var stack = this.mStack;
     stack.startItor(this.mDirty, pvm, scene.__touchnode__);
 
+    // go throught all nodes
     while (!stack.isEmpty()) {
         var node = stack.next();
-        console.log('--->', node.node);
+        console.log('--->', node.element, node.matrix);
     }
 }
 /**
  * get event as much as possiable
  */
-TouchContext.prototype.pullEvents = function () {
+EventContext.prototype.pullEvents = function () {
     var buf = this.buffer;
     var count = mTouchEvent.getEvents(buf);
     for (var i = 0; i < count; i++) {
@@ -125,11 +159,11 @@ TouchContext.prototype.pullEvents = function () {
 //        this.events.push(e);
     }
 }
-TouchContext.prototype.isEmpty = function () {
+EventContext.prototype.isEmpty = function () {
 //    return this.events.isEmpty();
     return this.events.length == 0;
 }
-TouchContext.prototype.pop = function () {
+EventContext.prototype.pop = function () {
 //    var e = this.events;
 //    var first = e.first();
 //    if (e.isTail(first)) {
@@ -138,7 +172,7 @@ TouchContext.prototype.pop = function () {
 //    e.removeNode(first);
     return this.events.shift();
 }
-TouchContext.prototype.peek = function () {
+EventContext.prototype.peek = function () {
 //    var e = this.events;
 //    var first = e.first();
 //    if (e.isTail(first)) {
@@ -148,4 +182,4 @@ TouchContext.prototype.peek = function () {
     return this.events[0];
 }
 
-module.exports = TouchContext;
+module.exports = EventContext;

@@ -4,7 +4,7 @@ var _program = require('framework/program.js');
 var _Context = require('render/drawcontext.js');
 var _Camera = require('render/camera.js');
 var _UpdateContext = require('render/updatecontext.js');
-var _TouchContext = require('render/touchcontext.js');
+var _TouchContext = require('render/eventcontext.js');
 
 var _Sprite = require('drawable/spritenode.js');
 var _9Patch = require('drawable/ninepatch.js');

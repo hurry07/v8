@@ -9,7 +9,6 @@ var aixz = new _vec3f(0, 0, 1);
 
 /**
  * an objec with given position
- *
  * @constructor
  */
 function Node() {
@@ -32,10 +31,15 @@ function Node() {
 _inherit(Node, _Element);
 Node.prototype.__elementType |= Node.prototype.ElementTypeNode;
 Node.prototype.mTag = 'node';
+
 var FlagMatrix = 1;
-var FlagEvent = 1 << 1;
+var FlagTouchMatrix = 1 << 1;
+var FlagTouchMatrixR = 1 << 2;
+
 Node.prototype.FlagMatrix = FlagMatrix;
-Node.prototype.FlagEvent = FlagEvent;
+Node.prototype.FlagTouchMatrix = FlagTouchMatrix;
+Node.prototype.FlagTouchMatrixR = FlagTouchMatrixR;
+
 Node.prototype.setUiNode = function (isUi) {
     this.__isUiNode = isUi;
 }
@@ -143,6 +147,22 @@ Node.prototype.updateMatrix = function () {
     _getMatrix.call(this, this.mMatrix);
     this.mFlags = flag & (~FlagMatrix);
     return true;
+}
+Node.prototype.addFlag = function (flag) {
+    this.mFlags |= flag;
+}
+Node.prototype.removeFlag = function (flag) {
+    this.mFlags = this.mFlags & (~flag);
+}
+Node.prototype.hasFlag = function (flag) {
+    return (this.mFlags | flag) > 0;
+}
+Node.prototype.getRemove = function (flag) {
+    if (this.mFlags | flag) {
+        this.mFlags -= flag;
+        return true;
+    }
+    return false;
 }
 Node.prototype.getMatrix = function (m) {
     return _getMatrix.call(this, m || new _geometry.matrix4());
