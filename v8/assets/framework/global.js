@@ -129,7 +129,6 @@ exports.runSchedule = function () {
     updateContext.ticktack();
 
     // touch
-    var pvmMatrix = mCamera.pvmMatirx();
     touchContext.pullEvents();
     var itor = scheduleEvent.iterator();
     while (itor.hasNext()) {

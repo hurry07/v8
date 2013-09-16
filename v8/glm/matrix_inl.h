@@ -135,6 +135,12 @@ namespace glm_matrix {
         
         return scope.Close(temp->GetFunction());
     }
+    NS_METHOD_BEGIN(inverse, info) {
+        HandleScope scope;
+
+        Matrix* m = internalPtr<Matrix>(info);
+        m->mMatrix = glm::inverse(m->mMatrix);
+    }
     NS_METHOD_BEGIN(translate, info) {
         HandleScope scope;
         if(info.Length() == 0) {
@@ -200,6 +206,7 @@ namespace glm_matrix {
         EXPOSE_METHOD(obj, rotate, ReadOnly | DontDelete);
         EXPOSE_METHOD(obj, scale, ReadOnly | DontDelete);
         EXPOSE_METHOD(obj, identity, ReadOnly | DontDelete);
+        EXPOSE_METHOD(obj, inverse, ReadOnly | DontDelete);
         obj->SetAccessor(String::New("length"), globalfn::array::length);
         EXPOSE_METHOD_NAME(obj, set, glm_matrix::set<Mat4<float>>, ReadOnly | DontDelete);
 

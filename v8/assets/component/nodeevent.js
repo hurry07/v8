@@ -2,9 +2,11 @@ var _inherit = require('core/inherit.js');
 var _Element = require('component/element.js').prototype;
 var _geometry = require('core/glm.js');
 var _Matrix = _geometry.matrix4;
+var _glm = _geometry.glm;
 
 var _Node = require('component/node.js');
 var FlagTouchMatrix = _Node.prototype.FlagTouchMatrix;
+var FlagTouchMatrixInverse = _Node.prototype.FlagTouchMatrixInverse;
 
 var TypeEventNode = 1;
 var TypeTouchNode = 1 << 1;
@@ -14,13 +16,18 @@ function EventNode(element) {
     this.children = [];
     this.parent = null;
     this.matrix = new _Matrix();// matrix to root
-    this.matrixR = new _Matrix();// reverse of matrix
+    this.matrixInverse = new _Matrix();// reverse of matrix
 }
 EventNode.prototype.type = TypeEventNode;
 EventNode.prototype.addChild = function (child) {
     this.children.push(child);
     child.parent = this;
     child.element.addFlag(FlagTouchMatrix);
+    child.element.addFlag(FlagTouchMatrixInverse);
+}
+EventNode.prototype.updateInverse = function (pvm) {
+    _glm.mulMM(this.matrixInverse, pvm, this.matrix);
+    this.matrixInverse.inverse();
 }
 EventNode.prototype.removeChild = function (child) {
     var index = this.indexOf(child);

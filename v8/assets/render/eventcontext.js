@@ -1,6 +1,7 @@
 //var _LinkedList = require('core/linkedlist.js').LinkedList;
 var _event = require('core/event.js');
 var _Matrix = require('core/glm.js').matrix4;
+var _vec3f = require('core/glm.js').vec3f;
 var _MatrixStack = require('render/matrixstack.js').MatrixStack;
 
 var mTouchEvent = _event.touchEvent;// get events data from native
@@ -15,14 +16,14 @@ function TouchEvent(time) {
     this.time = time;
     this.button = 0;
     this.state = 0;
-    this.x = 0;
-    this.y = 0;
+    this.vector = new _vec3f();
 }
 TouchEvent.prototype.init = function (buffer, offset) {
     this.button = buffer[offset];
     this.state = buffer[offset + 1];
-    this.x = buffer[offset + 2];
-    this.y = buffer[offset + 3];
+    this.vector[0] = buffer[offset + 2];
+    this.vector[1] = buffer[offset + 3];
+    console.log(this.toString());
     return this;
 }
 TouchEvent.prototype.toString = function () {
@@ -30,8 +31,8 @@ TouchEvent.prototype.toString = function () {
         'time:' + this.time,
         'button:' + this.button,
         'state:' + this.state,
-        'x:' + this.x,
-        'y:' + this.y
+        'x:' + this.vector[0],
+        'y:' + this.vector[1]
     ].join(',') + '}';
 }
 
@@ -117,6 +118,11 @@ NodeStack.prototype.next = function () {
 // ========================================================
 // EventContext
 // ========================================================
+var _Node = require('component/node.js');
+var FlagTouchMatrixInverse = _Node.prototype.FlagTouchMatrixInverse;
+var _geometry = require('core/glm.js');
+var _glm = _geometry.glm;
+
 function EventContext() {
 //    this.events = new _LinkedList();
     this.events = [];
@@ -135,7 +141,11 @@ EventContext.prototype.onEvent = function (camera, scene) {
     stack.startItor(scene.__touchnode__);
     while (!stack.isEmpty()) {
         var node = stack.next();
-        console.log('--->', node.element, node.matrix);
+        var element = node.element;
+        if (element.getRemove(FlagTouchMatrixInverse) || dirty) {
+            node.updateInverse(pvm);
+        }
+//        console.log('--->', node.element, node.matrix);
     }
 }
 /**
