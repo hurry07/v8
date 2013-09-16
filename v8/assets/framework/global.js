@@ -133,7 +133,7 @@ exports.runSchedule = function () {
     touchContext.pullEvents();
     var itor = scheduleEvent.iterator();
     while (itor.hasNext()) {
-        touchContext.onEvent(pvmMatrix, itor.next());
+        touchContext.onEvent(mCamera, itor.next());
     }
     touchContext.endTouch();
 

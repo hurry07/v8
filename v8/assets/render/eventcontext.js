@@ -86,10 +86,8 @@ NodeStack.prototype.clear = function () {
     this.dirtyStack.clear();
     this.matrixStack.clear();
 }
-NodeStack.prototype.startItor = function (dirty, pvm, rootnode) {
+NodeStack.prototype.startItor = function (rootnode) {
     this.clear();
-    this.dirtyStack.set(dirty);
-    this.matrix.set(pvm);
     this.nodesCount = 1;
     this.nodesAccess = 0;
 
@@ -123,24 +121,18 @@ function EventContext() {
 //    this.events = new _LinkedList();
     this.events = [];
     this.buffer = new Int32Array(4 * 64);
-    this.mDirty = true;
     this.mStack = new NodeStack();
-}
-EventContext.prototype.isDirty = function () {
-    return this.mDirty;
-}
-EventContext.prototype.setDirty = function (d) {
-    this.mDirty = d;
 }
 EventContext.prototype.endTouch = function () {
     this.events = [];
-    this.mDirty = false;
 }
-EventContext.prototype.onEvent = function (pvm, scene) {
-    var stack = this.mStack;
-    stack.startItor(this.mDirty, pvm, scene.__touchnode__);
+EventContext.prototype.onEvent = function (camera, scene) {
+    var pvm = camera.pvmMatirx();
+    var dirty = camera.isDirty();
 
     // go throught all nodes
+    var stack = this.mStack;
+    stack.startItor(scene.__touchnode__);
     while (!stack.isEmpty()) {
         var node = stack.next();
         console.log('--->', node.element, node.matrix);

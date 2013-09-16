@@ -14,8 +14,6 @@ function Context(camera) {
     this.aStack = new _stack.AlphaStack(64);
     this.pvmCurrent = new _geometry.matrix4();// pvmCurrent = cameraMatrix * matrixStack
     this.matrix = new _geometry.matrix4();
-    this.mWidth = 1;
-    this.mHeight = 1;
     this.clear();
 }
 /**
@@ -56,8 +54,6 @@ Context.prototype.clear = function () {
  * called when camera update
  */
 Context.prototype.onChange = function (w, h) {
-    this.mWidth = w;
-    this.mHeight = h;
     _glm.mulMM(this.pvmCurrent, this.mCamera.pvmMatirx(), this.mStack.matrix);
 }
 

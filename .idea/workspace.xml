@@ -2,19 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/render/touchcontext.js" afterPath="$PROJECT_DIR$/v8/assets/render/eventcontext.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/render/camera.js" afterPath="$PROJECT_DIR$/v8/assets/render/camera.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/render/drawcontext.js" afterPath="$PROJECT_DIR$/v8/assets/render/drawcontext.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/render/eventcontext.js" afterPath="$PROJECT_DIR$/v8/assets/render/eventcontext.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/game.js" afterPath="$PROJECT_DIR$/v8/assets/game.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/framework/global.js" afterPath="$PROJECT_DIR$/v8/assets/framework/global.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/render/matrixstack.js" afterPath="$PROJECT_DIR$/v8/assets/render/matrixstack.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/component/node.js" afterPath="$PROJECT_DIR$/v8/assets/component/node.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/component/nodeevent.js" afterPath="$PROJECT_DIR$/v8/assets/component/nodeevent.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379295174958" ignored="false" />
-    <file path="/game.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379237225397" ignored="false" />
-    <file path="/a.dummy" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379314188052" ignored="false" />
+    <file path="/game.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379315949233" ignored="false" />
+    <file path="/a.dummy" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379316182147" ignored="false" />
     <file path="/temp.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376748679355" ignored="false" />
     <file path="/programs.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376753166840" ignored="false" />
     <file path="/vec3_test.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1377279668112" ignored="false" />
@@ -49,7 +48,7 @@
     <file path="/position_texture.frag" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378136941499" ignored="false" />
     <file path="/position_texture.vert" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378136965112" ignored="false" />
     <file path="/position_texture.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378308995987" ignored="false" />
-    <file path="/camera.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379242802258" ignored="false" />
+    <file path="/camera.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379316478101" ignored="false" />
     <file path="/file.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378175808073" ignored="false" />
     <file path="/node_xml.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378176117030" ignored="false" />
     <file path="/texturemgr.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1378182586127" ignored="false" />
@@ -98,7 +97,7 @@
     <file path="/uicontainer.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379227355532" ignored="false" />
     <file path="/eventnode.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379174025575" ignored="false" />
     <file path="/nodeevent.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379312452951" ignored="false" />
-    <file path="/eventcontext.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379314436179" ignored="false" />
+    <file path="/eventcontext.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379316553420" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +129,7 @@
       <file leaf-file-name="eventcontext.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/render/eventcontext.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="146" column="36" selection-start="4119" selection-end="4119" vertical-scroll-proportion="0.66079295">
+            <state line="137" column="40" selection-start="3887" selection-end="3887" vertical-scroll-proportion="0.4647577">
               <folding />
             </state>
           </provider>
@@ -148,16 +147,43 @@
       <file leaf-file-name="global.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/framework/global.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="135" column="25" selection-start="4122" selection-end="4129" vertical-scroll-proportion="0.0">
+            <state line="131" column="37" selection-start="3987" selection-end="3996" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="uicontainer.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/component/uicontainer.js">
+      <file leaf-file-name="camera.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/render/camera.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="44" selection-start="238" selection-end="247" vertical-scroll-proportion="0.0">
+            <state line="62" column="0" selection-start="2043" selection-end="2043" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="game.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="67" column="23" selection-start="1860" selection-end="1860" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="drawcontext.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/render/drawcontext.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="30" selection-start="943" selection-end="953" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WebGL.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/WebGL.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2721" column="68" selection-start="48927" selection-end="48943" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -172,37 +198,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="drawcontext.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/render/drawcontext.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="18" selection-start="634" selection-end="634" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="node.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/component/node.js">
           <provider selected="true" editor-type-id="text-editor">
             <state line="141" column="27" selection-start="3710" selection-end="3722" vertical-scroll-proportion="-17.68">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="container.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/component/container.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="24" selection-start="1023" selection-end="1023" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="glm.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/v8/assets/core/glm.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="0" selection-start="515" selection-end="515" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -226,7 +225,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/history/test/shader01/game.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/container.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/eventnode.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/uicontainer.js" />
@@ -234,13 +232,14 @@
         <option value="$PROJECT_DIR$/v8/assets/widget/button.js" />
         <option value="$PROJECT_DIR$/v8/assets/scenes/cover.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/scene.js" />
-        <option value="$PROJECT_DIR$/v8/assets/game.js" />
-        <option value="$PROJECT_DIR$/v8/assets/render/camera.js" />
-        <option value="$PROJECT_DIR$/v8/assets/framework/global.js" />
         <option value="$PROJECT_DIR$/v8/assets/render/touchcontext.js" />
         <option value="$PROJECT_DIR$/v8/assets/render/matrixstack.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/node.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/nodeevent.js" />
+        <option value="$PROJECT_DIR$/v8/assets/render/drawcontext.js" />
+        <option value="$PROJECT_DIR$/v8/assets/game.js" />
+        <option value="$PROJECT_DIR$/v8/assets/framework/global.js" />
+        <option value="$PROJECT_DIR$/v8/assets/render/camera.js" />
         <option value="$PROJECT_DIR$/v8/assets/render/eventcontext.js" />
       </list>
     </option>
@@ -781,27 +780,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="19" selection-start="1113" selection-end="1113" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/render/camera.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="26" selection-start="1655" selection-end="1664" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/core/namedlist.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="20" selection-start="1334" selection-end="1334" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/render/updatecontext.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="22" selection-start="72" selection-end="85" vertical-scroll-proportion="0.0">
@@ -837,13 +815,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/render/drawcontext.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="18" selection-start="634" selection-end="634" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/component/container.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="36" column="24" selection-start="1023" selection-end="1023" vertical-scroll-proportion="0.0">
@@ -872,13 +843,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/framework/global.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="135" column="25" selection-start="4122" selection-end="4129" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/component/nodeevent.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="26" selection-start="374" selection-end="381" vertical-scroll-proportion="0.0">
@@ -886,9 +850,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/WebGL.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2721" column="68" selection-start="48927" selection-end="48943" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="23" selection-start="1860" selection-end="1860" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/framework/global.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="131" column="37" selection-start="3987" selection-end="3996" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/render/drawcontext.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="30" selection-start="943" selection-end="953" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/render/camera.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="0" selection-start="2043" selection-end="2043" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/render/eventcontext.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="146" column="36" selection-start="4119" selection-end="4119" vertical-scroll-proportion="0.66079295">
+        <state line="137" column="40" selection-start="3887" selection-end="3887" vertical-scroll-proportion="0.4647577">
           <folding />
         </state>
       </provider>

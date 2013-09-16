@@ -46,8 +46,9 @@ game.render = {
         _gl.disable(_gl.SCISSOR_TEST);
 
         mCamera.lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(0, width, 0, height, 9, 11);
-        mRenderContext.onChange(width, height);
-        _gl.viewport(0, 0, width, height);
+        mRenderContext.onChange();
+        mCamera.setViewport(width, height);
+        mCamera.viewport();
 
         if (firstInit) {
             _global.registerScene(require('scenes/cover.js').newInstance('cover', width, height));
@@ -57,8 +58,9 @@ game.render = {
     },
     onSurfaceChanged: function (width, height) {
         mCamera.lookAt([0, 0, 10], [0, 0, 0], [0, 1, 0]).ortho(0, width, 0, height, 9, 11);
-        mRenderContext.onChange(width, height);
-        _gl.viewport(0, 0, width, height);
+        mRenderContext.onChange();
+        mCamera.setViewport(width, height);
+        mCamera.viewport();
 
         _global.onSizeChange(width, height);
     },
