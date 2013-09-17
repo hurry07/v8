@@ -16,9 +16,36 @@ var _glm = _geometry.glm;
 var _v3 = _geometry.vec3f;
 
 var _inherit = require('core/inherit.js');
-
-var a = -1;
-var b = 1;
+var _LinkedList = require('core/linkedlist_1.js');
+function Cell(str) {
+    this.str = str;
+    this.next = this.previous = null;
+}
+Cell.prototype.toString = function () {
+    return this.str;
+}
+var list1 = new _LinkedList();
+var list2 = new _LinkedList();
+for (var i = 0; i < 10; i++) {
+    var c = new Cell('aa' + i);
+    if (i % 2 == 0) {
+        list1.add(c);
+    } else {
+        list2.add(c);
+    }
+}
+list1.merge(list2);
+console.log('---------------->>');
+var itor = list1.iterator();
+while (itor.hasNext()) {
+    console.log(itor.next());
+}
+console.log('----------------<<');
+var itor = list2.iterator();
+while (itor.hasNext()) {
+    console.log(itor.next());
+}
+console.log('----------------<<');
 
 var firstInit = true;
 function Game() {

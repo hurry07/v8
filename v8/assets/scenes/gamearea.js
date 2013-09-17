@@ -58,7 +58,6 @@ GameArea.prototype.onTouch = function (event) {
     if (!this.isInArea(event.vector)) {
         return false;
     }
-    console.log('GameArea:', event);
     return true;
 }
 GameArea.prototype.toString = function () {

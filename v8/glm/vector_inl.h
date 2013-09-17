@@ -228,7 +228,7 @@ static v8::Local<v8::Function> glm_vector::initVector2(v8::Handle<v8::FunctionTe
 template <class M, typename T>
 static v8::Local<v8::Function> glm_vector::initVector3(v8::Handle<v8::FunctionTemplate>& temp) {
     HandleScope scope;
-    
+
     Local<ObjectTemplate> obj = temp->PrototypeTemplate();
     obj->SetAccessor(String::New("length"), globalfn::array::length);
     EXPOSE_METHOD_NAME(obj, set, set<M>, ReadOnly | DontDelete);
