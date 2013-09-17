@@ -46,5 +46,8 @@ ColorNode.prototype.initMesh = function () {
 
     b.upload();
 }
+ColorNode.prototype.setColor = function (color) {
+    this.mMaterial.setColor(color);
+}
 
 module.exports = ColorNode;

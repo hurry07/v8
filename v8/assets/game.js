@@ -1,51 +1,13 @@
 var _gl = require('opengl');
 var _global = require('framework/global.js');
-var _event = require('core/event.js');
-var _touchContext = _event.touchContext;
-var _framerate = require('tools/framerate.js');
 
 var mCamera = _global.mCamera;
 var mRenderContext = _global.mRenderContext;
-var mUpdateContext = _global.updateContext;
-
-var mTouchBuffer = new Int32Array(16);
-var mKeyBuffer = new Int32Array(12);
 
 var _geometry = require('core/glm.js');
 var _glm = _geometry.glm;
 var _v3 = _geometry.vec3f;
-
 var _inherit = require('core/inherit.js');
-var _LinkedList = require('core/linkedlist_1.js');
-function Cell(str) {
-    this.str = str;
-    this.next = this.previous = null;
-}
-Cell.prototype.toString = function () {
-    return this.str;
-}
-var list1 = new _LinkedList();
-var list2 = new _LinkedList();
-for (var i = 0; i < 10; i++) {
-    var c = new Cell('aa' + i);
-    if (i % 2 == 0) {
-        list1.add(c);
-    } else {
-        list2.add(c);
-    }
-}
-list1.merge(list2);
-console.log('---------------->>');
-var itor = list1.iterator();
-while (itor.hasNext()) {
-    console.log(itor.next());
-}
-console.log('----------------<<');
-var itor = list2.iterator();
-while (itor.hasNext()) {
-    console.log(itor.next());
-}
-console.log('----------------<<');
 
 var firstInit = true;
 function Game() {

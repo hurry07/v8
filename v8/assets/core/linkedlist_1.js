@@ -1,9 +1,10 @@
 // ==========================
 // Node
 // ==========================
-function Node() {
+function Node(data) {
     this.next = this.previous = null;
     this.mList = null;
+    this.data = data;
 }
 
 // ==========================
@@ -35,6 +36,7 @@ Iter.prototype.remove = function () {
 // ==========================
 function LinkedList() {
     this.anthor = new Node(this);
+    this.anthor.mList = this;
     this.anthor.previous = this.anthor.next = this.anthor;
     this.iter = new Iter(this);
     this.mCount = 0;
@@ -114,3 +116,4 @@ LinkedList.prototype.toString = function () {
 }
 
 module.exports = LinkedList;
+module.exports.Node = Node;

@@ -43,5 +43,8 @@ exports.positionColor = _inherit(function (program, color) {
     },
     create: function (program, color) {
         return new this.constructor(program, color);
+    },
+    setColor: function (color) {
+        this.color.set(color);
     }
 });
