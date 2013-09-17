@@ -31,8 +31,8 @@ TouchEvent.prototype.toString = function () {
         'time:' + this.time,
         'button:' + this.button,
         'state:' + this.state,
-        'x:' + this._vector[0],
-        'y:' + this._vector[1]
+        'x:' + this.vector[0],
+        'y:' + this.vector[1]
     ].join(',') + '}';
 }
 /**
