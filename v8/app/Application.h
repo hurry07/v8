@@ -31,8 +31,8 @@ public:
     void destroy();
     void gc();
 
-    void onSurfaceCreated(float width, float height);
-    void onSurfaceChanged(float width, float height);
+    void onSurfaceCreated(int width, int height);
+    void onSurfaceChanged(int width, int height);
     void onDrawFrame();
     void evalScript(const char* sprite);
 
@@ -54,6 +54,9 @@ private:
     JSObject* render;
     TouchEvent* touchEvent;
     TouchEvent* keyEvent;
+    
+    int mWidth;
+    int mHeight;
 
     Handle<Value> eval(const char* script);
 

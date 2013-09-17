@@ -47,6 +47,9 @@ Application::Application() {
 //    const char typed_arrays_flag[] = "--harmony_typed_arrays";
 //    V8::SetFlagsFromString(typed_arrays_flag, sizeof(typed_arrays_flag) - 1);
 //    V8::SetArrayBufferAllocator(&ArrayBufferAllocator::the_singleton);
+    
+    mWidth = 0;
+    mHeight = 0;
 
 	node_isolate = Isolate::New();
 	ENTER_ISOLATE;
@@ -250,7 +253,10 @@ Handle<Value> Application::eval(const char* script) {
 	Local<Script> comp = Script::Compile(source);
 	return scope.Close(comp->Run());
 }
-void Application::onSurfaceCreated(float width, float height) {
+void Application::onSurfaceCreated(int width, int height) {
+    mWidth = width;
+    mHeight = height;
+    
 	ENTER_ISOLATE;
 	HANDLE_SCOPE;
 	CONTEXT_SCOPE;
@@ -260,7 +266,10 @@ void Application::onSurfaceCreated(float width, float height) {
     argv[1] = Number::New(height);
 	render->callFunction("onSurfaceCreated", 2, argv);
 }
-void Application::onSurfaceChanged(float width, float height) {
+void Application::onSurfaceChanged(int width, int height) {
+    mWidth = width;
+    mHeight = height;
+
 	ENTER_ISOLATE;
 	HANDLE_SCOPE;
 	CONTEXT_SCOPE;
@@ -279,11 +288,11 @@ void Application::onDrawFrame() {
 	render->callFunction(name);
 }
 void Application::appendMouseTouch(int button, int state, int x, int y) {
-    touchEvent->appendMouseTouch(button, state, x, y);
+    touchEvent->appendMouseTouch(button, state, x, mHeight - y);
 }
 void Application::appendMouseMove(int x, int y) {
-    touchEvent->appendMouseMove(x, y);
+    touchEvent->appendMouseMove(x, mHeight - y);
 }
 void Application::appendKeyPress(unsigned char key, int x, int y) {
-    keyEvent->appendKeyPress(key, x, y);
+    keyEvent->appendKeyPress(key, x, mHeight - y);
 }

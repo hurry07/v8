@@ -14,7 +14,7 @@ function Camera() {
     this.mProjectParam = {
         left: 0,
         right: 1,
-        buttom: 0,
+        bottom: 0,
         top: 1,
         near: 1,
         far: 2
@@ -73,7 +73,7 @@ Camera.prototype.ortho = function (left, right, bottom, top, near, far) {
     this.mProjectParam = {
         left: left,
         right: right,
-        buttom: bottom,
+        bottom: bottom,
         top: top,
         near: near,
         far: far
@@ -96,12 +96,6 @@ Camera.prototype.updatePVM = function () {
     _glm.mulMM(this.mProjectModelViewMatirx, this.mProjectMatrix, this.mModelViewMatrix);
 
     var port_p = this.mViewportParam;
-    var touchM = this.mTouchMatrix;
-    touchM.identity();
-    touchM.translate(new _vec3f(-port_p.x, -port_p.y, 0));
-    touchM.scale(new _vec3f(1, -1, 1));
-    touchM.translate(new _vec3f(0, -port_p.height, 0));
-
     var proj_p = this.mProjectParam;
     var pw = proj_p.right - proj_p.left;
     var ph = proj_p.top - proj_p.bottom;
@@ -110,11 +104,10 @@ Camera.prototype.updatePVM = function () {
     var centerx = -proj_p.left / pw;
     var centery = -proj_p.bottom / ph;
 
-    var projM = new _matrix();
-    projM.scale(new _vec3f(scalex, scaley, 1));
-    projM.translate(new _vec3f(-port_p.width * centerx, -port_p.height * centery, 0));
-
-    _glm.mulMM(touchM, projM, touchM);
+    var touchM = this.mTouchMatrix;
+    touchM.identity();
+    touchM.scale(new _vec3f(scalex, scaley, 1));
+    touchM.translate(new _vec3f(-port_p.width * centerx - port_p.x, -port_p.height * centery - port_p.y, 0));
 }
 Camera.prototype.pvmMatirx = function () {
     return this.mProjectModelViewMatirx;
