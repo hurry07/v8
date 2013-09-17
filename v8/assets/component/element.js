@@ -10,7 +10,7 @@ function generatorId() {
  */
 function Element() {
     this.mId = generatorId();// give an auto increase id
-    this.mClass = '';// an aulter describe, like css
+    this.mClass = '';// an alter describe, like css
     this.mParent = null;
 }
 Element.prototype.mTag = 'element';// describe current type(class)

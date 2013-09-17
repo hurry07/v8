@@ -24,7 +24,7 @@ function Node() {
     this.mMatrix = new _matrix4();
     this.mRotate = 0;
 
-    this.mFlags = -1;
+    this.mFlags = this.mFlags;
     this.mVisiable = true;
     this.mParent = null;
 }
@@ -32,15 +32,19 @@ _inherit(Node, _Element);
 Node.prototype.__elementType |= Node.prototype.ElementTypeNode;
 Node.prototype.mTag = 'node';
 
-var FlagMatrix = 1;
-var FlagTouchMatrix = 1 << 1;
-
-Node.prototype.FlagMatrix = FlagMatrix;
-Node.prototype.FlagTouchMatrix = FlagTouchMatrix;
-
-Node.prototype.setUiNode = function (isUi) {
-    this.__isUiNode = isUi;
+var _flags = {
+    FlagMatrix: 1,
+    FlagTouchMatrix: 1 << 1,
+    FlagSeal: 1 << 2// cannot access child of this element, works with selector
 }
+for (var i in _flags) {
+    Node.prototype[i] = _flags[i];
+}
+
+var MatrixDirty = _flags.FlagTouchMatrix | _flags.FlagMatrix;
+var FlagMatrix = _flags.FlagMatrix;
+Node.prototype.mFlags = -1 & (~_flags.FlagSeal);
+
 Node.prototype.visiable = function () {
     if (arguments.length > 0) {
         this.mVisiable = arguments[0];
@@ -50,7 +54,7 @@ Node.prototype.visiable = function () {
 }
 Node.prototype.setRotate = function (r) {
     this.mRotate = r;
-    this.mFlags = -1;
+    this.addFlag(MatrixDirty);
 }
 Node.prototype.getRotate = function (r) {
     return this.mRotate;
@@ -62,11 +66,11 @@ Node.prototype.setPosition = function (x, y) {
         this.mPosition[0] = x;
         this.mPosition[1] = y;
     }
-    this.mFlags = -1;
+    this.addFlag(MatrixDirty);
 }
 Node.prototype.translate = function (offset) {
     this.mPosition.add(offset);
-    this.mFlags = -1;
+    this.addFlag(MatrixDirty);
 }
 Node.prototype.setScale = function (sx, sy) {
     if (arguments.length == 1) {
@@ -75,7 +79,7 @@ Node.prototype.setScale = function (sx, sy) {
         this.mScale[0] = sx;
         this.mScale[1] = sy;
     }
-    this.mFlags = -1;
+    this.addFlag(MatrixDirty);
 }
 Node.prototype.getPosition = function () {
     return this.mPosition;
