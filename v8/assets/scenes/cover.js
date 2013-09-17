@@ -113,6 +113,12 @@ function CoinsStarSlot() {
     this.layout();
 }
 _inherit(CoinsStarSlot, _UIContainer);
+CoinsStarSlot.prototype.showButton = function () {
+    this.addChild(this.button);
+}
+CoinsStarSlot.prototype.hideButton = function () {
+    this.removeChild(this.button);
+}
 CoinsStarSlot.prototype.layout = function () {
     var halfh = this.height() / 2;
     _relative.layout(this.icon, [.5, .5], _absoult.localPoint(this, halfh, halfh - 1));
@@ -170,6 +176,10 @@ module.exports = _scene.createScene(
         this.mRotate = 0;
         this.layout();
 
+        this.__touchnode__.print();
+        this.coinStar.hideButton();
+        this.__touchnode__.print();
+        this.coinStar.showButton();
         this.__touchnode__.print();
     }, {
         update: function (context) {

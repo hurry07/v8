@@ -28,6 +28,7 @@ Container.prototype.addChild = function (child) {
 }
 Container.prototype.removeChild = function (child) {
     __removeChild(this.children, child);
+    child.mParent = null;
     return child;
 }
 Container.prototype.draw = function (context) {

@@ -8,6 +8,9 @@ function Button(id, skin) {
     this.mSkin = skin;
     this.mTouchDelegate = new _TouchDelegate(this);
     _UIContainer.call(this);
+    console.log('button:flags', this.mFlags, this.FlagSeal);
+    this.mFlags |= this.FlagSeal;
+    console.log('button:flags', this.mFlags, this.FlagSeal);
     (id != undefined && id != null) && (this.mId = id);
     this.setSize(skin.width(), skin.height());
     this.addChild(skin);
