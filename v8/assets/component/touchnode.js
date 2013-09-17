@@ -112,7 +112,6 @@ EventNode.prototype.onEvent = function (events, stack) {
 function TouchNode(element, delegate) {
     EventNode.call(this, element);
     this.delegate = delegate || element;
-    console.log(this.delegate);
 }
 _inherit(TouchNode, EventNode);
 TouchNode.prototype.type = TypeTouchNode;
