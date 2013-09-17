@@ -11,21 +11,40 @@ function Camera() {
     this.mDirty = true;
     this.mTimestamp = 0;
     this.setViewport(0, 0, 1, 1);
+    this.mProjectParam = {
+        left: 0,
+        right: 1,
+        buttom: 0,
+        top: 1,
+        near: 1,
+        far: 2
+    };
+    this.mViewportParam = {
+        x: 0,
+        y: 0,
+        width: 1,
+        height: 1
+    }
 }
 Camera.prototype.viewport = function () {
-    _gl.viewport(this.x, this.y, this.width, this.height);
+    var p = this.mViewportParam;
+    _gl.viewport(p.x, p.y, p.width, p.height);
 }
 Camera.prototype.setViewport = function (x, y, width, height) {
     if (arguments.length == 2) {
-        this.x = 0;
-        this.y = 0;
-        this.width = x;
-        this.height = y;
+        this.mViewportParam = {
+            x: 0,
+            y: 0,
+            width: x,
+            height: y
+        }
     } else {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+        this.mViewportParam = {
+            x: x,
+            y: y,
+            width: width,
+            height: height
+        }
     }
     this.updatePVM();
 }
@@ -50,6 +69,14 @@ Camera.prototype.frustum = function (left, right, bottom, top, near, far) {
     return this;
 }
 Camera.prototype.ortho = function (left, right, bottom, top, near, far) {
+    this.mProjectParam = {
+        left: left,
+        right: right,
+        buttom: bottom,
+        top: top,
+        near: near,
+        far: far
+    };
     this.mProjectMatrix.identity();
     _glm.ortho.apply(this, [this.mProjectMatrix].concat(Array.prototype.splice.call(arguments, 0)));
     this.updatePVM();
@@ -66,9 +93,11 @@ Camera.prototype.updatePVM = function () {
     this.mDirty = true;
     this.mTimestamp = new Date().getTime();
     _glm.mulMM(this.mProjectModelViewMatirx, this.mProjectMatrix, this.mModelViewMatrix);
+
+    var paramP = this.mViewportParam;
     this.mTouchMatrix.identity();
     this.mTouchMatrix.scale(new _vec3f(1, -1, 1));
-    this.mTouchMatrix.translate(new _vec3f(0, -this.height, 0));
+    this.mTouchMatrix.translate(new _vec3f(0, -paramP.height, 0));
 }
 Camera.prototype.pvmMatirx = function () {
     return this.mProjectModelViewMatirx;
