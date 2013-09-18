@@ -44,6 +44,15 @@ function LinkedList() {
 LinkedList.prototype.iterator = function () {
     return this.iter.init(this.anthor, this.anthor);
 }
+LinkedList.prototype.clear = function () {
+    var start = this.anthor;
+    while ((start = start.next) != this.anthor) {
+        start.mList = null;
+        console.log(start);
+    }
+    this.anthor.previous = this.anthor.next = this.anthor;
+    this.mCount = 0;
+}
 LinkedList.prototype.add = function (cell) {
     var p = cell.mList;
     if (p) {
