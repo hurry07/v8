@@ -3,8 +3,8 @@
 // ==========================
 function Node(data) {
     this.next = this.previous = null;
-    this.mList = null;
     this.data = data;
+    this.mList = null;
 }
 
 // ==========================
@@ -45,8 +45,14 @@ LinkedList.prototype.iterator = function () {
     return this.iter.init(this.anthor, this.anthor);
 }
 LinkedList.prototype.add = function (cell) {
-    if (cell.mList === this) {
-        return;
+    var p = cell.mList;
+    if (p) {
+        if (p === this) {
+            return;
+        } else {
+            // a node can only belongs to one list
+            p.remove(cell);
+        }
     }
     this.__insert(cell);
 }
@@ -90,6 +96,7 @@ LinkedList.prototype.merge = function (g) {
     g.anthor.next = g.anthor.previous = g.anthor;
     this.mCount += g.mCount;
     g.mCount = 0;
+    g.onMerge();
 
     while (start != anthor) {
         start.mList = this;
@@ -100,19 +107,21 @@ LinkedList.prototype.count = function () {
     return this.mCount;
 }
 LinkedList.prototype.first = function () {
-    if (count == 0) {
+    if (this.mCount == 0) {
         return null;
     }
     return this.anthor.next;
 }
 LinkedList.prototype.last = function () {
-    if (count == 0) {
+    if (this.mCount == 0) {
         return null;
     }
     return this.anthor.previous;
 }
+LinkedList.prototype.onMerge = function () {
+}
 LinkedList.prototype.toString = function () {
-    return 'group {count:' + count + '}';
+    return 'group {count:' + this.mCount + '}';
 }
 
 module.exports = LinkedList;
