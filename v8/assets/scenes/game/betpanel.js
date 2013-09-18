@@ -11,6 +11,8 @@ function BetPanel(game) {
 
     this.setSize(WIDTH, HEIGHT);
     this.addChild(this.bg = _global.colorNode([40 / 255, 42 / 255, 45 / 255, 1], WIDTH, HEIGHT));
+
+    this.resize(WIDTH);
 }
 _inherit(BetPanel, _UIContainer);
 BetPanel.prototype.resize = function (width) {

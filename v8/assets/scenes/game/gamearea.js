@@ -5,9 +5,8 @@ var _TouchNode = require('component/touchnode.js').TouchNode;
 var _LinkedList = require('core/linkedlist_1.js');
 var _Node = require('core/linkedlist_1.js').Node;
 var _inherit = require('core/inherit.js');
+var _listRemove = _LinkedList.prototype.remove;
 
-var WIDTH = 350;
-var HEIGHT = 400;
 var COLORS = [
     [1, 0, 0, 1],
     [0, 1, 0, 1],
@@ -15,6 +14,14 @@ var COLORS = [
     [0, 0, 0, 1]
 ];
 
+var STATUS_ACTIVE = 1;// normal, user can click cells
+var STATUS_REMOVING = 2;// one or more cell groups found, and running the removing anima
+var STATUS_WAITING = 3;// waiting user set bet
+var STATUS_FALL = 4;// start new game
+
+// ==========================
+// TouchDelegate
+// ==========================
 function TouchDelegate(game) {
     this.game = game;
     this.mDisable = true;
@@ -54,6 +61,9 @@ TouchDelegate.prototype.onTouch = function (event) {
     return true;
 }
 
+// ==========================
+// Cell
+// ==========================
 function Cell(unit) {
     _Container.call(this);
 
@@ -95,7 +105,9 @@ Cell.prototype.toString = function () {
     return 'cell';
 }
 
-var _listRemove = _LinkedList.prototype.remove;
+// ==========================
+// Cell Group
+// ==========================
 function Group() {
     _LinkedList.call(this);
     this.next = this.previous = null;
@@ -125,20 +137,29 @@ function flat(group) {
     }
     return data.join();
 }
-function GameArea() {
+
+// ==========================
+// GameArea
+// ==========================
+function GameArea(game, config) {
     _UIContainer.call(this);
     this.mFlags |= this.FlagSeal;
 
-    this.mCols = 7;
-    this.mRows = 8;
+    this.game = game;
+    this.config = config;
+    this.mCols = config.col;
+    this.mRows = config.row;
+    this.mMinMatch = config.minmatch;
     this.mCells = [];
 
     this.mEmpty = new _LinkedList();
     this.mGroups = new _LinkedList();
-    this.mMinMatch = 3;
+    this.mRemove = new _LinkedList();// success cell groups
 
-    var unit = WIDTH / this.mCols;
-    var starty = HEIGHT - unit / 2;
+    var unit = config.unitwidth;
+    var width = unit * this.mCols;
+    var height = unit * this.mRows;
+    var starty = height - unit / 2;
     var x = unit / 2;
     var y = starty;
     var edge = unit - 2;
@@ -161,7 +182,7 @@ function GameArea() {
         y = starty;
     }
     this.mUnit = unit;
-    this.setSize(WIDTH, HEIGHT);
+    this.setSize(width, height);
 
     this.linkEmpty();
     this.updateDrawable();
@@ -175,7 +196,16 @@ GameArea.prototype.createEventNode = function () {
 GameArea.prototype.onTouch = function (x, y) {
     var xindex = Math.floor(x / this.mUnit);
     var yindex = this.mRows - Math.floor(y / this.mUnit) - 1;
-    this.update(xindex, yindex);
+    this.updateCell(xindex, yindex);
+}
+GameArea.prototype.updateCell = function (x, y) {
+    var index = x * this.mRows + y;
+    var cell = this.mCells[index];
+    cell.click();
+
+    this.mEmpty.merge(cell.mList);
+    this.linkEmpty();
+    this.updateDrawable();
 }
 GameArea.prototype.toString = function () {
     return 'area';
@@ -253,14 +283,7 @@ GameArea.prototype.linkEmpty = function () {
         this.link(empty.last());
     }
 }
-GameArea.prototype.update = function (x, y) {
-    var index = x * this.mRows + y;
-    var cell = this.mCells[index];
-    cell.click();
-
-    this.mEmpty.merge(cell.mList);
-    this.linkEmpty();
-    this.updateDrawable();
+GameArea.prototype.update = function (step) {
 }
 
 module.exports = GameArea;
