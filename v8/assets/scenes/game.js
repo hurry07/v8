@@ -1,22 +1,34 @@
 var _scene = require('component/scene.js');
-var _GameArea = require('scenes/gamearea.js');
+var _GameArea = require('scenes/game/gamearea.js');
+var _BetPanel = require('scenes/game/betpanel.js');
+var _MessagePanel = require('scenes/game/messagepanel.js');
 var _layout = require('tools/layout.js');
 var _relative = _layout.relative;
 
-module.exports = _scene.createScene(
+var Game = _scene.createScene(
     function (w, h) {
         this.setSize(w, h);
-        this.addChild(this.gamearea = new _GameArea());
+        this.addChild(this.gamearea = new _GameArea(this));
+        this.addChild(this.betpanel = new _BetPanel(this));
+        this.addChild(this.msgpanel = new _MessagePanel(this));
 
-        this.layout();
-        this.__touchnode__.print();
-    }, {
-        update: function (context) {
-        },
-        onSizeChange: function (w, h) {
-            this.layout();
-        },
-        layout: function () {
-            _relative.layout(this.gamearea, 0, 0, 200, 50);
-        }
+        this.onSizeChange(w, h);
     });
+
+Game.prototype.update = function (context) {
+}
+Game.prototype.onSizeChange = function (w, h) {
+    this.setSize(w, h);
+
+    var wideleft = (w - this.gamearea.width()) / 2;
+    this.betpanel.resize(wideleft);
+    this.msgpanel.resize(wideleft);
+
+    _relative.layout(this.betpanel, 0, 0, 0, 0);
+    _relative.layout(this.gamearea, 0, 0, wideleft, 0);
+    _relative.layoutTo(this.msgpanel, 0, 0, this.gamearea, 1, 0);
+}
+Game.prototype.layout = function () {
+}
+
+module.exports = Game;

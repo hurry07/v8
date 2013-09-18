@@ -15,6 +15,45 @@ var COLORS = [
     [0, 0, 0, 1]
 ];
 
+function TouchDelegate(game) {
+    this.game = game;
+    this.mDisable = true;
+    this.init();
+}
+TouchDelegate.prototype.init = function () {
+    this.width = this.game.width();
+    this.height = this.game.height();
+}
+TouchDelegate.prototype.isInArea = function (x, y) {
+    if (x < 0 || y < 0) {
+        return false;
+    }
+    if (x > this.width || y > this.height) {
+        return false;
+    }
+    return true;
+}
+TouchDelegate.prototype.disable = function (event) {
+    this.mDisable = true;
+}
+TouchDelegate.prototype.enable = function (event) {
+    this.mDisable = false;
+}
+TouchDelegate.prototype.onTouch = function (event) {
+    if (this.mDisable) {
+        return false;
+    }
+    var x = event.vector[0];
+    var y = event.vector[1];
+    if (!this.isInArea(x, y)) {
+        return false;
+    }
+    if (event.state == 0) {
+        this.game.onTouch(x, y);
+    }
+    return true;
+}
+
 function Cell(unit) {
     _Container.call(this);
 
@@ -38,11 +77,13 @@ Cell.prototype.setCoordinate = function (x, y) {
     this.cellx = x;
     this.celly = y;
 }
+Cell.prototype.setData = function (data) {
+    this.data = data;
+    this.rect.setColor(COLORS[ data]);
+    this.mSelected.setColor(COLORS[(data + 3) % 4 ]);
+}
 Cell.prototype.click = function () {
-    this.data = (this.data + 1) % 4;
-    this.rect.setColor(COLORS[this.data]);
-    this.mSelected.setColor(COLORS[(this.data + 3) % 4 ]);
-    return 'cell';
+    this.setData((this.data + 1) % 4);
 }
 Cell.prototype.focus = function () {
     this.mSelected.visiable(true);
@@ -94,6 +135,7 @@ function GameArea() {
 
     this.mEmpty = new _LinkedList();
     this.mGroups = new _LinkedList();
+    this.mMinMatch = 3;
 
     var unit = WIDTH / this.mCols;
     var starty = HEIGHT - unit / 2;
@@ -102,12 +144,14 @@ function GameArea() {
     var edge = unit - 2;
 
     // column first
+    Math.random();
     for (var xindex = -1; ++xindex < this.mCols;) {
         for (var yindex = -1; ++yindex < this.mRows;) {
             var cell = new Cell(edge);
             cell.setAnthor(0.5, 0.5);
             cell.setPosition(x, y);
             cell.setCoordinate(xindex, yindex);
+            cell.setData(Math.floor(Math.random() * 4));
             this.mCells.push(cell);
             this.mEmpty.add(cell);
             this.addChild(cell);
@@ -119,36 +163,19 @@ function GameArea() {
     this.mUnit = unit;
     this.setSize(WIDTH, HEIGHT);
 
-    var group = new Group();
-    group.merge(this.mEmpty);
-    this.mGroups.add(group);
+    this.linkEmpty();
     this.updateDrawable();
+    this.mTouchDelegate.init();
+    this.mTouchDelegate.enable();
 }
 _inherit(GameArea, _UIContainer);
 GameArea.prototype.createEventNode = function () {
-    return new _TouchNode(this);
+    return new _TouchNode(this, this.mTouchDelegate = new TouchDelegate(this));
 }
-GameArea.prototype.isInArea = function (x, y) {
-    if (x < 0 || y < 0) {
-        return false;
-    }
-    if (x > WIDTH || y > HEIGHT) {
-        return false;
-    }
-    return true;
-}
-GameArea.prototype.onTouch = function (event) {
-    var x = event.vector[0];
-    var y = event.vector[1];
-    if (!this.isInArea(x, y)) {
-        return false;
-    }
-    if (event.state == 0) {
-        var xindex = Math.floor(x / this.mUnit);
-        var yindex = this.mRows - Math.floor(y / this.mUnit) - 1;
-        this.update(xindex, yindex);
-    }
-    return true;
+GameArea.prototype.onTouch = function (x, y) {
+    var xindex = Math.floor(x / this.mUnit);
+    var yindex = this.mRows - Math.floor(y / this.mUnit) - 1;
+    this.update(xindex, yindex);
 }
 GameArea.prototype.toString = function () {
     return 'area';
@@ -158,7 +185,6 @@ GameArea.prototype.toString = function () {
  * @param current cell
  */
 GameArea.prototype.linkNear = function (cell, current) {
-//    console.log('link:', flatCell(cell), flatCell(current));
     var empty = this.mEmpty;
     if (cell.data == current.data && cell.mList !== empty) {
         if (current.mList === empty) {
@@ -208,8 +234,11 @@ GameArea.prototype.updateDrawable = function () {
     var gItor = this.mGroups.iterator();
     while (gItor.hasNext()) {
         var group = gItor.next();
-        if (group.count() == 1) {
-            group.first().flur();
+        if (group.count() < this.mMinMatch) {
+            itor = group.iterator();
+            while (itor.hasNext()) {
+                itor.next().flur();
+            }
         } else {
             itor = group.iterator();
             while (itor.hasNext()) {
@@ -218,18 +247,19 @@ GameArea.prototype.updateDrawable = function () {
         }
     }
 }
-GameArea.prototype.update = function (x, y) {
-    var index = x * this.mRows + y;
-    var cell = this.mCells[index];
-
-    cell.click();
-
+GameArea.prototype.linkEmpty = function () {
     var empty = this.mEmpty;
-    empty.merge(cell.mList);
     while (empty.count() > 0) {
         this.link(empty.last());
     }
+}
+GameArea.prototype.update = function (x, y) {
+    var index = x * this.mRows + y;
+    var cell = this.mCells[index];
+    cell.click();
 
+    this.mEmpty.merge(cell.mList);
+    this.linkEmpty();
     this.updateDrawable();
 }
 
