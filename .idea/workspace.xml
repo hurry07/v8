@@ -3,14 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/scenes/game.js" afterPath="$PROJECT_DIR$/v8/assets/scenes/game.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/scenes/game/gamearea.js" afterPath="$PROJECT_DIR$/v8/assets/scenes/game/gamearea.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/core/linkedlist_1.js" afterPath="$PROJECT_DIR$/v8/assets/core/linkedlist_1.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379468566958" ignored="false" />
-    <file path="/game.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379487839645" ignored="false" />
+    <file path="/game.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379496591592" ignored="false" />
     <file path="/a.dummy" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379489128074" ignored="false" />
     <file path="/temp.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376748679355" ignored="false" />
     <file path="/programs.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376753166840" ignored="false" />
@@ -99,7 +98,7 @@
     <file path="/touchnode.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379424174724" ignored="false" />
     <file path="/touchdelegate.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379347202778" ignored="false" />
     <file path="/selector.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379415377482" ignored="false" />
-    <file path="/gamearea.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379495184593" ignored="false" />
+    <file path="/gamearea.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379499399358" ignored="false" />
     <file path="/cell.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379428242179" ignored="false" />
     <file path="/linkedlist_1.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379494883553" ignored="false" />
     <file path="/dropanima.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379481129540" ignored="false" />
@@ -132,7 +131,7 @@
       <file leaf-file-name="linkedlist_1.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/core/linkedlist_1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="0" selection-start="1182" selection-end="1295" vertical-scroll-proportion="0.0">
+            <state line="41" column="9" selection-start="1024" selection-end="1024" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -141,7 +140,7 @@
       <file leaf-file-name="gamearea.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/scenes/game/gamearea.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="332" column="30" selection-start="8894" selection-end="8905" vertical-scroll-proportion="0.35132158">
+            <state line="191" column="0" selection-start="5145" selection-end="5145" vertical-scroll-proportion="0.6982379">
               <folding />
             </state>
           </provider>
@@ -186,7 +185,7 @@
       <file leaf-file-name="game.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/scenes/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="49" selection-start="1174" selection-end="1174" vertical-scroll-proportion="0.0">
+            <state line="40" column="14" selection-start="1248" selection-end="1257" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -228,12 +227,12 @@
         <option value="$PROJECT_DIR$/v8/assets/scenes/game/betpanel.js" />
         <option value="$PROJECT_DIR$/v8/assets/scenes/game/label.js" />
         <option value="$PROJECT_DIR$/v8/assets/scenes/game/gamedata.js" />
-        <option value="$PROJECT_DIR$/v8/assets/scenes/game.js" />
         <option value="$PROJECT_DIR$/v8/assets/scenes/game/fullanima.js" />
         <option value="$PROJECT_DIR$/v8/assets/scenes/game/dropanima.js" />
         <option value="$PROJECT_DIR$/v8/assets/scenes/game/fallanima.js" />
         <option value="$PROJECT_DIR$/v8/assets/scenes/game/animas.js" />
         <option value="$PROJECT_DIR$/v8/assets/core/linkedlist_1.js" />
+        <option value="$PROJECT_DIR$/v8/assets/scenes/game.js" />
         <option value="$PROJECT_DIR$/v8/assets/scenes/game/gamearea.js" />
       </list>
     </option>
@@ -794,13 +793,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/scenes/game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="49" selection-start="1174" selection-end="1174" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/scenes/game/animas.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="75" column="29" selection-start="1950" selection-end="1950" vertical-scroll-proportion="0.0">
@@ -822,13 +814,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/core/linkedlist_1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="0" selection-start="1182" selection-end="1295" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/component/uicontainer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="27" selection-start="871" selection-end="871" vertical-scroll-proportion="0.0">
@@ -843,9 +828,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/scenes/game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="14" selection-start="1248" selection-end="1257" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/core/linkedlist_1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="9" selection-start="1024" selection-end="1024" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/scenes/game/gamearea.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="332" column="30" selection-start="8894" selection-end="8905" vertical-scroll-proportion="0.35132158">
+        <state line="191" column="0" selection-start="5145" selection-end="5145" vertical-scroll-proportion="0.6982379">
           <folding />
         </state>
       </provider>

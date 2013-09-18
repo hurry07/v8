@@ -18,6 +18,8 @@ var Game = _scene.createScene(
 );
 
 Game.prototype.update = function (context) {
+    this.gamearea.startNextRound();
+    this.gamearea.update(context);
 }
 Game.prototype.onSizeChange = function (w, h) {
     this.setSize(w, h);
@@ -32,7 +34,11 @@ Game.prototype.onSizeChange = function (w, h) {
 }
 Game.prototype.layout = function () {
 }
-Game.prototype.onCellRemove = function (groups) {
+/**
+ * find an cell group
+ * @param groups
+ */
+Game.prototype.onGroupFind = function (groups) {
 }
 
 module.exports = Game;

@@ -24,6 +24,7 @@ var STATUS_WAITING = 1;// waiting user set bet
 var STATUS_FALL = 2;// start new game
 var STATUS_DROP = 3;// one or more cell groups found, and running the removing anima
 var STATUS_COMPACT = 4;// start new game
+var STATUS_CLEAR = 5;// none cell can be removed, ending current game
 
 // ==========================
 // TouchDelegate
@@ -95,7 +96,7 @@ Cell.prototype.setCoordinate = function (x, y) {
 }
 Cell.prototype.setData = function (data) {
     this.data = data;
-    this.rect.setColor(COLORS[ data]);
+    this.rect.setColor(COLORS[data]);
     this.mSelected.setColor(COLORS[(data + 3) % 4 ]);
 }
 Cell.prototype.click = function () {
@@ -160,6 +161,7 @@ function flat(group) {
 // ==========================
 // GameArea
 // ==========================
+var EDGE = 48;
 function GameArea(game, config) {
     _UIContainer.call(this);
     this.mFlags |= this.FlagSeal;
@@ -169,45 +171,24 @@ function GameArea(game, config) {
     this.mCols = config.col;
     this.mRows = config.row;
     this.mMinMatch = config.minmatch;
-    this.mCells = [];
+    this.mUnit = config.unitwidth;
+    this.setSize(this.mUnit * this.mCols, this.mUnit * this.mRows);
 
     this.mEmpty = new _LinkedList();
     this.mGroups = new _LinkedList();
     this.mRemove = new _LinkedList();// success cell groups
+
+    this.mCells = new Array(this.mCols * this.mRows);
+    for (var i = 0, l = this.mCols * this.mRows; i < l; i++) {
+        this.createCell(i);
+    }
 
     this.mState = STATUS_WAITING;
     this.mFallAnima = new _FallAnima();
     this.mDropAnima = new _DropAnima();
     this.mCompactAnima = new _CompactAnima();
     this.mClearAnima = new _ClearAnima();
-
-    var unit = config.unitwidth;
-    var width = unit * this.mCols;
-    var height = unit * this.mRows;
-    var starty = height - unit / 2;
-    var x = unit / 2;
-    var y = starty;
-    var edge = unit - 2;
-
-    // column first
-    Math.random();
-    for (var xindex = -1; ++xindex < this.mCols;) {
-        for (var yindex = -1; ++yindex < this.mRows;) {
-            var cell = new Cell(edge);
-            cell.setAnthor(0.5, 0.5);
-            cell.setPosition(x, y);
-            cell.setCoordinate(xindex, yindex);
-            cell.setData(Math.floor(Math.random() * 4));
-            this.mCells.push(cell);
-            this.mEmpty.add(cell);
-            this.addChild(cell);
-            y -= unit;
-        }
-        x += unit;
-        y = starty;
-    }
-    this.mUnit = unit;
-    this.setSize(width, height);
+    this.mPause = true;
 
     this.linkEmpty();
     this.updateDrawable();
@@ -215,6 +196,18 @@ function GameArea(game, config) {
     this.mTouchDelegate.enable();
 }
 _inherit(GameArea, _UIContainer);
+GameArea.prototype.createCell = function (index) {
+    var yindex = index % this.mRows;
+    var xindex = (index - yindex) / this.mRows;
+    var cell = new Cell(EDGE);
+    cell.setAnthor(0.5, 0.5);
+    cell.setPosition((xindex + 0.5) * this.mUnit, (this.mRows - yindex - 0.5) * this.mUnit);
+    cell.setCoordinate(xindex, yindex);
+    cell.setData(Math.floor(Math.random() * 4));
+
+    this.mCells[index] = cell;
+    this.mEmpty.add(cell);
+}
 GameArea.prototype.createEventNode = function () {
     return new _TouchNode(this, this.mTouchDelegate = new TouchDelegate(this));
 }
@@ -314,7 +307,7 @@ GameArea.prototype.linkEmpty = function () {
  */
 GameArea.prototype.startNextRound = function (state) {
     if (this.mState == STATUS_WAITING) {
-        this.mState = STATUS_FALL;
+        this.startFallAnima();
     }
 }
 GameArea.prototype.startDropAnima = function () {
@@ -322,13 +315,13 @@ GameArea.prototype.startDropAnima = function () {
     this.mState = STATUS_DROP;
 }
 GameArea.prototype.startCompatAnima = function () {
+    this.mState = STATUS_COMPACT;
 }
 GameArea.prototype.startFallAnima = function () {
     this.mState = STATUS_FALL;
 }
 GameArea.prototype.startClearAnima = function () {
-}
-GameArea.prototype.changeStatus = function (state) {
+    this.mState = STATUS_CLEAR;
 }
 GameArea.prototype.drawContent = function (context) {
     var gItor = this.mGroups.iterator();
@@ -337,24 +330,15 @@ GameArea.prototype.drawContent = function (context) {
     }
 }
 GameArea.prototype.update = function (step) {
+    if (this.mPause) {
+        return;
+    }
+
     switch (this.mState) {
         case STATUS_WAITING:
             break;
 
-        case STATUS_COMPACT:
-            if (this.mCompactAnima.update(step)) {
-                this.startFallAnima();
-
-            }
-            break;
-
-        case STATUS_DROP:
-            if (this.mDropAnima.update(step)) {
-                this.startCompatAnima(this.mDropAnima.timeleft());
-            }
-            break;
-
-        case STATUS_FALL:
+        case STATUS_FALL:// -> drop or clear
             if (this.mFallAnima.update(step)) {
                 this.linkEmpty();
                 var result = this.mRemove;
@@ -368,13 +352,31 @@ GameArea.prototype.update = function (step) {
                 if (result.count() > 0) {
                     this.startDropAnima();
                 } else {
-                    this.mState = STATUS_WAITING;
+                    this.startClearAnima();
                 }
+            }
+            break;
 
-                this.mState = STATUS_DROP;
+        case STATUS_DROP:// -> compact
+            if (this.mDropAnima.update(step)) {
+                this.startCompatAnima(this.mDropAnima.timeleft());
+            }
+            break;
+
+        case STATUS_COMPACT:// -> fall
+            if (this.mCompactAnima.update(step)) {
+                this.startFallAnima();
+            }
+            break;
+
+        case STATUS_CLEAR:// -> waiting
+            if (this.mClearAnima.update(step)) {
+                this.mState = STATUS_WAITING;
             }
             break;
     }
+
+    this.mPause = true;
 }
 
 module.exports = GameArea;
