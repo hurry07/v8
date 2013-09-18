@@ -137,6 +137,12 @@ Group.prototype.remove = function (cell) {
 Group.prototype.onMerge = function (cell) {
     this.mList.remove(this);
 }
+Group.prototype.draw = function (context) {
+    var start = this.anthor;
+    while ((start = start.next) != this.anthor) {
+        start.draw(context);
+    }
+}
 
 function flatCell(c) {
     return '[' + c.cellx + ',' + c.celly + ',' + c.data + ']';
@@ -168,6 +174,7 @@ function GameArea(game, config) {
     this.mEmpty = new _LinkedList();
     this.mGroups = new _LinkedList();
     this.mRemove = new _LinkedList();// success cell groups
+
     this.mState = STATUS_WAITING;
     this.mFallAnima = new _FallAnima();
     this.mDropAnima = new _DropAnima();
@@ -311,33 +318,33 @@ GameArea.prototype.startNextRound = function (state) {
     }
 }
 GameArea.prototype.startDropAnima = function () {
+    this.mDropAnima.reset();
+    this.mState = STATUS_DROP;
 }
 GameArea.prototype.startCompatAnima = function () {
 }
+GameArea.prototype.startFallAnima = function () {
+    this.mState = STATUS_FALL;
+}
+GameArea.prototype.startClearAnima = function () {
+}
 GameArea.prototype.changeStatus = function (state) {
+}
+GameArea.prototype.drawContent = function (context) {
+    var gItor = this.mGroups.iterator();
+    while (gItor.hasNext()) {
+        gItor.next().draw(context);
+    }
 }
 GameArea.prototype.update = function (step) {
     switch (this.mState) {
         case STATUS_WAITING:
             break;
+
         case STATUS_COMPACT:
             if (this.mCompactAnima.update(step)) {
-                this.linkEmpty();
-                var result = this.mRemove;
-                var itor = this.mGroups.iterator();
-                while (itor.hasNext()) {
-                    var g = itor.next();
-                    if (g.count() >= this.mMinMatch) {
-                        result.add(itor.remove());
-                    }
-                }
-                if (result.count() > 0) {
-                    this.mTouchDelegate.disable();
-                    this.mGame.onCellRemove(result);
-                    this.startRemoveAnima();
-                    this.mState = STATUS_REMOVING;
-                } else {
-                }
+                this.startFallAnima();
+
             }
             break;
 
@@ -349,7 +356,21 @@ GameArea.prototype.update = function (step) {
 
         case STATUS_FALL:
             if (this.mFallAnima.update(step)) {
-                this.mDropAnima.reset();
+                this.linkEmpty();
+                var result = this.mRemove;
+                var itor = this.mGroups.iterator();
+                while (itor.hasNext()) {
+                    var g = itor.next();
+                    if (g.count() >= this.mMinMatch) {
+                        result.add(itor.remove());
+                    }
+                }
+                if (result.count() > 0) {
+                    this.startDropAnima();
+                } else {
+                    this.mState = STATUS_WAITING;
+                }
+
                 this.mState = STATUS_DROP;
             }
             break;

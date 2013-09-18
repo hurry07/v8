@@ -48,7 +48,6 @@ LinkedList.prototype.clear = function () {
     var start = this.anthor;
     while ((start = start.next) != this.anthor) {
         start.mList = null;
-        console.log(start);
     }
     this.anthor.previous = this.anthor.next = this.anthor;
     this.mCount = 0;
