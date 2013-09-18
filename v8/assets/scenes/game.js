@@ -14,7 +14,8 @@ var Game = _scene.createScene(
         this.addChild(this.msgpanel = new _MessagePanel(this));
 
         this.onSizeChange(w, h);
-    });
+    }
+);
 
 Game.prototype.update = function (context) {
 }
@@ -30,6 +31,8 @@ Game.prototype.onSizeChange = function (w, h) {
     _relative.layoutTo(this.msgpanel, 0, 0, this.gamearea, 1, 0);
 }
 Game.prototype.layout = function () {
+}
+Game.prototype.onCellRemove = function (groups) {
 }
 
 module.exports = Game;

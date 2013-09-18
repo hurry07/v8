@@ -3,9 +3,15 @@ var _UIContainer = require('component/uicontainer.js');
 var _global = require('framework/global.js');
 var _TouchNode = require('component/touchnode.js').TouchNode;
 var _LinkedList = require('core/linkedlist_1.js');
-var _Node = require('core/linkedlist_1.js').Node;
 var _inherit = require('core/inherit.js');
 var _listRemove = _LinkedList.prototype.remove;
+var _listAdd = _LinkedList.prototype.add;
+
+var _animas = require('scenes/game/animas.js');
+var _FallAnima = _animas.FallAnima;
+var _DropAnima = _animas.DropAnima;
+var _CompactAnima = _animas.CompactAnima;
+var _ClearAnima = _animas.ClearAnima;
 
 var COLORS = [
     [1, 0, 0, 1],
@@ -14,10 +20,10 @@ var COLORS = [
     [0, 0, 0, 1]
 ];
 
-var STATUS_ACTIVE = 1;// normal, user can click cells
-var STATUS_REMOVING = 2;// one or more cell groups found, and running the removing anima
-var STATUS_WAITING = 3;// waiting user set bet
-var STATUS_FALL = 4;// start new game
+var STATUS_WAITING = 1;// waiting user set bet
+var STATUS_FALL = 2;// start new game
+var STATUS_DROP = 3;// one or more cell groups found, and running the removing anima
+var STATUS_COMPACT = 4;// start new game
 
 // ==========================
 // TouchDelegate
@@ -108,10 +114,11 @@ Cell.prototype.toString = function () {
 // ==========================
 // Cell Group
 // ==========================
-function Group() {
+function Group(area) {
     _LinkedList.call(this);
     this.next = this.previous = null;
     this.mList = null;
+    this.mArea = area;
 }
 _inherit(Group, _LinkedList);
 // if empty, remove from parent
@@ -121,6 +128,12 @@ Group.prototype.remove = function (cell) {
         this.mList.remove(this);
     }
 }
+//Group.prototype.add = function (cell) {
+//    _listAdd.call(this, cell);
+//    if (this.count() >= this.mArea.mMinMatch) {
+//        this.mArea.setCheckRemove();
+//    }
+//}
 Group.prototype.onMerge = function (cell) {
     this.mList.remove(this);
 }
@@ -145,8 +158,8 @@ function GameArea(game, config) {
     _UIContainer.call(this);
     this.mFlags |= this.FlagSeal;
 
-    this.game = game;
-    this.config = config;
+    this.mGame = game;
+    this.mConfig = config;
     this.mCols = config.col;
     this.mRows = config.row;
     this.mMinMatch = config.minmatch;
@@ -155,6 +168,11 @@ function GameArea(game, config) {
     this.mEmpty = new _LinkedList();
     this.mGroups = new _LinkedList();
     this.mRemove = new _LinkedList();// success cell groups
+    this.mState = STATUS_WAITING;
+    this.mFallAnima = new _FallAnima();
+    this.mDropAnima = new _DropAnima();
+    this.mCompactAnima = new _CompactAnima();
+    this.mClearAnima = new _ClearAnima();
 
     var unit = config.unitwidth;
     var width = unit * this.mCols;
@@ -251,7 +269,7 @@ GameArea.prototype.link = function (cell) {
  * @returns {Group}
  */
 GameArea.prototype.createGroup = function (cell) {
-    var g = new Group();
+    var g = new Group(this);
     g.add(cell);
     return g;
 }
@@ -283,7 +301,59 @@ GameArea.prototype.linkEmpty = function () {
         this.link(empty.last());
     }
 }
+/**
+ * user set the bet coins and start next game
+ * @param state
+ */
+GameArea.prototype.startNextRound = function (state) {
+    if (this.mState == STATUS_WAITING) {
+        this.mState = STATUS_FALL;
+    }
+}
+GameArea.prototype.startDropAnima = function () {
+}
+GameArea.prototype.startCompatAnima = function () {
+}
+GameArea.prototype.changeStatus = function (state) {
+}
 GameArea.prototype.update = function (step) {
+    switch (this.mState) {
+        case STATUS_WAITING:
+            break;
+        case STATUS_COMPACT:
+            if (this.mCompactAnima.update(step)) {
+                this.linkEmpty();
+                var result = this.mRemove;
+                var itor = this.mGroups.iterator();
+                while (itor.hasNext()) {
+                    var g = itor.next();
+                    if (g.count() >= this.mMinMatch) {
+                        result.add(itor.remove());
+                    }
+                }
+                if (result.count() > 0) {
+                    this.mTouchDelegate.disable();
+                    this.mGame.onCellRemove(result);
+                    this.startRemoveAnima();
+                    this.mState = STATUS_REMOVING;
+                } else {
+                }
+            }
+            break;
+
+        case STATUS_DROP:
+            if (this.mDropAnima.update(step)) {
+                this.startCompatAnima(this.mDropAnima.timeleft());
+            }
+            break;
+
+        case STATUS_FALL:
+            if (this.mFallAnima.update(step)) {
+                this.mDropAnima.reset();
+                this.mState = STATUS_DROP;
+            }
+            break;
+    }
 }
 
 module.exports = GameArea;
