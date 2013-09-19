@@ -52,16 +52,16 @@ void testVersion() {
     const GLubyte *vendor = glGetString( GL_VENDOR );
     const GLubyte *version = glGetString( GL_VERSION );
     const GLubyte *glslVersion = glGetString(GL_SHADING_LANGUAGE_VERSION);
-
-//    GLint major, minor;
-//    glGetIntegerv(GL_VERSION, &major);
-//    glGetIntegerv(GL_VERSION, &minor);
-//    glGetIntegerv(GL_MAJOR_VERSION, &major);
-//    glGetIntegerv(GL_MINOR_VERSION, &minor);
+    
+    //    GLint major, minor;
+    //    glGetIntegerv(GL_VERSION, &major);
+    //    glGetIntegerv(GL_VERSION, &minor);
+    //    glGetIntegerv(GL_MAJOR_VERSION, &major);
+    //    glGetIntegerv(GL_MINOR_VERSION, &minor);
     printf("GL Vendor : %s\n", vendor);
     printf("GL Renderer : %s\n", renderer);
     printf("GL Version (string) : %s\n", version);
-//    printf("GL Version (integer) : %d.%d\n", major, minor);
+    //    printf("GL Version (integer) : %d.%d\n", major, minor);
     printf("GLSL Version : %s\n", glslVersion);
 }
 
@@ -74,7 +74,7 @@ void testImageLoad() {
     
     node::CCTexture2D* t2d = new node::CCTexture2D();
     t2d->initWithImage(img);
-
+    
     LOGI("width:%d, height:%d", img->getWidth(), img->getHeight());
 }
 
@@ -101,45 +101,49 @@ void onSurfaceChanged(int w, int h) {
     app->onSurfaceChanged(w, h);
 }
 void onMouseClick(int button, int state, int x, int y) {
-//    LOGI("onTouch %d %d %d %d", button, state, x, y);
+    //    LOGI("onTouch %d %d %d %d", button, state, x, y);
     app->appendMouseTouch(button, state, x, y);
 }
 void onMouseMove(int x, int y) {
-//    LOGI("onMove %d %d", x, y);
+    //    LOGI("onMove %d %d", x, y);
     app->appendMouseMove(x, y);
 }
 void onKeyPress(unsigned char key, int x, int y) {
-//    LOGI("onTouch %d %d %d", key, x, y);
+    //    LOGI("onTouch %d %d %d", key, x, y);
     app->appendKeyPress(key, x, y);
 }
-int main(int argc, char ** argv)
-{
-    int width = 800;
-    int height = 480;
-    
+void start(int argc, char ** argv, int width, int height) {
 	glutInit(&argc, argv);
     glutInitWindowSize(width, height);
 	glutCreateWindow("Xcode Glut Demo");
-
+    
     testImageLoad();
     testVersion();
-
+    
     app = new Application();
     app->init();
     app->resume();
     app->onSurfaceCreated(width, height);
     app->onSurfaceChanged(width, height);
-
+    
 	glutDisplayFunc(onDrawFrame);
     glutReshapeFunc(onSurfaceChanged);
     glutMouseFunc(onMouseClick);
     glutMotionFunc(onMouseMove);
     glutKeyboardFunc(onKeyPress);
 	glutMainLoop();
-
+    
     app->destroy();
     delete app;
-
-    glm::mat3 m4;
+}
+int main(int argc, char ** argv)
+{
+//    start(argc, argv, 800, 480);
+    FT_Library  library;
+    FT_Error error = FT_Init_FreeType( &library );
+    if (error)
+    {
+        LOGI("an error occurred during library initialization");
+    }
     return 0;
 }

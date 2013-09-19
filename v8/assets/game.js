@@ -37,8 +37,8 @@ game.render = {
         mCamera.viewport();
 
         if (firstInit) {
-            //_global.registerScene(require('scenes/cover.js').newInstance('cover', width, height));
-            _global.registerScene(require('scenes/game.js').newInstance('cover', width, height));
+            _global.registerScene(require('scenes/cover.js').newInstance('cover', width, height));
+            //_global.registerScene(require('scenes/game.js').newInstance('cover', width, height));
             firstInit = false;
         }
         _global.updateContext.reset();

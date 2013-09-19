@@ -13,8 +13,8 @@
 		183CE6C017D2F76100ADD5CE /* CCTexture2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 183CE6BE17D2F76000ADD5CE /* CCTexture2D.cpp */; };
 		183CE6C717D34A6C00ADD5CE /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 183CE6C517D34A6B00ADD5CE /* Image.cpp */; };
 		185FD30717EAA51B00188CC2 /* libbz2.1.0.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 185FD30617EAA51B00188CC2 /* libbz2.1.0.5.dylib */; };
-		185FD30917EAAC9500188CC2 /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 185FD30817EAAC9500188CC2 /* libpng.a */; };
-		185FD30B17EAAE5800188CC2 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 185FD30A17EAAE5800188CC2 /* libfreetype.a */; };
+		185FD3A817EACED900188CC2 /* libpng15.15.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 185FD3A717EACED900188CC2 /* libpng15.15.dylib */; };
+		185FD3AC17EAD0D800188CC2 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 185FD3AB17EAD0D800188CC2 /* libfreetype.a */; };
 		1888176117E00C9900E4504A /* RingBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1888175F17E00C9900E4504A /* RingBuffer.cpp */; };
 		1888176417E00DAA00E4504A /* Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1888176217E00DAA00E4504A /* Event.cpp */; };
 		18A2B6AE17C39A7B00C5F951 /* libv8_base.x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A2B6AC17C39A7B00C5F951 /* libv8_base.x64.a */; };
@@ -66,7 +66,8 @@
 		183CE6C617D34A6C00ADD5CE /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
 		185FD30617EAA51B00188CC2 /* libbz2.1.0.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.1.0.5.dylib; path = usr/lib/libbz2.1.0.5.dylib; sourceTree = SDKROOT; };
 		185FD30817EAAC9500188CC2 /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = deps/png/libpng.a; sourceTree = "<group>"; };
-		185FD30A17EAAE5800188CC2 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = deps/freetype/libfreetype.a; sourceTree = "<group>"; };
+		185FD3A717EACED900188CC2 /* libpng15.15.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng15.15.dylib; path = deps/libpng15/libpng15.15.dylib; sourceTree = "<group>"; };
+		185FD3AB17EAD0D800188CC2 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = deps/freetype/libfreetype.a; sourceTree = "<group>"; };
 		1888175F17E00C9900E4504A /* RingBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RingBuffer.cpp; sourceTree = "<group>"; };
 		1888176017E00C9900E4504A /* RingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingBuffer.h; sourceTree = "<group>"; };
 		1888176217E00DAA00E4504A /* Event.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Event.cpp; sourceTree = "<group>"; };
@@ -138,8 +139,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				185FD30917EAAC9500188CC2 /* libpng.a in Frameworks */,
-				185FD30B17EAAE5800188CC2 /* libfreetype.a in Frameworks */,
+				185FD3AC17EAD0D800188CC2 /* libfreetype.a in Frameworks */,
+				185FD3A817EACED900188CC2 /* libpng15.15.dylib in Frameworks */,
 				185FD30717EAA51B00188CC2 /* libbz2.1.0.5.dylib in Frameworks */,
 				183CE5C617D2934C00ADD5CE /* libz.dylib in Frameworks */,
 				18A2B6AE17C39A7B00C5F951 /* libv8_base.x64.a in Frameworks */,
@@ -155,7 +156,8 @@
 		18282091179AFFCB003125B5 = {
 			isa = PBXGroup;
 			children = (
-				185FD30A17EAAE5800188CC2 /* libfreetype.a */,
+				185FD3AB17EAD0D800188CC2 /* libfreetype.a */,
+				185FD3A717EACED900188CC2 /* libpng15.15.dylib */,
 				185FD30817EAAC9500188CC2 /* libpng.a */,
 				185FD30617EAA51B00188CC2 /* libbz2.1.0.5.dylib */,
 				1809714D17E9D09400C725AA /* tips.txt */,
@@ -471,8 +473,8 @@
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					/Users/jie/git/node/deps/v8/include,
 					"$SRCROOT/deps/glm/**",
-					$SRCROOT/deps/png,
-					$SRCROOT/deps/freetype/include,
+					$SRCROOT/deps/libpng15,
+					$SRCROOT/deps/freetype,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -485,6 +487,7 @@
 					"\"$(SRCROOT)/../freetype-gl-read-only/windows/glew/lib\"",
 					"\"$(SRCROOT)/../freetype-gl-read-only/windows/glut\"",
 					"\"$(SRCROOT)/deps/png\"",
+					"\"$(SRCROOT)/deps/libpng15\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -496,8 +499,8 @@
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					/Users/jie/xcodespace/v8/v8/include,
 					"$SRCROOT/deps/glm/**",
-					$SRCROOT/deps/png,
-					$SRCROOT/deps/freetype/include,
+					$SRCROOT/deps/libpng15,
+					$SRCROOT/deps/freetype,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -510,6 +513,7 @@
 					"\"$(SRCROOT)/../freetype-gl-read-only/windows/glew/lib\"",
 					"\"$(SRCROOT)/../freetype-gl-read-only/windows/glut\"",
 					"\"$(SRCROOT)/deps/png\"",
+					"\"$(SRCROOT)/deps/libpng15\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
