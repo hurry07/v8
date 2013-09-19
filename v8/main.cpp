@@ -140,10 +140,34 @@ int main(int argc, char ** argv)
 {
 //    start(argc, argv, 800, 480);
     FT_Library  library;
+    FT_Face     face;
     FT_Error error = FT_Init_FreeType( &library );
     if (error)
     {
         LOGI("an error occurred during library initialization");
     }
+    error = FT_New_Face(library,
+                        "/Users/jie/svn/v8/deps/freetype-gl-read-only/fonts/Vera.ttf",
+                        0,
+                        &face );
+    if ( error == FT_Err_Unknown_File_Format )
+    {
+        LOGI("22");
+//        ... the font file could be opened and read, but it appears
+//        ... that its font format is unsupported
+    }
+    else if ( error )
+    {
+        LOGI("11");
+//        ... another error code means that the font file could not
+//        ... be opened or read, or simply that it is broken...
+    }
+    LOGI("face num_fixed_sizes:%d", face->num_fixed_sizes);
+    LOGI("face num_faces:%ld", face->num_faces);
+    LOGI("face available_sizes:%p", face->available_sizes);
+    LOGI("face units_per_EM:%hd", face->units_per_EM);
+    LOGI("face num_faces:%ld", face->num_faces);
+    LOGI("face num_faces:%ld", face->num_faces);
+    
     return 0;
 }

@@ -38,7 +38,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
-//#include <fontconfig/fontconfig.h>
+#include <fontconfig/fontconfig.h>
 #include <ft2build.h>
 #include FT_FREETYPE_H
 

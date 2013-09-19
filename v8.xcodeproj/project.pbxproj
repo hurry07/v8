@@ -15,6 +15,32 @@
 		185FD30717EAA51B00188CC2 /* libbz2.1.0.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 185FD30617EAA51B00188CC2 /* libbz2.1.0.5.dylib */; };
 		185FD3A817EACED900188CC2 /* libpng15.15.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 185FD3A717EACED900188CC2 /* libpng15.15.dylib */; };
 		185FD3AC17EAD0D800188CC2 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 185FD3AB17EAD0D800188CC2 /* libfreetype.a */; };
+		185FD42B17EB15AA00188CC2 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 185FD3E017EB15AA00188CC2 /* Makefile */; };
+		185FD42C17EB15AA00188CC2 /* edtaa3func.c in Sources */ = {isa = PBXBuildFile; fileRef = 185FD3E417EB15AA00188CC2 /* edtaa3func.c */; };
+		185FD42D17EB15AA00188CC2 /* font-manager.c in Sources */ = {isa = PBXBuildFile; fileRef = 185FD3E617EB15AA00188CC2 /* font-manager.c */; };
+		185FD42E17EB15AA00188CC2 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 185FD3F217EB15AA00188CC2 /* Makefile */; };
+		185FD43017EB15AA00188CC2 /* mat4.c in Sources */ = {isa = PBXBuildFile; fileRef = 185FD3F517EB15AA00188CC2 /* mat4.c */; };
+		185FD43117EB15AA00188CC2 /* platform.c in Sources */ = {isa = PBXBuildFile; fileRef = 185FD3F817EB15AA00188CC2 /* platform.c */; };
+		185FD43217EB15AA00188CC2 /* shader.c in Sources */ = {isa = PBXBuildFile; fileRef = 185FD3FB17EB15AA00188CC2 /* shader.c */; };
+		185FD43317EB15AA00188CC2 /* cube.frag in Sources */ = {isa = PBXBuildFile; fileRef = 185FD3FE17EB15AA00188CC2 /* cube.frag */; };
+		185FD43417EB15AA00188CC2 /* cube.vert in Sources */ = {isa = PBXBuildFile; fileRef = 185FD3FF17EB15AA00188CC2 /* cube.vert */; };
+		185FD43517EB15AA00188CC2 /* distance-field-2.frag in Sources */ = {isa = PBXBuildFile; fileRef = 185FD40017EB15AA00188CC2 /* distance-field-2.frag */; };
+		185FD43617EB15AA00188CC2 /* distance-field-2.vert in Sources */ = {isa = PBXBuildFile; fileRef = 185FD40117EB15AA00188CC2 /* distance-field-2.vert */; };
+		185FD43717EB15AA00188CC2 /* distance-field-3.frag in Sources */ = {isa = PBXBuildFile; fileRef = 185FD40217EB15AA00188CC2 /* distance-field-3.frag */; };
+		185FD43817EB15AA00188CC2 /* distance-field.frag in Sources */ = {isa = PBXBuildFile; fileRef = 185FD40317EB15AA00188CC2 /* distance-field.frag */; };
+		185FD43917EB15AA00188CC2 /* distance-field.vert in Sources */ = {isa = PBXBuildFile; fileRef = 185FD40417EB15AA00188CC2 /* distance-field.vert */; };
+		185FD43A17EB15AA00188CC2 /* text.frag in Sources */ = {isa = PBXBuildFile; fileRef = 185FD40517EB15AA00188CC2 /* text.frag */; };
+		185FD43B17EB15AA00188CC2 /* text.vert in Sources */ = {isa = PBXBuildFile; fileRef = 185FD40617EB15AA00188CC2 /* text.vert */; };
+		185FD43C17EB15AA00188CC2 /* v3f-c4f.frag in Sources */ = {isa = PBXBuildFile; fileRef = 185FD40717EB15AA00188CC2 /* v3f-c4f.frag */; };
+		185FD43D17EB15AA00188CC2 /* v3f-c4f.vert in Sources */ = {isa = PBXBuildFile; fileRef = 185FD40817EB15AA00188CC2 /* v3f-c4f.vert */; };
+		185FD43E17EB15AA00188CC2 /* v3f-t2f-c4f.frag in Sources */ = {isa = PBXBuildFile; fileRef = 185FD40917EB15AA00188CC2 /* v3f-t2f-c4f.frag */; };
+		185FD43F17EB15AA00188CC2 /* v3f-t2f-c4f.vert in Sources */ = {isa = PBXBuildFile; fileRef = 185FD40A17EB15AA00188CC2 /* v3f-t2f-c4f.vert */; };
+		185FD44017EB15AA00188CC2 /* text-buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 185FD40B17EB15AA00188CC2 /* text-buffer.c */; };
+		185FD44117EB15AA00188CC2 /* texture-atlas.c in Sources */ = {isa = PBXBuildFile; fileRef = 185FD40D17EB15AA00188CC2 /* texture-atlas.c */; };
+		185FD44217EB15AA00188CC2 /* texture-font.c in Sources */ = {isa = PBXBuildFile; fileRef = 185FD40F17EB15AA00188CC2 /* texture-font.c */; };
+		185FD44317EB15AA00188CC2 /* vector.c in Sources */ = {isa = PBXBuildFile; fileRef = 185FD41317EB15AA00188CC2 /* vector.c */; };
+		185FD44417EB15AA00188CC2 /* vertex-attribute.c in Sources */ = {isa = PBXBuildFile; fileRef = 185FD41517EB15AA00188CC2 /* vertex-attribute.c */; };
+		185FD44517EB15AA00188CC2 /* vertex-buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 185FD41717EB15AA00188CC2 /* vertex-buffer.c */; };
 		1888176117E00C9900E4504A /* RingBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1888175F17E00C9900E4504A /* RingBuffer.cpp */; };
 		1888176417E00DAA00E4504A /* Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1888176217E00DAA00E4504A /* Event.cpp */; };
 		18A2B6AE17C39A7B00C5F951 /* libv8_base.x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A2B6AC17C39A7B00C5F951 /* libv8_base.x64.a */; };
@@ -68,6 +94,88 @@
 		185FD30817EAAC9500188CC2 /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = deps/png/libpng.a; sourceTree = "<group>"; };
 		185FD3A717EACED900188CC2 /* libpng15.15.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng15.15.dylib; path = deps/libpng15/libpng15.15.dylib; sourceTree = "<group>"; };
 		185FD3AB17EAD0D800188CC2 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = deps/freetype/libfreetype.a; sourceTree = "<group>"; };
+		185FD3AE17EB15AA00188CC2 /* arial-16.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "arial-16.h"; sourceTree = "<group>"; };
+		185FD3AF17EB15AA00188CC2 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
+		185FD3B117EB15AA00188CC2 /* FindAntTweakBar.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FindAntTweakBar.cmake; sourceTree = "<group>"; };
+		185FD3B217EB15AA00188CC2 /* FindFontConfig.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FindFontConfig.cmake; sourceTree = "<group>"; };
+		185FD3B317EB15AA00188CC2 /* FindGLEW.cmake */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FindGLEW.cmake; sourceTree = "<group>"; };
+		185FD3B517EB15AA00188CC2 /* 256colors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 256colors.txt; sourceTree = "<group>"; };
+		185FD3C917EB15AA00188CC2 /* documentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = documentation.h; sourceTree = "<group>"; };
+		185FD3CA17EB15AA00188CC2 /* Doxyfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Doxyfile; sourceTree = "<group>"; };
+		185FD3CB17EB15AA00188CC2 /* doxygen.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = doxygen.css; sourceTree = "<group>"; };
+		185FD3CC17EB15AA00188CC2 /* footer.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = footer.html; sourceTree = "<group>"; };
+		185FD3CD17EB15AA00188CC2 /* header.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = header.html; sourceTree = "<group>"; };
+		185FD3CF17EB15AA00188CC2 /* ansi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ansi.png; sourceTree = "<group>"; };
+		185FD3D017EB15AA00188CC2 /* atb-agg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "atb-agg.png"; sourceTree = "<group>"; };
+		185FD3D117EB15AA00188CC2 /* cartoon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cartoon.png; sourceTree = "<group>"; };
+		185FD3D217EB15AA00188CC2 /* console.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = console.png; sourceTree = "<group>"; };
+		185FD3D317EB15AA00188CC2 /* cube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cube.png; sourceTree = "<group>"; };
+		185FD3D417EB15AA00188CC2 /* distance-field-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "distance-field-1.png"; sourceTree = "<group>"; };
+		185FD3D517EB15AA00188CC2 /* distance-field-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "distance-field-2.png"; sourceTree = "<group>"; };
+		185FD3D617EB15AA00188CC2 /* distance-field-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "distance-field-3.png"; sourceTree = "<group>"; };
+		185FD3D717EB15AA00188CC2 /* font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = font.png; sourceTree = "<group>"; };
+		185FD3D817EB15AA00188CC2 /* gamma.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gamma.png; sourceTree = "<group>"; };
+		185FD3D917EB15AA00188CC2 /* glyph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyph.png; sourceTree = "<group>"; };
+		185FD3DA17EB15AA00188CC2 /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = line.png; sourceTree = "<group>"; };
+		185FD3DB17EB15AA00188CC2 /* markup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = markup.png; sourceTree = "<group>"; };
+		185FD3DC17EB15AA00188CC2 /* outline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outline.png; sourceTree = "<group>"; };
+		185FD3DD17EB15AA00188CC2 /* subpixel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = subpixel.png; sourceTree = "<group>"; };
+		185FD3DE17EB15AA00188CC2 /* texture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = texture.png; sourceTree = "<group>"; };
+		185FD3DF17EB15AA00188CC2 /* layout.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = layout.xml; sourceTree = "<group>"; };
+		185FD3E017EB15AA00188CC2 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		185FD3E117EB15AA00188CC2 /* screenshots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = screenshots.h; sourceTree = "<group>"; };
+		185FD3E217EB15AA00188CC2 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		185FD3E317EB15AA00188CC2 /* text-rendering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "text-rendering.h"; sourceTree = "<group>"; };
+		185FD3E417EB15AA00188CC2 /* edtaa3func.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = edtaa3func.c; sourceTree = "<group>"; };
+		185FD3E517EB15AA00188CC2 /* edtaa3func.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = edtaa3func.h; sourceTree = "<group>"; };
+		185FD3E617EB15AA00188CC2 /* font-manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "font-manager.c"; sourceTree = "<group>"; };
+		185FD3E717EB15AA00188CC2 /* font-manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "font-manager.h"; sourceTree = "<group>"; };
+		185FD3E917EB15AA00188CC2 /* ObelixPro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ObelixPro.ttf; sourceTree = "<group>"; };
+		185FD3EA17EB15AA00188CC2 /* VERA-COPYRIGHT */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "VERA-COPYRIGHT"; sourceTree = "<group>"; };
+		185FD3EB17EB15AA00188CC2 /* Vera.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Vera.ttf; sourceTree = "<group>"; };
+		185FD3EC17EB15AA00188CC2 /* VeraMoBd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = VeraMoBd.ttf; sourceTree = "<group>"; };
+		185FD3ED17EB15AA00188CC2 /* VeraMoBI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = VeraMoBI.ttf; sourceTree = "<group>"; };
+		185FD3EE17EB15AA00188CC2 /* VeraMoIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = VeraMoIt.ttf; sourceTree = "<group>"; };
+		185FD3EF17EB15AA00188CC2 /* VeraMono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = VeraMono.ttf; sourceTree = "<group>"; };
+		185FD3F017EB15AA00188CC2 /* freetype-gl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "freetype-gl.h"; sourceTree = "<group>"; };
+		185FD3F117EB15AA00188CC2 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		185FD3F217EB15AA00188CC2 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		185FD3F417EB15AA00188CC2 /* markup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = markup.h; sourceTree = "<group>"; };
+		185FD3F517EB15AA00188CC2 /* mat4.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mat4.c; sourceTree = "<group>"; };
+		185FD3F617EB15AA00188CC2 /* mat4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mat4.h; sourceTree = "<group>"; };
+		185FD3F717EB15AA00188CC2 /* opengl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = opengl.h; sourceTree = "<group>"; };
+		185FD3F817EB15AA00188CC2 /* platform.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = platform.c; sourceTree = "<group>"; };
+		185FD3F917EB15AA00188CC2 /* platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = platform.h; sourceTree = "<group>"; };
+		185FD3FA17EB15AA00188CC2 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		185FD3FB17EB15AA00188CC2 /* shader.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = shader.c; sourceTree = "<group>"; };
+		185FD3FC17EB15AA00188CC2 /* shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shader.h; sourceTree = "<group>"; };
+		185FD3FE17EB15AA00188CC2 /* cube.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = cube.frag; sourceTree = "<group>"; };
+		185FD3FF17EB15AA00188CC2 /* cube.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = cube.vert; sourceTree = "<group>"; };
+		185FD40017EB15AA00188CC2 /* distance-field-2.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "distance-field-2.frag"; sourceTree = "<group>"; };
+		185FD40117EB15AA00188CC2 /* distance-field-2.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "distance-field-2.vert"; sourceTree = "<group>"; };
+		185FD40217EB15AA00188CC2 /* distance-field-3.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "distance-field-3.frag"; sourceTree = "<group>"; };
+		185FD40317EB15AA00188CC2 /* distance-field.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "distance-field.frag"; sourceTree = "<group>"; };
+		185FD40417EB15AA00188CC2 /* distance-field.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "distance-field.vert"; sourceTree = "<group>"; };
+		185FD40517EB15AA00188CC2 /* text.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = text.frag; sourceTree = "<group>"; };
+		185FD40617EB15AA00188CC2 /* text.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = text.vert; sourceTree = "<group>"; };
+		185FD40717EB15AA00188CC2 /* v3f-c4f.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "v3f-c4f.frag"; sourceTree = "<group>"; };
+		185FD40817EB15AA00188CC2 /* v3f-c4f.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "v3f-c4f.vert"; sourceTree = "<group>"; };
+		185FD40917EB15AA00188CC2 /* v3f-t2f-c4f.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "v3f-t2f-c4f.frag"; sourceTree = "<group>"; };
+		185FD40A17EB15AA00188CC2 /* v3f-t2f-c4f.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = "v3f-t2f-c4f.vert"; sourceTree = "<group>"; };
+		185FD40B17EB15AA00188CC2 /* text-buffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "text-buffer.c"; sourceTree = "<group>"; };
+		185FD40C17EB15AA00188CC2 /* text-buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "text-buffer.h"; sourceTree = "<group>"; };
+		185FD40D17EB15AA00188CC2 /* texture-atlas.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "texture-atlas.c"; sourceTree = "<group>"; };
+		185FD40E17EB15AA00188CC2 /* texture-atlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "texture-atlas.h"; sourceTree = "<group>"; };
+		185FD40F17EB15AA00188CC2 /* texture-font.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "texture-font.c"; sourceTree = "<group>"; };
+		185FD41017EB15AA00188CC2 /* texture-font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "texture-font.h"; sourceTree = "<group>"; };
+		185FD41117EB15AA00188CC2 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
+		185FD41217EB15AA00188CC2 /* vec234.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vec234.h; sourceTree = "<group>"; };
+		185FD41317EB15AA00188CC2 /* vector.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = vector.c; sourceTree = "<group>"; };
+		185FD41417EB15AA00188CC2 /* vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
+		185FD41517EB15AA00188CC2 /* vertex-attribute.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "vertex-attribute.c"; sourceTree = "<group>"; };
+		185FD41617EB15AA00188CC2 /* vertex-attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "vertex-attribute.h"; sourceTree = "<group>"; };
+		185FD41717EB15AA00188CC2 /* vertex-buffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "vertex-buffer.c"; sourceTree = "<group>"; };
+		185FD41817EB15AA00188CC2 /* vertex-buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "vertex-buffer.h"; sourceTree = "<group>"; };
 		1888175F17E00C9900E4504A /* RingBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RingBuffer.cpp; sourceTree = "<group>"; };
 		1888176017E00C9900E4504A /* RingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingBuffer.h; sourceTree = "<group>"; };
 		1888176217E00DAA00E4504A /* Event.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Event.cpp; sourceTree = "<group>"; };
@@ -185,6 +293,7 @@
 		1828209F179AFFCB003125B5 /* v8 */ = {
 			isa = PBXGroup;
 			children = (
+				185FD3AD17EB15AA00188CC2 /* freetype-gl-read-only */,
 				18A6D24B17C7455C004931FD /* global.cpp */,
 				18CE224717C6582800B6DB8E /* app */,
 				18CE227117C6582800B6DB8E /* classes */,
@@ -201,6 +310,144 @@
 				18EDB76617B763B0002E00CE /* global.h */,
 			);
 			path = v8;
+			sourceTree = "<group>";
+		};
+		185FD3AD17EB15AA00188CC2 /* freetype-gl-read-only */ = {
+			isa = PBXGroup;
+			children = (
+				185FD3AE17EB15AA00188CC2 /* arial-16.h */,
+				185FD3AF17EB15AA00188CC2 /* CMakeLists.txt */,
+				185FD3B017EB15AA00188CC2 /* CMakeModules */,
+				185FD3B417EB15AA00188CC2 /* data */,
+				185FD3C817EB15AA00188CC2 /* doc */,
+				185FD3E417EB15AA00188CC2 /* edtaa3func.c */,
+				185FD3E517EB15AA00188CC2 /* edtaa3func.h */,
+				185FD3E617EB15AA00188CC2 /* font-manager.c */,
+				185FD3E717EB15AA00188CC2 /* font-manager.h */,
+				185FD3E817EB15AA00188CC2 /* fonts */,
+				185FD3F017EB15AA00188CC2 /* freetype-gl.h */,
+				185FD3F117EB15AA00188CC2 /* LICENSE */,
+				185FD3F217EB15AA00188CC2 /* Makefile */,
+				185FD3F417EB15AA00188CC2 /* markup.h */,
+				185FD3F517EB15AA00188CC2 /* mat4.c */,
+				185FD3F617EB15AA00188CC2 /* mat4.h */,
+				185FD3F717EB15AA00188CC2 /* opengl.h */,
+				185FD3F817EB15AA00188CC2 /* platform.c */,
+				185FD3F917EB15AA00188CC2 /* platform.h */,
+				185FD3FA17EB15AA00188CC2 /* README */,
+				185FD3FB17EB15AA00188CC2 /* shader.c */,
+				185FD3FC17EB15AA00188CC2 /* shader.h */,
+				185FD3FD17EB15AA00188CC2 /* shaders */,
+				185FD40B17EB15AA00188CC2 /* text-buffer.c */,
+				185FD40C17EB15AA00188CC2 /* text-buffer.h */,
+				185FD40D17EB15AA00188CC2 /* texture-atlas.c */,
+				185FD40E17EB15AA00188CC2 /* texture-atlas.h */,
+				185FD40F17EB15AA00188CC2 /* texture-font.c */,
+				185FD41017EB15AA00188CC2 /* texture-font.h */,
+				185FD41117EB15AA00188CC2 /* TODO */,
+				185FD41217EB15AA00188CC2 /* vec234.h */,
+				185FD41317EB15AA00188CC2 /* vector.c */,
+				185FD41417EB15AA00188CC2 /* vector.h */,
+				185FD41517EB15AA00188CC2 /* vertex-attribute.c */,
+				185FD41617EB15AA00188CC2 /* vertex-attribute.h */,
+				185FD41717EB15AA00188CC2 /* vertex-buffer.c */,
+				185FD41817EB15AA00188CC2 /* vertex-buffer.h */,
+			);
+			name = "freetype-gl-read-only";
+			path = "deps/freetype-gl-read-only";
+			sourceTree = SOURCE_ROOT;
+		};
+		185FD3B017EB15AA00188CC2 /* CMakeModules */ = {
+			isa = PBXGroup;
+			children = (
+				185FD3B117EB15AA00188CC2 /* FindAntTweakBar.cmake */,
+				185FD3B217EB15AA00188CC2 /* FindFontConfig.cmake */,
+				185FD3B317EB15AA00188CC2 /* FindGLEW.cmake */,
+			);
+			path = CMakeModules;
+			sourceTree = "<group>";
+		};
+		185FD3B417EB15AA00188CC2 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				185FD3B517EB15AA00188CC2 /* 256colors.txt */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		185FD3C817EB15AA00188CC2 /* doc */ = {
+			isa = PBXGroup;
+			children = (
+				185FD3C917EB15AA00188CC2 /* documentation.h */,
+				185FD3CA17EB15AA00188CC2 /* Doxyfile */,
+				185FD3CB17EB15AA00188CC2 /* doxygen.css */,
+				185FD3CC17EB15AA00188CC2 /* footer.html */,
+				185FD3CD17EB15AA00188CC2 /* header.html */,
+				185FD3CE17EB15AA00188CC2 /* images */,
+				185FD3DF17EB15AA00188CC2 /* layout.xml */,
+				185FD3E017EB15AA00188CC2 /* Makefile */,
+				185FD3E117EB15AA00188CC2 /* screenshots.h */,
+				185FD3E217EB15AA00188CC2 /* style.css */,
+				185FD3E317EB15AA00188CC2 /* text-rendering.h */,
+			);
+			path = doc;
+			sourceTree = "<group>";
+		};
+		185FD3CE17EB15AA00188CC2 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				185FD3CF17EB15AA00188CC2 /* ansi.png */,
+				185FD3D017EB15AA00188CC2 /* atb-agg.png */,
+				185FD3D117EB15AA00188CC2 /* cartoon.png */,
+				185FD3D217EB15AA00188CC2 /* console.png */,
+				185FD3D317EB15AA00188CC2 /* cube.png */,
+				185FD3D417EB15AA00188CC2 /* distance-field-1.png */,
+				185FD3D517EB15AA00188CC2 /* distance-field-2.png */,
+				185FD3D617EB15AA00188CC2 /* distance-field-3.png */,
+				185FD3D717EB15AA00188CC2 /* font.png */,
+				185FD3D817EB15AA00188CC2 /* gamma.png */,
+				185FD3D917EB15AA00188CC2 /* glyph.png */,
+				185FD3DA17EB15AA00188CC2 /* line.png */,
+				185FD3DB17EB15AA00188CC2 /* markup.png */,
+				185FD3DC17EB15AA00188CC2 /* outline.png */,
+				185FD3DD17EB15AA00188CC2 /* subpixel.png */,
+				185FD3DE17EB15AA00188CC2 /* texture.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		185FD3E817EB15AA00188CC2 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				185FD3E917EB15AA00188CC2 /* ObelixPro.ttf */,
+				185FD3EA17EB15AA00188CC2 /* VERA-COPYRIGHT */,
+				185FD3EB17EB15AA00188CC2 /* Vera.ttf */,
+				185FD3EC17EB15AA00188CC2 /* VeraMoBd.ttf */,
+				185FD3ED17EB15AA00188CC2 /* VeraMoBI.ttf */,
+				185FD3EE17EB15AA00188CC2 /* VeraMoIt.ttf */,
+				185FD3EF17EB15AA00188CC2 /* VeraMono.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		185FD3FD17EB15AA00188CC2 /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				185FD3FE17EB15AA00188CC2 /* cube.frag */,
+				185FD3FF17EB15AA00188CC2 /* cube.vert */,
+				185FD40017EB15AA00188CC2 /* distance-field-2.frag */,
+				185FD40117EB15AA00188CC2 /* distance-field-2.vert */,
+				185FD40217EB15AA00188CC2 /* distance-field-3.frag */,
+				185FD40317EB15AA00188CC2 /* distance-field.frag */,
+				185FD40417EB15AA00188CC2 /* distance-field.vert */,
+				185FD40517EB15AA00188CC2 /* text.frag */,
+				185FD40617EB15AA00188CC2 /* text.vert */,
+				185FD40717EB15AA00188CC2 /* v3f-c4f.frag */,
+				185FD40817EB15AA00188CC2 /* v3f-c4f.vert */,
+				185FD40917EB15AA00188CC2 /* v3f-t2f-c4f.frag */,
+				185FD40A17EB15AA00188CC2 /* v3f-t2f-c4f.vert */,
+			);
+			path = shaders;
 			sourceTree = "<group>";
 		};
 		18CE224717C6582800B6DB8E /* app */ = {
@@ -400,6 +647,32 @@
 				18DF8A7917DED9FF007A2A31 /* TestGc.cpp in Sources */,
 				1888176117E00C9900E4504A /* RingBuffer.cpp in Sources */,
 				1888176417E00DAA00E4504A /* Event.cpp in Sources */,
+				185FD42B17EB15AA00188CC2 /* Makefile in Sources */,
+				185FD42C17EB15AA00188CC2 /* edtaa3func.c in Sources */,
+				185FD42D17EB15AA00188CC2 /* font-manager.c in Sources */,
+				185FD42E17EB15AA00188CC2 /* Makefile in Sources */,
+				185FD43017EB15AA00188CC2 /* mat4.c in Sources */,
+				185FD43117EB15AA00188CC2 /* platform.c in Sources */,
+				185FD43217EB15AA00188CC2 /* shader.c in Sources */,
+				185FD43317EB15AA00188CC2 /* cube.frag in Sources */,
+				185FD43417EB15AA00188CC2 /* cube.vert in Sources */,
+				185FD43517EB15AA00188CC2 /* distance-field-2.frag in Sources */,
+				185FD43617EB15AA00188CC2 /* distance-field-2.vert in Sources */,
+				185FD43717EB15AA00188CC2 /* distance-field-3.frag in Sources */,
+				185FD43817EB15AA00188CC2 /* distance-field.frag in Sources */,
+				185FD43917EB15AA00188CC2 /* distance-field.vert in Sources */,
+				185FD43A17EB15AA00188CC2 /* text.frag in Sources */,
+				185FD43B17EB15AA00188CC2 /* text.vert in Sources */,
+				185FD43C17EB15AA00188CC2 /* v3f-c4f.frag in Sources */,
+				185FD43D17EB15AA00188CC2 /* v3f-c4f.vert in Sources */,
+				185FD43E17EB15AA00188CC2 /* v3f-t2f-c4f.frag in Sources */,
+				185FD43F17EB15AA00188CC2 /* v3f-t2f-c4f.vert in Sources */,
+				185FD44017EB15AA00188CC2 /* text-buffer.c in Sources */,
+				185FD44117EB15AA00188CC2 /* texture-atlas.c in Sources */,
+				185FD44217EB15AA00188CC2 /* texture-font.c in Sources */,
+				185FD44317EB15AA00188CC2 /* vector.c in Sources */,
+				185FD44417EB15AA00188CC2 /* vertex-attribute.c in Sources */,
+				185FD44517EB15AA00188CC2 /* vertex-buffer.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
