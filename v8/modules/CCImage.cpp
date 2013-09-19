@@ -24,6 +24,7 @@ THE SOFTWARE.
 
 #include "CCImage.h"
 #include <png.h>
+//#include <pngconf.h>
 //#include <jpeglib.h>
 //#include <decode.h>
 //#include <types.h>

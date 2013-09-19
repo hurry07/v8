@@ -8,27 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		182820A1179AFFCB003125B5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182820A0179AFFCB003125B5 /* main.cpp */; };
-		183CE5AB17D2917200ADD5CE /* png.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE51817D2917200ADD5CE /* png.c */; };
-		183CE5AC17D2917200ADD5CE /* pngerror.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE51D17D2917200ADD5CE /* pngerror.c */; };
-		183CE5AD17D2917200ADD5CE /* pnggccrd.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE51E17D2917200ADD5CE /* pnggccrd.c */; };
-		183CE5AE17D2917200ADD5CE /* pngget.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE51F17D2917200ADD5CE /* pngget.c */; };
-		183CE5AF17D2917200ADD5CE /* pngmem.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE52017D2917200ADD5CE /* pngmem.c */; };
-		183CE5B117D2917200ADD5CE /* pngread.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE52317D2917200ADD5CE /* pngread.c */; };
-		183CE5B217D2917200ADD5CE /* pngrio.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE52417D2917200ADD5CE /* pngrio.c */; };
-		183CE5B317D2917200ADD5CE /* pngrtran.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE52517D2917200ADD5CE /* pngrtran.c */; };
-		183CE5B417D2917200ADD5CE /* pngrutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE52617D2917200ADD5CE /* pngrutil.c */; };
-		183CE5B517D2917200ADD5CE /* pngset.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE52717D2917200ADD5CE /* pngset.c */; };
-		183CE5B717D2917200ADD5CE /* pngtrans.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE52A17D2917200ADD5CE /* pngtrans.c */; };
-		183CE5B817D2917200ADD5CE /* pngvcrd.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE52C17D2917200ADD5CE /* pngvcrd.c */; };
-		183CE5B917D2917200ADD5CE /* pngwio.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE52D17D2917200ADD5CE /* pngwio.c */; };
-		183CE5BA17D2917200ADD5CE /* pngwrite.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE52E17D2917200ADD5CE /* pngwrite.c */; };
-		183CE5BB17D2917200ADD5CE /* pngwtran.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE52F17D2917200ADD5CE /* pngwtran.c */; };
-		183CE5BC17D2917200ADD5CE /* pngwutil.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE53017D2917200ADD5CE /* pngwutil.c */; };
-		183CE5C417D2924500ADD5CE /* pngpread.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CE5C317D2924500ADD5CE /* pngpread.c */; };
 		183CE5C617D2934C00ADD5CE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 183CE5C517D2934C00ADD5CE /* libz.dylib */; };
 		183CE6B917D2DF2500ADD5CE /* CCImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 183CE6B817D2DF2500ADD5CE /* CCImage.cpp */; };
 		183CE6C017D2F76100ADD5CE /* CCTexture2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 183CE6BE17D2F76000ADD5CE /* CCTexture2D.cpp */; };
 		183CE6C717D34A6C00ADD5CE /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 183CE6C517D34A6B00ADD5CE /* Image.cpp */; };
+		185FD30717EAA51B00188CC2 /* libbz2.1.0.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 185FD30617EAA51B00188CC2 /* libbz2.1.0.5.dylib */; };
+		185FD30917EAAC9500188CC2 /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 185FD30817EAAC9500188CC2 /* libpng.a */; };
+		185FD30B17EAAE5800188CC2 /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 185FD30A17EAAE5800188CC2 /* libfreetype.a */; };
 		1888176117E00C9900E4504A /* RingBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1888175F17E00C9900E4504A /* RingBuffer.cpp */; };
 		1888176417E00DAA00E4504A /* Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1888176217E00DAA00E4504A /* Event.cpp */; };
 		18A2B6AE17C39A7B00C5F951 /* libv8_base.x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A2B6AC17C39A7B00C5F951 /* libv8_base.x64.a */; };
@@ -69,34 +55,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1809714D17E9D09400C725AA /* tips.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tips.txt; path = v8/assets/tips.txt; sourceTree = "<group>"; };
 		1828209C179AFFCB003125B5 /* v8 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = v8; sourceTree = BUILT_PRODUCTS_DIR; };
 		182820A0179AFFCB003125B5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		183CE51817D2917200ADD5CE /* png.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = png.c; sourceTree = "<group>"; };
-		183CE51917D2917200ADD5CE /* png.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = png.h; sourceTree = "<group>"; };
-		183CE51C17D2917200ADD5CE /* pngconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pngconf.h; sourceTree = "<group>"; };
-		183CE51D17D2917200ADD5CE /* pngerror.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngerror.c; sourceTree = "<group>"; };
-		183CE51E17D2917200ADD5CE /* pnggccrd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pnggccrd.c; sourceTree = "<group>"; };
-		183CE51F17D2917200ADD5CE /* pngget.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngget.c; sourceTree = "<group>"; };
-		183CE52017D2917200ADD5CE /* pngmem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngmem.c; sourceTree = "<group>"; };
-		183CE52317D2917200ADD5CE /* pngread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngread.c; sourceTree = "<group>"; };
-		183CE52417D2917200ADD5CE /* pngrio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngrio.c; sourceTree = "<group>"; };
-		183CE52517D2917200ADD5CE /* pngrtran.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngrtran.c; sourceTree = "<group>"; };
-		183CE52617D2917200ADD5CE /* pngrutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngrutil.c; sourceTree = "<group>"; };
-		183CE52717D2917200ADD5CE /* pngset.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngset.c; sourceTree = "<group>"; };
-		183CE52A17D2917200ADD5CE /* pngtrans.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngtrans.c; sourceTree = "<group>"; };
-		183CE52B17D2917200ADD5CE /* pngusr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pngusr.h; sourceTree = "<group>"; };
-		183CE52C17D2917200ADD5CE /* pngvcrd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngvcrd.c; sourceTree = "<group>"; };
-		183CE52D17D2917200ADD5CE /* pngwio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwio.c; sourceTree = "<group>"; };
-		183CE52E17D2917200ADD5CE /* pngwrite.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwrite.c; sourceTree = "<group>"; };
-		183CE52F17D2917200ADD5CE /* pngwtran.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwtran.c; sourceTree = "<group>"; };
-		183CE53017D2917200ADD5CE /* pngwutil.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngwutil.c; sourceTree = "<group>"; };
-		183CE5C317D2924500ADD5CE /* pngpread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pngpread.c; sourceTree = "<group>"; };
 		183CE5C517D2934C00ADD5CE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		183CE6B817D2DF2500ADD5CE /* CCImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCImage.cpp; sourceTree = "<group>"; };
 		183CE6BE17D2F76000ADD5CE /* CCTexture2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTexture2D.cpp; sourceTree = "<group>"; };
 		183CE6BF17D2F76000ADD5CE /* CCTexture2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCTexture2D.h; sourceTree = "<group>"; };
 		183CE6C517D34A6B00ADD5CE /* Image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
 		183CE6C617D34A6C00ADD5CE /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
+		185FD30617EAA51B00188CC2 /* libbz2.1.0.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libbz2.1.0.5.dylib; path = usr/lib/libbz2.1.0.5.dylib; sourceTree = SDKROOT; };
+		185FD30817EAAC9500188CC2 /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = deps/png/libpng.a; sourceTree = "<group>"; };
+		185FD30A17EAAE5800188CC2 /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = deps/freetype/libfreetype.a; sourceTree = "<group>"; };
 		1888175F17E00C9900E4504A /* RingBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RingBuffer.cpp; sourceTree = "<group>"; };
 		1888176017E00C9900E4504A /* RingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingBuffer.h; sourceTree = "<group>"; };
 		1888176217E00DAA00E4504A /* Event.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Event.cpp; sourceTree = "<group>"; };
@@ -168,6 +138,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				185FD30917EAAC9500188CC2 /* libpng.a in Frameworks */,
+				185FD30B17EAAE5800188CC2 /* libfreetype.a in Frameworks */,
+				185FD30717EAA51B00188CC2 /* libbz2.1.0.5.dylib in Frameworks */,
 				183CE5C617D2934C00ADD5CE /* libz.dylib in Frameworks */,
 				18A2B6AE17C39A7B00C5F951 /* libv8_base.x64.a in Frameworks */,
 				18A2B6AF17C39A7B00C5F951 /* libv8_snapshot.a in Frameworks */,
@@ -182,6 +155,10 @@
 		18282091179AFFCB003125B5 = {
 			isa = PBXGroup;
 			children = (
+				185FD30A17EAAE5800188CC2 /* libfreetype.a */,
+				185FD30817EAAC9500188CC2 /* libpng.a */,
+				185FD30617EAA51B00188CC2 /* libbz2.1.0.5.dylib */,
+				1809714D17E9D09400C725AA /* tips.txt */,
 				183CE5C517D2934C00ADD5CE /* libz.dylib */,
 				18A2B6AC17C39A7B00C5F951 /* libv8_base.x64.a */,
 				18A2B6AD17C39A7B00C5F951 /* libv8_snapshot.a */,
@@ -206,7 +183,6 @@
 		1828209F179AFFCB003125B5 /* v8 */ = {
 			isa = PBXGroup;
 			children = (
-				183CE4A517D2917100ADD5CE /* platform_external_libpng */,
 				18A6D24B17C7455C004931FD /* global.cpp */,
 				18CE224717C6582800B6DB8E /* app */,
 				18CE227117C6582800B6DB8E /* classes */,
@@ -224,34 +200,6 @@
 			);
 			path = v8;
 			sourceTree = "<group>";
-		};
-		183CE4A517D2917100ADD5CE /* platform_external_libpng */ = {
-			isa = PBXGroup;
-			children = (
-				183CE5C317D2924500ADD5CE /* pngpread.c */,
-				183CE51817D2917200ADD5CE /* png.c */,
-				183CE51917D2917200ADD5CE /* png.h */,
-				183CE51C17D2917200ADD5CE /* pngconf.h */,
-				183CE51D17D2917200ADD5CE /* pngerror.c */,
-				183CE51E17D2917200ADD5CE /* pnggccrd.c */,
-				183CE51F17D2917200ADD5CE /* pngget.c */,
-				183CE52017D2917200ADD5CE /* pngmem.c */,
-				183CE52317D2917200ADD5CE /* pngread.c */,
-				183CE52417D2917200ADD5CE /* pngrio.c */,
-				183CE52517D2917200ADD5CE /* pngrtran.c */,
-				183CE52617D2917200ADD5CE /* pngrutil.c */,
-				183CE52717D2917200ADD5CE /* pngset.c */,
-				183CE52A17D2917200ADD5CE /* pngtrans.c */,
-				183CE52B17D2917200ADD5CE /* pngusr.h */,
-				183CE52C17D2917200ADD5CE /* pngvcrd.c */,
-				183CE52D17D2917200ADD5CE /* pngwio.c */,
-				183CE52E17D2917200ADD5CE /* pngwrite.c */,
-				183CE52F17D2917200ADD5CE /* pngwtran.c */,
-				183CE53017D2917200ADD5CE /* pngwutil.c */,
-			);
-			name = platform_external_libpng;
-			path = deps/platform_external_libpng;
-			sourceTree = SOURCE_ROOT;
 		};
 		18CE224717C6582800B6DB8E /* app */ = {
 			isa = PBXGroup;
@@ -443,23 +391,6 @@
 				18A6D24C17C7455D004931FD /* global.cpp in Sources */,
 				18A6D24E17C75CBE004931FD /* v8Utils.cpp in Sources */,
 				18CE34B717C7B7E400B6DB8E /* Arguments.cpp in Sources */,
-				183CE5AB17D2917200ADD5CE /* png.c in Sources */,
-				183CE5AC17D2917200ADD5CE /* pngerror.c in Sources */,
-				183CE5AD17D2917200ADD5CE /* pnggccrd.c in Sources */,
-				183CE5AE17D2917200ADD5CE /* pngget.c in Sources */,
-				183CE5AF17D2917200ADD5CE /* pngmem.c in Sources */,
-				183CE5B117D2917200ADD5CE /* pngread.c in Sources */,
-				183CE5B217D2917200ADD5CE /* pngrio.c in Sources */,
-				183CE5B317D2917200ADD5CE /* pngrtran.c in Sources */,
-				183CE5B417D2917200ADD5CE /* pngrutil.c in Sources */,
-				183CE5B517D2917200ADD5CE /* pngset.c in Sources */,
-				183CE5B717D2917200ADD5CE /* pngtrans.c in Sources */,
-				183CE5B817D2917200ADD5CE /* pngvcrd.c in Sources */,
-				183CE5B917D2917200ADD5CE /* pngwio.c in Sources */,
-				183CE5BA17D2917200ADD5CE /* pngwrite.c in Sources */,
-				183CE5BB17D2917200ADD5CE /* pngwtran.c in Sources */,
-				183CE5BC17D2917200ADD5CE /* pngwutil.c in Sources */,
-				183CE5C417D2924500ADD5CE /* pngpread.c in Sources */,
 				183CE6B917D2DF2500ADD5CE /* CCImage.cpp in Sources */,
 				183CE6C017D2F76100ADD5CE /* CCTexture2D.cpp in Sources */,
 				183CE6C717D34A6C00ADD5CE /* Image.cpp in Sources */,
@@ -540,13 +471,20 @@
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					/Users/jie/git/node/deps/v8/include,
 					"$SRCROOT/deps/glm/**",
-					$SRCROOT/deps/platform_external_libpng,
+					$SRCROOT/deps/png,
+					$SRCROOT/deps/freetype/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../git/node/deps/v8/out/x64.debug\"",
 					"\"$(SRCROOT)/deps/v8\"",
 					"\"$(SRCROOT)/..\"",
+					"\"$(SRCROOT)/deps/freetype\"",
+					"\"$(SRCROOT)/../freetype-gl-read-only/windows/AntTweakBar/lib\"",
+					"\"$(SRCROOT)/../freetype-gl-read-only/windows/freetype\"",
+					"\"$(SRCROOT)/../freetype-gl-read-only/windows/glew/lib\"",
+					"\"$(SRCROOT)/../freetype-gl-read-only/windows/glut\"",
+					"\"$(SRCROOT)/deps/png\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -558,13 +496,20 @@
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					/Users/jie/xcodespace/v8/v8/include,
 					"$SRCROOT/deps/glm/**",
-					$SRCROOT/deps/platform_external_libpng,
+					$SRCROOT/deps/png,
+					$SRCROOT/deps/freetype/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../git/node/deps/v8/out/x64.debug\"",
 					"\"$(SRCROOT)/deps/v8\"",
 					"\"$(SRCROOT)/..\"",
+					"\"$(SRCROOT)/deps/freetype\"",
+					"\"$(SRCROOT)/../freetype-gl-read-only/windows/AntTweakBar/lib\"",
+					"\"$(SRCROOT)/../freetype-gl-read-only/windows/freetype\"",
+					"\"$(SRCROOT)/../freetype-gl-read-only/windows/glew/lib\"",
+					"\"$(SRCROOT)/../freetype-gl-read-only/windows/glut\"",
+					"\"$(SRCROOT)/deps/png\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -18,6 +18,8 @@
 #include "core/RingBuffer.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/swizzle.hpp>
+#include <ft2build.h>
+#include FT_FREETYPE_H
 
 using namespace v8;
 
@@ -139,20 +141,5 @@ int main(int argc, char ** argv)
     delete app;
 
     glm::mat3 m4;
-//    RingBuffer* buf = new RingBuffer(4, 32);
-//    int i = -1;
-//    int a = 0;
-//    int b = 0;
-//    while(++i < 50) {
-//        a++;
-//        DataRange* w = buf->startWrite();
-//        w->writeOne((char*)(&a));
-//        w->end();
-//
-//        DataRange* r = buf->startRead();
-//        r->readOne((char*)(&b));
-//        r->end();
-//        LOGI("put get %d %d", a, b);
-//    }
     return 0;
 }
