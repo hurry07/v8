@@ -41,6 +41,7 @@
 		185FD44317EB15AA00188CC2 /* vector.c in Sources */ = {isa = PBXBuildFile; fileRef = 185FD41317EB15AA00188CC2 /* vector.c */; };
 		185FD44417EB15AA00188CC2 /* vertex-attribute.c in Sources */ = {isa = PBXBuildFile; fileRef = 185FD41517EB15AA00188CC2 /* vertex-attribute.c */; };
 		185FD44517EB15AA00188CC2 /* vertex-buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 185FD41717EB15AA00188CC2 /* vertex-buffer.c */; };
+		1884AFE717EC1823001E2607 /* demo-font.c in Sources */ = {isa = PBXBuildFile; fileRef = 1884AFE617EC1823001E2607 /* demo-font.c */; };
 		1888176117E00C9900E4504A /* RingBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1888175F17E00C9900E4504A /* RingBuffer.cpp */; };
 		1888176417E00DAA00E4504A /* Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1888176217E00DAA00E4504A /* Event.cpp */; };
 		18A2B6AE17C39A7B00C5F951 /* libv8_base.x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18A2B6AC17C39A7B00C5F951 /* libv8_base.x64.a */; };
@@ -176,6 +177,8 @@
 		185FD41617EB15AA00188CC2 /* vertex-attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "vertex-attribute.h"; sourceTree = "<group>"; };
 		185FD41717EB15AA00188CC2 /* vertex-buffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "vertex-buffer.c"; sourceTree = "<group>"; };
 		185FD41817EB15AA00188CC2 /* vertex-buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "vertex-buffer.h"; sourceTree = "<group>"; };
+		1884AFE617EC1823001E2607 /* demo-font.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "demo-font.c"; sourceTree = "<group>"; };
+		1884AFED17EDDF04001E2607 /* demo-font.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "demo-font.h"; sourceTree = "<group>"; };
 		1888175F17E00C9900E4504A /* RingBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RingBuffer.cpp; sourceTree = "<group>"; };
 		1888176017E00C9900E4504A /* RingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingBuffer.h; sourceTree = "<group>"; };
 		1888176217E00DAA00E4504A /* Event.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Event.cpp; sourceTree = "<group>"; };
@@ -293,6 +296,7 @@
 		1828209F179AFFCB003125B5 /* v8 */ = {
 			isa = PBXGroup;
 			children = (
+				1884AFE617EC1823001E2607 /* demo-font.c */,
 				185FD3AD17EB15AA00188CC2 /* freetype-gl-read-only */,
 				18A6D24B17C7455C004931FD /* global.cpp */,
 				18CE224717C6582800B6DB8E /* app */,
@@ -308,6 +312,7 @@
 				18DF8A7717DED9FF007A2A31 /* TestGc.cpp */,
 				18DF8A7817DED9FF007A2A31 /* TestGc.h */,
 				18EDB76617B763B0002E00CE /* global.h */,
+				1884AFED17EDDF04001E2607 /* demo-font.h */,
 			);
 			path = v8;
 			sourceTree = "<group>";
@@ -673,6 +678,7 @@
 				185FD44317EB15AA00188CC2 /* vector.c in Sources */,
 				185FD44417EB15AA00188CC2 /* vertex-attribute.c in Sources */,
 				185FD44517EB15AA00188CC2 /* vertex-buffer.c in Sources */,
+				1884AFE717EC1823001E2607 /* demo-font.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

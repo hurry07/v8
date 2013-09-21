@@ -55,8 +55,7 @@ texture_atlas_new( const size_t width,
     assert( (depth == 1) || (depth == 3) || (depth == 4) );
     if( self == NULL)
     {
-        fprintf( stderr,
-                 "line %d: No more memory for allocating data\n", __LINE__ );
+        fprintf( stderr, "line %d: No more memory for allocating data\n", __LINE__ );
         exit( EXIT_FAILURE );
     }
     self->nodes = vector_new( sizeof(ivec3) );
@@ -67,13 +66,11 @@ texture_atlas_new( const size_t width,
     self->id = 0;
 
     vector_push_back( self->nodes, &node );
-    self->data = (unsigned char *)
-        calloc( width*height*depth, sizeof(unsigned char) );
+    self->data = (unsigned char *)calloc( width*height*depth, sizeof(unsigned char) );
 
     if( self->data == NULL)
     {
-        fprintf( stderr,
-                 "line %d: No more memory for allocating data\n", __LINE__ );
+        fprintf( stderr, "line %d: No more memory for allocating data\n", __LINE__ );
         exit( EXIT_FAILURE );
     }
 
