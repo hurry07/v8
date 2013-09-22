@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18203BB617EEBE5200A7ED4C /* md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BB417EEBE5200A7ED4C /* md5.cpp */; };
 		182820A1179AFFCB003125B5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182820A0179AFFCB003125B5 /* main.cpp */; };
 		183CE5C617D2934C00ADD5CE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 183CE5C517D2934C00ADD5CE /* libz.dylib */; };
 		183CE6B917D2DF2500ADD5CE /* CCImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 183CE6B817D2DF2500ADD5CE /* CCImage.cpp */; };
@@ -83,6 +84,8 @@
 
 /* Begin PBXFileReference section */
 		1809714D17E9D09400C725AA /* tips.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tips.txt; path = v8/assets/tips.txt; sourceTree = "<group>"; };
+		18203BB417EEBE5200A7ED4C /* md5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = md5.cpp; sourceTree = "<group>"; };
+		18203BB517EEBE5200A7ED4C /* md5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = md5.h; sourceTree = "<group>"; };
 		1828209C179AFFCB003125B5 /* v8 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = v8; sourceTree = BUILT_PRODUCTS_DIR; };
 		182820A0179AFFCB003125B5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		183CE5C517D2934C00ADD5CE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -296,6 +299,8 @@
 		1828209F179AFFCB003125B5 /* v8 */ = {
 			isa = PBXGroup;
 			children = (
+				18203BB417EEBE5200A7ED4C /* md5.cpp */,
+				18203BB517EEBE5200A7ED4C /* md5.h */,
 				1884AFE617EC1823001E2607 /* demo-font.c */,
 				185FD3AD17EB15AA00188CC2 /* freetype-gl-read-only */,
 				18A6D24B17C7455C004931FD /* global.cpp */,
@@ -679,6 +684,7 @@
 				185FD44417EB15AA00188CC2 /* vertex-attribute.c in Sources */,
 				185FD44517EB15AA00188CC2 /* vertex-buffer.c in Sources */,
 				1884AFE717EC1823001E2607 /* demo-font.c in Sources */,
+				18203BB617EEBE5200A7ED4C /* md5.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

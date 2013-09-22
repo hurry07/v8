@@ -20,6 +20,8 @@
 #include <glm/gtc/swizzle.hpp>
 #include <ft2build.h>
 #include FT_FREETYPE_H
+#include "md5.h"
+#include <iostream>
 //#include "demo-font.h"
 
 using namespace v8;
@@ -280,6 +282,7 @@ int main_font( int argc, char **argv )
         font = texture_font_new( atlas, filename, i );
         pen.x = 5;
         pen.y -= font->height;
+        LOGI("fond.height:%f", font->height);
         texture_font_load_glyphs( font, text );
         add_text( buffer, font, text, &black, &pen );
         texture_font_delete( font );
@@ -294,6 +297,9 @@ int main_font( int argc, char **argv )
     
     glutMainLoop( );
     return 0;
+}
+void PrintMD5(const string& str, MD5& md5) {
+	std::cout << "MD5(\"" << str << "\") = " << md5.toString() << std::endl;
 }
 int main(int argc, char ** argv)
 {
@@ -328,6 +334,9 @@ int main(int argc, char ** argv)
 //    LOGI("face units_per_EM:%hd", face->units_per_EM);
 //    LOGI("face num_faces:%ld", face->num_faces);
 //    LOGI("face num_faces:%ld", face->num_faces);
+//    const char* uuid = env->GetStringUTFChars(str,NULL);
+//    const char * pszText = cocos2d::CCIMEDispatcher::sharedDispatcher()->getContentText();
+//    return env->NewStringUTF(pszText);
     
     return 0;
 }
