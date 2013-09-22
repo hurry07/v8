@@ -77,8 +77,8 @@ typedef union
         int alpha;  /**< Alias for fourth component */
     };
 	struct {
-        int vstart; /**< Alias for first component  */
-        int vcount; /**< Alias for second component */
+        int vstart; /**< Alias for first component  */// vector start
+        int vcount; /**< Alias for second component */// vector count
         int istart; /**< Alias for third component  */
         int icount; /**< Alias for fourth component */
     };

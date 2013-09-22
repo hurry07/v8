@@ -145,6 +145,7 @@ vertex_attribute_parse( char *format )
 
 
 // ----------------------------------------------------------------------------
+// bind attributes as shader params
 void
 vertex_attribute_enable( vertex_attribute_t *attr )
 {
@@ -163,6 +164,5 @@ vertex_attribute_enable( vertex_attribute_t *attr )
         }
     }
     glEnableVertexAttribArray( attr->index );
-    glVertexAttribPointer( attr->index, attr->size, attr->type,
-                           attr->normalized, attr->stride, attr->pointer );
+    glVertexAttribPointer( attr->index, attr->size, attr->type, attr->normalized, attr->stride, attr->pointer );
 }

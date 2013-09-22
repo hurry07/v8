@@ -318,6 +318,7 @@ vertex_buffer_clear( vertex_buffer_t *self )
 
 
 // ----------------------------------------------------------------------------
+// bind all kinds of buffer
 void
 vertex_buffer_render_setup ( vertex_buffer_t *self, GLenum mode )
 {
@@ -329,7 +330,7 @@ vertex_buffer_render_setup ( vertex_buffer_t *self, GLenum mode )
         self->state = CLEAN;
     }
     
-    glBindBuffer( GL_ARRAY_BUFFER, self->vertices_id );
+    glBindBuffer( GL_ARRAY_BUFFER, self->vertices_id );// bind attribute as a whole
 
     for( i=0; i<MAX_VERTEX_ATTRIBUTE; ++i )
     {
@@ -346,7 +347,7 @@ vertex_buffer_render_setup ( vertex_buffer_t *self, GLenum mode )
 
     if( self->indices->size )
     {
-        glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, self->indices_id );
+        glBindBuffer( GL_ELEMENT_ARRAY_BUFFER, self->indices_id );// index?
     }
     self->mode = mode;
 }
@@ -369,7 +370,6 @@ vertex_buffer_render_item ( vertex_buffer_t *self,
     assert( self );
     assert( index < vector_size( self->items ) );
 
- 
     if( self->indices->size )
     {
         size_t start = item->istart;
@@ -404,7 +404,6 @@ vertex_buffer_render ( vertex_buffer_t *self, GLenum mode )
     }
     vertex_buffer_render_finish( self );
 }
-    
 
 
 // ----------------------------------------------------------------------------

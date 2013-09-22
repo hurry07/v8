@@ -210,8 +210,7 @@ void keyboard( unsigned char key, int x, int y )
 
 
 // --------------------------------------------------------------- add_text ---
-void add_text( vertex_buffer_t * buffer, texture_font_t * font,
-              wchar_t * text, vec4 * color, vec2 * pen )
+void add_text( vertex_buffer_t * buffer, texture_font_t * font, wchar_t * text, vec4 * color, vec2 * pen )
 {
     size_t i;
     float r = color->red, g = color->green, b = color->blue, a = color->alpha;
@@ -239,10 +238,12 @@ void add_text( vertex_buffer_t * buffer, texture_font_t * font,
             float s1 = glyph->s1;
             float t1 = glyph->t1;
             GLuint indices[6] = {0,1,2, 0,2,3};
-            vertex_t vertices[4] = { { x0f,y0f,0,  s0,t0,  r,g,b,a },
+            vertex_t vertices[4] = {
+                { x0f,y0f,0,  s0,t0,  r,g,b,a },
                 { x0f,y1f,0,  s0,t1,  r,g,b,a },
                 { x1f,y1f,0,  s1,t1,  r,g,b,a },
-                { x1f,y0f,0,  s1,t0,  r,g,b,a } };
+                { x1f,y0f,0,  s1,t0,  r,g,b,a }
+            };
             vertex_buffer_push_back( buffer, vertices, 4, indices, 6 );
             pen->x += glyph->advance_x;
         }
@@ -276,7 +277,7 @@ int main_font( int argc, char **argv )
     wchar_t *text = L"A Quick Brown Fox Jumps Over The Lazy Dog 0123456789";
     buffer = vertex_buffer_new( "vertex:3f,tex_coord:2f,color:4f" );
     vec2 pen = {{5,400}};
-    vec4 black = {{0,0,0,1}};
+    vec4 black = {{0,0,1,1}};
     for( i=7; i < 27; ++i)
     {
         font = texture_font_new( atlas, filename, i );

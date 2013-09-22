@@ -46,6 +46,7 @@ texture_atlas_new( const size_t width,
                    const size_t height,
                    const size_t depth )
 {
+    printf("texture_atlas_new:%d\n", sizeof(texture_atlas_t));
     texture_atlas_t *self = (texture_atlas_t *) malloc( sizeof(texture_atlas_t) );
 
     // We want a one pixel border around the whole atlas to avoid any artefact when
@@ -58,7 +59,8 @@ texture_atlas_new( const size_t width,
         fprintf( stderr, "line %d: No more memory for allocating data\n", __LINE__ );
         exit( EXIT_FAILURE );
     }
-    self->nodes = vector_new( sizeof(ivec3) );
+
+    self->nodes = vector_new( sizeof(ivec3) );// vector of text rectangle
     self->used = 0;
     self->width = width;
     self->height = height;

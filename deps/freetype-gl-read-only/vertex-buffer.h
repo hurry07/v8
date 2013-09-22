@@ -65,13 +65,13 @@ typedef struct
     /** Vector of vertices. */
     vector_t * vertices;
 
-    /** GL identity of the vertices buffer. */
+    /** GL identity of the vertices buffer. <--- attribute buffer id */
     GLuint vertices_id;
 
     /** Vector of indices. */
     vector_t * indices;
 
-    /** GL identity of the indices buffer. */
+    /** GL identity of the indices buffer. <--- indices buffer */
     GLuint indices_id;
 
     /** Current size of the vertices buffer in GPU */
@@ -89,7 +89,7 @@ typedef struct
     /** Individual items */
     vector_t * items;
 
-    /** Array of attributes. */
+    /** Array of attributes. (mixed array offset) */
     vertex_attribute_t *attributes[MAX_VERTEX_ATTRIBUTE];
 } vertex_buffer_t;
 

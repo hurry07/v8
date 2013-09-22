@@ -227,7 +227,7 @@ typedef struct
      * Atlas structure to store glyphs data.
      */
     texture_atlas_t * atlas;
-    
+
     /**
      * Font filename
      */
@@ -237,7 +237,7 @@ typedef struct
      * Font size
      */
     float size;
-    
+
     /**
      * Whether to use autohint when rendering font
      */
