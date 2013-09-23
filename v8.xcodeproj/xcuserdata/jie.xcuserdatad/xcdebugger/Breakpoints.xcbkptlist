@@ -7,37 +7,37 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "v8/main.cpp"
-         timestampString = "401628528.578749"
+         filePath = "deps/freetype-gl-read-only/texture-font.c"
+         timestampString = "401640078.47651"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "308"
-         endingLineNumber = "308">
+         startingLineNumber = "522"
+         endingLineNumber = "522">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "deps/freetype-gl-read-only/vertex-buffer.c"
-         timestampString = "401623832.509032"
+         filePath = "deps/freetype-gl-read-only/texture-atlas.c"
+         timestampString = "401640123.621709"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "392"
-         endingLineNumber = "392"
-         landmarkName = "vertex_buffer_render()"
+         startingLineNumber = "217"
+         endingLineNumber = "217"
+         landmarkName = "texture_atlas_get_region()"
          landmarkType = "7">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "deps/freetype-gl-read-only/vertex-buffer.c"
-         timestampString = "401623836.753606"
+         filePath = "deps/freetype-gl-read-only/texture-atlas.c"
+         timestampString = "401640157.150626"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "394"
-         endingLineNumber = "394"
-         landmarkName = "vertex_buffer_render()"
+         startingLineNumber = "205"
+         endingLineNumber = "205"
+         landmarkName = "texture_atlas_get_region()"
          landmarkType = "7">
       </FileBreakpoint>
    </FileBreakpoints>

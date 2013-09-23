@@ -355,7 +355,6 @@ texture_font_load_glyphs( texture_font_t * self,
     assert( self );
     assert( charcodes );
 
-
     width  = self->atlas->width;
     height = self->atlas->height;
     depth  = self->atlas->depth;
@@ -426,6 +425,7 @@ texture_font_load_glyphs( texture_font_t * self,
             ft_bitmap_pitch = slot->bitmap.pitch;
             ft_glyph_top    = slot->bitmap_top;
             ft_glyph_left   = slot->bitmap_left;
+            //printf("ft_bitmap_width:%d %d\n", ft_bitmap_width, ft_bitmap_rows);
         }
         else
         {
@@ -515,12 +515,12 @@ texture_font_load_glyphs( texture_font_t * self,
             FT_Stroker_Done(stroker);
         }
 
-
         // We want each glyph to be separated by at least one black pixel
         // (for example for shader used in demo-subpixel.c)
         w = ft_bitmap_width/depth + 1;
         h = ft_bitmap_rows + 1;
         region = texture_atlas_get_region( self->atlas, w, h );
+        //printf("region:%d %d %d %d\n", region.x, region.y, region.data[2], region.data[3]);
         if ( region.x < 0 )
         {
             missed++;
@@ -531,8 +531,7 @@ texture_font_load_glyphs( texture_font_t * self,
         h = h - 1;
         x = region.x;
         y = region.y;
-        texture_atlas_set_region( self->atlas, x, y, w, h,
-                                  ft_bitmap.buffer, ft_bitmap.pitch );
+        texture_atlas_set_region( self->atlas, x, y, w, h, ft_bitmap.buffer, ft_bitmap.pitch );
 
         glyph = texture_glyph_new( );
         glyph->charcode = charcodes[i];

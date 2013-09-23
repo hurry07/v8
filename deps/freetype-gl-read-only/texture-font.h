@@ -358,9 +358,7 @@ typedef struct
  * @param self     A valid texture font
  * @param charcode Character codepoint to be loaded.
  *
- * @return A pointer on the new glyph or 0 if the texture atlas is not big
- *         enough
- *
+ * @return A pointer on the new glyph or 0 if the texture atlas is not big enough
  */
   texture_glyph_t *
   texture_font_get_glyph( texture_font_t * self,
@@ -373,8 +371,7 @@ typedef struct
  * @param self      a valid texture font
  * @param charcodes character codepoints to be loaded.
  *
- * @return Number of missed glyph if the texture is not big enough to hold
- *         every glyphs.
+ * @return Number of missed glyph if the texture is not big enough to hold every glyphs.
  */
   size_t
   texture_font_load_glyphs( texture_font_t * self,

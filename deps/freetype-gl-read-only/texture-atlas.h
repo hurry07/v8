@@ -98,7 +98,7 @@ extern "C" {
 typedef struct
 {
     /**
-     * Allocated nodes
+     * Allocated nodes, (picture positions)
      */
     vector_t * nodes;
 
@@ -133,7 +133,6 @@ typedef struct
     unsigned char * data;
 
 } texture_atlas_t;
-
 
 
 /**
