@@ -178,6 +178,6 @@ int main(int argc, char ** argv)
 //    const char* uuid = env->GetStringUTFChars(str,NULL);
 //    const char * pszText = cocos2d::CCIMEDispatcher::sharedDispatcher()->getContentText();
 //    return env->NewStringUTF(pszText);
-    
+
     return 0;
 }

@@ -67,7 +67,7 @@
 		18DF8A7917DED9FF007A2A31 /* TestGc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18DF8A7717DED9FF007A2A31 /* TestGc.cpp */; };
 		18EDB76817B7698C002E00CE /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EDB76717B7698C002E00CE /* OpenGL.framework */; };
 		18EDB76A17B76992002E00CE /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18EDB76917B76992002E00CE /* GLUT.framework */; };
-		18F7B0E617F09451006ADE2C /* demo-font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F7B0E517F09451006ADE2C /* demo-font.cpp */; };
+		18F7B0E817F09646006ADE2C /* demo-font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18F7B0E717F09646006ADE2C /* demo-font.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -245,7 +245,7 @@
 		18EDB76917B76992002E00CE /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		18EDB76B17B76C1F002E00CE /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		18EDB7A117B77E83002E00CE /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		18F7B0E517F09451006ADE2C /* demo-font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "demo-font.cpp"; sourceTree = "<group>"; };
+		18F7B0E717F09646006ADE2C /* demo-font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "demo-font.cpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,7 +299,6 @@
 		1828209F179AFFCB003125B5 /* v8 */ = {
 			isa = PBXGroup;
 			children = (
-				18F7B0E517F09451006ADE2C /* demo-font.cpp */,
 				18203BB417EEBE5200A7ED4C /* md5.cpp */,
 				18203BB517EEBE5200A7ED4C /* md5.h */,
 				185FD3AD17EB15AA00188CC2 /* freetype-gl-read-only */,
@@ -314,6 +313,7 @@
 				18CE2CBF17C6582B00B6DB8E /* utils */,
 				18EDB76B17B76C1F002E00CE /* assets */,
 				182820A0179AFFCB003125B5 /* main.cpp */,
+				18F7B0E717F09646006ADE2C /* demo-font.cpp */,
 				18DF8A7717DED9FF007A2A31 /* TestGc.cpp */,
 				18DF8A7817DED9FF007A2A31 /* TestGc.h */,
 				18EDB76617B763B0002E00CE /* global.h */,
@@ -684,7 +684,7 @@
 				185FD44417EB15AA00188CC2 /* vertex-attribute.c in Sources */,
 				185FD44517EB15AA00188CC2 /* vertex-buffer.c in Sources */,
 				18203BB617EEBE5200A7ED4C /* md5.cpp in Sources */,
-				18F7B0E617F09451006ADE2C /* demo-font.cpp in Sources */,
+				18F7B0E817F09646006ADE2C /* demo-font.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
