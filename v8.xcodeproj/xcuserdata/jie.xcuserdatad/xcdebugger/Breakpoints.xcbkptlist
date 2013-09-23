@@ -7,12 +7,23 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "deps/freetype-gl-read-only/vertex-buffer.c"
-         timestampString = "401554770.21836"
+         filePath = "v8/main.cpp"
+         timestampString = "401628528.578749"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "395"
-         endingLineNumber = "395"
+         startingLineNumber = "308"
+         endingLineNumber = "308">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "deps/freetype-gl-read-only/vertex-buffer.c"
+         timestampString = "401623832.509032"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "392"
+         endingLineNumber = "392"
          landmarkName = "vertex_buffer_render()"
          landmarkType = "7">
       </FileBreakpoint>
@@ -20,13 +31,13 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "v8/main.cpp"
-         timestampString = "401554748.310329"
+         filePath = "deps/freetype-gl-read-only/vertex-buffer.c"
+         timestampString = "401623836.753606"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "215"
-         endingLineNumber = "215"
-         landmarkName = "add_text( vertex_buffer_t * buffer, texture_font_t * font, wchar_t * text, vec4 * color, vec2 * pen )"
+         startingLineNumber = "394"
+         endingLineNumber = "394"
+         landmarkName = "vertex_buffer_render()"
          landmarkType = "7">
       </FileBreakpoint>
    </FileBreakpoints>

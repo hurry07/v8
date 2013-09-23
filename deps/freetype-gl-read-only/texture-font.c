@@ -235,7 +235,7 @@ texture_font_generate_kerning( texture_font_t *self )
 texture_font_t *
 texture_font_new( texture_atlas_t * atlas,
                   const char * filename,
-const float size)// font size
+                 const float size)// font size
 {
     texture_font_t *self = (texture_font_t *) malloc( sizeof(texture_font_t) );
     FT_Library library;

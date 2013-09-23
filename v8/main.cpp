@@ -212,6 +212,7 @@ void keyboard( unsigned char key, int x, int y )
 // --------------------------------------------------------------- add_text ---
 void add_text( vertex_buffer_t * buffer, texture_font_t * font, wchar_t * text, vec4 * color, vec2 * pen )
 {
+    int size1 = buffer->vertices->size;
     size_t i;
     float r = color->red, g = color->green, b = color->blue, a = color->alpha;
     for( i=0; i<wcslen(text); ++i )
@@ -248,6 +249,8 @@ void add_text( vertex_buffer_t * buffer, texture_font_t * font, wchar_t * text, 
             pen->x += glyph->advance_x;
         }
     }
+    int size2 = buffer->vertices->size;
+    LOGI("%d", size2 - size1);
 }
 
 // ------------------------------------------------------------------- main ---
@@ -274,7 +277,10 @@ int main_font( int argc, char **argv )
     texture_font_t *font = 0;
     texture_atlas_t *atlas = texture_atlas_new( 512, 512, 1 );
     const char * filename = "/Users/jie/svn/v8/deps/freetype-gl-read-only/fonts/Vera.ttf";
+
     wchar_t *text = L"A Quick Brown Fox Jumps Over The Lazy Dog 0123456789";
+    LOGI("text length:%ld", sizeof(text));
+
     buffer = vertex_buffer_new( "vertex:3f,tex_coord:2f,color:4f" );
     vec2 pen = {{5,400}};
     vec4 black = {{0,0,1,1}};
