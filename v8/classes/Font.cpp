@@ -28,13 +28,42 @@
 
 METHOD_BEGIN(load, info) {
     HandleScope scope;
+    
+    Font* font = internalPtr<Font>(info, CLASS_Font);
+    if(font == 0) {
+        return;
+    }
+    Local<String> text = info[0]->ToString();
+    int len = text->Length();
+    uint16_t buf[len + 1];
+    wchar_t *wtext = L"A Quick Brown Fox Jumps Over The Lazy Dog 0123456789";
+    text->Write((uint16_t*)buf, 0, -1);
+//    wbuf[0] = 'a';
+//    wbuf[1] = 'b';
+//    wbuf[2] = 'c';
+//    wbuf[3] = 'a';
+//    wbuf[4] = 'b';
+//    wbuf[5] = 'c';
+//    wprintf(L"%s\n", wtext);
+    setlocale(LC_CTYPE, "zh_CN.utf8");
+    wchar_t *wstr = L"bcdef";
+    wprintf(L"%s\n",wstr);
 
+//    JSFile* file = JSFile::loadAsset(font->font->filename);
+//    js_texture_font_load_glyphs(font->font, (const wchar_t*)(*text), file->chars(), file->size());
+//    delete file;
+}
+METHOD_BEGIN(measure, info) {
+    HandleScope scope;
+    
     Font* font = internalPtr<Font>(info, CLASS_Font);
     if(font == 0) {
         return;
     }
     String::Utf8Value text(info[0]->ToString());
-    
+    wchar_t* wtext = (wchar_t*)(*text);
+
+    wprintf(L"%s\n", *text);
     JSFile* file = JSFile::loadAsset(font->font->filename);
     js_texture_font_load_glyphs(font->font, (const wchar_t*)(*text), file->chars(), file->size());
     delete file;
@@ -44,6 +73,7 @@ static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp)
 
     Local<ObjectTemplate> obj = temp->PrototypeTemplate();
     EXPOSE_METHOD(obj, load, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, measure, ReadOnly | DontDelete);
 
     return scope.Close(temp->GetFunction());
 }

@@ -14,7 +14,7 @@ var _inherit = require('core/inherit.js');
 
 console.log('_font', _Font);
 var f = new _Font(new _Atlas(512, 512, 1), 'fonts/Vera.ttf', 20);
-f.load('abc');
+f.load('0 !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~你好');
 
 var firstInit = true;
 function Game() {

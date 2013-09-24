@@ -118,7 +118,6 @@ var R = {
         }
     },
 
-
     pngnow: '.png',
     test: '.png',
     word: '.png'
