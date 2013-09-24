@@ -36,22 +36,10 @@ METHOD_BEGIN(load, info) {
     Local<String> text = info[0]->ToString();
     int len = text->Length();
     uint16_t buf[len + 1];
-    wchar_t *wtext = L"A Quick Brown Fox Jumps Over The Lazy Dog 0123456789";
-    text->Write((uint16_t*)buf, 0, -1);
-//    wbuf[0] = 'a';
-//    wbuf[1] = 'b';
-//    wbuf[2] = 'c';
-//    wbuf[3] = 'a';
-//    wbuf[4] = 'b';
-//    wbuf[5] = 'c';
-//    wprintf(L"%s\n", wtext);
-    setlocale(LC_CTYPE, "zh_CN.utf8");
-    wchar_t *wstr = L"bcdef";
-    wprintf(L"%s\n",wstr);
 
-//    JSFile* file = JSFile::loadAsset(font->font->filename);
-//    js_texture_font_load_glyphs(font->font, (const wchar_t*)(*text), file->chars(), file->size());
-//    delete file;
+    JSFile* file = JSFile::loadAsset(font->font->filename);
+    js_texture_font_load_glyphs(font->font, (const wchar_t*)buf, file->chars(), file->size());
+    delete file;
 }
 METHOD_BEGIN(measure, info) {
     HandleScope scope;

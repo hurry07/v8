@@ -117,6 +117,7 @@ int main_texture( int argc, char **argv )
     const wchar_t *cache = L" !\"#$%&'()*+,-./0123456789:;<=>?"
                            L"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_"
                            L"`abcdefghijklmnopqrstuvwxyz{|}~";
+    printf("%d %d\n", cache[0], wcslen(cache));
     size_t minsize = 8, maxsize = 27;
     size_t count = maxsize - minsize;
     size_t i, missed = 0;
