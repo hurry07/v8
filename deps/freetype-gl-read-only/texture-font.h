@@ -35,6 +35,7 @@
 #define __TEXTURE_FONT_H__
 
 #include <stdlib.h>
+//#include <freetype/fttypes.h> // <-- added
 
 #ifdef __cplusplus
 extern "C" {
@@ -335,11 +336,15 @@ typedef struct
  * @return A new empty font (no glyph inside yet)
  *
  */
-  texture_font_t *
-  texture_font_new( texture_atlas_t * atlas,
-                    const char * filename,
-                    const float size );
-
+    texture_font_t *
+    texture_font_new( texture_atlas_t * atlas,
+                     const char * filename,
+                     const float size );
+    
+    texture_font_t *
+    js_texture_font_new( texture_atlas_t * atlas,
+                     const char * filename,
+                     const float size, const char* filecontent, long filesize);
 
 /**
  * Delete a texture font. Note that this does not delete the glyph from the
@@ -376,6 +381,9 @@ typedef struct
   size_t
   texture_font_load_glyphs( texture_font_t * self,
                             const wchar_t * charcodes );
+    size_t
+    js_texture_font_load_glyphs( texture_font_t * self,
+                             const wchar_t * charcodes, const char* filecontent, long filesize );
 
 /**
  * Get the kerning between two horizontal glyphs.

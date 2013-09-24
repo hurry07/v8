@@ -23,7 +23,7 @@ public:
     static class_struct* getExportStruct();
     virtual ClassType getClassType();
 
-private:
+public:
     texture_atlas_t *atlas;
 };
 

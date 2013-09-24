@@ -153,7 +153,6 @@
 		185FD3E617EB15AA00188CC2 /* font-manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "font-manager.c"; sourceTree = "<group>"; };
 		185FD3E717EB15AA00188CC2 /* font-manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "font-manager.h"; sourceTree = "<group>"; };
 		185FD3E917EB15AA00188CC2 /* ObelixPro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ObelixPro.ttf; sourceTree = "<group>"; };
-		185FD3EA17EB15AA00188CC2 /* VERA-COPYRIGHT */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "VERA-COPYRIGHT"; sourceTree = "<group>"; };
 		185FD3EB17EB15AA00188CC2 /* Vera.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Vera.ttf; sourceTree = "<group>"; };
 		185FD3EC17EB15AA00188CC2 /* VeraMoBd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = VeraMoBd.ttf; sourceTree = "<group>"; };
 		185FD3ED17EB15AA00188CC2 /* VeraMoBI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = VeraMoBI.ttf; sourceTree = "<group>"; };
@@ -456,7 +455,6 @@
 			isa = PBXGroup;
 			children = (
 				185FD3E917EB15AA00188CC2 /* ObelixPro.ttf */,
-				185FD3EA17EB15AA00188CC2 /* VERA-COPYRIGHT */,
 				185FD3EB17EB15AA00188CC2 /* Vera.ttf */,
 				185FD3EC17EB15AA00188CC2 /* VeraMoBd.ttf */,
 				185FD3ED17EB15AA00188CC2 /* VeraMoBI.ttf */,

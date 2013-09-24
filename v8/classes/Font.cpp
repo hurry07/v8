@@ -11,34 +11,44 @@
 #include "../utils/AssetUtil.h"
 #include "../core/v8Utils.h"
 
-METHOD_BEGIN(loadAsset, info) {
-    //    HandleScope scope;
-    //
-    //    JSFile* file = internalPtr<JSFile>(info);
-    //    file->release();
-    //    AssetUtil::load(file, *String::Utf8Value(info[0]->ToString()));
-}
-METHOD_BEGIN(getContent, info) {
-    //    HandleScope scope;
-    //
-    //    JSFile* file = internalPtr<JSFile>(info);
-    //    if(file->isReleased()) {
-    //        info.GetReturnValue().Set(String::New(""));
-    //    } else {
-    //        info.GetReturnValue().Set(String::New(file->chars(), file->size()));
-    //    }
+#include <ft2build.h>
+#include FT_FREETYPE_H
+#include FT_STROKER_H
+// #include FT_ADVANCES_H
+#include FT_LCD_FILTER_H
+#include <stdint.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <assert.h>
+#include <math.h>
+#include <wchar.h>
+#include "platform.h"
+#include "texture-font.h"
+#include "file.h"
+
+METHOD_BEGIN(load, info) {
+    HandleScope scope;
+
+    Font* font = internalPtr<Font>(info, CLASS_Font);
+    if(font == 0) {
+        return;
+    }
+    String::Utf8Value text(info[0]->ToString());
+    
+    JSFile* file = JSFile::loadAsset(font->font->filename);
+    js_texture_font_load_glyphs(font->font, (const wchar_t*)(*text), file->chars(), file->size());
+    delete file;
 }
 static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
     HandleScope scope;
-    
+
     Local<ObjectTemplate> obj = temp->PrototypeTemplate();
-    EXPOSE_METHOD(obj, loadAsset, ReadOnly | DontDelete);
-    EXPOSE_METHOD(obj, getContent, ReadOnly | DontDelete);
-    
+    EXPOSE_METHOD(obj, load, ReadOnly | DontDelete);
+
     return scope.Close(temp->GetFunction());
 }
 
-Font::Font() {
+Font::Font() : font(0) {
 }
 Font::~Font() {
     release();
@@ -54,14 +64,17 @@ ClassType Font::getClassType() {
     return getExportStruct()->mType;
 }
 void Font::doRelease() {
+    texture_font_delete(font);
+    font = 0;
 }
 void Font::init(const FunctionCallbackInfo<Value> &args) {
-//    TextureAtlas* atlas = internalArg<TextureAtlas>(args[0]);
-//    wchar_t* file =  (wchar_t*)(*String::Utf8Value(args[1]->ToString()));
-//    LOGI("--->init:%ls", file);
-    String::Utf8Value fvalue(args[1]->ToString());
-    char* file =  *fvalue;
-//    wchar_t* wfile = (wchar_t*)(*fvalue);
-    wchar_t* wfile = L"北京";
-    LOGI("--->init:%s %ls %d", file, wfile, fvalue.length());
+    TextureAtlas* atlas = internalArg<TextureAtlas>(args[0], CLASS_Atlas);
+    String::Utf8Value path(args[1]->ToString());
+    float depth = args[2]->NumberValue();
+
+    JSFile* file = JSFile::loadAsset(*path);
+    font = js_texture_font_new(atlas->atlas, *path, depth, file->chars(), file->size());
+    delete file;
+
+    mRelease = false;
 }

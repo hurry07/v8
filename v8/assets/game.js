@@ -9,10 +9,12 @@ var _geometry = require('core/glm.js');
 var _glm = _geometry.glm;
 var _v3 = _geometry.vec3f;
 var _Font = require('core/font.js').font;
+var _Atlas = require('core/font.js').atlas;
 var _inherit = require('core/inherit.js');
 
 console.log('_font', _Font);
-var f = new _Font('atlas', '你好');
+var f = new _Font(new _Atlas(512, 512, 1), 'fonts/Vera.ttf', 20);
+f.load('abc');
 
 var firstInit = true;
 function Game() {

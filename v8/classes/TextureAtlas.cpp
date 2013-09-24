@@ -39,4 +39,8 @@ void TextureAtlas::doRelease() {
     texture_atlas_delete(atlas);
 }
 void TextureAtlas::init(const FunctionCallbackInfo<Value> &args) {
+    int width = args[0]->Uint32Value();
+    int height = args[1]->Uint32Value();
+    int depth = args[2]->Uint32Value();
+    atlas = texture_atlas_new(width, height, depth);
 }
