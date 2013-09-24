@@ -1,3 +1,4 @@
+var _framerate = require('tools/framerate.js');
 var _gl = require('opengl');
 var _global = require('framework/global.js');
 
@@ -53,7 +54,7 @@ game.render = {
     },
     onDrawFrame: function () {
         _global.runSchedule();
-//        _framerate.update();
+        _framerate.update();
     }
 };
 

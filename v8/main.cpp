@@ -23,7 +23,11 @@
 #include "md5.h"
 #include <iostream>
 //#include "demo-font.h"
-#include "demo-texture.h"
+//#include "demo-texture.h"
+//#include "demo-gamma.h"
+//#include "demo-outline.h"
+#include "demo-cartoon.h"
+//#include "demo-markup.h"
 
 using namespace v8;
 
@@ -98,8 +102,8 @@ void onDrawFrame() {
     if(!checkGlError("onDrawFrame==>")) {
         return;
     }
-    glFlush();
     glutPostRedisplay();
+    glutSwapBuffers();
 }
 void onSurfaceChanged(int w, int h) {
     app->onSurfaceChanged(w, h);
@@ -136,7 +140,7 @@ void start(int argc, char ** argv, int width, int height) {
     glutMotionFunc(onMouseMove);
     glutKeyboardFunc(onKeyPress);
 	glutMainLoop();
-    
+
     app->destroy();
     delete app;
 }
@@ -146,7 +150,12 @@ void start(int argc, char ** argv, int width, int height) {
 int main(int argc, char ** argv)
 {
 //    main_font(argc, argv);
-    main_texture(argc, argv);
+//    main_texture(argc, argv);
+//    main_gamma(argc, argv);
+//    main_outline(argc, argv);
+    main_cartoon(argc, argv);
+//    main_markup(argc, argv);
+//    start(argc, argv, 800, 480);
 
     return 0;
 }
