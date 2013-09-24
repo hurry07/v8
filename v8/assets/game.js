@@ -8,7 +8,11 @@ var mRenderContext = _global.mRenderContext;
 var _geometry = require('core/glm.js');
 var _glm = _geometry.glm;
 var _v3 = _geometry.vec3f;
+var _Font = require('core/font.js').font;
 var _inherit = require('core/inherit.js');
+
+console.log('_font', _Font);
+var f = new _Font('atlas', '你好');
 
 var firstInit = true;
 function Game() {

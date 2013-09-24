@@ -56,7 +56,7 @@ METHOD_BEGIN(getContent, info) {
 
 static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
     HandleScope scope;
-    
+
     Local<ObjectTemplate> obj = temp->PrototypeTemplate();
     EXPOSE_METHOD(obj, loadAsset, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, getContent, ReadOnly | DontDelete);

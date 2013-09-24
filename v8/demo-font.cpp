@@ -172,10 +172,10 @@ int main_font( int argc, char **argv )
     texture_font_t *font = 0;
     texture_atlas_t *atlas = texture_atlas_new( 512, 512, 1 );
     const char * filename = "/Users/jie/svn/v8/deps/freetype-gl-read-only/fonts/Vera.ttf";
-    
+
     wchar_t *text = L"A Quick Brown Fox Jumps Over The Lazy Dog 0123456789";
     printf("text length:%ld\n", sizeof(text));
-    
+
     buffer = vertex_buffer_new( "vertex:3f,tex_coord:2f,color:4f" );
     vec2 pen = {{5,400}};
     vec4 black = {{0,0,1,1}};

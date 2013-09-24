@@ -32,7 +32,10 @@ enum ClassType {
     CLASS_Int32Array,
     CLASS_Uint32Array,
     CLASS_Float32Array,
-    CLASS_Float64Array
+    CLASS_Float64Array,
+
+    CLASS_Font,
+    CLASS_Atlas
 };
 
 #endif

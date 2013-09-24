@@ -13,6 +13,8 @@
 		18203BF417F1864F00A7ED4C /* demo-font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BF117F1864E00A7ED4C /* demo-font.cpp */; };
 		18203BF517F1864F00A7ED4C /* demo-gamma.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BF217F1864E00A7ED4C /* demo-gamma.cpp */; };
 		18203BF617F1864F00A7ED4C /* demo-outline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BF317F1864F00A7ED4C /* demo-outline.cpp */; };
+		18203BFC17F1A1FF00A7ED4C /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BFA17F1A1FF00A7ED4C /* Font.cpp */; };
+		18203BFF17F1ABF300A7ED4C /* TextureAtlas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BFD17F1ABF300A7ED4C /* TextureAtlas.cpp */; };
 		182820A1179AFFCB003125B5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182820A0179AFFCB003125B5 /* main.cpp */; };
 		183CE5C617D2934C00ADD5CE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 183CE5C517D2934C00ADD5CE /* libz.dylib */; };
 		183CE6B917D2DF2500ADD5CE /* CCImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 183CE6B817D2DF2500ADD5CE /* CCImage.cpp */; };
@@ -98,6 +100,10 @@
 		18203BF117F1864E00A7ED4C /* demo-font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "demo-font.cpp"; sourceTree = "<group>"; };
 		18203BF217F1864E00A7ED4C /* demo-gamma.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "demo-gamma.cpp"; sourceTree = "<group>"; };
 		18203BF317F1864F00A7ED4C /* demo-outline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "demo-outline.cpp"; sourceTree = "<group>"; };
+		18203BFA17F1A1FF00A7ED4C /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Font.cpp; sourceTree = "<group>"; };
+		18203BFB17F1A1FF00A7ED4C /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
+		18203BFD17F1ABF300A7ED4C /* TextureAtlas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureAtlas.cpp; sourceTree = "<group>"; };
+		18203BFE17F1ABF300A7ED4C /* TextureAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureAtlas.h; sourceTree = "<group>"; };
 		1828209C179AFFCB003125B5 /* v8 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = v8; sourceTree = BUILT_PRODUCTS_DIR; };
 		182820A0179AFFCB003125B5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		183CE5C517D2934C00ADD5CE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -495,6 +501,8 @@
 		18CE227117C6582800B6DB8E /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				18203BFA17F1A1FF00A7ED4C /* Font.cpp */,
+				18203BFB17F1A1FF00A7ED4C /* Font.h */,
 				18CE227217C6582800B6DB8E /* classenum.h */,
 				18CE227317C6582800B6DB8E /* file.cpp */,
 				18CE227417C6582800B6DB8E /* file.h */,
@@ -503,6 +511,8 @@
 				18CE227717C6582800B6DB8E /* ptr_util.h */,
 				18DF8A7417DEB7EA007A2A31 /* gcobserver.cpp */,
 				18DF8A7517DEB7EA007A2A31 /* gcobserver.h */,
+				18203BFD17F1ABF300A7ED4C /* TextureAtlas.cpp */,
+				18203BFE17F1ABF300A7ED4C /* TextureAtlas.h */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -709,6 +719,8 @@
 				18203BF417F1864F00A7ED4C /* demo-font.cpp in Sources */,
 				18203BF517F1864F00A7ED4C /* demo-gamma.cpp in Sources */,
 				18203BF617F1864F00A7ED4C /* demo-outline.cpp in Sources */,
+				18203BFC17F1A1FF00A7ED4C /* Font.cpp in Sources */,
+				18203BFF17F1ABF300A7ED4C /* TextureAtlas.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

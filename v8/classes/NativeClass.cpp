@@ -22,6 +22,8 @@ using namespace v8;
 #include "../modules/Image.h"
 #include "../modules/Event.h"
 #include "gcobserver.h"
+#include "Font.h"
+#include "TextureAtlas.h"
 
 template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& args) {
     HandleScope scope;
@@ -82,6 +84,9 @@ template<> void Module<NativeClass>::init(const FunctionCallbackInfo<Value>& arg
     ClassWrap<Vec4<float>>::expose("vector4", global);
     ClassWrap<Vec3<float>>::expose("vector3", global);
     ClassWrap<Vec2<float>>::expose("vector2", global);
+
+    ClassWrap<Font>::expose(global);
+    ClassWrap<TextureAtlas>::expose(global);
 
     ClassWrap<GcObserver>::expose(global);// watch if gc could happen
     ClassWrap<Image>::expose(global);
