@@ -57,15 +57,13 @@ typedef struct {
 
 
 // ------------------------------------------------------- global variables ---
-texture_atlas_t * atlas;
-vertex_buffer_t * buffer;
-GLuint shader;
-mat4   model, view, projection;
-
-
+static texture_atlas_t * atlas;
+static vertex_buffer_t * buffer;
+static GLuint shader;
+static mat4   model, view, projection;
 
 // ---------------------------------------------------------------- display ---
-void display( void )
+static void display( void )
 {
     glClearColor( 0.40, 0.40, 0.45, 1.00 );
     glClearColor( 1.0, 1.0, 1.0, 1.0 );
@@ -92,14 +90,14 @@ void display( void )
 
 
 // ---------------------------------------------------------------- reshape ---
-void reshape(int width, int height)
+static void reshape(int width, int height)
 {
     glViewport(0, 0, width, height);
     mat4_set_orthographic( &projection, 0, width, 0, height, -1, 1);
 }
 
 // --------------------------------------------------------------- keyboard ---
-void keyboard( unsigned char key, int x, int y )
+static void keyboard( unsigned char key, int x, int y )
 {
     if ( key == 27 )
     {
@@ -109,13 +107,15 @@ void keyboard( unsigned char key, int x, int y )
 
 
 // --------------------------------------------------------------- add_text ---
-void add_text( vertex_buffer_t * buffer, texture_font_t * font, wchar_t *text, vec2 pen, vec4 fg_color_1, vec4 fg_color_2 )
+static void add_text( vertex_buffer_t * buffer, texture_font_t * font, wchar_t *text, vec2 pen, vec4 fg_color_1, vec4 fg_color_2 )
 {
     size_t i;
     for( i=0; i<wcslen(text); ++i )
     {
         texture_glyph_t *glyph = texture_font_get_glyph( font, text[i] );
-        printf("offset:%d, %d\n", glyph->offset_x, glyph->offset_y);
+        if(i == 0) {
+            printf("offset:%d, %d, %d, %d\n", glyph->offset_x, glyph->offset_y, glyph->width, glyph->height);
+        }
         float kerning = 0;
         if( i > 0)
         {

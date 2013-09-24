@@ -59,10 +59,10 @@ typedef struct {
 
 
 // ------------------------------------------------------- global variables ---
-texture_atlas_t * atlas;
-vertex_buffer_t * buffer;
-GLuint shader;
-mat4 model, view, projection;
+static texture_atlas_t * atlas;
+static vertex_buffer_t * buffer;
+static GLuint shader;
+static mat4 model, view, projection;
 
 
 // ---------------------------------------------------------------- display ---
@@ -100,14 +100,14 @@ void display( void )
 
 
 // ---------------------------------------------------------------- reshape ---
-void reshape(int width, int height)
+static void reshape(int width, int height)
 {
     glViewport(0, 0, width, height);
     mat4_set_orthographic( &projection, 0, width, 0, height, -1, 1);
 }
 
 // --------------------------------------------------------------- keyboard ---
-void keyboard( unsigned char key, int x, int y )
+static void keyboard( unsigned char key, int x, int y )
 {
     if ( key == 27 )
     {
@@ -117,7 +117,7 @@ void keyboard( unsigned char key, int x, int y )
 
 
 // --------------------------------------------------------------- add_text ---
-void add_text( vertex_buffer_t * buffer, vec2 * pen, ... )
+static void add_text( vertex_buffer_t * buffer, vec2 * pen, ... )
 {
     markup_t *markup;
     wchar_t *text;

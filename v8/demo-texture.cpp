@@ -53,13 +53,13 @@
 #endif
 
 // ------------------------------------------------------- global variables ---
-GLuint shader;
-vertex_buffer_t * buffer;
-mat4 model, view, projection;
+static GLuint shader;
+static vertex_buffer_t * buffer;
+static mat4 model, view, projection;
 
 
 // ---------------------------------------------------------------- display ---
-void display( void )
+static void display( void )
 {
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
     glUseProgram( shader );
@@ -76,7 +76,7 @@ void display( void )
 
 
 // ---------------------------------------------------------------- reshape ---
-void reshape( int width, int height )
+static void reshape( int width, int height )
 {
     glViewport(0, 0, width, height);
     mat4_set_orthographic( &projection, 0, width, 0, height, -1, 1);

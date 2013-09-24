@@ -63,14 +63,14 @@ typedef struct {
 } vertex_t;
 
 // ------------------------------------------------------- global variables ---
-text_buffer_t *buffer;
-vertex_buffer_t *background;
-GLuint shader;
-mat4 model, view, projection;
+static text_buffer_t *buffer;
+static vertex_buffer_t *background;
+static GLuint shader;
+static mat4 model, view, projection;
 
 
 // ---------------------------------------------------------------- display ---
-void display( void )
+static void display( void )
 {
     glClearColor( 1.0,1.0,1.0,1.0 );
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
@@ -102,7 +102,7 @@ void display( void )
 
 
 // ---------------------------------------------------------------- reshape ---
-void reshape(int width, int height)
+static void reshape(int width, int height)
 {
     glViewport(0, 0, width, height);
     mat4_set_orthographic( &projection, 0, width, 0, height, -1, 1);
@@ -110,7 +110,7 @@ void reshape(int width, int height)
 
 
 // --------------------------------------------------------------- keyboard ---
-void keyboard( unsigned char key, int x, int y )
+static void keyboard( unsigned char key, int x, int y )
 {
     if ( key == 27 )
     {

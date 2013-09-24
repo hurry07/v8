@@ -22,10 +22,10 @@
 #include FT_FREETYPE_H
 #include "md5.h"
 #include <iostream>
-//#include "demo-font.h"
-//#include "demo-texture.h"
-//#include "demo-gamma.h"
-//#include "demo-outline.h"
+#include "demo-font.h"
+#include "demo-texture.h"
+#include "demo-gamma.h"
+#include "demo-outline.h"
 #include "demo-cartoon.h"
 //#include "demo-markup.h"
 

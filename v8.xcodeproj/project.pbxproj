@@ -8,7 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		18203BB617EEBE5200A7ED4C /* md5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BB417EEBE5200A7ED4C /* md5.cpp */; };
-		18203BEC17F17C5300A7ED4C /* demo-cartoon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BEB17F17C5300A7ED4C /* demo-cartoon.cpp */; };
+		18203BEE17F17F7900A7ED4C /* demo-texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BED17F17F7900A7ED4C /* demo-texture.cpp */; };
+		18203BF017F184A400A7ED4C /* demo-cartoon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BEF17F184A400A7ED4C /* demo-cartoon.cpp */; };
+		18203BF417F1864F00A7ED4C /* demo-font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BF117F1864E00A7ED4C /* demo-font.cpp */; };
+		18203BF517F1864F00A7ED4C /* demo-gamma.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BF217F1864E00A7ED4C /* demo-gamma.cpp */; };
+		18203BF617F1864F00A7ED4C /* demo-outline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BF317F1864F00A7ED4C /* demo-outline.cpp */; };
 		182820A1179AFFCB003125B5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182820A0179AFFCB003125B5 /* main.cpp */; };
 		183CE5C617D2934C00ADD5CE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 183CE5C517D2934C00ADD5CE /* libz.dylib */; };
 		183CE6B917D2DF2500ADD5CE /* CCImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 183CE6B817D2DF2500ADD5CE /* CCImage.cpp */; };
@@ -89,7 +93,11 @@
 		18203BDF17F1616100A7ED4C /* demo-gamma.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "demo-gamma.h"; sourceTree = "<group>"; };
 		18203BE217F164F900A7ED4C /* demo-outline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "demo-outline.h"; sourceTree = "<group>"; };
 		18203BE517F172FE00A7ED4C /* demo-cartoon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "demo-cartoon.h"; sourceTree = "<group>"; };
-		18203BEB17F17C5300A7ED4C /* demo-cartoon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "demo-cartoon.cpp"; sourceTree = "<group>"; };
+		18203BED17F17F7900A7ED4C /* demo-texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "demo-texture.cpp"; sourceTree = "<group>"; };
+		18203BEF17F184A400A7ED4C /* demo-cartoon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "demo-cartoon.cpp"; sourceTree = "<group>"; };
+		18203BF117F1864E00A7ED4C /* demo-font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "demo-font.cpp"; sourceTree = "<group>"; };
+		18203BF217F1864E00A7ED4C /* demo-gamma.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "demo-gamma.cpp"; sourceTree = "<group>"; };
+		18203BF317F1864F00A7ED4C /* demo-outline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "demo-outline.cpp"; sourceTree = "<group>"; };
 		1828209C179AFFCB003125B5 /* v8 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = v8; sourceTree = BUILT_PRODUCTS_DIR; };
 		182820A0179AFFCB003125B5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		183CE5C517D2934C00ADD5CE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -303,7 +311,11 @@
 		1828209F179AFFCB003125B5 /* v8 */ = {
 			isa = PBXGroup;
 			children = (
-				18203BEB17F17C5300A7ED4C /* demo-cartoon.cpp */,
+				18203BF117F1864E00A7ED4C /* demo-font.cpp */,
+				18203BF217F1864E00A7ED4C /* demo-gamma.cpp */,
+				18203BF317F1864F00A7ED4C /* demo-outline.cpp */,
+				18203BEF17F184A400A7ED4C /* demo-cartoon.cpp */,
+				18203BED17F17F7900A7ED4C /* demo-texture.cpp */,
 				18203BB417EEBE5200A7ED4C /* md5.cpp */,
 				18203BB517EEBE5200A7ED4C /* md5.h */,
 				185FD3AD17EB15AA00188CC2 /* freetype-gl-read-only */,
@@ -692,7 +704,11 @@
 				185FD44417EB15AA00188CC2 /* vertex-attribute.c in Sources */,
 				185FD44517EB15AA00188CC2 /* vertex-buffer.c in Sources */,
 				18203BB617EEBE5200A7ED4C /* md5.cpp in Sources */,
-				18203BEC17F17C5300A7ED4C /* demo-cartoon.cpp in Sources */,
+				18203BEE17F17F7900A7ED4C /* demo-texture.cpp in Sources */,
+				18203BF017F184A400A7ED4C /* demo-cartoon.cpp in Sources */,
+				18203BF417F1864F00A7ED4C /* demo-font.cpp in Sources */,
+				18203BF517F1864F00A7ED4C /* demo-gamma.cpp in Sources */,
+				18203BF617F1864F00A7ED4C /* demo-outline.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
