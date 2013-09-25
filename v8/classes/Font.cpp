@@ -75,11 +75,7 @@ METHOD_BEGIN(measure, info) {
     v8::Local<v8::String> tmp = info[0]->ToString();
     int length = tmp->Length();
     uint16_t uchars[length + 1];
-    wchar_t wchars[length + 1];
     tmp->Write(uchars);
-    for (int i=0; i<length; i++) {
-        wchars[i] = uchars[i];
-    }
 
     // Float32Array
     ClassBase* ptr = internalArg<ClassBase>(info[1], CLASS_Float32Array);
@@ -93,37 +89,85 @@ METHOD_BEGIN(measure, info) {
     // start and end
     int start = 0;
     int end = length;
-    if(info.Length() >= 2) {
+    if(info.Length() >= 3) {
         start = info[2]->Uint32Value();
     }
-    if(info.Length() >= 3) {
+    if(info.Length() >= 4) {
         end = info[3]->Uint32Value();
     }
 
     // setup
     for(int i = start; i < end; i++) {
-        texture_glyph_t *glyph = texture_font_get_glyph(font->font, wchars[i] );
-        if( glyph != NULL ) {
+        texture_glyph_t *glyph = texture_font_get_glyph(font->font, uchars[i] );
+        if(glyph != NULL) {
             if(i > 0) {
                 float values[2] = { glyph->advance_x, texture_glyph_get_kerning(glyph, uchars[i - 1]) };
-                buf.set_value<float>(i * 2, values, 2);
+                buf.set_value<float>((i - start) * 2, values, 2);
             } else {
                 float values[2] = { glyph->advance_x, 0 };
-                buf.set_value<float>(i * 2, values, 2);
+                buf.set_value<float>((i - start) * 2, values, 2);
             }
         } else {
             float values[2] = { 0, 0 };
-            buf.set_value<float>(i * 2, values, 2);
+            buf.set_value<float>((i - start) * 2, values, 2);
         }
     }
 }
 /**
- * @paint float[2]
  * @text
+ * @floatarray [offsetx,offsety,width,height,s0,t0,s1,t1]
  * @start optional
  * @end optional
  */
-METHOD_BEGIN(paint, info) {
+METHOD_BEGIN(glyphs, info) {
+    HandleScope scope;
+    Font* font = internalPtr<Font>(info, CLASS_Font);
+    if(font == 0) {
+        return;
+    }
+
+    // text
+    v8::Local<v8::String> tmp = info[0]->ToString();
+    int length = tmp->Length();
+    uint16_t uchars[length + 1];
+    tmp->Write(uchars);
+
+    // Float32Array
+    ClassBase* ptr = internalArg<ClassBase>(info[1], CLASS_Float32Array);
+    if(ptr == 0) {
+        ThrowException(String::New("Font.measure Float32Array not found"));
+        return;
+    }
+    ByteBuffer buf;
+    ptr->getUnderlying(&buf);
+    
+    // start and end
+    int start = 0;
+    int end = length;
+    if(info.Length() >= 3) {
+        start = info[2]->Uint32Value();
+    }
+    if(info.Length() >= 4) {
+        end = info[3]->Uint32Value();
+    }
+
+    // setup
+    int starti = 0;
+    for(int i = start; i < end; i++) {
+        texture_glyph_t *glyph = texture_font_get_glyph(font->font, uchars[i] );
+        if(glyph != NULL) {
+            float values[8] = { 0,0,0,0,glyph->s0,glyph->t0,glyph->s1,glyph->t1 };
+            values[0] = glyph->offset_x;
+            values[1] = glyph->offset_y;
+            values[2] = glyph->width;
+            values[3] = glyph->height;
+            buf.set_value<float>(starti, values, 8);
+        } else {
+            float values[8] = { 0,0,0,0,0,0,0,0 };
+            buf.set_value<float>(starti, values, 8);
+        }
+        starti += 8;
+    }
 }
 /**
  * expose read only properties
@@ -176,6 +220,7 @@ static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp)
 
     EXPOSE_METHOD(obj, load, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, measure, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, glyphs, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, outline_type, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, outline_thickness, ReadOnly | DontDelete);
 

@@ -13,14 +13,22 @@ var _Atlas = require('core/font.js').atlas;
 var _inherit = require('core/inherit.js');
 
 console.log('_font', _Font);
-var f = new _Font(new _Atlas(512, 512, 1), 'fonts/fat.ttf', 20);
+var f = new _Font(new _Atlas(512, 512, 1), 'fonts/fat.ttf', 40);
 //f.load('0 !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~');
 //f.load('你好');
 f.load('abcde你好abcde捞淼');
 console.log(f.outline_type(), f.outline_thickness());
-var values = new Float32Array(10);
-f.measure('abcde', values);
+
+var values = new Float32Array(20);
+f.measure('你好捞淼', values.subarray(8), 1, 4);
 console.log(Array.prototype.join.call(values, ','));
+
+values = new Float32Array(64);
+f.glyphs('你好捞淼', values.subarray(8), 1, 4);
+console.log('-----------');
+for (var i = 0; i < values.length; i += 8) {
+    console.log(Array.prototype.slice.call(values, i, i + 8).join(','));
+}
 
 var firstInit = true;
 function Game() {

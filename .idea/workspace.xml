@@ -4,17 +4,14 @@
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/classes/Font.cpp" afterPath="$PROJECT_DIR$/v8/classes/Font.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/core/bytebuffer.h" afterPath="$PROJECT_DIR$/v8/core/bytebuffer.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/core/font.js" afterPath="$PROJECT_DIR$/v8/assets/core/font.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/game.js" afterPath="$PROJECT_DIR$/v8/assets/game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/main.cpp" afterPath="$PROJECT_DIR$/v8/main.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/typedbuffer/typedbuffer.h" afterPath="$PROJECT_DIR$/v8/typedbuffer/typedbuffer.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1380112266275" ignored="false" />
-    <file path="/game.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1380118740032" ignored="false" />
+    <file path="/game.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1380122389569" ignored="false" />
     <file path="/a.dummy" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1380000584021" ignored="false" />
     <file path="/temp.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376748679355" ignored="false" />
     <file path="/programs.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376753166840" ignored="false" />
@@ -137,7 +134,7 @@
       <file leaf-file-name="font.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/core/font.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="61" selection-start="385" selection-end="385" vertical-scroll-proportion="0.0">
+            <state line="28" column="0" selection-start="615" selection-end="615" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -155,7 +152,16 @@
       <file leaf-file-name="game.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="53" selection-start="841" selection-end="841" vertical-scroll-proportion="0.52715653">
+            <state line="26" column="40" selection-start="932" selection-end="932" vertical-scroll-proportion="0.6230032">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EcmaScript.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="137" column="16" selection-start="2168" selection-end="2168" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -607,11 +613,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/v8/assets/core/inherit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="108" selection-start="277" selection-end="277" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/render/updatecontext.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -695,14 +696,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/core/font.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="61" selection-start="385" selection-end="385" vertical-scroll-proportion="0.0">
+        <state line="28" column="0" selection-start="615" selection-end="615" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="137" column="16" selection-start="2168" selection-end="2168" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="53" selection-start="841" selection-end="841" vertical-scroll-proportion="0.52715653">
+        <state line="26" column="40" selection-start="932" selection-end="932" vertical-scroll-proportion="0.6230032">
           <folding />
         </state>
       </provider>

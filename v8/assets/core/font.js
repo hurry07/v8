@@ -22,6 +22,12 @@ function fontImplement() {
      */
     Font.prototype.measure = function (text, widths) {
     };
+    /**
+     * @param {string} text
+     * @param {Float32Array} widths
+     */
+    Font.prototype.glyphs = function (text, glyphs) {
+    };
     Font.prototype.height = 0;
     Font.prototype.ascender = 0;
     Font.prototype.descender = 0;
