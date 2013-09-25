@@ -13,8 +13,10 @@ var _Atlas = require('core/font.js').atlas;
 var _inherit = require('core/inherit.js');
 
 console.log('_font', _Font);
-var f = new _Font(new _Atlas(512, 512, 1), 'fonts/Vera.ttf', 20);
-f.load('0 !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~你好');
+var f = new _Font(new _Atlas(512, 512, 1), 'fonts/fat.ttf', 20);
+//f.load('0 !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~');
+//f.load('你好');
+f.load('abcde你好abcde捞淼');
 
 var firstInit = true;
 function Game() {
@@ -60,7 +62,7 @@ game.render = {
     },
     onDrawFrame: function () {
         _global.runSchedule();
-        _framerate.update();
+//        _framerate.update();
     }
 };
 

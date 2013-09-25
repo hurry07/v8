@@ -152,12 +152,6 @@
 		185FD3E517EB15AA00188CC2 /* edtaa3func.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = edtaa3func.h; sourceTree = "<group>"; };
 		185FD3E617EB15AA00188CC2 /* font-manager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "font-manager.c"; sourceTree = "<group>"; };
 		185FD3E717EB15AA00188CC2 /* font-manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "font-manager.h"; sourceTree = "<group>"; };
-		185FD3E917EB15AA00188CC2 /* ObelixPro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ObelixPro.ttf; sourceTree = "<group>"; };
-		185FD3EB17EB15AA00188CC2 /* Vera.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Vera.ttf; sourceTree = "<group>"; };
-		185FD3EC17EB15AA00188CC2 /* VeraMoBd.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = VeraMoBd.ttf; sourceTree = "<group>"; };
-		185FD3ED17EB15AA00188CC2 /* VeraMoBI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = VeraMoBI.ttf; sourceTree = "<group>"; };
-		185FD3EE17EB15AA00188CC2 /* VeraMoIt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = VeraMoIt.ttf; sourceTree = "<group>"; };
-		185FD3EF17EB15AA00188CC2 /* VeraMono.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = VeraMono.ttf; sourceTree = "<group>"; };
 		185FD3F017EB15AA00188CC2 /* freetype-gl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "freetype-gl.h"; sourceTree = "<group>"; };
 		185FD3F117EB15AA00188CC2 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		185FD3F217EB15AA00188CC2 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
@@ -210,6 +204,7 @@
 		18AFB48917AE06A900B7AFDA /* libv8_base.x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.x64.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_base.x64.a; sourceTree = "<group>"; };
 		18AFB48B17AE06A900B7AFDA /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_snapshot.a; sourceTree = "<group>"; };
 		18B3EA9317D1DEB6009E78A2 /* CCImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCImage.h; sourceTree = "<group>"; };
+		18C9D0C617F2B34500A1820B /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		18CE224817C6582800B6DB8E /* Application.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Application.cpp; sourceTree = "<group>"; };
 		18CE224917C6582800B6DB8E /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		18CE224A17C6582800B6DB8E /* ArrayBufferAllocator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArrayBufferAllocator.cpp; sourceTree = "<group>"; };
@@ -350,6 +345,7 @@
 		185FD3AD17EB15AA00188CC2 /* freetype-gl-read-only */ = {
 			isa = PBXGroup;
 			children = (
+				18C9D0C617F2B34500A1820B /* fonts */,
 				185FD3AE17EB15AA00188CC2 /* arial-16.h */,
 				185FD3AF17EB15AA00188CC2 /* CMakeLists.txt */,
 				185FD3B017EB15AA00188CC2 /* CMakeModules */,
@@ -359,7 +355,6 @@
 				185FD3E517EB15AA00188CC2 /* edtaa3func.h */,
 				185FD3E617EB15AA00188CC2 /* font-manager.c */,
 				185FD3E717EB15AA00188CC2 /* font-manager.h */,
-				185FD3E817EB15AA00188CC2 /* fonts */,
 				185FD3F017EB15AA00188CC2 /* freetype-gl.h */,
 				185FD3F117EB15AA00188CC2 /* LICENSE */,
 				185FD3F217EB15AA00188CC2 /* Makefile */,
@@ -449,19 +444,6 @@
 				185FD3DE17EB15AA00188CC2 /* texture.png */,
 			);
 			path = images;
-			sourceTree = "<group>";
-		};
-		185FD3E817EB15AA00188CC2 /* fonts */ = {
-			isa = PBXGroup;
-			children = (
-				185FD3E917EB15AA00188CC2 /* ObelixPro.ttf */,
-				185FD3EB17EB15AA00188CC2 /* Vera.ttf */,
-				185FD3EC17EB15AA00188CC2 /* VeraMoBd.ttf */,
-				185FD3ED17EB15AA00188CC2 /* VeraMoBI.ttf */,
-				185FD3EE17EB15AA00188CC2 /* VeraMoIt.ttf */,
-				185FD3EF17EB15AA00188CC2 /* VeraMono.ttf */,
-			);
-			path = fonts;
 			sourceTree = "<group>";
 		};
 		185FD3FD17EB15AA00188CC2 /* shaders */ = {

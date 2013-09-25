@@ -113,12 +113,21 @@ int main_texture( int argc, char **argv )
 //    fprintf( stderr, "Using GLEW %s\n", glewGetString(GLEW_VERSION) );
 
     texture_atlas_t * atlas = texture_atlas_new( 512, 512, 1 );
-    const char *filename = "/Users/jie/svn/v8/deps/freetype-gl-read-only/fonts/Vera.ttf";
-    const wchar_t *cache = L" !\"#$%&'()*+,-./0123456789:;<=>?"
-                           L"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_"
-                           L"`abcdefghijklmnopqrstuvwxyz{|}~";
+//    const char *filename = "/Users/jie/svn/v8/deps/freetype-gl-read-only/fonts/Vera.ttf";
+    const char *filename = "/Users/jie/svn/v8/deps/freetype-gl-read-only/fonts/fat.ttf";
+//    const wchar_t *cache = L" !\"#$%&'()*+,-./0123456789:;<=>?"
+//                           L"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_"
+//                           L"`abcdefghijklmnopqrstuvwxyz{|}~";
+    wchar_t unicode[6];
+    unicode[0] = 22909;
+    unicode[1] = 20320;
+    unicode[2] = 25438;
+    unicode[3] = 28156;
+    unicode[4] = 48;
+    unicode[5] = 0;
+    wchar_t* cache = (wchar_t*)unicode;
     printf("%d %d\n", cache[0], wcslen(cache));
-    size_t minsize = 8, maxsize = 27;
+    size_t minsize = 20, maxsize = 40;
     size_t count = maxsize - minsize;
     size_t i, missed = 0;
 

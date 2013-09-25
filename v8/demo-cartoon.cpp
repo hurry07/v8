@@ -121,6 +121,7 @@ static void add_text( vertex_buffer_t * buffer, texture_font_t * font, wchar_t *
         {
             kerning = texture_glyph_get_kerning( glyph, text[i-1] );
         }
+        printf("kerning:%f\n", kerning);
         pen.x += kerning;
 
         /* Actual glyph */

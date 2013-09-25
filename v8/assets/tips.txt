@@ -1,1 +1,27 @@
 http://librocket.com/wiki/documentation/BuildingFreeTypeForiOS
+
+width:98, height:31
+GL Vendor : NVIDIA Corporation
+GL Renderer : NVIDIA GeForce GT 640M OpenGL Engine
+GL Version (string) : 2.1 NVIDIA-8.16.74 310.40.00.10f02
+GLSL Version : 1.20
+_font,function font() { [native code] }
+texture_atlas_new:56
+load_font_assets:fonts/Vera.ttf
+temp length:12, 16
+every char:97
+every char:98
+every char:99
+every char:100
+every char:101
+every char:20320
+every char:22909
+every char:97
+every char:98
+every char:99
+every char:100
+every char:101
+4, 16
+load_font_assets:fonts/Vera.ttf
+load_font_assets:fonts/Vera.ttf
+[object Object],[object Object],[object Object]

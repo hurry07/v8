@@ -149,13 +149,14 @@ void start(int argc, char ** argv, int width, int height) {
 //}
 int main(int argc, char ** argv)
 {
+//    LOGI("sizeof %d %d", sizeof(uint16_t), sizeof(wchar_t));
 //    main_font(argc, argv);
 //    main_texture(argc, argv);
 //    main_gamma(argc, argv);
 //    main_outline(argc, argv);
-//    main_cartoon(argc, argv);
+    main_cartoon(argc, argv);
 //    main_markup(argc, argv);
-    start(argc, argv, 800, 480);
+//    start(argc, argv, 800, 480);
 
     return 0;
 }

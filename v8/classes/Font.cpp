@@ -10,6 +10,7 @@
 #include "TextureAtlas.h"
 #include "../utils/AssetUtil.h"
 #include "../core/v8Utils.h"
+#include "../core/bytebuffer.h"
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
@@ -27,44 +28,90 @@
 #include "file.h"
 
 static FT_Error load_font_assets (FT_Library* library, const char* filename, FT_Long face_index, FT_Face* aface) {
-    LOGI("load_font_assets:%s", filename);
     JSFile* file = JSFile::loadAsset(filename);
     FT_Error e = FT_New_Memory_Face(*library, (const FT_Byte*)file->chars(), file->size(), face_index, aface);
     delete file;
-
     return e;
 }
-
+/**
+ * @text
+ */
 METHOD_BEGIN(load, info) {
     HandleScope scope;
-    
     Font* font = internalPtr<Font>(info, CLASS_Font);
     if(font == 0) {
         return;
     }
-    Local<String> text = info[0]->ToString();
-    int len = text->Length();
-    uint16_t buf[len + 1];
 
-    texture_font_load_glyphs(font->font, (const wchar_t*)buf);
+    v8::Local<v8::String> tmp = info[0]->ToString();
+    int length = tmp->Length();
+    uint16_t uchars[length + 1];
+    wchar_t wchars[length + 1];
+
+    tmp->Write(uchars);
+    for (int i=0; i<length; i++) {
+        wchars[i] = uchars[i];
+        printf("[%d]", uchars[i]);
+    }
+    printf("\n");
+    wchars[length] = 0;
+
+    texture_font_load_glyphs(font->font, wchars);
 }
+/**
+ * @text
+ * @floatarray [width,kerning...]
+ * @start optional
+ * @end optional
+ */
 METHOD_BEGIN(measure, info) {
     HandleScope scope;
-    
     Font* font = internalPtr<Font>(info, CLASS_Font);
     if(font == 0) {
         return;
     }
-    String::Utf8Value text(info[0]->ToString());
-    wchar_t* wtext = (wchar_t*)(*text);
 
-    wprintf(L"%s\n", *text);
-    texture_font_load_glyphs(font->font, (const wchar_t*)(*text));
+    v8::Local<v8::String> tmp = info[0]->ToString();
+    int length = tmp->Length();
+    uint16_t uchars[length + 1];
+    wchar_t wchars[length + 1];
+
+    tmp->Write(uchars);
+    for (int i=0; i<length; i++) {
+        wchars[i] = uchars[i];
+    }
 }
+/**
+ * @paint float[2]
+ * @text
+ * @start optional
+ * @end optional
+ */
+METHOD_BEGIN(paint, info) {
+}
+/**
+ * expose read only properties
+ */
+#define PROPERTIES_ACCESS(name) \
+void name(Local<String> property, const PropertyCallbackInfo<Value>& info) {\
+    Font* font = internalPtr<Font>(info, CLASS_Font);\
+    if(font == 0) {\
+        return;\
+    }\
+    info.GetReturnValue().Set(font->font->name);\
+}
+PROPERTIES_ACCESS(height);
+PROPERTIES_ACCESS(ascender);
+PROPERTIES_ACCESS(descender);
+
 static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
     HandleScope scope;
 
     Local<ObjectTemplate> obj = temp->PrototypeTemplate();
+    obj->SetAccessor(String::New("height"), height);
+    obj->SetAccessor(String::New("ascender"), ascender);
+    obj->SetAccessor(String::New("descender"), descender);
+
     EXPOSE_METHOD(obj, load, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, measure, ReadOnly | DontDelete);
 
