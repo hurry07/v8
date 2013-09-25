@@ -243,7 +243,7 @@ void typedbuffer::subarray(const FunctionCallbackInfo<Value> &info) {
         ThrowException(String::New("TypeBuffer splice illigal argument number:0"));
         return;
     }
-    
+
     ClassBase* thiz = internalPtr<ClassBase>(info);
     if(thiz == 0 || thiz->getClassType() != TypedBuffer<T>::getExportStruct()->mType) {
         return;
@@ -278,7 +278,7 @@ void typedbuffer::subarray(const FunctionCallbackInfo<Value> &info) {
     params[0] = wrap->Get(String::New(NodeBufferView::BUFFER));
     params[1] = Integer::New(thizPtr->byteOffset(begin));
     params[2] = Integer::New(end - begin);
-    
+
     Handle<Object> obj = ClassWrap<TypedBuffer<T>>::newInstance(3, params);
     info.GetReturnValue().Set(obj);
 }

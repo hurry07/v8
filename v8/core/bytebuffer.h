@@ -10,6 +10,7 @@
 #define __v8__bytebuffer__
 
 #include "classenum.h"
+#include <stdarg.h>
 
 class NodeBuffer;
 class NodeBufferView;
@@ -43,8 +44,12 @@ public:
 
     template<typename T>
     T* value_ptr(int index=0);
-    char* value_ptr(long offset=0);
+    template<typename T>
+    void set_value(int index, T value);
+    template<typename T>
+    void set_value(int index, T* values, int count);
 
+    char* value_ptr(long offset=0);
     long length();
     int typedLength();
 };
@@ -52,6 +57,14 @@ public:
 template<typename T>
 T* ByteBuffer::value_ptr(int index) {
     return (T*)(mPtr + mByteOffset) + index;
+}
+template<typename T>
+void ByteBuffer::set_value(int index, T value) {
+    *((T*)(mPtr + mByteOffset) + index) = value;
+}
+template<typename T>
+void ByteBuffer::set_value(int index, T* values, int count) {
+    memcpy(value_ptr<T>(index), values, count * sizeof(T));
 }
 
 #endif /* defined(__v8__bytebuffer__) */

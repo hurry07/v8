@@ -71,14 +71,50 @@ METHOD_BEGIN(measure, info) {
         return;
     }
 
+    // text
     v8::Local<v8::String> tmp = info[0]->ToString();
     int length = tmp->Length();
     uint16_t uchars[length + 1];
     wchar_t wchars[length + 1];
-
     tmp->Write(uchars);
     for (int i=0; i<length; i++) {
         wchars[i] = uchars[i];
+    }
+
+    // Float32Array
+    ClassBase* ptr = internalArg<ClassBase>(info[1], CLASS_Float32Array);
+    if(ptr == 0) {
+        ThrowException(String::New("Font.measure Float32Array not found"));
+        return;
+    }
+    ByteBuffer buf;
+    ptr->getUnderlying(&buf);
+
+    // start and end
+    int start = 0;
+    int end = length;
+    if(info.Length() >= 2) {
+        start = info[2]->Uint32Value();
+    }
+    if(info.Length() >= 3) {
+        end = info[3]->Uint32Value();
+    }
+
+    // setup
+    for(int i = start; i < end; i++) {
+        texture_glyph_t *glyph = texture_font_get_glyph(font->font, wchars[i] );
+        if( glyph != NULL ) {
+            if(i > 0) {
+                float values[2] = { glyph->advance_x, texture_glyph_get_kerning(glyph, uchars[i - 1]) };
+                buf.set_value<float>(i * 2, values, 2);
+            } else {
+                float values[2] = { glyph->advance_x, 0 };
+                buf.set_value<float>(i * 2, values, 2);
+            }
+        } else {
+            float values[2] = { 0, 0 };
+            buf.set_value<float>(i * 2, values, 2);
+        }
     }
 }
 /**
@@ -103,6 +139,32 @@ void name(Local<String> property, const PropertyCallbackInfo<Value>& info) {\
 PROPERTIES_ACCESS(height);
 PROPERTIES_ACCESS(ascender);
 PROPERTIES_ACCESS(descender);
+METHOD_BEGIN(outline_type, info) {
+    HandleScope scope;
+    Font* font = internalPtr<Font>(info, CLASS_Font);
+    if(font == 0) {
+        return;
+    }
+    if(info.Length() == 0) {
+        info.GetReturnValue().Set(font->font->outline_type);
+    } else {
+        font->font->outline_type = info[0]->Uint32Value();
+        info.GetReturnValue().Set(info.This());
+    }
+}
+METHOD_BEGIN(outline_thickness, info) {
+    HandleScope scope;
+    Font* font = internalPtr<Font>(info, CLASS_Font);
+    if(font == 0) {
+        return;
+    }
+    if(info.Length() == 0) {
+        info.GetReturnValue().Set(font->font->outline_thickness);
+    } else {
+        font->font->outline_thickness = info[0]->NumberValue();
+        info.GetReturnValue().Set(info.This());
+    }
+}
 
 static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
     HandleScope scope;
@@ -114,6 +176,8 @@ static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp)
 
     EXPOSE_METHOD(obj, load, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, measure, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, outline_type, ReadOnly | DontDelete);
+    EXPOSE_METHOD(obj, outline_thickness, ReadOnly | DontDelete);
 
     return scope.Close(temp->GetFunction());
 }

@@ -17,6 +17,10 @@ var f = new _Font(new _Atlas(512, 512, 1), 'fonts/fat.ttf', 20);
 //f.load('0 !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~');
 //f.load('你好');
 f.load('abcde你好abcde捞淼');
+console.log(f.outline_type(), f.outline_thickness());
+var values = new Float32Array(10);
+f.measure('abcde', values);
+console.log(Array.prototype.join.call(values, ','));
 
 var firstInit = true;
 function Game() {
