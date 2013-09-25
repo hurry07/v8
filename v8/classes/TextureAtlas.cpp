@@ -10,15 +10,15 @@
 #include "../utils/AssetUtil.h"
 #include "../core/v8Utils.h"
 
-static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
-    HandleScope scope;
-    
-    Local<ObjectTemplate> obj = temp->PrototypeTemplate();
-//    EXPOSE_METHOD(obj, loadAsset, ReadOnly | DontDelete);
-//    EXPOSE_METHOD(obj, getContent, ReadOnly | DontDelete);
-    
-    return scope.Close(temp->GetFunction());
-}
+//static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
+//    HandleScope scope;
+//    
+//    Local<ObjectTemplate> obj = temp->PrototypeTemplate();
+////    EXPOSE_METHOD(obj, loadAsset, ReadOnly | DontDelete);
+////    EXPOSE_METHOD(obj, getContent, ReadOnly | DontDelete);
+//    
+//    return scope.Close(temp->GetFunction());
+//}
 
 TextureAtlas::TextureAtlas() {
 }
@@ -28,7 +28,7 @@ TextureAtlas::~TextureAtlas() {
 
 class_struct* TextureAtlas::getExportStruct() {
     static class_struct mTemplate = {
-        initClass, "atlas", CLASS_Atlas
+        0, "atlas", CLASS_Atlas
     };
     return &mTemplate;
 }
@@ -38,6 +38,11 @@ ClassType TextureAtlas::getClassType() {
 void TextureAtlas::doRelease() {
     texture_atlas_delete(atlas);
 }
+/**
+ * @width
+ * @height
+ * @depth
+ */
 void TextureAtlas::init(const FunctionCallbackInfo<Value> &args) {
     int width = args[0]->Uint32Value();
     int height = args[1]->Uint32Value();

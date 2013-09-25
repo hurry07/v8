@@ -1,8 +1,15 @@
 var clz = require('nativeclasses');
 
 function atlasImplement() {
-    function Atlas(file) {
+    /**
+     * @param width
+     * @param height
+     * @param depth
+     * @constructor
+     */
+    function Atlas(width, height, depth) {
     }
+
     Atlas.prototype.release = function () {
     };
     return Atlas;
@@ -10,6 +17,7 @@ function atlasImplement() {
 function fontImplement() {
     function Font(file) {
     }
+
     Font.prototype.release = function () {
     };
     Font.prototype.outline_type = function () {
