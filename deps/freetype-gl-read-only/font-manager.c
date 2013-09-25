@@ -127,8 +127,7 @@ font_manager_delete_font( font_manager_t * self,
     for( i=0; i<self->fonts->size;++i )
     {
         other = (texture_font_t *) vector_get( self->fonts, i );
-        if ( (strcmp(font->filename, other->filename) == 0)
-               && ( font->size == other->size) )
+        if ( (strcmp(font->filename, other->filename) == 0) && ( font->size == other->size) )
         {
             vector_erase( self->fonts, i);
             break;

@@ -1924,7 +1924,7 @@ FT_BEGIN_HEADER
                       const FT_Byte*  file_base,
                       FT_Long         file_size,
                       FT_Long         face_index,
-                      FT_Face        *aface );
+                      FT_Face         *aface );
 
 
   /*************************************************************************/

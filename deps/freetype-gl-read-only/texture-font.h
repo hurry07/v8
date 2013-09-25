@@ -34,8 +34,9 @@
 #ifndef __TEXTURE_FONT_H__
 #define __TEXTURE_FONT_H__
 
+#include <ft2build.h>
+#include FT_FREETYPE_H
 #include <stdlib.h>
-//#include <freetype/fttypes.h> // <-- added
 
 #ifdef __cplusplus
 extern "C" {
@@ -212,12 +213,27 @@ typedef struct
 
 } texture_glyph_t;
 
+typedef struct texture_font_t_body texture_font_t;
+typedef FT_Error (*fn_face_load) (
+    FT_Library* library,
+    const char* filename,
+    FT_Long face_index,
+    FT_Face* aface
+);
 
+/**
+ * load font for a font
+ */
+int texture_font_load_face (
+    texture_font_t* self,
+    FT_Library* library,
+    FT_Long face_index,
+    FT_Face* aface);
 
 /**
  *  Texture font structure.
  */
-typedef struct
+struct texture_font_t_body
 {
     /**
      * Vector of glyphs contained in this font.
@@ -233,6 +249,11 @@ typedef struct
      * Font filename
      */
     char * filename;
+    
+    /**
+     * load function
+     */
+    fn_face_load fontload;
 
     /**
      * Font size
@@ -317,8 +338,7 @@ typedef struct
      * formats.
      */
     float underline_thickness;
-
-} texture_font_t;
+};
 
 
 
@@ -339,12 +359,12 @@ typedef struct
     texture_font_t *
     texture_font_new( texture_atlas_t * atlas,
                      const char * filename,
-                     const float size );
-    
+                     const float size);
     texture_font_t *
-    js_texture_font_new( texture_atlas_t * atlas,
+    texture_font_new_fn( texture_atlas_t * atlas,
                      const char * filename,
-                     const float size, const char* filecontent, long filesize);
+                     const float size,
+                     fn_face_load loader);
 
 /**
  * Delete a texture font. Note that this does not delete the glyph from the
@@ -381,9 +401,6 @@ typedef struct
   size_t
   texture_font_load_glyphs( texture_font_t * self,
                             const wchar_t * charcodes );
-    size_t
-    js_texture_font_load_glyphs( texture_font_t * self,
-                             const wchar_t * charcodes, const char* filecontent, long filesize );
 
 /**
  * Get the kerning between two horizontal glyphs.

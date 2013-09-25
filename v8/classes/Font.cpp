@@ -26,6 +26,15 @@
 #include "texture-font.h"
 #include "file.h"
 
+static FT_Error load_font_assets (FT_Library* library, const char* filename, FT_Long face_index, FT_Face* aface) {
+    LOGI("load_font_assets:%s", filename);
+    JSFile* file = JSFile::loadAsset(filename);
+    FT_Error e = FT_New_Memory_Face(*library, (const FT_Byte*)file->chars(), file->size(), face_index, aface);
+    delete file;
+
+    return e;
+}
+
 METHOD_BEGIN(load, info) {
     HandleScope scope;
     
@@ -37,9 +46,7 @@ METHOD_BEGIN(load, info) {
     int len = text->Length();
     uint16_t buf[len + 1];
 
-    JSFile* file = JSFile::loadAsset(font->font->filename);
-    js_texture_font_load_glyphs(font->font, (const wchar_t*)buf, file->chars(), file->size());
-    delete file;
+    texture_font_load_glyphs(font->font, (const wchar_t*)buf);
 }
 METHOD_BEGIN(measure, info) {
     HandleScope scope;
@@ -52,9 +59,7 @@ METHOD_BEGIN(measure, info) {
     wchar_t* wtext = (wchar_t*)(*text);
 
     wprintf(L"%s\n", *text);
-    JSFile* file = JSFile::loadAsset(font->font->filename);
-    js_texture_font_load_glyphs(font->font, (const wchar_t*)(*text), file->chars(), file->size());
-    delete file;
+    texture_font_load_glyphs(font->font, (const wchar_t*)(*text));
 }
 static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
     HandleScope scope;
@@ -91,7 +96,7 @@ void Font::init(const FunctionCallbackInfo<Value> &args) {
     float depth = args[2]->NumberValue();
 
     JSFile* file = JSFile::loadAsset(*path);
-    font = js_texture_font_new(atlas->atlas, *path, depth, file->chars(), file->size());
+    font = texture_font_new_fn(atlas->atlas, *path, depth, load_font_assets);
     delete file;
 
     mRelease = false;
