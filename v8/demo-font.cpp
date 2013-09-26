@@ -184,7 +184,7 @@ int main_font( int argc, char **argv )
         font = texture_font_new( atlas, filename, i );
         pen.x = 5;
         pen.y -= font->height;
-        //LOGI("fond.height:%f", font->height);
+        printf("fond.height:%f %f\n", font->height, pen.y);
         texture_font_load_glyphs( font, text );
         add_text( buffer, font, text, &black, &pen );
         texture_font_delete( font );
