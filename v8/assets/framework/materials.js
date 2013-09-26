@@ -2,6 +2,10 @@ var _material = require('render/material.js');
 var _inherit = require('core/inherit.js');
 
 // create user defined material
+/**
+ * sprite material
+ * @type {*}
+ */
 exports.positionTexture = _inherit(function (program, frame) {
     _material.call(this, program);
     this.frame = frame;
@@ -25,6 +29,10 @@ exports.positionTexture = _inherit(function (program, frame) {
     }
 });
 
+/**
+ * drawing color block
+ * @type {*}
+ */
 exports.positionColor = _inherit(function (program, color) {
     _material.call(this, program);
     this.color = new Float32Array(color);
@@ -46,5 +54,57 @@ exports.positionColor = _inherit(function (program, color) {
     },
     setColor: function (color) {
         this.color.set(color);
+    }
+});
+
+/**
+ * position color texture
+ * @type {*}
+ */
+exports.textColor = _inherit(function (program) {
+    _material.call(this, program);
+}, _material, {
+    use: function () {
+        this.program.use();
+    },
+    bindMesh: function (mesh) {
+        mesh.bindBuffer();
+
+        var p = this.program;
+        p.setAttrib('a_position', mesh.accessor('p'));
+        p.setAttrib('a_color', mesh.accessor('c'));
+        p.setAttrib('a_texCoord', mesh.accessor('t'));
+    },
+    bindMatrix: function (matrix) {
+        this.program.setUniform('u_pvmMatrix', matrix);
+    },
+    create: function (program) {
+        return new this.constructor(program);
+    }
+});
+
+/**
+ * draw black text
+ * position texture
+ * @type {*}
+ */
+exports.textBlack = _inherit(function (program) {
+    _material.call(this, program);
+}, _material, {
+    use: function () {
+        this.program.use();
+    },
+    bindMesh: function (mesh) {
+        mesh.bindBuffer();
+
+        var p = this.program;
+        p.setAttrib('a_position', mesh.accessor('p'));
+        p.setAttrib('a_texCoord', mesh.accessor('t'));
+    },
+    bindMatrix: function (matrix) {
+        this.program.setUniform('u_pvmMatrix', matrix);
+    },
+    create: function (program) {
+        return new this.constructor(program);
     }
 });
