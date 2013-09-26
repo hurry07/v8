@@ -60,7 +60,7 @@ METHOD_BEGIN(load, info) {
 }
 /**
  * @text
- * @floatarray [width,kerning...]
+ * @floatarray [advance,kerning...]
  * @start optional
  * @end optional
  */

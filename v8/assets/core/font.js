@@ -42,6 +42,9 @@ function fontImplement() {
 
     return Font;
 }
+clz.atlas.bindToUnit = function () {
+    console.log('clz.atlas.bindToUnit');
+}
 
 exports.font = clz.font || fontImplement();
 exports.atlas = clz.atlas || atlasImplement();

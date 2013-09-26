@@ -176,6 +176,10 @@ module.exports = _scene.createScene(
         this.mRotate = 0;
         this.layout();
 
+        var f = _global.textNode('fat', 40, 'abc');
+        f.setPosition(100, 100);
+        this.addChild(f);
+
 //        this.__touchnode__.print();
 //        this.coinStar.hideButton();
 //        this.__touchnode__.print();

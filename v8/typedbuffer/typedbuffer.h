@@ -327,6 +327,7 @@ v8::Local<v8::Function> typedbuffer::initTypedArrayClass(v8::Handle<v8::Function
     HandleScope scope;
     
     Local<ObjectTemplate> obj = temp->PrototypeTemplate();
+    //obj->SetAccessor(String::New("buffer"), ...); innerbuffer
     obj->SetAccessor(String::New("byteOffset"), byteOffset<T>);
     obj->SetAccessor(String::New("byteLength"), byteLength<T>);
     obj->SetAccessor(String::New("length"), globalfn::array::length);
@@ -387,7 +388,7 @@ void typedbuffer::set(const FunctionCallbackInfo<Value> &info) {
             ThrowException(String::New("Value buffer's length excceed the capacity of current TypedBuffer"));
             return;
         }
-        
+
         // if param and current object use the same underlying bytes[]
         if(valueBuf.mPtr == buf.mPtr) {
             // according to the specification, we should have another copy of these bytes before clone it

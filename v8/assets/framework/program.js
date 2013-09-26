@@ -9,6 +9,7 @@ function getFileId(p) {
     var start = p.lastIndexOf('/') + 1;
     return p.slice(start);
 }
+
 /**
  * all shaders
  * @type {*}
@@ -18,6 +19,7 @@ var shaders = _collection.createCollection({
         return _shader.create(id, _file.loadContent(path), type);
     }
 });
+
 /**
  * all programs
  * @type {*}
@@ -26,6 +28,7 @@ var programs = _collection.createCollection({
     create: function (id, vpath, fpath, material) {
         var vShader = shaders.findopt(getFileId(vpath), vpath, _gl.VERTEX_SHADER);
         var fShader = shaders.findopt(getFileId(fpath), fpath, _gl.FRAGMENT_SHADER);
+        console.log('programs:' + id, vShader, fShader);
         if (!vShader || !fShader) {
             return null;
         }
@@ -43,5 +46,5 @@ var programs = _collection.createCollection({
 
 exports.positionTexture = programs.findopt('positionTexture', 'shader/position_texture.vert', 'shader/position_texture.frag', _materials.positionTexture);
 exports.positionColor = programs.findopt('positionColor', 'shader/position_color.vert', 'shader/position_color.frag', _materials.positionColor);
-exports.textColor = programs.findopt('positionColor', 'shader/position_color_texture.vert', 'shader/position_color_texturealpha.frag', _materials.positionColor);
-exports.textBlack = programs.findopt('positionColor', 'shader/position_texture.vert', 'shader/position_texturealpha.frag', _materials.textBlack);
+exports.textColor = programs.findopt('textColor', 'shader/position_color_texture.vert', 'shader/position_color_texturealpha.frag', _materials.positionColor);
+exports.textBlack = programs.findopt('textBlack', 'shader/position_texture.vert', 'shader/position_texturealpha.frag', _materials.textBlack);

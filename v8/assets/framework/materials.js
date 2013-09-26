@@ -61,11 +61,13 @@ exports.positionColor = _inherit(function (program, color) {
  * position color texture
  * @type {*}
  */
-exports.textColor = _inherit(function (program) {
+exports.textColor = _inherit(function (program, atlas) {
     _material.call(this, program);
+    this.atlas = atlas;
 }, _material, {
     use: function () {
         this.program.use();
+        this.program.setUniform('u_texture', this.atlas);
     },
     bindMesh: function (mesh) {
         mesh.bindBuffer();
@@ -78,8 +80,8 @@ exports.textColor = _inherit(function (program) {
     bindMatrix: function (matrix) {
         this.program.setUniform('u_pvmMatrix', matrix);
     },
-    create: function (program) {
-        return new this.constructor(program);
+    create: function (program, atlas) {
+        return new this.constructor(program, atlas);
     }
 });
 
@@ -88,11 +90,13 @@ exports.textColor = _inherit(function (program) {
  * position texture
  * @type {*}
  */
-exports.textBlack = _inherit(function (program) {
+exports.textBlack = _inherit(function (program, atlas) {
     _material.call(this, program);
+    this.atlas = atlas;
 }, _material, {
     use: function () {
         this.program.use();
+        this.program.setUniform('u_texture', this.atlas);
     },
     bindMesh: function (mesh) {
         mesh.bindBuffer();
@@ -104,7 +108,7 @@ exports.textBlack = _inherit(function (program) {
     bindMatrix: function (matrix) {
         this.program.setUniform('u_pvmMatrix', matrix);
     },
-    create: function (program) {
-        return new this.constructor(program);
+    create: function (program, atlas) {
+        return new this.constructor(program, atlas);
     }
 });

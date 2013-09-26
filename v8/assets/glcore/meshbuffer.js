@@ -61,6 +61,9 @@ inherit(meshBuffer, glBuffer);
 meshBuffer.prototype.accessor = function (name) {
     return this.mAccessor[name];
 }
+meshBuffer.prototype.adapter = function () {
+    return this.mAdapter;
+}
 /**
  * set cursor
  *

@@ -126,7 +126,6 @@ freetype_load_face_fn( FT_Library * library,
 
     return 1;
 }
-
 int
 freetype_load_face( FT_Library * library,
                        const char * filename,
@@ -137,9 +136,9 @@ freetype_load_face( FT_Library * library,
 
 int texture_font_load_face(texture_font_t* self,
                              FT_Library* library,
-                             FT_Long face_index,
+                             const float size,
                              FT_Face* aface) {
-    return freetype_load_face_fn(library, self->filename, self->size, aface, self->fontload);
+    return freetype_load_face_fn(library, self->filename, size, aface, self->fontload);
 }
 
 // ------------------------------------------------------ texture_glyph_new ---

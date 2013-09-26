@@ -227,7 +227,7 @@ typedef FT_Error (*fn_face_load) (
 int texture_font_load_face (
     texture_font_t* self,
     FT_Library* library,
-    FT_Long face_index,
+    const float size,
     FT_Face* aface);
 
 /**

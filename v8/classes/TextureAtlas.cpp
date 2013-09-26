@@ -10,15 +10,30 @@
 #include "../utils/AssetUtil.h"
 #include "../core/v8Utils.h"
 
-//static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
-//    HandleScope scope;
-//    
-//    Local<ObjectTemplate> obj = temp->PrototypeTemplate();
-////    EXPOSE_METHOD(obj, loadAsset, ReadOnly | DontDelete);
-////    EXPOSE_METHOD(obj, getContent, ReadOnly | DontDelete);
-//    
-//    return scope.Close(temp->GetFunction());
-//}
+METHOD_BEGIN(bindToUnit, info) {
+    HandleScope scope;
+    TextureAtlas* fontAtlas = internalPtr<TextureAtlas>(info, CLASS_Atlas);
+    if(fontAtlas == 0) {
+        return;
+    }
+
+    texture_atlas_t *atlas = fontAtlas->atlas;
+    if(atlas->id)
+    {
+        int unit = info[0]->Uint32Value();
+        LOGI("unit %d", unit);
+        glActiveTexture(GL_TEXTURE0 + unit);
+        glBindTexture(GL_TEXTURE_2D, atlas->id);
+    }
+}
+static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
+    HandleScope scope;
+
+    Local<ObjectTemplate> obj = temp->PrototypeTemplate();
+    EXPOSE_METHOD(obj, bindToUnit, ReadOnly | DontDelete);
+
+    return scope.Close(temp->GetFunction());
+}
 
 TextureAtlas::TextureAtlas() {
 }
@@ -28,7 +43,7 @@ TextureAtlas::~TextureAtlas() {
 
 class_struct* TextureAtlas::getExportStruct() {
     static class_struct mTemplate = {
-        0, "atlas", CLASS_Atlas
+        initClass, "atlas", CLASS_Atlas
     };
     return &mTemplate;
 }

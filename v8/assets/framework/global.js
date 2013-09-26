@@ -59,6 +59,22 @@ exports.scheduleTask = function (fn, bind) {
     mTasks.push(new Task(fn, bind));
 }
 
+var _Font = require('core/font.js').font;
+var _Atlas = require('core/font.js').atlas;
+var _Text = require('drawable/text.js');
+
+var mAtlas = new _Atlas(512, 512, 1);
+function createFont(path, size) {
+    var f = new _Font(mAtlas, 'fonts/' + path + '.ttf', size);
+    f.load('!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~');
+    return f;
+}
+var mFontsDB = {}
+mFontsDB['fat_40'] = createFont('fat', 40);
+function findFont(name, size) {
+    return mFontsDB[name + '_' + size] || (  mFontsDB[name + '_' + size] = createFont(name, size));
+}
+
 /**
  * create node
  *
@@ -72,8 +88,16 @@ function spriteNode(id) {
 function colorNode(color, w, h) {
     return new _Color(_program.positionColor.material(color), w, h);
 }
+function textNode(font, size, text) {
+    var pText = new _Text(_program.textBlack.material(mAtlas), findFont(font, size));
+    if (text) {
+        pText.setText(text);
+    }
+    return pText;
+}
 exports.spriteNode = spriteNode;
 exports.colorNode = colorNode;
+exports.textNode = textNode;
 
 function Schedule(namedlist) {
     this._coll = namedlist;
