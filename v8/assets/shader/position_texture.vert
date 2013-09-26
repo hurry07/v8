@@ -1,6 +1,6 @@
 uniform mat4 u_pvmMatrix;
 
-attribute vec2 a_position;
+attribute vec4 a_position;
 attribute vec2 a_texCoord;
 
 #ifdef GL_ES											
@@ -11,6 +11,6 @@ varying vec2 v_texCoord;
 														
 void main()												
 {														
-    gl_Position = u_pvmMatrix * vec4(a_position,0,1);
+    gl_Position = u_pvmMatrix * a_position;
 	v_texCoord = a_texCoord;
 }														
