@@ -7,7 +7,7 @@
  */
 console.log('---------------');
 var clz = require('nativeclasses');
-var program = require('glcore/program.js');
+var program = require('glcore/programs.js');
 var gl = require('opengl');
 var math = require('glcore/math.js');
 var glm = require('core/glm.js');

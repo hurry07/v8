@@ -1,6 +1,6 @@
 var _gl = require('opengl');
 var _textures = require('framework/texture.js');
-var _program = require('framework/program.js');
+var _program = require('framework/programs.js');
 var _Context = require('render/drawcontext.js');
 var _Camera = require('render/camera.js');
 var _UpdateContext = require('render/updatecontext.js');
@@ -69,8 +69,11 @@ function createFont(path, size) {
     f.load('!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~');
     return f;
 }
+
 var mFontsDB = {}
 mFontsDB['fat_40'] = createFont('fat', 40);
+mFontsDB['fat_20'] = createFont('fat', 20);
+
 function findFont(name, size) {
     return mFontsDB[name + '_' + size] || (  mFontsDB[name + '_' + size] = createFont(name, size));
 }

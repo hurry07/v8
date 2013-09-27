@@ -1,4 +1,4 @@
-var program = require('glcore/program.js');
+var program = require('glcore/programs.js');
 var math3d = require('core/glm.js');
 var gl = require('opengl');
 var glBuffer = require('glcore/glbuffer.js');

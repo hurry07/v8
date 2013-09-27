@@ -1,4 +1,4 @@
-var program = require('glcore/program.js');
+var program = require('glcore/programs.js');
 var gl = require('opengl');
 
 var _camera = require('render/camera.js');

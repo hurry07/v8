@@ -177,10 +177,12 @@ module.exports = _scene.createScene(
         this.layout();
 
         var f = _global.textNode('fat', 40, '你好AB囿');
-        var f = _global.textNode('fat', 40, '你好AB囿');
 //        f.setPosition(100, 100);
 //        f.setRotate(30);
         this.addChild(f);
+        var f1 = _global.textNode('fat', 20, '你好AB囿');
+        f1.setPosition(0, f.height());
+        this.addChild(f1);
 
 //        this.__touchnode__.print();
 //        this.coinStar.hideButton();

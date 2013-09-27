@@ -8,7 +8,7 @@
 console.log('---------------');
 var clz = require('nativeclasses');
 //var gl = require('opengl');
-//var program = require('glcore/program.js');
+//var program = require('glcore/programs.js');
 //var vs = program.createWithFile('shader/v1.vtx', 'shader/f1.frg');
 
 function printBuffer(buf) {
