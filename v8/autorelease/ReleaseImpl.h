@@ -15,13 +15,17 @@
 
 enum ReleaseType {
     RELEASE_GLBuffer = 0,
-    RELEASE_GLTexture
+    RELEASE_GLTexture,
+    RELEASE_GLProgram,
+    RELEASE_GLShader
 };
 
 class ReleaseTask {
 public:
     static ReleaseTask* createTaskEnum(ReleaseType type);
     static ReleaseTask* createTask(int type);
+    static bool debug;
+
     ReleaseTask();
     virtual ~ReleaseTask();
     virtual void init(const v8::FunctionCallbackInfo<v8::Value> &args)=0;
@@ -52,6 +56,34 @@ public:
     virtual void release();
 private:
     GLuint mTexture;
+    std::string mUrl;
+};
+
+// ==========================
+// GLProgram
+// ==========================
+class ReleaseGLProgram : public ReleaseTask {
+public:
+    ReleaseGLProgram();
+    virtual ~ReleaseGLProgram();
+    virtual void init(const v8::FunctionCallbackInfo<v8::Value> &args);
+    virtual void release();
+private:
+    GLuint mProgram;
+    std::string mUrl;
+};
+
+// ==========================
+// GLShader
+// ==========================
+class ReleaseGLShader : public ReleaseTask {
+public:
+    ReleaseGLShader();
+    virtual ~ReleaseGLShader();
+    virtual void init(const v8::FunctionCallbackInfo<v8::Value> &args);
+    virtual void release();
+private:
+    GLuint mShader;
     std::string mUrl;
 };
 

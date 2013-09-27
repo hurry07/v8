@@ -2,6 +2,7 @@ var gl = require('opengl');
 var clz = require('nativeclasses');
 var inherit = require('core/inherit.js');
 var shader = require('glcore/shader.js');
+var _autorelease = require('core/autorelease.js');
 
 var SHOW_UNDEFINED = true;
 
@@ -181,25 +182,6 @@ function getUniform(obj, name) {
     return obj[n] && obj[n].getField(name.slice(index + 1));
 }
 
-
-var programDB = {};
-
-function find(id) {
-    return programDB[id]
-}
-function releaseAll() {
-    for (var i in programDB) {
-        programDB[i].release();
-    }
-    programDB = {};
-}
-function releaseById(id) {
-    var s = programDB[id];
-    if (s) {
-        s.release();
-    }
-    delete programDB[id];
-}
 function createUniformSetter(program, info) {
     var loc = gl.getUniformLocation(program, info.name);
     var s;
@@ -328,6 +310,7 @@ function program(id, vShader, fShader) {
 
     this._id = id;
     this._glid = program;
+    this.__program__ = _autorelease.releaseGLProgram(program);
     this._release = false;
 
     this.createSetters();
@@ -418,44 +401,8 @@ function getFileName(p) {
     var start = p.lastIndexOf('/') + 1;
     return p.slice(start, p.indexOf('.', start));
 }
-function getFileId(p) {
-    var start = p.lastIndexOf('/') + 1;
-    return p.slice(start);
-}
-function makeProgramId(p1, p2) {
-    return getFileName(p1) + '_' + getFileName(p2);
-}
-/**
- *
- * @param vpath vector shader file path
- * @param fpath fragment shader file path
- * @returns {*}
- */
-function createWithFile(vpath, fpath) {
-    var id = makeProgramId(vpath, fpath);
-    var s = find(id);
-    if (s) {
-        return s;
-    }
-
-    try {
-        var vShader = shader.createWithFile(getFileId(vpath), vpath, gl.VERTEX_SHADER);
-        var fShader = shader.createWithFile(getFileId(fpath), fpath, gl.FRAGMENT_SHADER);
-        if (!vShader || !fShader) {
-            return null;
-        }
-        return programDB[id] = new program(id, vShader, fShader);
-    } catch (e) {
-        console.log('program.createWithFile', e);
-    }
-    return null;
-}
 function create(id, vShader, fShader) {
     return new program(id, vShader, fShader);
 }
 
-exports.find = find;
 exports.create = create;
-exports.createWithFile = createWithFile;
-exports.releaseAll = releaseAll;
-exports.releaseById = releaseById;

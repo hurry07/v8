@@ -177,6 +177,7 @@ module.exports = _scene.createScene(
         this.layout();
 
         var f = _global.textNode('fat', 40, '你好AB囿');
+        var f = _global.textNode('fat', 40, '你好AB囿');
 //        f.setPosition(100, 100);
 //        f.setRotate(30);
         this.addChild(f);

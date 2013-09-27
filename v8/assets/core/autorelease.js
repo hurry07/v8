@@ -12,6 +12,8 @@ function jsImplement() {
 
 var TaskGLBuffer = 0;
 var TaskGLTexture = 1;
+var TaskGLProgram = 2;
+var TaskGLShader = 3;
 var autorelease = clz.autorelease || jsImplement();
 
 function getReleaseFn(type) {
@@ -24,3 +26,5 @@ function getReleaseFn(type) {
 
 exports.releaseGLBuffer = getReleaseFn(TaskGLBuffer);
 exports.releaseGLTexture = getReleaseFn(TaskGLTexture);
+exports.releaseGLProgram = getReleaseFn(TaskGLProgram);
+exports.releaseGLShader = getReleaseFn(TaskGLShader);

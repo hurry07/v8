@@ -10,6 +10,7 @@
 #include "../global.h"
 
 using namespace v8;
+bool ReleaseTask::debug = false;
 
 ReleaseTask* ReleaseTask::createTask(int type) {
     ReleaseTask* task = 0;
@@ -19,6 +20,12 @@ ReleaseTask* ReleaseTask::createTask(int type) {
             break;
         case RELEASE_GLTexture:
             task = new ReleaseGLTexture();
+            break;
+        case RELEASE_GLProgram:
+            task = new ReleaseGLProgram();
+            break;
+        case RELEASE_GLShader:
+            task = new ReleaseGLShader();
             break;
     }
     if(task == 0) {
@@ -50,7 +57,9 @@ void ReleaseGLBuffer::init(const v8::FunctionCallbackInfo<v8::Value> &args) {
 }
 void ReleaseGLBuffer::release() {
     if(mBuffer) {
-        //LOGI("~ReleaseGLBuffer:%d", mBuffer);
+        if(ReleaseTask::debug) {
+            LOGI("~ReleaseGLBuffer:%d", mBuffer);
+        }
         glDeleteBuffers(1, &mBuffer);
         mBuffer = 0;
     }
@@ -74,8 +83,58 @@ void ReleaseGLTexture::init(const v8::FunctionCallbackInfo<v8::Value> &args) {
 }
 void ReleaseGLTexture::release() {
     if(mTexture) {
-        //LOGI("~ReleaseGLTexture:%d %s", mTexture, mUrl.c_str());
+        if(ReleaseTask::debug) {
+            LOGI("~ReleaseGLTexture:%d %s", mTexture, mUrl.c_str());
+        }
         glDeleteTextures(1, &mTexture);
         mTexture = 0;
+    }
+}
+
+// ==========================
+// GLBuffer
+// ==========================
+ReleaseGLProgram::ReleaseGLProgram() : mProgram(0) {
+}
+ReleaseGLProgram::~ReleaseGLProgram() {
+    release();
+}
+void ReleaseGLProgram::init(const v8::FunctionCallbackInfo<v8::Value> &args) {
+    if(args.Length() > 0) {
+        mProgram = args[0]->Uint32Value();
+        //LOGI("ReleaseGLTexture:%d %s", mTexture, mUrl.c_str());
+    }
+}
+void ReleaseGLProgram::release() {
+    if(mProgram) {
+        if(ReleaseTask::debug) {
+            LOGI("~ReleaseGLProgram:%d", mProgram);
+        }
+        glDeleteProgram(mProgram);
+        mProgram = 0;
+    }
+}
+
+// ==========================
+// GLBuffer
+// ==========================
+ReleaseGLShader::ReleaseGLShader() : mShader(0) {
+}
+ReleaseGLShader::~ReleaseGLShader() {
+    release();
+}
+void ReleaseGLShader::init(const v8::FunctionCallbackInfo<v8::Value> &args) {
+    if(args.Length() > 0) {
+        mShader = args[0]->Uint32Value();
+        //LOGI("ReleaseGLTexture:%d %s", mTexture, mUrl.c_str());
+    }
+}
+void ReleaseGLShader::release() {
+    if(mShader) {
+        if(ReleaseTask::debug) {
+            LOGI("~ReleaseGLShader:%d", mShader);
+        }
+        glDeleteShader(mShader);
+        mShader = 0;
     }
 }

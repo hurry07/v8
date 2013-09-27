@@ -1,7 +1,6 @@
 var gl = require('opengl');
 var file = require('core/file.js');
-
-var shaderDB = {};
+var _autorelease = require('core/autorelease.js');
 
 function checkShader(shader, id) {
     var compiled = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
@@ -12,9 +11,6 @@ function checkShader(shader, id) {
         throw('Error compiling shader:' + log);
     }
 }
-function find(id) {
-    return shaderDB[id]
-}
 function shader(id, shaderSource, shaderType) {
     var shader = gl.createShader(shaderType);
     gl.shaderSource(shader, shaderSource);
@@ -23,6 +19,7 @@ function shader(id, shaderSource, shaderType) {
 
     this._id = id;
     this._glid = shader;
+    this.__shader__ = _autorelease.releaseGLShader(shader);
     this._release = false;
 }
 shader.prototype.getGLId = function () {
@@ -36,48 +33,7 @@ shader.prototype.release = function () {
 }
 
 function create(id, shaderSource, shaderType) {
-//    var s = shaderDB[id];
-//    if (s) {
-//        return s;
-//    }
-//    try {
-//        s = new shader(id, shaderSource, shaderType);
-//        return shaderDB[id] = s;
-//    } catch (e) {
-//        console.log(e);
-//    }
-//    return null;
     return new shader(id, shaderSource, shaderType);
 }
-function createWithFile(id, path, shaderType) {
-    var s = find(id);
-    if (s) {
-        return s;
-    }
 
-    var f = new file();
-    f.loadAsset(path);
-    var s = create(id, f.getContent(), shaderType);
-    f.release();
-
-    return s;
-};
-function releaseAll() {
-    for (var i in shaderDB) {
-        shaderDB[i].release();
-    }
-    shaderDB = {};
-}
-function releaseById(id) {
-    var s = shaderDB[id];
-    if (s) {
-        s.release();
-    }
-    delete shaderDB[id];
-}
-
-exports.find = find;
 exports.create = create;
-exports.createWithFile = createWithFile;
-exports.releaseAll = releaseAll;
-exports.releaseById = releaseById;
