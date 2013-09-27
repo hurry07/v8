@@ -83,7 +83,7 @@ function findFont(name, size) {
  */
 function spriteNode(id) {
     var frame = _textures.createFrame(id);
-    return new _Sprite(_program.positionTexture.material(frame), f);
+    return new _Sprite(_program.positionTexture.material(frame), frame);
 }
 function colorNode(color, w, h) {
     return new _Color(_program.positionColor.material(color), w, h);

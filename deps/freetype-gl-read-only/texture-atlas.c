@@ -46,7 +46,6 @@ texture_atlas_new( const size_t width,
                    const size_t height,
                    const size_t depth )
 {
-    printf("texture_atlas_new:%d\n", sizeof(texture_atlas_t));
     texture_atlas_t *self = (texture_atlas_t *) malloc( sizeof(texture_atlas_t) );
 
     // We want a one pixel border around the whole atlas to avoid any artefact when

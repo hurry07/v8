@@ -51,9 +51,7 @@ METHOD_BEGIN(load, info) {
     tmp->Write(uchars);
     for (int i=0; i<length; i++) {
         wchars[i] = uchars[i];
-        printf("[%d]", uchars[i]);
     }
-    printf("\n");
     wchars[length] = 0;
 
     texture_font_load_glyphs(font->font, wchars);

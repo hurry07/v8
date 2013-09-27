@@ -32,7 +32,6 @@ Text.prototype.setText = function (text) {
 Text.prototype.createMesh = function () {
     var len = this.mText.length;
     var b = this.mBuffer = _createMesh('p2t2', len * 6, _gl.TRIANGLES);
-    console.log(b.length);
     var element = new Float32Array(b.adapter().buffer());
     var width = 0;
     var height = this.font.height;
@@ -72,17 +71,6 @@ Text.prototype.createMesh = function () {
         element.set([x1, y1, s1, t1]);
         b.push(pindex + 5);
 
-//        element.set([0, 300, 0, 0]);
-//        b.push(pindex);
-//        element.set([0, 0, 0, 1]);
-//        b.push(pindex + 1);
-//        element.set([300, 300, 1, 0]);
-//        b.push(pindex + 2);
-//        b.copy(pindex + 2, pindex + 3, 1);
-//        b.copy(pindex + 1, pindex + 4, 1);
-//        element.set([300, 0, 1, 1]);
-//        b.push(pindex + 5);
-
         x += twidths[windex];
 
         gindex += 8;
@@ -90,7 +78,6 @@ Text.prototype.createMesh = function () {
         pindex += 6;
     }
 
-    console.log('pindex', Array.prototype.join.call(new Float32Array(b.buffer().buffer), ','));
     this.setSize(x, height);
     this.setCenter(0, height);
 
