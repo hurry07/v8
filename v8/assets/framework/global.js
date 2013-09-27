@@ -98,17 +98,9 @@ function textNode(font, size, text) {
     }
     return pText;
 }
-function textNode1(font, size, frame, text) {
-    var pText = new _Text(_program.positionTexture.material(frame), findFont(font, size), frame);
-    if (text) {
-        pText.setText(text);
-    }
-    return pText;
-}
 exports.spriteNode = spriteNode;
 exports.colorNode = colorNode;
 exports.textNode = textNode;
-exports.textNode1 = textNode1;
 
 function Schedule(namedlist) {
     this._coll = namedlist;

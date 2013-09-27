@@ -49,5 +49,14 @@ ColorNode.prototype.initMesh = function () {
 ColorNode.prototype.setColor = function (color) {
     this.mMaterial.setColor(color);
 }
+ColorNode.prototype.draw = function (context) {
+    if (!this.mVisiable) {
+        return;
+    }
+    _gl.blendFunc(_gl.SRC_ALPHA, _gl.ONE_MINUS_SRC_ALPHA);
+    this.updateMatrix();
+    context.render(this, this.mBuffer, this.mMaterial);
+    _gl.blendFunc(_gl.ONE, _gl.ONE_MINUS_SRC_ALPHA);
+}
 
 module.exports = ColorNode;

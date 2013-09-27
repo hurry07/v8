@@ -1057,7 +1057,14 @@ DELEGATE_TO_GL_N2(bindTexture, glBindTexture, GLenum, GLuint);
 DELEGATE_TO_GL_N4(blendColor, glBlendColor, GLclampf, GLclampf, GLclampf, GLclampf);
 DELEGATE_TO_GL_N1(blendEquation, glBlendEquation, GLenum);
 DELEGATE_TO_GL_N2(blendEquationSeparate, glBlendEquationSeparate, GLenum, GLenum);
-DELEGATE_TO_GL_N2(blendFunc, glBlendFunc, GLenum, GLenum);
+//DELEGATE_TO_GL_N2(blendFunc, glBlendFunc, GLenum, GLenum);
+JS_METHOD(blendFunc) {
+    HandleScope scope;
+
+ 	GLenum source = args[0]->Uint32Value();
+ 	GLenum dest = args[1]->Uint32Value();
+    glBlendFunc(source, dest);
+}
 DELEGATE_TO_GL_N4(blendFuncSeparate, glBlendFuncSeparate, GLenum, GLenum, GLenum, GLenum);
 
 /**

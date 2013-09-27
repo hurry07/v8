@@ -314,7 +314,7 @@ void typedbuffer::byteOffset(Local<String> property, const PropertyCallbackInfo<
 template <typename T>
 void typedbuffer::byteLength(Local<String> property, const PropertyCallbackInfo<Value>& info) {
     HandleScope scope;
-    
+
     ClassBase* ptr = internalPtr<ClassBase>(info);
     if(ptr == 0 || !NodeBuffer::isView(ptr->getClassType())) {
         return;

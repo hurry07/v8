@@ -48,4 +48,3 @@ exports.positionTexture = programs.findopt('positionTexture', 'shader/position_t
 exports.positionColor = programs.findopt('positionColor', 'shader/position_color.vert', 'shader/position_color.frag', _materials.positionColor);
 exports.textColor = programs.findopt('textColor', 'shader/position_color_texture.vert', 'shader/position_color_texturealpha.frag', _materials.positionColor);
 exports.textBlack = programs.findopt('textBlack', 'shader/position_texture.vert', 'shader/position_texturealpha.frag', _materials.textBlack);
-exports.textBlack = programs.findopt('textBlack', 'shader/position_texture.vert', 'shader/position_texture.frag', _materials.textBlack);

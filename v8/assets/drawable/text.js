@@ -21,6 +21,7 @@ _inherit(Text, _MeshNode);
 Text.prototype.setText = function (text) {
     if (text != this.mText) {
         this.mText = text;
+        console.log('Text.prototype.setText', text);
         if (!this.mText || this.mText.length == 0) {
             this.mVisiable = false;
         } else {
@@ -39,7 +40,7 @@ Text.prototype.createMesh = function () {
     var twidths = new Float32Array(len * 2);
     var glyphs = new Float32Array(len * 8);
     var x = 0;
-    var y = -this.font.ascender;
+    var y = 0;
     this.font.load(this.mText);
     this.font.measure(this.mText, twidths);// [advance,kerning]
     this.font.glyphs(this.mText, glyphs);// [offsetx,offsety,width,height,s0,t0,s1,t1]
@@ -79,9 +80,18 @@ Text.prototype.createMesh = function () {
     }
 
     this.setSize(x, height);
-    this.setCenter(0, height);
+    this.setCenter(0, height - this.font.ascender);
 
     b.upload();
 }
+//Text.prototype.draw = function (context) {
+//    if (!this.mVisiable) {
+//        return;
+//    }
+////    _gl.blendFunc(_gl.SRC_ALPHA, _gl.ONE_MINUS_SRC_ALPHA);
+//    this.updateMatrix();
+//    context.render(this, this.mBuffer, this.mMaterial);
+////    _gl.blendFunc(_gl.ONE, _gl.ONE_MINUS_SRC_ALPHA);
+//}
 
 module.exports = Text;

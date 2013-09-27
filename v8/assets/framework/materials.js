@@ -1,5 +1,6 @@
 var _material = require('render/material.js');
 var _inherit = require('core/inherit.js');
+var _gl = require('opengl');
 
 // create user defined material
 /**

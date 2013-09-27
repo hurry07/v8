@@ -19,8 +19,8 @@ function BeltButton(id, edge, count) {
 
     var button = blockButton(id, edge);
     this.addChild(button);
-    this.mCount = _global.textNode('fat', 25, count + '');
-    this.mCount.setAnthor(0.5, 0.5);
+    this.mCount = _global.textNode('Georgia', 40, count + '');
+//    this.mCount.setAnthor(0.5, 0.5);
     this.mCount.setPosition(edge / 2, edge / 2);
     this.addChild(this.mCount);
 
@@ -33,11 +33,12 @@ function BetPanel(game) {
     this.game = game;
 
     this.setSize(WIDTH, HEIGHT);
-    this.addChild(this.bg = _global.colorNode([40 / 255, 42 / 255, 45 / 255, 1], WIDTH, HEIGHT));
+//    this.addChild(this.bg = _global.colorNode([40 / 255, 42 / 255, 45 / 255, 1], WIDTH, HEIGHT));
+    this.addChild(this.bg = _global.colorNode([1,1,1, 1], WIDTH, HEIGHT));
 
     this.mMultip = [];
     for (var i = 0; i < 5; i++) {
-        var b = new BeltButton(1, 40, 20);
+        var b = new BeltButton(1, 36, 'ABCDEabcde');
         this.mMultip.push(b);
         this.addChild(b);
     }

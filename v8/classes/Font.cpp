@@ -150,6 +150,7 @@ METHOD_BEGIN(glyphs, info) {
     }
 
     // setup
+    float empty[8] = { 0,0,0,0,0,0,0,0 };
     int starti = 0;
     for(int i = start; i < end; i++) {
         texture_glyph_t *glyph = texture_font_get_glyph(font->font, uchars[i] );
@@ -161,8 +162,7 @@ METHOD_BEGIN(glyphs, info) {
             values[3] = glyph->height;
             buf.set_value<float>(starti, values, 8);
         } else {
-            float values[8] = { 0,0,0,0,0,0,0,0 };
-            buf.set_value<float>(starti, values, 8);
+            buf.set_value<float>(starti, empty, 8);
         }
         starti += 8;
     }

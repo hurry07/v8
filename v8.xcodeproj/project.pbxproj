@@ -791,6 +791,10 @@
 		182820A7179AFFCB003125B5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/deps\"",
+				);
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					/Users/jie/git/node/deps/v8/include,
 					"$SRCROOT/deps/glm/**",
@@ -809,6 +813,7 @@
 					"\"$(SRCROOT)/../freetype-gl-read-only/windows/glut\"",
 					"\"$(SRCROOT)/deps/png\"",
 					"\"$(SRCROOT)/deps/libpng15\"",
+					"\"$(SRCROOT)/deps/platform_external_libpng/.libs\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -817,6 +822,10 @@
 		182820A8179AFFCB003125B5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/deps\"",
+				);
 				"HEADER_SEARCH_PATHS[arch=*]" = (
 					/Users/jie/xcodespace/v8/v8/include,
 					"$SRCROOT/deps/glm/**",
@@ -835,6 +844,7 @@
 					"\"$(SRCROOT)/../freetype-gl-read-only/windows/glut\"",
 					"\"$(SRCROOT)/deps/png\"",
 					"\"$(SRCROOT)/deps/libpng15\"",
+					"\"$(SRCROOT)/deps/platform_external_libpng/.libs\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
