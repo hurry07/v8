@@ -35,9 +35,10 @@ namespace globalfn {
             ByteBuffer buf;
             c->getUnderlying(&buf);
             if(index >= buf.typedLength()) {
+                LOGI("ArrayOutOfBoundException get[] type:%d, length:%d, index:%d", buf.mElement, buf.typedLength(), index);
                 return;
             }
-            
+
             info.GetReturnValue().Set(*buf.value_ptr<T>(index));
         }
         template <typename T>
@@ -52,6 +53,7 @@ namespace globalfn {
             ByteBuffer buf;
             c->getUnderlying(&buf);
             if(index >= buf.typedLength()) {
+                LOGI("ArrayOutOfBoundException set[] type:%d, length:%d, index:%d", buf.mElement, buf.typedLength(), index);
                 return;
             }
 

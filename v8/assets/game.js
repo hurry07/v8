@@ -23,8 +23,7 @@ game.resume = function () {
 var mCount = 0;
 game.render = {
     onSurfaceCreated: function (width, height) {
-//        _gl.clearColor(1, 1, 1, 0);
-        _gl.clearColor(1, 0, 1, 1);
+        _gl.clearColor(1, 1, 1, 0);
 
         _gl.enable(_gl.BLEND);
         _gl.blendFunc(_gl.ONE, _gl.ONE_MINUS_SRC_ALPHA);
@@ -55,7 +54,7 @@ game.render = {
     },
     onDrawFrame: function () {
         _global.runSchedule();
-//        _framerate.update();
+        _framerate.update();
     }
 };
 

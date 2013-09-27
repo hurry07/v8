@@ -5,13 +5,13 @@ var _v3 = _geometry.vec3f;
 // ========================================================
 // Point to Local
 // ========================================================
-function getRelativePointToLocal(node, v) {
+function getPointRelativeToLocal(node, v) {
     v = new _v3(v);
     v.mul(node.mSize);
     v.sub(node.mCenter);
     return v;
 }
-function getPointToLocal(node, v) {
+function getPointAbsoultToLocal(node, v) {
     v = new _v3(v);
     v.sub(node.mCenter);
     return v;
@@ -30,11 +30,11 @@ function localToWorld(node, v) {
 // Adapters
 // ========================================================
 function getPointRelative(node, v) {
-    v = getRelativePointToLocal(node, v);
+    v = getPointRelativeToLocal(node, v);
     return localToWorld(node, v);
 }
 function getPointAbsoult(node, v) {
-    v = getPointToLocal(node, v);
+    v = getPointAbsoultToLocal(node, v);
     return localToWorld(node, v);
 }
 function getPointLocal(node, v) {
@@ -44,10 +44,13 @@ function getPointLocal(node, v) {
 // ========================================================
 // Export Adapters
 // ========================================================
-function getLayoutTo(trans) {
+function getLayoutTo(transSrc, transDest) {
+    if (!transDest) {
+        transDest = transSrc;
+    }
     function layoutTo(fnode, v1, tnode, v2, voffset) {
-        var fromVec = trans(fnode, v1);
-        var toVec = trans(tnode, v2);
+        var fromVec = transSrc(fnode, v1);
+        var toVec = transDest(tnode, v2);
         toVec.sub(fromVec);
         if (voffset) {
             toVec.add(voffset);// append offset
@@ -143,18 +146,24 @@ function pointToWorld(getLocal) {
 exports.relative = {
     layoutTo: getLayoutTo(getPointRelative),
     layout: getLayout(getPointRelative),
-    localPoint: pointToLocal(getRelativePointToLocal),
-    worldPoint: pointToWorld(getRelativePointToLocal)
+    localPoint: pointToLocal(getPointRelativeToLocal),
+    worldPoint: pointToWorld(getPointRelativeToLocal),
+    local: {
+        layoutTo: getLayoutTo(getPointRelative, getPointRelativeToLocal)
+    }
 }
 exports.absolute = {
     layoutTo: getLayoutTo(getPointAbsoult),
     layout: getLayout(getPointAbsoult),
-    localPoint: pointToLocal(getPointToLocal),
-    worldPoint: pointToWorld(getPointToLocal)
+    localPoint: pointToLocal(getPointAbsoultToLocal),
+    worldPoint: pointToWorld(getPointAbsoultToLocal),
+    local: {
+        layoutTo: getLayoutTo(getPointAbsoult, getPointAbsoultToLocal)
+    }
 }
 // layout using object coordinate
 exports.local = {
     layoutTo: getLayoutTo(getPointLocal),
     layout: getLayout(getPointLocal),
-    worldPoint: pointToWorld(getRelativePointToLocal)
+    worldPoint: pointToWorld(getPointRelativeToLocal)
 }
