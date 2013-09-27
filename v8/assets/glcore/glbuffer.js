@@ -1,3 +1,4 @@
+var _autorelease = require('core/autorelease.js');
 var _gl = require('opengl');
 var _glm = require('core/glm.js');
 var _Buffer = require('glcore/buffer.js').Buffer;
@@ -26,6 +27,7 @@ function glBuffer(config) {
     this.mVboId = 0;
     if (this.mIsVbo) {
         this.mVboId = _gl.createBuffer();
+        this.__vboId = _autorelease.releaseGLBuffer(this.mVboId);
     }
 };
 _inherit(glBuffer, _Buffer);
@@ -67,7 +69,7 @@ glBuffer.prototype.bindBuffer = function () {
         _gl.bindBuffer(this.mTarget, this.mVboId);
     }
 }
-glBuffer.prototype.isVbo = function() {
+glBuffer.prototype.isVbo = function () {
     return this.mIsVbo;
 }
 /**

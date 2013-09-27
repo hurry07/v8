@@ -25,7 +25,6 @@ var R = {
         points_bg: '.png',
         slide: '.png'
     },
-
     upgrade: {
         archive_line_01: '.png',
         archive_line_02: '.png',
@@ -130,6 +129,7 @@ iterator(R, '', textures);
 // managing texture frame creation
 var _textures = require('glcore/textures.js');
 var _frame = require('glcore/textureframe.js');
+var textureDB = {};
 
 function getPath(id) {
     return root + textures[id];
@@ -142,9 +142,14 @@ function createFrame(id) {
     if (path.frame) {
         return path.frame;
     }
+
     var t = _textures.createTexture2D(path);
     return path.frame = new _frame(t);
 }
+
+_textures.createTexture2D('images/upgrade/b_addcoins.png');
+_textures.createTexture2D('images/upgrade/b_addcoins.png');
+_textures.createTexture2D('images/upgrade/b_addcoins.png');
 
 exports.R = R;
 exports.createFrame = createFrame;

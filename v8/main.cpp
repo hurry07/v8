@@ -98,6 +98,7 @@ int powOf2(int num) {
 
 Application* app = NULL;
 void onDrawFrame() {
+    app->gc();
     app->onDrawFrame();
     if(!checkGlError("onDrawFrame==>")) {
         return;

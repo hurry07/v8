@@ -1,6 +1,7 @@
 /**
  * @fileoverview This file contains objects to manage textures.
  */
+var _autorelease = require('core/autorelease.js');
 var gl = require('opengl');
 var inherit = require('core/inherit.js');
 var Image = require('core/image.js');
@@ -18,6 +19,7 @@ var textureDB = {};
 function Texture(target) {
     this.target = target;
     this.texture = gl.createTexture();
+    this.__texture__ = _autorelease.releaseGLTexture();
     this.params = {};
 };
 Texture.prototype.setParameter = function (pname, value) {
@@ -139,6 +141,7 @@ function Texture2D(url, opt_flipY) {
     Texture.call(this, gl.TEXTURE_2D);
     this.flipY = opt_flipY || false;
     this.url = url;
+    this.__texture__.values(this.texture, this.url);
     this.mWidth = this.mHeight = 1;
     this.mWrapWidth = this.mWrapHeight = 1;
 
@@ -167,24 +170,24 @@ Texture2D.prototype.uploadTexture = function () {
         gl.texImage2D(gl.TEXTURE_2D, 0, img.internalFormat, img.format, img.type, img);
     }
 };
-Texture2D.prototype.width = function() {
+Texture2D.prototype.width = function () {
     return this.mWrapWidth;
 }
-Texture2D.prototype.height = function() {
+Texture2D.prototype.height = function () {
     return this.mWrapHeight;
 }
 /**
  * visiable width
  * @returns {*}
  */
-Texture2D.prototype.picWidth = function() {
+Texture2D.prototype.picWidth = function () {
     return this.mWidth;
 }
 /**
  * visiable height
  * @returns {number}
  */
-Texture2D.prototype.picHeight = function() {
+Texture2D.prototype.picHeight = function () {
     return this.mHeight;
 }
 

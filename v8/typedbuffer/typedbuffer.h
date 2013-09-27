@@ -84,7 +84,7 @@ TypedBuffer<T>::TypedBuffer() {
 }
 template <typename T>
 TypedBuffer<T>::~TypedBuffer() {
-    LOGI("TypedBuffer.~release");
+//    LOGI("TypedBuffer.~release");
 }
 template <typename T>
 int TypedBuffer<T>::length() {

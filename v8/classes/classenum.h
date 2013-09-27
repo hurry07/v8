@@ -35,7 +35,9 @@ enum ClassType {
     CLASS_Float64Array,
 
     CLASS_Font,
-    CLASS_Atlas
+    CLASS_Atlas,
+    
+    CLASS_AutoRelease// auto release
 };
 
 #endif
