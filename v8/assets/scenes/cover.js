@@ -176,7 +176,7 @@ module.exports = _scene.createScene(
         this.mRotate = 0;
         this.layout();
 
-        var f = _global.textNode('Georgia', 40, 'abcde0123456789ABCDE');
+        var f = _global.textNode('fat', 40, '你好AB囿程海林');
 //        f.setPosition(100, 100);
 //        f.setRotate(30);
         this.addChild(f);
