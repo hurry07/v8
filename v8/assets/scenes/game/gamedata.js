@@ -1,5 +1,7 @@
 var Data = {
 }
+var BeltData = {
+}
 
 function GameData() {
     this.level = 0;
