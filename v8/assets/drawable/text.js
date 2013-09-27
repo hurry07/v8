@@ -3,6 +3,12 @@ var _MeshNode = require('drawable/meshnode.js');
 var _createMesh = require('glcore/meshbuffer.js').createMesh;
 var _inherit = require('core/inherit.js');
 
+var _geometry = require('core/glm.js');
+var _glm = _geometry.glm;
+var _v2 = _geometry.vec2f;
+var _v3 = _geometry.vec3f;
+var _order = require('glcore/constance.js').STRIP_ORDER;
+
 function Text(material, font) {
     _MeshNode.call(this, null, material);
 
@@ -66,28 +72,29 @@ Text.prototype.createMesh = function () {
         element.set([x1, y1, s1, t1]);
         b.push(pindex + 5);
 
+//        element.set([0, 300, 0, 0]);
+//        b.push(pindex);
+//        element.set([0, 0, 0, 1]);
+//        b.push(pindex + 1);
+//        element.set([300, 300, 1, 0]);
+//        b.push(pindex + 2);
+//        b.copy(pindex + 2, pindex + 3, 1);
+//        b.copy(pindex + 1, pindex + 4, 1);
+//        element.set([300, 0, 1, 1]);
+//        b.push(pindex + 5);
+
+        x += twidths[windex];
+
         gindex += 8;
         windex += 2;
         pindex += 6;
-
-        x += twidths[windex];
     }
 
-//    console.log('pindex', b.buffer());
     console.log('pindex', Array.prototype.join.call(new Float32Array(b.buffer().buffer), ','));
-    console.log('pindex', pindex, len);
     this.setSize(x, height);
     this.setCenter(0, height);
 
     b.upload();
-}
-Text.prototype.draw = function (context) {
-    if (!this.mVisiable) {
-        return;
-    }
-    console.log('Text.prototype.draw');
-    this.updateMatrix();
-    context.render(this, this.mBuffer, this.mMaterial);
 }
 
 module.exports = Text;

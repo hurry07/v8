@@ -176,7 +176,12 @@ module.exports = _scene.createScene(
 //        this.mRotate = 0;
 //        this.layout();
 
-        var f = _global.textNode('fat', 40, 'A');
+        var fs = _global.sprite(R.upgrade.bg);
+//        var sprite = fs.sprite();
+//        this.addChild(sprite);
+
+//        var f = _global.textNode1('fat', 40, fs.frame, 'AB');
+        var f = _global.textNode('fat', 40, '你好AB囿');
         f.setPosition(100, 100);
         this.addChild(f);
 

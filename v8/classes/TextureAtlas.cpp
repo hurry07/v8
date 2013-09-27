@@ -21,11 +21,11 @@ METHOD_BEGIN(bindToUnit, info) {
     if(atlas->id)
     {
         int unit = info[0]->Uint32Value();
-        LOGI("unit %d", unit);
         glActiveTexture(GL_TEXTURE0 + unit);
         glBindTexture(GL_TEXTURE_2D, atlas->id);
     }
 }
+
 static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
     HandleScope scope;
 
@@ -40,6 +40,17 @@ TextureAtlas::TextureAtlas() {
 TextureAtlas::~TextureAtlas() {
     release();
 }
+/**
+ * @width
+ * @height
+ * @depth
+ */
+void TextureAtlas::init(const FunctionCallbackInfo<Value> &args) {
+    int width = args[0]->Uint32Value();
+    int height = args[1]->Uint32Value();
+    int depth = args[2]->Uint32Value();
+    atlas = texture_atlas_new(width, height, depth);
+}
 
 class_struct* TextureAtlas::getExportStruct() {
     static class_struct mTemplate = {
@@ -52,15 +63,4 @@ ClassType TextureAtlas::getClassType() {
 }
 void TextureAtlas::doRelease() {
     texture_atlas_delete(atlas);
-}
-/**
- * @width
- * @height
- * @depth
- */
-void TextureAtlas::init(const FunctionCallbackInfo<Value> &args) {
-    int width = args[0]->Uint32Value();
-    int height = args[1]->Uint32Value();
-    int depth = args[2]->Uint32Value();
-    atlas = texture_atlas_new(width, height, depth);
 }

@@ -24,21 +24,21 @@ exports.mRenderContext = mRenderContext;
  * hold all dependencies for creating a sprite like node
  * @constructor
  */
-function Sprite(material, texture) {
+function Sprite(material, frame) {
     this.material = material;
-    this.texture = texture;
+    this.frame = frame;
 }
 Sprite.prototype.sprite = function () {
-    return new _Sprite(this.material, this.texture);
+    return new _Sprite(this.material, this.frame);
 }
 Sprite.prototype.$9patch = function () {
-    return _9Patch.create9Patch.apply(this, [this.material, this.texture].concat(Array.prototype.slice.call(arguments, 0)));
+    return _9Patch.create9Patch.apply(this, [this.material, this.frame].concat(Array.prototype.slice.call(arguments, 0)));
 }
 Sprite.prototype.$9patch_v = function () {
-    return _9Patch.create9Patch_v.apply(this, [this.material, this.texture].concat(Array.prototype.slice.call(arguments, 0)));
+    return _9Patch.create9Patch_v.apply(this, [this.material, this.frame].concat(Array.prototype.slice.call(arguments, 0)));
 }
 Sprite.prototype.$9patch_h = function () {
-    return _9Patch.create9Patch_h.apply(this, [this.material, this.texture].concat(Array.prototype.slice.call(arguments, 0)));
+    return _9Patch.create9Patch_h.apply(this, [this.material, this.frame].concat(Array.prototype.slice.call(arguments, 0)));
 }
 function sprite(id) {
     var f = _textures.createFrame(id);
@@ -82,8 +82,8 @@ function findFont(name, size) {
  * @returns {_Sprite}
  */
 function spriteNode(id) {
-    var f = _textures.createFrame(id);
-    return new _Sprite(_program.positionTexture.material(f), f);
+    var frame = _textures.createFrame(id);
+    return new _Sprite(_program.positionTexture.material(frame), f);
 }
 function colorNode(color, w, h) {
     return new _Color(_program.positionColor.material(color), w, h);
@@ -95,9 +95,17 @@ function textNode(font, size, text) {
     }
     return pText;
 }
+function textNode1(font, size, frame, text) {
+    var pText = new _Text(_program.positionTexture.material(frame), findFont(font, size), frame);
+    if (text) {
+        pText.setText(text);
+    }
+    return pText;
+}
 exports.spriteNode = spriteNode;
 exports.colorNode = colorNode;
 exports.textNode = textNode;
+exports.textNode1 = textNode1;
 
 function Schedule(namedlist) {
     this._coll = namedlist;

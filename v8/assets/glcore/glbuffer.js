@@ -64,7 +64,6 @@ glBuffer.prototype.upload = function () {
  */
 glBuffer.prototype.bindBuffer = function () {
     if (this.mIsVbo) {
-        console.log('glBuffer.prototype.bindBuffer', this.mTarget, this.mVboId);
         _gl.bindBuffer(this.mTarget, this.mVboId);
     }
 }
