@@ -10,6 +10,25 @@ var _glm = _geometry.glm;
 var _v3 = _geometry.vec3f;
 var _inherit = require('core/inherit.js');
 
+var _itor = require('component/selector/nodeiterator.js');
+function TestNode(name, children) {
+    this.name = name;
+    this.children = children;
+}
+TestNode.prototype.toString = function () {
+    return this.name;
+}
+var root = new _itor(
+    new TestNode('root', [
+        new TestNode('div:1', [
+            new TestNode('image#image1', [
+            ])
+        ]),
+        new TestNode('div#2')
+    ])
+);
+root.printRoot();
+
 var firstInit = true;
 function Game() {
 }
@@ -54,7 +73,7 @@ game.render = {
     },
     onDrawFrame: function () {
         _global.runSchedule();
-        _framerate.update();
+//        _framerate.update();
     }
 };
 

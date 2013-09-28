@@ -14,6 +14,7 @@ function Iter(group) {
     this.mNext = this.mStart = this.mEnd = null;
     this.group = group;
 }
+
 Iter.prototype.init = function (start, end) {
     this.mNext = this.mStart = start;
     this.mEnd = end;
@@ -21,7 +22,7 @@ Iter.prototype.init = function (start, end) {
 }
 Iter.prototype.hasNext = function () {
     this.mStart = this.mNext;
-    return this.mStart.next != this.mEnd;
+    return this.mStart.next !== this.mEnd;
 }
 Iter.prototype.next = function () {
     this.mNext = this.mStart.next;

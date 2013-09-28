@@ -12,6 +12,15 @@ MatchSequence.prototype.match = function () {
 MatchSequence.prototype.next = function () {
     this.depth++;
 }
+/**
+ * @param node
+ * @param previous may be parent* of current node
+ * @constructor
+ */
+function MatchNode(node, previous) {
+    this.node = node;
+    this.previous = previous;
+}
 
 // ==========================
 // list of selector running
