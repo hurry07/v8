@@ -10,7 +10,8 @@ var _glm = _geometry.glm;
 var _v3 = _geometry.vec3f;
 var _inherit = require('core/inherit.js');
 
-var _itor = require('component/selector/nodeiterator.js');
+var _CSSNode = require('component/selector/cssnode.js');
+var _itorImpe = require('component/selector/nodeiterator.js');
 function TestNode(name, children) {
     this.name = name;
     this.children = children;
@@ -18,24 +19,31 @@ function TestNode(name, children) {
 TestNode.prototype.toString = function () {
     return this.name;
 }
-var root = new _itor(
-    new TestNode('root', [
-        new TestNode('div:1', [
-            new TestNode('image#image1', [
-            ]),
-            new TestNode('image#image2', [
-            ]),
-            new TestNode('image#image3', [
-            ])
+
+function NodeListener() {
+}
+NodeListener.prototype.onNode = function (cssnode) {
+    console.log(cssnode.node);
+}
+
+var root = _CSSNode.wrap(new TestNode('root', [
+    new TestNode('div:1', [
+        new TestNode('image#image1', [
         ]),
-        new TestNode('div#2')
-    ])
-);
-root.printRoot();
+        new TestNode('image#image2', [
+        ]),
+        new TestNode('image#image3', [
+        ])
+    ]),
+    new TestNode('div#2')
+]));
+root.print();
+
+var itorImpe = new _itorImpe();
 console.log('-------------');
-root.iterator();
+itorImpe.init(root).childFirst(new NodeListener());
 console.log('-------------');
-root.iterator1();
+itorImpe.init(root).nodeFirst(new NodeListener());
 
 var firstInit = true;
 function Game() {
