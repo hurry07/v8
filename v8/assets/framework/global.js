@@ -63,7 +63,7 @@ var _Font = require('core/font.js').font;
 var _Atlas = require('core/font.js').atlas;
 var _Text = require('drawable/text.js');
 
-var mAtlas = new _Atlas(512, 512, 1);
+var mAtlas = new _Atlas(1024, 1024, 1);
 function createFont(path, size) {
     var f = new _Font(mAtlas, 'fonts/' + path + '.ttf', size);
     f.load('!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~');

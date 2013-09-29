@@ -58,7 +58,8 @@ function BetPanel(game) {
     this.game = game;
 
     this.setSize(WIDTH, HEIGHT);
-    this.addChild(this.bg = _global.colorNode([40 / 255, 42 / 255, 45 / 255, 1], WIDTH, HEIGHT));
+//    this.addChild(this.bg = _global.colorNode([40 / 255, 42 / 255, 45 / 255, 1], WIDTH, HEIGHT));
+    this.addChild(this.bg = _global.colorNode([1, 0, 1, 1], WIDTH, HEIGHT));
 
     //this.mBeltLabel = _global.textNode('', 20, '');
     this.mBeltSlots = new BeltSlots(34, 20);
