@@ -11,19 +11,16 @@ var _v3 = _geometry.vec3f;
 var _inherit = require('core/inherit.js');
 
 var _CSSNode = require('component/selector/cssnode.js');
-var _itorImpe = require('component/selector/nodeiterator.js');
+var _NodeIterator = require('component/selector/nodeiterator.js');
+var _NodeListener = require('component/selector/nodelistener.js');
+var _Matcher = require('component/selector/matcher.js');
+
 function TestNode(name, children) {
     this.name = name;
     this.children = children;
 }
 TestNode.prototype.toString = function () {
     return this.name;
-}
-
-function NodeListener() {
-}
-NodeListener.prototype.onNode = function (cssnode) {
-    console.log(cssnode.node);
 }
 
 var root = _CSSNode.wrap(new TestNode('root', [
@@ -37,13 +34,14 @@ var root = _CSSNode.wrap(new TestNode('root', [
     ]),
     new TestNode('div#2')
 ]));
-root.print();
 
-var itorImpe = new _itorImpe();
+var itorImpe = new _NodeIterator();
 console.log('-------------');
-itorImpe.init(root).childFirst(new NodeListener());
-console.log('-------------');
-itorImpe.init(root).nodeFirst(new NodeListener());
+itorImpe.childFirst(root, new _NodeListener(new _Matcher()));
+//console.log('-------------');
+//itorImpe.nodeFirst(root, new _NodeListener(new _Matcher()));
+
+root.print();
 
 var firstInit = true;
 function Game() {

@@ -7,7 +7,7 @@ var _LinkedList = require('component/selector/linkednode.js');
  * @constructor
  */
 function CSSNode(node, parent) {
-    this.depth = 0;
+//    this.depth = 0;
     this.children = new _LinkedList();
     this.init(node, parent);
 }
@@ -16,11 +16,12 @@ CSSNode.prototype.init = function (node, parent) {
     this.parent = parent;
     this.children.clear();
     this.previous = this.next = null;
-    if (parent) {
-        this.depth = parent.depth + 1;
-    } else {
-        this.depth = 0;
-    }
+    this.matches = 0;// match count of current node and children of it
+//    if (parent) {
+//        this.depth = parent.depth + 1;
+//    } else {
+//        this.depth = 0;
+//    }
 }
 CSSNode.prototype.print = function () {
     printNode(this, 0);
@@ -34,9 +35,9 @@ function printNode(root, depth) {
     }
 
     if (root.children.isEmpty()) {
-        console.log(prefix + root.node + ':{}');
+        console.log(prefix + root.node + '#' + root.matches + ':{}');
     } else {
-        console.log(prefix + root.node + ':[');
+        console.log(prefix + root.node + '#' + root.matches + ':[');
         var itor = root.children.startItor();
         while (itor.hasNext()) {
             printNode(itor.next(), depth + 1);

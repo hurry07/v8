@@ -1,15 +1,6 @@
 // ==========================
 // Node Iterator
 // ==========================
-function NodeListener() {
-}
-NodeListener.prototype.onNode = function (cssnode) {
-    console.log(cssnode.node);
-}
-
-// ==========================
-// Node Iterator
-// ==========================
 function NodeIterator() {
     this.status = 0;// 0 return curent point, 1 find child, if any
     this.nodes = 0;
@@ -21,13 +12,15 @@ NodeIterator.prototype.init = function (cssroot) {
     this.nodes = 1;
     this.reached = 0;
     this.stack = [cssroot];
-    return this;
 }
-NodeIterator.prototype.push = function (node) {
+NodeIterator.prototype.push = function (listener, node) {
     this.stack.push(node);
+    listener.onPush(node);
 }
-NodeIterator.prototype.pop = function () {
-    return this.stack.pop()
+NodeIterator.prototype.pop = function (listener) {
+    var p = this.stack.pop();
+    listener.onPop(p);
+    return p;
 }
 NodeIterator.prototype.peek = function () {
     return this.stack[this.stack.length - 1];
@@ -35,7 +28,10 @@ NodeIterator.prototype.peek = function () {
 NodeIterator.prototype.hasNext = function () {
     return this.nodes > this.reached;
 }
-NodeIterator.prototype.nodeFirst = function (listener) {
+NodeIterator.prototype.nodeFirst = function (cssroot, listener) {
+    this.init(cssroot);
+    listener.onPush(cssroot);
+
     while (this.hasNext()) {
         var n = this.peek();
 
@@ -50,16 +46,23 @@ NodeIterator.prototype.nodeFirst = function (listener) {
 
             case 1:
                 if (n.children.hasNext()) {
-                    this.push(n.children.next());
+                    this.push(listener, n.children.next());
                     this.status = 0;
                     continue;
                 }
-                this.pop();
+
+                this.pop(listener);
                 break;
         }
     }
+    while (this.stack.length > 0) {
+        this.pop(listener);
+    }
 }
-NodeIterator.prototype.childFirst = function (listener) {
+NodeIterator.prototype.childFirst = function (cssroot, listener) {
+    this.init(cssroot);
+    listener.onPush(cssroot);
+
     while (this.hasNext()) {
         var n = this.peek();
 
@@ -72,11 +75,12 @@ NodeIterator.prototype.childFirst = function (listener) {
 
             case 1:
                 if (n.children.hasNext()) {
-                    this.push(n.children.next());
+                    this.push(listener, n.children.next());
                     this.status = 0;
                     continue;
                 }
-                listener.onNode(this.pop());
+                listener.onNode(n);
+                this.pop(listener);
                 this.reached++;
                 break;
         }
