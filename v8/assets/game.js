@@ -22,12 +22,20 @@ var root = new _itor(
     new TestNode('root', [
         new TestNode('div:1', [
             new TestNode('image#image1', [
+            ]),
+            new TestNode('image#image2', [
+            ]),
+            new TestNode('image#image3', [
             ])
         ]),
         new TestNode('div#2')
     ])
 );
 root.printRoot();
+console.log('-------------');
+root.iterator();
+console.log('-------------');
+root.iterator1();
 
 var firstInit = true;
 function Game() {

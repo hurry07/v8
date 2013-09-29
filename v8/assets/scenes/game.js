@@ -14,8 +14,9 @@ var Game = _scene.createScene(
         this.addChild(this.betpanel = new _BetPanel(this));
         this.addChild(this.msgpanel = new _MessagePanel(this));
 
-        var text = _global.textNode('Georgia', 40, 'ABCDEabcde');
-        text.setPosition(300, 420);
+//        var text = _global.textNode('Georgia', 90, 'ABCDEabcde');
+        var text = _global.textNode('Georgia', 30, 'ABCDEabcde');
+        text.setPosition(50, 200);
         this.addChild(text);
 
         this.onSizeChange(w, h);

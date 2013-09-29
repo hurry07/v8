@@ -1,5 +1,11 @@
 var _LinkedList = require('component/selector/linkednode.js');
 
+/**
+ * wrap of ui element
+ * @param node
+ * @param parent
+ * @constructor
+ */
 function CSSNode(node, parent) {
     this.depth = 0;
     this.children = new _LinkedList();
@@ -17,30 +23,164 @@ CSSNode.prototype.init = function (node, parent) {
     }
 }
 
-function StackNode(cssnode) {
-    this.cssnode = cssnode;
-    this.cursor = 0;
+function NodeIterator() {
+    this.status = 0;// 0 return curent point, 1 find child, if any
+    this.nodes = 0;
+    this.reached = 0;
+    this.stack = [];
+    this.implement = this.__nodeFirst;
+}
+NodeIterator.prototype.nodeFirst = function () {
+    this.implement = this.__nodeFirst;
+    return this;
+}
+NodeIterator.prototype.childFirst = function () {
+    this.implement = this.__childFirst;
+    return this;
+}
+NodeIterator.prototype.init = function (root) {
+    this.status = 0;
+    this.nodes = 1;
+    this.reached = 0;
+    this.stack = [root];
+    return this;
+}
+NodeIterator.prototype.push = function (node) {
+    this.stack.push(node);
+}
+NodeIterator.prototype.pop = function () {
+    return this.stack.pop()
+}
+NodeIterator.prototype.peek = function () {
+    return this.stack[this.stack.length - 1];
+}
+NodeIterator.prototype.hasNext = function () {
+    return this.nodes > this.reached;
+}
+NodeIterator.prototype.next = function () {
+    return this.implement();
+}
+NodeIterator.prototype.__nodeFirst = function () {
+    while (this.nodes > this.reached) {
+        var n = this.peek();
+        switch (this.status) {
+            case 0:
+                n.children.startItor();
+                this.nodes += n.children.count();
+                this.status = 1;
+                this.reached++;
+                return n;
+
+            case 1:
+                if (n.children.hasNext()) {
+                    this.push(n.children.next());
+                    this.status = 0;
+                    continue;
+                }
+                this.pop();
+                break;
+        }
+    }
+}
+NodeIterator.prototype.__childFirst = function () {
+    while (this.nodes > this.reached) {
+        var n = this.peek();
+        switch (status) {
+            case 0:
+                n.children.startItor();
+                this.nodes += n.children.count();
+                this.status = 1;
+                break;
+
+            case 1:
+                if (n.children.hasNext()) {
+                    this.push(n.children.next());
+                    this.status = 0;
+                    continue;
+                }
+                this.reached++;
+                return this.pop();
+        }
+    }
 }
 
 function Iterator(node) {
     this.root = new CSSNode(node, null);
     this.initChildren(this.root);
 }
+Iterator.prototype.onNode = function (node) {
+    console.log(node);
+}
+Iterator.prototype.iterator = function (root) {
+    var status = 0;// 0 return curent point, 1 find child, if any
+    var nodes = 1;
+    var reached = 0;
+    var stack = [this.root];
+
+    while (nodes > reached) {
+        var n = stack[stack.length - 1];
+
+        switch (status) {
+            case 0:
+                reached++;
+                this.onNode(n.node);
+                n.children.startItor();
+                nodes += n.children.count();
+                status = 1;
+                break;
+
+            case 1:
+                if (n.children.hasNext()) {
+                    stack.push(n.children.next());
+                    status = 0;
+                    continue;
+                }
+                stack.pop();
+                break;
+        }
+    }
+}
+Iterator.prototype.iterator1 = function (root) {
+    var status = 0;// 0 return curent point, 1 find child, if any
+    var nodes = 1;
+    var reached = 0;
+    var stack = [this.root];
+
+    while (nodes > reached) {
+        var n = stack[stack.length - 1];
+
+        switch (status) {
+            case 0:
+                n.children.startItor();
+                nodes += n.children.count();
+                status = 1;
+                break;
+
+            case 1:
+                if (n.children.hasNext()) {
+                    stack.push(n.children.next());
+                    status = 0;
+                    continue;
+                }
+                this.onNode(stack.pop().node);
+                reached++;
+                break;
+        }
+    }
+}
 Iterator.prototype.initChildren = function (root) {
-    var stack = [new StackNode(root)];
-    while (stack.length > 0) {
-        var stacknode = stack[stack.length - 1];
-        var cssnode = stacknode.cssnode;
+    var task = [root];
+    while (task.length > 0) {
+        var cssnode = task.pop();
         var children = cssnode.node.children;
-        if (!children || children.length <= stacknode.cursor) {
-            stack.pop();
+        if (!children || children.length == 0) {
+            continue;
         } else {
             for (var i = -1, l = children.length; ++i < l;) {
                 var child = new CSSNode(children[i], cssnode);
-                stack.push(new StackNode(child));
+                task.push(child);
                 cssnode.children.addNode(child);
             }
-            stacknode.cursor += children.length;
         }
     }
 }

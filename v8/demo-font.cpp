@@ -190,7 +190,7 @@ int main_font( int argc, char **argv )
         texture_font_delete( font );
     }
     glBindTexture( GL_TEXTURE_2D, atlas->id );
-    
+
     shader = shader_load("/Users/jie/svn/v8/deps/freetype-gl-read-only/shaders/v3f-t2f-c4f.vert",
                          "/Users/jie/svn/v8/deps/freetype-gl-read-only/shaders/v3f-t2f-c4f.frag");
     mat4_set_identity( &projection );
