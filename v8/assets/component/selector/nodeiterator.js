@@ -46,7 +46,11 @@ NodeIterator.prototype.nodeFirst = function (cssroot, listener) {
 
             case 1:
                 if (n.children.hasNext()) {
-                    this.push(listener, n.children.next());
+                    var child = n.children.next();
+                    if (!listener.onVisit(child)) {
+                        continue;
+                    }
+                    this.push(listener, child);
                     this.status = 0;
                     continue;
                 }
@@ -75,7 +79,11 @@ NodeIterator.prototype.childFirst = function (cssroot, listener) {
 
             case 1:
                 if (n.children.hasNext()) {
-                    this.push(listener, n.children.next());
+                    var child = n.children.next();
+                    if (!listener.onVisit(child)) {
+                        continue;
+                    }
+                    this.push(listener, child);
                     this.status = 0;
                     continue;
                 }

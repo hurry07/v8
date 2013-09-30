@@ -1,5 +1,5 @@
 // ==========================
-// Node Iterator
+// Match FirstNode
 // ==========================
 function NodeListener(matches) {
     this.resetMatch(matches);
@@ -14,6 +14,9 @@ NodeListener.prototype.onNode = function (cssnode) {
         cssnode.matchChildren++;
         this.mCount++;
     }
+}
+NodeListener.prototype.onVisit= function (cssnode) {
+    return true;
 }
 NodeListener.prototype.onPush = function (cssnode) {
     cssnode.isMatch = false;
