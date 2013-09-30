@@ -13,34 +13,61 @@ var _inherit = require('core/inherit.js');
 var _CSSNode = require('component/selector/cssnode.js');
 var _NodeIterator = require('component/selector/nodeiterator.js');
 var _NodeListener = require('component/selector/nodelistener.js');
-var _Matcher = require('component/selector/matcher.js');
+var _matcher = require('component/selector/matcher.js');
 
-function TestNode(name, children) {
-    this.name = name;
+function spiltProp(p) {
+    var prop = {};
+    if (!p || p.length == 0) {
+        return prop;
+    }
+    for (var i = -1, coll = p.split(','), l = coll.length; ++i < l;) {
+        var namevalue = coll[i].split('=');
+        prop[namevalue[0]] = namevalue[1];
+    }
+    return prop;
+}
+function TestNode(type, prop, children) {
+    this.type = type;
+    this.properties = spiltProp(prop);
     this.children = children;
 }
+TestNode.prototype.getPropStr = function () {
+    var str = [];
+    for (var i in this.properties) {
+        str.push(i + ':' + this.properties[i]);
+    }
+    return '{' + str.join(',') + '}';
+}
 TestNode.prototype.toString = function () {
-    return this.name;
+    return this.type + this.getPropStr();
 }
 
-var root = _CSSNode.wrap(new TestNode('root', [
-    new TestNode('div:1', [
-        new TestNode('image#image1', [
+var tree = new TestNode('root', '', [
+    new TestNode('div', 'id=div1', [
+        new TestNode('image', 'id=image1', [
         ]),
-        new TestNode('image#image2', [
+        new TestNode('image', 'id=image2', [
         ]),
-        new TestNode('image#image3', [
+        new TestNode('image', 'id=image3', [
         ])
     ]),
-    new TestNode('div#2')
-]));
+    new TestNode('image', 'id=middiv'),
+    new TestNode('image', 'id=middiv'),
+    new TestNode('div', 'id=div2'),
+    new TestNode('image', 'id=middiv'),
+    new TestNode('div', 'id=div3')
+]);
+
 
 var itorImpe = new _NodeIterator();
-console.log('-------------');
-itorImpe.childFirst(root, new _NodeListener(new _Matcher()));
-//console.log('-------------');
-//itorImpe.nodeFirst(root, new _NodeListener(new _Matcher()));
+console.log('------------->>1');
+var root = _CSSNode.wrap(tree);
+itorImpe.childFirst(root, new _NodeListener(new _matcher.TypeMatcher('div')));
+root.print();
 
+console.log('------------->>2');
+root = _CSSNode.wrap(tree);
+itorImpe.nodeFirst(root, new _NodeListener(new _matcher.TypeMatcher('div')));
 root.print();
 
 var firstInit = true;

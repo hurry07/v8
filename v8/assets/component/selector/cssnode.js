@@ -16,12 +16,22 @@ CSSNode.prototype.init = function (node, parent) {
     this.parent = parent;
     this.children.clear();
     this.previous = this.next = null;
-    this.matches = 0;// match count of current node and children of it
+    this.matchChildren = 0;// match count of current node and children of it
+    this.isMatch = 0;// match count of current node and children of it
 //    if (parent) {
 //        this.depth = parent.depth + 1;
 //    } else {
 //        this.depth = 0;
 //    }
+}
+CSSNode.prototype.isReachable = function () {
+    return this.isMatch || this.matchChildren;
+}
+CSSNode.prototype.removeFromParent = function () {
+    if (this.parent) {
+        this.parent.children.removeNode(this);
+        this.parent = null;
+    }
 }
 CSSNode.prototype.print = function () {
     printNode(this, 0);
@@ -35,9 +45,9 @@ function printNode(root, depth) {
     }
 
     if (root.children.isEmpty()) {
-        console.log(prefix + root.node + '#' + root.matches + ':{}');
+        console.log(prefix + root.node + '#' + root.isMatch + '_' + root.matchChildren + ':{}');
     } else {
-        console.log(prefix + root.node + '#' + root.matches + ':[');
+        console.log(prefix + root.node + '#' + root.isMatch + '_' + root.matchChildren + ':[');
         var itor = root.children.startItor();
         while (itor.hasNext()) {
             printNode(itor.next(), depth + 1);
@@ -57,6 +67,7 @@ CSSNode.wrap = function (node) {
             for (var i = -1, l = children.length; ++i < l;) {
                 var child = new CSSNode(children[i], cssnode);
                 task.push(child);
+                child.parent = cssnode;
                 cssnode.children.addNode(child);
             }
         }

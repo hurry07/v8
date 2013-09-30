@@ -10,14 +10,20 @@ NodeListener.prototype.resetMatch = function (matches) {
 }
 NodeListener.prototype.onNode = function (cssnode) {
     if (this.mMatch.match(cssnode.node)) {
+        cssnode.isMatch = true;
+        cssnode.matchChildren++;
         this.mCount++;
     }
 }
 NodeListener.prototype.onPush = function (cssnode) {
-    cssnode.matches = this.mCount;
+    cssnode.isMatch = false;
+    cssnode.matchChildren = this.mCount;
 }
 NodeListener.prototype.onPop = function (cssnode) {
-    cssnode.matches = this.mCount - cssnode.matches;
+    cssnode.matchChildren = this.mCount - cssnode.matchChildren;
+    if (!cssnode.isReachable()) {
+        cssnode.removeFromParent();
+    }
 }
 
 module.exports = NodeListener;
