@@ -36,7 +36,7 @@ TypeSelector.prototype.match = function (node) {
     return this.any || node.type == this.type;
 }
 TypeSelector.prototype.toString = function () {
-    return '{type selector:' + this.type + '}'
+    return '{type selector:' + this.type + '}';
 }
 
 // ==========================
@@ -76,27 +76,33 @@ AttributeSelector.prototype.match = function (node) {
 // ==========================
 // Adjacentselectors E + F
 // ==========================
-function Adjacentselectors(matcher) {
-    this.matcher = matcher;
+function Adjacentselectors(selector) {
+    this.selector = selector;
 }
 Adjacentselectors.prototype.matchProp = function () {
     return true;
 }
 Adjacentselectors.prototype.match = function (node) {
-    return this.matcher.match(node) && this.matchProp(node);
+    return this.selector.match(node) && this.matchProp(node);
+}
+Adjacentselectors.prototype.toString = function () {
+    return this.selector + '+';
 }
 
 // ==========================
-// ChildSelector
+// ChildSelector E > F
 // ==========================
-function ChildSelector(matcher) {
-    this.matcher = matcher;
+function ChildSelector(selector) {
+    this.selector = selector;
 }
 ChildSelector.prototype.matchProp = function (node) {
     return true;
 }
 ChildSelector.prototype.match = function (node) {
-    return this.matcher.match(node) && this.matchProp(node);
+    return this.selector.match(node) && this.matchProp(node);
+}
+ChildSelector.prototype.toString = function () {
+    return this.selector + '>';
 }
 
 // ==========================

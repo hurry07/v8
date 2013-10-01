@@ -1,181 +1,35 @@
-//
-//  Vec4t.h
-//  v8
-//
-//  Created by jie on 13-8-15.
-//  Copyright (c) 2013年 jie. All rights reserved.
-//
+   var typesel;
+        var type = content.charBeforeToken();
 
-#ifndef __v8__Vec4t__
-#define __v8__Vec4t__
-
-#include "../core/ClassBase.h"
-#include "../core/v8Utils.h"
-#include <glm/glm.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include "vectorutil.h"
-
-template <typename T>
-static void flatVectorT(const FunctionCallbackInfo<Value> &info, T* values, int length);
-
-// ========================== vec4
-template <typename T>
-class Vec4t : public ClassBase {
-public:
-    Vec4t() : mVec(0,0,0,0) {
-    }
-    static class_struct* getExportStruct() {
-        static class_struct mTemplate = {
-            0, "vec4t", CLASS_VEC4T
-        };
-        return &mTemplate;
-    }
-    virtual ClassType getClassType() {
-        return getExportStruct()->mType;
-    }
-    void init(const FunctionCallbackInfo<Value> &info) {
-        if(info.Length() == 0) {
-            return;
-        }
-        T values[4];
-        flatVectorT<T>(info, values, 4);
-        mVec.x = values[0];
-        mVec.y = values[1];
-        mVec.z = values[2];
-        mVec.w = values[3];
-    }
-    virtual const char* toString() {
-        return printValue(glm::value_ptr(mVec), 4);
-    }
-
-    glm::detail::tvec4<T> mVec;
-};
-
-// ========================== vec3
-template <typename T>
-class Vec3t : public ClassBase {
-public:
-    Vec3t() : mVec(0,0,0) {
-    }
-    static class_struct* getExportStruct() {
-        static class_struct mTemplate = {
-            0, "vec3t", CLASS_VEC3T
-        };
-        return &mTemplate;
-    }
-    virtual ClassType getClassType() {
-        return getExportStruct()->mType;
-    }
-    void init(const FunctionCallbackInfo<Value> &info) {
-        if(info.Length() == 0) {
-            return;
-        }
-        T values[3];
-        flatVectorT<T>(info, values, 3);
-        mVec.x = values[0];
-        mVec.y = values[1];
-        mVec.z = values[2];
-    }
-    virtual const char* toString() {
-        return printValue(glm::value_ptr(mVec), 3);
-    }
-
-    glm::detail::tvec3<T> mVec;
-};
-
-// ========================== vec2
-template <typename T>
-class Vec2t : public ClassBase {
-public:
-    Vec2t() : mVec(0,0) {
-    }
-    static class_struct* getExportStruct() {
-        static class_struct mTemplate = {
-            0, "Vec2t", CLASS_VEC2T
-        };
-        return &mTemplate;
-    }
-    virtual ClassType getClassType() {
-        return getExportStruct()->mType;
-    }
-    void init(const FunctionCallbackInfo<Value> &info) {
-        if(info.Length() == 0) {
-            return;
-        }
-        T values[2];
-        flatVectorT<T>(info, values, 2);
-        mVec.x = values[0];
-        mVec.y = values[1];
-    }
-    virtual const char* toString() {
-        return printValue(glm::value_ptr(mVec), 2);
-    }
-
-    glm::detail::tvec2<T> mVec;
-};
-
-template <typename T>
-static void valuePtr(ClassBase* obj, T** outer, int* plen);
-
-template <typename T>
-static void flatVectorT(const FunctionCallbackInfo<Value> &info, T* values, int length) {
-    int copyed = 0;
-    float* ptr = 0;
-    int plen = 0;
-    
-    int alen = info.Length();
-    for(int i = 0; i < alen; i++) {
-        ClassBase* p = internalArg<ClassBase>(info[i]);
-        if(p == 0) {
-            argValue(info, i, values + copyed);
-            copyed++;
-        } else {
-            valuePtr(p, &ptr, &plen);
-            LOGI("value:%f %d", ptr[0], plen);
-            if(plen > length - copyed) {
-                while (copyed < length) {
-                    values[copyed++] = *ptr;
-                    ptr++;
+        // wrap of previous
+        if ('>+'.indexOf(token) != -1) {
+            // if not started with >+
+            if (token != content.currentChar()) {
+                if (type.length == 0) {
+                    typesel = new _TypeSelector('*');
+                } else {
+                    typesel = new _TypeSelector(type);
                 }
-            } else {
-                while (plen > 0) {
-                    values[copyed++] = *ptr;
-                    ptr++;
-                    plen--;
-                }
+                content.nextToken();
+                this.parser.addSelector(typesel);
+                this.parser.nextTypeParser();
+                return;
             }
-        }
-        if(copyed == length) {
-            break;
-        }
-    }
-    
-    while (copyed < length) {
-        values[copyed++] = 0;
-    }
-}
 
-template <typename T>
-static void valuePtr(ClassBase* obj, T** outer, int* plen) {
-    T* ptr = 0;
-    switch (obj->getClassType()) {
-        case CLASS_VEC4T:
-            ptr = glm::value_ptr(static_cast<Vec4t<T>*>(obj)->mVec);
-            *plen = 4;
-            break;
-        case CLASS_VEC3T:
-            ptr = glm::value_ptr(static_cast<Vec3t<T>*>(obj)->mVec);
-            *plen = 3;
-            break;
-        case CLASS_VEC2T:
-            ptr = glm::value_ptr(static_cast<Vec2t<T>*>(obj)->mVec);
-            *plen = 2;
-            break;
-        default:
-            *plen = 0;
-            break;
-    }
-    outer[0] = ptr;
-}
+            typesel = this.parser.lastSelector();
+            if (!typesel) {
+                throw 'previous selector before token:' + token + ' not found.'
+            }
 
-#endif /* defined(__v8__Vec4t__) */
+            content.skip(1);
+            this.parser.addSelector(typesel);
+            this.parser.nextTypeParser();
+            return;
+        }
+
+        console.log('charBeforeToken', type);
+        if (type.length == 0) {
+            typesel = new _TypeSelector('*');
+        } else {
+            typesel = new _TypeSelector(type);
+        }

@@ -15,8 +15,25 @@ var _NodeIterator = require('component/selector/nodeiterator.js');
 var _NodeListener = require('component/selector/nodelistener.js');
 var _matcher = require('component/selector/selector.js');
 var _parser = require('component/selector/parser.js');
+
 var p = new _parser();
-p.parse('div image');
+p.parse('div   >   image');
+var p = new _parser();
+p.parse('div>image');
+var p = new _parser();
+p.parse('a>image>ui');
+var p = new _parser();
+p.parse('a >image>ui');
+var p = new _parser();
+p.parse('a > image>ui');
+var p = new _parser();
+p.parse('a  >  image>ui');
+var p = new _parser();
+p.parse('a   >   image>ui');
+var p = new _parser();
+p.parse('a   >   image > ui');
+var p = new _parser();
+p.parse('a   >   image  >  ui');
 
 //function spiltProp(p) {
 //    var prop = {};

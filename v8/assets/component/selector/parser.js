@@ -40,7 +40,7 @@ Content.prototype.getIndex = function () {
     return this.index;
 }
 Content.prototype.skip = function (count) {
-    this.index += (count || 0);
+    this.index += (count || 1);
 }
 Content.prototype.currentChar = function () {
     return this.string.charAt(this.index);
@@ -56,7 +56,8 @@ function TypeParser(parser) {
     this.parser = parser;
 }
 TypeParser.prototype.parse = function (content) {
-    if (content.currentChar() == ' ') {
+    // skip leading empth chars
+    while (content.currentChar() == ' ') {
         content.skip();
     }
 
@@ -66,16 +67,48 @@ TypeParser.prototype.parse = function (content) {
         this.parser.addSelector(new _TypeSelector(type));
         content.close();
     } else {
-        var type = content.charBeforeToken();
         var typesel;
+        var type = content.charBeforeToken();
+
+        // wrap of previous
+        if ('>+'.indexOf(token) != -1) {
+            // if not started with >+
+            if (token != content.currentChar()) {
+                if (type.length == 0) {
+                    typesel = new _TypeSelector('*');
+                } else {
+                    typesel = new _TypeSelector(type);
+                }
+                content.nextToken();
+                this.parser.addSelector(typesel);
+                this.parser.nextTypeParser();
+                return;
+            }
+
+            typesel = this.parser.lastSelector();
+            if (!typesel) {
+                throw 'previous of token:' + token + ' not found.'
+            }
+            if (token == '>') {
+                typesel = new _ChildSelector(typesel);
+            } else {
+                typesel = new _Adjacentselectors(typesel);
+            }
+            content.skip(1);
+            this.parser.addSelector(typesel);
+            this.parser.nextTypeParser();
+            return;
+        }
+
         if (type.length == 0) {
             typesel = new _TypeSelector('*');
         } else {
             typesel = new _TypeSelector(type);
         }
 
+        var sel = typesel;
         content.nextToken();
-        var sel;
+
         switch (token) {
             case '[':
                 sel = new _AttributeSelector(typesel);
@@ -93,27 +126,18 @@ TypeParser.prototype.parse = function (content) {
                 sel = new _IdSelector(typesel);
                 this.parse.setParser(new TokenParser(this.parser, sel, 'setId'));
                 break;
-            case '>':
-                sel = new _ChildSelector(typesel);
-                content.skip(1);
-                this.parser.nextTypeParser();
-                break;
-            case '+':
-                sel = new _Adjacentselectors(typesel);
-                content.skip(1);
-                this.parser.nextTypeParser();
-                break;
+
             case ' ':
-                content.skip(1);
                 this.parser.nextTypeParser();
                 break;
         }
+
         this.parser.addSelector(sel);
     }
 }
 
 // ==========================
-// TokenParser
+// TokenParser .*#
 // ==========================
 function TokenParser(parser, selector, fn) {
     this.parser = parser;
@@ -136,7 +160,7 @@ TokenParser.prototype.parse = function (content) {
 }
 
 // ==========================
-// AttributeSelector
+// AttributeSelector []
 // ==========================
 function AttributeParser(parser, selector) {
     this.parser = parser;
@@ -182,19 +206,23 @@ Parser.prototype.setParser = function (parser) {
 Parser.prototype.addSelector = function (m) {
     this.selectors.push(m);
 }
+Parser.prototype.lastSelector = function () {
+    if (this.selectors.length > 0) {
+        return this.selectors.pop();
+    }
+    return null;
+}
 Parser.prototype.parse = function (str) {
     console.log('Parser.prototype.parse:' + str);
     if (!str || str.length == 0) {
         return;
     }
-    console.log('Parser.prototype.parse 01:');
 
     var index = -1;
     var cycle = 0;
     var content = new Content(str);
     this.nextTypeParser();
     while (content.hasChar()) {
-        console.log('hasChar');
         this.parser.parse(content);
         if (content.getIndex() == index) {
             cycle++;
@@ -207,7 +235,6 @@ Parser.prototype.parse = function (str) {
         }
     }
 
-    console.log('Parser.prototype.parse.length:' + this.selectors.length);
     for (var i = 0; i < this.selectors.length; i++) {
         console.log(this.selectors[i]);
     }
