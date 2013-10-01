@@ -23,13 +23,6 @@ function MatchNode(node, previous) {
 }
 
 // ==========================
-// list of selector running
-// ==========================
-function SelectorSequence() {
-    this.selector = [];
-}
-
-// ==========================
 // selector types
 // ==========================
 function StateSelector(success) {
