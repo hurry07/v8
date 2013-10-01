@@ -1,7 +1,8 @@
 // ==========================
 // Matcher SuperClass
 // ==========================
-function Matcher() {
+function Matcher(depth) {
+    this.depth = depth || 0;
 }
 Matcher.prototype.match = function (node) {
     return true;

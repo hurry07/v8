@@ -1,12 +1,13 @@
 // ==========================
 // Match FirstNode
 // ==========================
-function NodeListener(matches) {
-    this.resetMatch(matches);
+function NodeListener(matches, level) {
+    this.resetMatch(matches, level);
 }
-NodeListener.prototype.resetMatch = function (matches) {
+NodeListener.prototype.resetMatch = function (matches, level) {
     this.mMatch = matches;
     this.mCount = 0;
+    this.level = level;
 }
 NodeListener.prototype.onNode = function (cssnode) {
     if (this.mMatch.match(cssnode.node)) {
@@ -15,7 +16,7 @@ NodeListener.prototype.onNode = function (cssnode) {
         this.mCount++;
     }
 }
-NodeListener.prototype.onVisit= function (cssnode) {
+NodeListener.prototype.onVisit = function (cssnode) {
     return true;
 }
 NodeListener.prototype.onPush = function (cssnode) {
@@ -27,6 +28,9 @@ NodeListener.prototype.onPop = function (cssnode) {
     if (!cssnode.isReachable()) {
         cssnode.removeFromParent();
     }
+}
+
+function CascadListener(matcher, level) {
 }
 
 module.exports = NodeListener;

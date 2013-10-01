@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/v8/assets/component/selector/parser.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/assets/component/selector/NodeListener.js" afterPath="$PROJECT_DIR$/v8/assets/component/selector/nodelistener.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/component/selector/matcher.js" afterPath="$PROJECT_DIR$/v8/assets/component/selector/matcher.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/component/selector/nodeiterator.js" afterPath="$PROJECT_DIR$/v8/assets/component/selector/nodeiterator.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -118,8 +120,9 @@
     <file path="/nodeiterator.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1380520068133" ignored="false" />
     <file path="/linkednode.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1380386466466" ignored="false" />
     <file path="/cssnode.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1380511837796" ignored="false" />
-    <file path="/nodelistener.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1380519880707" ignored="false" />
-    <file path="/matcher.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1380516070544" ignored="false" />
+    <file path="/nodelistener.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1380521313502" ignored="false" />
+    <file path="/matcher.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1380522411793" ignored="false" />
+    <file path="/parser.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1380523872138" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,10 +142,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="nodeiterator.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="nodeiterator.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/component/selector/nodeiterator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="47" selection-start="1438" selection-end="1438" vertical-scroll-proportion="0.477707">
+            <state line="1" column="17" selection-start="46" selection-end="46" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -151,7 +154,7 @@
       <file leaf-file-name="matcher.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/component/selector/matcher.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="47" selection-start="781" selection-end="781" vertical-scroll-proportion="0.0">
+            <state line="41" column="24" selection-start="954" selection-end="969" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -159,10 +162,19 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="parser.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/v8/assets/component/selector/parser.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="22" selection-start="22" selection-end="22" vertical-scroll-proportion="0.0477707">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="nodelistener.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/component/selector/nodelistener.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="16" selection-start="512" selection-end="512" vertical-scroll-proportion="0.0">
+            <state line="16" column="22" selection-start="485" selection-end="485" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -174,6 +186,15 @@
         <entry file="file://$PROJECT_DIR$/v8/assets/component/selector/cssnode.js">
           <provider selected="true" editor-type-id="text-editor">
             <state line="26" column="45" selection-start="736" selection-end="736" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="linkednode.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/component/selector/linkednode.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="26" column="21" selection-start="660" selection-end="660" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -197,7 +218,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/v8/assets/drawable/colornode.js" />
         <option value="$PROJECT_DIR$/v8/assets/drawable/text.js" />
         <option value="$PROJECT_DIR$/v8/assets/shader/position_texturealpha.frag" />
         <option value="$PROJECT_DIR$/v8/assets/scenes/cover.js" />
@@ -210,9 +230,10 @@
         <option value="$PROJECT_DIR$/v8/assets/component/selector/NodeListener.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/selector/cssnode.js" />
         <option value="$PROJECT_DIR$/v8/assets/game.js" />
-        <option value="$PROJECT_DIR$/v8/assets/component/selector/matcher.js" />
-        <option value="$PROJECT_DIR$/v8/assets/component/selector/nodelistener.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/selector/nodeiterator.js" />
+        <option value="$PROJECT_DIR$/v8/assets/component/selector/nodelistener.js" />
+        <option value="$PROJECT_DIR$/v8/assets/component/selector/matcher.js" />
+        <option value="$PROJECT_DIR$/v8/assets/component/selector/parser.js" />
       </list>
     </option>
   </component>
@@ -584,13 +605,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/v8/assets/framework/programs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="147" selection-start="1770" selection-end="1783" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/framework/materials.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="36" column="0" selection-start="935" selection-end="935" vertical-scroll-proportion="0.0">
@@ -640,13 +654,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/component/selector/linkednode.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="21" selection-start="660" selection-end="660" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/EcmaScript5.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="171" column="0" selection-start="3152" selection-end="3152" vertical-scroll-proportion="0.0">
@@ -675,27 +682,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/component/selector/matcher.js">
+    <entry file="file://$PROJECT_DIR$/v8/assets/component/selector/linkednode.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="47" selection-start="781" selection-end="781" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/component/selector/nodelistener.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="16" selection-start="512" selection-end="512" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state line="26" column="21" selection-start="660" selection-end="660" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/component/selector/nodeiterator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="47" selection-start="1438" selection-end="1438" vertical-scroll-proportion="0.477707">
+        <state line="1" column="17" selection-start="46" selection-end="46" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/component/selector/nodelistener.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="22" selection-start="485" selection-end="485" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/component/selector/matcher.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="24" selection-start="954" selection-end="969" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/component/selector/parser.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="22" selection-start="22" selection-end="22" vertical-scroll-proportion="0.0477707">
           <folding />
         </state>
       </provider>
