@@ -16,24 +16,37 @@ var _NodeListener = require('component/selector/nodelistener.js');
 var _matcher = require('component/selector/selector.js');
 var _parser = require('component/selector/parser.js');
 
-var p = new _parser();
-p.parse('div   >   image');
-var p = new _parser();
-p.parse('div>image');
-var p = new _parser();
-p.parse('a>image>ui');
-var p = new _parser();
-p.parse('a >image>ui');
-var p = new _parser();
-p.parse('a > image>ui');
-var p = new _parser();
-p.parse('a  >  image>ui');
-var p = new _parser();
-p.parse('a   >   image>ui');
-var p = new _parser();
-p.parse('a   >   image > ui');
-var p = new _parser();
-p.parse('a   >   image  >  ui');
+function parseSelector(str) {
+    var p = new _parser();
+    p.parse(str);
+}
+
+//parseSelector('div   >   image');
+//parseSelector('div>image');
+//parseSelector('a>image>ui');
+//parseSelector('a >image>ui');
+//parseSelector('a > image>ui');
+//parseSelector('a  >  image>ui');
+//parseSelector('a   >   image>ui');
+//parseSelector('a   >   image > ui');
+//parseSelector('a   >   image  >  ui');
+//parseSelector('a#abc');
+//parseSelector('#abc');
+//parseSelector('#abc>div');
+//parseSelector('div>#abc');
+//parseSelector('div > #abc>div');
+//parseSelector('div > table#abc > div');
+//parseSelector('div > table#abc>div.red');
+//parseSelector('a>div.red');
+//parseSelector('div.red>div.blue');
+//parseSelector('div.red>div#blue');
+//parseSelector('div.red>#blue');
+//parseSelector('div.red>#blue');
+parseSelector('div[a=b]');
+parseSelector('div.red>div[a=b]');
+parseSelector('div[a=b] div');
+parseSelector('div[a=b] +div');
+parseSelector('div[a=b]+div');
 
 //function spiltProp(p) {
 //    var prop = {};

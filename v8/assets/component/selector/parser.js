@@ -25,7 +25,7 @@ Content.prototype.findToken = function (token) {
     return -1;
 }
 Content.prototype.nextToken = function (offset) {
-    this.index = this.token + (offset || 0);
+    this.token = this.index = this.token + (offset || 0);
 }
 Content.prototype.hasChar = function () {
     return this.index < this.length;
@@ -69,16 +69,17 @@ TypeParser.prototype.parse = function (content) {
     } else {
         var typesel;
         var type = content.charBeforeToken();
+        if (type.length == 0) {
+            type = '*';
+        }
 
+        // ==================
         // wrap of previous
+        // ==================
         if ('>+'.indexOf(token) != -1) {
             // if not started with >+
             if (token != content.currentChar()) {
-                if (type.length == 0) {
-                    typesel = new _TypeSelector('*');
-                } else {
-                    typesel = new _TypeSelector(type);
-                }
+                typesel = new _TypeSelector(type);
                 content.nextToken();
                 this.parser.addSelector(typesel);
                 this.parser.nextTypeParser();
@@ -100,6 +101,9 @@ TypeParser.prototype.parse = function (content) {
             return;
         }
 
+        // ==================
+        // Decorate current
+        // ==================
         if (type.length == 0) {
             typesel = new _TypeSelector('*');
         } else {
@@ -112,19 +116,19 @@ TypeParser.prototype.parse = function (content) {
         switch (token) {
             case '[':
                 sel = new _AttributeSelector(typesel);
-                this.parse.setParser(new AttributeParser(this.parser, outer))
+                this.parser.setParser(new AttributeParser(this.parser, sel))
                 break;
             case ':':// pseudo
                 sel = new _PseudoSelector(typesel);
-                this.parse.setParser(new TokenParser(this.parser, sel, 'setPseudo'));
+                this.parser.setParser(new TokenParser(this.parser, sel, 'setPseudo'));
                 break;
             case '.':// class
                 sel = new _ClassSelector(typesel);
-                this.parse.setParser(new TokenParser(this.parser, sel, 'setClass'));
+                this.parser.setParser(new TokenParser(this.parser, sel, 'setClass'));
                 break;
             case '#':// id
                 sel = new _IdSelector(typesel);
-                this.parse.setParser(new TokenParser(this.parser, sel, 'setId'));
+                this.parser.setParser(new TokenParser(this.parser, sel, 'setId'));
                 break;
 
             case ' ':
@@ -145,7 +149,7 @@ function TokenParser(parser, selector, fn) {
     this.fn = fn;
 }
 TokenParser.prototype.parse = function (content) {
-    content.skip(1);
+    content.skip(1);// skip
 
     var token = content.findToken(' >+');
     if (token == -1) {
@@ -156,7 +160,7 @@ TokenParser.prototype.parse = function (content) {
 
     this.selector[this.fn](content.charBeforeToken());
     content.nextToken();
-    this.parse.nextTypeParser();
+    this.parser.nextTypeParser();
 }
 
 // ==========================
@@ -170,18 +174,15 @@ AttributeParser.prototype.parse = function (content) {
     var checkstart = true;
     while (true) {
         if (checkstart) {
-            var token = content.findToken(' [');
-            if (token == -1) {
-                this.parse.nextTypeParser();
-                break;
-            }
-            if (token == ' ') {
+            var token = content.findToken(' >+[');
+            if (token == '[') {
                 content.nextToken(1);
-                this.parse.nextTypeParser();
+                checkstart = false;
+            } else {
+                content.nextToken();
+                this.parser.nextTypeParser();
                 break;
             }
-            content.nextToken(1);
-            checkstart = false;
         } else {
             var token = content.findToken(']');
             if (token == -1) {

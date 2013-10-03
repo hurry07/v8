@@ -36,7 +36,7 @@ TypeSelector.prototype.match = function (node) {
     return this.any || node.type == this.type;
 }
 TypeSelector.prototype.toString = function () {
-    return '{type selector:' + this.type + '}';
+    return '{type:' + this.type + '}';
 }
 
 // ==========================
@@ -59,18 +59,25 @@ PseudoSelector.prototype.match = function (node) {
 // ==========================
 // AttributeSelector []
 // ==========================
-function AttributeSelector(matcher) {
-    this.matcher = matcher;
+function AttributeSelector(selector) {
+    this.selector = selector;
     this.attrs = [];
 }
 AttributeSelector.prototype.matchProp = function () {
     return true;
 }
 AttributeSelector.prototype.addAttribute = function (attr) {
-    console.log(attr);
+    this.attrs.push(attr);
 }
 AttributeSelector.prototype.match = function (node) {
-    return this.matcher.match(node) && this.matchProp(node);
+    return this.selector.match(node) && this.matchProp(node);
+}
+AttributeSelector.prototype.toString = function () {
+    var str = this.selector.toString();
+    for (var i = -1, attrs = this.attrs, l = attrs.length; ++i < l;) {
+        str += '[' + attrs[i] + ']';
+    }
+    return str;
 }
 
 // ==========================
@@ -108,8 +115,8 @@ ChildSelector.prototype.toString = function () {
 // ==========================
 // ChildSelector
 // ==========================
-function ClassSelector(matcher, pclass) {
-    this.matcher = matcher;
+function ClassSelector(selector, pclass) {
+    this.selector = selector;
     this.mClass = pclass;
 }
 ClassSelector.prototype.setClass = function (clz) {
@@ -119,14 +126,17 @@ ClassSelector.prototype.matchProp = function (node) {
     return true;
 }
 ClassSelector.prototype.match = function (node) {
-    return this.matcher.match(node) && this.matchProp(node);
+    return this.selector.match(node) && this.matchProp(node);
+}
+ClassSelector.prototype.toString = function () {
+    return this.selector + '.' + this.mClass;
 }
 
 // ==========================
 // IdSelector
 // ==========================
-function IdSelector(matcher, id) {
-    this.matcher = matcher;
+function IdSelector(selector, id) {
+    this.selector = selector;
     this.id = id;
 }
 IdSelector.prototype.setId = function (id) {
@@ -136,7 +146,10 @@ IdSelector.prototype.matchProp = function (node) {
     return true;
 }
 IdSelector.prototype.match = function (node) {
-    return this.matcher.match(node) && this.matchProp(node);
+    return this.selector.match(node) && this.matchProp(node);
+}
+IdSelector.prototype.toString = function () {
+    return this.selector + '#' + this.id;
 }
 
 exports.Selector = Selector;
