@@ -47,6 +47,9 @@ parseSelector('div.red>div[a=b]');
 parseSelector('div[a=b] div');
 parseSelector('div[a=b] +div');
 parseSelector('div[a=b]+div');
+parseSelector('div#user_name image:focus');
+parseSelector('div#user_name>image:focus');
+parseSelector('div#user_name  >  image:focus');
 
 //function spiltProp(p) {
 //    var prop = {};

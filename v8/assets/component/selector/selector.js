@@ -42,8 +42,8 @@ TypeSelector.prototype.toString = function () {
 // ==========================
 // PseudoSelector :focus
 // ==========================
-function PseudoSelector(matcher, pseudo) {
-    this.matcher = matcher;
+function PseudoSelector(selector, pseudo) {
+    this.selector = selector;
     this.pseudo = pseudo;
 }
 PseudoSelector.prototype.setPseudo = function (pseudo) {
@@ -53,7 +53,10 @@ PseudoSelector.prototype.matchProp = function () {
     return true;
 }
 PseudoSelector.prototype.match = function (node) {
-    return this.matcher.match(node) && this.matchProp(node);
+    return this.selector.match(node) && this.matchProp(node);
+}
+PseudoSelector.prototype.toString = function () {
+    return this.selector + ':' + this.pseudo;
 }
 
 // ==========================
