@@ -41,7 +41,6 @@ function TypeSelector(type) {
 }
 _inherit(TypeSelector, Selector);
 TypeSelector.prototype.match = function (node) {
-    console.log('->' + this.type, node.mTag);
     return this.any || node.mTag == this.type;
 }
 TypeSelector.prototype.toString = function () {

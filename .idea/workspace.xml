@@ -4,12 +4,13 @@
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/game.js" afterPath="$PROJECT_DIR$/v8/assets/game.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/component/selector.js" afterPath="$PROJECT_DIR$/v8/assets/component/selector.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/component/selector/selector.js" afterPath="$PROJECT_DIR$/v8/assets/component/selector/selector.js" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381112547612" ignored="false" />
-    <file path="/game.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381158289384" ignored="false" />
+    <file path="/game.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381162372908" ignored="false" />
     <file path="/a.dummy" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381158231734" ignored="false" />
     <file path="/temp.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376748679355" ignored="false" />
     <file path="/programs.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376753166840" ignored="false" />
@@ -144,7 +145,16 @@
       <file leaf-file-name="selector.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/component/selector/selector.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="230" column="0" selection-start="5981" selection-end="5981" vertical-scroll-proportion="0.0">
+            <state line="43" column="0" selection-start="1010" selection-end="1010" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="selector.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/component/selector.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="0" selection-start="582" selection-end="582" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -153,7 +163,7 @@
       <file leaf-file-name="game.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="44" selection-start="3244" selection-end="3244" vertical-scroll-proportion="0.5990415">
+            <state line="121" column="22" selection-start="3717" selection-end="3717" vertical-scroll-proportion="0.5990415">
               <folding />
             </state>
           </provider>
@@ -190,8 +200,8 @@
         <option value="$PROJECT_DIR$/v8/assets/component/selector/cssnode.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/selector/parser.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/selector/nodelistener.js" />
-        <option value="$PROJECT_DIR$/v8/assets/component/selector.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/selector/selector.js" />
+        <option value="$PROJECT_DIR$/v8/assets/component/selector.js" />
         <option value="$PROJECT_DIR$/v8/assets/game.js" />
       </list>
     </option>
@@ -653,23 +663,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/component/selector.js">
+    <entry file="file://$PROJECT_DIR$/v8/assets/component/selector/selector.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="12" selection-start="594" selection-end="594" vertical-scroll-proportion="0.0">
+        <state line="43" column="0" selection-start="1010" selection-end="1010" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/component/selector/selector.js">
+    <entry file="file://$PROJECT_DIR$/v8/assets/component/selector.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="230" column="0" selection-start="5981" selection-end="5981" vertical-scroll-proportion="0.0">
+        <state line="16" column="0" selection-start="582" selection-end="582" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="44" selection-start="3244" selection-end="3244" vertical-scroll-proportion="0.5990415">
+        <state line="121" column="22" selection-start="3717" selection-end="3717" vertical-scroll-proportion="0.5990415">
           <folding />
         </state>
       </provider>

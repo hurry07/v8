@@ -93,8 +93,8 @@ var tree = new TestNode('root', '', [
 //        new TestNode('image', 'id=image3', [
 //        ])
 //    ]),
-//    new TestNode('image', 'id=middiv'),
-//    new TestNode('image', 'id=middiv'),
+    new TestNode('image', 'id=middiv'),
+    new TestNode('image', 'id=middiv'),
     new TestNode('div', 'id=div2', [
         new TestNode('image', 'id=image4', [
             new TestNode('image', 'id=image5', [
@@ -108,9 +108,18 @@ var tree = new TestNode('root', '', [
 //    new TestNode('image', 'id=middiv'),
 //    new TestNode('div', 'id=div3')
 ]);
+var root = _CSSNode.wrap(tree);
+root.print();
 
-var res = _selector.querySelector(tree, 'div>image');
-console.log(Array.prototype.slice.call(res, 0).join('\n'));
+function querySelector(tree, pattern) {
+    var res = _selector.querySelector(tree, pattern);
+    console.log('-------');
+    console.log(Array.prototype.slice.call(res, 0).join('\n'));
+}
+querySelector(tree, 'div>image');
+querySelector(tree, 'div image');
+querySelector(tree, 'image');
+querySelector(tree, '*');
 
 var firstInit = true;
 function Game() {

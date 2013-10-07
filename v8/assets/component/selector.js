@@ -14,7 +14,6 @@ function querySelector(node, query) {
     }
 
     var root = _CSSNode.wrap(node);
-    root.print();
     var itor = new _NodeIterator();
     var listener = new _SelectorListener().reset(new _SelectorGroup(selectors));
     itor.childFirst(root, listener);
