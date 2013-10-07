@@ -1,3 +1,4 @@
+var _selector = require('component/selector.js');
 var mElementId = 0;
 
 function generatorId() {
@@ -26,6 +27,9 @@ Element.prototype.getId = function () {
 };
 Element.prototype.generatorId = generatorId;
 Element.prototype.layoutToRelativ = function (rx, ry, element, rx, ry, offsetx, offsety) {
+}
+Element.prototype.querySelector = function (pattern) {
+    return _selector.querySelector(this, pattern);
 }
 
 var _types = {

@@ -214,7 +214,6 @@ Parser.prototype.lastSelector = function () {
     return null;
 }
 Parser.prototype.parse = function (str) {
-    console.log('Parser.prototype.parse:' + str);
     if (!str || str.length == 0) {
         return;
     }

@@ -30,6 +30,11 @@ function BeltButton(id, edge, count) {
 }
 _inherit(BeltButton, _UIContainer);
 
+/**
+ * @param unit edge of each button
+ * @param count button count
+ * @constructor
+ */
 function BeltSlots(unit, count) {
     _UIContainer.call(this);
 
@@ -65,6 +70,9 @@ function BetPanel(game) {
     this.mBeltSlots = new BeltSlots(34, 20);
     this.mBeltSlots.setAnthor(0.5, 0);
     this.addChild(this.mBeltSlots);
+
+    console.log('-----------betpanel');
+    console.log(this.querySelector('button'));
     this.resize(WIDTH);
 }
 _inherit(BetPanel, _UIContainer);
