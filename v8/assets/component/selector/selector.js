@@ -221,7 +221,6 @@ SelectorGroup.prototype.match = function (path) {
     var selindex = sels.length - 1;
     var sel = sels[selindex];
     var nodeindex = path.length - 1 + sel.getStride();// after the last selector
-//    console.log('===========sel.stride:' + sel.getStride(), nodeindex);
     var matchbegin = nodeindex;
     var success = true;
 
@@ -232,17 +231,12 @@ SelectorGroup.prototype.match = function (path) {
             break;
         }
 
-//        console.log('select', sel, 'nodeindex:' + nodeindex, 'node:' + path[nodeindex].node, 'witdh:' + this.width, path.length);
         if (sel.match(path[nodeindex])) {
-//            console.log('match');
             selindex--;
         } else {
-//            console.log('not match 01', 'nodeindex:' + nodeindex, 'selindex:' + selindex, matchbegin);
             nodeindex += sel.getNodeOffset();
             selindex += sel.getSelectorOffset();
-//            console.log('not match 02', 'nodeindex:' + nodeindex, 'selindex:' + selindex, matchbegin);
             if (nodeindex == matchbegin) {
-//                console.log('break');
                 success = false;
                 break;
             }
