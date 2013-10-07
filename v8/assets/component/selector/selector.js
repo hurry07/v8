@@ -229,13 +229,13 @@ SelectorGroup.prototype.match = function (path) {
             nodeindex -= sel.getStride();
             selindex--;
         } else {
+            nodeindex += sel.getNodeOffset();
+            selindex += sel.getSelectorOffset();
             if (nodeindex == tail) {
                 success = false;
                 break;
             }
-
-            nodeindex += sel.getNodeOffset() - 1;
-            selindex += sel.getSelectorOffset();
+            nodeindex--;
         }
     }
     return success && selindex == -1;
