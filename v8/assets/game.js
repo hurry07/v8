@@ -81,27 +81,31 @@ TestNode.prototype.toString = function () {
 }
 
 var tree = new TestNode('root', '', [
-//    new TestNode('div', 'id=div1', [
-//        new TestNode('div', 'id=div1', [
-//            new TestNode('image', 'id=image22', [
-//            ]),
-//        ]),
-//        new TestNode('image', 'id=image1', [
-//        ]),
-//        new TestNode('image', 'id=image2', [
-//        ]),
-//        new TestNode('image', 'id=image3', [
-//        ])
-//    ]),
-    new TestNode('image', 'id=middiv'),
-    new TestNode('image', 'id=middiv'),
-    new TestNode('div', 'id=div2', [
-        new TestNode('image', 'id=image4', [
-            new TestNode('image', 'id=image5', [
-            ])
+    new TestNode('div', 'id=div1', [
+        new TestNode('div', 'id=div1', [
+            new TestNode('image', 'id=image22', [
+            ]),
         ]),
-        new TestNode('div', 'id=div2', [
-            new TestNode('image', 'id=image6', [
+        new TestNode('image', 'id=image1', [
+        ]),
+        new TestNode('image', 'id=image2', [
+        ]),
+        new TestNode('image', 'id=image3', [
+        ])
+    ]),
+    new TestNode('image', 'id=middiv1'),
+    new TestNode('image', 'id=middiv2'),
+    new TestNode('div', 'id=div2', [
+        new TestNode('div', 'id=divinner', [
+            new TestNode('image', 'id=image4', [
+                new TestNode('image', 'id=image5', [
+                ]),
+                new TestNode('image', 'id=image8', [
+                ])
+            ]),
+            new TestNode('div', 'id=div2', [
+                new TestNode('image', 'id=image6', [
+                ])
             ])
         ])
     ]),
@@ -116,10 +120,14 @@ function querySelector(tree, pattern) {
     console.log('-------');
     console.log(Array.prototype.slice.call(res, 0).join('\n'));
 }
-querySelector(tree, 'div>image');
-querySelector(tree, 'div image');
+//querySelector(tree, 'div>div>image');
+//querySelector(tree, 'div>div>image>image');
+//querySelector(tree, 'div>div image');
+//querySelector(tree, 'div>image');
+//querySelector(tree, 'div image');
 querySelector(tree, 'image');
 querySelector(tree, '*');
+querySelector(tree, 'image + image');
 
 var firstInit = true;
 function Game() {

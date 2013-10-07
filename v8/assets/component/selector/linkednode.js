@@ -30,6 +30,9 @@ LinkedList.prototype.removeNode = function (cell) {
 
     this.mCount--;
 }
+LinkedList.prototype.isAnchor = function (cell) {
+    return cell === this.anthor;
+}
 LinkedList.prototype.count = function () {
     return this.mCount;
 }

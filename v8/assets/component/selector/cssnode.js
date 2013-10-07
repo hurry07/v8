@@ -19,6 +19,32 @@ CSSNode.prototype.init = function (node, parent) {
     this.branches = 0;// child branches of this node
     this.target = false;
 }
+CSSNode.prototype.previousSibling = function () {
+    if (!this.parent) {
+        return null;
+    }
+    var children = this.parent.children;
+    if (children.count() <= 1) {
+        return null;
+    }
+    if (children.isAnchor(this.previous)) {
+        return null;
+    }
+    return this.previous;
+}
+CSSNode.prototype.nextSibling = function () {
+    if (!this.parent) {
+        return null;
+    }
+    var children = this.parent.children;
+    if (children.count() <= 1) {
+        return null;
+    }
+    if (children.isAnchor(this.next)) {
+        return null;
+    }
+    return this.next;
+}
 CSSNode.prototype.removeFromParent = function () {
     if (this.parent) {
         this.parent.children.removeNode(this);

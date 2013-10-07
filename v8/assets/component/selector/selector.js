@@ -9,7 +9,7 @@ function Selector() {
     this.group = null;
     this.type = ' ';
 }
-Selector.prototype.match = function (node) {
+Selector.prototype.match = function (cssnode) {
     return false;
 }
 /**
@@ -40,8 +40,8 @@ function TypeSelector(type) {
     }
 }
 _inherit(TypeSelector, Selector);
-TypeSelector.prototype.match = function (node) {
-    return this.any || node.mTag == this.type;
+TypeSelector.prototype.match = function (cssnode) {
+    return this.any || cssnode.node.mTag == this.type;
 }
 TypeSelector.prototype.toString = function () {
     return '{type:' + this.type + '}';
@@ -106,8 +106,9 @@ _inherit(Adjacentselectors, Selector);
 Adjacentselectors.prototype.matchProp = function () {
     return true;
 }
-Adjacentselectors.prototype.match = function (node) {
-    return this.selector.match(node) && this.matchProp(node);
+Adjacentselectors.prototype.match = function (cssnode) {
+    var previous = cssnode.previousSibling();
+    return previous && this.selector.match(previous);
 }
 Adjacentselectors.prototype.toString = function () {
     return this.selector + '+';
@@ -127,8 +128,8 @@ function ChildSelector(selector) {
     this.selector = selector;
 }
 _inherit(ChildSelector, Selector);
-ChildSelector.prototype.match = function (node) {
-    return this.selector.match(node);
+ChildSelector.prototype.match = function (cssnode) {
+    return this.selector.match(cssnode);
 }
 ChildSelector.prototype.toString = function () {
     return this.selector + '>';
@@ -149,11 +150,11 @@ _inherit(ClassSelector, Selector);
 ClassSelector.prototype.setClass = function (clz) {
     this.mClass = clz;
 }
-ClassSelector.prototype.matchProp = function (node) {
+ClassSelector.prototype.matchProp = function (cssnode) {
     return true;
 }
-ClassSelector.prototype.match = function (node) {
-    return this.selector.match(node) && this.matchProp(node);
+ClassSelector.prototype.match = function (cssnode) {
+    return this.selector.match(cssnode) && this.matchProp(cssnode);
 }
 ClassSelector.prototype.toString = function () {
     return this.selector + '.' + this.mClass;
@@ -171,11 +172,11 @@ _inherit(IdSelector, Selector);
 IdSelector.prototype.setId = function (id) {
     this.id = id;
 }
-IdSelector.prototype.matchProp = function (node) {
+IdSelector.prototype.matchProp = function (cssnode) {
     return true;
 }
-IdSelector.prototype.match = function (node) {
-    return this.selector.match(node) && this.matchProp(node);
+IdSelector.prototype.match = function (cssnode) {
+    return this.selector.match(cssnode) && this.matchProp(cssnode);
 }
 IdSelector.prototype.toString = function () {
     return this.selector + '#' + this.id;
@@ -199,7 +200,8 @@ function SelectorGroup(selectors) {
         var sel = coll[i];
         sel.index = i;
         sel.group = group;
-        sel.position = group.width += sel.getStride();
+        sel.position = group.width;
+        group.width += sel.getStride();
         group.end = i + 1;
 
         this.width += sel.getStride();
@@ -211,30 +213,40 @@ function SelectorGroup(selectors) {
     }
 }
 SelectorGroup.prototype.match = function (path) {
-    var sels = this.selectors;
-    var tail = path.length - 1;
-    var selindex = sels.length - 1;
-    var nodeindex = tail;
-    var success = true;
-    var sel;
+    if (path.length < this.width) {
+        return false;
+    }
 
-    while (selindex > -1 && nodeindex > -1) {
-        if (nodeindex + 1 < this.width) {
+    var sels = this.selectors;
+    var selindex = sels.length - 1;
+    var sel = sels[selindex];
+    var nodeindex = path.length - 1 + sel.getStride();// after the last selector
+//    console.log('===========sel.stride:' + sel.getStride(), nodeindex);
+    var matchbegin = nodeindex;
+    var success = true;
+
+    while (selindex > -1) {
+        sel = sels[selindex];
+        nodeindex -= sel.getStride();// move to current selector
+        if (nodeindex == -1) {
             break;
         }
 
-        sel = sels[selindex];
-        if (sel.match(path[nodeindex].node)) {
-            nodeindex -= sel.getStride();
+//        console.log('select', sel, 'nodeindex:' + nodeindex, 'node:' + path[nodeindex].node, 'witdh:' + this.width, path.length);
+        if (sel.match(path[nodeindex])) {
+//            console.log('match');
             selindex--;
         } else {
+//            console.log('not match 01', 'nodeindex:' + nodeindex, 'selindex:' + selindex, matchbegin);
             nodeindex += sel.getNodeOffset();
             selindex += sel.getSelectorOffset();
-            if (nodeindex == tail) {
+//            console.log('not match 02', 'nodeindex:' + nodeindex, 'selindex:' + selindex, matchbegin);
+            if (nodeindex == matchbegin) {
+//                console.log('break');
                 success = false;
                 break;
             }
-            nodeindex--;
+            nodeindex--;// previous node
         }
     }
     return success && selindex == -1;

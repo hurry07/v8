@@ -31,10 +31,9 @@ SelecterListener.prototype.onPush = function (cssnode) {
 SelecterListener.prototype.onPop = function (cssnode) {
     this.path.pop();
     cssnode.branches = this.mCount - cssnode.branches;
-    if (cssnode.branches == 0) {
-        cssnode.removeFromParent();
-        return;
-    }
+//    if (cssnode.branches == 0) {
+//        return;
+//    }
     if (cssnode.target) {
         cssnode.branches--;
     }
