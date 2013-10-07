@@ -4,11 +4,12 @@ var _inherit = require('core/inherit.js');
 // Selector SuperClass
 // ==========================
 function Selector() {
+    this.position = 0;
     this.index = 0;
     this.group = null;
     this.type = ' ';
 }
-Selector.prototype.match = function (cssnode) {
+Selector.prototype.match = function (node) {
     return false;
 }
 /**
@@ -18,8 +19,14 @@ Selector.prototype.match = function (cssnode) {
 Selector.prototype.isTight = function () {
     return false;
 }
-Selector.prototype.getMatchOffset = function () {
+Selector.prototype.getNodeOffset = function () {
+    return this.group.width - this.position;
+}
+Selector.prototype.getSelectorOffset = function () {
     return this.group.end - this.index - 1;
+}
+Selector.prototype.getStride = function () {
+    return 1;
 }
 
 // ==========================
@@ -34,7 +41,8 @@ function TypeSelector(type) {
 }
 _inherit(TypeSelector, Selector);
 TypeSelector.prototype.match = function (node) {
-    return this.any || node.type == this.type;
+    console.log('->' + this.type, node.mTag);
+    return this.any || node.mTag == this.type;
 }
 TypeSelector.prototype.toString = function () {
     return '{type:' + this.type + '}';
@@ -108,6 +116,9 @@ Adjacentselectors.prototype.toString = function () {
 Adjacentselectors.prototype.isTight = function () {
     return true;
 }
+Adjacentselectors.prototype.getStride = function () {
+    return 0;
+}
 
 // ==========================
 // ChildSelector E > F
@@ -117,11 +128,8 @@ function ChildSelector(selector) {
     this.selector = selector;
 }
 _inherit(ChildSelector, Selector);
-ChildSelector.prototype.matchProp = function (node) {
-    return true;
-}
 ChildSelector.prototype.match = function (node) {
-    return this.selector.match(node) && this.matchProp(node);
+    return this.selector.match(node);
 }
 ChildSelector.prototype.toString = function () {
     return this.selector + '>';
@@ -180,46 +188,57 @@ IdSelector.prototype.toString = function () {
 function Group(start) {
     this.start = start;
     this.end = start + 1;
+    this.width = 0;
 }
 
 function SelectorGroup(selectors) {
     this.selectors = selectors;
+    this.width = 0;
 
     var group = new Group(0);
     for (var i = 0, coll = this.selectors, l = coll.length; i < l; i++) {
         var sel = coll[i];
-        sel.group = group;
         sel.index = i;
-        if (!sel.isTight()) {
-            group.end = i + 1;
-            if (i < l - 1) {
-                group = new Group(group.end);
-            }
+        sel.group = group;
+        sel.position = group.width += sel.getStride();
+        group.end = i + 1;
+
+        this.width += sel.getStride();
+
+        // create new selector
+        if (!sel.isTight() && i < l - 1) {
+            group = new Group(group.end);
         }
     }
 }
 SelectorGroup.prototype.match = function (path) {
     var sels = this.selectors;
-    console.log('SelectorGroup.prototype.match', sels);
-    var sindex = sels.length - 1;
-    var nindex = path.length - 1;
+    var tail = path.length - 1;
+    var selindex = sels.length - 1;
+    var nodeindex = tail;
     var success = true;
+    var sel;
 
-    while (sindex > -1 && nindex > -1) {
-        if (sels[sindex].match(path[nindex].node)) {
-            sindex--;
+    while (selindex > -1 && nodeindex > -1) {
+        if (nodeindex + 1 < this.width) {
+            break;
+        }
+
+        sel = sels[selindex];
+        if (sel.match(path[nodeindex].node)) {
+            nodeindex -= sel.getStride();
+            selindex--;
         } else {
-            if (nindex == path.length - 1) {
+            if (nodeindex == tail) {
                 success = false;
                 break;
             }
-            var offset = sels[sindex].getMatchOffset();
-            nindex += offset - 1;
-            sindex += offset;
+
+            nodeindex += sel.getNodeOffset() - 1;
+            selindex += sel.getSelectorOffset();
         }
     }
-    console.log('match', path[path.length - 1].node, success);
-    return success;
+    return success && selindex == -1;
 }
 
 exports.Selector = Selector;

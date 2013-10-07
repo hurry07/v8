@@ -8,21 +8,16 @@ var _selector = require('component/selector/selector.js');
 var _SelectorGroup = _selector.SelectorGroup;
 
 function querySelector(node, query) {
-    console.log('001');
     var selectors = new _Parser().parse(query);
-    console.log('002');
     if (selectors.length == 0) {
         return [];
     }
 
-    console.log('003');
     var root = _CSSNode.wrap(node);
-    console.log('004');
+    root.print();
     var itor = new _NodeIterator();
     var listener = new _SelectorListener().reset(new _SelectorGroup(selectors));
-    console.log('005');
     itor.childFirst(root, listener);
-    console.log('006');
 
     return listener.targets;
 }

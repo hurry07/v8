@@ -65,6 +65,7 @@ function spiltProp(p) {
 }
 function TestNode(type, prop, children) {
     this.type = type;
+    this.mTag = type;
     this.properties = spiltProp(prop);
     this.children = children;
 }
@@ -80,35 +81,23 @@ TestNode.prototype.toString = function () {
 }
 
 var tree = new TestNode('root', '', [
-    new TestNode('div', 'id=div1', [
-        new TestNode('image', 'id=image1', [
-        ]),
-        new TestNode('image', 'id=image2', [
-        ]),
-        new TestNode('image', 'id=image3', [
-        ])
-    ]),
+//    new TestNode('div', 'id=div1', [
+//        new TestNode('image', 'id=image1', [
+//        ]),
+//        new TestNode('image', 'id=image2', [
+//        ]),
+//        new TestNode('image', 'id=image3', [
+//        ])
+//    ]),
     new TestNode('image', 'id=middiv'),
-    new TestNode('image', 'id=middiv'),
-    new TestNode('div', 'id=div2'),
-    new TestNode('image', 'id=middiv'),
-    new TestNode('div', 'id=div3')
+//    new TestNode('image', 'id=middiv'),
+//    new TestNode('div', 'id=div2'),
+//    new TestNode('image', 'id=middiv'),
+//    new TestNode('div', 'id=div3')
 ]);
 
 var res = _selector.querySelector(tree, 'div>image');
-console.log(res);
-//
-//
-//var itorImpe = new _NodeIterator();
-//console.log('------------->>1');
-//var root = _CSSNode.wrap(tree);
-//itorImpe.childFirst(root, new _NodeListener(new _matcher.TypeMatcher('div')));
-//root.print();
-//
-//console.log('------------->>2');
-//root = _CSSNode.wrap(tree);
-//itorImpe.nodeFirst(root, new _NodeListener(new _matcher.TypeMatcher('div')));
-//root.print();
+console.log(Array.prototype.slice.call(res, 0).join('\n'));
 
 var firstInit = true;
 function Game() {

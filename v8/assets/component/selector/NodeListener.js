@@ -19,7 +19,6 @@ SelecterListener.prototype.onNode = function (cssnode) {
     if (cssnode.depth == -1) {
         return;
     }
-    console.log('SelecterListener.prototype.onNode');
     if (this.selectors.match(this.path)) {
         this.targets.push(cssnode.node);
         cssnode.target = true;
