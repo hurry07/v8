@@ -200,12 +200,13 @@ function SelectorGroup(selectors) {
 }
 SelectorGroup.prototype.match = function (path) {
     var sels = this.selectors;
-    var sindex = sels.length;
+    console.log('SelectorGroup.prototype.match', sels);
+    var sindex = sels.length - 1;
     var nindex = path.length - 1;
     var success = true;
 
     while (sindex > -1 && nindex > -1) {
-        if (sels[sindex].match(path[nindex])) {
+        if (sels[sindex].match(path[nindex].node)) {
             sindex--;
         } else {
             if (nindex == path.length - 1) {
@@ -217,6 +218,7 @@ SelectorGroup.prototype.match = function (path) {
             sindex += offset;
         }
     }
+    console.log('match', path[path.length - 1].node, success);
     return success;
 }
 

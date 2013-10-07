@@ -4,11 +4,12 @@ var _inherit = require('core/inherit.js');
 // SelecterListener
 // ==========================
 function SelecterListener() {
-    this.targets = [];
 }
 SelecterListener.prototype.reset = function (selectors) {
     this.mCount = 0;
     this.selectors = selectors;
+    this.targets = [];
+    this.path = [];
     return this;
 }
 SelecterListener.prototype.onVisit = function (cssnode) {
@@ -18,15 +19,18 @@ SelecterListener.prototype.onNode = function (cssnode) {
     if (cssnode.depth == -1) {
         return;
     }
-    if (this.selectors.match(cssnode.node)) {
+    console.log('SelecterListener.prototype.onNode');
+    if (this.selectors.match(this.path)) {
         this.targets.push(cssnode.node);
         cssnode.target = true;
     }
 }
 SelecterListener.prototype.onPush = function (cssnode) {
     cssnode.branches = this.mCount;
+    this.path.push(cssnode);
 }
 SelecterListener.prototype.onPop = function (cssnode) {
+    this.path.pop();
     cssnode.branches = this.mCount - cssnode.branches;
     if (cssnode.branches == 0) {
         cssnode.removeFromParent();
