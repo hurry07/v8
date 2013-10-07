@@ -7,7 +7,6 @@ var _LinkedList = require('component/selector/linkednode.js');
  * @constructor
  */
 function CSSNode(node, parent) {
-//    this.depth = 0;
     this.children = new _LinkedList();
     this.init(node, parent);
 }
@@ -16,16 +15,9 @@ CSSNode.prototype.init = function (node, parent) {
     this.parent = parent;
     this.children.clear();
     this.previous = this.next = null;
-    this.matchChildren = 0;// match count of current node and children of it
-    this.isMatch = 0;// match count of current node and children of it
-//    if (parent) {
-//        this.depth = parent.depth + 1;
-//    } else {
-//        this.depth = 0;
-//    }
-}
-CSSNode.prototype.isReachable = function () {
-    return this.isMatch || this.matchChildren;
+
+    this.branches = 0;// child branches of this node
+    this.target = false;
 }
 CSSNode.prototype.removeFromParent = function () {
     if (this.parent) {
@@ -45,9 +37,9 @@ function printNode(root, depth) {
     }
 
     if (root.children.isEmpty()) {
-        console.log(prefix + root.node + '#' + root.isMatch + '_' + root.matchChildren + ':{}');
+        console.log(prefix + root.node + '#' + root.target + '_' + root.branches + ':{}');
     } else {
-        console.log(prefix + root.node + '#' + root.isMatch + '_' + root.matchChildren + ':[');
+        console.log(prefix + root.node + '#' + root.target + '_' + root.branches + ':[');
         var itor = root.children.startItor();
         while (itor.hasNext()) {
             printNode(itor.next(), depth + 1);

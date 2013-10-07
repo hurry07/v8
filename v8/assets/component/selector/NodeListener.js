@@ -1,36 +1,40 @@
+var _inherit = require('core/inherit.js');
+
 // ==========================
-// Match FirstNode
+// SelecterListener
 // ==========================
-function NodeListener(matches, level) {
-    this.resetMatch(matches, level);
+function SelecterListener() {
+    this.targets = [];
 }
-NodeListener.prototype.resetMatch = function (matches, level) {
-    this.mMatch = matches;
+SelecterListener.prototype.reset = function (selectors) {
     this.mCount = 0;
-    this.level = level;
+    this.selectors = selectors;
+    return this;
 }
-NodeListener.prototype.onNode = function (cssnode) {
-    if (this.mMatch.match(cssnode.node)) {
-        cssnode.isMatch = true;
-        cssnode.matchChildren++;
-        this.mCount++;
-    }
-}
-NodeListener.prototype.onVisit = function (cssnode) {
+SelecterListener.prototype.onVisit = function (cssnode) {
     return true;
 }
-NodeListener.prototype.onPush = function (cssnode) {
-    cssnode.isMatch = false;
-    cssnode.matchChildren = this.mCount;
+SelecterListener.prototype.onNode = function (cssnode) {
+    if (cssnode.depth == -1) {
+        return;
+    }
+    if (this.selectors.match(cssnode.node)) {
+        this.targets.push(cssnode.node);
+        cssnode.target = true;
+    }
 }
-NodeListener.prototype.onPop = function (cssnode) {
-    cssnode.matchChildren = this.mCount - cssnode.matchChildren;
-    if (!cssnode.isReachable()) {
+SelecterListener.prototype.onPush = function (cssnode) {
+    cssnode.branches = this.mCount;
+}
+SelecterListener.prototype.onPop = function (cssnode) {
+    cssnode.branches = this.mCount - cssnode.branches;
+    if (cssnode.branches == 0) {
         cssnode.removeFromParent();
+        return;
+    }
+    if (cssnode.target) {
+        cssnode.branches--;
     }
 }
 
-function CascadListener(matcher, level) {
-}
-
-module.exports = NodeListener;
+exports.SelecterListener = SelecterListener;

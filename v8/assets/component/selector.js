@@ -1,98 +1,30 @@
-// ==========================
-// selector matching temp status
-// ==========================
-function MatchSequence(element) {
-    this.matches = [];// match depth
-    this.depth = 0;
-    this.element = element;
-}
-MatchSequence.prototype.match = function () {
-    this.matches.push(this.depth++);
-}
-MatchSequence.prototype.next = function () {
-    this.depth++;
-}
-/**
- * @param node
- * @param previous may be parent* of current node
- * @constructor
- */
-function MatchNode(node, previous) {
-    this.node = node;
-    this.previous = previous;
-}
+var _Parser = require('component/selector/parser.js');
+var _CSSNode = require('component/selector/cssnode.js');
+var _NodeIterator = require('component/selector/nodeiterator.js');
+var _listener = require('component/selector/nodelistener.js');
+var _SelectorListener = _listener.SelecterListener;
 
-// ==========================
-// selector types
-// ==========================
-function StateSelector(success) {
-    this.success = success;
-}
-StateSelector.prototype.test = function (element, tasks) {
-    return this.success;
-}
+var _selector = require('component/selector/selector.js');
+var _SelectorGroup = _selector.SelectorGroup;
 
-function ElementSelector(type) {
-    this.type = type;
-    this.wildBegin = false;
-    this.wildEnd = false;
-}
-ElementSelector.prototype.getReady = function (index, length) {
-    if (type == -1) {
-        if (index == 0) {
-            this.wildBegin = true;
-        }
-        if (index == length - 1) {
-            this.wildEnd = true;
-        }
-    }
-}
-ElementSelector.prototype.match = function (element) {
-}
-
-// ==========================
-// selector format transform
-// ==========================
-function StringBuffer(content) {
-    this.content = content;
-    this.cursor = 0;
-    this.length = content.length;
-    this.token = -1;
-}
-StringBuffer.prototype.readtill = function (tokens) {
-    var p = this.cursor;
-    var l = this.length;
-    var c = this.content;
-    while (p < l) {
-        if (tokens.indexOf(this.token = c.charAt(p)) != -1) {
-            var s = c.slice(this.cursor, p);
-            p = this.cursor;
-            return s;
-        }
-        p++;
+function querySelector(node, query) {
+    console.log('001');
+    var selectors = new _Parser().parse(query);
+    console.log('002');
+    if (selectors.length == 0) {
+        return [];
     }
 
-    this.token = '';
-    p = this.cursor;
-    this.cursor = this.length;
-    return c.slice(p);
-}
-StringBuffer.prototype.skip = function () {
-    this.cursor++;
-}
-StringBuffer.prototype.isEmpty = function () {
-    this.cursor == this.length;
-}
-StringBuffer.prototype.rollback = function (length) {
-    this.cursor -= length || 1;
+    console.log('003');
+    var root = _CSSNode.wrap(node);
+    console.log('004');
+    var itor = new _NodeIterator();
+    var listener = new _SelectorListener().reset(new _SelectorGroup(selectors));
+    console.log('005');
+    itor.childFirst(root, listener);
+    console.log('006');
+
+    return listener.targets;
 }
 
-function Parser() {
-    this.selector = [];
-}
-Parser.prototype.parse = function (format) {
-    var buffer = new StringBuffer(format);
-    var any = new AnyParser();
-    while (buffer.isEmpty()) {
-    }
-}
+exports.querySelector = querySelector;

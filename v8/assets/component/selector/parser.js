@@ -223,6 +223,7 @@ Parser.prototype.parse = function (str) {
     var cycle = 0;
     var content = new Content(str);
     this.nextTypeParser();
+
     while (content.hasChar()) {
         this.parser.parse(content);
         if (content.getIndex() == index) {
@@ -236,9 +237,7 @@ Parser.prototype.parse = function (str) {
         }
     }
 
-    for (var i = 0; i < this.selectors.length; i++) {
-        console.log(this.selectors[i]);
-    }
+    return this.selectors;
 }
 
 module.exports = Parser;

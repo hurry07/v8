@@ -1,37 +1,38 @@
+var _inherit = require('core/inherit.js');
+
 // ==========================
 // Selector SuperClass
 // ==========================
-function Selector(depth) {
-    this.depth = depth || 0;
+function Selector() {
+    this.index = 0;
+    this.group = null;
+    this.type = ' ';
 }
-Selector.prototype.match = function (node) {
-    return true;
+Selector.prototype.match = function (cssnode) {
+    return false;
 }
-
-// ==========================
-// GroupSelector
-// ==========================
-function GroupSelector() {
-    this.matches = Array.prototype.slice.call(arguments, 0);
+/**
+ * next element is exactly after current element
+ * @returns {boolean}
+ */
+Selector.prototype.isTight = function () {
+    return false;
 }
-GroupSelector.prototype.match = function (node) {
-    for (var i = -1, coll = this.matches, l = coll.length; ++i < l;) {
-        if (!coll[i].match(node)) {
-            return false;
-        }
-    }
-    return true;
+Selector.prototype.getMatchOffset = function () {
+    return this.group.end - this.index - 1;
 }
 
 // ==========================
-// TypeSelector * div
+// TypeSelector * | div | image
 // ==========================
 function TypeSelector(type) {
+    Selector.call(this);
     this.type = type;
     if (type == '*') {
         this.any = true;
     }
 }
+_inherit(TypeSelector, Selector);
 TypeSelector.prototype.match = function (node) {
     return this.any || node.type == this.type;
 }
@@ -43,9 +44,11 @@ TypeSelector.prototype.toString = function () {
 // PseudoSelector :focus
 // ==========================
 function PseudoSelector(selector, pseudo) {
+    Selector.call(this);
     this.selector = selector;
     this.pseudo = pseudo;
 }
+_inherit(PseudoSelector, Selector);
 PseudoSelector.prototype.setPseudo = function (pseudo) {
     this.pseudo = pseudo;
 }
@@ -63,9 +66,11 @@ PseudoSelector.prototype.toString = function () {
 // AttributeSelector []
 // ==========================
 function AttributeSelector(selector) {
+    Selector.call(this);
     this.selector = selector;
     this.attrs = [];
 }
+_inherit(AttributeSelector, Selector);
 AttributeSelector.prototype.matchProp = function () {
     return true;
 }
@@ -87,8 +92,10 @@ AttributeSelector.prototype.toString = function () {
 // Adjacentselectors E + F
 // ==========================
 function Adjacentselectors(selector) {
+    Selector.call(this);
     this.selector = selector;
 }
+_inherit(Adjacentselectors, Selector);
 Adjacentselectors.prototype.matchProp = function () {
     return true;
 }
@@ -98,13 +105,18 @@ Adjacentselectors.prototype.match = function (node) {
 Adjacentselectors.prototype.toString = function () {
     return this.selector + '+';
 }
+Adjacentselectors.prototype.isTight = function () {
+    return true;
+}
 
 // ==========================
 // ChildSelector E > F
 // ==========================
 function ChildSelector(selector) {
+    Selector.call(this);
     this.selector = selector;
 }
+_inherit(ChildSelector, Selector);
 ChildSelector.prototype.matchProp = function (node) {
     return true;
 }
@@ -114,14 +126,19 @@ ChildSelector.prototype.match = function (node) {
 ChildSelector.prototype.toString = function () {
     return this.selector + '>';
 }
+ChildSelector.prototype.isTight = function () {
+    return true;
+}
 
 // ==========================
 // ChildSelector
 // ==========================
 function ClassSelector(selector, pclass) {
+    Selector.call(this);
     this.selector = selector;
     this.mClass = pclass;
 }
+_inherit(ClassSelector, Selector);
 ClassSelector.prototype.setClass = function (clz) {
     this.mClass = clz;
 }
@@ -139,9 +156,11 @@ ClassSelector.prototype.toString = function () {
 // IdSelector
 // ==========================
 function IdSelector(selector, id) {
+    Selector.call(this);
     this.selector = selector;
     this.id = id;
 }
+_inherit(IdSelector, Selector);
 IdSelector.prototype.setId = function (id) {
     this.id = id;
 }
@@ -155,6 +174,52 @@ IdSelector.prototype.toString = function () {
     return this.selector + '#' + this.id;
 }
 
+// ==========================
+// GroupSelector
+// ==========================
+function Group(start) {
+    this.start = start;
+    this.end = start + 1;
+}
+
+function SelectorGroup(selectors) {
+    this.selectors = selectors;
+
+    var group = new Group(0);
+    for (var i = 0, coll = this.selectors, l = coll.length; i < l; i++) {
+        var sel = coll[i];
+        sel.group = group;
+        sel.index = i;
+        if (!sel.isTight()) {
+            group.end = i + 1;
+            if (i < l - 1) {
+                group = new Group(group.end);
+            }
+        }
+    }
+}
+SelectorGroup.prototype.match = function (path) {
+    var sels = this.selectors;
+    var sindex = sels.length;
+    var nindex = path.length - 1;
+    var success = true;
+
+    while (sindex > -1 && nindex > -1) {
+        if (sels[sindex].match(path[nindex])) {
+            sindex--;
+        } else {
+            if (nindex == path.length - 1) {
+                success = false;
+                break;
+            }
+            var offset = sels[sindex].getMatchOffset();
+            nindex += offset - 1;
+            sindex += offset;
+        }
+    }
+    return success;
+}
+
 exports.Selector = Selector;
 exports.IdSelector = IdSelector;
 exports.ClassSelector = ClassSelector;
@@ -163,3 +228,5 @@ exports.PseudoSelector = PseudoSelector;
 exports.TypeSelector = TypeSelector;
 exports.AttributeSelector = AttributeSelector;
 exports.Adjacentselectors = Adjacentselectors;
+
+exports.SelectorGroup = SelectorGroup;
