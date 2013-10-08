@@ -71,18 +71,20 @@ function BetPanel(game) {
     this.mBeltSlots.setAnthor(0.5, 0);
     this.addChild(this.mBeltSlots);
 
-    this.querySelector('#belt_1').forEach(this.bindClick, this);
+    this.querySelector('button').forEach(function (button) {
+        button.on('click', this.onclick, this);
+    }, this);
     this.resize(WIDTH);
 }
 _inherit(BetPanel, _UIContainer);
+BetPanel.prototype.onclick = function (button) {
+    console.log('button cilck:' + button);
+}
 BetPanel.prototype.resize = function (width) {
     this.bg.setSize(width, HEIGHT);
     this.setSize(width, HEIGHT);
 
     _relative.local.layoutTo(this.mBeltSlots, 0.5, 0, this, 0.5, 0);
-}
-BetPanel.prototype.bindClick = function (button) {
-    console.log(this, button);
 }
 
 module.exports = BetPanel;

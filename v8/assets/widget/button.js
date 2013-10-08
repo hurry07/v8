@@ -3,12 +3,15 @@ var _UIContainer = require('component/uicontainer.js');
 var _Node = require('component/node.js');
 var _TouchNode = require('component/touchnode.js').TouchNode;
 var _TouchDelegate = require('widget/touchdelegate.js');
+var _Event = require('component/event.js');
 
 function Button(id, skin) {
     this.mSkin = skin;
     this.mTouchDelegate = new _TouchDelegate(this);
     _UIContainer.call(this);
     this.mFlags |= this.FlagSeal;
+    this.mEvents = new _Event();
+
     (id != undefined && id != null) && (this.mId = id);
     this.setSize(skin.width(), skin.height());
     this.addChild(skin);
@@ -24,8 +27,14 @@ Button.prototype.setActive = function (active) {
 Button.prototype.toString = function () {
     return this.mTag + ':' + this.mId;
 }
+Button.prototype.on = function (name, fn, bind) {
+    this.mEvents.on(name, fn, bind);
+}
+Button.prototype.off = function (name) {
+    this.mEvents.off(name);
+}
 Button.prototype.onclick = function () {
-    console.log('onclick:' + this);
+    this.mEvents.fire('click', this);
 }
 
 function Skin() {
