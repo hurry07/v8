@@ -139,7 +139,7 @@ ChildSelector.prototype.isTight = function () {
 }
 
 // ==========================
-// ChildSelector
+// ClassSelector .
 // ==========================
 function ClassSelector(selector, pclass) {
     Selector.call(this);
@@ -150,18 +150,15 @@ _inherit(ClassSelector, Selector);
 ClassSelector.prototype.setClass = function (clz) {
     this.mClass = clz;
 }
-ClassSelector.prototype.matchProp = function (cssnode) {
-    return true;
-}
 ClassSelector.prototype.match = function (cssnode) {
-    return this.selector.match(cssnode) && this.matchProp(cssnode);
+    return cssnode.node.hasClass(this.mClass) && this.selector.match(cssnode);
 }
 ClassSelector.prototype.toString = function () {
     return this.selector + '.' + this.mClass;
 }
 
 // ==========================
-// IdSelector
+// IdSelector #
 // ==========================
 function IdSelector(selector, id) {
     Selector.call(this);
@@ -172,11 +169,8 @@ _inherit(IdSelector, Selector);
 IdSelector.prototype.setId = function (id) {
     this.id = id;
 }
-IdSelector.prototype.matchProp = function (cssnode) {
-    return true;
-}
 IdSelector.prototype.match = function (cssnode) {
-    return this.selector.match(cssnode) && this.matchProp(cssnode);
+    return cssnode.node.getId() == this.id && this.selector.match(cssnode);
 }
 IdSelector.prototype.toString = function () {
     return this.selector + '#' + this.id;

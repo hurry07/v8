@@ -11,7 +11,7 @@ function generatorId() {
  */
 function Element() {
     this.mId = generatorId();// give an auto increase id
-    this.mClass = '';// an alter describe, like css
+    this.mClass = '';// an addtional describe, like css
     this.mParent = null;
 }
 Element.prototype.mTag = 'element';// describe current type(class)
@@ -22,6 +22,9 @@ Element.prototype.setId = function (id) {
     this.mId = id;
     return this;
 };
+Element.prototype.hasClass = function () {
+    return false;
+}
 Element.prototype.getId = function () {
     return  this.mId;
 };

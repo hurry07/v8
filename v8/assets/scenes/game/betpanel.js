@@ -42,7 +42,7 @@ function BeltSlots(unit, count) {
     this.mCount = 5;
     this.mMultip = [];
     for (var i = 0; i < this.mCount; i++) {
-        var b = new BeltButton(i, unit, count + '');
+        var b = new BeltButton('belt_' + i, unit, count + '');
         this.mMultip.push(b);
         this.addChild(b);
     }
@@ -71,8 +71,7 @@ function BetPanel(game) {
     this.mBeltSlots.setAnthor(0.5, 0);
     this.addChild(this.mBeltSlots);
 
-    console.log('-----------betpanel');
-    console.log(this.querySelector('button'));
+    this.querySelector('#belt_1').forEach(this.bindClick, this);
     this.resize(WIDTH);
 }
 _inherit(BetPanel, _UIContainer);
@@ -81,6 +80,9 @@ BetPanel.prototype.resize = function (width) {
     this.setSize(width, HEIGHT);
 
     _relative.local.layoutTo(this.mBeltSlots, 0.5, 0, this, 0.5, 0);
+}
+BetPanel.prototype.bindClick = function (button) {
+    console.log(this, button);
 }
 
 module.exports = BetPanel;

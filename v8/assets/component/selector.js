@@ -39,7 +39,7 @@ function querySelector(node, query) {
         return [];
     }
 
-    var root = _CSSNode.wrap(node);
+    var root = _CSSNode.wrap(node);// take a snap first
     var itor = new _NodeIterator();
     var listener = new _SelectorListener().reset(new _SelectorGroup(selectors));
     itor.childFirst(root, listener);
