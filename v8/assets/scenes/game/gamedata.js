@@ -1,6 +1,8 @@
 var Data = {
 }
 var BeltData = {
+    rate: 20,
+    multip: 5
 }
 
 function GameData() {
@@ -15,4 +17,14 @@ GameData.prototype.getGameConf = function () {
     }
 }
 
-module.exports = new GameData();
+function Belt() {
+}
+Belt.prototype.getRate = function () {
+    return BeltData.rate;
+}
+Belt.prototype.getMultip = function () {
+    return BeltData.multip;
+}
+
+exports.gamedata = new GameData();
+exports.beltdata = new Belt();

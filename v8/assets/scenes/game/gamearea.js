@@ -6,6 +6,7 @@ var _LinkedList = require('core/linkedlist_1.js');
 var _inherit = require('core/inherit.js');
 var _listRemove = _LinkedList.prototype.remove;
 var _listAdd = _LinkedList.prototype.add;
+var _config = require('scenes/game/gamedata.js').gamedata;
 
 var _animas = require('scenes/game/animas.js');
 var _FallAnima = _animas.FallAnima;
@@ -166,6 +167,7 @@ function GameArea(game, config) {
     _UIContainer.call(this);
     this.mFlags |= this.FlagSeal;
 
+    var config = _config.getGameConf();
     this.mGame = game;
     this.mConfig = config;
     this.mCols = config.col;

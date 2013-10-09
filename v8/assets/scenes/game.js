@@ -2,7 +2,6 @@ var _scene = require('component/scene.js');
 var _GameArea = require('scenes/game/gamearea.js');
 var _BetPanel = require('scenes/game/betpanel.js');
 var _MessagePanel = require('scenes/game/messagepanel.js');
-var _config = require('scenes/game/gamedata.js');
 var _global = require('framework/global.js');
 var _layout = require('tools/layout.js');
 var _relative = _layout.relative;
@@ -10,14 +9,14 @@ var _relative = _layout.relative;
 var Game = _scene.createScene(
     function (w, h) {
         this.setSize(w, h);
-        this.addChild(this.gamearea = new _GameArea(this, _config.getGameConf()));
+        this.addChild(this.gamearea = new _GameArea(this));
         this.addChild(this.betpanel = new _BetPanel(this));
         this.addChild(this.msgpanel = new _MessagePanel(this));
 
 //        var text = _global.textNode('Georgia', 90, 'ABCDEabcde');
-        var text = _global.textNode('Georgia', 30, 'ABCDEabcde');
-        text.setPosition(50, 200);
-        this.addChild(text);
+//        var text = _global.textNode('Georgia', 30, 'ABCDEabcde');
+//        text.setPosition(50, 200);
+//        this.addChild(text);
 
         this.onSizeChange(w, h);
     }

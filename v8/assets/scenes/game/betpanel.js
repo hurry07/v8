@@ -1,7 +1,7 @@
 var _UIContainer = require('component/uicontainer.js');
 var _global = require('framework/global.js');
 var _inherit = require('core/inherit.js');
-var _data = require('scenes/game/gamedata.js');
+var _model = require('scenes/game/gamedata.js').beltdata;
 var _button = require('widget/button.js');
 var _layout = require('tools/layout.js');
 var _relative = _layout.relative;
@@ -35,24 +35,24 @@ _inherit(BeltButton, _UIContainer);
  * @param count button count
  * @constructor
  */
-function BeltSlots(unit, count) {
+function ButtonSlots(tag, unit, count, cons) {
     _UIContainer.call(this);
 
+    this.mTag = tag;
     this.mUnit = unit;
-    this.mCount = 5;
-    this.mMultip = [];
-    for (var i = 0; i < this.mCount; i++) {
-        var b = new BeltButton('belt_' + i, unit, count + '');
-        this.mMultip.push(b);
+    this.mButtons = [];
+    for (var i = 0; i < count; i++) {
+        var b = cons(i, unit);
+        this.mButtons.push(b);
         this.addChild(b);
     }
     this.layout();
 }
-_inherit(BeltSlots, _UIContainer);
-BeltSlots.prototype.layout = function () {
+_inherit(ButtonSlots, _UIContainer);
+ButtonSlots.prototype.layout = function () {
     var x = 0;
-    for (var i = 0; i < this.mCount; i++) {
-        _relative.layout(this.mMultip[i], 0, 0, x, 0);
+    for (var i = 0, count = this.mButtons.length; i < count; i++) {
+        _relative.layout(this.mButtons[i], 0, 0, x, 0);
         x += this.mUnit + 2;
     }
     this.setSize(x, this.mUnit);
@@ -63,28 +63,41 @@ function BetPanel(game) {
     this.game = game;
 
     this.setSize(WIDTH, HEIGHT);
-//    this.addChild(this.bg = _global.colorNode([40 / 255, 42 / 255, 45 / 255, 1], WIDTH, HEIGHT));
     this.addChild(this.bg = _global.colorNode([1, 0, 1, 1], WIDTH, HEIGHT));
 
-    //this.mBeltLabel = _global.textNode('', 20, '');
-    this.mBeltSlots = new BeltSlots(34, 20);
-    this.mBeltSlots.setAnthor(0.5, 0);
-    this.addChild(this.mBeltSlots);
+    this.mMultip = new ButtonSlots('multip', 34, _model.getMultip(), function (index, unit) {
+        return new BeltButton(index, unit, 'X' + (index + 1));
+    });
+    this.mMultip.setAnthor(0.5, 0);
+    this.addChild(this.mMultip);
 
-    this.querySelector('button').forEach(function (button) {
-        button.on('click', this.onclick, this);
+    this.mBet = new ButtonSlots('belts', 34, _model.getMultip(), function (index, unit) {
+        return new BeltButton(index, unit, (_model.getRate() * (index + 1)) + '');
+    });
+    this.mBet.setAnthor(0.5, 0);
+    this.addChild(this.mBet);
+
+    this.querySelector('multip button').forEach(function (button) {
+        button.on('click', this.multipclick, this);
+    }, this);
+    this.querySelector('belts button').forEach(function (button) {
+        button.on('click', this.beltclick, this);
     }, this);
     this.resize(WIDTH);
 }
 _inherit(BetPanel, _UIContainer);
-BetPanel.prototype.onclick = function (button) {
-    console.log('button cilck:' + button);
+BetPanel.prototype.multipclick = function (button) {
+    console.log('multipclick:' + button);
+}
+BetPanel.prototype.beltclick = function (button) {
+    console.log('beltclick:' + button);
 }
 BetPanel.prototype.resize = function (width) {
     this.bg.setSize(width, HEIGHT);
     this.setSize(width, HEIGHT);
 
-    _relative.local.layoutTo(this.mBeltSlots, 0.5, 0, this, 0.5, 0);
+    _relative.local.layoutTo(this.mMultip, 0.5, 0, this, 0.5, 0.5);
+    _relative.layoutTo(this.mBet, 0.5, 0, this.mMultip, 0.5, 1, 0, 2);
 }
 
 module.exports = BetPanel;
