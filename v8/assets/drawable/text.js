@@ -9,6 +9,8 @@ var _v2 = _geometry.vec2f;
 var _v3 = _geometry.vec3f;
 var _order = require('glcore/constance.js').STRIP_ORDER;
 
+var MatrixDirty = _MeshNode.prototype.FlagTouchMatrix | _MeshNode.prototype.FlagMatrix;
+
 function Text(material, font) {
     _MeshNode.call(this, null, material);
 
@@ -28,6 +30,7 @@ Text.prototype.setText = function (text) {
             this.mVisiable = true;
             this.createMesh();
             this.updateOffset();
+            this.addFlag(MatrixDirty);
         }
     }
 }
