@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/drawable/text.js" afterPath="$PROJECT_DIR$/v8/assets/drawable/text.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/scenes/game/betpanel.js" afterPath="$PROJECT_DIR$/v8/assets/scenes/game/betpanel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/scenes/game/gamedata.js" afterPath="$PROJECT_DIR$/v8/assets/scenes/game/gamedata.js" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -102,10 +103,10 @@
     <file path="/linkedlist_1.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379494883553" ignored="false" />
     <file path="/dropanima.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379481129540" ignored="false" />
     <file path="/rules.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379482970786" ignored="false" />
-    <file path="/betpanel.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381425330813" ignored="false" />
+    <file path="/betpanel.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381426511768" ignored="false" />
     <file path="/messagepanel.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379484153904" ignored="false" />
     <file path="/label.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379485005737" ignored="false" />
-    <file path="/gamedata.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381425184801" ignored="false" />
+    <file path="/gamedata.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381426575464" ignored="false" />
     <file path="/fullanima.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379489121876" ignored="false" />
     <file path="/fallanima.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379490670929" ignored="false" />
     <file path="/font.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1380209965367" ignored="false" />
@@ -144,16 +145,16 @@
       <file leaf-file-name="betpanel.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/scenes/game/betpanel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="76" column="12" selection-start="2061" selection-end="2061" vertical-scroll-proportion="0.0">
+            <state line="129" column="28" selection-start="3787" selection-end="3787" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="text.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="text.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/drawable/text.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="0" selection-start="1057" selection-end="1057" vertical-scroll-proportion="0.37699682">
+            <state line="32" column="24" selection-start="1035" selection-end="1042" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -168,10 +169,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gamedata.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="gamedata.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/scenes/game/gamedata.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="15" selection-start="699" selection-end="699" vertical-scroll-proportion="0.0">
+            <state line="56" column="22" selection-start="1182" selection-end="1189" vertical-scroll-proportion="0.7364217">
               <folding />
             </state>
           </provider>
@@ -207,10 +208,10 @@
         <option value="$PROJECT_DIR$/v8/assets/component/event.js" />
         <option value="$PROJECT_DIR$/v8/assets/scenes/game/gamearea.js" />
         <option value="$PROJECT_DIR$/v8/assets/scenes/game.js" />
-        <option value="$PROJECT_DIR$/v8/assets/scenes/game/gamedata.js" />
-        <option value="$PROJECT_DIR$/v8/assets/scenes/game/betpanel.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/node.js" />
         <option value="$PROJECT_DIR$/v8/assets/drawable/text.js" />
+        <option value="$PROJECT_DIR$/v8/assets/scenes/game/gamedata.js" />
+        <option value="$PROJECT_DIR$/v8/assets/scenes/game/betpanel.js" />
       </list>
     </option>
   </component>
@@ -726,16 +727,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/scenes/game/betpanel.js">
+    <entry file="file://$PROJECT_DIR$/v8/assets/drawable/text.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="12" selection-start="2061" selection-end="2061" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/scenes/game/gamedata.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="15" selection-start="699" selection-end="699" vertical-scroll-proportion="0.0">
+        <state line="32" column="24" selection-start="1035" selection-end="1042" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -747,9 +741,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/drawable/text.js">
+    <entry file="file://$PROJECT_DIR$/v8/assets/scenes/game/betpanel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="0" selection-start="1057" selection-end="1057" vertical-scroll-proportion="0.37699682">
+        <state line="129" column="28" selection-start="3787" selection-end="3787" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/scenes/game/gamedata.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="22" selection-start="1182" selection-end="1189" vertical-scroll-proportion="0.7364217">
           <folding />
         </state>
       </provider>

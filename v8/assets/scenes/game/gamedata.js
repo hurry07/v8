@@ -50,6 +50,13 @@ Belt.prototype.decreaseBet = function () {
 Belt.prototype.getMultipCount = function () {
     return BeltData.multip;
 }
+Belt.prototype.setMultip = function (i) {
+    this.multip = i + 1;
+    this.updateCost();
+}
+Belt.prototype.getCost = function (i) {
+    this.cost;
+}
 
 exports.gamedata = new GameData();
 exports.beltdata = new Belt();
