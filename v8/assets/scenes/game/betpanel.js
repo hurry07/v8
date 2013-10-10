@@ -11,38 +11,42 @@ var HEIGHT = 400;
 
 function blockButton(id, edge) {
     var p1 = _global.colorNode([1, 0, 0, 1], edge, edge);
-    var p2 = _global.colorNode([1, 0, 0, 1], edge, edge);
+    var p2 = _global.colorNode([1, 1, 0, 1], edge, edge);
     var bt = _button.createButtonWithId(id, p1, p2);
     return bt;
 }
 
-function BeltButton(id, edge, count) {
+function BeltButton(id, edge, content) {
     _UIContainer.call(this);
 
     var button = blockButton(id, edge);
     this.addChild(button);
     this.setSize(button.getSize());
 
-    this.mCount = _global.textNode('Georgia', 24, count + '');
+    this.mCount = _global.textNode('Georgia', 24, content);
     this.mCount.setAnthor(0.5, 0.5);
     this.mCount.setPosition(edge / 2, edge / 2);
     this.addChild(this.mCount);
 }
 _inherit(BeltButton, _UIContainer);
+BeltButton.prototype.setText = function (str) {
+    this.mCount.setText(str);
+}
 
 /**
+ * @param tag
  * @param unit edge of each button
  * @param count button count
  * @constructor
  */
-function ButtonSlots(tag, unit, count, cons) {
+function ButtonSlots(tag, unit, count) {
     _UIContainer.call(this);
 
     this.mTag = tag;
     this.mUnit = unit;
     this.mButtons = [];
     for (var i = 0; i < count; i++) {
-        var b = cons(i, unit);
+        var b = new BeltButton(i, unit, 'X' + (i + 1));
         this.mButtons.push(b);
         this.addChild(b);
     }
@@ -55,7 +59,35 @@ ButtonSlots.prototype.layout = function () {
         _relative.layout(this.mButtons[i], 0, 0, x, 0);
         x += this.mUnit + 2;
     }
-    this.setSize(x, this.mUnit);
+    this.setSize(x - 2, this.mUnit);
+}
+
+/**
+ * @param tag
+ * @param unit
+ * @param count
+ * @constructor
+ */
+function BeltChange(tag, unit) {
+    _UIContainer.call(this);
+    this.mTag = tag;
+    this.mUnit = unit;
+    this.mLeft = new BeltButton('<', unit, '<');
+    this.mRight = new BeltButton('>', unit, '>');
+    this.mBelt = _global.textNode('Georgia', 24, '20');
+    this.mBelt.setAnthor(0.5, 0.5);
+
+    this.addChild(this.mLeft);
+    this.addChild(this.mRight);
+    this.addChild(this.mBelt);
+    this.setSize(5 * unit + 8, unit);
+    this.layout();
+}
+_inherit(BeltChange, _UIContainer);
+BeltChange.prototype.layout = function () {
+    _relative.layout(this.mLeft, 0, 0, 0, 0);
+    _relative.local.layoutTo(this.mRight, 1, 0, this, 1, 0);
+    _relative.local.layoutTo(this.mBelt, 0.5, 0.5, this, 0.5, 0.5);
 }
 
 function BetPanel(game) {
@@ -65,15 +97,11 @@ function BetPanel(game) {
     this.setSize(WIDTH, HEIGHT);
     this.addChild(this.bg = _global.colorNode([1, 0, 1, 1], WIDTH, HEIGHT));
 
-    this.mMultip = new ButtonSlots('multip', 34, _model.getMultip(), function (index, unit) {
-        return new BeltButton(index, unit, 'X' + (index + 1));
-    });
+    this.mMultip = new ButtonSlots('multip', 34, _model.getMultipCount());
     this.mMultip.setAnthor(0.5, 0);
     this.addChild(this.mMultip);
 
-    this.mBet = new ButtonSlots('belts', 34, _model.getMultip(), function (index, unit) {
-        return new BeltButton(index, unit, (_model.getRate() * (index + 1)) + '');
-    });
+    this.mBet = new BeltChange('belts', 34);
     this.mBet.setAnthor(0.5, 0);
     this.addChild(this.mBet);
 
@@ -90,7 +118,11 @@ BetPanel.prototype.multipclick = function (button) {
     console.log('multipclick:' + button);
 }
 BetPanel.prototype.beltclick = function (button) {
-    console.log('beltclick:' + button);
+    if (button.getId() == '>') {
+        console.log('beltclick:>');
+    } else {
+        console.log('beltclick:<');
+    }
 }
 BetPanel.prototype.resize = function (width) {
     this.bg.setSize(width, HEIGHT);

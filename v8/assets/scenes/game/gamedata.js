@@ -1,7 +1,7 @@
 var Data = {
 }
 var BeltData = {
-    rate: 20,
+    betcount: 20,
     multip: 5
 }
 
@@ -18,11 +18,19 @@ GameData.prototype.getGameConf = function () {
 }
 
 function Belt() {
+    this.multip = 1;
+    this.basebet = BeltData.betcount;
+    this.bet = BeltData.betcount;
 }
-Belt.prototype.getRate = function () {
-    return BeltData.rate;
+Belt.prototype.getBetCount = function () {
+    return BeltData.betcount;
 }
-Belt.prototype.getMultip = function () {
+Belt.prototype.getBet = function () {
+    return this.bet;
+}
+Belt.prototype.setBet = function (b) {
+}
+Belt.prototype.getMultipCount = function () {
     return BeltData.multip;
 }
 
