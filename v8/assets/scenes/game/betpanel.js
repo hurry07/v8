@@ -68,13 +68,13 @@ ButtonSlots.prototype.layout = function () {
  * @param count
  * @constructor
  */
-function BeltChange(tag, unit) {
+function BeltChange(tag, unit, basebet) {
     _UIContainer.call(this);
     this.mTag = tag;
     this.mUnit = unit;
     this.mLeft = new BeltButton('<', unit, '<');
     this.mRight = new BeltButton('>', unit, '>');
-    this.mBelt = _global.textNode('Georgia', 24, '20');
+    this.mBelt = _global.textNode('Georgia', 24, basebet + '');
     this.mBelt.setAnthor(0.5, 0.5);
 
     this.addChild(this.mLeft);
@@ -89,6 +89,9 @@ BeltChange.prototype.layout = function () {
     _relative.local.layoutTo(this.mRight, 1, 0, this, 1, 0);
     _relative.local.layoutTo(this.mBelt, 0.5, 0.5, this, 0.5, 0.5);
 }
+BeltChange.prototype.setText = function (str) {
+    this.mBelt.setText(str + '');
+}
 
 function BetPanel(game) {
     _UIContainer.call(this);
@@ -101,7 +104,7 @@ function BetPanel(game) {
     this.mMultip.setAnthor(0.5, 0);
     this.addChild(this.mMultip);
 
-    this.mBet = new BeltChange('belts', 34);
+    this.mBet = new BeltChange('belts', 34, _model.getBet());
     this.mBet.setAnthor(0.5, 0);
     this.addChild(this.mBet);
 
@@ -119,9 +122,9 @@ BetPanel.prototype.multipclick = function (button) {
 }
 BetPanel.prototype.beltclick = function (button) {
     if (button.getId() == '>') {
-        console.log('beltclick:>');
+        this.mBet.setText(_model.increaseBet());
     } else {
-        console.log('beltclick:<');
+        this.mBet.setText(_model.decreaseBet());
     }
 }
 BetPanel.prototype.resize = function (width) {

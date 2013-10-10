@@ -1,7 +1,8 @@
 var Data = {
 }
 var BeltData = {
-    betcount: 20,
+    basicbet: 20,
+    maxbet: 10,
     multip: 5
 }
 
@@ -17,18 +18,34 @@ GameData.prototype.getGameConf = function () {
     }
 }
 
+// ==========================
+// ==========================
 function Belt() {
     this.multip = 1;
-    this.basebet = BeltData.betcount;
-    this.bet = BeltData.betcount;
-}
-Belt.prototype.getBetCount = function () {
-    return BeltData.betcount;
+    this.bet = 1;
+    this.cost = this.bet;
 }
 Belt.prototype.getBet = function () {
-    return this.bet;
+    return this.bet * BeltData.basicbet;
 }
-Belt.prototype.setBet = function (b) {
+Belt.prototype.updateCost = function () {
+    var mul = this.bet * BeltData.basicbet;
+    this.cost = mul * this.multip;
+    return mul;
+}
+Belt.prototype.increaseBet = function () {
+    this.bet++;
+    if (this.bet > BeltData.maxbet) {
+        this.bet = BeltData.maxbet;
+    }
+    return this.updateCost();
+}
+Belt.prototype.decreaseBet = function () {
+    this.bet--;
+    if (this.bet <= 0) {
+        this.bet = 1;
+    }
+    return this.updateCost();
 }
 Belt.prototype.getMultipCount = function () {
     return BeltData.multip;

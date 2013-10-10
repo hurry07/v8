@@ -27,6 +27,7 @@ Text.prototype.setText = function (text) {
         } else {
             this.mVisiable = true;
             this.createMesh();
+            this.updateOffset();
         }
     }
 }
