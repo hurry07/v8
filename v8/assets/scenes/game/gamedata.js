@@ -24,6 +24,9 @@ function Belt() {
     this.multip = 1;
     this.bet = 1;
     this.cost = this.bet;
+
+    this.total = 10000;
+    this.current = 20;
 }
 Belt.prototype.getBet = function () {
     return this.bet * BeltData.basicbet;
@@ -56,6 +59,15 @@ Belt.prototype.setMultip = function (i) {
 }
 Belt.prototype.getCost = function () {
     return this.cost;
+}
+/**
+ * @returns {number}
+ */
+Belt.prototype.getTotal = function () {
+    return this.total;
+}
+Belt.prototype.getCurrent = function () {
+    return this.current;
 }
 
 exports.gamedata = new GameData();

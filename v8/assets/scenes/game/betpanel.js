@@ -93,16 +93,58 @@ BeltChange.prototype.setText = function (str) {
     this.mBelt.setText(str + '');
 }
 
-function CoinsLabel(title, width, height) {
+/**
+ * label:count
+ *
+ * @param title
+ * @param split
+ * @param width
+ * @param height
+ * @constructor
+ */
+function CoinsLabel(title, split, width, height) {
     _UIContainer.call(this);
+    this.mSplit = split;
     this.mLabel = _global.textNode('Georgia', 24, title);
+    this.mCount = _global.textNode('Georgia', 24, '0');
+    this.mCount.setAnthor(0, 0);
+
     this.addChild(this.mLabel);
+    this.addChild(this.mCount);
     this.setSize(width, height);
     this.layout();
 }
 _inherit(CoinsLabel, _UIContainer);
+CoinsLabel.prototype.setText = function (str) {
+    this.mCount.setText(str);
+}
 CoinsLabel.prototype.layout = function () {
-    _relative.layout(this.mLabel, 0, 0, 0, 0);
+    _relative.layout(this.mLabel, 1, 0, this.mSplit, 0);
+    _relative.layout(this.mCount, 0, 0, this.mSplit, 0);
+}
+
+/**
+ * total:0
+ * current:0
+ *
+ * @constructor
+ */
+function CoinsBar() {
+    var split = 90;
+    var width = 100;
+    var height = 50;
+    _UIContainer.call(this);
+    this.addChild(this.mTotal = new CoinsLabel('Total:', split, width, height / 2));
+    this.addChild(this.mCurrent = new CoinsLabel('Current:', split, width, height / 2));
+
+    this.setSize(width, height);
+    _relative.local.layoutTo(this.mCurrent, 0, 0, this, 0, 0);
+    _relative.layoutTo(this.mTotal, 0, 0, this.mCurrent, 0, 1);
+}
+_inherit(CoinsBar, _UIContainer);
+CoinsBar.prototype.setCoins = function (total, current) {
+    this.mTotal.setText(total);
+    this.mCurrent.setText(current);
 }
 
 /**
@@ -126,12 +168,16 @@ function BetPanel(game) {
     this.mBet.setAnthor(0.5, 0);
     this.addChild(this.mBet);
 
+    this.addChild(this.mCounts = new CoinsBar());
+
     this.querySelector('multip button').forEach(function (button) {
         button.on('click', this.multipclick, this);
     }, this);
     this.querySelector('belts button').forEach(function (button) {
         button.on('click', this.beltclick, this);
     }, this);
+
+    this.update();
     this.resize(WIDTH);
 }
 _inherit(BetPanel, _UIContainer);
@@ -153,6 +199,10 @@ BetPanel.prototype.resize = function (width) {
 
     _relative.local.layoutTo(this.mMultip, 0.5, 0, this, 0.5, 0.5);
     _relative.layoutTo(this.mBet, 0.5, 0, this.mMultip, 0.5, 1, 0, 2);
+    _relative.layoutTo(this.mCounts, 0, 0, this.mBet, 0, 1, 0, 2);
+}
+BetPanel.prototype.update = function () {
+    this.mCounts.setCoins(_model.getTotal(), _model.getCurrent());
 }
 
 module.exports = BetPanel;
