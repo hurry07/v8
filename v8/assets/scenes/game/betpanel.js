@@ -147,6 +147,33 @@ CoinsBar.prototype.setCoins = function (total, current) {
     this.mCurrent.setText(current);
 }
 
+function ControlButtons() {
+    _UIContainer.call(this);
+    this.mTag = 'control';
+
+    var width = 170;
+    var height = 35;
+    var bwidth = 80;
+    this.addChild(this.mOk = this.blockButton('OK', 'ok', bwidth, height));
+    this.addChild(this.mAuto = this.blockButton('Auto', 'auto', bwidth, height));
+    this.setSize(width, height);
+
+    _relative.local.layoutTo(this.mOk, 0, 0, this, 0, 0);
+    _relative.local.layoutTo(this.mAuto, 1, 0, this, 1, 0);
+}
+_inherit(ControlButtons, _UIContainer);
+ControlButtons.prototype.blockButton = function (str, id, w, h) {
+    var p1 = _global.colorNode([1, 0, 0, 1], w, h);
+    var p2 = _global.colorNode([1, 1, 0, 1], w, h);
+    var bt = _button.createButtonWithId(id, p1, p2);
+
+    var label = _global.textNode('Georgia', 24, str);
+    _relative.local.layoutTo(label, 0.5, 0.5, bt, 0.5, 0.5);
+    bt.addChild(label);
+
+    return bt;
+}
+
 /**
  * UI setup
  *
@@ -169,6 +196,7 @@ function BetPanel(game) {
     this.addChild(this.mBet);
 
     this.addChild(this.mCounts = new CoinsBar());
+    this.addChild(this.mControl = new ControlButtons());
 
     this.querySelector('multip button').forEach(function (button) {
         button.on('click', this.multipclick, this);
@@ -200,6 +228,8 @@ BetPanel.prototype.resize = function (width) {
     _relative.local.layoutTo(this.mMultip, 0.5, 0, this, 0.5, 0.5);
     _relative.layoutTo(this.mBet, 0.5, 0, this.mMultip, 0.5, 1, 0, 2);
     _relative.layoutTo(this.mCounts, 0, 0, this.mBet, 0, 1, 0, 2);
+
+    _relative.layoutTo(this.mControl, 0.5, 1, this.mMultip, 0.5, 0, 0, -20);
 }
 BetPanel.prototype.update = function () {
     this.mCounts.setCoins(_model.getTotal(), _model.getCurrent());

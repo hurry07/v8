@@ -2,7 +2,6 @@ var _scene = require('component/scene.js');
 var _GameArea = require('scenes/game/gamearea.js');
 var _BetPanel = require('scenes/game/betpanel.js');
 var _MessagePanel = require('scenes/game/messagepanel.js');
-var _global = require('framework/global.js');
 var _layout = require('tools/layout.js');
 var _relative = _layout.relative;
 
@@ -13,6 +12,14 @@ var Game = _scene.createScene(
         this.addChild(this.betpanel = new _BetPanel(this));
         this.addChild(this.msgpanel = new _MessagePanel(this));
 
+        this.querySelector('control button').forEach(function (button) {
+            if (button.getId() == 'ok') {
+                button.on('click', this.okClick, this);
+            } else {
+                button.on('click', this.autoClick, this);
+            }
+        }, this);
+
 //        var text = _global.textNode('Georgia', 90, 'ABCDEabcde');
 //        var text = _global.textNode('Georgia', 30, 'ABCDEabcde');
 //        text.setPosition(50, 200);
@@ -22,6 +29,12 @@ var Game = _scene.createScene(
     }
 );
 
+Game.prototype.okClick = function () {
+    console.log('okClick');
+}
+Game.prototype.autoClick = function () {
+    console.log('autoClick');
+}
 Game.prototype.update = function (context) {
     this.gamearea.startNextRound();
     this.gamearea.update(context);
