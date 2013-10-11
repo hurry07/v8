@@ -211,7 +211,6 @@ function BetPanel(game) {
 _inherit(BetPanel, _UIContainer);
 BetPanel.prototype.multipclick = function (button) {
     _model.setMultip(button.getId());
-    console.log('cost', _model.getCost());
 }
 BetPanel.prototype.beltclick = function (button) {
     if (button.getId() == '>') {
@@ -219,7 +218,6 @@ BetPanel.prototype.beltclick = function (button) {
     } else {
         this.mBet.setText(_model.decreaseBet());
     }
-    console.log('cost', _model.getCost());
 }
 BetPanel.prototype.resize = function (width) {
     this.bg.setSize(width, HEIGHT);

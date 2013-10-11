@@ -23,7 +23,7 @@ var COLORS = [
 
 var STATUS_WAITING = 1;// waiting user set bet
 var STATUS_FALL = 2;// start new game
-var STATUS_DROP = 3;// one or more cell groups found, and running the removing anima
+var STATUS_REMOVE = 3;// one or more cell groups found, and running the removing anima
 var STATUS_COMPACT = 4;// start new game
 var STATUS_CLEAR = 5;// none cell can be removed, ending current game
 
@@ -284,6 +284,8 @@ GameArea.prototype.updateDrawable = function () {
     var gItor = this.mGroups.iterator();
     while (gItor.hasNext()) {
         var group = gItor.next();
+
+        // if match count < min match, ignore
         if (group.count() < this.mMinMatch) {
             itor = group.iterator();
             while (itor.hasNext()) {
@@ -312,16 +314,28 @@ GameArea.prototype.startNextRound = function (state) {
         this.startFallAnima();
     }
 }
-GameArea.prototype.startDropAnima = function () {
+/**
+ * remove match cells
+ */
+GameArea.prototype.startRemoveAnima = function () {
     this.mDropAnima.reset();
-    this.mState = STATUS_DROP;
+    this.mState = STATUS_REMOVE;
 }
+/**
+ * compact cells left
+ */
 GameArea.prototype.startCompatAnima = function () {
     this.mState = STATUS_COMPACT;
 }
+/**
+ * add new cells
+ */
 GameArea.prototype.startFallAnima = function () {
     this.mState = STATUS_FALL;
 }
+/**
+ * no cell match
+ */
 GameArea.prototype.startClearAnima = function () {
     this.mState = STATUS_CLEAR;
 }
@@ -343,6 +357,7 @@ GameArea.prototype.update = function (step) {
         case STATUS_FALL:// -> drop or clear
             if (this.mFallAnima.update(step)) {
                 this.linkEmpty();
+
                 var result = this.mRemove;
                 var itor = this.mGroups.iterator();
                 while (itor.hasNext()) {
@@ -351,15 +366,16 @@ GameArea.prototype.update = function (step) {
                         result.add(itor.remove());
                     }
                 }
+                // if find any match cells
                 if (result.count() > 0) {
-                    this.startDropAnima();
+                    this.startRemoveAnima();
                 } else {
                     this.startClearAnima();
                 }
             }
             break;
 
-        case STATUS_DROP:// -> compact
+        case STATUS_REMOVE:// -> compact
             if (this.mDropAnima.update(step)) {
                 this.startCompatAnima(this.mDropAnima.timeleft());
             }

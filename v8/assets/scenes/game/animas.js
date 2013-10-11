@@ -15,6 +15,9 @@ FallAnima.prototype.update = function (step) {
 FallAnima.prototype.timeleft = function (step) {
     return this.mTime - this.mTotalTime;
 }
+FallAnima.prototype.isFinish = function (step) {
+    return this.mFinish;
+}
 
 function CompactAnima() {
     this.mFinish = true;

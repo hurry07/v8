@@ -4,6 +4,7 @@ var _BetPanel = require('scenes/game/betpanel.js');
 var _MessagePanel = require('scenes/game/messagepanel.js');
 var _layout = require('tools/layout.js');
 var _relative = _layout.relative;
+var _model = require('scenes/game/gamedata.js').beltdata;
 
 var Game = _scene.createScene(
     function (w, h) {
@@ -12,7 +13,7 @@ var Game = _scene.createScene(
         this.addChild(this.betpanel = new _BetPanel(this));
         this.addChild(this.msgpanel = new _MessagePanel(this));
 
-        this.querySelector('control button').forEach(function (button) {
+        this.querySelector('control>button').forEach(function (button) {
             if (button.getId() == 'ok') {
                 button.on('click', this.okClick, this);
             } else {
@@ -30,7 +31,14 @@ var Game = _scene.createScene(
 );
 
 Game.prototype.okClick = function () {
-    console.log('okClick');
+    var cost = _model.getCost();
+    var total = _model.getTotal();
+    if (cost > total) {
+        console.log('game end');
+    } else {
+        _model.spend(cost);
+    }
+    console.log('ok with cost:' + cost);
 }
 Game.prototype.autoClick = function () {
     console.log('autoClick');
