@@ -21,9 +21,11 @@ function Text(material, font) {
 }
 _inherit(Text, _MeshNode);
 Text.prototype.setText = function (text) {
+    if (typeof text != 'string') {
+        text = text + '';
+    }
     if (text != this.mText) {
         this.mText = text;
-        console.log('Text.prototype.setText', text);
         if (!this.mText || this.mText.length == 0) {
             this.mVisiable = false;
         } else {

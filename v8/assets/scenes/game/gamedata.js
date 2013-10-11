@@ -54,8 +54,8 @@ Belt.prototype.setMultip = function (i) {
     this.multip = i + 1;
     this.updateCost();
 }
-Belt.prototype.getCost = function (i) {
-    this.cost;
+Belt.prototype.getCost = function () {
+    return this.cost;
 }
 
 exports.gamedata = new GameData();
