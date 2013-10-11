@@ -93,6 +93,24 @@ BeltChange.prototype.setText = function (str) {
     this.mBelt.setText(str + '');
 }
 
+function CoinsLabel(title, width, height) {
+    _UIContainer.call(this);
+    this.mLabel = _global.textNode('Georgia', 24, title);
+    this.addChild(this.mLabel);
+    this.setSize(width, height);
+    this.layout();
+}
+_inherit(CoinsLabel, _UIContainer);
+CoinsLabel.prototype.layout = function () {
+    _relative.layout(this.mLabel, 0, 0, 0, 0);
+}
+
+/**
+ * UI setup
+ *
+ * @param game
+ * @constructor
+ */
 function BetPanel(game) {
     _UIContainer.call(this);
     this.game = game;
