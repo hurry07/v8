@@ -159,6 +159,11 @@ function flat(group) {
     return data.join();
 }
 
+function Cells() {
+}
+Cells.prototype.createCell = function () {
+}
+
 // ==========================
 // GameArea
 // ==========================
