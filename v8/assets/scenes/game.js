@@ -39,12 +39,7 @@ Game.prototype.okClick = function () {
         console.log('game end');
     } else {
         _model.spend(cost);
-        console.log('click----');
-        try {
-            this.gamearea.startNextRound();
-        } catch (e) {
-            console.log('exception:' + e);
-        }
+        this.gamearea.startNextRound();
     }
     console.log('ok with cost:' + cost);
 }

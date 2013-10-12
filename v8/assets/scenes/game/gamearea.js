@@ -161,19 +161,6 @@ function flat(group) {
     return data.join();
 }
 
-function CellGroup() {
-    _LinkedList.call(this);
-}
-_inherit(CellGroup, _LinkedList);
-CellGroup.prototype.add = function (cell) {
-    _listAdd.call(this, cell);
-    console.log('CellGroup.add:' + cell, this.count());
-}
-CellGroup.prototype.merge = function (g) {
-    _LinkedList.prototype.merge.call(this, g);
-    console.log('CellGroup.merge:' + g);
-}
-
 // ==========================
 // GameArea
 // ==========================
@@ -193,7 +180,7 @@ function GameArea(game) {
     this.mMaxCells = this.mCols * this.mRows;
 
     this.mEmpty = new _LinkedList();
-    this.mGroups = new CellGroup();
+    this.mGroups = new _LinkedList();
     this.mRemove = new _LinkedList();// success cell groups
 
     this.mCells = new Array(this.mMaxCells);
@@ -366,28 +353,16 @@ GameArea.prototype.startClearAnima = function () {
  */
 GameArea.prototype.startRemoveOrClear = function () {
     this.linkEmpty();
-    console.log('-->000', this.mGroups.count());
 
     var result = this.mRemove;
     var itor = this.mGroups.iterator();
     while (itor.hasNext()) {
         var g = itor.next();
-        console.log('-->---', g);
-        try {
-            if (g.count() >= this.mMinMatch) {
-                itor.remove();
-                result.add(g);
-                console.log('-->---1', g);
-            }
-        } catch (e) {
-            console.log('exception:', g);
-            for (var i in g) {
-                console.log(i, g[i]);
-            }
-            break;
+        if (g.count() >= this.mMinMatch) {
+            itor.remove();
+            result.add(g);
         }
     }
-    console.log('-->001');
 
 //    // if find any match cells
 //    if (result.count() > 0) {
