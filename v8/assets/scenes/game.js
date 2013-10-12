@@ -29,7 +29,9 @@ var Game = _scene.createScene(
         this.onSizeChange(w, h);
     }
 );
-
+/**
+ * start new round
+ */
 Game.prototype.okClick = function () {
     var cost = _model.getCost();
     var total = _model.getTotal();
@@ -37,6 +39,12 @@ Game.prototype.okClick = function () {
         console.log('game end');
     } else {
         _model.spend(cost);
+        console.log('click----');
+        try {
+            this.gamearea.startNextRound();
+        } catch (e) {
+            console.log('exception:' + e);
+        }
     }
     console.log('ok with cost:' + cost);
 }
@@ -44,8 +52,7 @@ Game.prototype.autoClick = function () {
     console.log('autoClick');
 }
 Game.prototype.update = function (context) {
-    this.gamearea.startNextRound();
-    this.gamearea.update(context);
+    this.gamearea.update(context.stride());
 }
 Game.prototype.onSizeChange = function (w, h) {
     this.setSize(w, h);

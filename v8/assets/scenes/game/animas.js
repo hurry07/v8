@@ -1,79 +1,85 @@
-function FallAnima() {
-    this.mFinish = true;
-    this.mGroups = null;
-    this.mTotalTime = 0;
-    this.mTime = 0;
-}
-FallAnima.prototype.reset = function () {
-    this.mFinish = false;
-    this.mTime = this.mTotalTime = 0;
-}
-FallAnima.prototype.update = function (step) {
+var _inherit = require('core/inherit.js');
+
+function _update(step) {
     this.mTime += step;
     return this.mFinish = this.mTime >= this.mTotalTime;
 }
-FallAnima.prototype.timeleft = function (step) {
+function _reset(time) {
+    this.mTime = 0;
+    this.mTotalTime = time;
+    this.mFinish = false;
+}
+function Anima() {
+    this.mTime = 0;
+    this.mTotalTime = 0;
+    this.mFinish = true;
+}
+Anima.prototype.update = _update;
+Anima.prototype.reset = _reset;
+Anima.prototype.timeleft = function (step) {
     return this.mTime - this.mTotalTime;
 }
-FallAnima.prototype.isFinish = function (step) {
+Anima.prototype.isFinish = function () {
     return this.mFinish;
 }
 
+// ==========================
+// FallAnima
+// ==========================
+function FallAnima() {
+    Anima.call(this);
+    this.mGroups = null;
+}
+_inherit(FallAnima, Anima);
+
+// ==========================
+// CompactAnima
+// ==========================
 function CompactAnima() {
-    this.mFinish = true;
+    Anima.call(this);
     this.mGroups = null;
-    this.mTotalTime = 0;
-    this.mTime = 0;
 }
-CompactAnima.prototype.reset = function () {
-    this.mFinish = false;
-    this.mTime = this.mTotalTime = 0;
-}
-CompactAnima.prototype.update = function (step) {
-    this.mTime += step;
-    return this.mFinish = this.mTime >= this.mTotalTime;
-}
-CompactAnima.prototype.timeleft = function (step) {
-    return this.mTime - this.mTotalTime;
-}
+_inherit(CompactAnima, Anima);
 
+// ==========================
+// ClearAnima
+// ==========================
 function ClearAnima() {
-    this.mFinish = true;
+    Anima.call(this);
     this.mGroups = null;
-    this.mTotalTime = 0;
-    this.mTime = 0;
 }
-ClearAnima.prototype.reset = function () {
-    this.mFinish = false;
-    this.mTime = this.mTotalTime = 0;
-}
-ClearAnima.prototype.update = function (step) {
-    this.mTime += step;
-    return this.mFinish = this.mTime >= this.mTotalTime;
-}
-ClearAnima.prototype.timeleft = function (step) {
-    return this.mTime - this.mTotalTime;
-}
+_inherit(ClearAnima, Anima);
 
-function DropAnima() {
-    this.mFinish = true;
+// ==========================
+// RemoveAnima
+// ==========================
+function RemoveAnima() {
+    Anima.call(this);
     this.mGroups = null;
-    this.mTotalTime = 0;
-    this.mTime = 0;
 }
-DropAnima.prototype.reset = function () {
-    this.mFinish = false;
-    this.mTime = this.mTotalTime = 0;
+_inherit(RemoveAnima, Anima);
+RemoveAnima.prototype.reset = function (groups) {
+    _reset.call(this, 1);
+    this.mGroups = groups;
 }
-DropAnima.prototype.update = function (step) {
-    this.mTime += step;
-    return this.mFinish = this.mTime >= this.mTotalTime;
-}
-DropAnima.prototype.timeleft = function (step) {
-    return this.mTime - this.mTotalTime;
+RemoveAnima.prototype.update = function (step) {
+    var f = _update.call(this, step);
+    if (f) {
+        var group = this.mGroups.first();
+        this.mGroups.remove(group);
+        var itor = group.iterator();
+        while (itor.hasNext()) {
+            itor.next().visiable(false);
+        }
+        if (this.mGroups.count() > 0) {
+            this.mTotalTime += 1;
+            this.mFinish = this.mTime >= this.mTotalTime;
+        }
+    }
+    return this.mFinish;
 }
 
 exports.FallAnima = FallAnima;
 exports.CompactAnima = CompactAnima;
 exports.ClearAnima = ClearAnima;
-exports.DropAnima = DropAnima;
+exports.RemoveAnima = RemoveAnima;

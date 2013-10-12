@@ -6,30 +6,71 @@ function Node(data) {
     this.data = data;
     this.mList = null;
 }
+Node.prototype.toString = function () {
+    return '[LinkedList.Node ' + this.data + ']';
+}
 
 // ==========================
 // Iterator
 // ==========================
+//function Iter(group) {
+//    // start: element before cursor
+//    this.mNext = this.mStart = this.mEnd = null;
+//    this.group = group;
+//}
+///**
+// * both start and end are not included
+// * @param start
+// * @param end
+// * @returns {*}
+// */
+//Iter.prototype.init = function (start, end) {
+//    this.mNext = this.mStart = start;
+//    this.mEnd = end;
+//    return this;
+//}
+//Iter.prototype.hasNext = function () {
+//    this.mStart = this.mNext;
+//    return this.mStart.next !== this.mEnd;
+//}
+//Iter.prototype.next = function () {
+//    this.mNext = this.mStart.next;
+//    return this.mStart.next;
+//}
+//Iter.prototype.remove = function () {
+//    this.group.remove(this.mStart.next);
+//}
+
 function Iter(group) {
+    // start: element before cursor
     this.mNext = this.mStart = this.mEnd = null;
     this.group = group;
 }
-
+/**
+ * ether start nor end are not included
+ * @param start
+ * @param end
+ * @returns {*}
+ */
 Iter.prototype.init = function (start, end) {
-    this.mNext = this.mStart = start;
+    this.mStart = this.mNext = start.next;
     this.mEnd = end;
     return this;
 }
 Iter.prototype.hasNext = function () {
+    if (this.mNext === this.mEnd) {
+        return false;
+    }
     this.mStart = this.mNext;
-    return this.mStart.next !== this.mEnd;
+    return true;
 }
 Iter.prototype.next = function () {
     this.mNext = this.mStart.next;
-    return this.mStart.next;
+    return this.mStart;
 }
 Iter.prototype.remove = function () {
-    this.group.remove(this.mStart.next);
+    this.mNext = this.mStart.next;
+    this.group.remove(this.mStart);
 }
 
 // ==========================
