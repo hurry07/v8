@@ -53,7 +53,8 @@ function Iter(group) {
  * @returns {*}
  */
 Iter.prototype.init = function (start, end) {
-    this.mStart = this.mNext = start.next;
+    this.mStart = start;
+    this.mNext = start.next;
     this.mEnd = end;
     return this;
 }

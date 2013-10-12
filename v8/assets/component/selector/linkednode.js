@@ -58,16 +58,23 @@ LinkedList.prototype.isEmpty = function () {
 // Iterator
 // ==========================
 LinkedList.prototype.startItor = function () {
-    this.mNext = this.mCursor = this.anthor;
+    this.mCursor = this.anthor;
+    this.mNext = this.anthor.next;
     return this;
 }
 LinkedList.prototype.hasNext = function () {
-    return (this.mCursor = this.mNext).next !== this.anthor;
+    if (this.mNext === this.anthor) {
+        return false;
+    }
+    this.mCursor = this.mNext;
+    return true;
 }
 LinkedList.prototype.next = function () {
-    return this.mNext = this.mCursor.next;
+    this.mNext = this.mCursor.next;
+    return this.mCursor;
 }
 LinkedList.prototype.remove = function () {
+    this.mNext = this.mCursor.next;
     this.remove(this.mCursor);
 }
 
