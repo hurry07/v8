@@ -66,6 +66,7 @@ RemoveAnima.prototype.update = function (step) {
     var f = _update.call(this, step);
     if (f) {
         var group = this.mGroups.first();
+        console.log('update', group);
         this.mGroups.remove(group);
         var itor = group.iterator();
         while (itor.hasNext()) {

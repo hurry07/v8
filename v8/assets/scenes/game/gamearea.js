@@ -319,7 +319,6 @@ GameArea.prototype.linkEmpty = function () {
  */
 GameArea.prototype.startNextRound = function () {
     if (this.mState == STATUS_WAITING) {
-        console.log('STATUS_WAITING');
         this.startRemoveOrClear();
     }
 }
@@ -354,6 +353,7 @@ GameArea.prototype.startClearAnima = function () {
 GameArea.prototype.startRemoveOrClear = function () {
     this.linkEmpty();
 
+    // remove match groups
     var result = this.mRemove;
     var itor = this.mGroups.iterator();
     while (itor.hasNext()) {
@@ -364,19 +364,16 @@ GameArea.prototype.startRemoveOrClear = function () {
         }
     }
 
-//    // if find any match cells
-//    if (result.count() > 0) {
-//        console.log('-->01');
-//        this.startRemoveAnima();
-//    } else {
-//        console.log('-->02');
-//        this.startClearAnima();
-//    }
+    // if find any match cells
+    if (result.count() > 0) {
+        this.startRemoveAnima();
+    } else {
+        this.startClearAnima();
+    }
 }
 GameArea.prototype.drawContent = function (context) {
-    var gItor = this.mGroups.iterator();
-    while (gItor.hasNext()) {
-        gItor.next().draw(context);
+    for (var i = 0, arr = this.mCells, l = this.mMaxCells; i < l; i++) {
+        arr[i].draw(context);
     }
 }
 GameArea.prototype.update = function (step) {
@@ -386,7 +383,6 @@ GameArea.prototype.update = function (step) {
 
         case STATUS_FALL:// -> drop or clear
             if (this.mFallAnima.update(step)) {
-                console.log('STATUS_FALL');
                 this.startRemoveOrClear();
             }
             break;
