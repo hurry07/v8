@@ -14,7 +14,7 @@ GameData.prototype.getData = function (name) {
 }
 GameData.prototype.getGameConf = function () {
     return {
-        row: 7, col: 6, minmatch: 3, unitwidth: 50
+        row: 7, col: 6, minmatch: 3, unitwidth: 50, headers: 1
     }
 }
 

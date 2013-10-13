@@ -5,11 +5,12 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/scenes/game/animas.js" afterPath="$PROJECT_DIR$/v8/assets/scenes/game/animas.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/scenes/game/gamearea.js" afterPath="$PROJECT_DIR$/v8/assets/scenes/game/gamearea.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/scenes/game/gamedata.js" afterPath="$PROJECT_DIR$/v8/assets/scenes/game/gamedata.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381581585446" ignored="false" />
+    <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381639725457" ignored="false" />
     <file path="/game.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381595219477" ignored="false" />
     <file path="/a.dummy" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381606864893" ignored="false" />
     <file path="/temp.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376748679355" ignored="false" />
@@ -99,7 +100,7 @@
     <file path="/touchnode.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379424174724" ignored="false" />
     <file path="/touchdelegate.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379347202778" ignored="false" />
     <file path="/selector.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381205024280" ignored="false" />
-    <file path="/gamearea.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381607833723" ignored="false" />
+    <file path="/gamearea.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381657786021" ignored="false" />
     <file path="/cell.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379428242179" ignored="false" />
     <file path="/linkedlist_1.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381606961075" ignored="false" />
     <file path="/dropanima.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379481129540" ignored="false" />
@@ -107,7 +108,7 @@
     <file path="/betpanel.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381503270529" ignored="false" />
     <file path="/messagepanel.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379484153904" ignored="false" />
     <file path="/label.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379485005737" ignored="false" />
-    <file path="/gamedata.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381504352521" ignored="false" />
+    <file path="/gamedata.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381647480269" ignored="false" />
     <file path="/fullanima.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379489121876" ignored="false" />
     <file path="/fallanima.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1379490670929" ignored="false" />
     <file path="/font.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1380209965367" ignored="false" />
@@ -124,7 +125,7 @@
     <file path="/matcher.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1380627916222" ignored="false" />
     <file path="/parser.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381121931188" ignored="false" />
     <file path="$USER_HOME$/enviroment/workspace/block/WebContent/js/core/dom.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381243006692" ignored="false" />
-    <file path="/animas.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381607699513" ignored="false" />
+    <file path="/animas.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381656839534" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +157,25 @@
       <file leaf-file-name="gamearea.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/scenes/game/gamearea.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="377" column="0" selection-start="9905" selection-end="9905" vertical-scroll-proportion="0.6709265">
+            <state line="404" column="28" selection-start="10891" selection-end="10891" vertical-scroll-proportion="0.5479233">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="node.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/component/node.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="47" column="15" selection-start="1332" selection-end="1332" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gamedata.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/v8/assets/scenes/game/gamedata.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="62" selection-start="321" selection-end="321" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -165,7 +184,7 @@
       <file leaf-file-name="animas.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/scenes/game/animas.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="38" selection-start="1517" selection-end="1522" vertical-scroll-proportion="0.0">
+            <state line="83" column="27" selection-start="1963" selection-end="1963" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -217,10 +236,10 @@
         <option value="$PROJECT_DIR$/v8/assets/component/node.js" />
         <option value="$PROJECT_DIR$/v8/assets/drawable/text.js" />
         <option value="$PROJECT_DIR$/v8/assets/scenes/game/betpanel.js" />
-        <option value="$PROJECT_DIR$/v8/assets/scenes/game/gamedata.js" />
         <option value="$PROJECT_DIR$/v8/assets/scenes/game.js" />
         <option value="$PROJECT_DIR$/v8/assets/core/linkedlist_1.js" />
         <option value="$PROJECT_DIR$/v8/assets/component/selector/linkednode.js" />
+        <option value="$PROJECT_DIR$/v8/assets/scenes/game/gamedata.js" />
         <option value="$PROJECT_DIR$/v8/assets/scenes/game/animas.js" />
         <option value="$PROJECT_DIR$/v8/assets/scenes/game/gamearea.js" />
       </list>
@@ -335,7 +354,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -474,60 +492,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="component" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="v8" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="component" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="selector" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -604,11 +575,10 @@
     <frame x="1" y="22" width="1279" height="774" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32874617" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39143732" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20263852" sideWeight="0.60470086" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18232484" sideWeight="0.6085627" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18232484" sideWeight="0.6712538" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
@@ -617,6 +587,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39143732" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24973261" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -693,13 +664,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/component/node.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="0" selection-start="1231" selection-end="1231" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/drawable/text.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="62" column="118" selection-start="1930" selection-end="1930" vertical-scroll-proportion="0.0" />
@@ -726,23 +690,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/render/updatecontext.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/scenes/game/gamedata.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="21" selection-start="504" selection-end="504" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/core/linkedlist.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="43" selection-start="267" selection-end="267" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="15" column="43" selection-start="267" selection-end="267" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/component/touchnode.js">
@@ -754,16 +707,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/component/selector/nodeiterator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="23" selection-start="728" selection-end="728" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/v8/assets/core/linkedlist_1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="32" selection-start="1478" selection-end="1482" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="27" column="23" selection-start="728" selection-end="728" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/component/selector/linkednode.js">
@@ -780,16 +724,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/core/linkedlist_1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="32" selection-start="1478" selection-end="1482" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/component/node.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="15" selection-start="1332" selection-end="1332" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v8/assets/scenes/game/gamedata.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="62" selection-start="321" selection-end="321" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/scenes/game/animas.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="38" selection-start="1517" selection-end="1522" vertical-scroll-proportion="0.0">
+        <state line="83" column="27" selection-start="1963" selection-end="1963" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/scenes/game/gamearea.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="377" column="0" selection-start="9905" selection-end="9905" vertical-scroll-proportion="0.6709265">
+        <state line="404" column="28" selection-start="10891" selection-end="10891" vertical-scroll-proportion="0.5479233">
           <folding />
         </state>
       </provider>
