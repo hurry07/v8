@@ -13,6 +13,7 @@ function Anima() {
     this.mTime = 0;
     this.mTotalTime = 0;
     this.mFinish = true;
+    this.mGroups = null;
 }
 Anima.prototype.update = _update;
 Anima.prototype.reset = _reset;
@@ -28,16 +29,32 @@ Anima.prototype.isFinish = function () {
 // ==========================
 function FallAnima() {
     Anima.call(this);
-    this.mGroups = null;
 }
 _inherit(FallAnima, Anima);
+FallAnima.prototype.reset = function (groups) {
+    _reset.call(this, 1);
+    this.mGroups = groups;
+}
+FallAnima.prototype.update = function (step) {
+    var f = _update.call(this, step);
+    if (f) {
+        var itor = this.mGroups.iterator();
+        while(itor.hasNext()) {
+            var group = itor.next();
+            var gitor = group.iterator();
+            while (gitor.hasNext()) {
+                gitor.next().visiable(true);
+            }
+        }
+    }
+    return f;
+}
 
 // ==========================
 // CompactAnima
 // ==========================
 function CompactAnima() {
     Anima.call(this);
-    this.mGroups = null;
 }
 _inherit(CompactAnima, Anima);
 
@@ -46,7 +63,6 @@ _inherit(CompactAnima, Anima);
 // ==========================
 function ClearAnima() {
     Anima.call(this);
-    this.mGroups = null;
 }
 _inherit(ClearAnima, Anima);
 
@@ -55,7 +71,6 @@ _inherit(ClearAnima, Anima);
 // ==========================
 function RemoveAnima() {
     Anima.call(this);
-    this.mGroups = null;
 }
 _inherit(RemoveAnima, Anima);
 RemoveAnima.prototype.reset = function (groups) {
@@ -66,7 +81,7 @@ RemoveAnima.prototype.update = function (step) {
     var f = _update.call(this, step);
     if (f) {
         var group = this.mGroups.first();
-        console.log('update', group);
+        console.log('remove', group);
         this.mGroups.remove(group);
         var itor = group.iterator();
         while (itor.hasNext()) {

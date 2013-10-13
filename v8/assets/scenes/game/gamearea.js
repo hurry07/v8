@@ -138,14 +138,9 @@ Group.prototype.remove = function (cell) {
 //        this.mArea.setCheckRemove();
 //    }
 //}
-Group.prototype.onMerge = function (cell) {
+// remove empty groups
+Group.prototype.onMerge = function () {
     this.mList.remove(this);
-}
-Group.prototype.draw = function (context) {
-    var start = this.anthor;
-    while ((start = start.next) != this.anthor) {
-        start.draw(context);
-    }
 }
 
 function flatCell(c) {
@@ -159,6 +154,11 @@ function flat(group) {
         data.push(flatCell(c));
     }
     return data.join();
+}
+
+function Header(index) {
+    this.index = 0;
+    this.mCells = [];
 }
 
 // ==========================
@@ -177,15 +177,20 @@ function GameArea(game) {
     this.mMinMatch = config.minmatch;
     this.mUnit = config.unitwidth;
     this.setSize(this.mUnit * this.mCols, this.mUnit * this.mRows);
-    this.mMaxCells = this.mCols * this.mRows;
 
     this.mEmpty = new _LinkedList();
     this.mGroups = new _LinkedList();
     this.mRemove = new _LinkedList();// success cell groups
 
+    // cell0 located in left top
+    this.mMaxCells = this.mCols * this.mRows;
     this.mCells = new Array(this.mMaxCells);
     for (var i = 0, l = this.mCols * this.mRows; i < l; i++) {
         this.createCell(i);
+    }
+    this.mHeaders = new Array(this.mCols);
+    for (var i = 0, l = this.mCols; i < l; i++) {
+        this.mHeaders.push(new Header(i));
     }
 
     this.mState = STATUS_WAITING;
@@ -201,16 +206,11 @@ function GameArea(game) {
 }
 _inherit(GameArea, _UIContainer);
 GameArea.prototype.createCell = function (index) {
-    var yindex = index % this.mRows;
-    var xindex = (index - yindex) / this.mRows;
     var cell = new Cell(EDGE);
     cell.setAnthor(0.5, 0.5);
-    cell.setPosition((xindex + 0.5) * this.mUnit, (this.mRows - yindex - 0.5) * this.mUnit);
-    cell.setCoordinate(xindex, yindex);
-    cell.setData(Math.floor(Math.random() * 4));
-
+    cell.visiable(false);
+    this.putCell(cell, index);
     this.mCells[index] = cell;
-    this.mEmpty.add(cell);
 }
 GameArea.prototype.createEventNode = function () {
     return new _TouchNode(this, this.mTouchDelegate = new TouchDelegate(this));
@@ -267,6 +267,12 @@ GameArea.prototype.link = function (cell) {
         this.mGroups.add(this.createGroup(cell));
     }
 }
+GameArea.prototype.putCell = function (cell, index) {
+    var yindex = index % this.mRows;
+    var xindex = (index - yindex) / this.mRows;
+    cell.setPosition((xindex + 0.5) * this.mUnit, (this.mRows - yindex - 0.5) * this.mUnit);
+    cell.setCoordinate(xindex, yindex);
+}
 /**
  * TODO use pool in future
  * @param cell
@@ -276,6 +282,8 @@ GameArea.prototype.createGroup = function (cell) {
     var g = new Group(this);
     g.add(cell);
     return g;
+}
+GameArea.prototype.releaseGroup = function (group) {
 }
 /**
  * for test purpose
@@ -319,39 +327,45 @@ GameArea.prototype.linkEmpty = function () {
  */
 GameArea.prototype.startNextRound = function () {
     if (this.mState == STATUS_WAITING) {
-        this.startRemoveOrClear();
+        this.startFallAnima();
     }
-}
-/**
- * remove match cells
- */
-GameArea.prototype.startRemoveAnima = function () {
-    this.mRemoveAnima.reset(this.mRemove);
-    this.mState = STATUS_REMOVE;
 }
 /**
  * compact cells left
  */
 GameArea.prototype.startCompatAnima = function () {
+    var group = new Group(this);
+    var colbegin = this.mMaxCells - this.m;
+    var lastindex = this.mMaxCells - 1;
+    for (var cells = this.mCells, i = this.mMaxCells - 1; i > -1; i--) {
+        if (i % this.mRows == 0) {
+        }
+    }
     this.mState = STATUS_COMPACT;
 }
 /**
  * add new cells
  */
 GameArea.prototype.startFallAnima = function () {
+    var group;
+    var result = this.mRemove;
+    for (var i = 0, cells = this.mCells, l = this.mMaxCells; i < l; i++) {
+        if (i % this.mRows == 0) {
+            result.add(group = new Group(this));
+            this.mEmpty.merge(group);
+        }
+        cells[i].setData(Math.floor(Math.random() * 4));
+        group.add(cells[i]);
+    }
+    this.mFallAnima.reset(result);
     this.mState = STATUS_FALL;
-}
-/**
- * no cell match
- */
-GameArea.prototype.startClearAnima = function () {
-    this.mState = STATUS_CLEAR;
 }
 /**
  * called when cells are full
  */
 GameArea.prototype.startRemoveOrClear = function () {
     this.linkEmpty();
+    this.updateDrawable();
 
     // remove match groups
     var result = this.mRemove;
@@ -366,14 +380,24 @@ GameArea.prototype.startRemoveOrClear = function () {
 
     // if find any match cells
     if (result.count() > 0) {
-        this.startRemoveAnima();
+        this.mRemoveAnima.reset(this.mRemove);
+        this.mState = STATUS_REMOVE;
     } else {
-        this.startClearAnima();
+        this.mState = STATUS_CLEAR;
     }
 }
 GameArea.prototype.drawContent = function (context) {
     for (var i = 0, arr = this.mCells, l = this.mMaxCells; i < l; i++) {
         arr[i].draw(context);
+    }
+}
+GameArea.prototype.mergeGroups = function (groups) {
+    var itor = this.mRemove.iterator();
+    var g;
+    while (itor.hasNext()) {
+        g = itor.next();
+        this.mEmpty.merge(g);
+        this.releaseGroup(g);
     }
 }
 GameArea.prototype.update = function (step) {
@@ -383,26 +407,30 @@ GameArea.prototype.update = function (step) {
 
         case STATUS_FALL:// -> drop or clear
             if (this.mFallAnima.update(step)) {
+                this.mergeGroups(this.mRemove);
                 this.startRemoveOrClear();
             }
             break;
 
         case STATUS_REMOVE:// -> compact
             if (this.mRemoveAnima.update(step)) {
-                this.startCompatAnima(this.mRemoveAnima.timeleft());
+                step = this.mRemoveAnima.timeleft();
+                this.mergeGroups(this.mRemove);
+                this.startCompatAnima();
             }
             break;
 
         case STATUS_COMPACT:// -> fall
-            if (this.mCompactAnima.update(step)) {
-                this.startFallAnima();
-            }
+            console.log('STATUS_COMPACT');
+//            if (this.mCompactAnima.update(step)) {
+//                this.startFallAnima();
+//            }
             break;
 
         case STATUS_CLEAR:// -> waiting
-            if (this.mClearAnima.update(step)) {
-                this.mState = STATUS_WAITING;
-            }
+//            if (this.mClearAnima.update(step)) {
+//                this.mState = STATUS_WAITING;
+//            }
             break;
     }
 }
