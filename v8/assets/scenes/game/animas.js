@@ -76,18 +76,18 @@ _inherit(RemoveAnima, Anima);
 RemoveAnima.prototype.reset = function (groups) {
     _reset.call(this, 1);
     this.mGroups = groups;
+    this.mIterator = groups.iterator();
 }
 RemoveAnima.prototype.update = function (step) {
     var f = _update.call(this, step);
     if (f) {
-        var group = this.mGroups.first();
-        console.log('remove', group);
-        this.mGroups.remove(group);
+        var group = this.mIterator.next();
+        console.log('remove-->', group);
         var itor = group.iterator();
         while (itor.hasNext()) {
             itor.next().visiable(false);
         }
-        if (this.mGroups.count() > 0) {
+        if (this.mIterator.hasNext()) {
             this.mTotalTime += 1;
             this.mFinish = this.mTime >= this.mTotalTime;
         }

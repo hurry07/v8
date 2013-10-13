@@ -24,7 +24,7 @@ function BeltButton(id, edge, content) {
     this.setSize(button.getSize());
 
     this.mCount = _global.textNode('Georgia', 24, content);
-    this.mCount.setAnthor(0.5, 0.5);
+    this.mCount.setAnchor(0.5, 0.5);
     this.mCount.setPosition(edge / 2, edge / 2);
     this.addChild(this.mCount);
 }
@@ -75,7 +75,7 @@ function BeltChange(tag, unit, basebet) {
     this.mLeft = new BeltButton('<', unit, '<');
     this.mRight = new BeltButton('>', unit, '>');
     this.mBelt = _global.textNode('Georgia', 24, basebet + '');
-    this.mBelt.setAnthor(0.5, 0.5);
+    this.mBelt.setAnchor(0.5, 0.5);
 
     this.addChild(this.mLeft);
     this.addChild(this.mRight);
@@ -107,7 +107,7 @@ function CoinsLabel(title, split, width, height) {
     this.mSplit = split;
     this.mLabel = _global.textNode('Georgia', 24, title);
     this.mCount = _global.textNode('Georgia', 24, '0');
-    this.mCount.setAnthor(0, 0);
+    this.mCount.setAnchor(0, 0);
 
     this.addChild(this.mLabel);
     this.addChild(this.mCount);
@@ -188,11 +188,11 @@ function BetPanel(game) {
     this.addChild(this.bg = _global.colorNode([1, 0, 1, 1], WIDTH, HEIGHT));
 
     this.mMultip = new ButtonSlots('multip', 34, _model.getMultipCount());
-    this.mMultip.setAnthor(0.5, 0);
+    this.mMultip.setAnchor(0.5, 0);
     this.addChild(this.mMultip);
 
     this.mBet = new BeltChange('belts', 34, _model.getBet());
-    this.mBet.setAnthor(0.5, 0);
+    this.mBet.setAnchor(0.5, 0);
     this.addChild(this.mBet);
 
     this.addChild(this.mCounts = new CoinsBar());

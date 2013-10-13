@@ -15,7 +15,7 @@ function Node() {
     _Element.call(this);
 
     // these vector should rener be removed or replace
-    this.mAnthor = new _vec3f();// anthor point in percent
+    this.mAnchor = new _vec3f();// anchor point in percent
     this.mCenter = new _vec3f();// center in size(absoult) coordinate
     this.mSize = new _vec3f();// width height depth
     this.mOffset = new _vec3f();
@@ -84,12 +84,12 @@ Node.prototype.setScale = function (sx, sy) {
 Node.prototype.getPosition = function () {
     return this.mPosition;
 }
-Node.prototype.setAnthor = function (ax, ay) {
+Node.prototype.setAnchor = function (ax, ay) {
     if (arguments.length == 1) {
-        this.mAnthor.set(ax);
+        this.mAnchor.set(ax);
     } else {
-        this.mAnthor[0] = ax;
-        this.mAnthor[1] = ay;
+        this.mAnchor[0] = ax;
+        this.mAnchor[1] = ay;
     }
     this.updateOffset();
 }
@@ -119,8 +119,8 @@ Node.prototype.setCenter = function (cx, cy) {
 }
 Node.prototype.updateOffset = function () {
     this.mOffset.set(
-        this.mCenter[0] - this.mAnthor[0] * this.mSize[0],
-        this.mCenter[1] - this.mAnthor[1] * this.mSize[1]
+        this.mCenter[0] - this.mAnchor[0] * this.mSize[0],
+        this.mCenter[1] - this.mAnchor[1] * this.mSize[1]
     );
 }
 Node.prototype.width = function () {

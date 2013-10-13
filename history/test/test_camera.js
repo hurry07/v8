@@ -35,14 +35,14 @@ function setupGraphics(w, h) {
 
         var f1 = _textures.createFrame(R.test);
         var sprite1 = new _Sprite(new _material(mProgram, f1.texture), f1);
-        sprite1.setAnthor(0.5, 0.5);
+        sprite1.setAnchor(0.5, 0.5);
         sprite1.setScale(0.5, -0.5);
         sprite1.setRotate(30);
         mContainer.addChild(sprite1);
 
         var f2 = _textures.createFrame(R.word);
         var sprite2 = new _Sprite(new _material(mProgram, f2.texture), f2);
-        sprite2.setAnthor(1, 1);
+        sprite2.setAnchor(1, 1);
         sprite2.setScale(0.6, 0.6);
         mContainer.addChild(sprite2);
     }

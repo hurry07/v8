@@ -53,8 +53,7 @@ function Iter(group) {
  * @returns {*}
  */
 Iter.prototype.init = function (start, end) {
-    this.mStart = start;
-    this.mNext = start.next;
+    this.mStart = this.mNext = start.next;
     this.mEnd = end;
     return this;
 }
@@ -78,21 +77,21 @@ Iter.prototype.remove = function () {
 // Group
 // ==========================
 function LinkedList() {
-    this.anthor = new Node(this);
-    this.anthor.mList = this;
-    this.anthor.previous = this.anthor.next = this.anthor;
+    this.anchor = new Node(this);
+    this.anchor.mList = this;
+    this.anchor.previous = this.anchor.next = this.anchor;
     this.iter = new Iter(this);
     this.mCount = 0;
 }
 LinkedList.prototype.iterator = function () {
-    return this.iter.init(this.anthor, this.anthor);
+    return this.iter.init(this.anchor, this.anchor);
 }
 LinkedList.prototype.clear = function () {
-    var start = this.anthor;
-    while ((start = start.next) != this.anthor) {
+    var start = this.anchor;
+    while ((start = start.next) != this.anchor) {
         start.mList = null;
     }
-    this.anthor.previous = this.anthor.next = this.anthor;
+    this.anchor.previous = this.anchor.next = this.anchor;
     this.mCount = 0;
 }
 LinkedList.prototype.add = function (cell) {
@@ -108,11 +107,11 @@ LinkedList.prototype.add = function (cell) {
     this.__insert(cell);
 }
 LinkedList.prototype.__insert = function (cell) {
-    var anthor = this.anthor;
-    cell.previous = anthor.previous;
-    cell.next = anthor;
-    anthor.previous.next = cell;
-    anthor.previous = cell;
+    var anchor = this.anchor;
+    cell.previous = anchor.previous;
+    cell.next = anchor;
+    anchor.previous.next = cell;
+    anchor.previous = cell;
     this.mCount++;
 
     cell.mList = this;
@@ -133,23 +132,23 @@ LinkedList.prototype.merge = function (g) {
         return;
     }
 
-    var start = g.anthor.next;
+    var start = g.anchor.next;
     var cell = start;
-    var anthor = this.anthor;
+    var anchor = this.anchor;
 
-    anthor.previous.next = cell;
-    cell.previous = anthor.previous;
+    anchor.previous.next = cell;
+    cell.previous = anchor.previous;
 
-    cell = g.anthor.previous;
-    cell.next = anthor;
-    anthor.previous = cell;
+    cell = g.anchor.previous;
+    cell.next = anchor;
+    anchor.previous = cell;
 
-    g.anthor.next = g.anthor.previous = g.anthor;
+    g.anchor.next = g.anchor.previous = g.anchor;
     this.mCount += g.mCount;
     g.mCount = 0;
-    g.onMerge();
+//    g.onMerge();
 
-    while (start != anthor) {
+    while (start != anchor) {
         start.mList = this;
         start = start.next;
     }
@@ -161,16 +160,16 @@ LinkedList.prototype.first = function () {
     if (this.mCount == 0) {
         return null;
     }
-    return this.anthor.next;
+    return this.anchor.next;
 }
 LinkedList.prototype.last = function () {
     if (this.mCount == 0) {
         return null;
     }
-    return this.anthor.previous;
+    return this.anchor.previous;
 }
-LinkedList.prototype.onMerge = function () {
-}
+//LinkedList.prototype.onMerge = function () {
+//}
 LinkedList.prototype.toString = function () {
     return 'group {count:' + this.mCount + '}';
 }
