@@ -262,8 +262,8 @@ GameArea.prototype.toString = function () {
  * @param current cell
  */
 GameArea.prototype.linkNear = function (cell, current) {
-    if (cell.data == current.data) {
-        var g = cell.mList;
+    var g = cell.mList;
+    if (cell.data == current.data && g !== current.mList) {
         if (g === this.mEmpty) {
             current.mList.add(cell);
         } else {
@@ -280,8 +280,6 @@ GameArea.prototype.link = function (cell) {
     }
     var x = cell.cellx;
     var y = cell.celly;
-
-    console.log('link:', x, y);
     var index = x * this.mRows + y;
     if (x > 0) {
         this.linkNear(this.mCells[index - this.mRows], cell);
@@ -323,12 +321,9 @@ GameArea.prototype.updateDrawable = function () {
         itor.next().flur();
     }
 
-    var total = 0;
     var gItor = this.mGroups.iterator();
     while (gItor.hasNext()) {
         var group = gItor.next();
-        total += group.count();
-        console.log('updateDrawable:' + group);
 
         // if match count < min match, ignore
         if (group.count() < this.mMinMatch) {
@@ -337,7 +332,6 @@ GameArea.prototype.updateDrawable = function () {
             group.focus();
         }
     }
-    console.log('total:' + total);
 }
 /**
  * try to add cells to groups near by
