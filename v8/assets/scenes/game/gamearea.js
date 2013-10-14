@@ -112,7 +112,7 @@ Cell.prototype.flur = function () {
     this.mSelected.visiable(false);
 }
 Cell.prototype.toString = function () {
-    return '{x:' + this.cellx + ',y:' + this.celly + '}';
+    return this.cellx + ',' + this.celly;
 }
 
 // ==========================
@@ -131,26 +131,8 @@ Group.prototype.toString = function () {
         children.push(cursor);
         cursor = cursor.next;
     }
-    return 'Group:[' + children.join(',') + ']';
+    return 'Group count:' + this.count() + ', [' + children.join('|') + ']';
 }
-// if empty, remove from parent
-//Group.prototype.remove = function (cell) {
-//    _listRemove.call(this, cell);
-//    if (this.count() == 0) {
-//        console.log('remove from list:' + this.mList);
-//        this.mList.remove(this);
-//    }
-//}
-//Group.prototype.add = function (cell) {
-//    _listAdd.call(this, cell);
-//    if (this.count() >= this.mArea.mMinMatch) {
-//        this.mArea.setCheckRemove();
-//    }
-//}
-// remove empty groups
-//Group.prototype.onMerge = function () {
-//    this.mList.remove(this);
-//}
 
 function flatCell(c) {
     return '[' + c.cellx + ',' + c.celly + ',' + c.data + ']';
@@ -241,7 +223,11 @@ GameArea.prototype.updateCell = function (x, y) {
     var cell = this.mCells[index];
     cell.click();
 
-    this.mEmpty.merge(cell.mList);
+    var group = cell.mList;
+    this.mEmpty.merge(group);
+    this.mGroups.remove(group);
+    this.releaseGroup(group);
+
     console.log('updateCell:', this.mEmpty.count());
     this.linkEmpty();
     this.updateDrawable();
@@ -397,7 +383,6 @@ GameArea.prototype.startFallAnima = function () {
     for (var i = 0, cells = this.mCells, l = this.mMaxCells; i < l; i++) {
         if (i % this.mRows == 0) {
             result.add(group = new Group(this));
-            this.mEmpty.merge(group);
         }
         cells[i].setData(Math.floor(Math.random() * 4));
         group.add(cells[i]);
@@ -424,13 +409,14 @@ GameArea.prototype.startRemoveOrClear = function () {
     }
 
     // if find any match cells
-    if (result.count() > 0) {
-        this.mRemoveAnima.reset(this.mRemove);
-        this.mState = STATUS_REMOVE;
-        this.mState = STATUS_COMPACT;
-    } else {
-        this.mState = STATUS_CLEAR;
-    }
+//    if (result.count() > 0) {
+//        this.mRemoveAnima.reset(this.mRemove);
+//        this.mState = STATUS_REMOVE;
+//        this.mState = STATUS_COMPACT;
+//    } else {
+//        this.mState = STATUS_CLEAR;
+//    }
+    this.mState = STATUS_COMPACT;
 }
 GameArea.prototype.drawContent = function (context) {
     for (var i = 0, arr = this.mCells, l = this.mMaxCells; i < l; i++) {
@@ -454,9 +440,11 @@ GameArea.prototype.update = function (step) {
 
         case STATUS_FALL:// -> drop or clear
             if (this.mFallAnima.update(step)) {
-//                this.mergeGroups(this.mRemove);
-//                this.startRemoveOrClear();
-                this.mState = STATUS_COMPACT;
+                console.log('fall.finish:', this.mEmpty.count(), this.mGroups.count());
+                this.mergeGroups(this.mRemove);
+                console.log('fall.emptycont:', this.mEmpty.count());
+                this.startRemoveOrClear();
+//                this.mState = STATUS_COMPACT;
             }
             break;
 
