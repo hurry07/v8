@@ -20,6 +20,12 @@ var COLORS = [
     [0, 0, 1, 1],
     [0, 0, 0, 1]
 ];
+var COLORS_ALPHA = [
+    [1, 0, 0, 0.2],
+    [0, 1, 0, 0.2],
+    [0, 0, 1, 0.2],
+    [0, 0, 0, 0.2]
+];
 
 var STATUS_WAITING = 1;// waiting user set bet
 var STATUS_FALL = 2;// start new game
@@ -100,16 +106,18 @@ Cell.prototype.setCoordinate = function (x, y) {
 Cell.prototype.setData = function (data) {
     this.data = data;
     this.rect.setColor(COLORS[data]);
-    this.mSelected.setColor(COLORS[(data + 3) % 4 ]);
+    this.mSelected.setColor(COLORS[(data + 3) % 4]);
 }
 Cell.prototype.click = function () {
     this.setData((this.data + 1) % 4);
 }
 Cell.prototype.focus = function () {
+    this.mSelected.setColor(COLORS[(this.data + 3) % 4]);
     this.mSelected.visiable(true);
 }
 Cell.prototype.flur = function () {
-    this.mSelected.visiable(false);
+    this.mSelected.setColor(COLORS_ALPHA[(this.data + 3) % 4]);
+    this.mSelected.visiable(true);
 }
 Cell.prototype.toString = function () {
     return this.cellx + ',' + this.celly;
@@ -132,6 +140,20 @@ Group.prototype.toString = function () {
         cursor = cursor.next;
     }
     return 'Group count:' + this.count() + ', [' + children.join('|') + ']';
+}
+Group.prototype.flur = function () {
+    var cursor = this.anchor.next;
+    while (cursor !== this.anchor) {
+        cursor.flur();
+        cursor = cursor.next;
+    }
+}
+Group.prototype.focus = function () {
+    var cursor = this.anchor.next;
+    while (cursor !== this.anchor) {
+        cursor.focus();
+        cursor = cursor.next;
+    }
 }
 
 function flatCell(c) {
@@ -240,25 +262,25 @@ GameArea.prototype.toString = function () {
  * @param current cell
  */
 GameArea.prototype.linkNear = function (cell, current) {
-    console.log('linkNear:', cell.cellx, cell.celly, current.cellx, current.celly);
-    console.log('linkNear.data:', cell.data, current.data);
-    var empty = this.mEmpty;
-    if (cell.data == current.data && cell.mList !== empty) {
-        var g = current.mList;
-        if (g === empty) {
-            cell.mList.add(current);
-            console.log('linkNear.01:', cell.mList.count());
+    if (cell.data == current.data) {
+        var g = cell.mList;
+        if (g === this.mEmpty) {
+            current.mList.add(cell);
         } else {
-            cell.mList.merge(g);
-            console.log('linkNear.02:', cell.mList.count());
+            current.mList.merge(g);
             this.mGroups.remove(g);
             this.releaseGroup(g);
         }
     }
 }
 GameArea.prototype.link = function (cell) {
+    // make sure current cell belongs to a group
+    if (cell.mList === this.mEmpty) {
+        this.mGroups.add(this.createGroup(cell));
+    }
     var x = cell.cellx;
     var y = cell.celly;
+
     console.log('link:', x, y);
     var index = x * this.mRows + y;
     if (x > 0) {
@@ -272,10 +294,6 @@ GameArea.prototype.link = function (cell) {
     }
     if (y < this.mRows - 1) {
         this.linkNear(this.mCells[index + 1], cell);
-    }
-    // if cell belong to none group, create a group and add cell to it
-    if (cell.mList === this.mEmpty) {
-        this.mGroups.add(this.createGroup(cell));
     }
 }
 GameArea.prototype.putCell = function (cell, index) {
@@ -305,25 +323,21 @@ GameArea.prototype.updateDrawable = function () {
         itor.next().flur();
     }
 
+    var total = 0;
     var gItor = this.mGroups.iterator();
     while (gItor.hasNext()) {
         var group = gItor.next();
-
+        total += group.count();
         console.log('updateDrawable:' + group);
 
         // if match count < min match, ignore
         if (group.count() < this.mMinMatch) {
-            itor = group.iterator();
-            while (itor.hasNext()) {
-                itor.next().flur();
-            }
+            group.flur();
         } else {
-            itor = group.iterator();
-            while (itor.hasNext()) {
-                itor.next().focus();
-            }
+            group.focus();
         }
     }
+    console.log('total:' + total);
 }
 /**
  * try to add cells to groups near by
@@ -397,16 +411,16 @@ GameArea.prototype.startRemoveOrClear = function () {
     this.linkEmpty();
     this.updateDrawable();
 
-    // remove match groups
-    var result = this.mRemove;
-    var itor = this.mGroups.iterator();
-    while (itor.hasNext()) {
-        var g = itor.next();
-        if (g.count() >= this.mMinMatch) {
-            itor.remove();
-            result.add(g);
-        }
-    }
+//    // remove match groups
+//    var result = this.mRemove;
+//    var itor = this.mGroups.iterator();
+//    while (itor.hasNext()) {
+//        var g = itor.next();
+//        if (g.count() >= this.mMinMatch) {
+//            itor.remove();
+//            result.add(g);
+//        }
+//    }
 
     // if find any match cells
 //    if (result.count() > 0) {
