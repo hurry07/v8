@@ -34,6 +34,8 @@ var STATUS_COMPACT = 4;// start new game
 var STATUS_CLEAR = 5;// none cell can be removed, ending current game
 
 var STATUS_REMOVE_HOLD = 6;
+var STATUS_COMPACT_HOLD = 7;
+var STATUS_COMPACT_BEFORE = 8;
 
 // ==========================
 // TouchDelegate
@@ -351,13 +353,13 @@ GameArea.prototype.linkEmpty = function () {
  * @param state
  */
 GameArea.prototype.startNextRound = function () {
+    console.log('startNextRound', this.mState);
     if (this.mState == STATUS_WAITING) {
         this.startFallAnima();
     } else if (this.mState == STATUS_REMOVE_HOLD) {
-        //step = this.mRemoveAnima.timeleft();
-        console.log('STATUS_REMOVE', 'empty:' + this.mEmpty.count(), this.totalCount(this.mGroups), this.totalCount(this.mRemove));
-        this.mergeGroups(this.mPool, this.mRemove);
-        this.startCompatAnima();
+        this.mState = STATUS_REMOVE;
+    } else if (this.mState == STATUS_COMPACT_HOLD) {
+        this.mState = STATUS_COMPACT_BEFORE;
     }
 }
 /**
@@ -389,6 +391,7 @@ GameArea.prototype.startCompatAnima = function () {
             lastcell--;
         }
         this.mTop[colindex] = this.mRows - (colend - lastcell);
+        console.log('<<', colindex, colend, lastcell, this.mTop[colindex]);
     }
 
     console.log('GameArea.prototype.startCompatAnima<<');
@@ -417,6 +420,7 @@ GameArea.prototype.startFallAnima = function () {
             cell.setData(Math.floor(Math.random() * 4));
         }
     }
+
     this.mFallAnima.reset(result);
     this.mPool.clear();
     this.mState = STATUS_FALL;
@@ -441,8 +445,9 @@ GameArea.prototype.startRemoveOrClear = function () {
 
     // if find any match cells
     if (result.count() > 0) {
-        this.mRemoveAnima.reset(this.mRemove);
-        this.mState = STATUS_REMOVE;
+        this.mRemoveAnima.reset(result);
+        console.log('-->STATUS_REMOVE_HOLD');
+        this.mState = STATUS_REMOVE_HOLD;
     } else {
         this.mergeGroups(this.mPool, this.mGroups);
         this.mPool.clear();
@@ -475,12 +480,26 @@ GameArea.prototype.totalCount = function (groups) {
     }
     return count;
 }
+GameArea.prototype.printGroup = function (group) {
+    var row = [];
+    var cells = [];
+    for (var i = 0; i < this.mCols; i++) {
+        row.push('. ');
+    }
+    row.push('\n');
+    for (var i = 0; i < this.mRows; i++) {
+        cells = cells.concat(row.slice(0));
+    }
+
+    var itor = group.iterator();
+    while (itor.hasNext()) {
+        var cell = itor.next();
+        cells[cell.cellx + cell.celly * (this.mCols + 1)] = 'X ';
+    }
+    console.log(cells.join(''));
+}
 GameArea.prototype.update = function (step) {
     switch (this.mState) {
-        case STATUS_WAITING:
-        case STATUS_REMOVE_HOLD:
-            break;
-
         case STATUS_FALL:// -> drop or clear
             if (this.mFallAnima.update(step)) {
                 this.mergeGroups(this.mEmpty, this.mRemove);
@@ -490,13 +509,19 @@ GameArea.prototype.update = function (step) {
 
         case STATUS_REMOVE:// -> compact
             if (this.mRemoveAnima.update(step)) {
-                this.mState = STATUS_REMOVE_HOLD;
+                this.mState = STATUS_COMPACT_HOLD;
             }
+            break;
+
+        case STATUS_COMPACT_BEFORE:
+            this.mergeGroups(this.mPool, this.mRemove);
+            this.startCompatAnima();
             break;
 
         case STATUS_COMPACT:// -> fall
             if (this.mCompactAnima.update(step)) {
-                this.startFallAnima();
+                this.mState = STATUS_WAITING;
+                //this.startFallAnima();
             }
             break;
 
