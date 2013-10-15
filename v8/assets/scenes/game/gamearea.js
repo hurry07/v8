@@ -514,10 +514,12 @@ GameArea.prototype.startRemoveOrClear = function () {
         this.mState = STATUS_REMOVE;
     } else {
         this.mergeGroups(this.mPool, this.mGroups);
+        this.mPool.merge(this.mEmpty);
         this.mPool.clear();
         for (var i = 0, l = this.mCols; i < l; i++) {
             this.mTop[i] = this.mRows;
         }
+        console.log('clear', this.mEmpty.count(), this.totalCount(this.mGroups), this.totalCount(this.mRemove));
         this.mState = STATUS_WAITING;
     }
 };
@@ -574,7 +576,9 @@ GameArea.prototype.update = function (step) {
 
         case STATUS_REMOVE:// -> compact
             if (this.mRemoveAnima.update(step)) {
-                this.mState = STATUS_COMPACT_HOLD;
+//                this.mState = STATUS_COMPACT_HOLD;
+                this.mergeGroups(this.mPool, this.mRemove);
+                this.startCompatAnima();
             }
             break;
 
@@ -585,8 +589,8 @@ GameArea.prototype.update = function (step) {
 
         case STATUS_COMPACT:// -> fall
             if (this.mCompactAnima.update(step)) {
-                this.mState = STATUS_WAITING;
-                //this.startFallAnima();
+                //this.mState = STATUS_WAITING;
+                this.startFallAnima();
             }
             break;
 
