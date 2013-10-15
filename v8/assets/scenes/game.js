@@ -45,6 +45,7 @@ Game.prototype.okClick = function () {
 }
 Game.prototype.autoClick = function () {
     console.log('autoClick');
+    this.gamearea.updateAll();
 }
 Game.prototype.update = function (context) {
     this.gamearea.update(context.stride());

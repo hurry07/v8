@@ -124,7 +124,7 @@ Cell.prototype.flur = function () {
     this.mSelected.visiable(true);
 }
 Cell.prototype.toString = function () {
-    return this.cellx + ',' + this.celly;
+    return this.cellx + ',' + this.celly + ',' + this.data;
 }
 
 // ==========================
@@ -178,6 +178,19 @@ function Header(index) {
     this.mCells = [];
 }
 
+function CellList(size) {
+    this.cells = new Array(size);
+    this.capacity = 0;
+}
+CellList.prototype.reset = function (group) {
+    var size = 0;
+    var itor = group.iterator();
+    while (itor.hasNext()) {
+        this.cells[size++] = itor.next();
+    }
+    this.capacity = size;
+}
+
 // ==========================
 // GameArea
 // ==========================
@@ -194,16 +207,17 @@ function GameArea(game) {
     this.mMinMatch = config.minmatch;
     this.mUnit = config.unitwidth;
     this.setSize(this.mUnit * this.mCols, this.mUnit * this.mRows);
+    this.mMaxCells = this.mCols * this.mRows;
 
-    this.mEmpty = new _LinkedList();
-    this.mPool = new _LinkedList();
+    this.mDirty = new CellList(this.mMaxCells);
+    this.mEmpty = new Group(this);
+    this.mPool = new Group(this);
     this.mGroups = new _LinkedList();// matches cells
     this.mRemove = new _LinkedList();// success cell groups
 
     // cell0 located in left top
-    this.mMaxCells = this.mCols * this.mRows;
     this.mCells = new Array(this.mMaxCells);
-    for (var i = 0, l = this.mCols * this.mRows; i < l; i++) {
+    for (var i = 0, l = this.mMaxCells; i < l; i++) {
         this.createCell(i);
     }
     this.mHeaders = new Array(this.mCols);
@@ -260,6 +274,51 @@ GameArea.prototype.updateCell = function (x, y) {
     this.linkEmpty();
     this.updateDrawable();
 }
+GameArea.prototype.updateAll = function () {
+    this.mergeGroups(this.mEmpty, this.mGroups);
+    this.mergeGroups(this.mEmpty, this.mRemove);
+    this.mEmpty.clear();
+    var data = '5,5,1|5,4,3|5,3,3|5,2,1|5,1,0|4,4,3|4,3,0|4,2,2|3,6,3|3,5,0|3,4,2|3,3,2|2,6,2|2,5,0|2,4,2|2,3,2|1,6,1|1,5,1|1,4,1|1,3,3|1,2,0|1,1,1|0,6,1|0,5,2|0,4,2|0,3,1|0,2,0|4,5,3|5,6,2|4,6,0|3,2,3|2,2,2|4,1,1|3,1,1|3,0,3|5,0,2|4,0,3|0,1,3|1,0,2|0,0,2|2,1,2|2,0,1'.split('|');
+    console.log(data.length);
+    for (var i = 0; i < data.length; i++) {
+        var cell = data [i].split(',');
+        var x = cell[0] - '0';
+        var y = cell[1] - '0';
+        var c = this.mCells[x * this.mRows + y];
+        this.mEmpty.add(c);
+        c.setData(cell[2] - '0');
+    }
+    console.log('updateAll', 'mEmpty:' + this.mEmpty.count(), this.totalCount(this.mGroups), this.totalCount(this.mRemove));
+    console.log(this.mEmpty);
+    this.linkEmpty();
+    this.updateDrawable();
+    var itor = this.mGroups.iterator();
+    while (itor.hasNext()) {
+        var g = itor.next();
+        if (g.count() >= this.mMinMatch) {
+            this.printGroup(g);
+        }
+    }
+}
+//GameArea.prototype.updateAll = function () {
+//    for (var i = 0, l = this.mMaxCells; i < l; i++) {
+//        this.mCells[i].setData(Math.floor(Math.random() * 4));
+//    }
+//    console.log('updateAll', 'groups:' + this.totalCount(this.mGroups), 'remove:' + this.totalCount(this.mRemove));
+//    this.mergeGroups(this.mEmpty, this.mGroups);
+//    this.mergeGroups(this.mEmpty, this.mRemove);
+//    console.log('updateAll', 'mEmpty:' + this.mEmpty.count());
+//    console.log(this.mEmpty);
+//    this.linkEmpty();
+//    this.updateDrawable();
+//    var itor = this.mGroups.iterator();
+//    while (itor.hasNext()) {
+//        var g = itor.next();
+//        if (g.count() >= this.mMinMatch) {
+//            this.printGroup(g);
+//        }
+//    }
+//}
 GameArea.prototype.toString = function () {
     return 'area';
 }
@@ -305,7 +364,7 @@ GameArea.prototype.putCell = function (cell, index) {
     var xindex = (index - yindex) / this.mRows;
     cell.setPosition((xindex + 0.5) * this.mUnit, (this.mRows - yindex - 0.5) * this.mUnit);
     cell.setCoordinate(xindex, yindex);
-}
+};
 /**
  * TODO use pool in future
  * @param cell
@@ -315,9 +374,9 @@ GameArea.prototype.createGroup = function (cell) {
     var g = new Group(this);
     g.add(cell);
     return g;
-}
+};
 GameArea.prototype.releaseGroup = function (group) {
-}
+};
 /**
  * for test purpose
  */
@@ -338,19 +397,18 @@ GameArea.prototype.updateDrawable = function () {
             group.focus();
         }
     }
-}
+};
 /**
  * try to add cells to groups near by
  */
 GameArea.prototype.linkEmpty = function () {
-    var empty = this.mEmpty;
-    while (empty.count() > 0) {
-        this.link(empty.last());
+    this.mDirty.reset(this.mEmpty);
+    for (var i = 0, cells = this.mDirty.cells, l = this.mDirty.capacity; i < l; i++) {
+        this.link(cells[i]);
     }
-}
+};
 /**
  * user set the bet coins and start next game
- * @param state
  */
 GameArea.prototype.startNextRound = function () {
     console.log('startNextRound', this.mState);
@@ -361,7 +419,7 @@ GameArea.prototype.startNextRound = function () {
     } else if (this.mState == STATUS_COMPACT_HOLD) {
         this.mState = STATUS_COMPACT_BEFORE;
     }
-}
+};
 /**
  * compact cells left
  */
@@ -397,7 +455,7 @@ GameArea.prototype.startCompatAnima = function () {
     console.log('empty:' + this.mEmpty.count(), 'match:' + this.totalCount(this.mGroups));
     this.mCompactAnima.reset(1);
     this.mState = STATUS_COMPACT;
-}
+};
 /**
  * add new cells
  */
@@ -456,12 +514,12 @@ GameArea.prototype.startRemoveOrClear = function () {
         }
         this.mState = STATUS_WAITING;
     }
-}
+};
 GameArea.prototype.drawContent = function (context) {
     for (var i = 0, arr = this.mCells, l = this.mMaxCells; i < l; i++) {
         arr[i].draw(context);
     }
-}
+};
 GameArea.prototype.mergeGroups = function (target, groups) {
     var itor = groups.iterator();
     var g;
@@ -471,7 +529,7 @@ GameArea.prototype.mergeGroups = function (target, groups) {
         target.merge(g);
         this.releaseGroup(g);
     }
-}
+};
 GameArea.prototype.totalCount = function (groups) {
     var count = 0;
     var itor = groups.iterator();
@@ -479,7 +537,7 @@ GameArea.prototype.totalCount = function (groups) {
         count += itor.next().count();
     }
     return count;
-}
+};
 GameArea.prototype.printGroup = function (group) {
     var row = [];
     var cells = [];
@@ -494,15 +552,16 @@ GameArea.prototype.printGroup = function (group) {
     var itor = group.iterator();
     while (itor.hasNext()) {
         var cell = itor.next();
-        cells[cell.cellx + cell.celly * (this.mCols + 1)] = 'X ';
+        cells[cell.cellx + cell.celly * (this.mCols + 1)] = cell.data + ' ';
     }
     console.log(cells.join(''));
-}
+};
 GameArea.prototype.update = function (step) {
     switch (this.mState) {
         case STATUS_FALL:// -> drop or clear
             if (this.mFallAnima.update(step)) {
                 this.mergeGroups(this.mEmpty, this.mRemove);
+                console.log('after STATUS_FALL:', this.mEmpty.count());
                 this.startRemoveOrClear();
             }
             break;
@@ -531,6 +590,6 @@ GameArea.prototype.update = function (step) {
 //            }
             break;
     }
-}
+};
 
 module.exports = GameArea;
