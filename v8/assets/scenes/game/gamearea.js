@@ -5,6 +5,7 @@ var _TouchNode = require('component/touchnode.js').TouchNode;
 var _LinkedList = require('core/linkedlist_1.js');
 var _inherit = require('core/inherit.js');
 var _config = require('scenes/game/gamedata.js').gamedata;
+var _levelconf = require('scenes/game/gamedata.js').levelconf;
 
 var _animas = require('scenes/game/animas.js');
 var _FallAnima = _animas.FallAnima;
@@ -16,12 +17,14 @@ var COLORS = [
     [1, 0, 0, 1],
     [0, 1, 0, 1],
     [0, 0, 1, 1],
+    [1, 0, 1, 1] ,
     [0, 0, 0, 1]
 ];
 var COLORS_ALPHA = [
     [1, 0, 0, 0.2],
     [0, 1, 0, 0.2],
     [0, 0, 1, 0.2],
+    [1, 0, 1, 0.2],
     [0, 0, 0, 0.2]
 ];
 
@@ -108,17 +111,17 @@ Cell.prototype.setCoordinate = function (x, y) {
 Cell.prototype.setData = function (data) {
     this.data = data;
     this.rect.setColor(COLORS[data]);
-    this.mSelected.setColor(COLORS[(data + 3) % 4]);
+    this.mSelected.setColor(COLORS[(data + 4) % 5]);
 };
 Cell.prototype.click = function () {
-    this.setData((this.data + 1) % 4);
+    this.setData((this.data + 1) % 5);
 };
 Cell.prototype.focus = function () {
-    this.mSelected.setColor(COLORS[(this.data + 3) % 4]);
+    this.mSelected.setColor(COLORS[(this.data + 4) % 5]);
     this.mSelected.visiable(true);
 };
 Cell.prototype.flur = function () {
-    this.mSelected.setColor(COLORS_ALPHA[(this.data + 3) % 4]);
+    this.mSelected.setColor(COLORS_ALPHA[(this.data + 4) % 5]);
     this.mSelected.visiable(true);
 };
 Cell.prototype.toString = function () {
@@ -202,7 +205,6 @@ function GameArea(game) {
     this.mConfig = config;
     this.mCols = config.col;
     this.mRows = config.row;
-    this.mMinMatch = config.minmatch;
     this.mUnit = config.unitwidth;
     this.setSize(this.mUnit * this.mCols, this.mUnit * this.mRows);
     this.mMaxCells = this.mCols * this.mRows;
@@ -300,7 +302,7 @@ GameArea.prototype.updateCell = function (x, y) {
 //}
 GameArea.prototype.updateAll = function () {
     for (var i = 0, l = this.mMaxCells; i < l; i++) {
-        this.mCells[i].setData(Math.floor(Math.random() * 4));
+        _levelconf.initCell(this.mCells[i]);
     }
     console.log('updateAll', 'groups:' + this.totalCount(this.mGroups), 'remove:' + this.totalCount(this.mRemove));
     this.mergeGroups(this.mEmpty, this.mGroups);
@@ -312,14 +314,14 @@ GameArea.prototype.updateAll = function () {
     var itor = this.mGroups.iterator();
     while (itor.hasNext()) {
         var g = itor.next();
-        if (g.count() >= this.mMinMatch) {
+        if (g.count() >= _levelconf.getMinMatch()) {
             this.printGroup(g);
         }
     }
-}
+};
 GameArea.prototype.toString = function () {
     return 'area';
-}
+};
 /**
  * @param cell a cell nearby
  * @param current cell
@@ -335,7 +337,7 @@ GameArea.prototype.linkNear = function (cell, current) {
             this.releaseGroup(g);
         }
     }
-}
+};
 GameArea.prototype.link = function (cell) {
     // make sure current cell belongs to a group
     if (cell.mList === this.mEmpty) {
@@ -356,7 +358,7 @@ GameArea.prototype.link = function (cell) {
     if (y < this.mRows - 1) {
         this.linkNear(this.mCells[index + 1], cell);
     }
-}
+};
 GameArea.prototype.putCell = function (cell, index) {
     var yindex = index % this.mRows;
     var xindex = (index - yindex) / this.mRows;
@@ -389,7 +391,7 @@ GameArea.prototype.updateDrawable = function () {
         var group = gItor.next();
 
         // if match count < min match, ignore
-        if (group.count() < this.mMinMatch) {
+        if (group.count() < _levelconf.getMinMatch()) {
             group.flur();
         } else {
             group.focus();
@@ -479,7 +481,7 @@ GameArea.prototype.startFallAnima = function () {
         result.add(group = new Group(this));
         for (var c = 0; c < count; c++) {
             group.add(cell = this.createCell(start++));
-            cell.setData(Math.floor(Math.random() * 4));
+            _levelconf.initCell(cell);
         }
     }
 
@@ -495,11 +497,12 @@ GameArea.prototype.startRemoveOrClear = function () {
     this.updateDrawable();
 
     // remove match groups
+    var minmatch = _levelconf.getMinMatch();
     var result = this.mRemove;
     var itor = this.mGroups.iterator();
     while (itor.hasNext()) {
         var g = itor.next();
-        if (g.count() >= this.mMinMatch) {
+        if (g.count() >= minmatch) {
             itor.remove();
             result.add(g);
             this.printGroup(g);
