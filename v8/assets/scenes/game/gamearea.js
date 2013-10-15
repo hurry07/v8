@@ -252,8 +252,8 @@ GameArea.prototype.updateCell = function (x, y) {
     cell.click();
 
     var group = cell.mList;
-    this.mEmpty.merge(group);
     this.mGroups.remove(group);
+    this.mEmpty.merge(group);
     this.releaseGroup(group);
 
     console.log('updateCell:', this.mEmpty.count());
@@ -368,7 +368,6 @@ GameArea.prototype.startNextRound = function () {
 GameArea.prototype.startCompatAnima = function () {
     var empty = this.mEmpty;
     var pool = this.mPool;
-    console.log('GameArea.prototype.startCompatAnima>>');
     for (var colend = this.mMaxCells - 1, colindex = this.mCols - 1, cells = this.mCells; colend > -1; colend -= this.mRows, colindex--) {
 
         var lastcell = colend;
@@ -394,8 +393,8 @@ GameArea.prototype.startCompatAnima = function () {
         console.log('<<', colindex, colend, lastcell, this.mTop[colindex]);
     }
 
-    console.log('GameArea.prototype.startCompatAnima<<');
-    console.log('this.mTop:', this.mTop);
+    console.log('compact mTop:', this.mTop);
+    console.log('empty:' + this.mEmpty.count(), 'match:' + this.totalCount(this.mGroups));
     this.mCompactAnima.reset(1);
     this.mState = STATUS_COMPACT;
 }
@@ -424,7 +423,7 @@ GameArea.prototype.startFallAnima = function () {
     this.mFallAnima.reset(result);
     this.mPool.clear();
     this.mState = STATUS_FALL;
-}
+};
 /**
  * called when cells are full
  */
@@ -440,6 +439,7 @@ GameArea.prototype.startRemoveOrClear = function () {
         if (g.count() >= this.mMinMatch) {
             itor.remove();
             result.add(g);
+            this.printGroup(g);
         }
     }
 
