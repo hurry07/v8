@@ -31,7 +31,7 @@ function BeltButton(id, edge, content) {
 _inherit(BeltButton, _UIContainer);
 BeltButton.prototype.setText = function (str) {
     this.mCount.setText(str);
-}
+};
 
 /**
  * @param tag
@@ -60,7 +60,7 @@ ButtonSlots.prototype.layout = function () {
         x += this.mUnit + 2;
     }
     this.setSize(x - 2, this.mUnit);
-}
+};
 
 /**
  * @param tag
@@ -88,10 +88,10 @@ BeltChange.prototype.layout = function () {
     _relative.layout(this.mLeft, 0, 0, 0, 0);
     _relative.local.layoutTo(this.mRight, 1, 0, this, 1, 0);
     _relative.local.layoutTo(this.mBelt, 0.5, 0.5, this, 0.5, 0.5);
-}
+};
 BeltChange.prototype.setText = function (str) {
     this.mBelt.setText(str + '');
-}
+};
 
 /**
  * label:count
@@ -117,11 +117,11 @@ function CoinsLabel(title, split, width, height) {
 _inherit(CoinsLabel, _UIContainer);
 CoinsLabel.prototype.setText = function (str) {
     this.mCount.setText(str);
-}
+};
 CoinsLabel.prototype.layout = function () {
     _relative.layout(this.mLabel, 1, 0, this.mSplit, 0);
     _relative.layout(this.mCount, 0, 0, this.mSplit, 0);
-}
+};
 
 /**
  * total:0
@@ -133,7 +133,9 @@ function CoinsBar() {
     var split = 90;
     var width = 100;
     var height = 50;
+
     _UIContainer.call(this);
+    this.mId = 'coinsbar';
     this.addChild(this.mTotal = new CoinsLabel('Total:', split, width, height / 2));
     this.addChild(this.mCurrent = new CoinsLabel('Current:', split, width, height / 2));
 
@@ -142,11 +144,24 @@ function CoinsBar() {
     _relative.layoutTo(this.mTotal, 0, 0, this.mCurrent, 0, 1);
 }
 _inherit(CoinsBar, _UIContainer);
-CoinsBar.prototype.setCoins = function (total, current) {
-    this.mTotal.setText(total);
-    this.mCurrent.setText(current);
+CoinsBar.prototype.setCost = function (cost) {
+    this.mCurrent.setText(cost);
 }
+CoinsBar.prototype.setTotal = function (total) {
+    this.mTotal.setText(total);
+}
+CoinsBar.prototype.setCoins = function (total, cost) {
+    this.mTotal.setText(total);
+    this.mCurrent.setText(cost);
+};
+CoinsBar.prototype.toString = function () {
+    return '[coins bar]';
+};
 
+/**
+ * OK Auto
+ * @constructor
+ */
 function ControlButtons() {
     _UIContainer.call(this);
     this.mTag = 'control';
@@ -172,7 +187,7 @@ ControlButtons.prototype.blockButton = function (str, id, w, h) {
     bt.addChild(label);
 
     return bt;
-}
+};
 
 /**
  * UI setup
@@ -211,14 +226,16 @@ function BetPanel(game) {
 _inherit(BetPanel, _UIContainer);
 BetPanel.prototype.multipclick = function (button) {
     _model.setMultip(button.getId());
-}
+    this.mCounts.setCost(_model.getCost());
+};
 BetPanel.prototype.beltclick = function (button) {
     if (button.getId() == '>') {
         this.mBet.setText(_model.increaseBet());
     } else {
         this.mBet.setText(_model.decreaseBet());
     }
-}
+    this.mCounts.setCost(_model.getCost());
+};
 BetPanel.prototype.resize = function (width) {
     this.bg.setSize(width, HEIGHT);
     this.setSize(width, HEIGHT);
@@ -228,9 +245,9 @@ BetPanel.prototype.resize = function (width) {
     _relative.layoutTo(this.mCounts, 0, 0, this.mBet, 0, 1, 0, 2);
 
     _relative.layoutTo(this.mControl, 0.5, 1, this.mMultip, 0.5, 0, 0, -20);
-}
+};
 BetPanel.prototype.update = function () {
     this.mCounts.setCoins(_model.getTotal(), _model.getCurrent());
-}
+};
 
 module.exports = BetPanel;

@@ -21,11 +21,12 @@ var Game = _scene.createScene(
             }
         }, this);
 
+        this.mCoins = this.querySelector('#coinsbar')[0];
+
 //        var text = _global.textNode('Georgia', 90, 'ABCDEabcde');
 //        var text = _global.textNode('Georgia', 30, 'ABCDEabcde');
 //        text.setPosition(50, 200);
 //        this.addChild(text);
-
         this.onSizeChange(w, h);
     }
 );
@@ -36,20 +37,20 @@ Game.prototype.okClick = function () {
     var cost = _model.getCost();
     var total = _model.getTotal();
     if (cost > total) {
-        console.log('game end');
+        console.log('game over');
     } else {
         _model.spend(cost);
+        this.mCoins.setTotal(_model.getTotal());
         this.gamearea.startNextRound();
     }
-    console.log('ok with cost:' + cost);
-}
+};
 Game.prototype.autoClick = function () {
     console.log('autoClick');
-    this.gamearea.updateAll();
-}
+    this.gamearea.goonGame();
+};
 Game.prototype.update = function (context) {
     this.gamearea.update(context.stride());
-}
+};
 Game.prototype.onSizeChange = function (w, h) {
     this.setSize(w, h);
 
@@ -60,14 +61,18 @@ Game.prototype.onSizeChange = function (w, h) {
     _relative.layout(this.betpanel, 0, 0, 0, 0);
     _relative.layout(this.gamearea, 0, 0, wideleft, 0);
     _relative.layoutTo(this.msgpanel, 0, 0, this.gamearea, 1, 0);
-}
+};
+Game.prototype.onCellsMatch = function (count, type) {
+    console.log('onCellsMatch', count, type);
+    this.mCoins.setTotal(_model.onMatch(count, type));
+};
 Game.prototype.layout = function () {
-}
+};
 /**
  * find an cell group
  * @param groups
  */
 Game.prototype.onGroupFind = function (groups) {
-}
+};
 
 module.exports = Game;

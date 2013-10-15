@@ -4,8 +4,6 @@ var _global = require('framework/global.js');
 var _TouchNode = require('component/touchnode.js').TouchNode;
 var _LinkedList = require('core/linkedlist_1.js');
 var _inherit = require('core/inherit.js');
-var _listRemove = _LinkedList.prototype.remove;
-var _listAdd = _LinkedList.prototype.add;
 var _config = require('scenes/game/gamedata.js').gamedata;
 
 var _animas = require('scenes/game/animas.js');
@@ -48,7 +46,7 @@ function TouchDelegate(game) {
 TouchDelegate.prototype.init = function () {
     this.width = this.game.width();
     this.height = this.game.height();
-}
+};
 TouchDelegate.prototype.isInArea = function (x, y) {
     if (x < 0 || y < 0) {
         return false;
@@ -57,13 +55,13 @@ TouchDelegate.prototype.isInArea = function (x, y) {
         return false;
     }
     return true;
-}
+};
 TouchDelegate.prototype.disable = function (event) {
     this.mDisable = true;
-}
+};
 TouchDelegate.prototype.enable = function (event) {
     this.mDisable = false;
-}
+};
 TouchDelegate.prototype.onTouch = function (event) {
     if (this.mDisable) {
         return false;
@@ -77,7 +75,7 @@ TouchDelegate.prototype.onTouch = function (event) {
         this.game.onTouch(x, y);
     }
     return true;
-}
+};
 
 // ==========================
 // Cell
@@ -106,26 +104,26 @@ _inherit(Cell, _Container);
 Cell.prototype.setCoordinate = function (x, y) {
     this.cellx = x;
     this.celly = y;
-}
+};
 Cell.prototype.setData = function (data) {
     this.data = data;
     this.rect.setColor(COLORS[data]);
     this.mSelected.setColor(COLORS[(data + 3) % 4]);
-}
+};
 Cell.prototype.click = function () {
     this.setData((this.data + 1) % 4);
-}
+};
 Cell.prototype.focus = function () {
     this.mSelected.setColor(COLORS[(this.data + 3) % 4]);
     this.mSelected.visiable(true);
-}
+};
 Cell.prototype.flur = function () {
     this.mSelected.setColor(COLORS_ALPHA[(this.data + 3) % 4]);
     this.mSelected.visiable(true);
-}
+};
 Cell.prototype.toString = function () {
     return this.cellx + ',' + this.celly + ',' + this.data;
-}
+};
 
 // ==========================
 // Cell Group
@@ -144,21 +142,21 @@ Group.prototype.toString = function () {
         cursor = cursor.next;
     }
     return 'Group count:' + this.count() + ', [' + children.join('|') + ']';
-}
+};
 Group.prototype.flur = function () {
     var cursor = this.anchor.next;
     while (cursor !== this.anchor) {
         cursor.flur();
         cursor = cursor.next;
     }
-}
+};
 Group.prototype.focus = function () {
     var cursor = this.anchor.next;
     while (cursor !== this.anchor) {
         cursor.focus();
         cursor = cursor.next;
     }
-}
+};
 
 function flatCell(c) {
     return '[' + c.cellx + ',' + c.celly + ',' + c.data + ']';
@@ -189,7 +187,7 @@ CellList.prototype.reset = function (group) {
         this.cells[size++] = itor.next();
     }
     this.capacity = size;
-}
+};
 
 // ==========================
 // GameArea
@@ -229,7 +227,7 @@ function GameArea(game) {
 
     this.mState = STATUS_WAITING;
     this.mFallAnima = new _FallAnima();
-    this.mRemoveAnima = new _RemoveAnima();
+    this.mRemoveAnima = new _RemoveAnima(this.mGame);
     this.mCompactAnima = new _CompactAnima();
     this.mClearAnima = new _ClearAnima();
 
@@ -246,15 +244,15 @@ GameArea.prototype.createCell = function (index) {
     this.putCell(cell, index);
     this.mCells[index] = cell;
     return cell;
-}
+};
 GameArea.prototype.createEventNode = function () {
     return new _TouchNode(this, this.mTouchDelegate = new TouchDelegate(this));
-}
+};
 GameArea.prototype.onTouch = function (x, y) {
     var xindex = Math.floor(x / this.mUnit);
     var yindex = this.mRows - Math.floor(y / this.mUnit) - 1;
     this.updateCell(xindex, yindex);
-}
+};
 /**
  * the cell has changed
  * @param x
@@ -273,41 +271,22 @@ GameArea.prototype.updateCell = function (x, y) {
     console.log('updateCell:', this.mEmpty.count());
     this.linkEmpty();
     this.updateDrawable();
-}
-GameArea.prototype.updateAll = function () {
-    this.mergeGroups(this.mEmpty, this.mGroups);
-    this.mergeGroups(this.mEmpty, this.mRemove);
-    this.mEmpty.clear();
-    var data = '5,5,1|5,4,3|5,3,3|5,2,1|5,1,0|4,4,3|4,3,0|4,2,2|3,6,3|3,5,0|3,4,2|3,3,2|2,6,2|2,5,0|2,4,2|2,3,2|1,6,1|1,5,1|1,4,1|1,3,3|1,2,0|1,1,1|0,6,1|0,5,2|0,4,2|0,3,1|0,2,0|4,5,3|5,6,2|4,6,0|3,2,3|2,2,2|4,1,1|3,1,1|3,0,3|5,0,2|4,0,3|0,1,3|1,0,2|0,0,2|2,1,2|2,0,1'.split('|');
-    console.log(data.length);
-    for (var i = 0; i < data.length; i++) {
-        var cell = data [i].split(',');
-        var x = cell[0] - '0';
-        var y = cell[1] - '0';
-        var c = this.mCells[x * this.mRows + y];
-        this.mEmpty.add(c);
-        c.setData(cell[2] - '0');
-    }
-    console.log('updateAll', 'mEmpty:' + this.mEmpty.count(), this.totalCount(this.mGroups), this.totalCount(this.mRemove));
-    console.log(this.mEmpty);
-    this.linkEmpty();
-    this.updateDrawable();
-    var itor = this.mGroups.iterator();
-    while (itor.hasNext()) {
-        var g = itor.next();
-        if (g.count() >= this.mMinMatch) {
-            this.printGroup(g);
-        }
-    }
-}
+};
 //GameArea.prototype.updateAll = function () {
-//    for (var i = 0, l = this.mMaxCells; i < l; i++) {
-//        this.mCells[i].setData(Math.floor(Math.random() * 4));
-//    }
-//    console.log('updateAll', 'groups:' + this.totalCount(this.mGroups), 'remove:' + this.totalCount(this.mRemove));
 //    this.mergeGroups(this.mEmpty, this.mGroups);
 //    this.mergeGroups(this.mEmpty, this.mRemove);
-//    console.log('updateAll', 'mEmpty:' + this.mEmpty.count());
+//    this.mEmpty.clear();
+//    var data = '5,5,1|5,4,3|5,3,3|5,2,1|5,1,0|4,4,3|4,3,0|4,2,2|3,6,3|3,5,0|3,4,2|3,3,2|2,6,2|2,5,0|2,4,2|2,3,2|1,6,1|1,5,1|1,4,1|1,3,3|1,2,0|1,1,1|0,6,1|0,5,2|0,4,2|0,3,1|0,2,0|4,5,3|5,6,2|4,6,0|3,2,3|2,2,2|4,1,1|3,1,1|3,0,3|5,0,2|4,0,3|0,1,3|1,0,2|0,0,2|2,1,2|2,0,1'.split('|');
+//    console.log(data.length);
+//    for (var i = 0; i < data.length; i++) {
+//        var cell = data [i].split(',');
+//        var x = cell[0] - '0';
+//        var y = cell[1] - '0';
+//        var c = this.mCells[x * this.mRows + y];
+//        this.mEmpty.add(c);
+//        c.setData(cell[2] - '0');
+//    }
+//    console.log('updateAll', 'mEmpty:' + this.mEmpty.count(), this.totalCount(this.mGroups), this.totalCount(this.mRemove));
 //    console.log(this.mEmpty);
 //    this.linkEmpty();
 //    this.updateDrawable();
@@ -319,6 +298,25 @@ GameArea.prototype.updateAll = function () {
 //        }
 //    }
 //}
+GameArea.prototype.updateAll = function () {
+    for (var i = 0, l = this.mMaxCells; i < l; i++) {
+        this.mCells[i].setData(Math.floor(Math.random() * 4));
+    }
+    console.log('updateAll', 'groups:' + this.totalCount(this.mGroups), 'remove:' + this.totalCount(this.mRemove));
+    this.mergeGroups(this.mEmpty, this.mGroups);
+    this.mergeGroups(this.mEmpty, this.mRemove);
+    console.log('updateAll', 'mEmpty:' + this.mEmpty.count());
+    console.log(this.mEmpty);
+    this.linkEmpty();
+    this.updateDrawable();
+    var itor = this.mGroups.iterator();
+    while (itor.hasNext()) {
+        var g = itor.next();
+        if (g.count() >= this.mMinMatch) {
+            this.printGroup(g);
+        }
+    }
+}
 GameArea.prototype.toString = function () {
     return 'area';
 }
@@ -414,12 +412,19 @@ GameArea.prototype.startNextRound = function () {
     console.log('startNextRound', this.mState);
     if (this.mState == STATUS_WAITING) {
         this.startFallAnima();
-    } else if (this.mState == STATUS_REMOVE_HOLD) {
+//    } else if (this.mState == STATUS_REMOVE_HOLD) {
+//        this.mState = STATUS_REMOVE;
+//    } else if (this.mState == STATUS_COMPACT_HOLD) {
+//        this.mState = STATUS_COMPACT_BEFORE;
+    }
+};
+GameArea.prototype.goonGame = function () {
+    if (this.mState == STATUS_REMOVE_HOLD) {
         this.mState = STATUS_REMOVE;
     } else if (this.mState == STATUS_COMPACT_HOLD) {
         this.mState = STATUS_COMPACT_BEFORE;
     }
-};
+}
 /**
  * compact cells left
  */
@@ -505,7 +510,8 @@ GameArea.prototype.startRemoveOrClear = function () {
     if (result.count() > 0) {
         this.mRemoveAnima.reset(result);
         console.log('-->STATUS_REMOVE_HOLD');
-        this.mState = STATUS_REMOVE_HOLD;
+//        this.mState = STATUS_REMOVE_HOLD;
+        this.mState = STATUS_REMOVE;
     } else {
         this.mergeGroups(this.mPool, this.mGroups);
         this.mPool.clear();

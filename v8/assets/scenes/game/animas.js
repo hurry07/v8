@@ -39,7 +39,7 @@ FallAnima.prototype.update = function (step) {
     var f = _update.call(this, step);
     if (f) {
         var itor = this.mGroups.iterator();
-        while(itor.hasNext()) {
+        while (itor.hasNext()) {
             var group = itor.next();
             var gitor = group.iterator();
             while (gitor.hasNext()) {
@@ -69,8 +69,9 @@ _inherit(ClearAnima, Anima);
 // ==========================
 // RemoveAnima
 // ==========================
-function RemoveAnima() {
+function RemoveAnima(game) {
     Anima.call(this);
+    this.mGame = game;
 }
 _inherit(RemoveAnima, Anima);
 RemoveAnima.prototype.reset = function (groups) {
@@ -82,11 +83,11 @@ RemoveAnima.prototype.update = function (step) {
     var f = _update.call(this, step);
     if (f) {
         var group = this.mIterator.next();
-        console.log('remove-->', group);
         var itor = group.iterator();
         while (itor.hasNext()) {
             itor.next().visiable(false);
         }
+        this.mGame.onCellsMatch(group.count(), group.first().data);
         if (this.mIterator.hasNext()) {
             this.mTotalTime += 1;
             this.mFinish = this.mTime >= this.mTotalTime;

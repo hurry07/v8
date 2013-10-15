@@ -76,5 +76,9 @@ Belt.prototype.getCurrent = function () {
     return this.current;
 }
 
+Belt.prototype.onMatch = function (count, type) {
+    return this.total += count * (type + 1) * this.bet;
+}
+
 exports.gamedata = new GameData();
 exports.beltdata = new Belt();
