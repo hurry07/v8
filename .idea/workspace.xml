@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/scenes/game/gamearea.js" afterPath="$PROJECT_DIR$/v8/assets/scenes/game/gamearea.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/scenes/game/gamedata.js" afterPath="$PROJECT_DIR$/v8/assets/scenes/game/gamedata.js" />
-    </list>
+    <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="" />
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1381840212596" ignored="false" />
@@ -155,7 +151,7 @@
       <file leaf-file-name="gamearea.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/scenes/game/gamearea.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="499" column="30" selection-start="14475" selection-end="14475" vertical-scroll-proportion="0.36052203">
+            <state line="556" column="46" selection-start="16157" selection-end="16157" vertical-scroll-proportion="0.3360522">
               <folding />
             </state>
           </provider>
@@ -719,7 +715,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/scenes/game/gamearea.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="499" column="30" selection-start="14475" selection-end="14475" vertical-scroll-proportion="0.36052203">
+        <state line="556" column="46" selection-start="16157" selection-end="16157" vertical-scroll-proportion="0.3360522">
           <folding />
         </state>
       </provider>
