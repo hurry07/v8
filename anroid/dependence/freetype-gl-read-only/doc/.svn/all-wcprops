@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 27
+/svn/!svn/ver/138/trunk/doc
+END
+documentation.h
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/134/trunk/doc/documentation.h
+END
+footer.html
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/134/trunk/doc/footer.html
+END
+Doxyfile
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/!svn/ver/136/trunk/doc/Doxyfile
+END
+doxygen.css
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/134/trunk/doc/doxygen.css
+END
+text-rendering.h
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/134/trunk/doc/text-rendering.h
+END
+screenshots.h
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/134/trunk/doc/screenshots.h
+END
+style.css
+K 25
+svn:wc:ra_dav:version-url
+V 37
+/svn/!svn/ver/134/trunk/doc/style.css
+END
+header.html
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/134/trunk/doc/header.html
+END
+layout.xml
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/134/trunk/doc/layout.xml
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 36
+/svn/!svn/ver/134/trunk/doc/Makefile
+END

@@ -1,0 +1,42 @@
+https://github.com/appcelerator/v8_titanium/blob/master/build_v8.sh
+一点学习资料
+https://www.homepluspower.info/2010/06/v8-javascript-engine-tutorial-part-1.html
+http://blog.chinaunix.net/uid-20357359-id-2690542.html
+http://izs.me/v8-docs/annotated.html
+http://www.grati.org/docs/v8doc/
+http://www.cppblog.com/pansunyou/archive/2010/11/23/google_v8.html
+http://www.cppblog.com/corelito/archive/2008/10/23/64654.html
+
+http://blog.csdn.net/pgmsoul/article/details/8893051
+https://codereview.chromium.org/11415046/diff/2001/test/cctest/test-api.cc
+
+gc
+http://www.my-ride-home.com/2011/01/v8-garbage-collection/
+
+指针使用
+http://www.360doc.com/content/11/0901/11/255982_144947210.shtml
+素材
+http://www.17sucai.com/
+
+http://www.bilibili.tv/video/av660396/                                                                      
+
+/SimpleGame/chromesrc/third_party/WebKit/Source/bindings/v8/custom/V8HTMLCanvasElementCustom.cpp
+/SimpleGame/chromesrc/third_party/WebKit/Source/bindings/v8/DOMDataStore.h
+
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin
+DEVROOT=/Developer/Platforms/iPhoneOS.platform/Developer
+SYSROOT=$DEVROOT/SDKs/iPhoneOS4.3.sdk
+CC=$DEVROOT/usr/bin/clang
+CXX=$DEVROOT/usr/bin/clang++
+
++AC_PROG_CC([llvm-gcc gcc])
++AC_PROG_CXX([llvm-g++ g++])
+
+webgl 参考
+http://www.nihilogic.dk/labs/webgl_cheat_sheet/WebGL_Cheat_Sheet.htm
+http://www.khronos.org/registry/webgl/specs/latest/
+
+https://github.com/mikolalysenko/headless-gl/blob/master/src/webgl.cc
+http://db-in.com/blog/2011/04/cameras-on-opengl-es-2-x/
+http://games.greggman.com/game/webgl-3d-cameras/
+
