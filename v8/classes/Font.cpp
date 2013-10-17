@@ -27,11 +27,78 @@
 #include "texture-font.h"
 #include "file.h"
 
-static FT_Error load_font_assets (FT_Library* library, const char* filename, FT_Long face_index, FT_Face* aface) {
+//int __totalread = 0;
+//int __totaltimes = 0;
+//long __maxoffset = 0;
+//long __maxread = 0;
+
+static unsigned long ft_zip_read(FT_Stream stream, unsigned long offset, unsigned char* buffer, unsigned long count)
+{
+    if(count == 0) {
+        return 0;
+    }
+//    __totaltimes++;
+//    __totalread+=count;
+//    if(offset > __maxoffset) {
+//        __maxoffset = offset;
+//    }
+//    if(count > __maxread) {
+//        __maxread = count;
+//    }
+//    LOGI("count:%d", count);
+    FILE* file = static_cast<FILE*>(stream->descriptor.pointer);
+    fseek(file, offset, SEEK_SET);
+    return fread(buffer, 1, count, file);
+}
+static void ft_zip_close(FT_Stream stream)
+{
+    FILE* file = static_cast<FILE*>(stream->descriptor.pointer);
+    fclose(file);
+}
+
+static FT_Error load_font_assets_from_memory(FT_Library* library, const char* filename, FT_Long face_index, FT_Face* aface) {
     JSFile* file = JSFile::loadAsset(filename);
     FT_Error e = FT_New_Memory_Face(*library, (const FT_Byte*)file->chars(), file->size(), face_index, aface);
     delete file;
     return e;
+}
+static FT_Error load_font_assets(FILE* file, FT_Library* library, FT_Long face_index, FT_Face* aface) {
+    fseek(file, 0, SEEK_END);
+    long size = ftell(file);
+    rewind(file);
+    
+    FT_StreamDesc descriptor;
+    descriptor.pointer = file;
+    
+    FT_StreamRec* stream = new FT_StreamRec();
+    stream->base = 0;
+    stream->size = size;
+    stream->pos = 0;
+    stream->descriptor = descriptor;
+    stream->read = &ft_zip_read;
+    stream->close = &ft_zip_close;
+    
+    FT_Open_Args open_args;
+    open_args.flags = FT_OPEN_STREAM;
+    open_args.stream = stream;
+    
+    FT_Error e = FT_Open_Face(*library, &open_args, face_index, aface);
+    return e;
+}
+static FT_Error load_font_assets_from_file(FT_Library* library, const char* filename, FT_Long face_index, FT_Face* aface) {
+//    __totalread = 0;
+//    __maxoffset = 0;
+//    __totaltimes = 0;
+//    __maxread = 0;
+//    LOGI("---------");
+
+    std::string wholepath;
+    AssetUtil::getFilePath(filename, &wholepath);
+    FILE* file = fopen(wholepath.c_str(), "rb");
+
+    return load_font_assets(file, library, face_index, aface);
+//    LOGI("read size:%ld offset:%ld count:%d total:%d maxstride:%d", size, __maxoffset, __totalread, __totaltimes, __maxread);
+//    return e;
 }
 /**
  * @text
@@ -250,7 +317,7 @@ void Font::init(const FunctionCallbackInfo<Value> &args) {
     float depth = args[2]->NumberValue();
 
     JSFile* file = JSFile::loadAsset(*path);
-    font = texture_font_new_fn(atlas->atlas, *path, depth, load_font_assets);
+    font = texture_font_new_fn(atlas->atlas, *path, depth, load_font_assets_from_file);
     delete file;
 
     mRelease = false;

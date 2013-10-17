@@ -128,13 +128,13 @@ void start(int argc, char ** argv, int width, int height) {
     
     testImageLoad();
     testVersion();
-    
+
     app = new Application();
     app->init();
     app->resume();
     app->onSurfaceCreated(width, height);
     app->onSurfaceChanged(width, height);
-    
+
 	glutDisplayFunc(onDrawFrame);
     glutReshapeFunc(onSurfaceChanged);
     glutMouseFunc(onMouseClick);

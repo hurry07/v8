@@ -38,3 +38,7 @@ void AssetUtil::load(JSFile* tofile, const char* path) {
     }
     fclose(file);
 }
+void AssetUtil::getFilePath(const char* path, std::string* wholepath) {
+    wholepath->append(source_root);
+    wholepath->append(path);
+}

@@ -22,6 +22,7 @@ public:
      * load asset to file
      */
 	static void load(JSFile* file, const char* path);
+    static void getFilePath(const char* path, std::string* wholepath);
 };
 
 #endif /* ASSETUTIL_H_ */
