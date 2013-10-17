@@ -7,8 +7,8 @@ var inherit = require('core/inherit.js');
 var Image = require('core/image.js');
 var math = require('core/math.js');
 
-var maxTextureSize = gl.getParameter(gl.MAX_TEXTURE_SIZE);
-var maxCubeMapSize = gl.getParameter(gl.MAX_CUBE_MAP_TEXTURE_SIZE);
+//var maxTextureSize = gl.getParameter(gl.MAX_TEXTURE_SIZE);
+//var maxCubeMapSize = gl.getParameter(gl.MAX_CUBE_MAP_TEXTURE_SIZE);
 
 var textureDB = {};
 
