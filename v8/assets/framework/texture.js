@@ -129,7 +129,6 @@ iterator(R, '', textures);
 // managing texture frame creation
 var _textures = require('glcore/textures.js');
 var _frame = require('glcore/textureframe.js');
-var textureDB = {};
 
 function getPath(id) {
     return root + textures[id];

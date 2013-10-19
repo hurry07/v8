@@ -5,21 +5,30 @@ var _MessagePanel = require('scenes/game/messagepanel.js');
 var _layout = require('tools/layout.js');
 var _relative = _layout.relative;
 var _model = require('scenes/game/gamedata.js').beltdata;
+console.log('--->01');
 
 var Game = _scene.createScene(
     function (w, h) {
         this.setSize(w, h);
-        this.addChild(this.gamearea = new _GameArea(this));
+        
+        var _timer = require('core/timer.js');
+		var tick = new _timer.TickTack();
+    	this.addChild(this.gamearea = new _GameArea(this));
+        tick.check('_GameArea.create');
         this.addChild(this.betpanel = new _BetPanel(this));
+        tick.check('_BetPanel.create');
         this.addChild(this.msgpanel = new _MessagePanel(this));
+        tick.check('_MessagePanel.create');
 
         this.querySelector('control>button').forEach(function (button) {
+        	console.log('regist buttons', button);
             if (button.getId() == 'ok') {
                 button.on('click', this.okClick, this);
             } else {
                 button.on('click', this.autoClick, this);
             }
         }, this);
+        tick.check('game.bindevent');
 
         this.mCoins = this.querySelector('#coinsbar')[0];
 
@@ -28,6 +37,7 @@ var Game = _scene.createScene(
 //        text.setPosition(50, 200);
 //        this.addChild(text);
         this.onSizeChange(w, h);
+        tick.check('game.onSizeChange');
     }
 );
 /**
@@ -74,5 +84,6 @@ Game.prototype.layout = function () {
  */
 Game.prototype.onGroupFind = function (groups) {
 };
+console.log('--->02');
 
 module.exports = Game;

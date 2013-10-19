@@ -197,7 +197,10 @@ CellList.prototype.reset = function (group) {
 // ==========================
 var EDGE = 48;
 function GameArea(game) {
+	var _timer = require('core/timer.js');
+	var tick = new _timer.TickTack();
     _UIContainer.call(this);
+    tick.check('initSupre');
     this.mFlags |= this.FlagSeal;
 
     var config = _config.getGameConf();
@@ -209,9 +212,12 @@ function GameArea(game) {
     this.setSize(this.mUnit * this.mCols, this.mUnit * this.mRows);
     this.mMaxCells = this.mCols * this.mRows;
 
+    tick.check();
     this.mDirty = new CellList(this.mMaxCells);
+    tick.check();
     this.mEmpty = new Group(this);
     this.mPool = new Group(this);
+    tick.check();
     this.mGroups = new _LinkedList();// matches cells
     this.mRemove = new _LinkedList();// success cell groups
 
@@ -220,6 +226,7 @@ function GameArea(game) {
     for (var i = 0, l = this.mMaxCells; i < l; i++) {
         this.createCell(i);
     }
+    tick.check('createCells');
     this.mHeaders = new Array(this.mCols);
     this.mTop = [];// empty cell cout
     for (var i = 0, l = this.mCols; i < l; i++) {
@@ -227,16 +234,21 @@ function GameArea(game) {
         this.mTop.push(this.mRows);
     }
 
+    tick.check();
     this.mState = STATUS_WAITING;
     this.mFallAnima = new _FallAnima();
     this.mRemoveAnima = new _RemoveAnima(this.mGame);
     this.mCompactAnima = new _CompactAnima();
     this.mClearAnima = new _ClearAnima();
 
+    tick.check();
     this.linkEmpty();
+    tick.check('linkEmpty');
     this.updateDrawable();
+    tick.check('updateDrawable');
     this.mTouchDelegate.init();
     this.mTouchDelegate.enable();
+    tick.check();
 }
 _inherit(GameArea, _UIContainer);
 GameArea.prototype.createCell = function (index) {
@@ -253,9 +265,7 @@ GameArea.prototype.createEventNode = function () {
 GameArea.prototype.onTouch = function (x, y) {
     var xindex = Math.floor(x / this.mUnit);
     var yindex = this.mRows - Math.floor(y / this.mUnit) - 1;
-    if(this.totalCount(this.mGroups) == this.mMaxCells) {
-        this.updateCell(xindex, yindex);
-    }
+    this.updateCell(xindex, yindex);
 };
 /**
  * the cell has changed

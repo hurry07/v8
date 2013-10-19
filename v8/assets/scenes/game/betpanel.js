@@ -196,22 +196,30 @@ ControlButtons.prototype.blockButton = function (str, id, w, h) {
  * @constructor
  */
 function BetPanel(game) {
+	var _timer = require('core/timer.js');
+	var tick = new _timer.TickTack();
     _UIContainer.call(this);
+    tick.check('BetPanel.super');
     this.game = game;
 
     this.setSize(WIDTH, HEIGHT);
     this.addChild(this.bg = _global.colorNode([1, 0, 1, 1], WIDTH, HEIGHT));
+    tick.check('BetPanel.bg');
 
     this.mMultip = new ButtonSlots('multip', 34, _model.getMultipCount());
     this.mMultip.setAnchor(0.5, 0);
     this.addChild(this.mMultip);
+    tick.check('BetPanel.mMultip');
 
     this.mBet = new BeltChange('belts', 34, _model.getBet());
     this.mBet.setAnchor(0.5, 0);
     this.addChild(this.mBet);
+    tick.check('BetPanel.belts');
 
     this.addChild(this.mCounts = new CoinsBar());
+    tick.check('BetPanel.CoinsBar');
     this.addChild(this.mControl = new ControlButtons());
+    tick.check('BetPanel.ControlButtons');
 
     this.querySelector('multip button').forEach(function (button) {
         button.on('click', this.multipclick, this);
@@ -219,9 +227,11 @@ function BetPanel(game) {
     this.querySelector('belts button').forEach(function (button) {
         button.on('click', this.beltclick, this);
     }, this);
+    tick.check('BetPanel.query');
 
     this.update();
     this.resize(WIDTH);
+    tick.check('BetPanel.others');
 }
 _inherit(BetPanel, _UIContainer);
 BetPanel.prototype.multipclick = function (button) {

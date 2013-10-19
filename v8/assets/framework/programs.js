@@ -28,7 +28,6 @@ var programs = _collection.createCollection({
     create: function (id, vpath, fpath, material) {
         var vShader = shaders.findopt(getFileId(vpath), vpath, _gl.VERTEX_SHADER);
         var fShader = shaders.findopt(getFileId(fpath), fpath, _gl.FRAGMENT_SHADER);
-        console.log('programs:' + id, vShader, fShader);
         if (!vShader || !fShader) {
             return null;
         }

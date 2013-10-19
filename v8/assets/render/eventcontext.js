@@ -161,8 +161,6 @@ EventContext.prototype.onEvent = function (camera, scene) {
         if (node.setTimeStamp(timestamp)) {
             camera.updateTouchMatrix(node.matrixInverse, node.matrix);
         }
-        console.log('onEvent:', node.element);
-        throw 'test';
         node.onEvent(this, stack);
     }
 }
