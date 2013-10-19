@@ -26,7 +26,7 @@ NodeBuffer::~NodeBuffer() {
     }
 //    LOGI("ArrayBuffer.~release");
 }
-void NodeBuffer::init(const FunctionCallbackInfo<Value> &args) {
+void NodeBuffer::init(const v8::FunctionCallbackInfo<Value> &args) {
     if (args.Length() == 1) {
         long size = args[0]->IntegerValue();
         if(size > 0) {
@@ -34,7 +34,7 @@ void NodeBuffer::init(const FunctionCallbackInfo<Value> &args) {
         }
     }
 }
-void NodeBuffer::reset(const FunctionCallbackInfo<Value> &args) {
+void NodeBuffer::reset(const v8::FunctionCallbackInfo<Value> &args) {
 }
 void NodeBuffer::allocate(long size) {
     mData = new char[mLength = size];

@@ -36,7 +36,7 @@ public:
     /**
      * init value after constructor
      */
-    virtual void init(const FunctionCallbackInfo<Value> &args);
+    virtual void init(const v8::FunctionCallbackInfo<Value> &args);
     virtual const char* toString();
 
     virtual ClassType getClassType();

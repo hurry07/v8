@@ -6,26 +6,14 @@
 //  Copyright (c) 2013年 jie. All rights reserved.
 //
 #include "GLBinding.h"
-#include <Opengl/gl3.h>
+#include "../gl_include.h"
 #include "../global.h"
 #include "../core/ClassBase.h"
 #include "../core/v8Utils.h"
 #include "../core/bytebuffer.h"
 #include "Image.h"
 
-using v8::HandleScope;
-using v8::String;
-using v8::FunctionTemplate;
-using v8::ObjectTemplate;
-using v8::Integer;
-using v8::Array;
-using v8::Integer;
-using v8::Local;
-using v8::Boolean;
-using v8::Number;
-using v8::Uint32;
-using v8::Exception;
-using v8::FunctionCallbackInfo;
+using namespace v8;
 
 static void checkGlError(const char* op) {
 	for (GLint error = glGetError(); error; error = glGetError()) {
@@ -33,7 +21,7 @@ static void checkGlError(const char* op) {
 	}
 }
 
-#define JS_METHOD(name) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& args)
+#define JS_METHOD(name) void GLBinding::name##Callback(const v8::FunctionCallbackInfo<Value>& args)
 #define JS_STR(...) v8::String::New(__VA_ARGS__)
 #define JS_INT(val) v8::Integer::New(val)
 #define JS_UINT(val) v8::Integer::NewFromUnsigned(val)
@@ -58,41 +46,6 @@ static void getInternal(Local<Value> infoV, ByteBuffer* buffer) {
     }
     ClassBase* p = internalArg<ClassBase>(infoV);
     p->getUnderlying(buffer);
-}
-template<typename T>
-static bool getTypedArray(Local<Value> infoV, ByteBuffer* buffer) {
-    bool delete_ = false;
-    while (1) {
-        if(infoV.IsEmpty() || infoV->IsUndefined()) {
-            break;
-        }
-
-        if(infoV->IsArray()) {
-            Handle<Array> array = Handle<Array>::Cast(infoV);
-            buffer->allocate(array->Length() * sizeof(T));
-            populateValues<T>(buffer->value_ptr<T>(), array, 0);// TODO check
-            delete_ = true;
-            break;
-        }
-
-        ClassBase* p = internalArg<ClassBase>(infoV);
-        if(p == 0) {
-            if(infoV->IsNumber()) {
-                buffer->allocate(sizeof(T));
-                argValue(infoV, buffer->value_ptr<T>());
-                delete_ = true;
-            }
-        } else {
-            p->getUnderlying(buffer);
-        }
-
-        break;
-    }
-    
-    return delete_;
-}
-
-static void getTypedArray(Local<Value> value, ClassType type, ByteBuffer* buffer) {
 }
 
 static GLuint ToGLuint(const void* ptr) {
@@ -263,11 +216,6 @@ static void getArgPtr(ByteBuffer* dest, ClassType ftype, const Local<Value>& arg
 #define ARGS_GLfloatP(a) (GLfloat*)getArrayPtr(a->ToObject())
 #define ARGS_GLvoidP(a) (GLvoid*)getArrayPtr(a->ToObject())
 
-//#define CHECK_CHAIN_1(len, t1) CHECK_L(len) || CHECK_##t1(ARGS_NAME[0])
-//#define CHECK_CHAIN_2(len, t1, t2) CHECK_CHAIN_1(len, t1) || CHECK_##t2(ARGS_NAME[1])
-//#define CHECK_CHAIN_3(len, t1, t2, t3) CHECK_CHAIN_2(len, t1, t2) || CHECK_##t3(ARGS_NAME[2])
-//#define CHECK_CHAIN_4(len, t1, t2, t3, t4) CHECK_CHAIN_3(len, t1, t2) || CHECK_##t3(ARGS_NAME[2])
-
 // check arguments
 #define CHECK_ARG_1(name, t1) \
 if(ARGS_NAME.Length() != 1 || CHECK_##t1(ARGS_NAME[0])) {\
@@ -308,41 +256,41 @@ if(ARGS_NAME.Length() != 4 || CHECK_##t1(ARGS_NAME[0]) || CHECK_##t2(ARGS_NAME[1
 #define CALL_GL_8(glname, t1, t2, t3, t4, t5, t6, t7, t8) glname(ARGS_##t1(ARGS_NAME[0]), ARGS_##t2(ARGS_NAME[1]), ARGS_##t3(ARGS_NAME[2]), ARGS_##t4(ARGS_NAME[3]), ARGS_##t5(ARGS_NAME[4]), ARGS_##t6(ARGS_NAME[5]), ARGS_##t7(ARGS_NAME[6]), ARGS_##t8(ARGS_NAME[7]))
 #define CALL_GL_9(glname, t1, t2, t3, t4, t5, t6, t7, t8, t9) glname(ARGS_##t1(ARGS_NAME[0]), ARGS_##t2(ARGS_NAME[1]), ARGS_##t3(ARGS_NAME[2]), ARGS_##t4(ARGS_NAME[3]), ARGS_##t5(ARGS_NAME[4]), ARGS_##t6(ARGS_NAME[5]), ARGS_##t7(ARGS_NAME[6]), ARGS_##t8(ARGS_NAME[7]), ARGS_##t9(ARGS_NAME[8]))
 
-#define DELEGATE_TO_GL_N(name, glname) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
+#define DELEGATE_TO_GL_N(name, glname) void GLBinding::name##Callback(const v8::FunctionCallbackInfo<Value>& ARGS_NAME) {\
     HandleScope scope;\
     glname();\
 }
-#define DELEGATE_TO_GL_N1(name, glname, t1) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
+#define DELEGATE_TO_GL_N1(name, glname, t1) void GLBinding::name##Callback(const v8::FunctionCallbackInfo<Value>& ARGS_NAME) {\
     HandleScope scope;\
     CHECK_ARG_1(name, t1)\
     CALL_GL_1(glname, t1);\
 }
-#define DELEGATE_TO_GL_N2(name, glname, t1, t2) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
+#define DELEGATE_TO_GL_N2(name, glname, t1, t2) void GLBinding::name##Callback(const v8::FunctionCallbackInfo<Value>& ARGS_NAME) {\
     HandleScope scope;\
     CHECK_ARG_2(name, t1, t2)\
     CALL_GL_2(glname, t1, t2);\
 }
-#define DELEGATE_TO_GL_N3(name, glname, t1, t2, t3) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
+#define DELEGATE_TO_GL_N3(name, glname, t1, t2, t3) void GLBinding::name##Callback(const v8::FunctionCallbackInfo<Value>& ARGS_NAME) {\
     HandleScope scope;\
     CHECK_ARG_3(name, t1, t2, t3)\
     CALL_GL_3(glname, t1, t2, t3);\
 }
-#define DELEGATE_TO_GL_N4(name, glname, t1, t2, t3, t4) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
+#define DELEGATE_TO_GL_N4(name, glname, t1, t2, t3, t4) void GLBinding::name##Callback(const v8::FunctionCallbackInfo<Value>& ARGS_NAME) {\
     HandleScope scope;\
     CHECK_ARG_4(name, t1, t2, t3, t4)\
     CALL_GL_4(glname, t1, t2, t3, t4);\
 }
-#define DELEGATE_TO_GL_N5(name, glname, t1, t2, t3, t4, t5) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
+#define DELEGATE_TO_GL_N5(name, glname, t1, t2, t3, t4, t5) void GLBinding::name##Callback(const v8::FunctionCallbackInfo<Value>& ARGS_NAME) {\
     HandleScope scope;\
     CHECK_ARG_5(name, t1, t2, t3, t4, t5)\
     CALL_GL_5(glname, t1, t2, t3, t4, t5);\
 }
-#define DELEGATE_TO_GL_N8(name, glname, t1, t2, t3, t4, t5, t6, t7, t8) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
+#define DELEGATE_TO_GL_N8(name, glname, t1, t2, t3, t4, t5, t6, t7, t8) void GLBinding::name##Callback(const v8::FunctionCallbackInfo<Value>& ARGS_NAME) {\
     HandleScope scope;\
     CHECK_ARG_8(name, t1, t2, t3, t4, t5, t6, t7, t8)\
     CALL_GL_8(glname, t1, t2, t3, t4, t5, t6, t7, t8);\
 }
-#define DELEGATE_TO_GL_N9(name, glname, t1, t2, t3, t4, t5, t6, t7, t8, t9) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
+#define DELEGATE_TO_GL_N9(name, glname, t1, t2, t3, t4, t5, t6, t7, t8, t9) void GLBinding::name##Callback(const v8::FunctionCallbackInfo<Value>& ARGS_NAME) {\
     HandleScope scope;\
     CHECK_ARG_9(name, t1, t2, t3, t4, t5, t6, t7, t8, t9)\
     CALL_GL_9(glname, t1, t2, t3, t4, t5, t6, t7, t8, t9);\
@@ -357,14 +305,14 @@ if(ARGS_NAME.Length() != 4 || CHECK_##t1(ARGS_NAME[0]) || CHECK_##t2(ARGS_NAME[1
 #define DELEGATE_TO_GL_8(glname, t1, t2, t3, t4, t5, t6, t7, t8) DELEGATE_TO_GL_N8(glname, glname, t1, t2, t3, t4, t5, t6, t7, t8)
 #define DELEGATE_TO_GL_9(glname, t1, t2, t3, t4, t5, t6, t7, t8, t9) DELEGATE_TO_GL_N9(glname, glname, t1, t2, t3, t4, t5, t6, t7, t8, t9)
 
-#define DELEGATE_TO_GL_1R(name, glname, type, v8type) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
+#define DELEGATE_TO_GL_1R(name, glname, type, v8type) void GLBinding::name##Callback(const v8::FunctionCallbackInfo<Value>& ARGS_NAME) {\
 	HandleScope scope;\
 	type value;\
     glname(1, &value);\
 	args.GetReturnValue().Set(v8type::New(value));\
 }
 // 2 param and return boolean
-#define DELEGATE_TO_GL_1_BR(name, glname, t1) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
+#define DELEGATE_TO_GL_1_BR(name, glname, t1) void GLBinding::name##Callback(const v8::FunctionCallbackInfo<Value>& ARGS_NAME) {\
 	HandleScope scope;\
     CHECK_ARG_1(name, t1)\
     GLboolean value = CALL_GL_1(glname, t1);\
@@ -373,13 +321,13 @@ if(ARGS_NAME.Length() != 4 || CHECK_##t1(ARGS_NAME[0]) || CHECK_##t2(ARGS_NAME[1
 /**
  * call with length 1 array
  */
-#define DELEGATE_TO_GL_1A(name, glname, type) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
+#define DELEGATE_TO_GL_1A(name, glname, type) void GLBinding::name##Callback(const v8::FunctionCallbackInfo<Value>& ARGS_NAME) {\
 	HandleScope scope;\
 	CHECK_ARG_1(name, type)\
 	type value = ARGS_##type(args[0]);\
     glname(1, &value);\
 }
-#define DELEGATE_TO_GL_R(name, glname, type, v8type) void GLBinding::name##Callback(const FunctionCallbackInfo<Value>& ARGS_NAME) {\
+#define DELEGATE_TO_GL_R(name, glname, type, v8type) void GLBinding::name##Callback(const v8::FunctionCallbackInfo<Value>& ARGS_NAME) {\
 	HandleScope scope;\
 	type value = glname();\
 	args.GetReturnValue().Set(v8type::New(value));\
@@ -567,7 +515,7 @@ static Handle<Array> toArray(GLuint* buffers, int size) {
     return arr;
 }
 
-template<> void Module<GLBinding>::init(const FunctionCallbackInfo<Value>& args) {
+template<> void Module<GLBinding>::init(const v8::FunctionCallbackInfo<Value>& args) {
     HandleScope scope;
     Local<Object> _proto_ = args[0]->ToObject();
 
@@ -1694,6 +1642,7 @@ JS_METHOD(getShaderParameter) {
 		case GL_DELETE_STATUS:
 		case GL_COMPILE_STATUS:
 			glGetShaderiv(shader, pname, &value);
+			//LOGI("getShaderParameter:%d %d", pname, value);
 			args.GetReturnValue().Set(JS_BOOL(value!=0?true:false));
             break;
 		case GL_SHADER_TYPE:
@@ -1712,18 +1661,22 @@ JS_METHOD(getShaderParameter) {
 JS_METHOD(getShaderInfoLog) {
     HandleScope scope;
 
-    int len = -1;
     GLuint shader = ARGS_GLuint(args[0]);
-    glGetShaderiv((GLuint) shader, GL_INFO_LOG_LENGTH, &len);
-    if(len == -1) {
+	GLint length = -1;
+	glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
+
+    //LOGE("getShaderInfoLog:%d %d", shader, length);
+    if(length <= 0) {
     	args.GetReturnValue().Set(v8::Undefined());
+    } else {
+    	GLchar* src = new GLchar[length];
+    	glGetShaderInfoLog(shader, length, NULL, src);
+    	//LOGE("getShaderInfoLog.log:%s", src);
+    	Local<String> jslog = String::New(src, length);
+    	delete[] src;
+
+    	args.GetReturnValue().Set(jslog);
     }
-
-    int id = args[0]->Int32Value();
-	char Error[len];
-	glGetShaderInfoLog(id, 1024, &len, Error);
-
-	args.GetReturnValue().Set(String::New(Error));
 }
 JS_METHOD(getShaderSource) {
     HandleScope scope;

@@ -23,7 +23,7 @@ void ClassBase::release() {
 }
 void ClassBase::doRelease() {
 }
-void ClassBase::init(const FunctionCallbackInfo<Value> &args) {
+void ClassBase::init(const v8::FunctionCallbackInfo<Value> &args) {
 }
 const char* ClassBase::toString() {
     return "[object native]";

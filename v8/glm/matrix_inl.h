@@ -18,7 +18,7 @@ namespace glm_matrix {
      * init current object with Array or ArrayBufferView|TypedBuffer
      */
     template <class M>
-    void set(const FunctionCallbackInfo<Value> &info);
+    void set(const v8::FunctionCallbackInfo<Value> &info);
     template <class M, typename T>
     v8::Local<v8::Function> initMatrixClass(v8::Handle<v8::FunctionTemplate>& temp);
 
@@ -26,7 +26,7 @@ namespace glm_matrix {
      * init current object with Array or ArrayBufferView|TypedBuffer
      */
     template <class M>
-    void set(const FunctionCallbackInfo<Value> &info);
+    void set(const v8::FunctionCallbackInfo<Value> &info);
 
     template <class M, typename T>
     v8::Local<v8::Function> initMatrixClass(v8::Handle<v8::FunctionTemplate>& temp);
@@ -78,7 +78,7 @@ void clzName<T>::init(const v8::FunctionCallbackInfo<v8::Value> &info) {\
     fill_value_ptr<T>(glm::value_ptr(mMatrix), values, sizepwo);\
 }\
 template <typename T>\
-void clzName<T>::setValue(const FunctionCallbackInfo<Value> &info) {\
+void clzName<T>::setValue(const v8::FunctionCallbackInfo<Value> &info) {\
     T values[sizepwo];\
     flatVector<T>(info, values, sizepwo);\
     fill_value_ptr<T>(glm::value_ptr(mMatrix), values, sizepwo);\
@@ -113,7 +113,7 @@ namespace glm_matrix {
      * init current object with Array or ArrayBufferView|TypedBuffer
      */
     template <class M>
-    void set(const FunctionCallbackInfo<Value> &info) {
+    void set(const v8::FunctionCallbackInfo<Value> &info) {
         HandleScope scope;
         ClassBase* c = internalPtr<ClassBase>(info, M::getExportStruct()->mType);
         if(c == 0) {
@@ -208,7 +208,7 @@ namespace glm_matrix {
         EXPOSE_METHOD(obj, identity, ReadOnly | DontDelete);
         EXPOSE_METHOD(obj, inverse, ReadOnly | DontDelete);
         obj->SetAccessor(String::New("length"), globalfn::array::length);
-        EXPOSE_METHOD_NAME(obj, set, glm_matrix::set<Mat4<float>>, ReadOnly | DontDelete);
+        EXPOSE_METHOD_NAME(obj, set, glm_matrix::set<Mat4<float> >, ReadOnly | DontDelete);
 
         Local<ObjectTemplate> ins = temp->InstanceTemplate();
         ins->SetIndexedPropertyHandler(globalfn::array::getter<float>, globalfn::array::setter<float>);

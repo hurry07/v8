@@ -10,8 +10,8 @@
 #define __v8__ReleaseImpl__
 
 #include <v8.h>
-#include <Opengl/gl3.h>
 #include <string>
+#include "../gl_include.h"
 
 enum ReleaseType {
     RELEASE_GLBuffer = 0,

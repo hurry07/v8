@@ -147,7 +147,7 @@ bool CCTexture2D::initWithData(const void *data, CCTexture2DPixelFormat pixelFor
 //        glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE, (GLsizei)pixelsWide, (GLsizei)pixelsHigh, 0, GL_LUMINANCE, GL_UNSIGNED_BYTE, data);
         break;
     default:
-        LOGI(0, "NSInternalInconsistencyException");
+        LOGI("initWithData %d %s", 0, "NSInternalInconsistencyException");
     }
 
     mParam.width = pixelsWide;

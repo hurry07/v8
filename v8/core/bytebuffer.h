@@ -9,7 +9,7 @@
 #ifndef __v8__bytebuffer__
 #define __v8__bytebuffer__
 
-#include "classenum.h"
+#include "../classes/classenum.h"
 #include <stdarg.h>
 
 class NodeBuffer;

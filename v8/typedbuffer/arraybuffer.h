@@ -10,8 +10,8 @@
 #define __v8__NodeBuffer__
 
 #include "../global.h"
-#include "classenum.h"
-#include "bytebuffer.h"
+#include "../classes/classenum.h"
+#include "../core/bytebuffer.h"
 #include "../core/ClassBase.h"
 #include "../core/sturctures.h"
 
@@ -28,8 +28,8 @@ public:
 	NodeBuffer(int length);
 
 	virtual ~NodeBuffer();
-    virtual void init(const FunctionCallbackInfo<Value> &args);
-    virtual void reset(const FunctionCallbackInfo<Value> &args);
+    virtual void init(const v8::FunctionCallbackInfo<Value> &args);
+    virtual void reset(const v8::FunctionCallbackInfo<Value> &args);
     virtual void allocate(long length);
 
     virtual ClassType getClassType();

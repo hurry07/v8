@@ -10,7 +10,7 @@
 #define __v8__TextureAtlas__
 
 #include "../core/ClassBase.h"
-#include "freetype-gl.h"
+#include <freetype-gl.h>
 
 class TextureAtlas : public ClassBase {
 public:
@@ -18,7 +18,7 @@ public:
 	virtual ~TextureAtlas();
 
     virtual void doRelease();
-    virtual void init(const FunctionCallbackInfo<Value> &args);
+    virtual void init(const v8::FunctionCallbackInfo<Value> &args);
 
     static class_struct* getExportStruct();
     virtual ClassType getClassType();

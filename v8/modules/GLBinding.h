@@ -13,13 +13,9 @@
 #include "../app/node.h"
 #include "../core/Module.h"
 
-using v8::Value;
-using v8::Handle;
-using v8::Arguments;
-using v8::Object;
-using v8::FunctionCallbackInfo;
+using namespace v8;
 
-#define DEFINE_GL(name) static void name##Callback(const FunctionCallbackInfo<Value>& args)
+#define DEFINE_GL(name) static void name##Callback(const v8::FunctionCallbackInfo<Value>& args)
 
 class GLBinding :public Module<GLBinding> {
 public:

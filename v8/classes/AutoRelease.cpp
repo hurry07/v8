@@ -41,7 +41,7 @@ AutoRelease::~AutoRelease() {
         delete mTask;
     }
 }
-void AutoRelease::values(const FunctionCallbackInfo<Value>& param) {
+void AutoRelease::values(const v8::FunctionCallbackInfo<Value>& param) {
     if(mTask != 0) {
         mTask->init(param);
     }
@@ -51,7 +51,7 @@ void AutoRelease::doRelease() {
         mTask->release();
     }
 }
-void AutoRelease::init(const FunctionCallbackInfo<Value> &args) {
+void AutoRelease::init(const v8::FunctionCallbackInfo<Value> &args) {
     mTask = ReleaseTask::createTask(args[0]->Uint32Value());
     if(mTask != 0) {
         mRelease = false;

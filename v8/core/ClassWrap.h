@@ -1,3 +1,4 @@
+
 /*
  * JSWrap.h
  *
@@ -9,7 +10,7 @@
 #define JSWRAP_H_
 
 #include <v8.h>
-#include "node.h"
+#include "../app/node.h"
 #include "v8Utils.h"
 #include "sturctures.h"
 #include "../global.h"
@@ -28,7 +29,7 @@ public:
     /**
      * constructor
      */
-	static void constructorCallback(const FunctionCallbackInfo<Value> &args) {
+	static void constructorCallback(const v8::FunctionCallbackInfo<Value> &args) {
 		HandleScope scope(node_isolate);
 		if (!args.IsConstructCall()) {
 			return;
@@ -38,7 +39,7 @@ public:
 		instance->init(args);
 
 		Persistent<Object> ret(node_isolate, args.This());
-		ret.MakeWeak(node_isolate, instance, unrefCallback);
+		ret.MakeWeak(instance, unrefCallback);
 
 		args.This()->SetInternalField(0, External::New(instance));
 	}
@@ -46,14 +47,17 @@ public:
     /**
      * release will unbind native resource
      */
-    static void release(const FunctionCallbackInfo<Value>& info) {
+    static void release(const v8::FunctionCallbackInfo<Value>& info) {
 		HandleScope scope(node_isolate);
         ClassBase* t = internalPtr<ClassBase>(info);
+    	//LOGI("ClassWrap.release 01:%p", t);
         if(t != 0) {
+//        	int type = t->getExportStruct()->mType;
+//        	LOGI("ClassWrap.release %d", type);
             t->release();
         }
     }
-    static void toString(const FunctionCallbackInfo<Value>& info) {
+    static void toString(const v8::FunctionCallbackInfo<Value>& info) {
 		HandleScope scope(node_isolate);
         ClassBase* t = internalPtr<ClassBase>(info);
         if(t != 0) {
@@ -97,7 +101,7 @@ public:
     /**
      * create a copy of current js object
      */
-    static void clone(const FunctionCallbackInfo<Value>& info) {
+    static void clone(const v8::FunctionCallbackInfo<Value>& info) {
         HandleScope scope(node_isolate);
         
         T* t1 = internalPtr<T>(info, T::getExportStruct()->mType);

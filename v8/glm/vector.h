@@ -23,8 +23,8 @@ public:\
     virtual ClassType getClassType();\
     virtual const char* toString();\
     virtual void getUnderlying(ByteBuffer* feature);\
-    virtual void init(const FunctionCallbackInfo<Value> &info);\
-    virtual void setValue(const FunctionCallbackInfo<Value> &info);\
+    virtual void init(const v8::FunctionCallbackInfo<Value> &info);\
+    virtual void setValue(const v8::FunctionCallbackInfo<Value> &info);\
 \
     glm::detail::tvec##size<T> mVec;\
 }

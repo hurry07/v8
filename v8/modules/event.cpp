@@ -6,7 +6,7 @@
 //  Copyright (c) 2013年 jie. All rights reserved.
 //
 #include "Event.h"
-#include "v8Utils.h"
+#include "../core/v8Utils.h"
 #include "../typedbuffer/arraybuffer.h"
 
 METHOD_BEGIN(getEvent, info) {
@@ -78,7 +78,7 @@ EventAccessor::~EventAccessor() {
         delete mStruct;
     }
 }
-void EventAccessor::init(const FunctionCallbackInfo<Value> &args) {
+void EventAccessor::init(const v8::FunctionCallbackInfo<Value> &args) {
     if(args.Length() != 2) {
         ThrowException(String::New("EventAccessor.init arguments number error, 2 expected"));
     }

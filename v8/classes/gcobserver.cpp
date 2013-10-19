@@ -16,7 +16,7 @@ GcObserver::~GcObserver() {
         LOGI("~gc %s", tag.c_str());
     }
 }
-void GcObserver::init(const FunctionCallbackInfo<Value> &args) {
+void GcObserver::init(const v8::FunctionCallbackInfo<Value> &args) {
     if(args.Length() > 0) {
         mMark = true;
         tag = std::string(*String::Utf8Value(args[0]->ToString()));

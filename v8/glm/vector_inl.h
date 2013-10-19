@@ -21,7 +21,7 @@ const char* clzName<T>::toString() {\
     return printValue(#clzName, glm::value_ptr(mVec), size);\
 }\
 template <typename T>\
-void clzName<T>::init(const FunctionCallbackInfo<Value> &info) {\
+void clzName<T>::init(const v8::FunctionCallbackInfo<Value> &info) {\
     HandleScope scope;\
     if(info.Length() == 0) {\
         return;\
@@ -31,7 +31,7 @@ void clzName<T>::init(const FunctionCallbackInfo<Value> &info) {\
     fill_value_ptr<T>(glm::value_ptr(mVec), values, size);\
 }\
 template <typename T>\
-void clzName<T>::setValue(const FunctionCallbackInfo<Value> &info) {\
+void clzName<T>::setValue(const v8::FunctionCallbackInfo<Value> &info) {\
     T values[size];\
     flatVector<T>(info, values, size);\
     fill_value_ptr<T>(glm::value_ptr(mVec), values, size);\
@@ -47,21 +47,21 @@ namespace glm_vector {
      * init current object with Array or ArrayBufferView|TypedBuffer
      */
     template <class M>
-    void set(const FunctionCallbackInfo<Value> &info);
+    void set(const v8::FunctionCallbackInfo<Value> &info);
     template <typename T>
-    void cross(const FunctionCallbackInfo<Value> &info);
+    void cross(const v8::FunctionCallbackInfo<Value> &info);
     template <typename T>
-    void scaleVec2(const FunctionCallbackInfo<Value> &info);
+    void scaleVec2(const v8::FunctionCallbackInfo<Value> &info);
     template <typename T>
-    void scaleVec3(const FunctionCallbackInfo<Value> &info);
+    void scaleVec3(const v8::FunctionCallbackInfo<Value> &info);
     template <typename T>
-    void scaleVec4(const FunctionCallbackInfo<Value> &info);
+    void scaleVec4(const v8::FunctionCallbackInfo<Value> &info);
     template <class M, typename T>
-    void mul(const FunctionCallbackInfo<Value> &info);
+    void mul(const v8::FunctionCallbackInfo<Value> &info);
     template <class M, typename T>
-    void add(const FunctionCallbackInfo<Value> &info);
+    void add(const v8::FunctionCallbackInfo<Value> &info);
     template <class M, typename T>
-    void sub(const FunctionCallbackInfo<Value> &info);
+    void sub(const v8::FunctionCallbackInfo<Value> &info);
     template <class M, typename T>
     static v8::Local<v8::Function> initVector2(v8::Handle<v8::FunctionTemplate>& temp);
     template <class M, typename T>
@@ -123,7 +123,7 @@ Vec4<T>::~Vec4() {
  * init current object with Array or ArrayBufferView|TypedBuffer
  */
 template <class M>
-void glm_vector::set(const FunctionCallbackInfo<Value> &info) {
+void glm_vector::set(const v8::FunctionCallbackInfo<Value> &info) {
     HandleScope scope;
     ClassBase* c = internalPtr<ClassBase>(info, M::getExportStruct()->mType);
     if(c == 0) {
@@ -133,7 +133,7 @@ void glm_vector::set(const FunctionCallbackInfo<Value> &info) {
     thiz->setValue(info);
 }
 template <class M, typename T>
-void glm_vector::mul(const FunctionCallbackInfo<Value> &info) {
+void glm_vector::mul(const v8::FunctionCallbackInfo<Value> &info) {
     HandleScope scope;
 
     M* thiz = internalPtr<M>(info, M::getExportStruct()->mType);
@@ -147,14 +147,14 @@ void glm_vector::mul(const FunctionCallbackInfo<Value> &info) {
     thiz->mVec = thiz->mVec * param->mVec;
 }
 template <typename T>
-void glm_vector::cross(const FunctionCallbackInfo<Value> &info) {
+void glm_vector::cross(const v8::FunctionCallbackInfo<Value> &info) {
     HandleScope scope;
     
-    Vec3<T>* thiz = internalPtr<Vec3<T>>(info, Vec3<T>::getExportStruct()->mType);
+    Vec3<T>* thiz = internalPtr<Vec3<T> >(info, Vec3<T>::getExportStruct()->mType);
     if(thiz == 0) {
         return;
     }
-    Vec3<T>* param = internalArg<Vec3<T>>(info[0], Vec3<T>::getExportStruct()->mType);
+    Vec3<T>* param = internalArg<Vec3<T> >(info[0], Vec3<T>::getExportStruct()->mType);
     if(param == 0) {
         return;
     }
@@ -166,9 +166,9 @@ void glm_vector::cross(const FunctionCallbackInfo<Value> &info) {
 #define DUPLICATE_4(name) name,name,name,name
 #define SCALE_VEC(size) \
 template <typename T>\
-void glm_vector::scaleVec##size(const FunctionCallbackInfo<Value> &info) {\
+void glm_vector::scaleVec##size(const v8::FunctionCallbackInfo<Value> &info) {\
     HandleScope scope;\
-    Vec##size<T>* thiz = internalPtr<Vec##size<T>>(info, Vec3<T>::getExportStruct()->mType);\
+    Vec##size<T>* thiz = internalPtr<Vec##size<T> >(info, Vec3<T>::getExportStruct()->mType);\
     if(thiz == 0) {\
         return;\
     }\
@@ -181,7 +181,7 @@ SCALE_VEC(3);
 SCALE_VEC(4);
 
 template <class M, typename T>
-void glm_vector::add(const FunctionCallbackInfo<Value> &info) {
+void glm_vector::add(const v8::FunctionCallbackInfo<Value> &info) {
     HandleScope scope;
     
     M* thiz = internalPtr<M>(info, M::getExportStruct()->mType);
@@ -195,7 +195,7 @@ void glm_vector::add(const FunctionCallbackInfo<Value> &info) {
     thiz->mVec = thiz->mVec + param->mVec;
 }
 template <class M, typename T>
-void glm_vector::sub(const FunctionCallbackInfo<Value> &info) {
+void glm_vector::sub(const v8::FunctionCallbackInfo<Value> &info) {
     HandleScope scope;
 
     M* thiz = internalPtr<M>(info, M::getExportStruct()->mType);

@@ -16,19 +16,19 @@
 #include "../typedbuffer/arraybufferview.h"
 #include "../typedbuffer/typedbuffer.h"
 
-static void argValue(const FunctionCallbackInfo<Value> &info, int index, float* slot) {
+static void argValue(const v8::FunctionCallbackInfo<Value> &info, int index, float* slot) {
     *slot = info[index]->NumberValue();
 }
-static void argValue(const FunctionCallbackInfo<Value> &info, int index, uint8_t* slot) {
+static void argValue(const v8::FunctionCallbackInfo<Value> &info, int index, uint8_t* slot) {
     *slot = info[index]->Uint32Value();
 }
-static void argValue(const FunctionCallbackInfo<Value> &info, int index, int32_t* slot) {
+static void argValue(const v8::FunctionCallbackInfo<Value> &info, int index, int32_t* slot) {
     *slot = info[index]->Int32Value();
 }
-static void argValue(const FunctionCallbackInfo<Value> &info, int index, int16_t* slot) {
+static void argValue(const v8::FunctionCallbackInfo<Value> &info, int index, int16_t* slot) {
     *slot = info[index]->Int32Value();
 }
-static void argValue(const FunctionCallbackInfo<Value> &info, int index, uint16_t* slot) {
+static void argValue(const v8::FunctionCallbackInfo<Value> &info, int index, uint16_t* slot) {
     *slot = info[index]->Uint32Value();
 }
 
@@ -36,7 +36,7 @@ static void argValue(const FunctionCallbackInfo<Value> &info, int index, uint16_
  * create a data structor for init the object
  */
 template <typename T>
-static void flatVector(const FunctionCallbackInfo<Value> &info, T* values, int length) {
+static void flatVector(const v8::FunctionCallbackInfo<Value> &info, T* values, int length) {
     int copyed = 0;
 
     int alen = info.Length();
@@ -90,7 +90,7 @@ static void flatVector(const FunctionCallbackInfo<Value> &info, T* values, int l
  *
  * @param eUnit sizeof field
  */
-static void _valueFn(const FunctionCallbackInfo<Value>& args, int eUnit, char* mPtr, int eSize) {
+static void _valueFn(const v8::FunctionCallbackInfo<Value>& args, int eUnit, char* mPtr, int eSize) {
     while (1) {
         if(args.Length() == 0) {
             break;
@@ -125,7 +125,7 @@ static void _valueFn(const FunctionCallbackInfo<Value>& args, int eUnit, char* m
     Handle<Object> byteArray = ClassWrap<NodeBuffer>::newInstance(Integer::NewFromUnsigned(eSize * eUnit));
     NodeBuffer* bPtr = internalPtr<NodeBuffer>(byteArray);
     bPtr->_writeDatas(0, eUnit, mPtr, eSize);
-    args.GetReturnValue().Set(ClassWrap<TypedBuffer<float>>::newInstance(byteArray));
+    args.GetReturnValue().Set(ClassWrap<TypedBuffer<float> >::newInstance(byteArray));
 }
 
 template <typename T>

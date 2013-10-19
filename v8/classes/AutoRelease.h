@@ -9,7 +9,7 @@
 #ifndef __v8__AutoRelease__
 #define __v8__AutoRelease__
 
-#include <Opengl/gl3.h>
+#include "../gl_include.h"
 #include "../core/ClassBase.h"
 #include "../autorelease/ReleaseImpl.h"
 
@@ -18,9 +18,9 @@ public:
 	AutoRelease();
 	virtual ~AutoRelease();
 
-    virtual void values(const FunctionCallbackInfo<Value>& param);
+    virtual void values(const v8::FunctionCallbackInfo<Value>& param);
     virtual void doRelease();
-    virtual void init(const FunctionCallbackInfo<Value> &args);
+    virtual void init(const v8::FunctionCallbackInfo<Value> &args);
     
     static class_struct* getExportStruct();
     virtual ClassType getClassType();

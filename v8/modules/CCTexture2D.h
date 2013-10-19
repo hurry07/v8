@@ -28,7 +28,7 @@ THE SOFTWARE.
 
 #include "../global.h"
 #include <string>
-#include <Opengl/gl3.h>
+#include "../gl_include.h"
 
 NS_NODE_BEGIN
 

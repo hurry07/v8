@@ -10,8 +10,8 @@
 #define __v8__Event__
 
 #include "../core/RingBuffer.h"
-#include "JSObject.h"
-#include "ClassBase.h"
+#include "../core/JSObject.h"
+#include "../core/ClassBase.h"
 #include <v8.h>
 
 using namespace v8;
@@ -23,7 +23,7 @@ class EventAccessor : public ClassBase {
 public:
     EventAccessor();
     virtual ~EventAccessor();
-    virtual void init(const FunctionCallbackInfo<Value> &args);
+    virtual void init(const v8::FunctionCallbackInfo<Value> &args);
 
     static class_struct* getExportStruct();
     virtual ClassType getClassType();

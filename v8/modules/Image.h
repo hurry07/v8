@@ -9,7 +9,7 @@
 #ifndef __v8__Image__
 #define __v8__Image__
 
-#include <Opengl/gl3.h>
+#include "../gl_include.h"
 #include "../core/ClassBase.h"
 #include "CCImage.h"
 #include "CCTexture2D.h"

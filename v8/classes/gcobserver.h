@@ -16,7 +16,7 @@ class GcObserver : public ClassBase {
 public:
     GcObserver();
     virtual ~GcObserver();
-    virtual void init(const FunctionCallbackInfo<Value> &args);
+    virtual void init(const v8::FunctionCallbackInfo<Value> &args);
 
     static class_struct* getExportStruct();
     virtual ClassType getClassType();

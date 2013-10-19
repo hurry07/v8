@@ -22,7 +22,7 @@ namespace typedbuffer {
     NodeBuffer* createArrayBuffer(Local<Object>& thiz, long length);
 
     template <typename T>
-    static void subarray(const FunctionCallbackInfo<Value> &info);
+    static void subarray(const v8::FunctionCallbackInfo<Value> &info);
 
     template <typename T>
     static v8::Local<v8::Function> initTypedArrayClass(v8::Handle<v8::FunctionTemplate>& temp);
@@ -38,11 +38,11 @@ namespace typedbuffer {
     /**
      * init TypedBuffer with array/TypedArray data
      */
-    void set(const FunctionCallbackInfo<Value> &info);
-    void get(const FunctionCallbackInfo<Value> &info);
+    void set(const v8::FunctionCallbackInfo<Value> &info);
+    void get(const v8::FunctionCallbackInfo<Value> &info);
     
     template <typename T>
-    static void subarray(const FunctionCallbackInfo<Value> &info);
+    static void subarray(const v8::FunctionCallbackInfo<Value> &info);
 }
 
 template <typename T>
@@ -65,7 +65,7 @@ public:
     virtual ClassType getClassType();
     static class_struct* getExportStruct();
 
-    virtual void init(const FunctionCallbackInfo<Value> &args);
+    virtual void init(const v8::FunctionCallbackInfo<Value> &args);
     virtual void initWithArray(Handle<Array>& array, int offset);
     virtual void toArray(Handle<Array>& array, int offset);
 
@@ -113,7 +113,7 @@ void TypedBuffer<T>::toArray(Handle<Array>& array, int offset) {
 }
 
 template <typename T>
-void TypedBuffer<T>::init(const FunctionCallbackInfo<Value> &args) {
+void TypedBuffer<T>::init(const v8::FunctionCallbackInfo<Value> &args) {
     if(args.Length() == 0 || !args.IsConstructCall()) {
         return;
     }
@@ -237,7 +237,7 @@ TYPED_ATTAY_DEFINE(double, 8, Float64Array);
 
 // ============== implementation
 template <typename T>
-void typedbuffer::subarray(const FunctionCallbackInfo<Value> &info) {
+void typedbuffer::subarray(const v8::FunctionCallbackInfo<Value> &info) {
     HandleScope scope;
     if(info.Length() == 0) {
         ThrowException(String::New("TypeBuffer splice illigal argument number:0"));
@@ -279,7 +279,7 @@ void typedbuffer::subarray(const FunctionCallbackInfo<Value> &info) {
     params[1] = Integer::New(thizPtr->byteOffset(begin));
     params[2] = Integer::New(end - begin);
 
-    Handle<Object> obj = ClassWrap<TypedBuffer<T>>::newInstance(3, params);
+    Handle<Object> obj = ClassWrap<TypedBuffer<T> >::newInstance(3, params);
     info.GetReturnValue().Set(obj);
 }
 
@@ -343,7 +343,7 @@ v8::Local<v8::Function> typedbuffer::initTypedArrayClass(v8::Handle<v8::Function
 /**
  * init TypedBuffer with array/TypedArray data
  */
-void typedbuffer::set(const FunctionCallbackInfo<Value> &info) {
+void typedbuffer::set(const v8::FunctionCallbackInfo<Value> &info) {
     HandleScope scope;
     if(info.Length() == 0) {
         return;
@@ -405,7 +405,7 @@ void typedbuffer::set(const FunctionCallbackInfo<Value> &info) {
 /**
  * init TypedBuffer with array/TypedArray data
  */
-void typedbuffer::get(const FunctionCallbackInfo<Value> &info) {
+void typedbuffer::get(const v8::FunctionCallbackInfo<Value> &info) {
     HandleScope scope;
     if(info.Length() == 0) {
         return;

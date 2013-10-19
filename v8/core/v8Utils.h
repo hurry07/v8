@@ -15,9 +15,9 @@
 #define EXPOSE_METHOD(obj, name, attribute) obj->Set(String::New(#name), FunctionTemplate::New(name), PropertyAttribute(attribute))
 #define EXPOSE_METHOD_NAME(obj, mname, name, attribute) obj->Set(String::New(#mname), FunctionTemplate::New(name), PropertyAttribute(attribute))
 #define EXPOSE_TEMPLATE_METHOD(obj, name, attribute) obj->Set(String::New(#name), FunctionTemplate::New(name<T>), PropertyAttribute(attribute))
-#define METHOD_BEGIN(name, param) static void name(const FunctionCallbackInfo<Value>& param)
-#define NS_METHOD_BEGIN(name, param) void name(const FunctionCallbackInfo<Value>& param)
-#define INS_METHOD_BEGIN(T, name, param) void T::name(const FunctionCallbackInfo<Value>& param)
+#define METHOD_BEGIN(name, param) static void name(const v8::FunctionCallbackInfo<Value>& param)
+#define NS_METHOD_BEGIN(name, param) void name(const v8::FunctionCallbackInfo<Value>& param)
+#define INS_METHOD_BEGIN(T, name, param) void T::name(const v8::FunctionCallbackInfo<Value>& param)
 
 #define V_2F(index) info[index]->NumberValue()
 
@@ -36,7 +36,7 @@ namespace classtype {
 
 // mast be called with a HandleScope
 template<typename T>
-static T* internalPtr(const FunctionCallbackInfo<Value>& info) {
+static T* internalPtr(const v8::FunctionCallbackInfo<Value>& info) {
     Local<Object> self = info.This();
     if(self.IsEmpty()) {
         return 0;
@@ -48,7 +48,7 @@ static T* internalPtr(const FunctionCallbackInfo<Value>& info) {
     return 0;
 }
 template<typename T>
-static T* internalPtr(const FunctionCallbackInfo<Value>& info, ClassType type) {
+static T* internalPtr(const v8::FunctionCallbackInfo<Value>& info, ClassType type) {
     Local<Object> self = info.This();
     if(self.IsEmpty()) {
         return 0;
@@ -203,20 +203,22 @@ static void populateValues(T* dest, char* source, ClassType type, int length) {
 }
 
 #define JS_WRAP_UNWRAP(T, getter, setter) \
-template<> T classtype::unwrap<T>(Local<Value> arg) {\
-return arg->getter();\
+template<> T unwrap<T>(Local<Value> arg) {\
+    return arg->getter();\
 }\
-template<> Local<Value> classtype::wrap<T>(T t) {\
-return setter(t);\
+template<> Local<Value> wrap<T>(T t) {\
+    return setter(t);\
 }
 
-JS_WRAP_UNWRAP(int8_t, Int32Value, Integer::New)
-JS_WRAP_UNWRAP(uint8_t, Uint32Value, Integer::NewFromUnsigned)
-JS_WRAP_UNWRAP(int16_t, Int32Value, Integer::New)
-JS_WRAP_UNWRAP(uint16_t, Uint32Value, Integer::NewFromUnsigned)
-JS_WRAP_UNWRAP(int32_t, Int32Value, Integer::New)
-JS_WRAP_UNWRAP(uint32_t, Uint32Value, Integer::NewFromUnsigned)
-JS_WRAP_UNWRAP(float, NumberValue, Number::New)
-JS_WRAP_UNWRAP(double, NumberValue, Number::New)
+namespace classtype {
+	JS_WRAP_UNWRAP(int8_t, Int32Value, Integer::New)
+	JS_WRAP_UNWRAP(uint8_t, Uint32Value, Integer::NewFromUnsigned)
+	JS_WRAP_UNWRAP(int16_t, Int32Value, Integer::New)
+	JS_WRAP_UNWRAP(uint16_t, Uint32Value, Integer::NewFromUnsigned)
+	JS_WRAP_UNWRAP(int32_t, Int32Value, Integer::New)
+	JS_WRAP_UNWRAP(uint32_t, Uint32Value, Integer::NewFromUnsigned)
+	JS_WRAP_UNWRAP(float, NumberValue, Number::New)
+	JS_WRAP_UNWRAP(double, NumberValue, Number::New)
+}
 
 #endif
