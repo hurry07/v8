@@ -15,7 +15,7 @@ function atlasImplement() {
     return Atlas;
 }
 function fontImplement() {
-    function Font(file) {
+    function Font(mAtlas, font, size) {
     }
 
     Font.prototype.release = function () {
