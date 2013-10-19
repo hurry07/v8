@@ -43,6 +43,17 @@ Context::Scope context_scope(context)
 #define SAFE_DELETE(p) if(p!=NULL){delete p;}
 #define SAFE_DISPOSE(p) p.Dispose()
 
+void ReportMessage(v8::Handle<v8::Message> message, v8::Handle<v8::Value> data) {
+    v8::String::Utf8Value filename(message->GetScriptResourceName());
+    int lineno = message->GetLineNumber();
+    v8::String::Utf8Value sourceline(message->GetSourceLine());
+
+    char s[512];
+    int len = sprintf(s, "file:%s, line:%d->%s", *filename, lineno, *sourceline);
+    std::string exp(s, len);
+    LOGI("Exception %s", exp.c_str());
+}
+
 Application::Application() {
 //    const char typed_arrays_flag[] = "--harmony_typed_arrays";
 //    V8::SetFlagsFromString(typed_arrays_flag, sizeof(typed_arrays_flag) - 1);
@@ -50,6 +61,7 @@ Application::Application() {
     
     mWidth = 0;
     mHeight = 0;
+    v8::V8::AddMessageListener(ReportMessage);
 
 	node_isolate = Isolate::New();
 	ENTER_ISOLATE;

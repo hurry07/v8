@@ -253,7 +253,9 @@ GameArea.prototype.createEventNode = function () {
 GameArea.prototype.onTouch = function (x, y) {
     var xindex = Math.floor(x / this.mUnit);
     var yindex = this.mRows - Math.floor(y / this.mUnit) - 1;
-    this.updateCell(xindex, yindex);
+    if(this.totalCount(this.mGroups) == this.mMaxCells) {
+        this.updateCell(xindex, yindex);
+    }
 };
 /**
  * the cell has changed

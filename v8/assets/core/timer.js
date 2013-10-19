@@ -18,4 +18,19 @@ Timer.prototype.getTime = function() {
     return this.lasttime;
 }
 
+function TickTack() {
+	this.start = new Date().getTime();
+}
+TickTack.prototype.check = function(msg) {
+	var time = new Date().getTime();
+	var pass = time - this.start;
+	this.start = time;
+	if(msg) {
+		console.log(msg + ':' + (pass / 1000));
+	} else {
+		console.log(pass / 1000);
+	}
+}
+
+Timer.TickTack = TickTack;
 module.exports = Timer;

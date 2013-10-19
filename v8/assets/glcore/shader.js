@@ -4,11 +4,12 @@ var _autorelease = require('core/autorelease.js');
 
 function checkShader(shader, id) {
     var compiled = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
+	//console.log('checkShader 02', compiled);
     if (!compiled) {
-        console.log('compile shader error:' + id);
         var log = gl.getShaderInfoLog(shader);
         gl.deleteShader(shader);
-        throw('Error compiling shader:' + log);
+        var exp = 'Error compiling shader:' + id + ':' + log;
+        throw exp;
     }
 }
 function shader(id, shaderSource, shaderType) {

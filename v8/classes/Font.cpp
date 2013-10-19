@@ -315,6 +315,7 @@ void Font::init(const FunctionCallbackInfo<Value> &args) {
     TextureAtlas* atlas = internalArg<TextureAtlas>(args[0], CLASS_Atlas);
     String::Utf8Value path(args[1]->ToString());
     float depth = args[2]->NumberValue();
+//    args[2]->BooleanValue();
 
     JSFile* file = JSFile::loadAsset(*path);
     font = texture_font_new_fn(atlas->atlas, *path, depth, load_font_assets_from_file);
