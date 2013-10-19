@@ -20,7 +20,6 @@
 #include <glm/gtc/swizzle.hpp>
 #include <ft2build.h>
 #include FT_FREETYPE_H
-#include "md5.h"
 #include <iostream>
 #include "demo-font.h"
 #include "demo-texture.h"

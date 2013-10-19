@@ -10,7 +10,7 @@
 #define __v8__TextureAtlas__
 
 #include "../core/ClassBase.h"
-#include <freetype-gl.h>
+#include "freetype-gl.h"
 
 class TextureAtlas : public ClassBase {
 public:
