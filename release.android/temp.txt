@@ -1,0 +1,21 @@
+fn##_CLASS_NAME(Mat2<int32_t>, mat2i);\
+fn##_CLASS_NAME(Mat3<int32_t>, mat3i);\
+fn##_CLASS_NAME(Mat4<int32_t>, mat4i);\
+\
+fn##_CLASS_NAME(Mat2<uint8_t>, mat2b);\
+fn##_CLASS_NAME(Mat3<uint8_t>, mat3b);\
+fn##_CLASS_NAME(Mat4<uint8_t>, mat4b);\
+\
+fn##_CLASS_NAME(Mat2<float>, mat2f);\
+fn##_CLASS_NAME(Mat3<float>, mat3f);\
+fn##_CLASS_NAME(Mat4<float>, mat4f);\
+\
+fn##_CLASS_NAME(Mat4<float>, matrix);\
+fn##_CLASS_NAME(Mat4<float>, matrix4);\
+fn##_CLASS_NAME(Mat3<float>, matrix3);\
+fn##_CLASS_NAME(Mat2<float>, matrix2);\
+\
+fn##_CLASS_NAME(Vec3<float>, vector);\
+fn##_CLASS_NAME(Vec4<float>, vector4);\
+fn##_CLASS_NAME(Vec3<float>, vector3);\
+fn##_CLASS_NAME(Vec2<float>, vector2);\
