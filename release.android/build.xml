@@ -10,6 +10,7 @@
 	<property name="NDK_MODULE_PATH" value="${ndk_root}:${projectdir}/dependence" />
 
 	<target name="prepare" if="rawbuild">
+		<mkdir dir="${projectdir}/assets" />
 		<delete>
 			<fileset dir="${projectdir}/assets" />
 		</delete>

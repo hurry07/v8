@@ -45,3 +45,11 @@ adb logcat | /Users/jie/android-ndk-r8b/ndk-stack -sym /Users/jie/svn/opengl_and
 
 javah -classpath classes:/Users/jie/svn/opengl_android/android.jar com.op.activity.JSSurfaceView
 javah -classpath classes:/Users/jie/android-sdks/platforms/android-16/android.jar com.op.activity.JSSurfaceView
+
+libv8_nosnapshot.x64.a
+libv8_base.x64.a
+libv8_snapshot.a
+
+release.android/objs
+release.android/assets
+release.android/jni
