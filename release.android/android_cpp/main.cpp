@@ -27,13 +27,26 @@ JNIEXPORT void JNICALL Java_com_op_activity_JSActivity_initWithAsset
 
 JNIEXPORT void JNICALL Java_com_op_activity_JSActivity_jsCreate
 (JNIEnv * env, jclass activityClass) {
-    app = new Application();
     LOGI("Java_com_op_activity_JSActivity_jsCreate");
+    app = new Application();
+    app->init();
+    app->destroy();
+    delete app;
+    app = 0;
+
+    app = new Application();
+    app->init();
+    app->destroy();
+    delete app;
+    app = 0;
 }
 
 JNIEXPORT void JNICALL Java_com_op_activity_JSActivity_jsDestory
 (JNIEnv * env, jclass activityClass) {
+    LOGI("Java_com_op_activity_JSActivity_jsDestory");
     app->destroy();
+    delete app;
+    app = 0;
 }
 
 JNIEXPORT void JNICALL Java_com_op_activity_JSActivity_evalScript

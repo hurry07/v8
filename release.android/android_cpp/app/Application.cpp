@@ -71,20 +71,25 @@ void ReportMessage(v8::Handle<v8::Message> message, v8::Handle<v8::Value> data) 
 Application::Application() {
     mWidth = 0;
     mHeight = 0;
+	LOGI("Application::Application %p", node_isolate);
 
     //v8::V8::AddMessageListener(ReportMessage);
 	node_isolate = Isolate::New();
 	ENTER_ISOLATE;
+	LOGI("Application::Application 00 %p", node_isolate);
 
 	game = 0;
 	render = 0;
     touchEvent = 0;
     keyEvent = 0;
+	LOGI("Application::Application 01 %p", node_isolate);
 
 	HANDLE_SCOPE;
 	context_p.Reset(node_isolate, Context::New(node_isolate));
+	LOGI("Application::Application 02 %p", node_isolate);
 }
 Application::~Application() {
+	LOGI("Application::~Application 01");
 	{
 		ENTER_ISOLATE;
 
@@ -96,7 +101,10 @@ Application::~Application() {
 		SAFE_DELETE(touchEvent);
 		SAFE_DELETE(keyEvent);
 	}
+	LOGI("Application::~Application 02 %p", node_isolate);
 	node_isolate->Dispose();
+	node_isolate = 0;
+	LOGI("Application::~Application 03 %p", node_isolate);
 }
 Local<Context> Application::GetV8Context() {
 	return Local<Context>::New(node_isolate, context_p);
@@ -205,34 +213,40 @@ Handle<Object> Application::SetupProcessObject() {
 
 void Application::init() {
 	{
-		LOGI("Application.init");
+		LOGI("Application::init 01");
 		ENTER_ISOLATE;
 		HANDLE_SCOPE;
 		CONTEXT_SCOPE;
+		LOGI("Application::init 02");
 
         // binding test func
 		context->Global()->Set(String::New("print"), FunctionTemplate::New(printf__)->GetFunction());
 		Handle<Object> process = SetupProcessObject();
 		process_p.Reset(node_isolate, process);
+		LOGI("Application::init 03");
 
 		// init with node.js
 		Local<Script> initscript = loadScript("node.js");
 		Local<Value> f_value = initscript->Run();
 		Local<Function> f = Local<Function>::Cast(f_value);
+		LOGI("Application::init 04");
 
 		// init global
 		Handle<Value> arg = process;
 		f->Call(context->Global(), 1, &arg);
+		LOGI("Application::init 05");
 
         // bind event
         Handle<Object> eventExports = eval("require('core/event.js')")->ToObject();
         touchEvent = new TouchEvent(eventExports->Get(String::New("touchEvent"))->ToObject());
         keyEvent = new TouchEvent(eventExports->Get(String::New("keyEvent"))->ToObject());
+		LOGI("Application::init 06");
 
 		// load game module
 		Handle<Value> gameExports = eval("require('game.js')");
 		game = new JSObject(gameExports->ToObject());
 		render = new JSObject(game->getAttribute<Object>("render"));
+		LOGI("Application::init 07");
     }
 }
 // ==========================
@@ -252,15 +266,19 @@ void Application::appendKeyPress(unsigned char key, int x, int y) {
 // Life Cycle
 // ==========================
 void Application::destroy() {
+	LOGI("Application::destroy 01");
 	{
 		ENTER_ISOLATE;
 		EXIT_ISOLATE;
 	}
+	LOGI("Application::destroy 02");
 
 	ENTER_ISOLATE;
 	HANDLE_SCOPE;
 	CONTEXT_SCOPE;
+	LOGI("Application::destroy 03");
 	while (!v8::V8::IdleNotification());
+	LOGI("Application::destroy 04");
 }
 void Application::pause() {
 	ENTER_ISOLATE;
