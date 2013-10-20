@@ -20,7 +20,7 @@
 #include "ArrayBufferAllocator.h"
 
 #include <string>
-#include <OpenGL/gl.h>
+#include "../gl_include.h"
 
 #include <glm/gtc/type_ptr.hpp>
 
