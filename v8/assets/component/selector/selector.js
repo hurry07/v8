@@ -11,23 +11,23 @@ function Selector() {
 }
 Selector.prototype.match = function (cssnode) {
     return false;
-}
+};
 /**
  * next element is exactly after current element
  * @returns {boolean}
  */
 Selector.prototype.isTight = function () {
     return false;
-}
+};
 Selector.prototype.getNodeOffset = function () {
     return this.group.width - this.position;
-}
+};
 Selector.prototype.getSelectorOffset = function () {
     return this.group.end - this.index - 1;
-}
+};
 Selector.prototype.getStride = function () {
     return 1;
-}
+};
 
 // ==========================
 // TypeSelector * | div | image
@@ -42,10 +42,10 @@ function TypeSelector(type) {
 _inherit(TypeSelector, Selector);
 TypeSelector.prototype.match = function (cssnode) {
     return this.any || cssnode.node.mTag == this.type;
-}
+};
 TypeSelector.prototype.toString = function () {
     return '{type:' + this.type + '}';
-}
+};
 
 // ==========================
 // PseudoSelector :focus
@@ -58,16 +58,16 @@ function PseudoSelector(selector, pseudo) {
 _inherit(PseudoSelector, Selector);
 PseudoSelector.prototype.setPseudo = function (pseudo) {
     this.pseudo = pseudo;
-}
+};
 PseudoSelector.prototype.matchProp = function () {
     return true;
-}
+};
 PseudoSelector.prototype.match = function (node) {
     return this.selector.match(node) && this.matchProp(node);
-}
+};
 PseudoSelector.prototype.toString = function () {
     return this.selector + ':' + this.pseudo;
-}
+};
 
 // ==========================
 // AttributeSelector []
@@ -80,20 +80,20 @@ function AttributeSelector(selector) {
 _inherit(AttributeSelector, Selector);
 AttributeSelector.prototype.matchProp = function () {
     return true;
-}
+};
 AttributeSelector.prototype.addAttribute = function (attr) {
     this.attrs.push(attr);
-}
+};
 AttributeSelector.prototype.match = function (node) {
     return this.selector.match(node) && this.matchProp(node);
-}
+};
 AttributeSelector.prototype.toString = function () {
     var str = this.selector.toString();
     for (var i = -1, attrs = this.attrs, l = attrs.length; ++i < l;) {
         str += '[' + attrs[i] + ']';
     }
     return str;
-}
+};
 
 // ==========================
 // Adjacentselectors E + F
@@ -105,20 +105,20 @@ function Adjacentselectors(selector) {
 _inherit(Adjacentselectors, Selector);
 Adjacentselectors.prototype.matchProp = function () {
     return true;
-}
+};
 Adjacentselectors.prototype.match = function (cssnode) {
     var previous = cssnode.previousSibling();
     return previous && this.selector.match(previous);
-}
+};
 Adjacentselectors.prototype.toString = function () {
     return this.selector + '+';
-}
+};
 Adjacentselectors.prototype.isTight = function () {
     return true;
-}
+};
 Adjacentselectors.prototype.getStride = function () {
     return 0;
-}
+};
 
 // ==========================
 // ChildSelector E > F
@@ -130,13 +130,13 @@ function ChildSelector(selector) {
 _inherit(ChildSelector, Selector);
 ChildSelector.prototype.match = function (cssnode) {
     return this.selector.match(cssnode);
-}
+};
 ChildSelector.prototype.toString = function () {
     return this.selector + '>';
-}
+};
 ChildSelector.prototype.isTight = function () {
     return true;
-}
+};
 
 // ==========================
 // ClassSelector .
@@ -149,13 +149,13 @@ function ClassSelector(selector, pclass) {
 _inherit(ClassSelector, Selector);
 ClassSelector.prototype.setClass = function (clz) {
     this.mClass = clz;
-}
+};
 ClassSelector.prototype.match = function (cssnode) {
     return cssnode.node.hasClass(this.mClass) && this.selector.match(cssnode);
-}
+};
 ClassSelector.prototype.toString = function () {
     return this.selector + '.' + this.mClass;
-}
+};
 
 // ==========================
 // IdSelector #
@@ -168,13 +168,13 @@ function IdSelector(selector, id) {
 _inherit(IdSelector, Selector);
 IdSelector.prototype.setId = function (id) {
     this.id = id;
-}
+};
 IdSelector.prototype.match = function (cssnode) {
     return cssnode.node.getId() == this.id && this.selector.match(cssnode);
-}
+};
 IdSelector.prototype.toString = function () {
     return this.selector + '#' + this.id;
-}
+};
 
 // ==========================
 // GroupSelector

@@ -89,18 +89,18 @@ class JSSurfaceView extends GLSurfaceView {
             @Override
             public void onSurfaceCreated(GL10 gl, EGLConfig config) {
                 System.out.println("JSSurfaceView.onSurfaceCreated():" + Thread.currentThread());
-//                render.onSurfaceCreated(gl, config);
+                render.onSurfaceCreated(gl, config);
             }
 
             @Override
             public void onSurfaceChanged(GL10 gl, int width, int height) {
                 System.out.println("JSSurfaceView.onSurfaceChanged():" + Thread.currentThread());
-//                render.onSurfaceChanged(gl, width, height);
+                render.onSurfaceChanged(gl, width, height);
             }
 
             @Override
             public void onDrawFrame(GL10 gl) {
-//                render.onDrawFrame(gl);
+                render.onDrawFrame(gl);
             }
         });
     }

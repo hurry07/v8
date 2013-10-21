@@ -29,16 +29,6 @@ JNIEXPORT void JNICALL Java_com_op_activity_JSActivity_jsCreate
 (JNIEnv * env, jclass activityClass) {
     LOGI("Java_com_op_activity_JSActivity_jsCreate");
     app = new Application();
-    app->init();
-    app->destroy();
-    delete app;
-    app = 0;
-
-    app = new Application();
-    app->init();
-    app->destroy();
-    delete app;
-    app = 0;
 }
 
 JNIEXPORT void JNICALL Java_com_op_activity_JSActivity_jsDestory
@@ -58,15 +48,12 @@ JNIEXPORT void JNICALL Java_com_op_activity_JSActivity_evalScript
 // ==========================
 JNIEXPORT void JNICALL Java_com_op_activity_JSSurfaceView_jsPause
   (JNIEnv *, jclass) {
-	LOGI("view.pause");
 	app->pause();
 }
 
 JNIEXPORT void JNICALL Java_com_op_activity_JSSurfaceView_jsResume
   (JNIEnv *, jclass) {
-	LOGI("JSSurfaceView.resume 01 %p", app);
 	app->resume();
-	LOGI("JSSurfaceView.resume 02 %p", app);
 }
 
 // ==========================
@@ -109,6 +96,5 @@ JNIEXPORT void JNICALL Java_com_op_activity_JSRender_onDrawFrame
 
 JNIEXPORT void JNICALL Java_com_op_activity_JSRender_onSurfaceChanged
   (JNIEnv * env, jobject instance, jobject, jint width, jint height) {
-	LOGI("render width:%d height:%d", width, height);
 	app->onSurfaceChanged(width, height);
 }

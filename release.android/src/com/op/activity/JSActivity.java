@@ -44,36 +44,14 @@ public class JSActivity extends Activity {
     private GLSurfaceView mView;
 
     public GLSurfaceView onCreateView() {
-        // FrameLayout
         ViewGroup.LayoutParams framelayout_params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         FrameLayout framelayout = new FrameLayout(this);
         framelayout.setLayoutParams(framelayout_params);
 
-        //        JSSurfaceView gLSurfaceView = new JSSurfaceView(this);
-        //        framelayout.addView(gLSurfaceView);
-        GLSurfaceView view = new GLSurfaceView(this);
-        final JSRender render = new JSRender();
-        view.setRenderer(new Renderer() {
-
-            @Override
-            public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-                render.onSurfaceCreated(gl, config);
-            }
-
-            @Override
-            public void onSurfaceChanged(GL10 gl, int width, int height) {
-                render.onSurfaceChanged(gl, width, height);
-            }
-
-            @Override
-            public void onDrawFrame(GL10 gl) {
-                render.onDrawFrame(gl);
-            }
-        });
+        GLSurfaceView view = new JSSurfaceView(this);
         framelayout.addView(view);
 
         setContentView(framelayout);
-        //        return gLSurfaceView;
         return view;
     }
 
@@ -94,26 +72,26 @@ public class JSActivity extends Activity {
         }
 
         jsCreate();
-//        mView = onCreateView();
+        mView = onCreateView();
     }
 
     @Override
     protected void onDestroy() {
-//        jsDestory();
         super.onDestroy();
-//        System.out.println("JSActivity.onDestroy=============()");
+        jsDestory();
+        System.out.println("JSActivity.onDestroy=============()");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-//        mView.onPause();
+        mView.onPause();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-//        mView.onResume();
+        mView.onResume();
     }
 
     /**

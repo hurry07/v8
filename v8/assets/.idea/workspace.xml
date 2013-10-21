@@ -4,7 +4,7 @@
     <list default="true" id="aebd450b-013e-48d3-84f9-8907800b9190" name="Default" comment="" />
     <ignored path="assets.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/a.dummy" changelist="aebd450b-013e-48d3-84f9-8907800b9190" time="1382262149420" ignored="false" />
+    <file path="/a.dummy" changelist="aebd450b-013e-48d3-84f9-8907800b9190" time="1382333837268" ignored="false" />
     <file path="/game.js" changelist="aebd450b-013e-48d3-84f9-8907800b9190" time="1382262116993" ignored="false" />
     <file path="/glwrap.js" changelist="aebd450b-013e-48d3-84f9-8907800b9190" time="1382261670530" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,7 +29,43 @@
       <file leaf-file-name="game.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="24" selection-start="61" selection-end="61" vertical-scroll-proportion="0.01655629">
+            <state line="55" column="38" selection-start="1680" selection-end="1680" vertical-scroll-proportion="0.6357616">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="autorelease.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/autorelease.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="91" selection-start="307" selection-end="307" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="global.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/framework/global.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="197" column="25" selection-start="6014" selection-end="6022" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="game.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scenes/game.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="32" column="57" selection-start="1271" selection-end="1271" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="selector.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/component/selector/selector.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="29" column="1" selection-start="707" selection-end="707" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -82,6 +118,7 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/tools/glwrap.js" />
+        <option value="$PROJECT_DIR$/component/selector/selector.js" />
         <option value="$PROJECT_DIR$/game.js" />
       </list>
     </option>
@@ -114,7 +151,7 @@
       <hideEmptyPackages />
       <abbreviatePackageNames />
       <autoscrollToSource />
-      <autoscrollFromSource />
+      <autoscrollFromSource ProjectPane="true" />
       <sortByType />
     </navigator>
     <panes>
@@ -147,6 +184,66 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="tools" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="framework" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="component" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="component" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="selector" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -295,9 +392,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scenes/game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="57" selection-start="1271" selection-end="1271" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/component/selector/selector.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="1" selection-start="707" selection-end="707" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/autorelease.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="91" selection-start="307" selection-end="307" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/global.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="197" column="25" selection-start="6014" selection-end="6022" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="24" selection-start="61" selection-end="61" vertical-scroll-proportion="0.01655629">
+        <state line="55" column="38" selection-start="1680" selection-end="1680" vertical-scroll-proportion="0.6357616">
           <folding />
         </state>
       </provider>

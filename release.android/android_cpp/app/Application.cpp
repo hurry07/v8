@@ -184,21 +184,21 @@ void Application::Binding(const v8::FunctionCallbackInfo<Value>& args) {
 	node::node_module_struct* modp;
 
 	Handle<Function> func;
-	LOGI("=============>>> Binding %s", *module_v);
+	//LOGI("=============>>> Binding %s", *module_v);
 	if ((modp = get_builtin_module(*module_v)) != NULL) { // c++ 实现的模块
-		LOGI("==>01");
+		//LOGI("==>01");
 		func = FunctionTemplate::New(modp->register_func)->GetFunction();
 	} else {
-		LOGI("==>02");
+		//LOGI("==>02");
 		func = loadModuleFn(*module_v);
 		spritecount++;
 	}
-	LOGI("=============<<< %s", *module_v);
+	//LOGI("=============<<< %s", *module_v);
 	args.GetReturnValue().Set(func);
 }
 Local<Script> Application::loadScript(const char* path) {
 	HANDLE_SCOPE;
-    
+
 	v8::Handle<v8::String> source = ReadFile(path);
 	return scope.Close(Script::Compile(source));
 }
@@ -272,35 +272,33 @@ void Application::appendKeyPress(unsigned char key, int x, int y) {
 // Life Cycle
 // ==========================
 void Application::destroy() {
-	LOGI("Application::destroy 01");
 	{
 		ENTER_ISOLATE;
 		EXIT_ISOLATE;
 	}
-	LOGI("Application::destroy 02");
 
 	ENTER_ISOLATE;
 	HANDLE_SCOPE;
 	CONTEXT_SCOPE;
-	LOGI("Application::destroy 03");
+
+	game->callFunction("destory");
 	while (!v8::V8::IdleNotification());
-	LOGI("Application::destroy 04");
 }
 void Application::pause() {
 	ENTER_ISOLATE;
 	HANDLE_SCOPE;
 	CONTEXT_SCOPE;
 
-	LOGI("pause");
 	game->callFunction("pause");
+	LOGI("Application.pause");
 }
 void Application::resume() {
 	ENTER_ISOLATE;
 	HANDLE_SCOPE;
 	CONTEXT_SCOPE;
 
-	LOGI("Application.resume");
 	game->callFunction("resume");
+	LOGI("Application.resume");
 }
 void Application::gc() {
 	ENTER_ISOLATE;
@@ -341,8 +339,8 @@ void Application::onSurfaceCreated(int width, int height) {
     Handle<Value> argv[2];
     argv[0] = Number::New(width);
     argv[1] = Number::New(height);
-	LOGI("onSurfaceCreated");
 	render->callFunction("onSurfaceCreated", 2, argv);
+	LOGI("Application::onSurfaceCreated");
 }
 void Application::onSurfaceChanged(int width, int height) {
     mWidth = width;
@@ -355,15 +353,15 @@ void Application::onSurfaceChanged(int width, int height) {
 	Handle<Value> argv[2];
 	argv[0] = Number::New(width);
 	argv[1] = Number::New(height);
-	LOGI("onSurfaceChanged");
 	render->callFunction("onSurfaceChanged",2, argv);
+	LOGI("Application::onSurfaceChanged");
 }
 void Application::onDrawFrame() {
 	ENTER_ISOLATE;
 	HANDLE_SCOPE;
 	CONTEXT_SCOPE;
 
-	//LOGI("onDrawFrame");
 	static const char* name = "onDrawFrame";
 	render->callFunction(name);
+	//LOGI("onDrawFrame");
 }
