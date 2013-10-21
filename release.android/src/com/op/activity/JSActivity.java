@@ -47,7 +47,6 @@ public class JSActivity extends Activity {
         return info.reqGlEsVersion >= 0x20000;
     }
 
-    @SuppressLint("NewApi")
     public GLSurfaceView onCreateView() {
         ViewGroup.LayoutParams framelayout_params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         FrameLayout framelayout = new FrameLayout(this);
@@ -57,9 +56,6 @@ public class JSActivity extends Activity {
         //GLSurfaceView view = new GLSurfaceView(this);
         //view.setRenderer(new JSRender());
         framelayout.addView(view);
-//        if (Build.VERSION.SDK_INT >= 11) {
-//            view.setPreserveEGLContextOnPause(true);
-//        }
 
         setContentView(framelayout);
         return view;

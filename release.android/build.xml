@@ -37,7 +37,7 @@
 		<exec executable="${ndk_root}/ndk-build">
 			<arg line="-C ${projectdir}" />
 			<arg line="NDK_MODULE_PATH=${NDK_MODULE_PATH}" />
-			<arg line="NDK_DEBUG=1" />
+			<arg line="NDK_DEBUG=0" />
 			<arg line="V=1" />
 			<arg line="NDK_LOG=1" />
 			<arg line="STRIP=" />

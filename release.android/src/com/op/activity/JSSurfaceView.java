@@ -91,25 +91,7 @@ class JSSurfaceView extends GLSurfaceView {
 
     private void initRender() {
         final JSRender render = new JSRender();
-        setRenderer(new Renderer() {
-
-            @Override
-            public void onSurfaceCreated(GL10 gl, EGLConfig config) {
-                System.out.println("JSSurfaceView.onSurfaceCreated():" + Thread.currentThread());
-                render.onSurfaceCreated(gl, config);
-            }
-
-            @Override
-            public void onSurfaceChanged(GL10 gl, int width, int height) {
-                System.out.println("JSSurfaceView.onSurfaceChanged():" + Thread.currentThread());
-                render.onSurfaceChanged(gl, width, height);
-            }
-
-            @Override
-            public void onDrawFrame(GL10 gl) {
-                render.onDrawFrame(gl);
-            }
-        });
+        setRenderer(render);
     }
 
     @Override
@@ -126,28 +108,28 @@ class JSSurfaceView extends GLSurfaceView {
 
     private void init(boolean translucent, int depth, int stencil) {
         this.setFocusableInTouchMode(true);
-        //        /*
-        //         * By default, GLSurfaceView() creates a RGB_565 opaque surface. If we
-        //         * want a translucent one, we should change the surface's format here,
-        //         * using PixelFormat.TRANSLUCENT for GL Surfaces is interpreted as any
-        //         * 32-bit surface with alpha by SurfaceFlinger.
-        //         */
-        //        if (translucent) {
-        //            this.getHolder().setFormat(PixelFormat.TRANSLUCENT);
-        //        }
-        //
-        //        /*
-        //         * Setup the context factory for 2.0 rendering. See ContextFactory class
-        //         * definition below
-        //         */
-        //        setEGLContextFactory(new ContextFactory());
-        //
-        //        /*
-        //         * We need to choose an EGLConfig that matches the format of our surface
-        //         * exactly. This is going to be done in our custom config chooser. See
-        //         * ConfigChooser class definition below.
-        //         */
-        //        setEGLConfigChooser(translucent ? new ConfigChooser(8, 8, 8, 8, depth, stencil) : new ConfigChooser(5, 6, 5, 0, depth, stencil));
+//        /*
+//         * By default, GLSurfaceView() creates a RGB_565 opaque surface. If we
+//         * want a translucent one, we should change the surface's format here,
+//         * using PixelFormat.TRANSLUCENT for GL Surfaces is interpreted as any
+//         * 32-bit surface with alpha by SurfaceFlinger.
+//         */
+//        if (translucent) {
+//            this.getHolder().setFormat(PixelFormat.TRANSLUCENT);
+//        }
+//
+//        /*
+//         * Setup the context factory for 2.0 rendering. See ContextFactory class
+//         * definition below
+//         */
+//        setEGLContextFactory(new ContextFactory());
+//
+//        /*
+//         * We need to choose an EGLConfig that matches the format of our surface
+//         * exactly. This is going to be done in our custom config chooser. See
+//         * ConfigChooser class definition below.
+//         */
+//        setEGLConfigChooser(translucent ? new ConfigChooser(8, 8, 8, 8, depth, stencil) : new ConfigChooser(5, 6, 5, 0, depth, stencil));
         initRender();
     }
 
