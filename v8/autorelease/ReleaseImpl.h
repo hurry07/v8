@@ -25,6 +25,7 @@ public:
     static ReleaseTask* createTaskEnum(ReleaseType type);
     static ReleaseTask* createTask(int type);
     static bool debug;
+    static bool glAvaiable;
 
     ReleaseTask();
     virtual ~ReleaseTask();

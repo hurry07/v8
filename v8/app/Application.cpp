@@ -17,7 +17,8 @@
 #include "../utils/AssetUtil.h"
 #include "../global.h"
 
-#include "ArrayBufferAllocator.h"
+//#include "ArrayBufferAllocator.h"
+#include "../autorelease/ReleaseImpl.h"
 
 #include <string>
 #include "../gl_include.h"
@@ -220,6 +221,7 @@ void Application::init() {
     }
 }
 void Application::destroy() {
+    ReleaseTask::glAvaiable = false;
 	{
 		ENTER_ISOLATE;
 		EXIT_ISOLATE;
@@ -269,6 +271,7 @@ Handle<Value> Application::eval(const char* script) {
 	return scope.Close(comp->Run());
 }
 void Application::onSurfaceCreated(int width, int height) {
+    ReleaseTask::glAvaiable = true;
     mWidth = width;
     mHeight = height;
     

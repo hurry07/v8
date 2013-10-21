@@ -20,6 +20,7 @@
 #include <string>
 #include "../gl_include.h"
 #include <glm/gtc/type_ptr.hpp>
+#include "../autorelease/ReleaseImpl.h"
 
 using namespace node;
 bool Application::debug = false;
@@ -256,6 +257,7 @@ void Application::appendKeyPress(unsigned char key, int x, int y) {
 // Life Cycle
 // ==========================
 void Application::destroy() {
+    ReleaseTask::glAvaiable = false;
 	{
 		ENTER_ISOLATE;
 		EXIT_ISOLATE;
@@ -317,6 +319,7 @@ Handle<Value> Application::eval(const char* script) {
 	return scope.Close(comp->Run());
 }
 void Application::onSurfaceCreated(int width, int height) {
+    ReleaseTask::glAvaiable = true;
     mWidth = width;
     mHeight = height;
 

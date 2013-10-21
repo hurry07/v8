@@ -10,7 +10,8 @@
 #include "../global.h"
 
 using namespace v8;
-bool ReleaseTask::debug = false;
+bool ReleaseTask::debug = true;
+bool ReleaseTask::glAvaiable = false;
 
 ReleaseTask* ReleaseTask::createTask(int type) {
     ReleaseTask* task = 0;
@@ -60,7 +61,9 @@ void ReleaseGLBuffer::release() {
         if(ReleaseTask::debug) {
             LOGI("~ReleaseGLBuffer:%d", mBuffer);
         }
-        glDeleteBuffers(1, &mBuffer);
+        if (glAvaiable) {
+            glDeleteBuffers(1, &mBuffer);
+        }
         mBuffer = 0;
     }
 }
@@ -86,7 +89,9 @@ void ReleaseGLTexture::release() {
         if(ReleaseTask::debug) {
             LOGI("~ReleaseGLTexture:%d %s", mTexture, mUrl.c_str());
         }
-        glDeleteTextures(1, &mTexture);
+        if (glAvaiable) {
+            glDeleteTextures(1, &mTexture);
+        }
         mTexture = 0;
     }
 }
@@ -110,7 +115,9 @@ void ReleaseGLProgram::release() {
         if(ReleaseTask::debug) {
             LOGI("~ReleaseGLProgram:%d", mProgram);
         }
-        glDeleteProgram(mProgram);
+        if (glAvaiable) {
+            glDeleteProgram(mProgram);
+        }
         mProgram = 0;
     }
 }
@@ -134,7 +141,9 @@ void ReleaseGLShader::release() {
         if(ReleaseTask::debug) {
             LOGI("~ReleaseGLShader:%d", mShader);
         }
-        glDeleteShader(mShader);
+        if (glAvaiable) {
+            glDeleteShader(mShader);
+        }
         mShader = 0;
     }
 }
