@@ -18,12 +18,14 @@ namespace node {
 #define NODE_MODULE_VERSION 0x000C /* v0.12 */
     
     typedef void (*addon_register_func) (const v8::FunctionCallbackInfo<v8::Value>& args);
+    typedef void (*addon_release_func) ();
     
     struct node_module_struct {
         int version;
         void *dso_handle;
         const char *filename;
         node::addon_register_func register_func;
+        node::addon_release_func release_func;
         const char *modname;
     };
     

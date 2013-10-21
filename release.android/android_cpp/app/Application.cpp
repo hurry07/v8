@@ -100,6 +100,8 @@ Application::~Application() {
 		SAFE_DELETE(game);
 		SAFE_DELETE(touchEvent);
 		SAFE_DELETE(keyEvent);
+
+		release_buildin_module();
 	}
 	LOGI("Application::~Application 02 %p", node_isolate);
 	node_isolate->Dispose();
@@ -182,14 +184,16 @@ void Application::Binding(const v8::FunctionCallbackInfo<Value>& args) {
 	node::node_module_struct* modp;
 
 	Handle<Function> func;
-//	LOGI("=============>>> Binding %s", *module_v);
+	LOGI("=============>>> Binding %s", *module_v);
 	if ((modp = get_builtin_module(*module_v)) != NULL) { // c++ 实现的模块
+		LOGI("==>01");
 		func = FunctionTemplate::New(modp->register_func)->GetFunction();
 	} else {
+		LOGI("==>02");
 		func = loadModuleFn(*module_v);
 		spritecount++;
 	}
-//	LOGI("=============<<< %s", *module_v);
+	LOGI("=============<<< %s", *module_v);
 	args.GetReturnValue().Set(func);
 }
 Local<Script> Application::loadScript(const char* path) {
@@ -238,7 +242,9 @@ void Application::init() {
 
         // bind event
         Handle<Object> eventExports = eval("require('core/event.js')")->ToObject();
+		LOGI("Application::init 051");
         touchEvent = new TouchEvent(eventExports->Get(String::New("touchEvent"))->ToObject());
+		LOGI("Application::init 052");
         keyEvent = new TouchEvent(eventExports->Get(String::New("keyEvent"))->ToObject());
 		LOGI("Application::init 06");
 

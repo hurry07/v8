@@ -11,7 +11,9 @@
 
 #include "../core/Module.h"
 
-class NativeClass : public Module<NativeClass> {
+class NativeClass : public Module {
+public:
+	static node::node_module_struct* getModule(node::node_module_struct* t);
 };
 
 #endif /* defined(__v8__NativeClass__) */

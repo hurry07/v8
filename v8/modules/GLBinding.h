@@ -17,7 +17,7 @@ using namespace v8;
 
 #define DEFINE_GL(name) static void name##Callback(const v8::FunctionCallbackInfo<Value>& args)
 
-class GLBinding :public Module<GLBinding> {
+class GLBinding :public Module {
 public:
     DEFINE_GL(getAttachedShaders);
     DEFINE_GL(getSupportedExtensions);
@@ -153,6 +153,8 @@ public:
     DEFINE_GL(vertexAttrib4fv);
     DEFINE_GL(vertexAttribPointer);
     DEFINE_GL(viewport);
+
+    static node::node_module_struct* getModule(node::node_module_struct* t);
 };
 
 #undef DEFINE_GL

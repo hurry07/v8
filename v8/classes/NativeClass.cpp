@@ -26,75 +26,92 @@ using namespace v8;
 #include "TextureAtlas.h"
 #include "AutoRelease.h"
 
-template<> void Module<NativeClass>::init(const v8::FunctionCallbackInfo<Value>& args) {
+#define FN_SEQ(fn) \
+fn##_CLASS(EventAccessor);\
+\
+fn##_CLASS(Glm);\
+fn##_CLASS(JSFile);\
+\
+fn##_CLASS(NodeBuffer);\
+fn##_CLASS(TypedBuffer<int8_t>);\
+fn##_CLASS(TypedBuffer<uint8_t>);\
+fn##_CLASS(TypedBuffer<int16_t>);\
+fn##_CLASS(TypedBuffer<uint16_t>);\
+fn##_CLASS(TypedBuffer<int32_t>);\
+fn##_CLASS(TypedBuffer<uint32_t>);\
+fn##_CLASS(TypedBuffer<float>);\
+fn##_CLASS(TypedBuffer<double>);\
+\
+fn##_CLASS_NAME(Vec4<int32_t>, vec4i);\
+fn##_CLASS_NAME(Vec3<int32_t>, vec3i);\
+fn##_CLASS_NAME(Vec2<int32_t>, vec2i);\
+\
+fn##_CLASS_NAME(Vec4<int16_t>, vec4s);\
+fn##_CLASS_NAME(Vec3<int16_t>, vec3s);\
+fn##_CLASS_NAME(Vec2<int16_t>, vec2s);\
+\
+fn##_CLASS_NAME(Vec4<uint16_t>, vec4us);\
+fn##_CLASS_NAME(Vec3<uint16_t>, vec3us);\
+fn##_CLASS_NAME(Vec2<uint16_t>, vec2us);\
+\
+fn##_CLASS_NAME(Vec4<float>, vec4f);\
+fn##_CLASS_NAME(Vec3<float>, vec3f);\
+fn##_CLASS_NAME(Vec2<float>, vec2f);\
+\
+fn##_CLASS_NAME(Vec4<uint8_t>, vec4b);\
+fn##_CLASS_NAME(Vec3<uint8_t>, vec3b);\
+fn##_CLASS_NAME(Vec2<uint8_t>, vec2b);\
+\
+fn##_CLASS_NAME(Mat2<int32_t>, mat2i);\
+fn##_CLASS_NAME(Mat3<int32_t>, mat3i);\
+fn##_CLASS_NAME(Mat4<int32_t>, mat4i);\
+\
+fn##_CLASS_NAME(Mat2<uint8_t>, mat2b);\
+fn##_CLASS_NAME(Mat3<uint8_t>, mat3b);\
+fn##_CLASS_NAME(Mat4<uint8_t>, mat4b);\
+\
+fn##_CLASS_NAME(Mat2<float>, mat2f);\
+fn##_CLASS_NAME(Mat3<float>, mat3f);\
+fn##_CLASS_NAME(Mat4<float>, mat4f);\
+\
+fn##_CLASS_NAME(Mat4<float>, matrix);\
+fn##_CLASS_NAME(Mat4<float>, matrix4);\
+fn##_CLASS_NAME(Mat3<float>, matrix3);\
+fn##_CLASS_NAME(Mat2<float>, matrix2);\
+\
+fn##_CLASS_NAME(Vec3<float>, vector);\
+fn##_CLASS_NAME(Vec4<float>, vector4);\
+fn##_CLASS_NAME(Vec3<float>, vector3);\
+fn##_CLASS_NAME(Vec2<float>, vector2);\
+\
+fn##_CLASS(Font);\
+fn##_CLASS(TextureAtlas);\
+\
+fn##_CLASS(AutoRelease);\
+\
+fn##_CLASS(GcObserver);\
+fn##_CLASS(Image);
+
+#define INIT_CLASS(clz) ClassWrap<clz >::expose(global)
+#define INIT_CLASS_NAME(clz, name) ClassWrap<clz >::expose(#name, global)
+#define DES_CLASS(clz) ClassWrap<clz >::dispose()
+#define DES_CLASS_NAME(clz, name) ClassWrap<clz >::dispose()
+
+static void init(const v8::FunctionCallbackInfo<Value>& args) {
     HandleScope scope;
     Local<Object> global = args[0]->ToObject();
 
-    ClassWrap<Glm>::expose(global);
-    ClassWrap<JSFile>::expose(global);
-    
-    ClassWrap<NodeBuffer>::expose(global);
-    ClassWrap<TypedBuffer<int8_t> >::expose(global);
-    ClassWrap<TypedBuffer<uint8_t> >::expose(global);
-    ClassWrap<TypedBuffer<int16_t> >::expose(global);
-    ClassWrap<TypedBuffer<uint16_t> >::expose(global);
-    ClassWrap<TypedBuffer<int32_t> >::expose(global);
-    ClassWrap<TypedBuffer<uint32_t> >::expose(global);
-    ClassWrap<TypedBuffer<float> >::expose(global);
-    ClassWrap<TypedBuffer<double> >::expose(global);
-
-    ClassWrap<Vec4<int32_t> >::expose("vec4i", global);
-    ClassWrap<Vec3<int32_t> >::expose("vec3i", global);
-    ClassWrap<Vec2<int32_t> >::expose("vec2i", global);
-
-    ClassWrap<Vec4<int16_t> >::expose("vec4s", global);
-    ClassWrap<Vec3<int16_t> >::expose("vec3s", global);
-    ClassWrap<Vec2<int16_t> >::expose("vec2s", global);
-    
-    ClassWrap<Vec4<uint16_t> >::expose("vec4us", global);
-    ClassWrap<Vec3<uint16_t> >::expose("vec3us", global);
-    ClassWrap<Vec2<uint16_t> >::expose("vec2us", global);
-    
-    ClassWrap<Vec4<float> >::expose("vec4f", global);
-    ClassWrap<Vec3<float> >::expose("vec3f", global);
-    ClassWrap<Vec2<float> >::expose("vec2f", global);
-
-    ClassWrap<Vec4<uint8_t> >::expose("vec4b", global);
-    ClassWrap<Vec3<uint8_t> >::expose("vec3b", global);
-    ClassWrap<Vec2<uint8_t> >::expose("vec2b", global);
-
-    ClassWrap<Mat2<int32_t> >::expose("mat2i", global);
-    ClassWrap<Mat3<int32_t> >::expose("mat3i", global);
-    ClassWrap<Mat4<int32_t> >::expose("mat4i", global);
-    
-    ClassWrap<Mat2<uint8_t> >::expose("mat2b", global);
-    ClassWrap<Mat3<uint8_t> >::expose("mat3b", global);
-    ClassWrap<Mat4<uint8_t> >::expose("mat4b", global);
-    
-    ClassWrap<Mat2<float> >::expose("mat2f", global);
-    ClassWrap<Mat3<float> >::expose("mat3f", global);
-    ClassWrap<Mat4<float> >::expose("mat4f", global);
-
-    // alines
-    ClassWrap<Mat4<float> >::expose("matrix", global);
-    ClassWrap<Mat4<float> >::expose("matrix4", global);
-    ClassWrap<Mat3<float> >::expose("matrix3", global);
-    ClassWrap<Mat2<float> >::expose("matrix2", global);
-
-    ClassWrap<Vec3<float> >::expose("vector", global);
-    ClassWrap<Vec4<float> >::expose("vector4", global);
-    ClassWrap<Vec3<float> >::expose("vector3", global);
-    ClassWrap<Vec2<float> >::expose("vector2", global);
-
-    ClassWrap<Font>::expose(global);
-    ClassWrap<TextureAtlas>::expose(global);
-
-    ClassWrap<AutoRelease>::expose(global);
-
-    ClassWrap<GcObserver>::expose(global);// watch if gc could happen
-    ClassWrap<Image>::expose(global);
-    ClassWrap<EventAccessor>::expose(global);
+	FN_SEQ(INIT);
+}
+static void destory() {
+	FN_SEQ(DES);
 }
 
-template<> const char* Module<NativeClass>::mFile = __FILE__;
-template<> const char* Module<NativeClass>::mName = "node_nativeclasses";
+node::node_module_struct* NativeClass::getModule(node::node_module_struct* t) {
+	t = Module::getModule(t);
+	t->filename = __FILE__;
+	t->modname = "node_nativeclasses";
+	t->register_func = init;
+	t->release_func = destory;
+	return t;
+}

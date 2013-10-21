@@ -12,37 +12,16 @@
 #include "../app/node.h"
 #include <v8.h>
 
-template<class T>
 class Module {
 public:
-    static node::node_module_struct* getModule() {
-        if(!mInit) {
-        	mModule.version = NODE_MODULE_VERSION;
-        	mModule.dso_handle = NULL;
-        	mModule.filename = T::mFile;
-        	mModule.register_func = T::init;
-        	mModule.modname = T::mName;
-
-            mInit = true;
-        }
-        return &mModule;
+    static node::node_module_struct* getModule(node::node_module_struct* t) {
+    	t->version = NODE_MODULE_VERSION;
+    	t->filename = "";
+    	t->modname = "";
+    	t->register_func = 0;
+    	t->release_func = 0;
+    	return t;
     }
-
-    static void init(const v8::FunctionCallbackInfo<v8::Value>& args) {
-    }
-
-private:
-    static bool mInit;
-    static node::node_module_struct mModule;
-
-public:
-    static const char* mName;
-    static const char* mFile;
 };
-
-template<class T>
-bool Module<T>::mInit = false;
-template<class T>
-node::node_module_struct Module<T>::mModule;
 
 #endif

@@ -3,11 +3,11 @@
 	<!-- 
 	<property name="ndk_root" value="/Users/jie/environment/android-ndk-r8e" />
 	<property name="ndk_root" value="/Users/jie/environment/android-ndk-r9" />
-	<property name="ndk_root" value="/Users/jie/environment/android-ndk-r8d" />
-	<property name="rawbuild" value="true" />
-	-->
 	<property name="ndk_root" value="/Users/jie/android-ndk-r8b" />
+	-->
+	<property name="rawbuild" value="true" />
 	<property name="NDK_MODULE_PATH" value="${ndk_root}:${projectdir}/dependence" />
+	<property name="ndk_root" value="/Users/jie/environment/android-ndk-r8d" />
 
 	<target name="prepare" if="rawbuild">
 		<mkdir dir="${projectdir}/assets" />
@@ -17,14 +17,12 @@
 		<copy todir="${projectdir}/assets" overwrite="true">
 			<fileset dir="${projectdir}/../v8/assets" />
 		</copy>
-		<!--
 		<copy todir="${projectdir}/jni" overwrite="true">
 			<fileset dir="${projectdir}/../v8" excludes="demo*.*" includes="**/*.cpp,**/*.h,**/*.c" />
 		</copy>
 		<copy todir="${projectdir}/jni" overwrite="true">
 			<fileset dir="${projectdir}/android_cpp" />
 		</copy>
-		-->
 	</target>
 	<target name="build" depends="prepare">
 		<exec executable="${ndk_root}/ndk-build">
@@ -36,5 +34,7 @@
 			<arg line="STRIP=" />
 			<arg line="-j6" />
 		</exec>
+		<!--
+		-->
 	</target>
 </project>

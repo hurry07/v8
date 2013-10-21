@@ -24,7 +24,7 @@ game.pause = function () {
 }
 game.resume = function () {
 	console.log('--->game.resume');
-    _global.updateContext.reset();
+//    _global.updateContext.reset();
 }
 
 var mCount = 0;

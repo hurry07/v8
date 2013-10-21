@@ -10,10 +10,6 @@
 #include "../global.h"
 
 using namespace v8;
-static void test(const v8::FunctionCallbackInfo<Value>& args) {
-    global::testValue(args[0]);
-    LOGI("%f, %d", args[0]->NumberValue(), args[0]->Int32Value());
-}
 static void appendContent(const v8::FunctionCallbackInfo<Value>& args, std::string& buf) {
     int length = args.Length();
     if(length == 0) {
@@ -36,14 +32,18 @@ static void console_error(const v8::FunctionCallbackInfo<Value>& args) {
     LOGE("%s", buf.c_str());
 }
 
-template<> void Module<Console>::init(const v8::FunctionCallbackInfo<Value>& args) {
+static void init(const v8::FunctionCallbackInfo<Value>& args) {
     HandleScope scope;
     Local<Object> target = args[0]->ToObject();
-    
+
     NODE_SET_METHOD(target, "log", console_log);
     NODE_SET_METHOD(target, "error", console_error);
-    NODE_SET_METHOD(target, "test", test);
 }
 
-template<> const char* Module<Console>::mFile = __FILE__;
-template<> const char* Module<Console>::mName = "node_console";
+node::node_module_struct* Console::getModule(node::node_module_struct* t) {
+	t = Module::getModule(t);
+	t->filename = __FILE__;
+	t->modname = "node_console";
+	t->register_func = init;
+	return t;
+}

@@ -63,11 +63,11 @@ METHOD_BEGIN(getEvents, info) {
 }
 static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp) {
     HandleScope scope;
-    
+
     Local<ObjectTemplate> obj = temp->PrototypeTemplate();
     EXPOSE_METHOD(obj, getEvent, ReadOnly | DontDelete);
     EXPOSE_METHOD(obj, getEvents, ReadOnly | DontDelete);
-    
+
     return scope.Close(temp->GetFunction());
 }
 

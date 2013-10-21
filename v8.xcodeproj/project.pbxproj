@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1801AD621813174700EB2EF5 /* libv8_base.x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1801AD601813174700EB2EF5 /* libv8_base.x64.a */; };
-		1801AD631813174700EB2EF5 /* libv8_snapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1801AD611813174700EB2EF5 /* libv8_snapshot.a */; };
 		18203BEE17F17F7900A7ED4C /* demo-texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BED17F17F7900A7ED4C /* demo-texture.cpp */; };
 		18203BF017F184A400A7ED4C /* demo-cartoon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BEF17F184A400A7ED4C /* demo-cartoon.cpp */; };
 		18203BF417F1864F00A7ED4C /* demo-font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BF117F1864E00A7ED4C /* demo-font.cpp */; };
@@ -17,6 +15,8 @@
 		18203BFC17F1A1FF00A7ED4C /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BFA17F1A1FF00A7ED4C /* Font.cpp */; };
 		18203BFF17F1ABF300A7ED4C /* TextureAtlas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BFD17F1ABF300A7ED4C /* TextureAtlas.cpp */; };
 		182820A1179AFFCB003125B5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182820A0179AFFCB003125B5 /* main.cpp */; };
+		1832FE521814C88200ADCA6E /* libv8_base.x64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1832FE501814C88200ADCA6E /* libv8_base.x64.a */; };
+		1832FE531814C88200ADCA6E /* libv8_snapshot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1832FE511814C88200ADCA6E /* libv8_snapshot.a */; };
 		183CE5C617D2934C00ADD5CE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 183CE5C517D2934C00ADD5CE /* libz.dylib */; };
 		183CE6B917D2DF2500ADD5CE /* CCImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 183CE6B817D2DF2500ADD5CE /* CCImage.cpp */; };
 		183CE6C017D2F76100ADD5CE /* CCTexture2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 183CE6BE17D2F76000ADD5CE /* CCTexture2D.cpp */; };
@@ -88,8 +88,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1801AD601813174700EB2EF5 /* libv8_base.x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libv8_base.x64.a; sourceTree = "<group>"; };
-		1801AD611813174700EB2EF5 /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libv8_snapshot.a; sourceTree = "<group>"; };
 		1809714D17E9D09400C725AA /* tips.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tips.txt; path = v8/assets/tips.txt; sourceTree = "<group>"; };
 		18203BDF17F1616100A7ED4C /* demo-gamma.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "demo-gamma.h"; sourceTree = "<group>"; };
 		18203BE217F164F900A7ED4C /* demo-outline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "demo-outline.h"; sourceTree = "<group>"; };
@@ -105,6 +103,8 @@
 		18203BFE17F1ABF300A7ED4C /* TextureAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureAtlas.h; sourceTree = "<group>"; };
 		1828209C179AFFCB003125B5 /* v8 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = v8; sourceTree = BUILT_PRODUCTS_DIR; };
 		182820A0179AFFCB003125B5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		1832FE501814C88200ADCA6E /* libv8_base.x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libv8_base.x64.a; sourceTree = "<group>"; };
+		1832FE511814C88200ADCA6E /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libv8_snapshot.a; sourceTree = "<group>"; };
 		183CE5C517D2934C00ADD5CE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		183CE6B817D2DF2500ADD5CE /* CCImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCImage.cpp; sourceTree = "<group>"; };
 		183CE6BE17D2F76000ADD5CE /* CCTexture2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCTexture2D.cpp; sourceTree = "<group>"; };
@@ -262,8 +262,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1801AD621813174700EB2EF5 /* libv8_base.x64.a in Frameworks */,
-				1801AD631813174700EB2EF5 /* libv8_snapshot.a in Frameworks */,
+				1832FE521814C88200ADCA6E /* libv8_base.x64.a in Frameworks */,
+				1832FE531814C88200ADCA6E /* libv8_snapshot.a in Frameworks */,
 				185FD3AC17EAD0D800188CC2 /* libfreetype.a in Frameworks */,
 				185FD3A817EACED900188CC2 /* libpng15.15.dylib in Frameworks */,
 				185FD30717EAA51B00188CC2 /* libbz2.1.0.5.dylib in Frameworks */,
@@ -279,8 +279,8 @@
 		18282091179AFFCB003125B5 = {
 			isa = PBXGroup;
 			children = (
-				1801AD601813174700EB2EF5 /* libv8_base.x64.a */,
-				1801AD611813174700EB2EF5 /* libv8_snapshot.a */,
+				1832FE501814C88200ADCA6E /* libv8_base.x64.a */,
+				1832FE511814C88200ADCA6E /* libv8_snapshot.a */,
 				185FD3AB17EAD0D800188CC2 /* libfreetype.a */,
 				185FD3A717EACED900188CC2 /* libpng15.15.dylib */,
 				185FD30817EAAC9500188CC2 /* libpng.a */,

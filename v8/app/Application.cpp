@@ -85,8 +85,11 @@ Application::~Application() {
 		SAFE_DELETE(game);
 		SAFE_DELETE(touchEvent);
 		SAFE_DELETE(keyEvent);
+
+        release_buildin_module();
 	}
 	node_isolate->Dispose();
+	node_isolate = 0;
 }
 Local<Context> Application::GetV8Context() {
 	return Local<Context>::New(node_isolate, context_p);

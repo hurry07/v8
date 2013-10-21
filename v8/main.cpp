@@ -125,7 +125,7 @@ void start(int argc, char ** argv, int width, int height) {
 	glutInit(&argc, argv);
     glutInitWindowSize(width, height);
 	glutCreateWindow("Xcode Glut Demo");
-    
+
     testImageLoad();
     testVersion();
 
@@ -144,6 +144,11 @@ void start(int argc, char ** argv, int width, int height) {
 
     app->destroy();
     delete app;
+
+//    app = new Application();
+//    app->init();
+//    app->destroy();
+//    delete app;
 }
 //void PrintMD5(const string& str, MD5& md5) {
 //	std::cout << "MD5(\"" << str << "\") = " << md5.toString() << std::endl;

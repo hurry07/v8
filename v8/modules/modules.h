@@ -15,13 +15,23 @@
 #include "../app/node.h"
 
 namespace node {
-    
+
     node_module_struct *node_module_list[] = {
-        Console::getModule(),
-        GLBinding::getModule(),
-        NativeClass::getModule(),
+        Console::getModule(new node_module_struct()),//
+        GLBinding::getModule(new node_module_struct()),//
+        NativeClass::getModule(new node_module_struct()),//
         NULL};
-    
+
+    void release_buildin_module() {
+        node_module_struct *cur = NULL;
+        for (int i = 0; node_module_list[i] != NULL; i++) {
+            cur = node_module_list[i];
+            if(cur->release_func != 0) {
+            	cur->release_func();
+            }
+        }
+    }
+
     struct node_module_struct* get_builtin_module(const char *name) {
         char buf[128];
         node_module_struct *cur = NULL;

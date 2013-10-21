@@ -79,7 +79,7 @@ public:
 
         class_struct* clz = T::getExportStruct();
 		Handle<FunctionTemplate> fn = FunctionTemplate::New(constructorCallback);
-        
+
 		fn->SetClassName(String::New(clz->mClassName));
 
         Local<ObjectTemplate> fnproto = fn->PrototypeTemplate();
@@ -140,6 +140,12 @@ public:
     static void expose(Local<Object> env) {
         class_struct* clz = T::getExportStruct();
         env->Set(String::New(clz->mClassName), getFunction());
+    }
+    static void dispose() {
+        if(mInit) {
+            _function.Dispose(node_isolate);
+            mInit = false;
+        }
     }
     /**
      * expose using a given class name
