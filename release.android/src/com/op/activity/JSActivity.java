@@ -16,16 +16,14 @@
 
 package com.op.activity;
 
-import java.io.IOException;
-import java.io.InputStream;
-
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.opengles.GL10;
-
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
+import android.content.pm.ConfigurationInfo;
 import android.content.res.AssetManager;
 import android.opengl.GLSurfaceView;
-import android.opengl.GLSurfaceView.Renderer;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -43,13 +41,25 @@ public class JSActivity extends Activity {
 
     private GLSurfaceView mView;
 
+    private boolean hasGLES20() {
+        ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        ConfigurationInfo info = am.getDeviceConfigurationInfo();
+        return info.reqGlEsVersion >= 0x20000;
+    }
+
+    @SuppressLint("NewApi")
     public GLSurfaceView onCreateView() {
         ViewGroup.LayoutParams framelayout_params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         FrameLayout framelayout = new FrameLayout(this);
         framelayout.setLayoutParams(framelayout_params);
 
         GLSurfaceView view = new JSSurfaceView(this);
+        //GLSurfaceView view = new GLSurfaceView(this);
+        //view.setRenderer(new JSRender());
         framelayout.addView(view);
+//        if (Build.VERSION.SDK_INT >= 11) {
+//            view.setPreserveEGLContextOnPause(true);
+//        }
 
         setContentView(framelayout);
         return view;
@@ -59,17 +69,11 @@ public class JSActivity extends Activity {
     protected void onCreate(Bundle icicle) {
         super.onCreate(icicle);
 
+        System.out.println("JSActivity.onCreate():" + hasGLES20());
+
         // prepare tools
         mgr = getAssets();
         initWithAsset(mgr);
-        System.out.println("initWithAsset===========");
-
-        try {
-            InputStream in = mgr.open("images/upgrade/split_v.png");
-            in.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         jsCreate();
         mView = onCreateView();

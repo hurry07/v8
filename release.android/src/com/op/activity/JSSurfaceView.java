@@ -38,9 +38,12 @@ import javax.microedition.khronos.egl.EGLContext;
 import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.opengles.GL10;
 
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.opengl.GLSurfaceView;
+import android.os.Build;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -68,16 +71,20 @@ class JSSurfaceView extends GLSurfaceView {
 
     private static final boolean DEBUG = false;
 
+    @SuppressLint("NewApi")
     public JSSurfaceView(Context context) {
         super(context);
         setEGLContextClientVersion(2);
+        if (Build.VERSION.SDK_INT >= 11) {
+            setPreserveEGLContextOnPause(true);
+        }
         init(false, 0, 0);
         // init();
     }
 
     public JSSurfaceView(Context context, boolean translucent, int depth, int stencil) {
         super(context);
-        setEGLContextClientVersion(2);
+        //setEGLContextClientVersion(2);
         init(translucent, depth, stencil);
         // init();
     }
@@ -108,16 +115,13 @@ class JSSurfaceView extends GLSurfaceView {
     @Override
     public void onPause() {
         super.onPause();
-        System.out.println("JSSurfaceView.onPause() 01:" + Thread.currentThread());
         jsPause();
-        System.out.println("JSSurfaceView.onPause() 02:" + Thread.currentThread());
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        // jsResume();
-        System.out.println("JSSurfaceView.onResume():" + Thread.currentThread());
+        jsResume();
     }
 
     private void init(boolean translucent, int depth, int stencil) {

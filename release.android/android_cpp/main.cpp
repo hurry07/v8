@@ -27,8 +27,9 @@ JNIEXPORT void JNICALL Java_com_op_activity_JSActivity_initWithAsset
 
 JNIEXPORT void JNICALL Java_com_op_activity_JSActivity_jsCreate
 (JNIEnv * env, jclass activityClass) {
-    LOGI("Java_com_op_activity_JSActivity_jsCreate");
+    LOGI("Java_com_op_activity_JSActivity_jsCreate 01");
     app = new Application();
+    LOGI("Java_com_op_activity_JSActivity_jsCreate 02");
 }
 
 JNIEXPORT void JNICALL Java_com_op_activity_JSActivity_jsDestory
@@ -48,6 +49,7 @@ JNIEXPORT void JNICALL Java_com_op_activity_JSActivity_evalScript
 // ==========================
 JNIEXPORT void JNICALL Java_com_op_activity_JSSurfaceView_jsPause
   (JNIEnv *, jclass) {
+    LOGI("Java_com_op_activity_JSSurfaceView_jsPause");
 	app->pause();
 }
 
