@@ -135,12 +135,12 @@ void start(int argc, char ** argv, int width, int height) {
     app->onSurfaceChanged(width, height);
 //    app->pause();
 
-	glutDisplayFunc(onDrawFrame);
+    glutDisplayFunc(onDrawFrame);
     glutReshapeFunc(onSurfaceChanged);
     glutMouseFunc(onMouseClick);
     glutMotionFunc(onMouseMove);
     glutKeyboardFunc(onKeyPress);
-	glutMainLoop();
+    glutMainLoop();
 
     app->destroy();
     delete app;
