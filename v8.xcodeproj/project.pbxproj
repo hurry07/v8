@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18203BEE17F17F7900A7ED4C /* demo-texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BED17F17F7900A7ED4C /* demo-texture.cpp */; };
-		18203BF017F184A400A7ED4C /* demo-cartoon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BEF17F184A400A7ED4C /* demo-cartoon.cpp */; };
-		18203BF417F1864F00A7ED4C /* demo-font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BF117F1864E00A7ED4C /* demo-font.cpp */; };
-		18203BF517F1864F00A7ED4C /* demo-gamma.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BF217F1864E00A7ED4C /* demo-gamma.cpp */; };
-		18203BF617F1864F00A7ED4C /* demo-outline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BF317F1864F00A7ED4C /* demo-outline.cpp */; };
+		181B2E9F18166F2C00F85E2B /* demo-cartoon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 181B2E9318166F2C00F85E2B /* demo-cartoon.cpp */; };
+		181B2EA018166F2C00F85E2B /* demo-font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 181B2E9518166F2C00F85E2B /* demo-font.cpp */; };
+		181B2EA118166F2C00F85E2B /* demo-gamma.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 181B2E9718166F2C00F85E2B /* demo-gamma.cpp */; };
+		181B2EA218166F2C00F85E2B /* demo-markup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 181B2E9918166F2C00F85E2B /* demo-markup.cpp */; };
+		181B2EA318166F2C00F85E2B /* demo-outline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 181B2E9B18166F2C00F85E2B /* demo-outline.cpp */; };
+		181B2EA418166F2C00F85E2B /* demo-texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 181B2E9D18166F2C00F85E2B /* demo-texture.cpp */; };
+		181B2EA618166F5900F85E2B /* global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 181B2EA518166F5900F85E2B /* global.cpp */; };
 		18203BFC17F1A1FF00A7ED4C /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BFA17F1A1FF00A7ED4C /* Font.cpp */; };
 		18203BFF17F1ABF300A7ED4C /* TextureAtlas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BFD17F1ABF300A7ED4C /* TextureAtlas.cpp */; };
 		182820A1179AFFCB003125B5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182820A0179AFFCB003125B5 /* main.cpp */; };
@@ -52,7 +54,6 @@
 		185FD44517EB15AA00188CC2 /* vertex-buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 185FD41717EB15AA00188CC2 /* vertex-buffer.c */; };
 		1888176117E00C9900E4504A /* RingBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1888175F17E00C9900E4504A /* RingBuffer.cpp */; };
 		1888176417E00DAA00E4504A /* Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1888176217E00DAA00E4504A /* Event.cpp */; };
-		18A6D24C17C7455D004931FD /* global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D24B17C7455C004931FD /* global.cpp */; };
 		18A6D24E17C75CBE004931FD /* v8Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D24D17C75CBE004931FD /* v8Utils.cpp */; };
 		18C9D0C917F54BD500A1820B /* AutoRelease.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18C9D0C717F54BD500A1820B /* AutoRelease.cpp */; };
 		18C9D0D117F54EFD00A1820B /* ReleaseImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18C9D0CF17F54EFD00A1820B /* ReleaseImpl.cpp */; };
@@ -89,14 +90,19 @@
 
 /* Begin PBXFileReference section */
 		1809714D17E9D09400C725AA /* tips.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tips.txt; path = v8/assets/tips.txt; sourceTree = "<group>"; };
-		18203BDF17F1616100A7ED4C /* demo-gamma.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "demo-gamma.h"; sourceTree = "<group>"; };
-		18203BE217F164F900A7ED4C /* demo-outline.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "demo-outline.h"; sourceTree = "<group>"; };
-		18203BE517F172FE00A7ED4C /* demo-cartoon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "demo-cartoon.h"; sourceTree = "<group>"; };
-		18203BED17F17F7900A7ED4C /* demo-texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "demo-texture.cpp"; sourceTree = "<group>"; };
-		18203BEF17F184A400A7ED4C /* demo-cartoon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "demo-cartoon.cpp"; sourceTree = "<group>"; };
-		18203BF117F1864E00A7ED4C /* demo-font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "demo-font.cpp"; sourceTree = "<group>"; };
-		18203BF217F1864E00A7ED4C /* demo-gamma.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "demo-gamma.cpp"; sourceTree = "<group>"; };
-		18203BF317F1864F00A7ED4C /* demo-outline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "demo-outline.cpp"; sourceTree = "<group>"; };
+		181B2E9318166F2C00F85E2B /* demo-cartoon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "demo-cartoon.cpp"; sourceTree = "<group>"; };
+		181B2E9418166F2C00F85E2B /* demo-cartoon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "demo-cartoon.h"; sourceTree = "<group>"; };
+		181B2E9518166F2C00F85E2B /* demo-font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "demo-font.cpp"; sourceTree = "<group>"; };
+		181B2E9618166F2C00F85E2B /* demo-font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "demo-font.h"; sourceTree = "<group>"; };
+		181B2E9718166F2C00F85E2B /* demo-gamma.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "demo-gamma.cpp"; sourceTree = "<group>"; };
+		181B2E9818166F2C00F85E2B /* demo-gamma.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "demo-gamma.h"; sourceTree = "<group>"; };
+		181B2E9918166F2C00F85E2B /* demo-markup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "demo-markup.cpp"; sourceTree = "<group>"; };
+		181B2E9A18166F2C00F85E2B /* demo-markup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "demo-markup.h"; sourceTree = "<group>"; };
+		181B2E9B18166F2C00F85E2B /* demo-outline.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "demo-outline.cpp"; sourceTree = "<group>"; };
+		181B2E9C18166F2C00F85E2B /* demo-outline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "demo-outline.h"; sourceTree = "<group>"; };
+		181B2E9D18166F2C00F85E2B /* demo-texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "demo-texture.cpp"; sourceTree = "<group>"; };
+		181B2E9E18166F2C00F85E2B /* demo-texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "demo-texture.h"; sourceTree = "<group>"; };
+		181B2EA518166F5900F85E2B /* global.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = global.cpp; sourceTree = "<group>"; };
 		18203BFA17F1A1FF00A7ED4C /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Font.cpp; sourceTree = "<group>"; };
 		18203BFB17F1A1FF00A7ED4C /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
 		18203BFD17F1ABF300A7ED4C /* TextureAtlas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureAtlas.cpp; sourceTree = "<group>"; };
@@ -190,13 +196,11 @@
 		185FD41617EB15AA00188CC2 /* vertex-attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "vertex-attribute.h"; sourceTree = "<group>"; };
 		185FD41717EB15AA00188CC2 /* vertex-buffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "vertex-buffer.c"; sourceTree = "<group>"; };
 		185FD41817EB15AA00188CC2 /* vertex-buffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "vertex-buffer.h"; sourceTree = "<group>"; };
-		1884AFED17EDDF04001E2607 /* demo-font.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "demo-font.h"; sourceTree = "<group>"; };
 		1888175F17E00C9900E4504A /* RingBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RingBuffer.cpp; sourceTree = "<group>"; };
 		1888176017E00C9900E4504A /* RingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingBuffer.h; sourceTree = "<group>"; };
 		1888176217E00DAA00E4504A /* Event.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Event.cpp; sourceTree = "<group>"; };
 		1888176317E00DAA00E4504A /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		18A6D24A17C6FEBF004931FD /* clone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = clone.h; sourceTree = "<group>"; };
-		18A6D24B17C7455C004931FD /* global.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = global.cpp; sourceTree = "<group>"; };
 		18A6D24D17C75CBE004931FD /* v8Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = v8Utils.cpp; sourceTree = "<group>"; };
 		18AFB48917AE06A900B7AFDA /* libv8_base.x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.x64.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_base.x64.a; sourceTree = "<group>"; };
 		18AFB48B17AE06A900B7AFDA /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_snapshot.a; sourceTree = "<group>"; };
@@ -254,7 +258,6 @@
 		18EDB76917B76992002E00CE /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		18EDB76B17B76C1F002E00CE /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		18EDB7A117B77E83002E00CE /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		18F7B0EB17F09D73006ADE2C /* demo-texture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "demo-texture.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,6 +279,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		181B2E9218166F2C00F85E2B /* demo */ = {
+			isa = PBXGroup;
+			children = (
+				181B2E9318166F2C00F85E2B /* demo-cartoon.cpp */,
+				181B2E9418166F2C00F85E2B /* demo-cartoon.h */,
+				181B2E9518166F2C00F85E2B /* demo-font.cpp */,
+				181B2E9618166F2C00F85E2B /* demo-font.h */,
+				181B2E9718166F2C00F85E2B /* demo-gamma.cpp */,
+				181B2E9818166F2C00F85E2B /* demo-gamma.h */,
+				181B2E9918166F2C00F85E2B /* demo-markup.cpp */,
+				181B2E9A18166F2C00F85E2B /* demo-markup.h */,
+				181B2E9B18166F2C00F85E2B /* demo-outline.cpp */,
+				181B2E9C18166F2C00F85E2B /* demo-outline.h */,
+				181B2E9D18166F2C00F85E2B /* demo-texture.cpp */,
+				181B2E9E18166F2C00F85E2B /* demo-texture.h */,
+			);
+			path = demo;
+			sourceTree = "<group>";
+		};
 		18282091179AFFCB003125B5 = {
 			isa = PBXGroup;
 			children = (
@@ -308,14 +330,9 @@
 		1828209F179AFFCB003125B5 /* v8 */ = {
 			isa = PBXGroup;
 			children = (
+				181B2E9218166F2C00F85E2B /* demo */,
 				18C9D0CE17F54EFD00A1820B /* autorelease */,
-				18203BF117F1864E00A7ED4C /* demo-font.cpp */,
-				18203BF217F1864E00A7ED4C /* demo-gamma.cpp */,
-				18203BF317F1864F00A7ED4C /* demo-outline.cpp */,
-				18203BEF17F184A400A7ED4C /* demo-cartoon.cpp */,
-				18203BED17F17F7900A7ED4C /* demo-texture.cpp */,
 				185FD3AD17EB15AA00188CC2 /* freetype-gl-read-only */,
-				18A6D24B17C7455C004931FD /* global.cpp */,
 				18CE224717C6582800B6DB8E /* app */,
 				18CE227117C6582800B6DB8E /* classes */,
 				18CE227817C6582800B6DB8E /* core */,
@@ -327,11 +344,7 @@
 				18EDB76B17B76C1F002E00CE /* assets */,
 				182820A0179AFFCB003125B5 /* main.cpp */,
 				18EDB76617B763B0002E00CE /* global.h */,
-				1884AFED17EDDF04001E2607 /* demo-font.h */,
-				18F7B0EB17F09D73006ADE2C /* demo-texture.h */,
-				18203BDF17F1616100A7ED4C /* demo-gamma.h */,
-				18203BE217F164F900A7ED4C /* demo-outline.h */,
-				18203BE517F172FE00A7ED4C /* demo-cartoon.h */,
+				181B2EA518166F5900F85E2B /* global.cpp */,
 			);
 			path = v8;
 			sourceTree = "<group>";
@@ -660,7 +673,6 @@
 				18CE34AE17C6582D00B6DB8E /* arraybuffer.cpp in Sources */,
 				18CE34AF17C6582D00B6DB8E /* arraybufferview.cpp in Sources */,
 				18CE34B017C6582D00B6DB8E /* AssetUtil.cpp in Sources */,
-				18A6D24C17C7455D004931FD /* global.cpp in Sources */,
 				18A6D24E17C75CBE004931FD /* v8Utils.cpp in Sources */,
 				183CE6B917D2DF2500ADD5CE /* CCImage.cpp in Sources */,
 				183CE6C017D2F76100ADD5CE /* CCTexture2D.cpp in Sources */,
@@ -694,15 +706,17 @@
 				185FD44317EB15AA00188CC2 /* vector.c in Sources */,
 				185FD44417EB15AA00188CC2 /* vertex-attribute.c in Sources */,
 				185FD44517EB15AA00188CC2 /* vertex-buffer.c in Sources */,
-				18203BEE17F17F7900A7ED4C /* demo-texture.cpp in Sources */,
-				18203BF017F184A400A7ED4C /* demo-cartoon.cpp in Sources */,
-				18203BF417F1864F00A7ED4C /* demo-font.cpp in Sources */,
-				18203BF517F1864F00A7ED4C /* demo-gamma.cpp in Sources */,
-				18203BF617F1864F00A7ED4C /* demo-outline.cpp in Sources */,
 				18203BFC17F1A1FF00A7ED4C /* Font.cpp in Sources */,
 				18203BFF17F1ABF300A7ED4C /* TextureAtlas.cpp in Sources */,
 				18C9D0C917F54BD500A1820B /* AutoRelease.cpp in Sources */,
 				18C9D0D117F54EFD00A1820B /* ReleaseImpl.cpp in Sources */,
+				181B2E9F18166F2C00F85E2B /* demo-cartoon.cpp in Sources */,
+				181B2EA018166F2C00F85E2B /* demo-font.cpp in Sources */,
+				181B2EA118166F2C00F85E2B /* demo-gamma.cpp in Sources */,
+				181B2EA218166F2C00F85E2B /* demo-markup.cpp in Sources */,
+				181B2EA318166F2C00F85E2B /* demo-outline.cpp in Sources */,
+				181B2EA418166F2C00F85E2B /* demo-texture.cpp in Sources */,
+				181B2EA618166F5900F85E2B /* global.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

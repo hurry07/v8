@@ -14,19 +14,12 @@
 #include "modules/CCTexture2D.h"
 #include <GLUT/GLUT.h>
 #include <OpenGL/gl.h>
-//#include "TestGc.h"
 #include "core/RingBuffer.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/swizzle.hpp>
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include <iostream>
-#include "demo-font.h"
-#include "demo-texture.h"
-#include "demo-gamma.h"
-#include "demo-outline.h"
-#include "demo-cartoon.h"
-//#include "demo-markup.h"
 
 using namespace v8;
 
@@ -133,7 +126,6 @@ void start(int argc, char ** argv, int width, int height) {
     app->resume();
     app->onSurfaceCreated(width, height);
     app->onSurfaceChanged(width, height);
-//    app->pause();
 
     glutDisplayFunc(onDrawFrame);
     glutReshapeFunc(onSurfaceChanged);
@@ -142,17 +134,10 @@ void start(int argc, char ** argv, int width, int height) {
     glutKeyboardFunc(onKeyPress);
     glutMainLoop();
 
+    app->pause();
     app->destroy();
     delete app;
-
-//    app = new Application();
-//    app->init();
-//    app->destroy();
-//    delete app;
 }
-//void PrintMD5(const string& str, MD5& md5) {
-//	std::cout << "MD5(\"" << str << "\") = " << md5.toString() << std::endl;
-//}
 int main(int argc, char ** argv)
 {
 //    LOGI("sizeof %d %d", sizeof(uint16_t), sizeof(wchar_t));
@@ -163,6 +148,5 @@ int main(int argc, char ** argv)
 //    main_cartoon(argc, argv);
 //    main_markup(argc, argv);
     start(argc, argv, 800, 480);
-
     return 0;
 }
