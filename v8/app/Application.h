@@ -47,14 +47,14 @@ private:
     /**
      * 加载一个 function
      */
-    static void Binding(const FunctionCallbackInfo<Value>& args);
+    static void Binding(const v8::FunctionCallbackInfo<Value>& args);
     static Local<Function> loadModuleFn(const char* name);
 
     JSObject* game;
     JSObject* render;
     TouchEvent* touchEvent;
     TouchEvent* keyEvent;
-    
+
     int mWidth;
     int mHeight;
 

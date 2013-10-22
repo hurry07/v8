@@ -98,7 +98,6 @@ int powOf2(int num) {
 Application* app = NULL;
 void onDrawFrame() {
 //    app->gc();
-    LOGI("onDrawFrame");
     app->onDrawFrame();
     if(!checkGlError("onDrawFrame==>")) {
         return;
@@ -134,13 +133,14 @@ void start(int argc, char ** argv, int width, int height) {
     app->resume();
     app->onSurfaceCreated(width, height);
     app->onSurfaceChanged(width, height);
+//    app->pause();
 
-//	glutDisplayFunc(onDrawFrame);
-//    glutReshapeFunc(onSurfaceChanged);
-//    glutMouseFunc(onMouseClick);
-//    glutMotionFunc(onMouseMove);
-//    glutKeyboardFunc(onKeyPress);
-//	glutMainLoop();
+	glutDisplayFunc(onDrawFrame);
+    glutReshapeFunc(onSurfaceChanged);
+    glutMouseFunc(onMouseClick);
+    glutMotionFunc(onMouseMove);
+    glutKeyboardFunc(onKeyPress);
+	glutMainLoop();
 
     app->destroy();
     delete app;

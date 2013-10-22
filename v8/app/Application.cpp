@@ -11,7 +11,7 @@
 #include "../core/ClassWrap.h"
 #include "../core/Module.h"
 #include "../core/v8Utils.h"
-
+#include "../classes/file.h"
 #include "../modules/modules.h"
 #include "../modules/CCImage.h"
 #include "../utils/AssetUtil.h"
@@ -54,7 +54,7 @@ void ReportMessage(v8::Handle<v8::Message> message, v8::Handle<v8::Value> data) 
     std::string exp(s, len);
     LOGI("Exception %s", exp.c_str());
 }
-static void printf__(const FunctionCallbackInfo<Value>& args) {
+static void printf__(const v8::FunctionCallbackInfo<Value>& args) {
 	std::string buf;
 	int length = args.Length();
 	if (length == 0) {
@@ -67,7 +67,6 @@ static void printf__(const FunctionCallbackInfo<Value>& args) {
 	}
 	LOGI("%s", buf.c_str());
 }
-
 Local<Context> Application::GetV8Context() {
 	return Local<Context>::New(node_isolate, context_p);
 }
@@ -112,7 +111,7 @@ Local<Function> Application::loadModuleFn(const char* name) {
 	return scope.Close(Local<Function>::Cast(comp->Run()));
 }
 
-void Application::Binding(const FunctionCallbackInfo<Value>& args) {
+void Application::Binding(const v8::FunctionCallbackInfo<Value>& args) {
 	HANDLE_SCOPE;
 
 	Local<String> module = args[0]->ToString();
@@ -173,7 +172,7 @@ void Application::init() {
 		ENTER_ISOLATE;
 		HANDLE_SCOPE;
 		CONTEXT_SCOPE;
-        
+
         // binding test func
 		context->Global()->Set(String::New("print"), FunctionTemplate::New(printf__)->GetFunction());
 		Handle<Object> process = SetupProcessObject();
@@ -203,20 +202,19 @@ void Application::destroy() {
 		ENTER_ISOLATE;
 		EXIT_ISOLATE;
 	}
-    
     ENTER_ISOLATE;
     HANDLE_SCOPE;
     CONTEXT_SCOPE;
-    
+
     release_buildin_module();
     SAFE_DELETE(render);
     SAFE_DELETE(game);
     SAFE_DELETE(touchEvent);
     SAFE_DELETE(keyEvent);
-    
-//    eval("task(function() {require('surfaceview.js').release();})");
+
     eval("task(function() {require('native_module').release();})");
     while (!v8::V8::IdleNotification());
+    LOGI("----------after gc");
 }
 Application::~Application() {
     SAFE_DISPOSE(process_p);
@@ -229,13 +227,13 @@ void Application::pause() {
 	ENTER_ISOLATE;
 	HANDLE_SCOPE;
 	CONTEXT_SCOPE;
-    eval("task(function() {require('game.js').pause();})");
+    game->callFunction("pause");
 }
 void Application::resume() {
 	ENTER_ISOLATE;
 	HANDLE_SCOPE;
 	CONTEXT_SCOPE;
-    eval("task(function() {require('game.js').resume();})");
+    game->callFunction("resume");
 }
 void Application::gc() {
 	ENTER_ISOLATE;
@@ -275,9 +273,6 @@ void Application::onSurfaceCreated(int width, int height) {
 	ENTER_ISOLATE;
 	HANDLE_SCOPE;
 	CONTEXT_SCOPE;
-
-    // bind game instance to render thread
-//    eval("task(function() {require('game.js').bind();})");
 
     Handle<Value> argv[2];
     argv[0] = Number::New(width);

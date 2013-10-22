@@ -161,6 +161,7 @@ console.log(_DB.getData('toolsConf'));
 module.exports = _scene.createScene(
     function (w, h) {
         this.setSize(w, h);
+        console.log('_scene.createScene.cover:' + R.upgrade.bg);
         this.addChild(this.mBg = _global.sprite(R.upgrade.bg).$9patch_h().left(30).right(30).setSize(w, h).updateMesh());
 
         var buttons = this.buttons = {};
@@ -173,22 +174,13 @@ module.exports = _scene.createScene(
         this.addChild(this.toolsPanel = new ToolsPanel());
         this.addChild(this.desPanel = new UpgradePanel());
 
-        this.mRotate = 0;
-        this.layout();
-
         var f = _global.textNode('fat', 40, '你好AB囿程海林');
-//        f.setPosition(100, 100);
-//        f.setRotate(30);
         this.addChild(f);
         var f1 = _global.textNode('fat', 20, '你好AB囿');
         f1.setPosition(0, f.height());
         this.addChild(f1);
 
-//        this.__touchnode__.print();
-//        this.coinStar.hideButton();
-//        this.__touchnode__.print();
-//        this.coinStar.showButton();
-//        this.__touchnode__.print();
+        this.layout();
     }, {
         update: function (context) {
         },

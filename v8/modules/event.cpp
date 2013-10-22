@@ -74,6 +74,7 @@ static v8::Local<v8::Function> initClass(v8::Handle<v8::FunctionTemplate>& temp)
 EventAccessor::EventAccessor() : mStruct(0) {
 }
 EventAccessor::~EventAccessor() {
+    LOGI("~EventAccessor");
     if(mStruct != 0) {
         delete mStruct;
     }

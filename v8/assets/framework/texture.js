@@ -149,9 +149,9 @@ function createFrame(id) {
 //var gcobserver = require('nativeclasses').gcobserver;
 //var gc1 = new gcobserver('~~~~~~~texture.js');
 //console.log('gcobserver:', gcobserver, gc1);
-_textures.createTexture2D('images/upgrade/b_addcoins.png');
-_textures.createTexture2D('images/upgrade/b_addcoins.png');
-_textures.createTexture2D('images/upgrade/b_addcoins.png');
+//_textures.createTexture2D('images/upgrade/b_addcoins.png');
+//_textures.createTexture2D('images/upgrade/b_addcoins.png');
+//_textures.createTexture2D('images/upgrade/b_addcoins.png');
 
 exports.R = R;
 exports.createFrame = createFrame;

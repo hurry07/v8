@@ -29,6 +29,7 @@ JNIEXPORT void JNICALL Java_com_op_activity_JSActivity_jsCreate
 (JNIEnv * env, jclass activityClass) {
     LOGI("Java_com_op_activity_JSActivity_jsCreate 01");
     app = new Application();
+    app->init();
     LOGI("Java_com_op_activity_JSActivity_jsCreate 02");
 }
 
@@ -87,7 +88,6 @@ JNIEXPORT void JNICALL Java_com_op_activity_JSSurfaceView_jsKeyMenuPress
 // ==========================
 JNIEXPORT void JNICALL Java_com_op_activity_JSRender_onSurfaceCreated
   (JNIEnv * env, jobject instance) {
-    app->init();
 	app->onSurfaceCreated(800, 480);
 }
 
