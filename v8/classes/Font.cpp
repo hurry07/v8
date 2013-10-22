@@ -92,11 +92,9 @@ static FT_Error load_font_assets_from_file(FT_Library* library, const char* file
 //    __maxread = 0;
 //    LOGI("---------");
 
-    std::string wholepath;
-    AssetUtil::getFilePath(filename, &wholepath);
-    FILE* file = fopen(wholepath.c_str(), "rb");
-
+    FILE* file = AssetUtil::android_fopen(filename, "rb");
     return load_font_assets(file, library, face_index, aface);
+
 //    LOGI("read size:%ld offset:%ld count:%d total:%d maxstride:%d", size, __maxoffset, __totalread, __totaltimes, __maxread);
 //    return e;
 }

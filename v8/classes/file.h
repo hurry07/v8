@@ -10,22 +10,34 @@
 #define __v8__file__
 
 #include "../core/ClassBase.h"
+#include <stdio.h>
 
-class JSFile : public ClassBase {
+class JSFile;
+
+class FileRefer {
+public:
+	size_t pos;
+	size_t size;
+	char *buffer;
+};
+
+class JSFile: public ClassBase {
 public:
 	JSFile();
 	~JSFile();
-
-    bool isEmpty();
-    char* allocate(int length);
+    
+	bool isEmpty();
+	char* allocate(int length);
 	const char* chars();
 	int size();
-    virtual void doRelease();
+	virtual void doRelease();
     
-    static JSFile* loadAsset(const char* path);
+	static JSFile* loadAsset(const char* path);
+	static class_struct* getExportStruct();
+	virtual ClassType getClassType();
 
-    static class_struct* getExportStruct();
-    virtual ClassType getClassType();
+	FILE* fopen(const char *mode);
+    
 private:
 	char* mBuffer;
 	int mLength;

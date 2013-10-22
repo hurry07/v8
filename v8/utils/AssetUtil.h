@@ -22,7 +22,7 @@ public:
      * load asset to file
      */
 	static void load(JSFile* file, const char* path);
-    static void getFilePath(const char* path, std::string* wholepath);
+	static FILE* android_fopen(const char* fname, const char* mode);
 };
 
 #endif /* ASSETUTIL_H_ */

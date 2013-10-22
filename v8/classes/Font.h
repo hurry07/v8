@@ -12,20 +12,22 @@
 #include "../core/ClassBase.h"
 #include "freetype-gl.h"
 
+class JSFile;
+
 class Font : public ClassBase {
 public:
 	Font();
 	virtual ~Font();
 
     virtual void doRelease();
-    virtual void init(const FunctionCallbackInfo<Value> &args);
+    virtual void init(const v8::FunctionCallbackInfo<Value> &args);
 
     static class_struct* getExportStruct();
     virtual ClassType getClassType();
 
 public:
     texture_font_t *font;
+    JSFile* jsfile;
 };
-
 
 #endif /* defined(__v8__Font__) */

@@ -27,7 +27,7 @@
 			<fileset dir="${projectdir}/../v8/assets" />
 		</copy>
 		<copy todir="${projectdir}/jni" overwrite="true">
-			<fileset dir="${projectdir}/../v8" excludes="demo*.*" includes="**/*.cpp,**/*.h,**/*.c" />
+			<fileset dir="${projectdir}/../v8" excludes="demo*.*,demo/**" includes="**/*.cpp,**/*.h,**/*.c" />
 		</copy>
 		<copy todir="${projectdir}/jni" overwrite="true">
 			<fileset dir="${projectdir}/android_cpp" />
