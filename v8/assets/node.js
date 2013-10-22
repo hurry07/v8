@@ -5,13 +5,16 @@
 
     function startup() {
         startup.globalExtend();
-        startup.globalRequire();
-        startup.globalConsole();
+        startup.globalGetters();
         startup.globalTypedArray();
 //        startup.globalGL();
     }
 
-    startup.globalExtend = function() {
+    function runTask(fn) {
+        return fn.call(global);
+    }
+
+    startup.globalExtend = function () {
         function _extends(sub, super_, props) {
             sub.prototype = Object.create(super_.prototype);
             if (props) {
@@ -22,24 +25,26 @@
             sub.prototype.constructor = sub;
             return sub;
         }
+
         global.__defineGetter__('_extends', function () {
             return _extends;
         });
     }
-    startup.globalRequire = function () {
+    startup.globalGetters = function () {
         global.__defineGetter__('require', function () {
             return NativeModule.require;
         });
-    }
-    startup.globalConsole = function () {
         global.__defineGetter__('console', function () {
             return NativeModule.require('console');
+        });
+        global.__defineGetter__('task', function () {
+            return runTask;
         });
     };
     /**
      * may triggered with a -typed_array condition
      */
-    startup.globalTypedArray = function() {
+    startup.globalTypedArray = function () {
         var clz = NativeModule.require('nativeclasses');
         global.ArrayBuffer = clz.ArrayBuffer;
 
@@ -112,16 +117,20 @@
     NativeModule.wrap = function (script) {
         return NativeModule.wrapper[0] + script + NativeModule.wrapper[1];
     };
+    NativeModule.release = function (script) {
+        console.log(' NativeModule.release');
+        NativeModule._cache = {};
+    };
 
     NativeModule.prototype.compile = function () {
 //    	print__((module_depth++) + ' require-->' + this.id);
-    	try {
-	        var fn = process.binding(this.id);
-	        fn.call(this, this.exports, NativeModule.require, this, this.filename);
-	        this.loaded = true;
-    	} catch(e) {
-    		print__('exception:' + e);
-    	}
+        try {
+            var fn = process.binding(this.id);
+            fn.call(this, this.exports, NativeModule.require, this, this.filename);
+            this.loaded = true;
+        } catch (e) {
+            print__('exception:' + e);
+        }
 //        print__((--module_depth) + ' require<--' + this.id);
     };
 

@@ -54,44 +54,20 @@ void ReportMessage(v8::Handle<v8::Message> message, v8::Handle<v8::Value> data) 
     std::string exp(s, len);
     LOGI("Exception %s", exp.c_str());
 }
-
-Application::Application() {
-//    const char typed_arrays_flag[] = "--harmony_typed_arrays";
-//    V8::SetFlagsFromString(typed_arrays_flag, sizeof(typed_arrays_flag) - 1);
-//    V8::SetArrayBufferAllocator(&ArrayBufferAllocator::the_singleton);
-    
-    mWidth = 0;
-    mHeight = 0;
-    v8::V8::AddMessageListener(ReportMessage);
-
-	node_isolate = Isolate::New();
-	ENTER_ISOLATE;
-
-	game = 0;
-	render = 0;
-    touchEvent = 0;
-    keyEvent = 0;
-
-	HANDLE_SCOPE;
-	context_p.Reset(node_isolate, Context::New(node_isolate));
-}
-Application::~Application() {
-	{
-		ENTER_ISOLATE;
-
-		SAFE_DISPOSE(process_p);
-		SAFE_DISPOSE(context_p);
-
-		SAFE_DELETE(render);
-		SAFE_DELETE(game);
-		SAFE_DELETE(touchEvent);
-		SAFE_DELETE(keyEvent);
-
-        release_buildin_module();
+static void printf__(const FunctionCallbackInfo<Value>& args) {
+	std::string buf;
+	int length = args.Length();
+	if (length == 0) {
+		return;
 	}
-	node_isolate->Dispose();
-	node_isolate = 0;
+	buf.append(*String::Utf8Value(args[0]->ToString()));
+	for (int i = 1; i < length; i++) {
+		buf.append(",");
+		buf.append(*String::Utf8Value(args[i]->ToString()));
+	}
+	LOGI("%s", buf.c_str());
 }
+
 Local<Context> Application::GetV8Context() {
 	return Local<Context>::New(node_isolate, context_p);
 }
@@ -109,21 +85,6 @@ v8::Handle<v8::String> ReadFile(const char* name) {
     delete file;
 	return scope.Close(result);
 }
-
-static void printf__(const FunctionCallbackInfo<Value>& args) {
-	std::string buf;
-	int length = args.Length();
-	if (length == 0) {
-		return;
-	}
-	buf.append(*String::Utf8Value(args[0]->ToString()));
-	for (int i = 1; i < length; i++) {
-		buf.append(",");
-		buf.append(*String::Utf8Value(args[i]->ToString()));
-	}
-	LOGI("%s", buf.c_str());
-}
-
 Local<Function> Application::loadModuleFn(const char* name) {
 	HANDLE_SCOPE;
 
@@ -188,31 +149,47 @@ Handle<Object> Application::SetupProcessObject() {
 	return scope.Close(process);
 }
 
+// ==========================
+// LifeCycle
+// ==========================
+Application::Application() {
+    mWidth = 0;
+    mHeight = 0;
+    // v8::V8::AddMessageListener(ReportMessage);
+
+	node_isolate = Isolate::New();
+	ENTER_ISOLATE;
+    
+	game = 0;
+	render = 0;
+    touchEvent = 0;
+    keyEvent = 0;
+    
+	HANDLE_SCOPE;
+	context_p.Reset(node_isolate, Context::New(node_isolate));
+}
 void Application::init() {
 	{
 		ENTER_ISOLATE;
 		HANDLE_SCOPE;
 		CONTEXT_SCOPE;
-
+        
         // binding test func
 		context->Global()->Set(String::New("print"), FunctionTemplate::New(printf__)->GetFunction());
-
 		Handle<Object> process = SetupProcessObject();
 		process_p.Reset(node_isolate, process);
 
-		// init with node.js
+		// init global with node.js
 		Local<Script> initscript = loadScript("node.js");
 		Local<Value> f_value = initscript->Run();
 		Local<Function> f = Local<Function>::Cast(f_value);
-
-		// init global
 		Handle<Value> arg = process;
 		f->Call(context->Global(), 1, &arg);
 
 		// load game module
 		Handle<Value> gameExports = eval("require('game.js')");
 		game = new JSObject(gameExports->ToObject());
-		render = new JSObject(game->getAttribute<Object>("render"));
+		render = new JSObject(gameExports->ToObject());
 
         // bind event
         Handle<Object> eventExports = eval("require('core/event.js')")->ToObject();
@@ -226,23 +203,39 @@ void Application::destroy() {
 		ENTER_ISOLATE;
 		EXIT_ISOLATE;
 	}
-
-	ENTER_ISOLATE;
-	HANDLE_SCOPE;
-	CONTEXT_SCOPE;
-	while (!v8::V8::IdleNotification());
+    
+    ENTER_ISOLATE;
+    HANDLE_SCOPE;
+    CONTEXT_SCOPE;
+    
+    release_buildin_module();
+    SAFE_DELETE(render);
+    SAFE_DELETE(game);
+    SAFE_DELETE(touchEvent);
+    SAFE_DELETE(keyEvent);
+    
+//    eval("task(function() {require('surfaceview.js').release();})");
+    eval("task(function() {require('native_module').release();})");
+    while (!v8::V8::IdleNotification());
 }
+Application::~Application() {
+    SAFE_DISPOSE(process_p);
+    SAFE_DISPOSE(context_p);
+	node_isolate->Dispose();
+	node_isolate = 0;
+}
+
 void Application::pause() {
 	ENTER_ISOLATE;
 	HANDLE_SCOPE;
 	CONTEXT_SCOPE;
-	game->callFunction("pause");
+    eval("task(function() {require('game.js').pause();})");
 }
 void Application::resume() {
 	ENTER_ISOLATE;
 	HANDLE_SCOPE;
 	CONTEXT_SCOPE;
-	game->callFunction("resume");
+    eval("task(function() {require('game.js').resume();})");
 }
 void Application::gc() {
 	ENTER_ISOLATE;
@@ -260,7 +253,7 @@ void Application::evalScript(const char* sprite) {
 	Local<Script> comp = Script::Compile(source);
     Local<Value> result = comp->Run();
 
-	LOGI(*String::Utf8Value(result->ToString()));
+	LOGI("%s", *String::Utf8Value(result->ToString()));
 }
 Handle<Value> Application::eval(const char* script) {
 	HANDLE_SCOPE;
@@ -270,14 +263,21 @@ Handle<Value> Application::eval(const char* script) {
 	Local<Script> comp = Script::Compile(source);
 	return scope.Close(comp->Run());
 }
+
+// ==========================
+// Render Interface
+// ==========================
 void Application::onSurfaceCreated(int width, int height) {
     ReleaseTask::glAvaiable = true;
     mWidth = width;
     mHeight = height;
-    
+
 	ENTER_ISOLATE;
 	HANDLE_SCOPE;
 	CONTEXT_SCOPE;
+
+    // bind game instance to render thread
+//    eval("task(function() {require('game.js').bind();})");
 
     Handle<Value> argv[2];
     argv[0] = Number::New(width);
@@ -305,6 +305,10 @@ void Application::onDrawFrame() {
 	static const char* name = "onDrawFrame";
 	render->callFunction(name);
 }
+
+// ==========================
+// Event PipeLine
+// ==========================
 void Application::appendMouseTouch(int button, int state, int x, int y) {
     touchEvent->appendMouseTouch(button, state, x, mHeight - y);
 }

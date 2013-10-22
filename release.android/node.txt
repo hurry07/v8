@@ -53,3 +53,7 @@ libv8_snapshot.a
 release.android/objs
 release.android/assets
 release.android/jni
+
+//    const char typed_arrays_flag[] = "--harmony_typed_arrays";
+//    V8::SetFlagsFromString(typed_arrays_flag, sizeof(typed_arrays_flag) - 1);
+//    V8::SetArrayBufferAllocator(&ArrayBufferAllocator::the_singleton);
