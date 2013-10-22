@@ -2,28 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/release.android/android_cpp/app/Application.cpp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/release.android/android_cpp/app/Application.h" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/v8/assets/surfaceview.js" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/v8/modules/event.cpp" afterPath="$PROJECT_DIR$/v8/modules/Event.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/release.android/libs/armeabi/libgame.so" afterPath="$PROJECT_DIR$/release.android/libs/armeabi/libgame.so" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/app/Application.cpp" afterPath="$PROJECT_DIR$/v8/app/Application.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/app/Application.h" afterPath="$PROJECT_DIR$/v8/app/Application.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/core/JSObject.h" afterPath="$PROJECT_DIR$/v8/core/JSObject.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/autorelease/ReleaseImpl.cpp" afterPath="$PROJECT_DIR$/v8/autorelease/ReleaseImpl.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/scenes/cover.js" afterPath="$PROJECT_DIR$/v8/assets/scenes/cover.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/game.js" afterPath="$PROJECT_DIR$/v8/assets/game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/release.android/android_cpp/main.cpp" afterPath="$PROJECT_DIR$/release.android/android_cpp/main.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/main.cpp" afterPath="$PROJECT_DIR$/v8/main.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/framework/texture.js" afterPath="$PROJECT_DIR$/v8/assets/framework/texture.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/glcore/textures.js" afterPath="$PROJECT_DIR$/v8/assets/glcore/textures.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/Dummy.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1382412431504" ignored="false" />
-    <file path="/game.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1382427738708" ignored="false" />
+    <file path="/game.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1382429377189" ignored="false" />
     <file path="/a.dummy" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1382428808152" ignored="false" />
     <file path="/temp.txt" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376748679355" ignored="false" />
     <file path="/programs.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1376753166840" ignored="false" />
@@ -144,6 +130,7 @@
     <file path="$PROJECT_DIR$/../op/v8/assets/scenes/cover.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1382416243170" ignored="false" />
     <file path="$PROJECT_DIR$/release.android/assets/scenes/game/gamearea.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1382427083682" ignored="false" />
     <file path="$PROJECT_DIR$/release.android/build.xml" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1382427083682" ignored="false" />
+    <file path="$PROJECT_DIR$/release.android/assets/scenes/game/betpanel.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1382429504385" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,7 +153,7 @@
       <file leaf-file-name="cover.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/scenes/cover.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="160" column="35" selection-start="5158" selection-end="5169" vertical-scroll-proportion="0.0">
+            <state line="158" column="35" selection-start="5158" selection-end="5169" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -184,7 +171,7 @@
       <file leaf-file-name="game.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="0" selection-start="1623" selection-end="1623" vertical-scroll-proportion="0.57819384">
+            <state line="1" column="0" selection-start="37" selection-end="37" vertical-scroll-proportion="0.016519824">
               <folding />
             </state>
           </provider>
@@ -211,7 +198,7 @@
       <file leaf-file-name="textures.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/v8/assets/glcore/textures.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="146" column="0" selection-start="4095" selection-end="4095" vertical-scroll-proportion="0.0">
+            <state line="144" column="0" selection-start="4015" selection-end="4015" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -745,14 +732,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/glcore/textures.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="146" column="0" selection-start="4095" selection-end="4095" vertical-scroll-proportion="0.0">
+        <state line="144" column="0" selection-start="4015" selection-end="4015" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/scenes/cover.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="160" column="35" selection-start="5158" selection-end="5169" vertical-scroll-proportion="0.0">
+        <state line="158" column="35" selection-start="5158" selection-end="5169" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -766,7 +753,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="0" selection-start="1623" selection-end="1623" vertical-scroll-proportion="0.57819384">
+        <state line="1" column="0" selection-start="37" selection-end="37" vertical-scroll-proportion="0.016519824">
           <folding />
         </state>
       </provider>

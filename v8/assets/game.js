@@ -1,10 +1,8 @@
 //require('tools/glwrap.js').wrap();
+
 var _global;
 var mCamera;
 var mRenderContext;
-_global = require('framework/global.js');
-mCamera = _global.mCamera;
-mRenderContext = _global.mRenderContext;
 
 var _framerate = require('tools/framerate.js');
 var _gl = require('opengl');
@@ -16,8 +14,10 @@ var _inherit = require('core/inherit.js');
 
 var firstInit = true;
 function Game() {
+    console.log('function Game');
 }
 Game.prototype.initGL = function (width, height) {
+    console.log('Game.prototype.initGL');
     if(!firstInit) {
         return;
     }
@@ -50,6 +50,7 @@ Game.prototype.setupCamera = function (width, height) {
     mCamera.viewport();
 };
 Game.prototype.onSurfaceCreated = function (width, height) {
+    console.log('Game.prototype.onSurfaceCreated');
     this.initGL(width, height);
     this.setupCamera(width, height);
     _global.updateContext.reset();
