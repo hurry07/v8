@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		181B2EA618166F5900F85E2B /* global.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 181B2EA518166F5900F85E2B /* global.cpp */; };
-		181B2EAA181695BE00F85E2B /* Weak.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 181B2EA8181695BD00F85E2B /* Weak.cpp */; };
 		18203BFC17F1A1FF00A7ED4C /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BFA17F1A1FF00A7ED4C /* Font.cpp */; };
 		18203BFF17F1ABF300A7ED4C /* TextureAtlas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18203BFD17F1ABF300A7ED4C /* TextureAtlas.cpp */; };
 		182820A1179AFFCB003125B5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 182820A0179AFFCB003125B5 /* main.cpp */; };
@@ -50,6 +49,7 @@
 		1888176117E00C9900E4504A /* RingBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1888175F17E00C9900E4504A /* RingBuffer.cpp */; };
 		1888176417E00DAA00E4504A /* Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1888176217E00DAA00E4504A /* Event.cpp */; };
 		18A6D24E17C75CBE004931FD /* v8Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18A6D24D17C75CBE004931FD /* v8Utils.cpp */; };
+		18B1EB3D1816E8DB00F97684 /* WeakRef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18B1EB3B1816E8DB00F97684 /* WeakRef.cpp */; };
 		18C9D0C917F54BD500A1820B /* AutoRelease.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18C9D0C717F54BD500A1820B /* AutoRelease.cpp */; };
 		18C9D0D117F54EFD00A1820B /* ReleaseImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18C9D0CF17F54EFD00A1820B /* ReleaseImpl.cpp */; };
 		18CE2CC217C6582C00B6DB8E /* Application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18CE224817C6582800B6DB8E /* Application.cpp */; };
@@ -87,8 +87,6 @@
 		1809714D17E9D09400C725AA /* tips.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = tips.txt; path = v8/assets/tips.txt; sourceTree = "<group>"; };
 		181B2EA518166F5900F85E2B /* global.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = global.cpp; sourceTree = "<group>"; };
 		181B2EA7181672A000F85E2B /* gl_include.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gl_include.h; sourceTree = "<group>"; };
-		181B2EA8181695BD00F85E2B /* Weak.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Weak.cpp; sourceTree = "<group>"; };
-		181B2EA9181695BD00F85E2B /* Weak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weak.h; sourceTree = "<group>"; };
 		18203BFA17F1A1FF00A7ED4C /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Font.cpp; sourceTree = "<group>"; };
 		18203BFB17F1A1FF00A7ED4C /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Font.h; sourceTree = "<group>"; };
 		18203BFD17F1ABF300A7ED4C /* TextureAtlas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureAtlas.cpp; sourceTree = "<group>"; };
@@ -190,6 +188,8 @@
 		18A6D24D17C75CBE004931FD /* v8Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = v8Utils.cpp; sourceTree = "<group>"; };
 		18AFB48917AE06A900B7AFDA /* libv8_base.x64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_base.x64.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_base.x64.a; sourceTree = "<group>"; };
 		18AFB48B17AE06A900B7AFDA /* libv8_snapshot.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libv8_snapshot.a; path = ../../git/node/deps/v8/out/x64.debug/libv8_snapshot.a; sourceTree = "<group>"; };
+		18B1EB3B1816E8DB00F97684 /* WeakRef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WeakRef.cpp; sourceTree = "<group>"; };
+		18B1EB3C1816E8DB00F97684 /* WeakRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeakRef.h; sourceTree = "<group>"; };
 		18B3EA9317D1DEB6009E78A2 /* CCImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCImage.h; sourceTree = "<group>"; };
 		18C9D0C617F2B34500A1820B /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		18C9D0C717F54BD500A1820B /* AutoRelease.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AutoRelease.cpp; sourceTree = "<group>"; };
@@ -478,6 +478,8 @@
 				18203BFE17F1ABF300A7ED4C /* TextureAtlas.h */,
 				18C9D0C717F54BD500A1820B /* AutoRelease.cpp */,
 				18C9D0C817F54BD500A1820B /* AutoRelease.h */,
+				18B1EB3B1816E8DB00F97684 /* WeakRef.cpp */,
+				18B1EB3C1816E8DB00F97684 /* WeakRef.h */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -541,8 +543,6 @@
 				18CE229617C6582800B6DB8E /* modules.h */,
 				183CE6C517D34A6B00ADD5CE /* Image.cpp */,
 				183CE6C617D34A6C00ADD5CE /* Image.h */,
-				181B2EA8181695BD00F85E2B /* Weak.cpp */,
-				181B2EA9181695BD00F85E2B /* Weak.h */,
 			);
 			path = modules;
 			sourceTree = "<group>";
@@ -680,7 +680,7 @@
 				18C9D0C917F54BD500A1820B /* AutoRelease.cpp in Sources */,
 				18C9D0D117F54EFD00A1820B /* ReleaseImpl.cpp in Sources */,
 				181B2EA618166F5900F85E2B /* global.cpp in Sources */,
-				181B2EAA181695BE00F85E2B /* Weak.cpp in Sources */,
+				18B1EB3D1816E8DB00F97684 /* WeakRef.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

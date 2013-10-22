@@ -37,7 +37,8 @@ enum ClassType {
     CLASS_Font,
     CLASS_Atlas,
     
-    CLASS_AutoRelease// auto release
+    CLASS_AutoRelease,// auto release
+    CLASS_Weak
 };
 
 #endif

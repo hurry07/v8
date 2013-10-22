@@ -19,10 +19,8 @@
 
 //#include "ArrayBufferAllocator.h"
 #include "../autorelease/ReleaseImpl.h"
-
 #include <string>
 #include "../gl_include.h"
-
 #include <glm/gtc/type_ptr.hpp>
 
 using namespace node;

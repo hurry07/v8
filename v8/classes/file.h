@@ -10,7 +10,6 @@
 #define __v8__file__
 
 #include "../core/ClassBase.h"
-#include <stdio.h>
 
 class JSFile;
 

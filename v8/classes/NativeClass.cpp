@@ -25,6 +25,7 @@ using namespace v8;
 #include "Font.h"
 #include "TextureAtlas.h"
 #include "AutoRelease.h"
+#include "WeakRef.h"
 
 #define FN_SEQ(fn) \
 fn##_CLASS(EventAccessor);\
@@ -90,7 +91,8 @@ fn##_CLASS(TextureAtlas);\
 fn##_CLASS(AutoRelease);\
 \
 fn##_CLASS(GcObserver);\
-fn##_CLASS(Image);
+fn##_CLASS(Image);\
+fn##_CLASS(WeakRef);
 
 #define INIT_CLASS(clz) ClassWrap<clz >::expose(global)
 #define INIT_CLASS_NAME(clz, name) ClassWrap<clz >::expose(#name, global)
