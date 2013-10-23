@@ -26,10 +26,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="game.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="game.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="101" selection-start="1106" selection-end="1106" vertical-scroll-proportion="0.0">
+            <state line="38" column="48" selection-start="1033" selection-end="1033" vertical-scroll-proportion="0.62913907">
               <folding />
             </state>
           </provider>
@@ -80,10 +80,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="texture.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="texture.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/framework/texture.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="161" selection-start="1779" selection-end="1779" vertical-scroll-proportion="0.0066225166">
+            <state line="66" column="161" selection-start="1779" selection-end="1779" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -119,8 +119,8 @@
       <list>
         <option value="$PROJECT_DIR$/tools/glwrap.js" />
         <option value="$PROJECT_DIR$/component/selector/selector.js" />
-        <option value="$PROJECT_DIR$/game.js" />
         <option value="$PROJECT_DIR$/framework/texture.js" />
+        <option value="$PROJECT_DIR$/game.js" />
       </list>
     </option>
   </component>
@@ -417,13 +417,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="101" selection-start="1106" selection-end="1106" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/glcore/textures.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="143" column="24" selection-start="3986" selection-end="3986" vertical-scroll-proportion="0.0">
@@ -440,7 +433,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/texture.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="161" selection-start="1779" selection-end="1779" vertical-scroll-proportion="0.0066225166">
+        <state line="66" column="161" selection-start="1779" selection-end="1779" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="48" selection-start="1033" selection-end="1033" vertical-scroll-proportion="0.62913907">
           <folding />
         </state>
       </provider>

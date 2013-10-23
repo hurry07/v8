@@ -35,8 +35,8 @@ Game.prototype.initGL = function (width, height) {
 
     var _timer = require('core/timer.js');
     var tick = new _timer.TickTack();
-    _global.registerScene(require('scenes/cover.js').newInstance('cover', width, height));
-    //_global.registerScene(require('scenes/game.js').newInstance('game', width, height));
+//    _global.registerScene(require('scenes/cover.js').newInstance('cover', width, height));
+    _global.registerScene(require('scenes/game.js').newInstance('game', width, height));
     tick.check('registerScene');
     firstInit = false;
 };
