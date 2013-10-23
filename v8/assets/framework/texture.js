@@ -1,15 +1,3 @@
-var _cache = require('glcore/texturecache.js');
-
-function iterator(coll, root, textures) {
-    for (var i in coll) {
-        if (typeof coll[i] === 'object') {
-            iterator(coll[i], root + '/' + i, textures);
-        } else {
-            textures.push(root + '/' + i + coll[i]);
-            coll[i] = textures.length - 1;
-        }
-    }
-}
 var R = {
     game: {
         bg: '.png',
@@ -124,29 +112,13 @@ var R = {
     word: '.png'
 }
 
-var textures = [];
-var root = 'images';
-iterator(R, '', textures);
-
-// managing texture frame creation
-var _textures = require('glcore/textures.js');
-var _frame = require('glcore/textureframe.js');
-
-function getPath(id) {
-    return root + textures[id];
-}
+var _cache = require('glcore/texturecache.js');
+var texture = _cache.create('images', R);
 function createFrame(id) {
-    var path = getPath(id);
-    if (!path) {
-        console.log('createFrame image not found:' + id);
-    }
-    if (path.frame) {
-        return path.frame;
-    }
-
-    var t = _textures.createTexture2D(path);
-    return path.frame = new _frame(t);
+    return texture.createFrame(id);
 }
-
-exports.R = R;
+console.log('--------------texture');
+console.log('--------------texture');
+console.log('--------------texture');
+exports.R = texture.R;
 exports.createFrame = createFrame;

@@ -232,9 +232,6 @@ void Application::resume() {
 	HANDLE_SCOPE;
 	CONTEXT_SCOPE;
     game->callFunction("resume");
-//    eval("task(function() {require('test/test.js').check();})");
-//    while (!v8::V8::IdleNotification());
-//    eval("task(function() {require('test/test.js').check();})");
 }
 void Application::gc() {
 	ENTER_ISOLATE;

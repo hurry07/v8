@@ -180,6 +180,7 @@ void WeakRef::doRelease() {
     target.Clear();
     callbacks.Dispose();
     callbacks.Clear();
+    LOGI("~WeakRef");
 }
 void WeakRef::init(const v8::FunctionCallbackInfo<Value> &info) {
     HandleScope scope;
@@ -196,6 +197,7 @@ void WeakRef::init(const v8::FunctionCallbackInfo<Value> &info) {
     if (info.Length() >= 2) {
         array->Set(Integer::New(array->Length()), info[1]);
     }
+    mRelease = false;
 }
 class_struct* WeakRef::getExportStruct() {
     static class_struct mTemplate = {
