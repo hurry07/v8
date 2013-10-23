@@ -29,7 +29,7 @@
       <file leaf-file-name="game.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="101" selection-start="999" selection-end="999" vertical-scroll-proportion="0.0">
+            <state line="39" column="101" selection-start="1106" selection-end="1106" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -83,7 +83,7 @@
       <file leaf-file-name="texture.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/framework/texture.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="122" column="68" selection-start="3200" selection-end="3200" vertical-scroll-proportion="0.69536424">
+            <state line="66" column="161" selection-start="1779" selection-end="1779" vertical-scroll-proportion="0.0066225166">
               <folding />
             </state>
           </provider>
@@ -156,6 +156,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -218,7 +219,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -226,9 +226,9 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="options.lastSelected" value="JavaScript.Libraries" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../v8gc_test/v8/assets" />
-    <property name="GoToClass.includeJavaFiles" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="GoToClass.includeJavaFiles" value="false" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
@@ -419,7 +419,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="101" selection-start="999" selection-end="999" vertical-scroll-proportion="0.0">
+        <state line="39" column="101" selection-start="1106" selection-end="1106" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -440,7 +440,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/texture.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="68" selection-start="3200" selection-end="3200" vertical-scroll-proportion="0.69536424">
+        <state line="66" column="161" selection-start="1779" selection-end="1779" vertical-scroll-proportion="0.0066225166">
           <folding />
         </state>
       </provider>

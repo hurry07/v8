@@ -117,8 +117,6 @@ var texture = _cache.create('images', R);
 function createFrame(id) {
     return texture.createFrame(id);
 }
-console.log('--------------texture');
-console.log('--------------texture');
-console.log('--------------texture');
+
 exports.R = texture.R;
 exports.createFrame = createFrame;
