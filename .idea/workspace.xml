@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" afterPath="$PROJECT_DIR$/v8.xcodeproj/project.xcworkspace/xcuserdata/jie.xcuserdatad/UserInterfaceState.xcuserstate" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/app/Application.cpp" afterPath="$PROJECT_DIR$/v8/app/Application.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/classes/WeakRef.cpp" afterPath="$PROJECT_DIR$/v8/classes/WeakRef.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/main.cpp" afterPath="$PROJECT_DIR$/v8/main.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/framework/texture.js" afterPath="$PROJECT_DIR$/v8/assets/framework/texture.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/v8/assets/glcore/texturecache.js" afterPath="$PROJECT_DIR$/v8/assets/glcore/texturecache.js" />
     </list>
     <ignored path="v8.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -133,9 +129,6 @@
     <file path="$PROJECT_DIR$/../op/v8/assets/scenes/cover.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1382416243170" ignored="false" />
     <file path="$PROJECT_DIR$/release.android/assets/scenes/game/gamearea.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1382427083682" ignored="false" />
     <file path="$PROJECT_DIR$/release.android/assets/scenes/game/betpanel.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1382429504385" ignored="false" />
-    <file path="$PROJECT_DIR$/release.android/jni/main.cpp" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1382492434214" ignored="false" />
-    <file path="$PROJECT_DIR$/release.android/jni/Java_com_op_activity_JSSurfaceView.h" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1382492434214" ignored="false" />
-    <file path="$PROJECT_DIR$/release.android/obj/local/armeabi/objs/game/main.o.d" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1382492434214" ignored="false" />
     <file path="/weak.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1382493473180" ignored="false" />
     <file path="/test.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1382496204651" ignored="false" />
     <file path="/texturecache.js" changelist="bf692c4c-be08-4c2d-8a2b-4a75115ff3fa" time="1382501371037" ignored="false" />
@@ -198,7 +191,7 @@
       <file leaf-file-name="texture.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/release.android/assets/framework/texture.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="150" column="0" selection-start="3737" selection-end="3842" vertical-scroll-proportion="0.0">
+            <state line="122" column="0" selection-start="3172" selection-end="3172" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -216,7 +209,7 @@
       <file leaf-file-name="texturecache.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/v8/assets/glcore/texturecache.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="7" selection-start="1536" selection-end="1543" vertical-scroll-proportion="0.8843612">
+            <state line="19" column="47" selection-start="561" selection-end="561" vertical-scroll-proportion="0.22356828">
               <folding />
             </state>
           </provider>
@@ -849,14 +842,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/release.android/assets/framework/texture.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="150" column="0" selection-start="3737" selection-end="3842" vertical-scroll-proportion="0.0">
+        <state line="122" column="0" selection-start="3172" selection-end="3172" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/v8/assets/glcore/texturecache.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="7" selection-start="1536" selection-end="1543" vertical-scroll-proportion="0.8843612">
+        <state line="19" column="47" selection-start="561" selection-end="561" vertical-scroll-proportion="0.22356828">
           <folding />
         </state>
       </provider>

@@ -9,9 +9,6 @@
 #include "v8.h"
 #include "../core/v8Utils.h"
 
-#define TOLOCAL(persist, type) Local<type>::New(Isolate::GetCurrent(), persist)
-
-
 //Handle<Value> WeakNamedPropertyGetter(Local<String> property, const AccessorInfo& info) {
 //    UNWRAP
 //    return dead ? Local<Value>() : obj->Get(property);
@@ -179,7 +176,6 @@ void WeakRef::doRelease() {
     target.Clear();
     callbacks.Dispose();
     callbacks.Clear();
-    LOGI("~WeakRef");
 }
 void WeakRef::init(const v8::FunctionCallbackInfo<Value> &info) {
     HandleScope scope;
