@@ -26,82 +26,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="game.js" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/game.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="48" selection-start="1033" selection-end="1033" vertical-scroll-proportion="0.62913907">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="autorelease.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/autorelease.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="62" selection-start="528" selection-end="528" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="global.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/global.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="197" column="25" selection-start="6014" selection-end="6022" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="game.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scenes/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="57" selection-start="1271" selection-end="1271" vertical-scroll-proportion="0.0">
+            <state line="48" column="30" selection-start="1659" selection-end="1673" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="selector.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/component/selector/selector.js">
+      <file leaf-file-name="gamearea.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/scenes/game/gamearea.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="1" selection-start="707" selection-end="707" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WebGL.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavascriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/WebGL.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2047" column="168" selection-start="31188" selection-end="31188" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="texture.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/texture.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="161" selection-start="1779" selection-end="1779" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="textures.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/glcore/textures.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="143" column="24" selection-start="3986" selection-end="3986" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="glwrap.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tools/glwrap.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="28" selection-start="452" selection-end="452" vertical-scroll-proportion="0.0">
+            <state line="610" column="176" selection-start="17805" selection-end="17805" vertical-scroll-proportion="0.731243">
               <folding />
             </state>
           </provider>
@@ -121,6 +58,8 @@
         <option value="$PROJECT_DIR$/component/selector/selector.js" />
         <option value="$PROJECT_DIR$/framework/texture.js" />
         <option value="$PROJECT_DIR$/game.js" />
+        <option value="$PROJECT_DIR$/scenes/game.js" />
+        <option value="$PROJECT_DIR$/scenes/game/gamearea.js" />
       </list>
     </option>
   </component>
@@ -185,7 +124,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="glcore" />
+              <option name="myItemId" value="scenes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -199,21 +138,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="framework" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
+              <option name="myItemId" value="scenes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
+              <option name="myItemId" value="game" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -333,13 +262,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scenes/game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="57" selection-start="1271" selection-end="1271" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/component/selector/selector.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="1" selection-start="707" selection-end="707" vertical-scroll-proportion="0.0">
@@ -396,13 +318,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scenes/game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="57" selection-start="1271" selection-end="1271" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/component/selector/selector.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="1" selection-start="707" selection-end="707" vertical-scroll-proportion="0.0">
@@ -440,7 +355,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="48" selection-start="1033" selection-end="1033" vertical-scroll-proportion="0.62913907">
+        <state line="40" column="23" selection-start="1129" selection-end="1129" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scenes/game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="30" selection-start="1659" selection-end="1673" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scenes/game/gamearea.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="610" column="176" selection-start="17805" selection-end="17805" vertical-scroll-proportion="0.731243">
           <folding />
         </state>
       </provider>

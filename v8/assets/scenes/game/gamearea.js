@@ -482,6 +482,7 @@ GameArea.prototype.startFallAnima = function () {
     var group;
     var cell;
     var start;
+
     var result = this.mRemove;
     for (var i = 0, cols = this.mCols; i < cols; i++) {
         var count = this.mTop[i];

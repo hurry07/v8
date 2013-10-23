@@ -29,13 +29,8 @@ var Game = _scene.createScene(
             }
         }, this);
         tick.check('game.bindevent');
-
         this.mCoins = this.querySelector('#coinsbar')[0];
 
-//        var text = _global.textNode('Georgia', 90, 'ABCDEabcde');
-//        var text = _global.textNode('Georgia', 30, 'ABCDEabcde');
-//        text.setPosition(50, 200);
-//        this.addChild(text);
         this.onSizeChange(w, h);
         tick.check('game.onSizeChange');
     }
