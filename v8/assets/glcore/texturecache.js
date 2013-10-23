@@ -49,6 +49,9 @@ TextureCache.prototype.createTexture = function (path) {
 TextureCache.prototype.createFrame = function (id) {
     return this.cache[id].createFrame();
 };
+TextureCache.prototype.ids = function () {
+    return this.R;
+};
 
 exports.create = function (root, R) {
     return new TextureCache(root, R);
