@@ -1,3 +1,5 @@
+var _cache = require('glcore/texturecache.js');
+
 function iterator(coll, root, textures) {
     for (var i in coll) {
         if (typeof coll[i] === 'object') {
@@ -145,13 +147,6 @@ function createFrame(id) {
     var t = _textures.createTexture2D(path);
     return path.frame = new _frame(t);
 }
-
-//var gcobserver = require('nativeclasses').gcobserver;
-//var gc1 = new gcobserver('~~~~~~~texture.js');
-//console.log('gcobserver:', gcobserver, gc1);
-//_textures.createTexture2D('images/upgrade/b_addcoins.png');
-//_textures.createTexture2D('images/upgrade/b_addcoins.png');
-//_textures.createTexture2D('images/upgrade/b_addcoins.png');
 
 exports.R = R;
 exports.createFrame = createFrame;

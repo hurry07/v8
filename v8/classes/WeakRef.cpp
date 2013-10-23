@@ -115,7 +115,8 @@ METHOD_BEGIN(addCallback, info) {
 METHOD_BEGIN(isNearDeath, info) {
     HandleScope scope;
     WeakRef* proxy = internalPtr<WeakRef>(info);
-    if(proxy == 0 || proxy->target.IsEmpty()) {
+    if(proxy == 0) {
+        info.GetReturnValue().Set(false);
         return;
     }
     info.GetReturnValue().Set(proxy->target.IsNearDeath());
@@ -164,8 +165,8 @@ void TargetCallback(Isolate* isolate, Persistent<Object>* target, WeakRef* arg) 
         }
     }
 
-    target->Dispose();
-    target->Clear();
+    arg->target.Dispose();
+    arg->target.Clear();
     arg->callbacks.Dispose();
     arg->callbacks.Clear();
 }

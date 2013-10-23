@@ -1,5 +1,4 @@
 //require('tools/glwrap.js').wrap();
-
 var _global;
 var mCamera;
 var mRenderContext;
@@ -17,7 +16,6 @@ function Game() {
     console.log('function Game');
 }
 Game.prototype.initGL = function (width, height) {
-    console.log('Game.prototype.initGL');
     if(!firstInit) {
         return;
     }
@@ -37,7 +35,6 @@ Game.prototype.initGL = function (width, height) {
 
     var _timer = require('core/timer.js');
     var tick = new _timer.TickTack();
-    console.log('Game.prototype.initGL');
     _global.registerScene(require('scenes/cover.js').newInstance('cover', width, height));
     //_global.registerScene(require('scenes/game.js').newInstance('game', width, height));
     tick.check('registerScene');
@@ -50,7 +47,6 @@ Game.prototype.setupCamera = function (width, height) {
     mCamera.viewport();
 };
 Game.prototype.onSurfaceCreated = function (width, height) {
-    console.log('Game.prototype.onSurfaceCreated');
     this.initGL(width, height);
     this.setupCamera(width, height);
     _global.updateContext.reset();
