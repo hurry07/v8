@@ -81,7 +81,6 @@ static FT_Error load_font_assets_from_file(texture_font_t* self, FT_Library* lib
 }
 static FT_Error load_font_assets_buffer(texture_font_t* self, FT_Library* library, const char* filename, FT_Long face_index, FT_Face* aface) {
 	if(self->buffer == 0) {
-		LOGI("self->buffer:%p", self->buffer);
 		self->buffer = JSFile::loadAsset(filename);
 	}
 	JSFile* jsfile = static_cast<JSFile*>(self->buffer);

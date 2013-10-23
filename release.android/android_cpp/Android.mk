@@ -31,6 +31,7 @@ LOCAL_SRC_FILES := main.cpp \
 	classes/gcobserver.cpp \
 	classes/NativeClass.cpp \
 	classes/TextureAtlas.cpp \
+	classes/WeakRef.cpp \
 	core/bytebuffer.cpp \
 	core/ClassBase.cpp \
 	core/JSObject.cpp \

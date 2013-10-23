@@ -4,8 +4,8 @@
 	<property name="ndk_root" value="/Users/jie/environment/android-ndk-r8e" />
 	<property name="ndk_root" value="/Users/jie/environment/android-ndk-r9" />
 	<property name="ndk_root" value="/Users/jie/android-ndk-r8b" />
-	<property name="rawbuild" value="true" />
 	-->
+	<property name="rawbuild" value="true" />
 	<property name="ndk_root" value="/Users/jie/environment/android-ndk-r8d" />
 	<property name="NDK_MODULE_PATH" value="${ndk_root}:${projectdir}/dependence" />
 

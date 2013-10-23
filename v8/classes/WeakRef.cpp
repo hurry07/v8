@@ -7,7 +7,6 @@
 //
 #include "WeakRef.h"
 #include "v8.h"
-#include "node.h"
 #include "../core/v8Utils.h"
 
 #define TOLOCAL(persist, type) Local<type>::New(Isolate::GetCurrent(), persist)
