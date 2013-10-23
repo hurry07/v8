@@ -56,5 +56,3 @@ TextureCache.prototype.ids = function () {
 exports.create = function (root, R) {
     return new TextureCache(root, R);
 };
-var gcobserver = require('nativeclasses').gcobserver;
-exports.gc1 = new gcobserver('~~~~~~~texturecache.js');
